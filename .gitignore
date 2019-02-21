@@ -33,3 +33,19 @@
 
 # Processed audio files
 *.transformados_modificados_e_destransformados.wav
+
+# Latex compiled objects
+*.pdf
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.idx
+*.log
+latex.rul.xml
+tmp
+
+
+
+
+/Debug/

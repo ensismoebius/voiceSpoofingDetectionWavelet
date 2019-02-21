@@ -33,13 +33,17 @@ int main(int i, char* arrProgramArguments[]) {
 	// Declaring the struct for the file header
 	// TODO Ask why an struct to read a file and how it interacts with fread
 	struct {
-			unsigned char riff[4];
+			unsigned char riff[4]; // what's riff??
 			unsigned long len;
 	} fileHeader;
 
-
+	//reads the original file header
 	fread(&fileHeader, sizeof(fileHeader), 1, fileReader);
+
+	//writes the processed file header
 	fwrite(&fileHeader, sizeof(fileHeader), 1, fileWriter);
+
+	//
 	std::cout << "\nArquivo do tipo: " << fileHeader.riff[0] << fileHeader.riff[1] << fileHeader.riff[2] << fileHeader.riff[3];
 	std::cout << "\nTamanho excluindo header: " << fileHeader.len;
 
