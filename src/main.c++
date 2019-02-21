@@ -43,11 +43,10 @@ int main(int i, char* arrProgramArguments[]) {
 	//writes the processed file header
 	fwrite(&fileHeader, sizeof(fileHeader), 1, fileWriter);
 
-	//
+	// dsiplay header's infos
 	std::cout << "\nArquivo do tipo: " << fileHeader.riff[0] << fileHeader.riff[1] << fileHeader.riff[2] << fileHeader.riff[3];
 	std::cout << "\nTamanho excluindo header: " << fileHeader.len;
 
-	///////////////////////////////////////////////////////////////////////////
 
 	unsigned char wave[4];
 	fread(&wave, sizeof(wave), 1, fileReader); //////
