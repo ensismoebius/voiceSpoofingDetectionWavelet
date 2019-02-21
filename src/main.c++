@@ -48,6 +48,7 @@ int main(int i, char* arrProgramArguments[]) {
 	std::cout << "\nTamanho excluindo header: " << fileHeader.len;
 
 
+	// TODO comment all the code bellow
 	unsigned char wave[4];
 	fread(&wave, sizeof(wave), 1, fileReader); //////
 	fwrite(&wave, sizeof(wave), 1, fileWriter); //////
@@ -207,4 +208,15 @@ void converte1de16para2de8(short resultado, unsigned char* lsb, unsigned char* m
 }
 
 void modifica_dados_brutos(double* sinal, long comprimento_do_sinal, unsigned long taxa_de_amostragem) {
+
+	const int length = sizeof(sinal) / sizeof(sinal[0]);
+
+
+	for (int i = 0; i <= length; ++i){
+
+
+		std::cout << sinal[i];
+
+	}
+
 }
