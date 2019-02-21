@@ -187,7 +187,14 @@ void converte1de16para2de8(short resultado, unsigned char* lsb, unsigned char* m
 }
 //----------------------------------------------------------
 void modifica_dados_brutos(double* sinal, long comprimento_do_sinal, int taxa_de_amostragem) {
-//esta  a rea de trabalho
-//o terceiro parmetro no precisa ser usado nas experincias no domnio do tempo. Usaremos para trabalhar com filtros...
+
+	const int length = sizeof(sinal) / sizeof(sinal[0]);
+
+	for (int i = 0; i <= length; ++i) {
+
+		std::cout << sinal[i];
+
+	}
+
 }
 //-------------------------------------------------------------
