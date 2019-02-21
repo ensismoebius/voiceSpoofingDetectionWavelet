@@ -1,7 +1,8 @@
-#include<math.h>
-#include<stdio.h>
-#include<string.h>
-#include<iostream>
+#include <bits/types/FILE.h>
+#include <string.h>
+#include <cmath>
+#include <cstdio>
+#include <iostream>
 
 // Prototypes
 void modifica_dados_brutos(double*, int, unsigned int);
@@ -227,6 +228,25 @@ void doAFineAmplificatiion(double* signal, int signalLength) {
 	}
 }
 
+void silentHalfOfTheSoundTrack(double* signal, int signalLength) {
+	int middleSignalIndex = signalLength / 2;
+
+	for (int i = middleSignalIndex; i < signalLength; ++i) {
+		signal[i] = 0;
+	}
+}
+
+void xuxasDevilInvocation(double* signal, int signalLength) {
+	int middleSignalIndex = signalLength / 2;
+	int tempVar;
+
+	for (int i = middleSignalIndex; i < signalLength; ++i) {
+		tempVar = signal[i];
+		signal[i] = signal[signalLength - i - 1];
+		signal[signalLength - i - 1] = tempVar;
+	}
+}
+
 void halfVolume(double* signal, int signalLength) {
 
 	for (int i = 0; i < signalLength; ++i) {
@@ -234,7 +254,10 @@ void halfVolume(double* signal, int signalLength) {
 	}
 }
 
+
+
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
-	doAFineAmplificatiion(signal, comprimento_do_sinal);
+	xuxasDevilInvocation(signal, comprimento_do_sinal);
 }
 
