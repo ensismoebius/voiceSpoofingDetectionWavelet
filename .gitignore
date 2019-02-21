@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Processed audio files
+*.transformados_modificados_e_destransformados.wav
