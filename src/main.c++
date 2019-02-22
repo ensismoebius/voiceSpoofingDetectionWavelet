@@ -32,21 +32,20 @@ int main(int i, char* arrProgramArguments[]) {
 	}
 
 	// Declaring the struct for the file header
-	// TODO Ask why an struct to read a file and how it interacts with fread
 	struct {
 		unsigned char riff[4]; // what's riff??
 		unsigned int len;
-	} fileHeader;
+	} riffHeader;
 
 	//reads the original file header
-	fread(&fileHeader, sizeof(fileHeader), 1, fileReader);
+	fread(&riffHeader, sizeof(riffHeader), 1, fileReader);
 
 	//writes the processed file header
-	fwrite(&fileHeader, sizeof(fileHeader), 1, fileWriter);
+	fwrite(&riffHeader, sizeof(riffHeader), 1, fileWriter);
 
 	// display header's infos
-	std::cout << "\nArquivo do tipo: " << fileHeader.riff[0] << fileHeader.riff[1] << fileHeader.riff[2] << fileHeader.riff[3];
-	std::cout << "\nTamanho excluindo header: " << fileHeader.len;
+	std::cout << "\nArquivo do tipo: " << riffHeader.riff[0] << riffHeader.riff[1] << riffHeader.riff[2] << riffHeader.riff[3];
+	std::cout << "\nTamanho excluindo header: " << riffHeader.len;
 
 	// Reads the "wave" string ( may be another useless thing form microsoft...)
 	unsigned char wave[4];
@@ -86,114 +85,113 @@ int main(int i, char* arrProgramArguments[]) {
 	std::cout << "\nMedia do num. de bps: " << wave_chunk.avgbytespersecond;
 	std::cout << "\nAlinhamento do bloco em bytes: " << wave_chunk.blockalign;
 
-	//////////////////////////////////////////////////////////////////////////////
-
-	if (wave_chunk.formattag == 1) //PCM
-			{
-		int resolucao = (wave_chunk.avgbytespersecond * 8) / (wave_chunk.numberofchannels * wave_chunk.samplingrate); // pq nao bitssample
-		std::cout << "\nResolucao: " << resolucao;
-
-		struct {
-			unsigned char data[4];
-			unsigned int chunk_size;
-		} header_data_chunk;
-
-		fread(&header_data_chunk, sizeof(header_data_chunk), 1, fileReader);
-		fwrite(&header_data_chunk, sizeof(header_data_chunk), 1, fileWriter);
-		std::cout << "\nIdentificacao: " << header_data_chunk.data[0] << header_data_chunk.data[1] << header_data_chunk.data[2] << header_data_chunk.data[3];
-		std::cout << "\nTamanho do chunk de dados: " << header_data_chunk.chunk_size;
-		std::cout << "\nNumero de frames para amostrar: " << header_data_chunk.chunk_size / wave_chunk.blockalign;
-
-		int tamanho_da_janela = header_data_chunk.chunk_size / wave_chunk.blockalign;
-
-		std::cout << "\nTamanho da janela: " << tamanho_da_janela;
-		if ((resolucao == 8) && (wave_chunk.numberofchannels == 1)) {
-			unsigned char waveformdata;
-			double* amostras_no_tempo = new double[tamanho_da_janela];
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				fread(&waveformdata, sizeof(waveformdata), 1, fileReader);
-				amostras_no_tempo[i] = (double) waveformdata;
-			}
-			//TODO why &amostras_no_tempo[0] and not just amostras_no_tempo
-			//TODO the audio are summing up to just 26 positions, that is not right...
-			//modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
-			modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
-
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				waveformdata = (unsigned char) amostras_no_tempo[i];
-				fwrite(&waveformdata, sizeof(waveformdata), 1, fileWriter);
-			}
-		} else if ((resolucao == 8) && (wave_chunk.numberofchannels == 2)) {
-			unsigned char waveformdata_right;
-			unsigned char waveformdata_left;
-			double* amostras_no_tempo_left = new double[tamanho_da_janela];
-			double* amostras_no_tempo_right = new double[tamanho_da_janela];
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				fread(&waveformdata_left, sizeof(waveformdata_left), 1, fileReader);
-				fread(&waveformdata_right, sizeof(waveformdata_right), 1, fileReader);
-
-				amostras_no_tempo_right[i] = (double) waveformdata_right;
-				amostras_no_tempo_left[i] = (double) waveformdata_left;
-			}
-
-			modifica_dados_brutos(&amostras_no_tempo_left[0], tamanho_da_janela, wave_chunk.samplingrate);
-			modifica_dados_brutos(&amostras_no_tempo_right[0], tamanho_da_janela, wave_chunk.samplingrate);
-
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				waveformdata_left = (unsigned char) amostras_no_tempo_left[i];
-				fwrite(&waveformdata_left, sizeof(waveformdata_left), 1, fileWriter);
-				waveformdata_right = (unsigned char) amostras_no_tempo_right[i];
-				fwrite(&waveformdata_right, sizeof(waveformdata_right), 1, fileWriter);
-			}
-		} else if ((resolucao == 16) && (wave_chunk.numberofchannels == 1)) {
-			unsigned char waveformdata_lsb, waveformdata_msb;
-			double* amostras_no_tempo = new double[tamanho_da_janela];
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				fread(&waveformdata_lsb, sizeof(waveformdata_lsb), 1, fileReader);
-				fread(&waveformdata_msb, sizeof(waveformdata_msb), 1, fileReader);
-				amostras_no_tempo[i] = (double) converte2de8para1de16(waveformdata_lsb, waveformdata_msb);
-			}
-
-			modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
-
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				converte1de16para2de8((short) (amostras_no_tempo[i]), &waveformdata_lsb, &waveformdata_msb);
-				fwrite(&waveformdata_lsb, sizeof(waveformdata_lsb), 1, fileWriter);
-				fwrite(&waveformdata_msb, sizeof(waveformdata_msb), 1, fileWriter);
-			}
-		} else if ((resolucao == 16) && (wave_chunk.numberofchannels == 2)) {
-			unsigned char waveformdata_lsb_left, waveformdata_lsb_right, waveformdata_msb_left, waveformdata_msb_right;
-			double* amostras_no_tempo_left = new double[tamanho_da_janela];
-			double* amostras_no_tempo_right = new double[tamanho_da_janela];
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				fread(&waveformdata_lsb_left, sizeof(waveformdata_lsb_left), 1, fileReader);
-				fread(&waveformdata_msb_left, sizeof(waveformdata_msb_left), 1, fileReader);
-				fread(&waveformdata_lsb_right, sizeof(waveformdata_lsb_right), 1, fileReader);
-				fread(&waveformdata_msb_right, sizeof(waveformdata_msb_right), 1, fileReader);
-				amostras_no_tempo_left[i] = (double) converte2de8para1de16(waveformdata_lsb_left, waveformdata_msb_left);
-				amostras_no_tempo_right[i] = (double) converte2de8para1de16(waveformdata_lsb_right, waveformdata_msb_right);
-			}
-
-			modifica_dados_brutos(&amostras_no_tempo_left[0], tamanho_da_janela, wave_chunk.samplingrate);
-			modifica_dados_brutos(&amostras_no_tempo_right[0], tamanho_da_janela, wave_chunk.samplingrate);
-
-			for (int i = 0; i < tamanho_da_janela; i++) {
-				converte1de16para2de8((short) amostras_no_tempo_left[i], &waveformdata_lsb_left, &waveformdata_msb_left);
-				converte1de16para2de8((short) amostras_no_tempo_right[i], &waveformdata_lsb_right, &waveformdata_msb_right);
-				fwrite(&waveformdata_lsb_left, sizeof(waveformdata_lsb_left), 1, fileWriter);
-				fwrite(&waveformdata_msb_left, sizeof(waveformdata_msb_left), 1, fileWriter);
-				fwrite(&waveformdata_lsb_right, sizeof(waveformdata_lsb_right), 1, fileWriter);
-				fwrite(&waveformdata_msb_right, sizeof(waveformdata_msb_right), 1, fileWriter);
-			}
-		} else
-			std::cout << "Resolucao ou nmero de canais invalido(s)";
-
-		unsigned int c;
-		while ((c = getc(fileReader)) != EOF) //termina de gravar os cabe?lho de fim do arquivo wav
-			putc(c, fileWriter);
-
-	} else
+	// The format MUST be PCM!!
+	if (wave_chunk.formattag != 1) {
 		std::cout << "FORA DO FORMATO PCM...";
+	}
+
+	int resolucao = (wave_chunk.avgbytespersecond * 8) / (wave_chunk.numberofchannels * wave_chunk.samplingrate); // pq nao bitssample
+	std::cout << "\nResolucao: " << resolucao;
+
+	struct {
+		unsigned char data[4];
+		unsigned int chunk_size;
+	} header_data_chunk;
+
+	fread(&header_data_chunk, sizeof(header_data_chunk), 1, fileReader);
+	fwrite(&header_data_chunk, sizeof(header_data_chunk), 1, fileWriter);
+	std::cout << "\nIdentificacao: " << header_data_chunk.data[0] << header_data_chunk.data[1] << header_data_chunk.data[2] << header_data_chunk.data[3];
+	std::cout << "\nTamanho do chunk de dados: " << header_data_chunk.chunk_size;
+	std::cout << "\nNumero de frames para amostrar: " << header_data_chunk.chunk_size / wave_chunk.blockalign;
+
+	int tamanho_da_janela = header_data_chunk.chunk_size / wave_chunk.blockalign;
+
+	std::cout << "\nTamanho da janela: " << tamanho_da_janela;
+	if ((resolucao == 8) && (wave_chunk.numberofchannels == 1)) {
+		unsigned char waveformdata;
+		double* amostras_no_tempo = new double[tamanho_da_janela];
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			fread(&waveformdata, sizeof(waveformdata), 1, fileReader);
+			amostras_no_tempo[i] = (double) waveformdata;
+		}
+		//TODO why &amostras_no_tempo[0] and not just amostras_no_tempo
+		//TODO the audio are summing up to just 26 positions, that is not right...
+		//modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
+		modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
+
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			waveformdata = (unsigned char) amostras_no_tempo[i];
+			fwrite(&waveformdata, sizeof(waveformdata), 1, fileWriter);
+		}
+	} else if ((resolucao == 8) && (wave_chunk.numberofchannels == 2)) {
+		unsigned char waveformdata_right;
+		unsigned char waveformdata_left;
+		double* amostras_no_tempo_left = new double[tamanho_da_janela];
+		double* amostras_no_tempo_right = new double[tamanho_da_janela];
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			fread(&waveformdata_left, sizeof(waveformdata_left), 1, fileReader);
+			fread(&waveformdata_right, sizeof(waveformdata_right), 1, fileReader);
+
+			amostras_no_tempo_right[i] = (double) waveformdata_right;
+			amostras_no_tempo_left[i] = (double) waveformdata_left;
+		}
+
+		modifica_dados_brutos(&amostras_no_tempo_left[0], tamanho_da_janela, wave_chunk.samplingrate);
+		modifica_dados_brutos(&amostras_no_tempo_right[0], tamanho_da_janela, wave_chunk.samplingrate);
+
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			waveformdata_left = (unsigned char) amostras_no_tempo_left[i];
+			fwrite(&waveformdata_left, sizeof(waveformdata_left), 1, fileWriter);
+			waveformdata_right = (unsigned char) amostras_no_tempo_right[i];
+			fwrite(&waveformdata_right, sizeof(waveformdata_right), 1, fileWriter);
+		}
+	} else if ((resolucao == 16) && (wave_chunk.numberofchannels == 1)) {
+		unsigned char waveformdata_lsb, waveformdata_msb;
+		double* amostras_no_tempo = new double[tamanho_da_janela];
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			fread(&waveformdata_lsb, sizeof(waveformdata_lsb), 1, fileReader);
+			fread(&waveformdata_msb, sizeof(waveformdata_msb), 1, fileReader);
+			amostras_no_tempo[i] = (double) converte2de8para1de16(waveformdata_lsb, waveformdata_msb);
+		}
+
+		modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
+
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			converte1de16para2de8((short) (amostras_no_tempo[i]), &waveformdata_lsb, &waveformdata_msb);
+			fwrite(&waveformdata_lsb, sizeof(waveformdata_lsb), 1, fileWriter);
+			fwrite(&waveformdata_msb, sizeof(waveformdata_msb), 1, fileWriter);
+		}
+	} else if ((resolucao == 16) && (wave_chunk.numberofchannels == 2)) {
+		unsigned char waveformdata_lsb_left, waveformdata_lsb_right, waveformdata_msb_left, waveformdata_msb_right;
+		double* amostras_no_tempo_left = new double[tamanho_da_janela];
+		double* amostras_no_tempo_right = new double[tamanho_da_janela];
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			fread(&waveformdata_lsb_left, sizeof(waveformdata_lsb_left), 1, fileReader);
+			fread(&waveformdata_msb_left, sizeof(waveformdata_msb_left), 1, fileReader);
+			fread(&waveformdata_lsb_right, sizeof(waveformdata_lsb_right), 1, fileReader);
+			fread(&waveformdata_msb_right, sizeof(waveformdata_msb_right), 1, fileReader);
+			amostras_no_tempo_left[i] = (double) converte2de8para1de16(waveformdata_lsb_left, waveformdata_msb_left);
+			amostras_no_tempo_right[i] = (double) converte2de8para1de16(waveformdata_lsb_right, waveformdata_msb_right);
+		}
+
+		modifica_dados_brutos(&amostras_no_tempo_left[0], tamanho_da_janela, wave_chunk.samplingrate);
+		modifica_dados_brutos(&amostras_no_tempo_right[0], tamanho_da_janela, wave_chunk.samplingrate);
+
+		for (int i = 0; i < tamanho_da_janela; i++) {
+			converte1de16para2de8((short) amostras_no_tempo_left[i], &waveformdata_lsb_left, &waveformdata_msb_left);
+			converte1de16para2de8((short) amostras_no_tempo_right[i], &waveformdata_lsb_right, &waveformdata_msb_right);
+			fwrite(&waveformdata_lsb_left, sizeof(waveformdata_lsb_left), 1, fileWriter);
+			fwrite(&waveformdata_msb_left, sizeof(waveformdata_msb_left), 1, fileWriter);
+			fwrite(&waveformdata_lsb_right, sizeof(waveformdata_lsb_right), 1, fileWriter);
+			fwrite(&waveformdata_msb_right, sizeof(waveformdata_msb_right), 1, fileWriter);
+		}
+	} else
+		std::cout << "Resolucao ou nmero de canais invalido(s)";
+
+	unsigned int c;
+	while ((c = getc(fileReader)) != EOF) //termina de gravar os cabe?lho de fim do arquivo wav
+		putc(c, fileWriter);
+
 	fclose(fileReader);
 	fclose(fileWriter);
 
@@ -280,7 +278,7 @@ void addEchoes(double* signal, int signalLength) {
 	}
 }
 
-double* doTheConvulutionConrade(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
+double* doTheConvolutionConrade(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
 
 	// holds the final convoluted data
 	double* convolutedSignal = new double[dataLength + inverseDFTFilterLength - 1];
@@ -304,9 +302,31 @@ double* doTheConvulutionConrade(double* data, int dataLength, double* inverseDFT
 	return convolutedSignal;
 }
 
+void detectSilences(double* signal, int signalLength) {
+	double lowestSignal = 0;
+	int tolerance = 10;
+
+	// find the highest signal
+	for (int i = 0; i < signalLength; ++i) {
+		double value = abs(signal[i]);
+
+		if (value < lowestSignal)
+			lowestSignal = value;
+
+	}
+
+	for (int i = 0; i < signalLength; ++i) {
+
+		if (signal[i] <= lowestSignal + tolerance && signal[i] >= lowestSignal - tolerance) {
+			std::cout << "\nSilence in the room!!!!" << signal[i];
+		}
+	}
+}
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
-	//xuxasDevilInvocation(signal, comprimento_do_sinal);
-	doAFineAmplification(signal, comprimento_do_sinal);
+	detectSilences(signal, comprimento_do_sinal);
+	xuxasDevilInvocation(signal, comprimento_do_sinal);
+	addEchoes(signal, comprimento_do_sinal);
 	//	double* data = new double[3];
 	//	data[0] = 1;
 	//	data[1] = 2;
@@ -314,7 +334,7 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 	//
 	//	double filter[2] { 4, 5 };
 
-	//	data = doTheConvulutionConrade(data, 3, filter, 2);
+	//	data = doTheConvolutionConrade(data, 3, filter, 2);
 
 }
 
