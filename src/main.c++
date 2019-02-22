@@ -1,7 +1,7 @@
 #include <bits/types/FILE.h>
 #include <string.h>
-#include <cmath>
 #include <cstdio>
+#include <cstdlib>
 #include <iostream>
 
 // Prototypes
@@ -208,7 +208,7 @@ void converte1de16para2de8(short resultado, unsigned char* lsb, unsigned char* m
 	*msb = (((resultado & 0x8000) >> 15) * (128) + ((resultado & 0x4000) >> 14) * (64) + ((resultado & 0x2000) >> 13) * (32) + ((resultado & 0x1000) >> 12) * (16) + ((resultado & 0x0800) >> 11) * (8) + ((resultado & 0x0400) >> 10) * (4) + ((resultado & 0x0200) >> 9) * (2) + ((resultado & 0x0100) >> 8));
 }
 
-void doAFineAmplificatiion(double* signal, int signalLength) {
+void doAFineAmplification(double* signal, int signalLength) {
 	double highestSignal = 0;
 
 	// find the highest signal
@@ -280,7 +280,41 @@ void addEchoes(double* signal, int signalLength) {
 	}
 }
 
+double* doTheConvulutionConrade(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
+
+	// holds the final convoluted data
+	double* convolutedSignal = new double[dataLength + inverseDFTFilterLength - 1];
+
+	// the the convoluted data index
+	int convIndex = 0;
+
+	// Iterates over filter
+	for (int filterIndex = 0; filterIndex < inverseDFTFilterLength; ++filterIndex) {
+
+		// this guarantee the digit shift
+		convIndex = filterIndex;
+
+		// do the the math
+		for (int dataIndex = 0; dataIndex < dataLength; dataIndex++) {
+			convolutedSignal[convIndex] += data[dataIndex] * inverseDFTFilter[filterIndex];
+			convIndex++;
+		}
+	}
+
+	return convolutedSignal;
+}
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
-	addEchoes(signal, comprimento_do_sinal);
+	//xuxasDevilInvocation(signal, comprimento_do_sinal);
+	doAFineAmplification(signal, comprimento_do_sinal);
+	//	double* data = new double[3];
+	//	data[0] = 1;
+	//	data[1] = 2;
+	//	data[2] = 3;
+	//
+	//	double filter[2] { 4, 5 };
+
+	//	data = doTheConvulutionConrade(data, 3, filter, 2);
+
 }
 
