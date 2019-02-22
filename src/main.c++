@@ -254,10 +254,33 @@ void halfVolume(double* signal, int signalLength) {
 	}
 }
 
+void addEchoes(double* signal, int signalLength) {
 
+	// the "time" sound get to bounce and back
+	int bouncingTime = 100000;
 
+	// Iterate over all values
+	for (int i = 0; i < signalLength; ++i) {
+
+		// while the data starts to end we decrease
+		// the bouncing time to avoid access data
+		// outside the array
+		if (i + bouncingTime - 1 == signalLength) {
+			bouncingTime--;
+		}
+
+		// we have to wait the bouncingTime before start echoing
+		if (i > bouncingTime - 1) {
+
+			// the resulting signal are going to be
+			// the average of the current signal
+			// plus 80% of the previous signal
+			signal[i] = (signal[i - bouncingTime] * .8 + signal[i]) / 2;
+		}
+	}
+}
 
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
-	xuxasDevilInvocation(signal, comprimento_do_sinal);
+	addEchoes(signal, comprimento_do_sinal);
 }
 
