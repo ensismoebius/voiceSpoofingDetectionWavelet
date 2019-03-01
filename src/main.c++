@@ -302,8 +302,6 @@ void doTheConvolutionConrade(double* data, int dataLength, double* inverseDFTFil
 	for (int i = 0; i < dataLength; i++) {
 		data[i] = convolutedSignal[i];
 	}
-
-	//return convolutedSignal;
 }
 
 void detectSilences(double* signal, int signalLength) {
@@ -327,13 +325,13 @@ void detectSilences(double* signal, int signalLength) {
 	}
 }
 
-double* createLowPassFilter(int filterSize, float samplingRate, float filterMaxFrequency) {
+double* createLowPassFilter(int filterSize, double samplingRate, double filterMaxFrequency) {
 
 	double* filter = new double[filterSize];
 
 	//Calculating the alpha
 	double alpha = M_PI * filterMaxFrequency / (samplingRate / 2);
-	double halfOfFilterSize = filterSize / 2;
+	double halfOfFilterSize = (double) filterSize / 2;
 
 	for (int n = 0; n < filterSize; ++n) {
 
@@ -364,8 +362,8 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 	//
 	//	double filter[2] { 4, 5 };
 	//
-	double* filter = createLowPassFilter(500, 44100, 100);
+	double* filter = createLowPassFilter(25, 44100, 1000);
 
-	doTheConvolutionConrade(signal, comprimento_do_sinal, filter, 500);
+	doTheConvolutionConrade(signal, comprimento_do_sinal, filter, 25);
 }
 
