@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <math.h>
 
 // Prototypes
 void modifica_dados_brutos(double*, int, unsigned int);
@@ -88,6 +89,7 @@ int main(int i, char* arrProgramArguments[]) {
 	// The format MUST be PCM!!
 	if (wave_chunk.formattag != 1) {
 		std::cout << "FORA DO FORMATO PCM...";
+		return 0;
 	}
 
 	int resolucao = (wave_chunk.avgbytespersecond * 8) / (wave_chunk.numberofchannels * wave_chunk.samplingrate); // pq nao bitssample
@@ -114,8 +116,6 @@ int main(int i, char* arrProgramArguments[]) {
 			fread(&waveformdata, sizeof(waveformdata), 1, fileReader);
 			amostras_no_tempo[i] = (double) waveformdata;
 		}
-		//TODO why &amostras_no_tempo[0] and not just amostras_no_tempo
-		//TODO the audio are summing up to just 26 positions, that is not right...
 		//modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
 		modifica_dados_brutos(&amostras_no_tempo[0], tamanho_da_janela, wave_chunk.samplingrate);
 
@@ -219,7 +219,7 @@ void doAFineAmplification(double* signal, int signalLength) {
 	}
 
 	// TODO I don't know why but 32767 distorts the sound A LOT
-	double multiplicationRatio = 255 / highestSignal;
+	double multiplicationRatio = 32767 / highestSignal;
 
 	for (int i = 0; i < signalLength; ++i) {
 		signal[i] *= multiplicationRatio;
@@ -248,7 +248,7 @@ void xuxasDevilInvocation(double* signal, int signalLength) {
 void halfVolume(double* signal, int signalLength) {
 
 	for (int i = 0; i < signalLength; ++i) {
-		signal[i] /= 2;
+		signal[i] *= .5;
 	}
 }
 
@@ -278,7 +278,7 @@ void addEchoes(double* signal, int signalLength) {
 	}
 }
 
-double* doTheConvolutionConrade(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
+void doTheConvolutionConrade(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
 
 	// holds the final convoluted data
 	double* convolutedSignal = new double[dataLength + inverseDFTFilterLength - 1];
@@ -299,7 +299,11 @@ double* doTheConvolutionConrade(double* data, int dataLength, double* inverseDFT
 		}
 	}
 
-	return convolutedSignal;
+	for (int i = 0; i < dataLength; i++) {
+		data[i] = convolutedSignal[i];
+	}
+
+	//return convolutedSignal;
 }
 
 void detectSilences(double* signal, int signalLength) {
@@ -323,18 +327,45 @@ void detectSilences(double* signal, int signalLength) {
 	}
 }
 
+double* createLowPassFilter(int filterSize, float samplingRate, float filterMaxFrequency) {
+
+	double* filter = new double[filterSize];
+
+	//Calculating the alpha
+	double alpha = M_PI * filterMaxFrequency / (samplingRate / 2);
+	double halfOfFilterSize = filterSize / 2;
+
+	for (int n = 0; n < filterSize; ++n) {
+
+		// what do we do in this situation?
+		if (n == halfOfFilterSize) {
+			filter[n] = 1;
+			continue;
+		}
+
+		filter[n] = sin(alpha * (n - halfOfFilterSize)) / M_PI * (n - halfOfFilterSize);
+	}
+	return filter;
+}
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
-	detectSilences(signal, comprimento_do_sinal);
-	xuxasDevilInvocation(signal, comprimento_do_sinal);
-	addEchoes(signal, comprimento_do_sinal);
+	//detectSilences(signal, comprimento_do_sinal);
+	//xuxasDevilInvocation(signal, comprimento_do_sinal);
+	//addEchoes(signal, comprimento_do_sinal);
+
+	//doAFineAmplification(signal, comprimento_do_sinal);
+
+	//silentHalfOfTheSoundTrack(signal, comprimento_do_sinal);
+
 	//	double* data = new double[3];
 	//	data[0] = 1;
-	//	data[1] = 2;
+	//	data[1] createLowPassFilter= 2;
 	//	data[2] = 3;
 	//
 	//	double filter[2] { 4, 5 };
+	//
+	double* filter = createLowPassFilter(500, 44100, 100);
 
-	//	data = doTheConvolutionConrade(data, 3, filter, 2);
-
+	doTheConvolutionConrade(signal, comprimento_do_sinal, filter, 500);
 }
 

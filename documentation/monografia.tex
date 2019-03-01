@@ -48,6 +48,7 @@
 \usepackage{setspace}
 \usepackage{array}
 \usepackage{helvet}
+\usepackage{csvsimple}
 \renewcommand{\familydefault}{\sfdefault}
 \headheight 16pt
 \setlength{\topmargin}{-15pt} % extra vert. space + at the top of header: 23pt
@@ -322,6 +323,16 @@ d & e & f \\
 \par bla bla ....
 \\
 \par bla...
+
+
+    \begin{tabular}{l|c}%
+    \bfseries Sexo & \bfseries Idade & \bfseries Arquivo % specify table head
+    \csvreader[head to column names]{levantamento.csv}{}% use head of csv as column names
+    {\\\hline\Sexo & \Idade & \Arquivo }% specify your coloumns here
+    \end{tabular}
+
+
+
 \end{myenv}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
