@@ -325,25 +325,40 @@ void detectSilences(double* signal, int signalLength) {
 	}
 }
 
-double* createLowPassFilter(int filterSize, double samplingRate, double filterMaxFrequency) {
+double* createLowPassFilter(int order, double samplingRate, double filterMaxFrequency) {
 
-	double* filter = new double[filterSize];
+	// what do we do in this situation?
+	if (order % 2 == 0) {
+		return 0;
+	}
+
+	double* filter = new double[order + 1];
 
 	//Calculating the alpha
 	double alpha = M_PI * filterMaxFrequency / (samplingRate / 2);
-	double halfOfFilterSize = (double) filterSize / 2;
 
-	for (int n = 0; n < filterSize; ++n) {
+	// arredondar a divisão para o próximo inteiro maior
+	double halfOrderSize = (double) (order / 2.0);
 
-		// what do we do in this situation?
-		if (n == halfOfFilterSize) {
-			filter[n] = 1;
-			continue;
-		}
+	for (int n = 0; n <= order; ++n) {
 
-		filter[n] = sin(alpha * (n - halfOfFilterSize)) / M_PI * (n - halfOfFilterSize);
+		filter[n] = sin(alpha * (n - halfOrderSize)) / (M_PI * (n - halfOrderSize));
 	}
 	return filter;
+}
+
+void normalizeData(double* signal, int comprimento_do_sinal) {
+
+	double sum = 0;
+
+	for (int i = 0; i < comprimento_do_sinal; ++i) {
+		sum += signal[i];
+	}
+
+	for (int i = 0; i < comprimento_do_sinal; ++i) {
+		signal[i] /= sum;
+	}
+
 }
 
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
@@ -355,15 +370,16 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 
 	//silentHalfOfTheSoundTrack(signal, comprimento_do_sinal);
 
-	//	double* data = new double[3];
-	//	data[0] = 1;
-	//	data[1] createLowPassFilter= 2;
-	//	data[2] = 3;
-	//
-	//	double filter[2] { 4, 5 };
-	//
-	double* filter = createLowPassFilter(25, 44100, 1000);
+	double* data = new double[2];
+	data[0] = 0.45;
+	data[1] = 0.45;
 
-	doTheConvolutionConrade(signal, comprimento_do_sinal, filter, 25);
+	normalizeData(data, 2);
+
+	double filter[2] { 4, 5 };
+	//TODO teste filtros com ordens maiores
+	//double* filter = createLowPassFilter(1, 44100, 11025);
+
+	doTheConvolutionConrade(data, comprimento_do_sinal, filter, 25);
 }
 
