@@ -1,14 +1,16 @@
 #include <bits/types/FILE.h>
 #include <string.h>
+#include <cmath>
 #include <cstdio>
-#include <cstdlib>
 #include <iostream>
-#include <math.h>
 
 // Prototypes
 void modifica_dados_brutos(double*, int, unsigned int);
 short converte2de8para1de16(unsigned char, unsigned char);
 void converte1de16para2de8(short, unsigned char*, unsigned char*);
+void normalizeData(double*, int);
+double createAlpha(double, double, bool);
+double* buildOrthogonalVector(double*, int);
 
 int main(int i, char* arrProgramArguments[]) {
 
@@ -325,26 +327,15 @@ void detectSilences(double* signal, int signalLength) {
 	}
 }
 
-double* createLowPassFilter(int order, double samplingRate, double filterMaxFrequency) {
+double createAlpha(double samplingRate, double filterMaxFrequency, bool highPass = false) {
 
-	// what do we do in this situation?
-	if (order % 2 == 0) {
-		return 0;
-	}
-
-	double* filter = new double[order + 1];
-
-	//Calculating the alpha
 	double alpha = M_PI * filterMaxFrequency / (samplingRate / 2);
 
-	// arredondar a divisão para o próximo inteiro maior
-	double halfOrderSize = (double) (order / 2.0);
-
-	for (int n = 0; n <= order; ++n) {
-
-		filter[n] = sin(alpha * (n - halfOrderSize)) / (M_PI * (n - halfOrderSize));
+	if (highPass) {
+		return M_PI - alpha;
 	}
-	return filter;
+
+	return alpha;
 }
 
 void normalizeData(double* signal, int comprimento_do_sinal) {
@@ -361,6 +352,83 @@ void normalizeData(double* signal, int comprimento_do_sinal) {
 
 }
 
+double* createLowPassFilter(int order, double samplingRate, double filterMaxFrequency) {
+
+	// Order MUST be odd
+	if (order % 2 == 0) {
+		return 0;
+	}
+
+	double* filter = new double[order + 1];
+
+	//Calculating the alpha
+	double alpha = createAlpha(samplingRate, filterMaxFrequency);
+
+	double halfOrderSize = (double) (order / 2.0);
+
+	// FIXME se fizermos isso dá problema (condição de existência)
+	//double halfOrderSize = (double) ceil(order / 2.0);
+
+	for (int n = 0; n <= order; ++n) {
+
+		filter[n] = sin(alpha * (n - halfOrderSize)) / (M_PI * (n - halfOrderSize));
+	}
+
+	normalizeData(filter, order + 1);
+
+	return filter;
+}
+
+double* createHighPassFilter(int order, double samplingRate, double filterMaxFrequency) {
+
+	// Order MUST be odd
+	if (order % 2 == 0) {
+		return 0;
+	}
+
+	// Filter holder
+	double* filter = new double[order + 1];
+
+	//Calculating the alpha for high pass filter
+	double alpha = createAlpha(samplingRate, filterMaxFrequency, true);
+
+	double halfOrderSize = (double) (order / 2.0);
+
+	// FIXME se fizermos icreateHighPassFiltersso dá problema (condição de existência)
+	//double halfOrderSize = (double) ceil(order / 2.0);
+
+	// Calculate low pass filter
+	for (int n = 0; n <= order; ++n) {
+		filter[n] = sin(alpha * (n - halfOrderSize)) / (M_PI * (n - halfOrderSize));
+	}
+
+	// normalizing data
+	normalizeData(filter, order + 1);
+
+	// Builds the orthogonal vector
+	// and return the final result (high pass filter)
+	return buildOrthogonalVector(filter, order + 1);
+}
+
+double* buildOrthogonalVector(double* originalVector, int vectorSize) {
+
+	double* finalResult = new double[vectorSize];
+
+	int middleSignalIndex = vectorSize / 2;
+	double tempVar;
+	double inverter = 1.0;
+
+	for (int i = middleSignalIndex; i < vectorSize; ++i) {
+		tempVar = originalVector[i];
+
+		finalResult[i] = originalVector[vectorSize - i - 1] * (-inverter);
+		finalResult[vectorSize - i - 1] = tempVar * inverter;
+		inverter *= -1.0;
+	}
+
+	return finalResult;
+}
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
 	//detectSilences(signal, comprimento_do_sinal);
 	//xuxasDevilInvocation(signal, comprimento_do_sinal);
@@ -370,16 +438,24 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 
 	//silentHalfOfTheSoundTrack(signal, comprimento_do_sinal);
 
-	double* data = new double[2];
-	data[0] = 0.45;
-	data[1] = 0.45;
+	//	double* data = new double[6];
+	//	data[0] = 1;
+	//	data[1] = 2;
+	//	data[2] = 3;
+	//	data[3] = 4;
+	//	data[4] = 5;
+	//	data[5] = 6;
 
-	normalizeData(data, 2);
+	//	double* vector = calculateOrthogonalVector(data, 6);
 
-	double filter[2] { 4, 5 };
+	//
+	//	normalizeData(data, 2);
+
+	//double filter[2] { 4, 5 };
 	//TODO teste filtros com ordens maiores
-	//double* filter = createLowPassFilter(1, 44100, 11025);
+	// double* filter = createLowPassFilter(1, 44100, 11025);
+	double* filter = createHighPassFilter(5, 44100, 11025);
 
-	doTheConvolutionConrade(data, comprimento_do_sinal, filter, 25);
+	//doTheConvolutionConrade(data, comprimento_do_sinal, filter, 25);
 }
 
