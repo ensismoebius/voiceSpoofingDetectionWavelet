@@ -452,10 +452,13 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 	//	normalizeData(data, 2);
 
 	//double filter[2] { 4, 5 };
-	//TODO teste filtros com ordens maiores
-	// double* filter = createLowPassFilter(1, 44100, 11025);
-	double* filter = createHighPassFilter(5, 44100, 11025);
 
-	//doTheConvolutionConrade(data, comprimento_do_sinal, filter, 25);
+
+	int filterOrder = 499;
+
+	//double* filter = createLowPassFilter(filterOrder, 44100, 11800);
+	double* filter = createHighPassFilter(filterOrder, 44100, 2950);
+
+	doTheConvolutionConrade(signal, comprimento_do_sinal, filter, filterOrder);
 }
 
