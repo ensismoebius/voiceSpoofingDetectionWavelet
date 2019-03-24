@@ -2,12 +2,14 @@
 #include <string.h>
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
 #include <iostream>
 
 // Prototypes
 void modifica_dados_brutos(double*, int, unsigned int);
 short converte2de8para1de16(unsigned char, unsigned char);
 void converte1de16para2de8(short, unsigned char*, unsigned char*);
+
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
 double* buildOrthogonalVector(double*, int);
@@ -379,7 +381,7 @@ double* createLowPassFilter(int order, double samplingRate, double filterMaxFreq
 	return filter;
 }
 
-double* createHighPassFilter(int order, double samplingRate, double filterMaxFrequency) {
+double* createHighPassFilter(int order, double samplingRate, double filterStartFrequency) {
 
 	// Order MUST be odd
 	if (order % 2 == 0) {
@@ -390,7 +392,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterMaxFre
 	double* filter = new double[order + 1];
 
 	//Calculating the alpha for high pass filter
-	double alpha = createAlpha(samplingRate, filterMaxFrequency, true);
+	double alpha = createAlpha(samplingRate, filterStartFrequency, true);
 
 	double halfOrderSize = (double) (order / 2.0);
 
@@ -429,6 +431,34 @@ double* buildOrthogonalVector(double* originalVector, int vectorSize) {
 	return finalResult;
 }
 
+double *rangePassFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+	double* lowPassMax = createLowPassFilter(order, samplingRate, finalFrequency);
+	double* lowPassMin = createLowPassFilter(order, samplingRate, startFrequency);
+
+	normalizeData(lowPassMax, order + 1);
+	normalizeData(lowPassMin, order + 1);
+
+	for (int i = 0; i < order + 1; i++) {
+		lowPassMax[i] = lowPassMax[i] - lowPassMin[i];
+	}
+
+	return lowPassMax;
+}
+
+double *rangeBlockFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+	double* highPass = createHighPassFilter(order, samplingRate, startFrequency);
+	double* lowPass = createLowPassFilter(order, samplingRate, finalFrequency);
+
+	normalizeData(highPass, order + 1);
+	normalizeData(lowPass, order + 1);
+
+	for (int i = 0; i < order + 1; i++) {
+		lowPass[i] = lowPass[i] + highPass[i];
+	}
+
+	return lowPass;
+}
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
 	//detectSilences(signal, comprimento_do_sinal);
 	//xuxasDevilInvocation(signal, comprimento_do_sinal);
@@ -452,7 +482,6 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 	//	normalizeData(data, 2);
 
 	//double filter[2] { 4, 5 };
-
 
 	int filterOrder = 499;
 
