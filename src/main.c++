@@ -368,9 +368,6 @@ double* createLowPassFilter(int order, double samplingRate, double filterMaxFreq
 
 	double halfOrderSize = (double) (order / 2.0);
 
-	// FIXME se fizermos isso dá problema (condição de existência)
-	//double halfOrderSize = (double) ceil(order / 2.0);
-
 	for (int n = 0; n <= order; ++n) {
 
 		filter[n] = sin(alpha * (n - halfOrderSize)) / (M_PI * (n - halfOrderSize));
@@ -395,9 +392,6 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
 	double alpha = createAlpha(samplingRate, filterStartFrequency, true);
 
 	double halfOrderSize = (double) (order / 2.0);
-
-	// FIXME se fizermos icreateHighPassFiltersso dá problema (condição de existência)
-	//double halfOrderSize = (double) ceil(order / 2.0);
 
 	// Calculate low pass filter
 	for (int n = 0; n <= order; ++n) {
@@ -431,7 +425,13 @@ double* buildOrthogonalVector(double* originalVector, int vectorSize) {
 	return finalResult;
 }
 
-double *rangePassFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+double *bandPassFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+
+	// Order MUST be odd
+	if (order % 2 == 0) {
+		return 0;
+	}
+
 	double* lowPassMax = createLowPassFilter(order, samplingRate, finalFrequency);
 	double* lowPassMin = createLowPassFilter(order, samplingRate, startFrequency);
 
@@ -445,7 +445,13 @@ double *rangePassFilter(int order, double samplingRate, double startFrequency, d
 	return lowPassMax;
 }
 
-double *rangeBlockFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+double *bandStopFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+
+	// Order MUST be odd
+	if (order % 2 == 0) {
+		return 0;
+	}
+
 	double* highPass = createHighPassFilter(order, samplingRate, startFrequency);
 	double* lowPass = createLowPassFilter(order, samplingRate, finalFrequency);
 
