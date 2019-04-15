@@ -189,8 +189,7 @@ int main(int i, char* arrProgramArguments[]) {
 			fwrite(&waveformdata_lsb_right, sizeof(waveformdata_lsb_right), 1, fileWriter);
 			fwrite(&waveformdata_msb_right, sizeof(waveformdata_msb_right), 1, fileWriter);
 		}
-	} else
-		std::cout << "Resolucao ou nmero de canais invalido(s)";
+	} else std::cout << "Resolucao ou nmero de canais invalido(s)";
 
 	unsigned int c;
 	while ((c = getc(fileReader)) != EOF) //termina de gravar os cabe?lho de fim do arquivo wav
@@ -217,8 +216,7 @@ void doAFineAmplification(double* signal, int signalLength) {
 	for (int i = 0; i < signalLength; ++i) {
 		double value = abs(signal[i]);
 
-		if (value > highestSignal)
-			highestSignal = value;
+		if (value > highestSignal) highestSignal = value;
 
 	}
 
@@ -316,8 +314,7 @@ void detectSilences(double* signal, int signalLength) {
 	for (int i = 0; i < signalLength; ++i) {
 		double value = abs(signal[i]);
 
-		if (value < lowestSignal)
-			lowestSignal = value;
+		if (value < lowestSignal) lowestSignal = value;
 
 	}
 
@@ -465,6 +462,31 @@ double *bandStopFilter(int order, double samplingRate, double startFrequency, do
 	return lowPass;
 }
 
+double *createTriangularWindow(int order) {
+
+	// order plus 1 is the amount of items
+	double* w = new double[order + 1];
+
+	// The reference point is amount of items divided by 2
+	double referencePoint = order / 2.0;
+
+	int n = 0;
+	for (; n <= referencePoint; n++) {
+		w[n] = 2.0 * n / order;
+	}
+
+	for (; n <= order; n++) {
+		w[n] = 2.0 - 2.0 * n / order;
+	}
+	return w;
+}
+
+void applyWindow(double* filter, double *window, int order) {
+	do {
+		filter[order] *= window[order];
+	} while (order--);
+}
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
 	//detectSilences(signal, comprimento_do_sinal);
 	//xuxasDevilInvocation(signal, comprimento_do_sinal);
@@ -489,10 +511,10 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 
 	//double filter[2] { 4, 5 };
 
-	int filterOrder = 499;
-
-	//double* filter = createLowPassFilter(filterOrder, 44100, 11800);
-	double* filter = createHighPassFilter(filterOrder, 44100, 2950);
+	int filterOrder = 27;
+	double* window = createTriangularWindow(filterOrder);
+	double* filter = bandPassFilter(filterOrder, 44100, 50000,100000);
+	applyWindow(filter, window, filterOrder);
 
 	doTheConvolutionConrade(signal, comprimento_do_sinal, filter, filterOrder);
 }
