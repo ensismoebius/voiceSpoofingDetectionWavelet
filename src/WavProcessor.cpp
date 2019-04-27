@@ -35,250 +35,224 @@ class WavProcessor {
 			*msb = (((resultado & 0x8000) >> 15) * (128) + ((resultado & 0x4000) >> 14) * (64) + ((resultado & 0x2000) >> 13) * (32) + ((resultado & 0x1000) >> 12) * (16) + ((resultado & 0x0800) >> 11) * (8) + ((resultado & 0x0400) >> 10) * (4) + ((resultado & 0x0200) >> 9) * (2) + ((resultado & 0x0100) >> 8));
 		}
 
-		void save1Channel8bitsWav(Wav w, unsigned char applyFilter, int tamanho_da_janela, FILE* fileWriter) {
+		void save1Channel8bitsWav(Wav* w, unsigned char applyFilter, FILE* fileWriter) {
 			unsigned char waveformdata;
+			int tamanho_da_janela = w->dataChunk->chunk_size / w->wavChunk->blockalign;
+
 			if (applyFilter) {
-				this->modifica_dados_brutos(w.getAmostrasNoTempo(), tamanho_da_janela, w.getWavChunk()->samplingrate);
+				this->modifica_dados_brutos(w->amostrasNoTempo, tamanho_da_janela, w->wavChunk->samplingrate);
 			}
 			for (int i = 0; i < tamanho_da_janela; i++) {
-				waveformdata = (unsigned char) (w.getAmostrasNoTempo()[i]);
+				waveformdata = (unsigned char) w->amostrasNoTempo[i];
 				fwrite(&waveformdata, sizeof(waveformdata), 1, fileWriter);
 			}
 		}
 
-		void save2Channels8bitsWav(Wav w, unsigned char applyFilter, int tamanho_da_janela, FILE* fileWriter) {
+		void save2Channels8bitsWav(Wav* w, unsigned char applyFilter, FILE* fileWriter) {
 			unsigned char waveformdata_right;
 			unsigned char waveformdata_left;
+			int tamanho_da_janela = w->dataChunk->chunk_size / w->wavChunk->blockalign;
 			if (applyFilter) {
-				this->modifica_dados_brutos(w.getAmostrasNoTempoLeft(), tamanho_da_janela, w.getWavChunk()->samplingrate);
-				this->modifica_dados_brutos(w.getAmostrasNoTempoRight(), tamanho_da_janela, w.getWavChunk()->samplingrate);
+				this->modifica_dados_brutos(w->amostrasNoTempoLeft, tamanho_da_janela, w->wavChunk->samplingrate);
+				this->modifica_dados_brutos(w->amostrasNoTempoRight, tamanho_da_janela, w->wavChunk->samplingrate);
 			}
 			for (int i = 0; i < tamanho_da_janela; i++) {
-				waveformdata_left = (unsigned char) (w.getAmostrasNoTempoLeft()[i]);
+				waveformdata_left = (unsigned char) (w->amostrasNoTempoLeft[i]);
 				fwrite(&waveformdata_left, sizeof(waveformdata_left), 1, fileWriter);
-				waveformdata_right = (unsigned char) (w.getAmostrasNoTempoRight()[i]);
+				waveformdata_right = (unsigned char) (w->amostrasNoTempoRight[i]);
 				fwrite(&waveformdata_right, sizeof(waveformdata_right), 1, fileWriter);
 			}
 		}
 
-		void save1Channel16bitsWav(Wav w, unsigned char applyFilter, int tamanho_da_janela, FILE* fileWriter) {
+		void save1Channel16bitsWav(Wav* w, unsigned char applyFilter, FILE* fileWriter) {
+
+			int tamanho_da_janela = w->dataChunk->chunk_size / w->wavChunk->blockalign;
+
 			if (applyFilter) {
-				this->modifica_dados_brutos(w.getAmostrasNoTempo(), tamanho_da_janela, w.getWavChunk()->samplingrate);
+				this->modifica_dados_brutos(w->amostrasNoTempo, tamanho_da_janela, w->wavChunk->samplingrate);
 			}
 			for (int i = 0; i < tamanho_da_janela; i++) {
-				this->converte1de16para2de8((short) ((w.getAmostrasNoTempo()[i])), w.getWaveformDataLsb(), w.getWaveformDataMsb());
-				fwrite(w.getWaveformDataLsb(), sizeof(w.getWaveformDataLsb()), 1, fileWriter);
-				fwrite(w.getWaveformDataMsb(), sizeof(w.getWaveformDataMsb()), 1, fileWriter);
+
+				this->converte1de16para2de8((short) w->amostrasNoTempo[i], &w->waveformDataLsb, &w->waveformDataMsb);
+
+				fwrite(&w->waveformDataLsb, sizeof(w->waveformDataLsb), 1, fileWriter);
+				fwrite(&w->waveformDataMsb, sizeof(w->waveformDataMsb), 1, fileWriter);
 			}
 		}
 
-		void save2Channels16bitsWav(Wav w, unsigned char applyFilter, int tamanho_da_janela, FILE* fileWriter) {
+		void save2Channels16bitsWav(Wav* w, unsigned char applyFilter, FILE* fileWriter) {
+
+			int tamanho_da_janela = w->dataChunk->chunk_size / w->wavChunk->blockalign;
+
 			if (applyFilter) {
-				this->modifica_dados_brutos(w.getAmostrasNoTempoLeft(), tamanho_da_janela, w.getWavChunk()->samplingrate);
-				this->modifica_dados_brutos(w.getAmostrasNoTempoRight(), tamanho_da_janela, w.getWavChunk()->samplingrate);
+				this->modifica_dados_brutos(w->amostrasNoTempoLeft, tamanho_da_janela, w->wavChunk->samplingrate);
+				this->modifica_dados_brutos(w->amostrasNoTempoRight, tamanho_da_janela, w->wavChunk->samplingrate);
 			}
 			for (int i = 0; i < tamanho_da_janela; i++) {
-				this->converte1de16para2de8((short) (w.getAmostrasNoTempoLeft()[i]), w.getWaveformDataLsbLeft(), w.getWaveformDataMsbLeft());
-				this->converte1de16para2de8((short) (w.getAmostrasNoTempoRight()[i]), w.getWaveformDataLsbRight(), w.getWaveformDataMsbRight());
-				fwrite(w.getWaveformDataLsbLeft(), sizeof(w.getWaveformDataLsbLeft()), 1, fileWriter);
-				fwrite(w.getWaveformDataMsbLeft(), sizeof(w.getWaveformDataMsbLeft()), 1, fileWriter);
-				fwrite(w.getWaveformDataLsbRight(), sizeof(w.getWaveformDataLsbRight()), 1, fileWriter);
-				fwrite(w.getWaveformDataMsbRight(), sizeof(w.getWaveformDataMsbRight()), 1, fileWriter);
+				this->converte1de16para2de8((short) w->amostrasNoTempoLeft[i], &w->waveformDataLsbLeft, &w->waveformDataMsbLeft);
+				this->converte1de16para2de8((short) w->amostrasNoTempoRight[i], &w->waveformDataLsbRight, &w->waveformDataMsbRight);
+				fwrite(&w->waveformDataLsbLeft, sizeof(w->waveformDataLsbLeft), 1, fileWriter);
+				fwrite(&w->waveformDataMsbLeft, sizeof(w->waveformDataMsbLeft), 1, fileWriter);
+				fwrite(&w->waveformDataLsbRight, sizeof(w->waveformDataLsbRight), 1, fileWriter);
+				fwrite(&w->waveformDataMsbRight, sizeof(w->waveformDataMsbRight), 1, fileWriter);
 			}
 		}
 
-		void saveHeaders(Wav w, FILE* fileWriter) {
+		void saveHeaders(Wav* w, FILE* fileWriter) {
 			// Writes the file header
-			fwrite(w.getWavRiff(), sizeof(w.getWavRiff()), 1, fileWriter);
-			// Writes the "wave" string ( may be another useless thing form microsoft...)
-			fwrite(w.getWave(), sizeof(w.getWave()), 1, fileWriter);
-			fwrite(w.getWavRiffChunk(), sizeof(w.getWavRiffChunk()), 1, fileWriter);
-			fwrite(w.getWavChunk(), sizeof(w.getWavChunk()), 1, fileWriter);
+			fwrite(w->wavRiff, sizeof(headerWavRiff), 1, fileWriter);
+
+			fwrite(&w->wave, sizeof(char[4]), 1, fileWriter);
+			fwrite(w->wavRiffChunk, sizeof(headerWavRiffChunk), 1, fileWriter);
+			fwrite(w->wavChunk, sizeof(headerWavChunk), 1, fileWriter);
 			//???
-			if (w.getWavRiffChunk()->len > 16) {
-				for (unsigned int i = 0; i < w.getWavRiffChunk()->len - 16; i++) {
-					unsigned char excesso;
-					fwrite(&excesso, sizeof(excesso), 1, fileWriter);
-					w.setExcesso(excesso);
+			if (w->wavRiffChunk->len > 16) {
+				for (int i = 0; w->wavRiffChunk->len - 16; i++) {
+					fwrite(&w->excesso, sizeof(w->excesso), 1, fileWriter);
 				}
 			}
-			fwrite(w.getDataChunk(), sizeof(w.getDataChunk()), 1, fileWriter);
+			fwrite(w->dataChunk, sizeof(headerDataChunk), 1, fileWriter);
 		}
 
 	public:
-		char read(Wav w) {
+		Wav* read(char* filepath) {
 
 			//file reader
 			FILE* fileReader;
 
 			// Opening the file to read
-			if ((fileReader = fopen(w.getFilePath(), "rb")) == NULL) {
-				return 0;
-			}
+			if ((fileReader = fopen(filepath, "rb")) == NULL) return NULL;
 
-			//reads the original file header
+			unsigned char excesso;
+
+			// headers
+
+			char wave[4];
 			headerWavRiff hwr;
-			fread(&hwr, sizeof(headerWavRiff), 1, fileReader);
-			w.setWavRiff(&hwr);
-
-			unsigned char wave[4];
-			fread(&wave, sizeof(wave), 1, fileReader);
-			w.setWave(wave);
-
-			headerWavRiffChunk hwrc;
-			fread(&hwrc, sizeof(hwrc), 1, fileReader);
-			w.setWavRiffChunk(&hwrc);
-
 			headerWavChunk hwc;
-			fread(&hwc, sizeof(hwc), 1, fileReader);
-			w.setWavChunk(&hwc);
+			headerDataChunk hwdc;
+			headerWavRiffChunk hwrc;
 
-			if (w.getWavRiffChunk()->len > 16) {
-				for (unsigned int i = 0; i < w.getWavRiffChunk()->len - 16; i++) {
-					unsigned char excesso;
+			// the order is important!!!!
+			fread(&hwr, sizeof(headerWavRiff), 1, fileReader);
+			fread(&wave, sizeof(wave), 1, fileReader);
+			fread(&hwrc, sizeof(headerWavRiffChunk), 1, fileReader);
+			fread(&hwc, sizeof(headerWavChunk), 1, fileReader);
+
+			if (hwrc.len > 16) {
+				for (unsigned int i = 0; i < hwrc.len - 16; i++) {
 					fread(&excesso, sizeof(excesso), 1, fileReader);
-					w.setExcesso(excesso);
 				}
 			}
 
-			// display header's infos
-			std::cout << "\nArquivo do tipo: " << w.getWavRiff()->riff[0] << w.getWavRiff()->riff[1] << w.getWavRiff()->riff[2] << w.getWavRiff()->riff[3];
-			std::cout << "\nTamanho excluindo header: " << w.getWavRiff()->riff;
-			std::cout << "\nSub-Tipo: " << w.getWave()[0] << w.getWave()[1] << w.getWave()[2] << w.getWave()[3];
-			std::cout << "\nIdentificador: " << w.getWavRiffChunk()->id[0] << w.getWavRiffChunk()->id[1] << w.getWavRiffChunk()->id[2] << w.getWavRiffChunk()->id[3];
-			std::cout << "\nComprimento do chunk apos header: " << w.getWavRiffChunk()->len;
-			std::cout << "\nCategoria do formato: " << w.getWavChunk()->formattag;
-			std::cout << "\nTaxa de amostragem: " << w.getWavChunk()->samplingrate;
-			std::cout << "\nNumero de canais: " << w.getWavChunk()->numberofchannels;
-			std::cout << "\nMedia do num. de bps: " << w.getWavChunk()->avgbytespersecond;
-			std::cout << "\nAlinhamento do bloco em bytes: " << w.getWavChunk()->blockalign;
-
 			// The format MUST be PCM!!
-			if (w.getWavChunk()->formattag != 1) {
+			if (hwc.formattag != 1) {
 				std::cout << "FORA DO FORMATO PCM...";
 				return 0;
 			}
 
-			headerDataChunk hdc;
-			fread(&hdc, sizeof(hdc), 1, fileReader);
-			w.setDataChunk(&hdc);
+			fread(&hwdc, sizeof(headerDataChunk), 1, fileReader);
 
-			int resolucao = (w.getWavChunk()->avgbytespersecond * 8) / (w.getWavChunk()->numberofchannels * w.getWavChunk()->samplingrate); // pq nao bitssample
-			int tamanho_da_janela = w.getDataChunk()->chunk_size / w.getWavChunk()->blockalign;
+			int resolucao = (hwc.avgbytespersecond * 8) / (hwc.numberofchannels * hwc.samplingrate);
+			int tamanho_da_janela = hwdc.chunk_size / hwc.blockalign;
 
-			// display data info
-			std::cout << "\nResolucao: " << resolucao;
-			std::cout << "\nIdentificacao: " << w.getDataChunk()->data[0] << w.getDataChunk()->data[1] << w.getDataChunk()->data[2] << w.getDataChunk()->data[3];
-			std::cout << "\nTamanho do chunk de dados: " << w.getDataChunk()->chunk_size;
-			std::cout << "\nNumero de frames para amostrar: " << w.getDataChunk()->chunk_size / w.getWavChunk()->blockalign;
-			std::cout << "\nTamanho da janela: " << tamanho_da_janela;
+			// If initial conditions are OK create the instance
+			Wav* w = new Wav(tamanho_da_janela);
+			w->dataChunk = &hwdc;
+			w->wavChunk = &hwc;
+			w->wavRiff = &hwr;
+			w->wavRiffChunk = &hwrc;
+			strcpy(w->wave, wave);
 
-			if ((resolucao == 8) && (w.getWavChunk()->numberofchannels == 1)) {
-
+			if (hwc.numberofchannels == 1) {
 				unsigned char waveformdata;
-				double* amostras_no_tempo = new double[tamanho_da_janela];
+
 				for (int i = 0; i < tamanho_da_janela; i++) {
 					fread(&waveformdata, sizeof(waveformdata), 1, fileReader);
-					amostras_no_tempo[i] = (double) waveformdata;
+					w->amostrasNoTempo[i] = (double) waveformdata;
 				}
 
-				w.setAmostrasNoTempo(amostras_no_tempo);
-
-			} else if ((resolucao == 8) && (w.getWavChunk()->numberofchannels == 2)) {
+			} else if (hwc.numberofchannels == 2) {
 
 				unsigned char waveformdata_right;
 				unsigned char waveformdata_left;
-				double* amostras_no_tempo_left = new double[tamanho_da_janela];
-				double* amostras_no_tempo_right = new double[tamanho_da_janela];
 				for (int i = 0; i < tamanho_da_janela; i++) {
 					fread(&waveformdata_left, sizeof(waveformdata_left), 1, fileReader);
 					fread(&waveformdata_right, sizeof(waveformdata_right), 1, fileReader);
 
-					amostras_no_tempo_right[i] = (double) waveformdata_right;
-					amostras_no_tempo_left[i] = (double) waveformdata_left;
+					w->amostrasNoTempoLeft[i] = (double) waveformdata_right;
+					w->amostrasNoTempoLeft[i] = (double) waveformdata_left;
 				}
 
-				w.setAmostrasNoTempoLeft(amostras_no_tempo_left);
-				w.setAmostrasNoTempoRight(amostras_no_tempo_right);
+			} else if (hwc.numberofchannels == 1) {
 
-			} else if ((resolucao == 16) && (w.getWavChunk()->numberofchannels == 1)) {
-
-				unsigned char waveformdata_lsb, waveformdata_msb;
-				double* amostras_no_tempo = new double[tamanho_da_janela];
 				for (int i = 0; i < tamanho_da_janela; i++) {
-					fread(&waveformdata_lsb, sizeof(waveformdata_lsb), 1, fileReader);
-					fread(&waveformdata_msb, sizeof(waveformdata_msb), 1, fileReader);
-					amostras_no_tempo[i] = (double) converte2de8para1de16(waveformdata_lsb, waveformdata_msb);
+					fread(&w->waveformDataLsb, sizeof(w->waveformDataLsb), 1, fileReader);
+					fread(&w->waveformDataMsb, sizeof(w->waveformDataMsb), 1, fileReader);
+					w->amostrasNoTempo[i] = (double) converte2de8para1de16(w->waveformDataLsb, w->waveformDataMsb);
 				}
+			} else if (hwc.numberofchannels == 2) {
 
-				w.setWaveformDataLsb(&waveformdata_lsb);
-				w.setWaveformDataMsb(&waveformdata_msb);
-				w.setAmostrasNoTempo(amostras_no_tempo);
-
-			} else if ((resolucao == 16) && (w.getWavChunk()->numberofchannels == 2)) {
-
-				unsigned char waveformdata_lsb_left, waveformdata_lsb_right, waveformdata_msb_left, waveformdata_msb_right;
-				double* amostras_no_tempo_left = new double[tamanho_da_janela];
-				double* amostras_no_tempo_right = new double[tamanho_da_janela];
 				for (int i = 0; i < tamanho_da_janela; i++) {
-					fread(&waveformdata_lsb_left, sizeof(waveformdata_lsb_left), 1, fileReader);
-					fread(&waveformdata_msb_left, sizeof(waveformdata_msb_left), 1, fileReader);
-					fread(&waveformdata_lsb_right, sizeof(waveformdata_lsb_right), 1, fileReader);
-					fread(&waveformdata_msb_right, sizeof(waveformdata_msb_right), 1, fileReader);
-					amostras_no_tempo_left[i] = (double) converte2de8para1de16(waveformdata_lsb_left, waveformdata_msb_left);
-					amostras_no_tempo_right[i] = (double) converte2de8para1de16(waveformdata_lsb_right, waveformdata_msb_right);
+					fread(&w->waveformDataLsbLeft, sizeof(w->waveformDataLsbLeft), 1, fileReader);
+					fread(&w->waveformDataMsbLeft, sizeof(w->waveformDataMsbLeft), 1, fileReader);
+					fread(&w->waveformDataLsbRight, sizeof(w->waveformDataLsbRight), 1, fileReader);
+					fread(&w->waveformDataMsbRight, sizeof(w->waveformDataMsbRight), 1, fileReader);
+					w->amostrasNoTempoLeft[i] = (double) converte2de8para1de16(w->waveformDataLsbLeft, w->waveformDataMsbLeft);
+					w->amostrasNoTempoRight[i] = (double) converte2de8para1de16(w->waveformDataLsbRight, w->waveformDataMsbRight);
 				}
 
-				w.setWaveformDataLsbLeft(&waveformdata_lsb_left);
-				w.setWaveformDataMsbLeft(&waveformdata_msb_left);
-				w.setWaveformDataLsbRight(&waveformdata_lsb_right);
-				w.setWaveformDataMsbRight(&waveformdata_msb_right);
-
-				w.setAmostrasNoTempoLeft(amostras_no_tempo_left);
-				w.setAmostrasNoTempoRight(amostras_no_tempo_right);
-
-			} else std::cout << "Resolucao ou nmero de canais invalido(s)";
-
-			int c;
-			while ((c = getc(fileReader)) != EOF)
-				;
-
-			w.setC(c);
+			} else {
+				std::cout << "Resolucao ou numero de canais invalido(s)";
+			}
 
 			fclose(fileReader);
 
-			return 1;
-		}
-		char save(Wav w, unsigned char applyFilter = 0) {
+			// display header's infos
+			std::cout << "\nArquivo do tipo: " << hwr.riff[3];
+			std::cout << "\nTamanho excluindo header: " << hwr.len;
+			std::cout << "\nSub-Tipo: " << wave[0] << wave[1] << wave[2] << wave[3];
+			std::cout << "\nIdentificador: " << hwrc.id[3];
+			std::cout << "\nComprimento do chunk apos header: " << hwrc.len;
+			std::cout << "\nCategoria do formato: " << hwc.formattag;
+			std::cout << "\nTaxa de amostragem: " << hwc.samplingrate;
+			std::cout << "\nNumero de canais: " << hwc.numberofchannels;
+			std::cout << "\nMedia do num. de bps: " << hwc.avgbytespersecond;
+			std::cout << "\nAlinhamento do bloco em bytes: " << hwc.blockalign;
+			// display data info
+			std::cout << "\nResolucao: " << resolucao;
+			std::cout << "\nIdentificacao: " << hwdc.data[0] << hwdc.data[1] << hwdc.data[2] << hwdc.data[3];
+			std::cout << "\nTamanho do chunk de dados: " << hwdc.chunk_size;
+			std::cout << "\nNumero de frames para amostrar: " << hwc.blockalign;
+			std::cout << "\nTamanho da janela: " << tamanho_da_janela;
 
-			if (strlen(w.getFilePath()) == 0) return 0;
+			return w;
+		}
+
+		char save(Wav* w, unsigned char applyFilter = 0) {
+
+			if (strlen(w->filePath) == 0) return 0;
 
 			// file writer
 			FILE* fileWriter;
 
 			// Open the file
-			if ((fileWriter = fopen(w.getFilePath(), "wb")) == NULL) return 0;
+			if ((fileWriter = fopen(w->filePath, "wb")) == NULL) return 0;
 
 			// Writes the file header
 			this->saveHeaders(w, fileWriter);
 
-			int resolucao = (w.getWavChunk()->avgbytespersecond * 8) / (w.getWavChunk()->numberofchannels * w.getWavChunk()->samplingrate); // pq nao bitssample
-
-			int tamanho_da_janela = w.getDataChunk()->chunk_size / w.getWavChunk()->blockalign;
-
-			if ((resolucao == 8) && (w.getWavChunk()->numberofchannels == 1)) {
-				this->save1Channel8bitsWav(w, applyFilter, tamanho_da_janela, fileWriter);
-			} else if ((resolucao == 8) && (w.getWavChunk()->numberofchannels == 2)) {
-				this->save2Channels8bitsWav(w, applyFilter, tamanho_da_janela, fileWriter);
-			} else if ((resolucao == 16) && (w.getWavChunk()->numberofchannels == 1)) {
-				this->save1Channel16bitsWav(w, applyFilter, tamanho_da_janela, fileWriter);
-			} else if ((resolucao == 16) && (w.getWavChunk()->numberofchannels == 2)) {
-				this->save2Channels16bitsWav(w, applyFilter, tamanho_da_janela, fileWriter);
+			if (w->wavChunk->numberofchannels == 1) {
+				this->save1Channel8bitsWav(w, applyFilter, fileWriter);
+			} else if (w->wavChunk->numberofchannels == 2) {
+				this->save2Channels8bitsWav(w, applyFilter, fileWriter);
+			} else if (w->wavChunk->numberofchannels == 1) {
+				this->save1Channel16bitsWav(w, applyFilter, fileWriter);
+			} else if (w->wavChunk->numberofchannels == 2) {
+				this->save2Channels16bitsWav(w, applyFilter, fileWriter);
 			} else std::cout << "Resolucao ou numero de canais invalido(s)";
 
-			int c = w.getC();
-			putc(c, fileWriter);
-
+			putc(w->c, fileWriter);
 			fclose(fileWriter);
 
 			return 1;

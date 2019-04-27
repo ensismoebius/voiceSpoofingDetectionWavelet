@@ -10,11 +10,12 @@
 
 int main(int i, char* arrProgramArguments[]) {
 
-	Wav w = Wav();
-	w.setFilePath(arrProgramArguments[1]);
-
 	WavProcessor wp = WavProcessor();
-	wp.read(w);
+	Wav* w = wp.read(arrProgramArguments[1]);
 
+	const char wavpath[255] = "/tmp/teste.wav";
+
+	strcpy(w->filePath, wavpath);
+	wp.save(w);
 }
 
