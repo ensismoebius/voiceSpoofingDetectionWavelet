@@ -7,11 +7,17 @@
 //============================================================================
 
 #include <stdlib.h>
-#include <cmath>
 #include <iostream>
+#include  <cmath>
 
-#include "../gnuplot/gnuplotCalls.h"
-#include "paraconsistent.h"
+double calcCertaintyDegree_G1(double alpha, double betha);
+double calcContradictionDegree_G2(double alpha, double betha);
+double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double * * * &arrClasses);
+double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double * * * &arrClasses);
+void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double * * *arrClasses);
+double pow(double __x, double __y);
+void showInParaconsistentPlane(char textMode, double certaintyDegree_G1, double contradictionDegree_G2);
+double sqrt(double __x);
 
 static void randomlyPopulateClassFeatureVectors(double**& featureVectors, unsigned int samplesPerClass, unsigned int featureVectorSize) {
 	for (unsigned int ci = 0; ci < samplesPerClass; ci++) {
@@ -152,8 +158,4 @@ void example() {
 	//memset(classZeroSimilaritiesVector, 0, 0.0);
 	clearClasses(arrClasses, amountOfClasses, featureVectorsPerClass, featureVectorSize);
 	delete[] arrClasses;
-}
-
-int main() {
-	example();
 }
