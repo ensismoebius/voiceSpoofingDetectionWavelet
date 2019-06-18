@@ -487,6 +487,57 @@ void applyWindow(double* filter, double *window, int order) {
 	} while (order--);
 }
 
+double* createFeatureVector(double* signal, int comprimento_do_sinal, int order, double samplingRate) {
+//	double melRanges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
+
+	double sum = 0;
+	int rangesSize = 25;
+	double rangeEnd = 0;
+	double rangeStart = 0;
+	double ranges[rangesSize] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
+
+	double* filter = new double[order];
+	double* window = createTriangularWindow(order);
+	double* featuraVector = new double[rangesSize - 1];
+	double* copiedSignal = new double[comprimento_do_sinal];
+
+	for (int i = 0; i < rangesSize - 1; i++) {
+
+		std::cout << "\nFeaturing: " << rangeStart << " -> " << rangeEnd;
+
+		rangeStart = ranges[i];
+		rangeEnd = ranges[i + 1];
+		filter = bandPassFilter(order, samplingRate, rangeStart, rangeEnd);
+
+		applyWindow(filter, window, order);
+
+		for (int j = 0; j < comprimento_do_sinal; j++) {
+			copiedSignal[j] = signal[j];
+		}
+
+		doTheConvolutionConrade(copiedSignal, comprimento_do_sinal, filter, order);
+
+		for (int j = 0; j < comprimento_do_sinal; j++) {
+
+			double v = pow(copiedSignal[j], 2);
+			v = v == 0 ? 0 : log2(v);
+
+			sum += v;
+			featuraVector[i] += v;
+		}
+	}
+
+	for (int i = 0; i < rangesSize - 1; i++) {
+		featuraVector[i] = featuraVector[i] / sum;
+	}
+
+	delete[] filter;
+	delete[] window;
+	delete[] copiedSignal;
+
+	return featuraVector;
+}
+
 void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
 	//detectSilences(signal, comprimento_do_sinal);
 	//xuxasDevilInvocation(signal, comprimento_do_sinal);
