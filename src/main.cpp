@@ -280,7 +280,7 @@ void addEchoes(double* signal, int signalLength) {
 	}
 }
 
-void doTheConvolutionConrade(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
+void convolution(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
 
 	// holds the final convoluted data
 	double* convolutedSignal = new double[dataLength + inverseDFTFilterLength - 1];
@@ -487,23 +487,43 @@ void applyWindow(double* filter, double *window, int order) {
 	} while (order--);
 }
 
-double* createFeatureVector(double* signal, int comprimento_do_sinal, int order, double samplingRate) {
-//	double melRanges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
+void discreteCosineTransform(double *signal, long sinalLength) {
+	long n, k;
+	double xk[sinalLength][sinalLength];
+
+	for (n = 0; n < sinalLength; n++)
+		xk[0][n] = 1 / sqrt(sinalLength) * signal[n];
+
+	for (k = 1; k < sinalLength; k++) {
+		for (n = 0; n < sinalLength; n++) {
+			xk[k][n] = sqrt(2.0 / sinalLength) * cos(k * M_PI / (2.0 * sinalLength) * (2.0 * n + 1)) * signal[n];
+		}
+	}
+	for (k = 0; k < sinalLength; k++) {
+		signal[k] = 0;
+		for (n = 0; n < sinalLength; n++)
+			signal[k] += xk[k][n];
+	}
+}
+
+double* createFeatureVector(double* signal, int sinalLength, int order, double samplingRate) {
+	// Ranges for MEL scale
+	double ranges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 
 	double sum = 0;
 	int rangesSize = 25;
 	double rangeEnd = 0;
 	double rangeStart = 0;
-	double ranges[rangesSize] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
+
+	// Ranges for BARK scale
+	//double ranges[25] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
 
 	double* filter = new double[order];
 	double* window = createTriangularWindow(order);
-	double* featuraVector = new double[rangesSize - 1];
-	double* copiedSignal = new double[comprimento_do_sinal];
+	double* featureVector = new double[rangesSize - 1];
+	double* copiedSignal = new double[sinalLength];
 
 	for (int i = 0; i < rangesSize - 1; i++) {
-
-		std::cout << "\nFeaturing: " << rangeStart << " -> " << rangeEnd;
 
 		rangeStart = ranges[i];
 		rangeEnd = ranges[i + 1];
@@ -511,34 +531,36 @@ double* createFeatureVector(double* signal, int comprimento_do_sinal, int order,
 
 		applyWindow(filter, window, order);
 
-		for (int j = 0; j < comprimento_do_sinal; j++) {
+		for (int j = 0; j < sinalLength; j++) {
 			copiedSignal[j] = signal[j];
 		}
 
-		doTheConvolutionConrade(copiedSignal, comprimento_do_sinal, filter, order);
+		convolution(copiedSignal, sinalLength, filter, order);
 
-		for (int j = 0; j < comprimento_do_sinal; j++) {
+		for (int j = 0; j < sinalLength; j++) {
 
 			double v = pow(copiedSignal[j], 2);
 			v = v == 0 ? 0 : log2(v);
 
 			sum += v;
-			featuraVector[i] += v;
+			featureVector[i] += v;
 		}
 	}
 
 	for (int i = 0; i < rangesSize - 1; i++) {
-		featuraVector[i] = featuraVector[i] / sum;
+		featureVector[i] = featureVector[i] / sum;
 	}
+
+	discreteCosineTransform(featureVector, sinalLength);
 
 	delete[] filter;
 	delete[] window;
 	delete[] copiedSignal;
 
-	return featuraVector;
+	return featureVector;
 }
 
-void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned int taxa_de_amostragem) {
+void modifica_dados_brutos(double* signal, int signalLength, unsigned int taxa_de_amostragem) {
 	//detectSilences(signal, comprimento_do_sinal);
 	//xuxasDevilInvocation(signal, comprimento_do_sinal);
 	//addEchoes(signal, comprimento_do_sinal);
@@ -558,22 +580,24 @@ void modifica_dados_brutos(double* signal, int comprimento_do_sinal, unsigned in
 	//	double* vector = calculateOrthogonalVector(data, 6);
 
 	//
-	//	normalizeData(data, 2);
+	normalizeData(signal, signalLength);
 
 	//double filter[2] { 4, 5 };
-	//Remoco da irradiação labial (ñ implementar)
-	//
 
 	// TODO Normalizar:
 	// TODO Calcular energias
 	// TODO aplicar o log
 	// TODO tranformada cosseno
 
-	int filterOrder = 27;
+	unsigned int samplingRate = 44100;
+	unsigned int filterOrder = 27;
+
+	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
+
 	double* window = createTriangularWindow(filterOrder);
 	double* filter = bandPassFilter(filterOrder, 44100, 50000, 100000);
 	applyWindow(filter, window, filterOrder);
 
-	doTheConvolutionConrade(signal, comprimento_do_sinal, filter, filterOrder);
+	convolution(signal, signalLength, filter, filterOrder);
 }
 
