@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
 
 // Prototypes
 void modifica_dados_brutos(double*, int, unsigned int);
@@ -487,33 +488,54 @@ void applyWindow(double* filter, double *window, int order) {
 	} while (order--);
 }
 
-void discreteCosineTransform(double *signal, long sinalLength) {
-	long n, k;
-	double xk[sinalLength][sinalLength];
+void discreteCosineTransform(double* vector, long vectorLength) {
 
-	for (n = 0; n < sinalLength; n++)
-		xk[0][n] = 1 / sqrt(sinalLength) * signal[n];
+	long N = vectorLength;
+	double sum;
+	double multi;
+	double* F = new double[vectorLength];
 
-	for (k = 1; k < sinalLength; k++) {
-		for (n = 0; n < sinalLength; n++) {
-			xk[k][n] = sqrt(2.0 / sinalLength) * cos(k * M_PI / (2.0 * sinalLength) * (2.0 * n + 1)) * signal[n];
+	for (int u = 0; u < N; u++) {
+
+		sum = 0.0;
+		multi = u == 0 ? 1.0 / sqrt(2.0) : 1.0;
+
+		for (int i = 0; i < N; i++) {
+			sum += multi * cos(((M_PI * u) / (2.0 * N)) * (2.0 * i + 1)) * vector[u];
+		}
+		F[u] = sum;
+	}
+
+	double maior = F[1];
+
+	for (int i = 2; i < N; i++) {
+
+		if (F[i] > maior) {
+			maior = F[i];
 		}
 	}
-	for (k = 0; k < sinalLength; k++) {
-		signal[k] = 0;
-		for (n = 0; n < sinalLength; n++)
-			signal[k] += xk[k][n];
+
+	for (int i = 1; i < N; i++) {
+		F[i] /= maior;
 	}
+
+	for (int i = 0; i < N; i++) {
+		vector[i] = F[i];
+	}
+
+	delete[] F;
 }
 
-double* createFeatureVector(double* signal, int sinalLength, int order, double samplingRate) {
+double* createFeatureVector(double* signal, int signalLength, int order, double samplingRate) {
 	// Ranges for MEL scale
 	double ranges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 
 	double sum = 0;
-	int rangesSize = 25;
+	int rangesSize = 14;
 	double rangeEnd = 0;
 	double rangeStart = 0;
+
+	normalizeData(signal, signalLength);
 
 	// Ranges for BARK scale
 	//double ranges[25] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
@@ -521,37 +543,50 @@ double* createFeatureVector(double* signal, int sinalLength, int order, double s
 	double* filter = new double[order];
 	double* window = createTriangularWindow(order);
 	double* featureVector = new double[rangesSize - 1];
-	double* copiedSignal = new double[sinalLength];
+	double* copiedSignal = new double[signalLength];
 
 	for (int i = 0; i < rangesSize - 1; i++) {
 
+		// Select start and end ranges
 		rangeStart = ranges[i];
 		rangeEnd = ranges[i + 1];
+
+		// Create the filter
 		filter = bandPassFilter(order, samplingRate, rangeStart, rangeEnd);
 
+		// Apply window
 		applyWindow(filter, window, order);
 
-		for (int j = 0; j < sinalLength; j++) {
+		// Create a copy of the signal
+		for (int j = 0; j < signalLength; j++) {
 			copiedSignal[j] = signal[j];
 		}
 
-		convolution(copiedSignal, sinalLength, filter, order);
+		// Apply the filter
+		convolution(copiedSignal, signalLength, filter, order);
 
-		for (int j = 0; j < sinalLength; j++) {
-
+		for (int j = 0; j < signalLength; j++) {
+			// Calculate the energies for each energy interval, apply log to it.
 			double v = pow(copiedSignal[j], 2);
 			v = v == 0 ? 0 : log2(v);
-
-			sum += v;
 			featureVector[i] += v;
+
+			// Calculate the sum of all energies
+			sum += v;
 		}
+
 	}
 
+	// Normalize the resulting feature vector
 	for (int i = 0; i < rangesSize - 1; i++) {
 		featureVector[i] = featureVector[i] / sum;
 	}
 
-	discreteCosineTransform(featureVector, sinalLength);
+	//	double teste[8] = { 100, 100, 100, 100, 100, 100, 100, 100 };
+	//	discreteCosineTransform(teste, 8);
+
+	// Apply a DCT (Discrete Cosine Transform)
+	discreteCosineTransform(featureVector, rangesSize);
 
 	delete[] filter;
 	delete[] window;
@@ -569,31 +604,19 @@ void modifica_dados_brutos(double* signal, int signalLength, unsigned int taxa_d
 
 	//silentHalfOfTheSoundTrack(signal, comprimento_do_sinal);
 
-	//	double* data = new double[6];
-	//	data[0] = 1;
-	//	data[1] = 2;
-	//	data[2] = 3;
-	//	data[3] = 4;
-	//	data[4] = 5;
-	//	data[5] = 6;
-
-	//	double* vector = calculateOrthogonalVector(data, 6);
-
-	//
-	normalizeData(signal, signalLength);
-
-	//double filter[2] { 4, 5 };
-
-	// TODO Normalizar:
-	// TODO Calcular energias
-	// TODO aplicar o log
-	// TODO tranformada cosseno
-
 	unsigned int samplingRate = 44100;
 	unsigned int filterOrder = 27;
 
+	std::cout << std::fixed;
+	std::cout << std::setprecision(11);
+	std::cout << std::endl;
 	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
+	for (int i = 0; i < 14; i++) {
+		std::cout << fv[i] << " ";
+	}
+	std::cout << std::endl;
 
+	normalizeData(signal, signalLength);
 	double* window = createTriangularWindow(filterOrder);
 	double* filter = bandPassFilter(filterOrder, 44100, 50000, 100000);
 	applyWindow(filter, window, filterOrder);
