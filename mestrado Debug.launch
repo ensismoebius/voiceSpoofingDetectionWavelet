@@ -18,7 +18,7 @@
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="run"/>
 <booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN_SYMBOL" value="main"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="/home/ensis/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/5/Voz20.wav"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/5/Voz20.wav"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/mestrado"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="mestrado"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="true"/>
@@ -44,7 +44,36 @@
 <booleanAttribute key="org.eclipse.linuxtools.internal.perf.attr.ShowStat" value="false"/>
 <booleanAttribute key="org.eclipse.linuxtools.internal.perf.attr.SourceLineNumbers" value="true"/>
 <intAttribute key="org.eclipse.linuxtools.internal.perf.attr.StatRunCount" value="1"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.BRANCH_SIM" value="false"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.CACHE_SIM" value="true"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.D1" value="false"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.D1_ASSOC" value="0"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.D1_LSIZE" value="0"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.D1_SIZE" value="0"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.I1" value="false"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.I1_ASSOC" value="0"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.I1_LSIZE" value="0"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.I1_SIZE" value="0"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.L2" value="false"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.L2_ASSOC" value="0"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.L2_LSIZE" value="0"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.cachegrind.L2_SIZE" value="0"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.FULLPATH_AFTER" value="true"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_BELOWMAIN" value="false"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_DEMANGLE" value="true"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_DSYMUTIL" value="true"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_ERRLIMIT" value="true"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_FREERES" value="true"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_MAINSTACK" value="0"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_MAINSTACK_BOOL" value="false"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_MAXFRAME" value="2000000"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_NUMCALLERS" value="12"/>
+<stringAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_OTHER_OPTIONS" value=""/>
+<listAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_SUPPFILES"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_TRACECHILD" value="false"/>
+<stringAttribute key="org.eclipse.linuxtools.valgrind.launch.OUTPUT_DIR" value="/home/ensismoebius/workspaces/c-workspace/.metadata/.plugins/org.eclipse.linuxtools.valgrind.launch"/>
+<stringAttribute key="org.eclipse.linuxtools.valgrind.launch.TOOL" value="org.eclipse.linuxtools.valgrind.launch.cachegrind"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.cdt.dsf.gdb.GdbProcessFactory"/>
-<stringAttribute key="provider" value="org.eclipse.linuxtools.perf.provider"/>
+<stringAttribute key="provider" value="org.eclipse.linuxtools.profiling.provider.valgrind.cachegrind"/>
 <stringAttribute key="saved_expressions&lt;seperator&gt;Unknown" value="0x55555576c700,signal,i"/>
 </launchConfiguration>
