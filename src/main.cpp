@@ -140,15 +140,15 @@ double createAlpha(double samplingRate, double filterMaxFrequency, bool highPass
 	return alpha;
 }
 
-void normalizeData(double* signal, int comprimento_do_sinal) {
+void normalizeData(double* signal, int signalLength) {
 
 	double sum = 0;
 
-	for (int i = 0; i < comprimento_do_sinal; ++i) {
+	for (int i = 0; i < signalLength; ++i) {
 		sum += signal[i];
 	}
 
-	for (int i = 0; i < comprimento_do_sinal; ++i) {
+	for (int i = 0; i < signalLength; ++i) {
 		signal[i] /= sum;
 	}
 
@@ -334,7 +334,6 @@ void discreteCosineTransform(double* vector, long vectorLength) {
 	delete[] F;
 }
 
-// TODO solve SEVERAL memory leaks
 double* createFeatureVector(double* signal, int signalLength, int order, double samplingRate) {
 	// Ranges for MEL scale
 	double ranges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
@@ -342,7 +341,6 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 	// Ranges for BARK scale
 	//double ranges[25] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
 
-	double sum = 0;
 	int rangesSize = 14;
 	double rangeEnd = 0;
 	double rangeStart = 0;
@@ -377,22 +375,21 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 		// normalize signal
 		normalizeData(copiedSignal, signalLength);
 
+		energy = 0;
 		for (int j = 0; j < signalLength; j++) {
 			// Calculate the energies for each energy interval, apply log to it.
 			energy = pow(copiedSignal[j], 2);
 			energy = energy == 0 ? 0 : log2(energy);
-			featureVector[i] += energy;
 
-			// Calculate the sum of all energies
-			sum += energy;
+			// Calculate the sum of all energies for this range
+			featureVector[i] += energy;
 		}
 
-		energy = 0;
 		delete[] filter;
 	}
 
 	// Normalize the resulting feature vector
-	normalizeData(featureVector, rangesSize);
+	normalizeData(featureVector, rangesSize - 1);
 
 	// Apply a DCT (Discrete Cosine Transform)
 	discreteCosineTransform(featureVector, rangesSize);
