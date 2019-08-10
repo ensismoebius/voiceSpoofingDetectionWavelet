@@ -1,5 +1,4 @@
 #include <cmath>
-#include <iomanip>
 #include <iostream>
 #include <stdexcept>
 
@@ -399,40 +398,47 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 	discreteCosineTransform(featureVector, rangesSize);
 
 	delete[] copiedSignal;
-
 	return featureVector;
 }
 
 void transformFunction(double* signal, int signalLength, unsigned int samplingRate) {
-// detectSilences(signal, comprimento_do_sinal);
-// xuxasDevilInvocation(signal, signalLength);
-// addEchoes(signal, signalLength);
-// doAFineAmplification(signal, signalLength);
-// silentHalfOfTheSoundTrack(signal, signalLength);
-
 	unsigned int filterOrder = 1001;
 
-//	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
-//	for (int i = 0; i < 14; i++) {
-//		std::cout << fv[i] << ",";
-//	}
-//	std::cout << std::endl;
-//	delete[] fv;
+	// detectSilences(signal, comprimento_do_sinal);
+	// xuxasDevilInvocation(signal, signalLength);
+	// addEchoes(signal, signalLength);
+	// doAFineAmplification(signal, signalLength);
+	// silentHalfOfTheSoundTrack(signal, signalLength);
 
-	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
-	double* window = createTriangularWindow(filterOrder);
-	applyWindow(filter, window, filterOrder);
-	convolution(signal, signalLength, filter, filterOrder);
+	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
+	for (int i = 0; i < 14; i++) {
+		std::cout << fv[i] << ",";
+	}
+	std::cout << std::endl;
+	delete[] fv;
 
-	delete[] filter;
-	delete[] window;
+	//	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
+	//	double* window = createTriangularWindow(filterOrder);
+	//	applyWindow(filter, window, filterOrder);
+	//	convolution(signal, signalLength, filter, filterOrder);
+	//
+	//	delete[] filter;
+	//	delete[] window;
 }
 
 int main(int i, char* args[]) {
-	Wav w(args[1]);
+	Wav w;
 	w.setCallbackFunction(transformFunction);
+
+	w.read(args[1]);
 	w.process();
-	w.write("/tmp/teste.wav");
+	//w.write("/tmp/teste.wav");
+
+	for (int k = 2; k < i; k++) {
+		w.read(args[k]);
+		w.process();
+		//w.write("/tmp/teste.wav");
+	}
 	return 0;
 }
 

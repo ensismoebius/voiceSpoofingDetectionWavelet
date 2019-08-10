@@ -1,15 +1,16 @@
 /**
- * @author André Furlan
- * @email ensismoebius@gmail.com
- * This whole project are under GPLv3, for
+ * @author André Furlan <ensismoebius@gmail.com>
+ * @author Rodrigo Capobianco Guido <guido@ieee.org>
+ *
+ * This whole project are under GPLv3qgg, for
  * more information read the license file
  *
  * 8 de ago de 2019
- *
  */
 #ifndef SRC_WAV_C_
 #define SRC_WAV_C_
 
+#include <bits/stdint-uintn.h>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
@@ -53,24 +54,11 @@ class Wav {
 		void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate);
 
 	public:
-		Wav(std::string path) {
-
+		Wav() {
 			data = 0;
 			dataLeft = 0;
 			dataRight = 0;
 			this->path = path;
-
-			std::ifstream ifs;
-
-			ifs.open(path, std::ios::in | std::ios::binary);
-
-			// Reads the file headers
-			readWaveHeaders(ifs);
-
-			// Reads actual data
-			readWaveData(ifs);
-
-			ifs.close();
 		}
 
 		~Wav() {
@@ -117,6 +105,19 @@ class Wav {
 				throw std::runtime_error("Invalid number of channels and/or resolution");
 				return;
 			}
+		}
+
+		void read(std::string path) {
+
+			this->path = path;
+
+			std::ifstream ifs;
+			ifs.open(path, std::ios::in | std::ios::binary);
+			// Reads the file headers
+			readWaveHeaders(ifs);
+			// Reads actual data
+			readWaveData(ifs);
+			ifs.close();
 		}
 
 		void write(std::string path) {
@@ -209,9 +210,6 @@ class Wav {
 			return path;
 		}
 
-		void setPath(std::string path) {
-			this->path = path;
-		}
 		void setCallbackFunction(void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate)) {
 			this->callbackFunction = callbackFunction;
 		}
