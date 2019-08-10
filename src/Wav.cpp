@@ -10,13 +10,12 @@
 #ifndef SRC_WAV_C_
 #define SRC_WAV_C_
 
-#include <bits/stdint-uintn.h>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 
-typedef struct WAV_HEADER {
+typedef struct {
 		/* RIFF Chunk Descriptor */
 		uint8_t RIFF[4];        // RIFF Header Magic header
 		uint32_t chunkSize;      // RIFF Chunk Size
@@ -35,59 +34,30 @@ typedef struct WAV_HEADER {
 		/* "data" sub-chunk */
 		uint8_t subchunk2ID[4]; // "data"  string
 		uint32_t subchunk2Size;  // Sampled data length
-} wav_hdr;
-
-//// Declaring the struct for the file header
-//typedef struct {
-//		unsigned char riff[4]; // what's riff??
-//		unsigned int len;
-//} riffHeader;
-//
-//typedef struct {
-//		unsigned char id[4];
-//		unsigned int len;
-//} riffChunk;
-//
-//typedef struct {
-//		unsigned short formattag;
-//		unsigned short numberofchannels;
-//		unsigned int samplingrate;
-//		unsigned int avgbytespersecond;
-//		unsigned short blockalign;
-//} waveChunk;
-//
-//typedef struct {
-//		unsigned char data[4];
-//		unsigned int chunk_size;
-//} dataChunk;
+} wavHeaders;
 
 class Wav {
 
 	private:
 		std::string path;
-
-		// header data
-		wav_hdr headers;
-//		unsigned char waveWord[4];
-//		riffHeader headerWithRiff;
-//		riffChunk headerWithChunk;
-//
-//		waveChunk chunkOfWave;
-		int waveResolution;
-//		unsigned char excess;
-//
-//		dataChunk dataAboutTheData;
 		int amountOfData;
+		int waveResolution;
+
+		wavHeaders headers;
 
 		// signal data
 		double* data;
 		double* dataLeft;
 		double* dataRight;
 
-		void (*transformationFunction)(double* signal, int signalLength, unsigned int samplingRate);
+		void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate);
 
 	public:
 		Wav(std::string path) {
+
+			data = 0;
+			dataLeft = 0;
+			dataRight = 0;
 			this->path = path;
 
 			std::ifstream ifs;
@@ -103,6 +73,12 @@ class Wav {
 			ifs.close();
 		}
 
+		~Wav() {
+			delete[] data;
+			delete[] dataLeft;
+			delete[] dataRight;
+		}
+
 		void transformAndSaveWaveData(std::string path) {
 			bool processed = false;
 
@@ -116,8 +92,8 @@ class Wav {
 			}
 
 			if ((waveResolution == 8) && (this->headers.numOfChan == 1)) {
-				if (transformationFunction != 0) {
-					(*transformationFunction)(data, amountOfData, this->headers.samplingrate);
+				if (callbackFunction != 0) {
+					(*callbackFunction)(data, amountOfData, this->headers.samplingrate);
 				}
 
 				ofs.write((char*) &this->headers, sizeof(this->headers));
@@ -131,9 +107,9 @@ class Wav {
 				processed = true;
 			}
 			if ((waveResolution == 8) && (this->headers.numOfChan == 2)) {
-				if (transformationFunction != 0) {
-					(*transformationFunction)(dataLeft, amountOfData, this->headers.samplingrate);
-					(*transformationFunction)(dataRight, amountOfData, this->headers.samplingrate);
+				if (callbackFunction != 0) {
+					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate);
+					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate);
 				}
 
 				ofs.write((char*) &this->headers, sizeof(this->headers));
@@ -150,8 +126,8 @@ class Wav {
 				processed = true;
 			}
 			if ((waveResolution == 16) && (this->headers.numOfChan == 1)) {
-				if (transformationFunction != 0) {
-					(*transformationFunction)(data, amountOfData, this->headers.samplingrate);
+				if (callbackFunction != 0) {
+					(*callbackFunction)(data, amountOfData, this->headers.samplingrate);
 				}
 
 				ofs.write((char*) &this->headers, sizeof(this->headers));
@@ -166,9 +142,9 @@ class Wav {
 				processed = true;
 			}
 			if ((waveResolution == 16) && (this->headers.numOfChan == 2)) {
-				if (transformationFunction != 0) {
-					(*transformationFunction)(dataLeft, amountOfData, this->headers.samplingrate);
-					(*transformationFunction)(dataRight, amountOfData, this->headers.samplingrate);
+				if (callbackFunction != 0) {
+					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate);
+					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate);
 				}
 
 				ofs.write((char*) &this->headers, sizeof(this->headers));
@@ -214,8 +190,8 @@ class Wav {
 		void setPath(std::string path) {
 			this->path = path;
 		}
-		void setTransformationFunction(void (*transformationFunction)(double* signal, int signalLength, unsigned int samplingRate)) {
-			this->transformationFunction = transformationFunction;
+		void setCallbackFunction(void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate)) {
+			this->callbackFunction = callbackFunction;
 		}
 
 	private:

@@ -1,11 +1,11 @@
-#include <string.h>
 #include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <stdexcept>
 
 #include "Wav.cpp"
+
+int abs(int __x);
 
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
@@ -106,6 +106,8 @@ void convolution(double* data, int dataLength, double* inverseDFTFilter, int inv
 	for (int i = 0; i < dataLength; i++) {
 		data[i] = convolutedSignal[i];
 	}
+
+	delete[] convolutedSignal;
 }
 
 void detectSilences(double* signal, int signalLength) {
@@ -157,6 +159,7 @@ double* createLowPassFilter(int order, double samplingRate, double filterMaxFreq
 
 	// Order MUST be odd
 	if (order % 2 == 0) {
+		throw std::runtime_error("Order MUST be an odd number!");
 		return 0;
 	}
 
@@ -200,6 +203,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
 
 	// Order MUST be odd
 	if (order % 2 == 0) {
+		throw std::runtime_error("Order MUST be an odd number!");
 		return 0;
 	}
 
@@ -224,10 +228,11 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
 	return buildOrthogonalVector(filter, order + 1);
 }
 
-double *bandPassFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+double *createBandPassFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
 
 	// Order MUST be odd
 	if (order % 2 == 0) {
+		throw std::runtime_error("Order MUST be an odd number!");
 		return 0;
 	}
 
@@ -241,6 +246,8 @@ double *bandPassFilter(int order, double samplingRate, double startFrequency, do
 		lowPassMax[i] = lowPassMax[i] - lowPassMin[i];
 	}
 
+	delete[] lowPassMin;
+
 	return lowPassMax;
 }
 
@@ -248,6 +255,7 @@ double *bandStopFilter(int order, double samplingRate, double startFrequency, do
 
 	// Order MUST be odd
 	if (order % 2 == 0) {
+		throw std::runtime_error("Order MUST be an odd number!");
 		return 0;
 	}
 
@@ -327,24 +335,25 @@ void discreteCosineTransform(double* vector, long vectorLength) {
 	delete[] F;
 }
 
+// TODO solve SEVERAL memory leaks
 double* createFeatureVector(double* signal, int signalLength, int order, double samplingRate) {
 	// Ranges for MEL scale
 	double ranges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
+
+	// Ranges for BARK scale
+	//double ranges[25] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
 
 	double sum = 0;
 	int rangesSize = 14;
 	double rangeEnd = 0;
 	double rangeStart = 0;
 
-	normalizeData(signal, signalLength);
-
-	// Ranges for BARK scale
-	//double ranges[25] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
-
 	double* filter = new double[order];
 	double* window = createTriangularWindow(order);
 	double* featureVector = new double[rangesSize - 1];
 	double* copiedSignal = new double[signalLength];
+
+	double energy = 0;
 
 	for (int i = 0; i < rangesSize - 1; i++) {
 
@@ -353,7 +362,7 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 		rangeEnd = ranges[i + 1];
 
 		// Create the filter
-		filter = bandPassFilter(order, samplingRate, rangeStart, rangeEnd);
+		filter = createBandPassFilter(order, samplingRate, rangeStart, rangeEnd);
 
 		// Apply window
 		applyWindow(filter, window, order);
@@ -363,70 +372,85 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 			copiedSignal[j] = signal[j];
 		}
 
+		// normalize signal
+		normalizeData(copiedSignal, signalLength);
+
 		// Apply the filter
 		convolution(copiedSignal, signalLength, filter, order);
 
 		for (int j = 0; j < signalLength; j++) {
 			// Calculate the energies for each energy interval, apply log to it.
-			double v = pow(copiedSignal[j], 2);
-			v = v == 0 ? 0 : log2(v);
-			featureVector[i] += v;
+			energy = pow(copiedSignal[j], 2);
+			energy = energy == 0 ? 0 : log2(energy);
+			featureVector[i] += energy;
 
 			// Calculate the sum of all energies
-			sum += v;
+			sum += energy;
 		}
 
+		energy = 0;
+		delete[] filter;
 	}
 
 	// Normalize the resulting feature vector
-	for (int i = 0; i < rangesSize - 1; i++) {
-		featureVector[i] = featureVector[i] / sum;
-	}
-
-	//	double teste[8] = { 100, 100, 100, 100, 100, 100, 100, 100 };
-	//	discreteCosineTransform(teste, 8);
+	normalizeData(featureVector, rangesSize);
 
 	// Apply a DCT (Discrete Cosine Transform)
 	discreteCosineTransform(featureVector, rangesSize);
 
-	delete[] filter;
-	delete[] window;
 	delete[] copiedSignal;
 
 	return featureVector;
 }
 
 void transformFunction(double* signal, int signalLength, unsigned int samplingRate) {
-	//detectSilences(signal, comprimento_do_sinal);
-//	xuxasDevilInvocation(signal, signalLength);
-//	addEchoes(signal, signalLength);
+// detectSilences(signal, comprimento_do_sinal);
+// xuxasDevilInvocation(signal, signalLength);
+// addEchoes(signal, signalLength);
+// doAFineAmplification(signal, signalLength);
+// silentHalfOfTheSoundTrack(signal, signalLength);
 
-//	doAFineAmplification(signal, signalLength);
+// unsigned int filterOrder = 27;
+// std::cout << std::fixed;
+// std::cout << std::setprecision(20);
+// std::cout << std::endl;
+// double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
+// for (int i = 0; i < 14; i++) {
+// 	std::cout << fv[i] << " ";
+// }
+// std::cout << std::endl;
+//
+// normalizeData(signal, signalLength);
+// double* window = createTriangularWindow(filterOrder);
+// double* filter = bandPassFilter(filterOrder, 44100, 50000, 100000);
+// applyWindow(filter, window, filterOrder);
+//
+// convolution(signal, signalLength, filter, filterOrder);
+	std::cout << std::fixed;
+	std::cout << std::setprecision(20);
+	std::cout << std::endl;
 
-//	silentHalfOfTheSoundTrack(signal, signalLength);
+	unsigned int filterOrder = 1001;
 
-//	unsigned int filterOrder = 27;
-//
-//	std::cout << std::fixed;
-//	std::cout << std::setprecision(20);
-//	std::cout << std::endl;
-//	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
-//	for (int i = 0; i < 14; i++) {
-//		std::cout << fv[i] << " ";
-//	}
-//	std::cout << std::endl;
-//
-//	normalizeData(signal, signalLength);
-//	double* window = createTriangularWindow(filterOrder);
-//	double* filter = bandPassFilter(filterOrder, 44100, 50000, 100000);
-//	applyWindow(filter, window, filterOrder);
-//
-//	convolution(signal, signalLength, filter, filterOrder);
+	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
+	for (int i = 0; i < 14; i++) {
+		std::cout << fv[i] << ",";
+	}
+	std::cout << std::endl;
+	delete[] fv;
+
+	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
+	double* window = createTriangularWindow(filterOrder);
+	applyWindow(filter, window, filterOrder);
+	convolution(signal, signalLength, filter, filterOrder);
+
+	delete[] filter;
+	delete[] window;
 }
 
 int main(int i, char* args[]) {
 	Wav w(args[1]);
-	w.setTransformationFunction(transformFunction);
+	w.setCallbackFunction(transformFunction);
 	w.transformAndSaveWaveData("/tmp/teste.wav");
 	return 0;
 }
