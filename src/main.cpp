@@ -372,11 +372,11 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 			copiedSignal[j] = signal[j];
 		}
 
-		// normalize signal
-		normalizeData(copiedSignal, signalLength);
-
 		// Apply the filter
 		convolution(copiedSignal, signalLength, filter, order);
+
+		// normalize signal
+		normalizeData(copiedSignal, signalLength);
 
 		for (int j = 0; j < signalLength; j++) {
 			// Calculate the energies for each energy interval, apply log to it.
@@ -439,13 +439,13 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 	std::cout << std::endl;
 	delete[] fv;
 
-	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
-	double* window = createTriangularWindow(filterOrder);
-	applyWindow(filter, window, filterOrder);
-	convolution(signal, signalLength, filter, filterOrder);
-
-	delete[] filter;
-	delete[] window;
+//	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
+//	double* window = createTriangularWindow(filterOrder);
+//	applyWindow(filter, window, filterOrder);
+//	convolution(signal, signalLength, filter, filterOrder);
+//
+//	delete[] filter;
+//	delete[] window;
 }
 
 int main(int i, char* args[]) {

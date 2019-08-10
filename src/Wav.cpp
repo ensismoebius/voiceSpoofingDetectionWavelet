@@ -79,6 +79,7 @@ class Wav {
 			delete[] dataRight;
 		}
 
+		// TODO separate in two functions: "process" (with will apply the callback function ) and "save"
 		void transformAndSaveWaveData(std::string path) {
 			bool processed = false;
 
