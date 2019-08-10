@@ -79,9 +79,47 @@ class Wav {
 			delete[] dataRight;
 		}
 
-		// TODO separate in two functions: "process" (with will apply the callback function ) and "save"
-		void transformAndSaveWaveData(std::string path) {
+		void process() {
 			bool processed = false;
+
+			if ((waveResolution == 8) && (this->headers.numOfChan == 1)) {
+				if (callbackFunction != 0) {
+					(*callbackFunction)(data, amountOfData, this->headers.samplingrate);
+				}
+
+				processed = true;
+			}
+			if ((waveResolution == 8) && (this->headers.numOfChan == 2)) {
+				if (callbackFunction != 0) {
+					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate);
+					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate);
+				}
+
+				processed = true;
+			}
+			if ((waveResolution == 16) && (this->headers.numOfChan == 1)) {
+				if (callbackFunction != 0) {
+					(*callbackFunction)(data, amountOfData, this->headers.samplingrate);
+				}
+
+				processed = true;
+			}
+			if ((waveResolution == 16) && (this->headers.numOfChan == 2)) {
+				if (callbackFunction != 0) {
+					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate);
+					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate);
+				}
+
+				processed = true;
+			}
+
+			if (!processed) {
+				throw std::runtime_error("Invalid number of channels and/or resolution");
+				return;
+			}
+		}
+
+		void write(std::string path) {
 
 			std::ofstream ofs;
 			ofs.open(path, std::ios::out | std::ios::binary);
@@ -93,9 +131,6 @@ class Wav {
 			}
 
 			if ((waveResolution == 8) && (this->headers.numOfChan == 1)) {
-				if (callbackFunction != 0) {
-					(*callbackFunction)(data, amountOfData, this->headers.samplingrate);
-				}
 
 				ofs.write((char*) &this->headers, sizeof(this->headers));
 
@@ -104,15 +139,10 @@ class Wav {
 					waveformdata = (unsigned char) data[i];
 					ofs.write((char*) &waveformdata, sizeof(waveformdata));
 				}
-
-				processed = true;
+				return;
 			}
-			if ((waveResolution == 8) && (this->headers.numOfChan == 2)) {
-				if (callbackFunction != 0) {
-					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate);
-					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate);
-				}
 
+			if ((waveResolution == 8) && (this->headers.numOfChan == 2)) {
 				ofs.write((char*) &this->headers, sizeof(this->headers));
 
 				unsigned char waveformdata_right, waveformdata_left;
@@ -124,12 +154,10 @@ class Wav {
 					ofs.write((char*) &waveformdata_right, sizeof(waveformdata_right));
 				}
 
-				processed = true;
+				return;
 			}
+
 			if ((waveResolution == 16) && (this->headers.numOfChan == 1)) {
-				if (callbackFunction != 0) {
-					(*callbackFunction)(data, amountOfData, this->headers.samplingrate);
-				}
 
 				ofs.write((char*) &this->headers, sizeof(this->headers));
 
@@ -140,13 +168,10 @@ class Wav {
 					ofs.write((char*) &waveformdata_msb, sizeof(waveformdata_msb));
 				}
 
-				processed = true;
+				return;
 			}
+
 			if ((waveResolution == 16) && (this->headers.numOfChan == 2)) {
-				if (callbackFunction != 0) {
-					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate);
-					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate);
-				}
 
 				ofs.write((char*) &this->headers, sizeof(this->headers));
 
@@ -161,15 +186,11 @@ class Wav {
 					ofs.write((char*) &waveformdata_msb_right, sizeof(waveformdata_msb_right));
 				}
 
-				processed = true;
-			}
-
-			if (!processed) {
-				throw std::runtime_error("Invalid number of channels and/or resolution");
 				return;
 			}
 
-			ofs.close();
+			// just gets here if something is wrong
+			throw std::runtime_error("Invalid number of channels and/or resolution");
 		}
 
 		double* getData() const {

@@ -410,48 +410,29 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 // doAFineAmplification(signal, signalLength);
 // silentHalfOfTheSoundTrack(signal, signalLength);
 
-// unsigned int filterOrder = 27;
-// std::cout << std::fixed;
-// std::cout << std::setprecision(20);
-// std::cout << std::endl;
-// double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
-// for (int i = 0; i < 14; i++) {
-// 	std::cout << fv[i] << " ";
-// }
-// std::cout << std::endl;
-//
-// normalizeData(signal, signalLength);
-// double* window = createTriangularWindow(filterOrder);
-// double* filter = bandPassFilter(filterOrder, 44100, 50000, 100000);
-// applyWindow(filter, window, filterOrder);
-//
-// convolution(signal, signalLength, filter, filterOrder);
-	std::cout << std::fixed;
-	std::cout << std::setprecision(20);
-	std::cout << std::endl;
-
 	unsigned int filterOrder = 1001;
 
-	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
-	for (int i = 0; i < 14; i++) {
-		std::cout << fv[i] << ",";
-	}
-	std::cout << std::endl;
-	delete[] fv;
+//	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
+//	for (int i = 0; i < 14; i++) {
+//		std::cout << fv[i] << ",";
+//	}
+//	std::cout << std::endl;
+//	delete[] fv;
 
-//	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
-//	double* window = createTriangularWindow(filterOrder);
-//	applyWindow(filter, window, filterOrder);
-//	convolution(signal, signalLength, filter, filterOrder);
-//
-//	delete[] filter;
-//	delete[] window;
+	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
+	double* window = createTriangularWindow(filterOrder);
+	applyWindow(filter, window, filterOrder);
+	convolution(signal, signalLength, filter, filterOrder);
+
+	delete[] filter;
+	delete[] window;
 }
 
 int main(int i, char* args[]) {
 	Wav w(args[1]);
 	w.setCallbackFunction(transformFunction);
-	w.transformAndSaveWaveData("/tmp/teste.wav");
+	w.process();
+	w.write("/tmp/teste.wav");
 	return 0;
 }
 
