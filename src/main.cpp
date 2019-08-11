@@ -3,7 +3,9 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "Wav.cpp"
+#include "lib/wave/Wav.cpp"
+
+int abs(int __x);
 
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
