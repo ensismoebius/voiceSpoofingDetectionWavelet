@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <stdexcept>
 
@@ -409,6 +410,9 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 	// addEchoes(signal, signalLength);
 	// doAFineAmplification(signal, signalLength);
 	// silentHalfOfTheSoundTrack(signal, signalLength);
+
+	std::cout << std::fixed;
+	std::cout << std::setprecision(20);
 
 	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
 	for (int i = 0; i < 14; i++) {
