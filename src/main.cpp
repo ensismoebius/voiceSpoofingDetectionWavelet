@@ -350,7 +350,7 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 
 	double energy = 0;
 
-	// FIXME REMOVE!!!
+	// Cleaning up the memory
 	for (int i = 0; i < rangesSize - 1; i++) {
 		featureVector[i] = 0;
 	}
