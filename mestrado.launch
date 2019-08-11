@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.linuxtools.valgrind.launch.valgrindLaunch">
 <intAttribute key="org.eclipse.cdt.launch.ATTR_BUILD_BEFORE_LAUNCH_ATTR" value="1"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/5/Voz20.wav"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/5/Voz20.wav /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/5/Voz5.wav"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/mestrado"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="mestrado"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="false"/>

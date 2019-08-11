@@ -68,9 +68,9 @@ class Wav {
 		}
 
 		~Wav() {
-			delete[] data;
-			delete[] dataLeft;
-			delete[] dataRight;
+			if (data != 0) delete[] data;
+			if (dataLeft != 0) delete[] dataLeft;
+			if (dataRight != 0) delete[] dataRight;
 		}
 
 		void process() {
@@ -104,6 +104,7 @@ class Wav {
 			readWaveHeaders(ifs);
 			// Reads actual data
 			readWaveData(ifs);
+			ifs.clear();
 			ifs.close();
 		}
 

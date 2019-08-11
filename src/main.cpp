@@ -398,7 +398,7 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 	normalizeData(featureVector, rangesSize - 1);
 
 	// Apply a DCT (Discrete Cosine Transform)
-	discreteCosineTransform(featureVector, rangesSize);
+	discreteCosineTransform(featureVector, rangesSize - 1);
 
 	delete[] copiedSignal;
 	return featureVector;
@@ -441,9 +441,11 @@ int main(int i, char* args[]) {
 	w.write("/tmp/teste.wav");
 
 	for (int k = 2; k < i; k++) {
+
 		w.read(args[k]);
 		w.process();
 		w.write("/tmp/teste.wav");
+
 	}
 	return 0;
 }
