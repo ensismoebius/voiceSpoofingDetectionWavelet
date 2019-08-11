@@ -4,8 +4,6 @@
 
 #include "Wav.cpp"
 
-int abs(int __x);
-
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
 double* buildOrthogonalVector(double*, int);
@@ -352,6 +350,11 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 
 	double energy = 0;
 
+	// FIXME REMOVE!!!
+	for (int i = 0; i < rangesSize - 1; i++) {
+		featureVector[i] = 0;
+	}
+
 	for (int i = 0; i < rangesSize - 1; i++) {
 
 		// Select start and end ranges
@@ -429,12 +432,12 @@ int main(int i, char* args[]) {
 
 	w.read(args[1]);
 	w.process();
-	//w.write("/tmp/teste.wav");
+	w.write("/tmp/teste.wav");
 
 	for (int k = 2; k < i; k++) {
 		w.read(args[k]);
 		w.process();
-		//w.write("/tmp/teste.wav");
+		w.write("/tmp/teste.wav");
 	}
 	return 0;
 }
