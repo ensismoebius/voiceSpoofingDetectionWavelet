@@ -97,6 +97,7 @@ void convolution(double* data, int dataLength, double* inverseDFTFilter, int inv
 		convIndex = filterIndex;
 
 		// do the the math
+		convolutedSignal[convIndex] = 0;
 		for (int dataIndex = 0; dataIndex < dataLength; dataIndex++) {
 			convolutedSignal[convIndex] += data[dataIndex] * inverseDFTFilter[filterIndex];
 			convIndex++;
@@ -302,7 +303,7 @@ void discreteCosineTransform(double* vector, long vectorLength) {
 	long N = vectorLength;
 	double sum;
 	double multi;
-	double* F = new double[vectorLength];
+	double F[vectorLength];
 
 	for (int u = 0; u < N; u++) {
 
@@ -315,7 +316,8 @@ void discreteCosineTransform(double* vector, long vectorLength) {
 		F[u] = sum;
 	}
 
-	double maior = F[1];
+	double maior = 0;
+	maior = F[1];
 
 	for (int i = 2; i < N; i++) {
 
@@ -332,7 +334,6 @@ void discreteCosineTransform(double* vector, long vectorLength) {
 		vector[i] = F[i];
 	}
 
-	delete[] F;
 }
 
 double* createFeatureVector(double* signal, int signalLength, int order, double samplingRate) {
@@ -346,9 +347,13 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 	double rangeEnd = 0;
 	double rangeStart = 0;
 
-	double* filter = new double[order];
+	double* filter = 0;
 	double* window = createTriangularWindow(order);
+
+	// feature vector must be 1 space lesser than ranges
 	double* featureVector = new double[rangesSize - 1];
+
+	// for every pair of ranges we need to copy the original
 	double* copiedSignal = new double[signalLength];
 
 	double energy = 0;
@@ -364,19 +369,20 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 		rangeStart = ranges[i];
 		rangeEnd = ranges[i + 1];
 
-		// Create the filter
-		filter = createBandPassFilter(order, samplingRate, rangeStart, rangeEnd);
-
-		// Apply window
-		applyWindow(filter, window, order);
-
 		// Create a copy of the signal
 		for (int j = 0; j < signalLength; j++) {
 			copiedSignal[j] = signal[j];
 		}
 
+		// Create the filter
+		filter = createBandPassFilter(order, samplingRate, rangeStart, rangeEnd);
+		// Apply window
+		applyWindow(filter, window, order);
 		// Apply the filter
 		convolution(copiedSignal, signalLength, filter, order);
+
+		// dispose filter
+		delete[] filter;
 
 		// normalize signal
 		normalizeData(copiedSignal, signalLength);
@@ -391,7 +397,6 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 			featureVector[i] += energy;
 		}
 
-		delete[] filter;
 	}
 
 	// Normalize the resulting feature vector
@@ -400,6 +405,7 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 	// Apply a DCT (Discrete Cosine Transform)
 	discreteCosineTransform(featureVector, rangesSize - 1);
 
+	delete[] window;
 	delete[] copiedSignal;
 	return featureVector;
 }
@@ -417,7 +423,7 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 	std::cout << std::setprecision(20);
 
 	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
-	for (int i = 0; i < 14; i++) {
+	for (int i = 0; i < 13; i++) {
 		std::cout << fv[i] << ",";
 	}
 	std::cout << std::endl;
