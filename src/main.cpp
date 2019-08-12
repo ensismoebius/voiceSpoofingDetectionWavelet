@@ -22,7 +22,6 @@ void doAFineAmplification(double* signal, int signalLength) {
 
 	}
 
-	// TODO I don't know why but 32767 distorts the sound A LOT
 	double multiplicationRatio = 32767 / highestSignal;
 
 	for (int i = 0; i < signalLength; ++i) {
@@ -411,6 +410,9 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 }
 
 void transformFunction(double* signal, int signalLength, unsigned int samplingRate) {
+
+	// FIXME Obviously something id wrong when the order is lesser
+	// The first feature vector value of the first feature vector gets too high
 	unsigned int filterOrder = 1001;
 
 	// detectSilences(signal, comprimento_do_sinal);
@@ -444,13 +446,13 @@ int main(int i, char* args[]) {
 
 	w.read(args[1]);
 	w.process();
-	w.write("/tmp/teste.wav");
+	//w.write("/tmp/teste.wav");
 
 	for (int k = 2; k < i; k++) {
 
 		w.read(args[k]);
 		w.process();
-		w.write("/tmp/teste.wav");
+		//w.write("/tmp/teste.wav");
 
 	}
 	return 0;
