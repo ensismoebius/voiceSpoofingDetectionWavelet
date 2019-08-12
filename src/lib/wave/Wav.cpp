@@ -64,7 +64,6 @@ class Wav {
 			data = 0;
 			dataLeft = 0;
 			dataRight = 0;
-			this->path = path;
 		}
 
 		~Wav() {
