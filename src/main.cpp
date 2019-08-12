@@ -357,7 +357,7 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 
 	double energy = 0;
 
-	// Cleaning up the memory
+	// Cleaning up the vector
 	for (int i = 0; i < rangesSize - 1; i++) {
 		featureVector[i] = 0;
 	}
@@ -446,7 +446,7 @@ int main(int i, char* args[]) {
 
 	w.read(args[1]);
 	w.process();
-	//w.write("/tmp/teste.wav");
+//	w.write("/tmp/teste.wav");
 
 	for (int k = 2; k < i; k++) {
 

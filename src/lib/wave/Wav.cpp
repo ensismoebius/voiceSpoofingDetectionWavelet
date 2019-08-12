@@ -95,6 +95,9 @@ class Wav {
 
 		void read(std::string path) {
 
+			this->~Wav();
+			this->resetMetaData();
+
 			this->path = path;
 
 			std::ifstream ifs;
@@ -308,6 +311,39 @@ class Wav {
 				dataLeft[i] = (double) ((convert2of8to1of16(waveformdata_lsb_left, waveformdata_msb_left)));
 				dataRight[i] = (double) ((convert2of8to1of16(waveformdata_lsb_right, waveformdata_msb_right)));
 			}
+		}
+
+		void resetMetaData() {
+			this->amountOfData = 0;
+			this->waveResolution = 0;
+			/* RIFF Chunk Descriptor */
+			this->headers.RIFF[0] = '\0';
+			this->headers.RIFF[1] = '\0';
+			this->headers.RIFF[2] = '\0';
+			this->headers.RIFF[3] = '\0';
+			this->headers.chunkSize = 0;
+			this->headers.WAVE[0] = '\0';
+			this->headers.WAVE[1] = '\0';
+			this->headers.WAVE[2] = '\0';
+			this->headers.WAVE[3] = '\0';
+			/* "fmt" sub-chunk */
+			this->headers.fmt[0] = '\0';
+			this->headers.fmt[1] = '\0';
+			this->headers.fmt[2] = '\0';
+			this->headers.fmt[3] = '\0';
+			this->headers.subchunk1Size = 0;
+			this->headers.audioFormat = 0;
+			this->headers.numOfChan = 0;
+			this->headers.samplingrate = 0;
+			this->headers.bytesPerSec = 0;
+			this->headers.blockAlign = 0;
+			this->headers.bitsPerSample = 0;
+			/* "data" sub-chunk */
+			this->headers.subchunk2ID[0] = '\0';
+			this->headers.subchunk2ID[1] = '\0';
+			this->headers.subchunk2ID[2] = '\0';
+			this->headers.subchunk2ID[3] = '\0';
+			this->headers.subchunk2Size = 0;
 		}
 };
 #endif /* SRC_WAV_C_ */
