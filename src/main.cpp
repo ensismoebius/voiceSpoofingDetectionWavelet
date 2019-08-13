@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
+#include "debug.cpp"
 #include "lib/wave/Wav.cpp"
 
 int abs(int __x);
@@ -377,8 +378,35 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 		filter = createBandPassFilter(order, samplingRate, rangeStart, rangeEnd);
 		// Apply window
 		applyWindow(filter, window, order);
+
+		//############ DEBUG ###############//
+		if (ciclo1) {
+			setDebugSignal(signal, signalLength);
+			setDebugWindow(window, order);
+			setDebugFilter(filter, order + 1);
+			setDebugCopiedSignal(copiedSignal, signalLength);
+		}
+		if (ciclo2) {
+			setDebugSignal(signal, signalLength);
+			setDebugWindow(window, order);
+			setDebugFilter(filter, order + 1);
+			setDebugCopiedSignal(copiedSignal, signalLength);
+		}
+		//############ DEBUG ###############//
+
 		// Apply the filter
 		convolution(copiedSignal, signalLength, filter, order);
+
+		//############ DEBUG ###############//
+		if (ciclo1) {
+			setDebugConvolutedCopiedSignal(copiedSignal, signalLength);
+			ciclo1 = false;
+		}
+		if (ciclo2) {
+			setDebugConvolutedCopiedSignal(copiedSignal, signalLength);
+			ciclo2 = false;
+		}
+		//############ DEBUG ###############//
 
 		// dispose filter
 		delete[] filter;
@@ -395,8 +423,12 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 			// Calculate the sum of all energies for this range
 			featureVector[i] += energy;
 		}
-
 	}
+
+	//############ DEBUG ###############//
+	debugCompara();
+	ciclo2 = true;
+	//############ DEBUG ###############//
 
 	// Normalize the resulting feature vector
 	normalizeData(featureVector, rangesSize - 1);
