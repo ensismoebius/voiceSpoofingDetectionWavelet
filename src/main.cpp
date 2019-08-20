@@ -441,11 +441,14 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 	return featureVector;
 }
 
-void transformFunction(double* signal, int signalLength, unsigned int samplingRate) {
+unsigned int resultIndex = 0;
+std::string** results = 0;
 
-	// FIXME Obviously something id wrong when the order is lesser
+void transformFunction(double* signal, int signalLength, unsigned int samplingRate, std::string path) {
+
+	// FIXME Obviously something is wrong when the order is lesser
 	// The first feature vector value of the first feature vector gets too high
-	unsigned int filterOrder = 1001;
+	unsigned int filterOrder = 7;
 
 	// detectSilences(signal, comprimento_do_sinal);
 	// xuxasDevilInvocation(signal, signalLength);
@@ -453,15 +456,22 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 	// doAFineAmplification(signal, signalLength);
 	// silentHalfOfTheSoundTrack(signal, signalLength);
 
-	std::cout << std::fixed;
-	std::cout << std::setprecision(20);
+	std::stringstream dataColumn;
+
+	dataColumn << "Digit:" << path.substr(path.find_last_of('/') - 1, 1) << "-";
+	dataColumn << "Signal:" << path.substr(path.find_last_of('/') + 1, 255);
+
+	results[resultIndex] = new std::string[14];
+	results[resultIndex][0] = dataColumn.str();
 
 	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
 	for (int i = 0; i < 13; i++) {
-		std::cout << fv[i] << ",";
+		//dataColumn << fv[i] << "\t" << std::endl;
+		results[resultIndex][i + 1] = std::to_string(fv[i]);
 	}
-	std::cout << std::endl;
 	delete[] fv;
+
+	resultIndex++;
 
 	//	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
 	//	double* window = createTriangularWindow(filterOrder);
@@ -473,6 +483,12 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 }
 
 int main(int i, char* args[]) {
+
+	std::cout << std::fixed;
+	std::cout << std::setprecision(20);
+
+	results = new std::string*[i - 1];
+
 	Wav w;
 	w.setCallbackFunction(transformFunction);
 
@@ -487,6 +503,14 @@ int main(int i, char* args[]) {
 		//w.write("/tmp/teste.wav");
 
 	}
+
+	for (unsigned int j = 0; j < 14; j++) {
+		for (int k = 0; k < i - 1; k++) {
+			std::cout << results[k][j] << "\t";
+		}
+		std::cout << std::endl;
+	}
+
 	return 0;
 }
 

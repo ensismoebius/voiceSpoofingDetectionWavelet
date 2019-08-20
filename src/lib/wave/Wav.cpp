@@ -57,7 +57,7 @@ class Wav {
 		std::string path;
 
 		// callback function (applied on data)
-		void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate);
+		void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate, std::string path);
 
 	public:
 		Wav() {
@@ -81,11 +81,11 @@ class Wav {
 			switch (resPlusCha) {
 				case 82:
 				case 162:
-					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate);
-					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate);
+					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate, this->path);
+					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate, this->path);
 				case 81:
 				case 161:
-					(*callbackFunction)(data, amountOfData, this->headers.samplingrate);
+					(*callbackFunction)(data, amountOfData, this->headers.samplingrate, this->path);
 					break;
 				default:
 					throw std::runtime_error("Invalid number of channels and/or resolution");
@@ -160,7 +160,7 @@ class Wav {
 			return path;
 		}
 
-		void setCallbackFunction(void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate)) {
+		void setCallbackFunction(void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate, std::string path)) {
 			this->callbackFunction = callbackFunction;
 		}
 
