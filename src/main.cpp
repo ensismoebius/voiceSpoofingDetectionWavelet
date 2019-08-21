@@ -1,5 +1,7 @@
 #include <cmath>
+#include <string>
 #include <iomanip>
+#include <sstream>
 #include <iostream>
 #include <stdexcept>
 
@@ -492,17 +494,19 @@ int main(int i, char* args[]) {
 	Wav w;
 	w.setCallbackFunction(transformFunction);
 
-	w.read(args[1]);
-	w.process();
-//	w.write("/tmp/teste.wav");
+	std::ifstream ifs;
+	ifs.open(args[1], std::ios::in);
 
-	for (int k = 2; k < i; k++) {
-
-		w.read(args[k]);
+	std::string line;
+	while (std::getline(ifs, line)) {
+		std::cout << line << std::endl;
+		w.read(line);
 		w.process();
-		//w.write("/tmp/teste.wav");
-
+		//	w.write("/tmp/teste.wav");
 	}
+
+	ifs.clear();
+	ifs.close();
 
 	for (unsigned int j = 0; j < 14; j++) {
 		for (int k = 0; k < i - 1; k++) {
@@ -513,4 +517,3 @@ int main(int i, char* args[]) {
 
 	return 0;
 }
-
