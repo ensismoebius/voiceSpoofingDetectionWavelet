@@ -6,10 +6,7 @@
 #include <stdexcept>
 #include <algorithm>
 
-#include "debug.cpp"
 #include "lib/wave/Wav.cpp"
-
-int abs(int __x);
 
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
