@@ -393,10 +393,11 @@ double* createFeatureVector(double* signal, int signalLength, unsigned int sampl
 		double energy = 0;
 		for (int j = 0; j < signalLength; j++) {
 
-			// Calculate the energies for each energy interval, apply log to it.
+			// Calculate the energies for each energy interval
 			energy = pow(copiedSignal[j], 2);
 
 			if (logSmooth) {
+				// apply log to it.
 				energy = energy == 0 ? 0 : log(energy);
 			}
 
@@ -420,15 +421,9 @@ double* createFeatureVector(double* signal, int signalLength, unsigned int sampl
 unsigned int resultIndex = 0;
 std::string** results = 0;
 
-void transformFunction(double* signal, int signalLength, unsigned int samplingRate, std::string path) {
+void analiticFunction(double* signal, int signalLength, unsigned int samplingRate, std::string path) {
 
 	unsigned int filterOrder = 27;
-
-	// detectSilences(signal, comprimento_do_sinal);
-	// xuxasDevilInvocation(signal, signalLength);
-	// addEchoes(signal, signalLength);
-	// doAFineAmplification(signal, signalLength);
-	// silentHalfOfTheSoundTrack(signal, signalLength);
 
 	std::stringstream dataColumn;
 
@@ -445,7 +440,17 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 	delete[] fv;
 
 	resultIndex++;
+}
 
+void transforFunction(double* signal, int signalLength, unsigned int samplingRate, std::string path) {
+
+	// unsigned int filterOrder = 27;
+
+	// detectSilences(signal, comprimento_do_sinal);
+	// xuxasDevilInvocation(signal, signalLength);
+	// addEchoes(signal, signalLength);
+	// doAFineAmplification(signal, signalLength);
+	// silentHalfOfTheSoundTrack(signal, signalLength);
 	//	double* filter = createBandPassFilter(filterOrder, samplingRate, 670, 1000);
 	//	double* window = createTriangularWindow(filterOrder);
 	//	applyWindow(filter, window, filterOrder);
@@ -460,10 +465,10 @@ int main(int i, char* args[]) {
 	std::cout << std::fixed;
 	std::cout << std::setprecision(20);
 
-	results = new std::string*[60];
+	results = new std::string*[200];
 
 	Wav w;
-	w.setCallbackFunction(transformFunction);
+	w.setCallbackFunction(analiticFunction);
 
 	std::ifstream fileListStream;
 	fileListStream.open(args[1], std::ios::in);
@@ -471,6 +476,10 @@ int main(int i, char* args[]) {
 	std::string line;
 	while (std::getline(fileListStream, line)) {
 		std::cout << resultIndex << ":" << line << std::endl;
+
+		// lines that begins with # are going to be ignored
+		if (line.find("#") == 0) continue;
+
 		w.read(line.data());
 		w.process();
 		//	w.write("/tmp/teste.wav");
