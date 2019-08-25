@@ -54,13 +54,14 @@ class Wav {
 		double* dataRight;
 
 		// path of file containing the signal
-		std::string path;
+		char* path;
 
 		// callback function (applied on data)
 		void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate, std::string path);
 
 	public:
 		Wav() {
+			path = 0;
 			data = 0;
 			dataLeft = 0;
 			dataRight = 0;
@@ -93,7 +94,7 @@ class Wav {
 			}
 		}
 
-		void read(std::string path) {
+		void read(char* path) {
 
 			this->~Wav();
 			this->resetMetaData();

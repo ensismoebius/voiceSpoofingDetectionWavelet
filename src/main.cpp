@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <stdexcept>
+#include <algorithm>
 
 #include "debug.cpp"
 #include "lib/wave/Wav.cpp"
@@ -84,33 +85,38 @@ void addEchoes(double* signal, int signalLength) {
 	}
 }
 
-void convolution(double* data, int dataLength, double* inverseDFTFilter, int inverseDFTFilterLength) {
+bool convolution(double* data, int dataLength, double* kernel, int kernelSize) {
+	int i, j, k;
 
-	// holds the final convoluted data
-	double* convolutedSignal = new double[dataLength + inverseDFTFilterLength - 1];
+	double* convolutedSignal = new double[dataLength];
 
-	// the the convoluted data index
-	int convIndex = 0;
+	// check validity of params
+	if (!data || !convolutedSignal || !kernel) return false;
+	if (dataLength <= 0 || kernelSize <= 0) return false;
 
-	// Iterates over filter
-	for (int filterIndex = 0; filterIndex < inverseDFTFilterLength; ++filterIndex) {
+	// start convolution from out[kernelSize-1] to out[dataSize-1] (last)
+	for (i = kernelSize - 1; i < dataLength; ++i) {
+		convolutedSignal[i] = 0;                             // init to 0 before accumulate
 
-		// this guarantee the digit shift
-		convIndex = filterIndex;
-
-		// do the the math
-		convolutedSignal[convIndex] = 0;
-		for (int dataIndex = 0; dataIndex < dataLength; dataIndex++) {
-			convolutedSignal[convIndex] += data[dataIndex] * inverseDFTFilter[filterIndex];
-			convIndex++;
+		for (j = i, k = 0; k < kernelSize; --j, ++k) {
+			convolutedSignal[i] += data[j] * kernel[k];
 		}
 	}
 
-	for (int i = 0; i < dataLength; i++) {
-		data[i] = convolutedSignal[i];
+	// convolution from out[0] to out[kernelSize-2]
+	for (i = 0; i < kernelSize - 1; ++i) {
+		convolutedSignal[i] = 0;                             // init to 0 before sum
+
+		for (j = i, k = 0; j >= 0; --j, ++k) {
+			convolutedSignal[i] += data[j] * kernel[k];
+		}
 	}
 
+	std::copy(convolutedSignal, convolutedSignal + dataLength, data);
+
 	delete[] convolutedSignal;
+
+	return true;
 }
 
 void detectSilences(double* signal, int signalLength) {
@@ -337,33 +343,30 @@ void discreteCosineTransform(double* vector, long vectorLength) {
 	}
 
 }
+double* createFeatureVector(double* signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false) {
 
-double* createFeatureVector(double* signal, int signalLength, int order, double samplingRate) {
+	// size of the range
+	int rangesSize = 14;
+
 	// Ranges for MEL scale
 	double ranges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 
-	// Ranges for BARK scale
-	//double ranges[25] = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
-
-	int rangesSize = 14;
-	double rangeEnd = 0;
-	double rangeStart = 0;
-
-	double* filter = 0;
-	double* window = createTriangularWindow(order);
+	double* window = createTriangularWindow(filterOrder);
 
 	// feature vector must be 1 space lesser than ranges
 	double* featureVector = new double[rangesSize - 1];
-
-	// for every pair of ranges we need to copy the original
-	double* copiedSignal = new double[signalLength];
-
-	double energy = 0;
 
 	// Cleaning up the vector
 	for (int i = 0; i < rangesSize - 1; i++) {
 		featureVector[i] = 0;
 	}
+
+	/** Calculating the signal strength for each interval **/
+	double rangeEnd = 0;
+	double rangeStart = 0;
+
+	// for every pair of ranges we need to copy the original
+	double* copiedSignal = new double[signalLength];
 
 	for (int i = 0; i < rangesSize - 1; i++) {
 
@@ -371,44 +374,17 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 		rangeStart = ranges[i];
 		rangeEnd = ranges[i + 1];
 
-		// Create a copy of the signal
-		for (int j = 0; j < signalLength; j++) {
-			copiedSignal[j] = signal[j];
-		}
+		// Create the signal filter
+		double* filter = createBandPassFilter(filterOrder, samplingRate, rangeStart, rangeEnd);
 
-		// Create the filter
-		filter = createBandPassFilter(order, samplingRate, rangeStart, rangeEnd);
 		// Apply window
-		applyWindow(filter, window, order);
+		applyWindow(filter, window, filterOrder);
 
-		//############ DEBUG ###############//
-		if (ciclo1) {
-			setDebugSignal(signal, signalLength);
-			setDebugWindow(window, order);
-			setDebugFilter(filter, order + 1);
-			setDebugCopiedSignal(copiedSignal, signalLength);
-		}
-		if (ciclo2) {
-			setDebugSignal(signal, signalLength);
-			setDebugWindow(window, order);
-			setDebugFilter(filter, order + 1);
-			setDebugCopiedSignal(copiedSignal, signalLength);
-		}
-		//############ DEBUG ###############//
+		// Create a copy of the signal
+		std::copy(signal, signal + signalLength, copiedSignal);
 
 		// Apply the filter
-		convolution(copiedSignal, signalLength, filter, order);
-
-		//############ DEBUG ###############//
-		if (ciclo1) {
-			setDebugConvolutedCopiedSignal(copiedSignal, signalLength);
-			ciclo1 = false;
-		}
-		if (ciclo2) {
-			setDebugConvolutedCopiedSignal(copiedSignal, signalLength);
-			ciclo2 = false;
-		}
-		//############ DEBUG ###############//
+		convolution(copiedSignal, signalLength, filter, filterOrder);
 
 		// dispose filter
 		delete[] filter;
@@ -416,21 +392,22 @@ double* createFeatureVector(double* signal, int signalLength, int order, double 
 		// normalize signal
 		normalizeData(copiedSignal, signalLength);
 
-		energy = 0;
+		// Calculating the energies
+		double energy = 0;
 		for (int j = 0; j < signalLength; j++) {
+
 			// Calculate the energies for each energy interval, apply log to it.
 			energy = pow(copiedSignal[j], 2);
-			energy = energy == 0 ? 0 : log2(energy);
+
+			if (logSmooth) {
+				energy = energy == 0 ? 0 : log(energy);
+			}
 
 			// Calculate the sum of all energies for this range
 			featureVector[i] += energy;
 		}
-	}
 
-	//############ DEBUG ###############//
-	debugCompara();
-	ciclo2 = true;
-	//############ DEBUG ###############//
+	}
 
 	// Normalize the resulting feature vector
 	normalizeData(featureVector, rangesSize - 1);
@@ -448,9 +425,7 @@ std::string** results = 0;
 
 void transformFunction(double* signal, int signalLength, unsigned int samplingRate, std::string path) {
 
-	// FIXME Obviously something is wrong when the order is lesser
-	// The first feature vector value of the first feature vector gets too high
-	unsigned int filterOrder = 7;
+	unsigned int filterOrder = 27;
 
 	// detectSilences(signal, comprimento_do_sinal);
 	// xuxasDevilInvocation(signal, signalLength);
@@ -466,9 +441,8 @@ void transformFunction(double* signal, int signalLength, unsigned int samplingRa
 	results[resultIndex] = new std::string[14];
 	results[resultIndex][0] = dataColumn.str();
 
-	double* fv = createFeatureVector(signal, signalLength, filterOrder, samplingRate);
+	double* fv = createFeatureVector(signal, signalLength, samplingRate, filterOrder, path);
 	for (int i = 0; i < 13; i++) {
-		//dataColumn << fv[i] << "\t" << std::endl;
 		results[resultIndex][i + 1] = std::to_string(fv[i]);
 	}
 	delete[] fv;
@@ -489,28 +463,25 @@ int main(int i, char* args[]) {
 	std::cout << std::fixed;
 	std::cout << std::setprecision(20);
 
-	results = new std::string*[i - 1];
+	results = new std::string*[60];
 
 	Wav w;
 	w.setCallbackFunction(transformFunction);
 
-	std::ifstream ifs;
-	ifs.open(args[1], std::ios::in);
+	std::ifstream fileListStream;
+	fileListStream.open(args[1], std::ios::in);
 
 	std::string line;
-	while (std::getline(ifs, line)) {
-		std::cout << line << std::endl;
-		w.read(line);
+	while (std::getline(fileListStream, line)) {
+		std::cout << resultIndex << ":" << line << std::endl;
+		w.read(line.data());
 		w.process();
 		//	w.write("/tmp/teste.wav");
 	}
 
-	ifs.clear();
-	ifs.close();
-
-	for (unsigned int j = 0; j < 14; j++) {
-		for (int k = 0; k < i - 1; k++) {
-			std::cout << results[k][j] << "\t";
+	for (unsigned int columns = 0; columns < 14; columns++) {
+		for (unsigned int files = 0; files < resultIndex; files++) {
+			std::cout << results[files][columns] << "\t";
 		}
 		std::cout << std::endl;
 	}

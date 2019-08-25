@@ -72,8 +72,24 @@
 <listAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_SUPPFILES"/>
 <booleanAttribute key="org.eclipse.linuxtools.valgrind.launch.GENERAL_TRACECHILD" value="true"/>
 <stringAttribute key="org.eclipse.linuxtools.valgrind.launch.OUTPUT_DIR" value="/home/ensismoebius/workspaces/c-workspace/.metadata/.plugins/org.eclipse.linuxtools.valgrind.launch"/>
-<stringAttribute key="org.eclipse.linuxtools.valgrind.launch.TOOL" value="org.eclipse.linuxtools.valgrind.launch.cachegrind"/>
+<stringAttribute key="org.eclipse.linuxtools.valgrind.launch.TOOL" value="org.eclipse.linuxtools.valgrind.launch.memcheck"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_ALIGNMENT_BOOL" value="false"/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_ALIGNMENT_VAL" value="0"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_FREEFILL_BOOL" value="false"/>
+<stringAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_FREEFILL_VAL" value=""/>
+<intAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_FREELIST" value="10000000"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_GCCWORK" value="false"/>
+<listAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_IGNORE_RANGES"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_LEAKCHECK" value="true"/>
+<stringAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_LEAKRES" value="high"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_MALLOCFILL_BOOL" value="false"/>
+<stringAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_MALLOCFILL_VAL" value=""/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_PARTIAL" value="false"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_POSSIBLY_LOST" value="true"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_SHOWREACH" value="false"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_TRACKORIGINS" value="false"/>
+<booleanAttribute key="org.eclipse.linuxtools.valgrind.memcheck.MEMCHECK_UNDEF" value="true"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.cdt.dsf.gdb.GdbProcessFactory"/>
-<stringAttribute key="provider" value="org.eclipse.linuxtools.profiling.provider.valgrind.cachegrind"/>
+<stringAttribute key="provider" value="org.eclipse.linuxtools.profiling.provider.valgrind.memcheck"/>
 <stringAttribute key="saved_expressions&lt;seperator&gt;Unknown" value="0x55555576c700,signal,i"/>
 </launchConfiguration>
