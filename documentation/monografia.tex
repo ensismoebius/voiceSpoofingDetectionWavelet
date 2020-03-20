@@ -1,0 +1,336 @@
+\documentclass[a4paper,12pt,openright,oneside]{book}
+\usepackage[portuges, brazil]{babel}   
+\usepackage[figuresright]{rotating}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{picinpar}
+\usepackage{colortbl}
+\usepackage{wasysym}
+\usepackage{txfonts}
+\usepackage{pb-diagram}
+\usepackage{relsize}
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{positioning}
+	\usetikzlibrary{mindmap}
+	\usetikzlibrary{snakes}
+	\usetikzlibrary{shapes}
+	\usetikzlibrary{decorations.pathreplacing}
+	\usetikzlibrary{spy}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{patterns}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+	\pgfplotsset{compat=newest}
+	\usepgfplotslibrary{units}
+\usepackage{subfigure}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{calc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{indentfirst}        % indenta primeiro par�grafo
+\usepackage{fancyhdr}
+\usepackage{pifont}
+\usepackage{textcomp}      % \texttrademark
+\usepackage{url}  
+\usepackage{multirow}  
+\usepackage[numbers]{natbib}
+\usepackage{notoccite}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{helvet}
+\usepackage{csvsimple}
+\renewcommand{\familydefault}{\sfdefault}
+\headheight 16pt
+\setlength{\topmargin}{-15pt} % extra vert. space + at the top of header: 23pt
+\setlength{\oddsidemargin}{0pt} % extra spc added at the left of odd page: 0pt
+\setlength{\evensidemargin}{-12pt} % ext. spc added at the left of even pg: 59pt
+\setlength{\textheight}{638pt} % height of the body: 592pt
+\setlength{\textwidth}{483pt} % width of the body: 470pt
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+\cfoot[\fancyplain{\bfseries\thepage}{}]{\fancyplain{\bfseries\thepage}{}}
+\newenvironment{myenv}[1]
+  {\begin{spacing}{#1}}
+  {\end{spacing}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Inicia o texto
+\begin{document}
+%% Abrevia figuras e tabelas
+
+%\def\figurename{Fig.}
+%\def\tablename{Tab.}
+%% Paginas iniciais (sem numerar)
+%\frontmatter
+%%
+%% **********CAPA 
+%%
+%% 
+\thispagestyle{empty}
+\begin{center}
+\par \null
+\begin{figure}[H]
+\centering \includegraphics{unesp.pdf}
+\end{figure} 
+%\fontfamily{arial}\selectfont
+\vspace{3cm}
+\fontsize{14}{\baselineskip} \selectfont
+{Fulano de Tal} \\  
+\vspace{4.5cm}
+\onehalfspacing
+\fontsize{14}{\baselineskip} \selectfont
+{T\'{i}tulo do trabalho} \\ \onehalfspacing \fontsize{14}{\baselineskip} \selectfont
+{continua\c{c}\~{a}o do t\'{i}tulo} \\
+\vspace{7.0cm}
+\fontsize{14}{\baselineskip} \selectfont  
+{S\~ao Jos\'e do Rio Preto}\\ \vspace{1.0pt} 
+{2018} 
+\end{center}
+%%
+%% **********ROSTO 
+%%
+\newpage
+\thispagestyle{empty}
+\setcounter{page}{1}
+\begin{center}
+\vspace{4cm}
+\fontsize{14}{\baselineskip} \selectfont
+\vspace{30.0pt}
+{Fulano de Tal} \\ \vspace{30.0pt}
+{t\'{i}tulo do trabalho} \\ \onehalfspacing \fontsize{14}{\baselineskip} \selectfont
+{continua\c{c}\~{a}o do t\'{i}tulo} \\
+\par \null
+\begin{flushright}
+\parbox{3.50in}{
+\fontsize{12}{\baselineskip} \selectfont \onehalfspacing
+Disserta\c c\~ao apresentada como parte dos requisitos para obten\c c\~ao do t\'itulo de Mestre em Ci\^encia da Computa\c c\~ao, junto ao Programa de P\'os-Gradua\c c\~ao em Ci\^encia da Computa\c c\~ao, do Instituto de Bioci\^encias, Letras e Ci\^encias Exatas da Universidade Estadual Paulista ``J\'ulio de Mesquita Filho'', Campus de S\~ao Jos\'e do Rio Preto. \\ \vspace{1.0pt}
+{Orientador: Prof Dr Rodrigo Capobianco Guido } \\ \vspace{1.0pt}
+}
+\end{flushright}
+\fontsize{14}{\baselineskip} \selectfont
+\vspace{8.0cm}
+S\~ao Jos\'e do Rio Preto, SP \\ \vspace{1.0pt}  
+2018
+\end{center}
+\newpage
+\thispagestyle{empty}
+%%
+%% **********APROVACAO 
+%%
+\begin{center}
+\vspace{4cm}
+\fontsize{14}{\baselineskip} \selectfont
+\vspace{30.0pt}
+{Fulano de Tal} \\ \vspace{30.0pt}
+{t\'{i}tulo do trabalho} \\ \onehalfspacing \fontsize{14}{\baselineskip} \selectfont
+{continua\c{c}\~{a}o do t\'{i}tulo} \\
+\par \null
+\begin{flushright}
+\parbox{3.50in}{
+\fontsize{12}{\baselineskip} \selectfont \onehalfspacing
+Disserta\c c\~ao apresentada como parte dos requisitos para obten\c c\~ao do t\'itulo de Mestre em Ci\^encia da Computa\c c\~ao, junto ao Programa de P\'os-Gradua\c c\~ao em Ci\^encia da Computa\c c\~ao, do Instituto de Bioci\^encias, Letras e Ci\^encias Exatas da Universidade Estadual Paulista ``J\'ulio de Mesquita Filho'', Campus de S\~ao Jos\'e do Rio Preto. \\ \vspace{1.0pt}
+{Orientador: Prof Dr Rodrigo Capobianco Guido} \\ \vspace{1.0pt}
+}
+\end{flushright}
+\fontsize{14}{\baselineskip} \selectfont
+Comiss\~ao Examinadora \\  \vspace{1.0pt}
+\end{center}
+\fontsize{14}{\baselineskip} \selectfont
+Prof Dr Rodrigo Capobianco Guido \\ 
+UNESP -  Campus de S\~ao Jos\'e do Rio Preto \\
+Co-Orientador \\\\
+Prof Dr xxxxxxxx \\ 
+UNESP -  Campus de S\~ao Jos\'e do Rio Preto \\\\
+Prof Dr xxxxx \\
+xxxxxxxx \\
+\vspace{3.0cm}
+\begin{center}
+S\~ao Jos\'e do Rio Preto, SP  \\ \vspace{1.0pt}
+2018
+\end{center}
+%%
+%% ********** Resumo
+%%
+\setlength{\parindent}{0pt}
+\newpage \thispagestyle{empty}
+\vspace{1.5cm}
+\fontsize{12}{\baselineskip} \selectfont
+\begin{center}
+{\huge{\textbf{AGRADECIMENTOS}}}
+\end{center}
+\begin{myenv}{1.5}
+\vspace{1.5pt}
+\vspace{1.5pt}
+A minha Mãe e ao determinismo do universo que me trouxe até aqui.
+\end{myenv}
+%% Resumo/Abstract
+%%
+%% ********** Resumo
+%%
+\setlength{\parindent}{0pt}
+\newpage \thispagestyle{empty}
+\vspace{1.5cm}
+\fontsize{12}{\baselineskip} \selectfont
+\begin{center}
+{\huge{\textbf{RESUMO}}}
+\end{center}
+\begin{myenv}{1.5}
+\fontsize{12}{\baselineskip} \selectfont \onehalfspacing
+\par \null
+\par \null
+1 par\'{a}grafo grande contendo o resumo
+\\
+\\
+Palavras-chave: processamento de sinais, xxxx, xxxx, xxxx
+\end{myenv}
+%%
+%% ********** Resumo
+%%
+\setlength{\parindent}{0pt}
+\newpage \thispagestyle{empty}
+\vspace{1.5cm}
+\fontsize{12}{\baselineskip} \selectfont
+\begin{center}
+{\huge{\textit{ \textbf{ABSTRACT}}}}
+\end{center}
+\begin{myenv}{1.5}
+\fontsize{12}{\baselineskip} \selectfont \onehalfspacing
+\par \null
+\par \null
+\textit{resumo em Ingl\^{e}s}\\
+\\
+\textit{Keywords: signal processing, xxx, xxx, xxx}
+\end{myenv}
+%% Lista de figuras (gerada automaticamente)
+\cleardoublepage
+\pagenumbering{gobble}
+\listoffigures
+% Lista de tabelas (gerada automaticamente)
+\cleardoublepage
+\pagenumbering{gobble}
+\listoftables
+\frontmatter
+%% Lista de conte\'{u}do (sum\'{a}rio)
+\def\contentsname{Sum{\'a}rio} 
+\pagenumbering{gobble}
+\tableofcontents
+\cleardoublepage
+% \nobibintoc para bibliografia nao aparecer no indice
+%% Gloss\'{a}rio (gerado automaticamente - veja entradas em cap1.tex)
+%\cleardoublepage
+%\renewcommand{\nomname}{Gloss{\'a}rio}
+%\markboth{GLOSS{\'A}RIO}{GLOSS{\'A}RIO}
+%\addcontentsline{toc}{chapter}{\nomname}
+%\printnomenclature
+\mainmatter
+\setlength{\parindent}{1.25cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introdu\c c\~ao}
+\begin{myenv}{1.5}
+\setcounter{page}{12}
+\section{Considera\c{c}\~{o}es Iniciais}
+Os avan\c cos tecnol\'ogicos  .....
+\section{Objetivos}
+Este trabalho tem por objetivo ...
+\section{Estrutura do trabalho}
+O restante deste trabalho est\'{a} organizado da seguinte forma. No Cap\'itulo \ref{c_rl}, xxxxxx. Prosseguindo, o Cap\'itulo \ref{c_ap} cont\'{e}m xxxxx. Em seguida, os testes e resultados constam no Cap\'itulo \ref{c_tr}. Finalmente, o Cap\'itulo \ref{c_c} cont\'{e}m as conclus\~oes, as quais  antecedem as refer\^{e}ncias.
+\end{myenv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Revis\~{a}o Bibliogr\'{a}fica}
+\label{c_rl}
+\begin{myenv}{1.5}
+\textit{Neste Cap\'{i}tulo....}
+\section{XXXXX}
+\par Os sinais.... de acordo com a Figura \ref{sinaldigital}, observa-se que....
+\begin{figure}
+\centering 
+\begin{tikzpicture} 
+\begin{axis}[height=3cm,width=9cm,xlabel=tempo,ylabel=amplitude, xmin=-1,xmax=19, xtick={0,9,18}, ymin=-0.1,ymax=1.1,ytick={0,1}]
+\addplot[gray,dotted,mark=none,domain=-1:19,samples=2]{0};
+\addplot[brown] coordinates{
+(0,0.08208)(1,0.10316)(2,0.14718)(3,0.21919)(4,0.26128)(5,0.31235)(6,0.36336)(7,0.42241)(8,0.48649)(9,0.53854)(10,0.58855)(11,0.63360)(12,0.69369)(13,0.73272)(14,0.77173)(15,0.81879)(16,0.85689)(17,0.88891)(18,0.91892)
+};
+\addplot[green] coordinates{
+(0,0.02202)(1,0.07007)(2,0.10210)(3,0.16016)(4,0.17117)(5,0.17818)(6,0.18418)(7,0.23323)(8,0.28128)(9,0.34735)(10,0.36036)(11,0.36737)(12,0.44244)(13,0.52953)(14,0.54555)(15,0.60160)(16,0.71471)(17,0.73473)(18,0.89890)
+};
+\end{axis}
+\end{tikzpicture}
+\caption{representa\c{c}\~{a}o de dois sinais digitais.}
+\label{sinaldigital}
+\end{figure}
+\par Assim sendo.... de acordo com o artigo \cite{mllp}, observa-se que....
+\end{myenv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{A Abordagem Proposta}
+\label{c_ap}
+\textit{Neste Cap\'{i}tulo....}
+\begin{myenv}{1.5}
+\par bla bla bla....  No artigo \cite{xyz}, nota-se que....
+\\
+\par bla bla ....
+\\
+\par bla...
+\end{myenv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Testes e Resultados}
+\label{c_tr}
+\textit{Neste Cap\'{i}tulo....}
+\begin{myenv}{1.5}
+\par bla bla bla....
+\\
+\par bla bla ....  de acordo com a Tabela \ref{t_res}.
+\\
+\par bla... 
+\begin{table}
+\centering
+\caption{os resultados}
+\vspace*{+10pt}
+\begin{tabular}{|c|c|c|}
+\hline
+a & b & c \\
+\hline
+d & e & f \\
+\hline
+\end{tabular}
+\label{t_res}
+\end{table}
+\par Assim, nota-se que... 
+\end{myenv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclus\~{o}es}
+\label{c_c}
+\begin{myenv}{1.5}
+\par bla bla bla....
+\\
+\par bla bla ....
+\\
+\par bla...
+
+\end{myenv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{1}
+\bibitem{mllp}Zarate, J.M., Tian, X., Woods, K.J.P. \& Poeppel, D. Multiple levels of linguistic and paralinguistic features contribute to voice recognition. \textit{Sci. Rep.} \textbf{5}, 11475 (2015).
+\bibitem{xyz}xxx yyyy zzzz
+\end{thebibliography}
+
+\end{document}
+

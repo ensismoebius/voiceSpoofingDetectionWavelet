@@ -1,3 +1,4 @@
+# Latex compiled files
 *.aux
 *.bbl
 *.bcf
@@ -6,3 +7,56 @@
 *.pdf
 *.run.xml
 *.blg
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Processed audio files
+*.transformados_modificados_e_destransformados.wav
+
+# Latex compiled objects
+*.pdf
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.idx
+*.log
+latex.rul.xml
+tmp
+
+
+
+
+/Debug/
+>>>>>>> 27760f154f075562606c0d8b7ece35ae5243f5b3
