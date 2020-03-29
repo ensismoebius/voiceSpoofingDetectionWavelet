@@ -1,0 +1,109 @@
+%there is the folowing hierarch in tex:
+%\part{part}
+%\chapter{chapter}
+%\section{section}
+%\subsection{subsection}
+%\subsubsection{subsubsection}
+%\paragraph{paragraph}
+%\subparagraph{subparagraph}
+
+\documentclass{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+
+%to get all sections and paragraphs listed at the summary
+\setcounter{tocdepth}{5}
+%to get all sections and paragraphs numbered use:
+\setcounter{secnumdepth}{5}
+
+%this is a comment
+%Using biber as the bibliograph generator
+
+%Use this style for bibliography references with numbers
+%\usepackage[backend=biber]{biblatex}
+
+%Use this style for author year style
+\usepackage[backend=biber,style=authoryear-icomp]{biblatex}
+
+%loads the bibliography file
+\addbibresource{latex.bib}
+
+\author{Andre Furlan}
+\title{As pembas do mundo! Em {\LaTeX}!}
+\date{2021/01/01}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+In section \ref{list} we will talk about lists!!
+After this you will note that the work at the \ref{opemba} are going to be written.\\
+
+In order to create a bibliograph you must create a .bib file which will list all needed bibliograph of you paper. After this you must install the ``biber''.
+
+\begin{equation}\label{equation1}
+\int_{0}^{\pi} \sin x+5-10 \, dx = 2 
+\end{equation}
+
+
+\section{labels}
+
+\section{lists\label{list}}
+
+Ordered list
+\begin{enumerate}
+	\item Pamba
+	\item Pemba\label{opemba}
+	\item Pimba
+	\item Pomba
+	\item Pumba
+\end{enumerate}
+
+Unordered list
+\begin{itemize}
+	\item Aga
+	\item Ega
+		\begin{itemize}
+			\item Ega1
+			\item Ega2
+			\item Ega3
+		\end{itemize}
+	\item Iga
+	\item Iga
+\end{itemize}
+
+This is a new line!!
+\section{Formatting}
+
+This is normal text and this is \textbf{bold text} and \textit{this is italic} and finally this is \emph{emphatic text}.  
+
+You may want an \underline{underlined text!}
+
+
+\subsection{Fomatting subsec}
+
+``This is a quoted text!!!!''
+
+%Citing book:
+As \textcite{uga} says ``As pembas são minusculas''\footnote{Note que as Ugas nunca perecerão}
+\begin{figure}
+	\includegraphics[width=.2\linewidth]{../../../Imagens/Webcam/2018-10-22-210333}
+	\caption{Uga mei}
+	\label{fig:2018-10-22-210333}
+\end{figure}
+
+
+%Citing article:
+%\parencite{ega}
+
+\printbibliography
+
+
+
+\end{document}
+
+
