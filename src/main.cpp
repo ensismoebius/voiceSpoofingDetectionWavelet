@@ -7,12 +7,13 @@
 #include <algorithm>
 
 #include "lib/wave/Wav.cpp"
+#include "lib/wavelet/waveletCoeficients.h"
 
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
 double* buildOrthogonalVector(double*, int);
 
-void doAFineAmplification(double* signal, int signalLength) {
+void doAFineAmplification(double *signal, int signalLength) {
 	double highestSignal = 0;
 
 	// find the highest signal
@@ -30,7 +31,7 @@ void doAFineAmplification(double* signal, int signalLength) {
 	}
 }
 
-void silentHalfOfTheSoundTrack(double* signal, int signalLength) {
+void silentHalfOfTheSoundTrack(double *signal, int signalLength) {
 	int middleSignalIndex = signalLength / 2;
 
 	for (int i = middleSignalIndex; i < signalLength; ++i) {
@@ -38,7 +39,7 @@ void silentHalfOfTheSoundTrack(double* signal, int signalLength) {
 	}
 }
 
-void xuxasDevilInvocation(double* signal, int signalLength) {
+void xuxasDevilInvocation(double *signal, int signalLength) {
 	int middleSignalIndex = signalLength / 2;
 	int tempVar;
 
@@ -49,14 +50,14 @@ void xuxasDevilInvocation(double* signal, int signalLength) {
 	}
 }
 
-void halfVolume(double* signal, int signalLength) {
+void halfVolume(double *signal, int signalLength) {
 
 	for (int i = 0; i < signalLength; ++i) {
 		signal[i] *= .5;
 	}
 }
 
-void addEchoes(double* signal, int signalLength) {
+void addEchoes(double *signal, int signalLength) {
 
 	// the "time" sound get to bounce and back
 	int bouncingTime = 100000;
@@ -82,10 +83,10 @@ void addEchoes(double* signal, int signalLength) {
 	}
 }
 
-bool convolution(double* data, int dataLength, double* kernel, int kernelSize) {
+bool convolution(double *data, int dataLength, double *kernel, int kernelSize) {
 	int i, j, k;
 
-	double* convolutedSignal = new double[dataLength];
+	double *convolutedSignal = new double[dataLength];
 
 	// check validity of params
 	if (!data || !convolutedSignal || !kernel) return false;
@@ -116,7 +117,7 @@ bool convolution(double* data, int dataLength, double* kernel, int kernelSize) {
 	return true;
 }
 
-void detectSilences(double* signal, int signalLength) {
+void detectSilences(double *signal, int signalLength) {
 	double lowestSignal = 0;
 	int tolerance = 10;
 
@@ -147,7 +148,7 @@ double createAlpha(double samplingRate, double filterMaxFrequency, bool highPass
 	return alpha;
 }
 
-void normalizeData(double* signal, int signalLength) {
+void normalizeData(double *signal, int signalLength) {
 
 	double sum = 0;
 
@@ -169,7 +170,7 @@ double* createLowPassFilter(int order, double samplingRate, double filterMaxFreq
 		return 0;
 	}
 
-	double* filter = new double[order + 1];
+	double *filter = new double[order + 1];
 
 	//Calculating the alpha
 	double alpha = createAlpha(samplingRate, filterMaxFrequency);
@@ -186,9 +187,9 @@ double* createLowPassFilter(int order, double samplingRate, double filterMaxFreq
 	return filter;
 }
 
-double* buildOrthogonalVector(double* originalVector, int vectorSize) {
+double* buildOrthogonalVector(double *originalVector, int vectorSize) {
 
-	double* finalResult = new double[vectorSize];
+	double *finalResult = new double[vectorSize];
 
 	int middleSignalIndex = vectorSize / 2;
 	double tempVar;
@@ -214,7 +215,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
 	}
 
 	// Filter holder
-	double* filter = new double[order + 1];
+	double *filter = new double[order + 1];
 
 	//Calculating the alpha for high pass filter
 	double alpha = createAlpha(samplingRate, filterStartFrequency, true);
@@ -234,7 +235,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
 	return buildOrthogonalVector(filter, order + 1);
 }
 
-double *createBandPassFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+double* createBandPassFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
 
 	// Order MUST be odd
 	if (order % 2 == 0) {
@@ -242,8 +243,8 @@ double *createBandPassFilter(int order, double samplingRate, double startFrequen
 		return 0;
 	}
 
-	double* lowPassMax = createLowPassFilter(order, samplingRate, finalFrequency);
-	double* lowPassMin = createLowPassFilter(order, samplingRate, startFrequency);
+	double *lowPassMax = createLowPassFilter(order, samplingRate, finalFrequency);
+	double *lowPassMin = createLowPassFilter(order, samplingRate, startFrequency);
 
 	normalizeData(lowPassMax, order + 1);
 	normalizeData(lowPassMin, order + 1);
@@ -257,7 +258,7 @@ double *createBandPassFilter(int order, double samplingRate, double startFrequen
 	return lowPassMax;
 }
 
-double *bandStopFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
+double* bandStopFilter(int order, double samplingRate, double startFrequency, double finalFrequency) {
 
 	// Order MUST be odd
 	if (order % 2 == 0) {
@@ -265,8 +266,8 @@ double *bandStopFilter(int order, double samplingRate, double startFrequency, do
 		return 0;
 	}
 
-	double* highPass = createHighPassFilter(order, samplingRate, startFrequency);
-	double* lowPass = createLowPassFilter(order, samplingRate, finalFrequency);
+	double *highPass = createHighPassFilter(order, samplingRate, startFrequency);
+	double *lowPass = createLowPassFilter(order, samplingRate, finalFrequency);
 
 	normalizeData(highPass, order + 1);
 	normalizeData(lowPass, order + 1);
@@ -278,10 +279,10 @@ double *bandStopFilter(int order, double samplingRate, double startFrequency, do
 	return lowPass;
 }
 
-double *createTriangularWindow(int order) {
+double* createTriangularWindow(int order) {
 
 	// order plus 1 is the amount of items
-	double* w = new double[order + 1];
+	double *w = new double[order + 1];
 
 	// The reference point is amount of items divided by 2
 	double referencePoint = order / 2.0;
@@ -297,13 +298,13 @@ double *createTriangularWindow(int order) {
 	return w;
 }
 
-void applyWindow(double* filter, double *window, int order) {
+void applyWindow(double *filter, double *window, int order) {
 	do {
 		filter[order] *= window[order];
 	} while (order--);
 }
 
-void discreteCosineTransform(double* vector, long vectorLength) {
+void discreteCosineTransform(double *vector, long vectorLength) {
 
 	long N = vectorLength;
 	double sum;
@@ -340,7 +341,7 @@ void discreteCosineTransform(double* vector, long vectorLength) {
 	}
 
 }
-double* createFeatureVector(double* signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false) {
+double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false) {
 
 	// size of the range
 	int rangesSize = 14;
@@ -348,10 +349,10 @@ double* createFeatureVector(double* signal, int signalLength, unsigned int sampl
 	// Ranges for MEL scale
 	double ranges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 
-	double* window = createTriangularWindow(filterOrder);
+	double *window = createTriangularWindow(filterOrder);
 
 	// feature vector must be 1 space lesser than ranges
-	double* featureVector = new double[rangesSize - 1];
+	double *featureVector = new double[rangesSize - 1];
 
 	// Cleaning up the vector
 	for (int i = 0; i < rangesSize - 1; i++) {
@@ -363,7 +364,7 @@ double* createFeatureVector(double* signal, int signalLength, unsigned int sampl
 	double rangeStart = 0;
 
 	// for every pair of ranges we need to copy the original
-	double* copiedSignal = new double[signalLength];
+	double *copiedSignal = new double[signalLength];
 
 	for (int i = 0; i < rangesSize - 1; i++) {
 
@@ -372,7 +373,7 @@ double* createFeatureVector(double* signal, int signalLength, unsigned int sampl
 		rangeEnd = ranges[i + 1];
 
 		// Create the signal filter
-		double* filter = createBandPassFilter(filterOrder, samplingRate, rangeStart, rangeEnd);
+		double *filter = createBandPassFilter(filterOrder, samplingRate, rangeStart, rangeEnd);
 
 		// Apply window
 		applyWindow(filter, window, filterOrder);
@@ -419,9 +420,9 @@ double* createFeatureVector(double* signal, int signalLength, unsigned int sampl
 }
 
 unsigned int resultIndex = 0;
-std::string** results = 0;
+std::string **results = 0;
 
-void analiticFunction(double* signal, int signalLength, unsigned int samplingRate, std::string path) {
+void analiticFunction(double *signal, int signalLength, unsigned int samplingRate, std::string path) {
 
 	unsigned int filterOrder = 27;
 
@@ -433,7 +434,7 @@ void analiticFunction(double* signal, int signalLength, unsigned int samplingRat
 	results[resultIndex] = new std::string[14];
 	results[resultIndex][0] = dataColumn.str();
 
-	double* fv = createFeatureVector(signal, signalLength, samplingRate, filterOrder, path);
+	double *fv = createFeatureVector(signal, signalLength, samplingRate, filterOrder, path);
 	for (int i = 0; i < 13; i++) {
 		results[resultIndex][i + 1] = std::to_string(fv[i]);
 	}
@@ -442,7 +443,7 @@ void analiticFunction(double* signal, int signalLength, unsigned int samplingRat
 	resultIndex++;
 }
 
-void transforFunction(double* signal, int signalLength, unsigned int samplingRate, std::string path) {
+void transforFunction(double *signal, int signalLength, unsigned int samplingRate, std::string path) {
 
 	// unsigned int filterOrder = 27;
 
@@ -460,37 +461,55 @@ void transforFunction(double* signal, int signalLength, unsigned int samplingRat
 	//	delete[] window;
 }
 
-int main(int i, char* args[]) {
+// Function that return
+// dot product of two vector array.
+double dotProduct(std::vector<double> a, std::vector<double> b) {
 
-	std::cout << std::fixed;
-	std::cout << std::setprecision(20);
+	long double product = 0;
 
-	results = new std::string*[200];
-
-	Wav w;
-	w.setCallbackFunction(analiticFunction);
-
-	std::ifstream fileListStream;
-	fileListStream.open(args[1], std::ios::in);
-
-	std::string line;
-	while (std::getline(fileListStream, line)) {
-		std::cout << resultIndex << ":" << line << std::endl;
-
-		// lines that begins with # are going to be ignored
-		if (line.find("#") == 0) continue;
-
-		w.read(line.data());
-		w.process();
-		//	w.write("/tmp/teste.wav");
+	// Loop for calculate cot product
+	for (unsigned int i = 0; i < a.size(); i++) {
+		product = product + a.at(i) * b.at(i);
 	}
+	return product;
+}
 
-	for (unsigned int columns = 0; columns < 14; columns++) {
-		for (unsigned int files = 0; files < resultIndex; files++) {
-			std::cout << results[files][columns] << "\t";
-		}
-		std::cout << std::endl;
-	}
+int main(int i, char *args[]) {
+
+//	std::cout << std::fixed;
+//	std::cout << std::setprecision(20);
+//
+//	results = new std::string*[200];
+//
+//	Wav w;
+//	w.setCallbackFunction(analiticFunction);
+//
+//	std::ifstream fileListStream;
+//	fileListStream.open(args[1], std::ios::in);
+//
+//	std::string line;
+//	while (std::getline(fileListStream, line)) {
+//		std::cout << resultIndex << ":" << line << std::endl;
+//
+//		// lines that begins with # are going to be ignored
+//		if (line.find("#") == 0) continue;
+//
+//		w.read(line.data());
+//		w.process();
+//		//	w.write("/tmp/teste.wav");
+//	}
+//
+//	for (unsigned int columns = 0; columns < 14; columns++) {
+//		for (unsigned int files = 0; files < resultIndex; files++) {
+//			std::cout << results[files][columns] << "\t";
+//		}
+//		std::cout << std::endl;
+//	}
+
+	std::vector<double> original = wavelets::daub18;
+	std::vector<double> orthogonal = wavelets::calcOrthogonal(original);
+
+	double res = dotProduct(orthogonal, original);
 
 	return 0;
 }

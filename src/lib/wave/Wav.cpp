@@ -49,33 +49,33 @@ class Wav {
 		int waveResolution;
 
 		// signal data
-		double* data;
-		double* dataLeft;
-		double* dataRight;
+		double *data;
+		double *dataLeft;
+		double *dataRight;
 
 		// path of file containing the signal
-		char* path;
+		char *path;
 
 		// callback function (applied on data)
-		void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate, std::string path);
+		void (*callbackFunction)(double *signal, int signalLength, unsigned int samplingRate, std::string path);
 
 	public:
 		Wav() {
-			path = 0;
-			data = 0;
-			dataLeft = 0;
-			dataRight = 0;
+			path = nullptr;
+			data = nullptr;
+			dataLeft = nullptr;
+			dataRight = nullptr;
 		}
 
 		~Wav() {
-			if (data != 0) delete[] data;
-			if (dataLeft != 0) delete[] dataLeft;
-			if (dataRight != 0) delete[] dataRight;
+			if (data != nullptr) delete[] data;
+			if (dataLeft != nullptr) delete[] dataLeft;
+			if (dataRight != nullptr) delete[] dataRight;
 		}
 
 		void process() {
 
-			if (callbackFunction == 0) return;
+			if (callbackFunction == nullptr) return;
 
 			int resPlusCha = waveResolution * 10 + this->headers.numOfChan;
 
@@ -94,7 +94,7 @@ class Wav {
 			}
 		}
 
-		void read(char* path) {
+		void read(char *path) {
 
 			this->~Wav();
 			this->resetMetaData();
@@ -161,7 +161,7 @@ class Wav {
 			return path;
 		}
 
-		void setCallbackFunction(void (*callbackFunction)(double* signal, int signalLength, unsigned int samplingRate, std::string path)) {
+		void setCallbackFunction(void (*callbackFunction)(double *signal, int signalLength, unsigned int samplingRate, std::string path)) {
 			this->callbackFunction = callbackFunction;
 		}
 
@@ -171,12 +171,12 @@ class Wav {
 			return (((msb & 0x80) >> 7) * (32768) + ((msb & 0x40) >> 6) * (16384) + ((msb & 0x20) >> 5) * (8192) + ((msb & 0x10) >> 4) * (4096) + ((msb & 0x08) >> 3) * (2048) + ((msb & 0x04) >> 2) * (1024) + ((msb & 0x02) >> 1) * (512) + ((msb & 0x01)) * (256) + ((lsb & 0x80) >> 7) * (128) + ((lsb & 0x40) >> 6) * (64) + ((lsb & 0x20) >> 5) * (32) + ((lsb & 0x10) >> 4) * (16) + ((lsb & 0x08) >> 3) * (8) + ((lsb & 0x04) >> 2) * (4) + ((lsb & 0x02) >> 1) * (2) + (lsb & 0x01));
 		}
 
-		void convert1of16to2of8(short result, unsigned char* lsb, unsigned char* msb) {
+		void convert1of16to2of8(short result, unsigned char *lsb, unsigned char *msb) {
 			*lsb = (((result & 0x0080) >> 7) * (128) + ((result & 0x0040) >> 6) * (64) + ((result & 0x0020) >> 5) * (32) + ((result & 0x0010) >> 4) * (16) + ((result & 0x0008) >> 3) * (8) + ((result & 0x0004) >> 2) * (4) + ((result & 0x0002) >> 1) * (2) + (result & 0x0001));
 			*msb = (((result & 0x8000) >> 15) * (128) + ((result & 0x4000) >> 14) * (64) + ((result & 0x2000) >> 13) * (32) + ((result & 0x1000) >> 12) * (16) + ((result & 0x0800) >> 11) * (8) + ((result & 0x0400) >> 10) * (4) + ((result & 0x0200) >> 9) * (2) + ((result & 0x0100) >> 8));
 		}
 
-		void readWaveData(std::ifstream& ifs) {
+		void readWaveData(std::ifstream &ifs) {
 
 			int resPlusCha = waveResolution * 10 + this->headers.numOfChan;
 
@@ -199,7 +199,7 @@ class Wav {
 			}
 		}
 
-		void readWaveHeaders(std::ifstream& ifs) {
+		void readWaveHeaders(std::ifstream &ifs) {
 
 			ifs.seekg(0, std::ios::beg);
 			ifs.read((char*) &this->headers, sizeof(this->headers));
@@ -213,7 +213,7 @@ class Wav {
 			amountOfData = this->headers.chunkSize / this->headers.blockAlign;
 		}
 
-		inline void write8Res1Channel(std::ofstream& ofs) {
+		inline void write8Res1Channel(std::ofstream &ofs) {
 
 			ofs.write((char*) (&this->headers), sizeof(this->headers));
 
@@ -225,7 +225,7 @@ class Wav {
 			}
 		}
 
-		inline void write8Res2Channel(std::ofstream& ofs) {
+		inline void write8Res2Channel(std::ofstream &ofs) {
 
 			ofs.write((char*) (&this->headers), sizeof(this->headers));
 
@@ -239,7 +239,7 @@ class Wav {
 			}
 		}
 
-		inline void write16Res1Channel(std::ofstream& ofs) {
+		inline void write16Res1Channel(std::ofstream &ofs) {
 
 			ofs.write((char*) (&this->headers), sizeof(this->headers));
 
@@ -252,7 +252,7 @@ class Wav {
 			}
 		}
 
-		inline void write16Res2Channel(std::ofstream& ofs) {
+		inline void write16Res2Channel(std::ofstream &ofs) {
 
 			ofs.write((char*) &this->headers, sizeof(this->headers));
 
@@ -268,7 +268,7 @@ class Wav {
 			}
 		}
 
-		inline void read8Res1Channel(std::ifstream& ifs) {
+		inline void read8Res1Channel(std::ifstream &ifs) {
 			unsigned char waveformdata;
 			data = new double[amountOfData];
 			for (int i = 0; i < amountOfData; i++) {
@@ -277,7 +277,7 @@ class Wav {
 			}
 		}
 
-		inline void read8Res2Channel(std::ifstream& ifs) {
+		inline void read8Res2Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_right;
 			unsigned char waveformdata_left;
 			dataLeft = new double[amountOfData];
@@ -290,7 +290,7 @@ class Wav {
 			}
 		}
 
-		inline void read16Res1Channel(std::ifstream& ifs) {
+		inline void read16Res1Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_lsb, waveformdata_msb;
 			data = new double[amountOfData];
 			for (int i = 0; i < amountOfData; i++) {
@@ -300,7 +300,7 @@ class Wav {
 			}
 		}
 
-		inline void read16Res2Channel(std::ifstream& ifs) {
+		inline void read16Res2Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_lsb_left, waveformdata_lsb_right, waveformdata_msb_left, waveformdata_msb_right;
 			dataLeft = new double[amountOfData];
 			dataRight = new double[amountOfData];

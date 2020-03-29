@@ -11,7 +11,7 @@ touch c
 # Iterates over all *.3gpp files
 while read file;
 do
-	# Writes the convesion commands to c file
+	# Writes the conversion commands to c file
 	
 	## Converts to wave file
 	echo ffmpeg -i $file -acodec pcm_s16le ${file%.*}.wav -loglevel panic >> c
