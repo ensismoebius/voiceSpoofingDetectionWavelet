@@ -462,17 +462,19 @@ void transforFunction(double *signal, int signalLength, unsigned int samplingRat
 	//	delete[] window;
 }
 
-std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter) {
+std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int maxItens = 0) {
+
+	if (maxItens == 0) maxItens = signal.size();
 
 	std::vector<double> highpassfilter = wavelets::calcOrthogonal(lowpassfilter);
 
-	std::vector<double> results(signal.size());
+	std::vector<double> results(maxItens);
 
 	double lowPassSum = 0;
 	double highPassSum = 0;
 	unsigned int signalIndex = 0;
 
-	for (unsigned int translation = 0; translation < signal.size(); translation += 2) {
+	for (unsigned int translation = 0; translation < maxItens; translation += 2) {
 
 		lowPassSum = 0;
 		highPassSum = 0;
@@ -482,7 +484,7 @@ std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpas
 		// Make the sums for lowpass and highpass
 		for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex) {
 
-			signalIndex = (translation + filterIndex) % signal.size();
+			signalIndex = (translation + filterIndex) % maxItens;
 
 			lowPassSum += signal.at(signalIndex) * lowpassfilter.at(filterIndex);
 			highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
@@ -493,9 +495,15 @@ std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpas
 		}
 
 		results.at(translation / 2) = lowPassSum;
-		results.at((translation / 2) + (signal.size() / 2)) = highPassSum;
+		results.at((translation / 2) + (maxItens / 2)) = highPassSum;
 
 	}
+
+	// TODO Implement the recusiveness and the sinal duplication
+	// for the cases where the filter is longer then signal
+	malat(results, lowpassfilter, maxItens / 2);
+
+	//std::vector<std::string> partOfMero(mero.begin() + 100, mero.begin() + 250);
 
 	return results;
 }
