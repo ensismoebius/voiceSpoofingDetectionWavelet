@@ -1,13 +1,14 @@
-#include <cmath>
-#include <string>
-#include <iomanip>
-#include <sstream>
-#include <iostream>
-#include <stdexcept>
 #include <algorithm>
+#include <cmath>
+#include <iostream>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
-#include "lib/wave/Wav.cpp"
 #include "lib/wavelet/waveletCoeficients.h"
+
+int abs(int __x);
 
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
@@ -461,17 +462,42 @@ void transforFunction(double *signal, int signalLength, unsigned int samplingRat
 	//	delete[] window;
 }
 
-// Function that return
-// dot product of two vector array.
-double dotProduct(std::vector<double> a, std::vector<double> b) {
+std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter) {
 
-	long double product = 0;
+	std::vector<double> highpassfilter = wavelets::calcOrthogonal(lowpassfilter);
 
-	// Loop for calculate cot product
-	for (unsigned int i = 0; i < a.size(); i++) {
-		product = product + a.at(i) * b.at(i);
+	std::vector<double> results(signal.size());
+
+	double lowPassSum = 0;
+	double highPassSum = 0;
+	unsigned int signalIndex = 0;
+
+	for (unsigned int translation = 0; translation < signal.size(); translation += 2) {
+
+		lowPassSum = 0;
+		highPassSum = 0;
+
+		std::cout << "lowPassSum" << '\t' << "highPassSum" << std::endl;
+
+		// Make the sums for lowpass and highpass
+		for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex) {
+
+			signalIndex = (translation + filterIndex) % signal.size();
+
+			lowPassSum += signal.at(signalIndex) * lowpassfilter.at(filterIndex);
+			highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
+
+			std::cout << signal.at(signalIndex) << "*" << lowpassfilter.at(filterIndex) << "=" << signal.at(signalIndex) * lowpassfilter.at(filterIndex) << '\t';
+			std::cout << signal.at(signalIndex) << "*" << highpassfilter.at(filterIndex) << "=" << signal.at(signalIndex) * highpassfilter.at(filterIndex) << '\t';
+			std::cout << std::endl;
+		}
+
+		results.at(translation / 2) = lowPassSum;
+		results.at((translation / 2) + (signal.size() / 2)) = highPassSum;
+
 	}
-	return product;
+
+	return results;
 }
 
 int main(int i, char *args[]) {
@@ -506,10 +532,16 @@ int main(int i, char *args[]) {
 //		std::cout << std::endl;
 //	}
 
-	std::vector<double> original = wavelets::daub18;
-	std::vector<double> orthogonal = wavelets::calcOrthogonal(original);
+	// lowpass filter
+	std::vector<double> hdot = wavelets::haar;
 
-	double res = dotProduct(orthogonal, original);
+	// signal
+	std::vector<double> xdot = { 1, 2, 3, 4 };
+
+	// result
+	std::vector<double> ydot(xdot.size());
+
+	malat(xdot, hdot);
 
 	return 0;
 }

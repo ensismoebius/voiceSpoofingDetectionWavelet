@@ -14,7 +14,7 @@ namespace wavelets {
 		double multiplier = -1;
 
 		for (int index = vector.size() - 1; index >= 0; index--) {
-			result.at(vector.size() - (index + 1)) = vector.at(index) * multiplier;
+			result.at(index) = vector.at(index) * multiplier;
 			multiplier *= -1;
 		}
 		return result;
