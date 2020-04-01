@@ -462,24 +462,22 @@ void transforFunction(double *signal, int signalLength, unsigned int samplingRat
 	//	delete[] window;
 }
 
-std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int maxItens = 0) {
+std::vector<long double> malat(std::vector<long double> signal, std::vector<long double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0) {
 
 	if (maxItens == 0) maxItens = signal.size();
 
-	std::vector<double> highpassfilter = wavelets::calcOrthogonal(lowpassfilter);
+	std::vector<long double> highpassfilter = wavelets::calcOrthogonal(lowpassfilter);
 
-	std::vector<double> results(maxItens);
+	std::vector<long double> results(maxItens);
 
-	double lowPassSum = 0;
-	double highPassSum = 0;
+	long double lowPassSum = 0;
+	long double highPassSum = 0;
 	unsigned int signalIndex = 0;
 
 	for (unsigned int translation = 0; translation < maxItens; translation += 2) {
 
 		lowPassSum = 0;
 		highPassSum = 0;
-
-		std::cout << "lowPassSum" << '\t' << "highPassSum" << std::endl;
 
 		// Make the sums for lowpass and highpass
 		for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex) {
@@ -488,10 +486,6 @@ std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpas
 
 			lowPassSum += signal.at(signalIndex) * lowpassfilter.at(filterIndex);
 			highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
-
-			std::cout << signal.at(signalIndex) << "*" << lowpassfilter.at(filterIndex) << "=" << signal.at(signalIndex) * lowpassfilter.at(filterIndex) << '\t';
-			std::cout << signal.at(signalIndex) << "*" << highpassfilter.at(filterIndex) << "=" << signal.at(signalIndex) * highpassfilter.at(filterIndex) << '\t';
-			std::cout << std::endl;
 		}
 
 		results.at(translation / 2) = lowPassSum;
@@ -499,11 +493,13 @@ std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpas
 
 	}
 
-	// TODO Implement the recusiveness and the sinal duplication
-	// for the cases where the filter is longer then signal
-	malat(results, lowpassfilter, maxItens / 2);
+	if (maxItens > 2 && level > 1) {
+		std::vector<long double> tmp = malat(results, lowpassfilter, level - 1, maxItens / 2);
 
-	//std::vector<std::string> partOfMero(mero.begin() + 100, mero.begin() + 250);
+		for (unsigned int i = 0; i < tmp.size(); ++i) {
+			results.at(i) = tmp.at(i);
+		}
+	}
 
 	return results;
 }
@@ -540,16 +536,10 @@ int main(int i, char *args[]) {
 //		std::cout << std::endl;
 //	}
 
-	// lowpass filter
-	std::vector<double> hdot = wavelets::haar;
-
 	// signal
-	std::vector<double> xdot = { 1, 2, 3, 4 };
+	std::vector<long double> xdot = { -1, 2, 3, -4, 5, 5, 12, -8 };
 
-	// result
-	std::vector<double> ydot(xdot.size());
-
-	malat(xdot, hdot);
+	std::vector<long double> res = malat(xdot, wavelets::daub16, 3);
 
 	return 0;
 }

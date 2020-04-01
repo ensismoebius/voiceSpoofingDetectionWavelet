@@ -9,8 +9,8 @@
 
 namespace wavelets {
 
-	std::vector<double> calcOrthogonal(std::vector<double> &vector) {
-		std::vector<double> result(vector.size());
+	std::vector<long double> calcOrthogonal(std::vector<long double> &vector) {
+		std::vector<long double> result(vector.size());
 		double multiplier = 1;
 
 		for (int index = vector.size() - 1; index >= 0; index--) {
