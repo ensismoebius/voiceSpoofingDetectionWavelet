@@ -8,6 +8,7 @@
 
 #include "lib/wavelet/waveletOperations.h"
 #include "lib/wavelet/waveletCoeficients.h"
+#include "lib/matplotlib-cpp/matplotlibcpp.h"
 
 void normalizeData(double*, int);
 double createAlpha(double, double, bool);
