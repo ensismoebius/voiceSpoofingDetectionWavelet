@@ -18,7 +18,7 @@ namespace wavelets {
 	 * @param vector - source vector
 	 * @return orthogonal vector
 	 */
-	std::vector<long double> calcOrthogonal(std::vector<long double> &vector);
+	std::vector<long double> calcOrthogonal(std::vector<double> &vector);
 
 	/**
 	 * Applies a wavelets transform over a
@@ -29,7 +29,7 @@ namespace wavelets {
 	 * @param maxItens - the signal upper limit to be processed
 	 * @return transformed signal
 	 */
-	std::vector<long double> malat(std::vector<long double> signal, std::vector<long double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0);
+	std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0);
 }
 
 #endif /* SRC_LIB_WAVELET_WAVELETOPERATIONS_H_ */

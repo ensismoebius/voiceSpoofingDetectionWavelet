@@ -9,8 +9,8 @@
 
 namespace wavelets {
 
-	std::vector<long double> calcOrthogonal(std::vector<long double> &vector) {
-		std::vector<long double> result(vector.size());
+	std::vector<double> calcOrthogonal(std::vector<double> &vector) {
+		std::vector<double> result(vector.size());
 		double multiplier = 1;
 
 		for (int index = vector.size() - 1; index >= 0; index--) {
@@ -20,16 +20,16 @@ namespace wavelets {
 		return result;
 	}
 
-	std::vector<long double> malat(std::vector<long double> signal, std::vector<long double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0) {
+	std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0) {
 
 		if (maxItens == 0) maxItens = signal.size();
 
-		std::vector<long double> highpassfilter = wavelets::calcOrthogonal(lowpassfilter);
+		std::vector<double> highpassfilter = wavelets::calcOrthogonal(lowpassfilter);
 
-		std::vector<long double> results(maxItens);
+		std::vector<double> results(maxItens);
 
-		long double lowPassSum = 0;
-		long double highPassSum = 0;
+		double lowPassSum = 0;
+		double highPassSum = 0;
 		unsigned int signalIndex = 0;
 
 		for (unsigned int translation = 0; translation < maxItens; translation += 2) {
@@ -52,7 +52,7 @@ namespace wavelets {
 		}
 
 		if (maxItens > 2 && level > 1) {
-			std::vector<long double> tmp = malat(results, lowpassfilter, level - 1, maxItens / 2);
+			std::vector<double> tmp = malat(results, lowpassfilter, level - 1, maxItens / 2);
 
 			for (unsigned int i = 0; i < tmp.size(); ++i) {
 				results.at(i) = tmp.at(i);

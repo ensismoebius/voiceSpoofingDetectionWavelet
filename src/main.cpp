@@ -494,10 +494,18 @@ int main(int i, char *args[]) {
 //		std::cout << std::endl;
 //	}
 
-	// signal
-	std::vector<long double> xdot = { -1, 2, 3, -4, 5, 5, 12, -8 };
+	namespace plt = matplotlibcpp;
 
-	std::vector<long double> res = wavelets::malat(xdot, wavelets::daub16, 3);
+	std::vector<double> wavelet = wavelets::daub8;
+	std::vector<double> xdot = { -1, 2, 3, -4, 5, 5, 12, -8 };
+	std::vector<double> res = wavelets::malat(xdot, wavelet, 3);
 
+	plt::named_plot("Signal", xdot, "r--");
+	plt::named_plot("Wavelet", wavelet, "b--");
+	plt::named_plot("Transformed", res, "g--");
+	plt::xlim(0, (int) std::max(xdot.size(), wavelet.size()));
+	plt::title("Wavelet transform");
+	plt::legend();
+	plt::show();
 	return 0;
 }
