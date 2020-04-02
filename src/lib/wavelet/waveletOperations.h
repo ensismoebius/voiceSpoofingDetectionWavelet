@@ -14,13 +14,6 @@
 namespace wavelets {
 
 	/**
-	 * Given a vector calculates the corresponding orthogonal vector
-	 * @param vector - source vector
-	 * @return orthogonal vector
-	 */
-	std::vector<long double> calcOrthogonal(std::vector<double> &vector);
-
-	/**
 	 * Applies a wavelets transform over a
 	 * signal using the Mallat algorithm
 	 * @param signal - signal to be transformed
