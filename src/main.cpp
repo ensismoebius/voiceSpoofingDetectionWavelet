@@ -2,10 +2,12 @@
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 #include <vector>
 #include <string>
 #include <cmath>
 
+#include "lib/wave/Wav.cpp"
 #include "lib/wave/filtersOperations.h"
 #include "lib/wavelet/waveletOperations.h"
 #include "lib/wavelet/waveletCoeficients.h"
@@ -115,43 +117,13 @@ void analiticFunction(double *signal, int signalLength, unsigned int samplingRat
 	resultIndex++;
 }
 
-int main(int i, char *args[]) {
-
-//	std::cout << std::fixed;
-//	std::cout << std::setprecision(20);
-//
-//	results = new std::string*[200];
-//
-//	Wav w;
-//	w.setCallbackFunction(analiticFunction);
-//
-//	std::ifstream fileListStream;
-//	fileListStream.open(args[1], std::ios::in);
-//
-//	std::string line;
-//	while (std::getline(fileListStream, line)) {
-//		std::cout << resultIndex << ":" << line << std::endl;
-//
-//		// lines that begins with # are going to be ignored
-//		if (line.find("#") == 0) continue;
-//
-//		w.read(line.data());
-//		w.process();
-//		//	w.write("/tmp/teste.wav");
-//	}
-//
-//	for (unsigned int columns = 0; columns < 14; columns++) {
-//		for (unsigned int files = 0; files < resultIndex; files++) {
-//			std::cout << results[files][columns] << "\t";
-//		}
-//		std::cout << std::endl;
-//	}
+void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samplingRate, std::string path) {
 
 	namespace plt = matplotlibcpp;
 
 	unsigned int level = 3;
-	std::vector<double> wavelet = wavelets::haar;
-	std::vector<double> xdot = { -1, 2, 3, -4, 5, 5, 12, -8 };
+	std::vector<double> wavelet = wavelets::daub76;
+	std::vector<double> xdot(signal, signal + signalLength);
 	std::vector<double> res = wavelets::malat(xdot, wavelet, level);
 
 	std::vector<double> energies(level + 1);
@@ -166,13 +138,46 @@ int main(int i, char *args[]) {
 		}
 	}
 
-	plt::named_plot("Signal", xdot, "r--");
-	plt::named_plot("Wavelet", wavelet, "b--");
-	plt::named_plot("Transformed", res, "g--");
-	plt::named_plot("Energy", energies, "y--");
+	plt::named_plot("Signal", xdot, "r-");
+	plt::named_plot("Wavelet", wavelet, "b-");
+	plt::named_plot("Transformed", res, "g-");
+//	plt::named_plot("Energy", energies, "y-");
+//	plt::xlim(0, (int) energies.size());
 	plt::xlim(0, (int) std::max(xdot.size(), wavelet.size()));
 	plt::title("Wavelet transform");
 	plt::legend();
 	plt::show();
+}
+
+int main(int i, char *args[]) {
+
+	std::cout << std::fixed;
+	std::cout << std::setprecision(20);
+
+	Wav w;
+	w.setCallbackFunction(waveletAnaliticFunction);
+
+	std::ifstream fileListStream;
+	fileListStream.open(args[1], std::ios::in);
+
+	std::string line;
+	while (std::getline(fileListStream, line)) {
+		std::cout << resultIndex << ":" << line << std::endl;
+
+		// lines that begins with # are going to be ignored
+		if (line.find("#") == 0) continue;
+
+		w.read(line.data());
+		w.process();
+		//	w.write("/tmp/teste.wav");
+	}
+
+	for (unsigned int columns = 0; columns < 14; columns++) {
+		for (unsigned int files = 0; files < resultIndex; files++) {
+			std::cout << results[files][columns] << "\t";
+		}
+		std::cout << std::endl;
+	}
+
 	return 0;
 }
