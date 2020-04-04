@@ -22,10 +22,11 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 
 	double *window = createTriangularWindow(filterOrder);
 
-	// feature vector must be 1 space lesser than ranges
+	// feature vector has the amount of values minus 1 than ranges
+	// because we are summing up intervals
 	double *featureVector = new double[rangesSize - 1];
 
-	// Cleaning up the vector
+	// Initializing the vector
 	for (int i = 0; i < rangesSize - 1; i++) {
 		featureVector[i] = 0;
 	}
@@ -34,7 +35,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 	double rangeEnd = 0;
 	double rangeStart = 0;
 
-	// for every pair of ranges we need to copy the original
+	// for every pair of ranges we need to copy the original signal
 	double *copiedSignal = new double[signalLength];
 
 	for (int i = 0; i < rangesSize - 1; i++) {
@@ -66,7 +67,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 		for (int j = 0; j < signalLength; j++) {
 
 			// Calculate the energies for each energy interval
-			energy = pow(copiedSignal[j], 2);
+			energy = std::pow(copiedSignal[j], 2);
 
 			if (logSmooth) {
 				// apply log to it.
@@ -148,13 +149,27 @@ int main(int i, char *args[]) {
 
 	namespace plt = matplotlibcpp;
 
-	std::vector<double> wavelet = wavelets::daub8;
+	unsigned int level = 3;
+	std::vector<double> wavelet = wavelets::haar;
 	std::vector<double> xdot = { -1, 2, 3, -4, 5, 5, 12, -8 };
-	std::vector<double> res = wavelets::malat(xdot, wavelet, 3);
+	std::vector<double> res = wavelets::malat(xdot, wavelet, level);
+
+	std::vector<double> energies(level + 1);
+
+	for (unsigned int levelIndex = 0; levelIndex <= level; levelIndex++) {
+
+		unsigned sstart = res.size() / std::pow(2, levelIndex + 1);
+		unsigned send = res.size() / std::pow(2, levelIndex);
+
+		for (unsigned int indexRange = sstart; indexRange < send; indexRange++) {
+			energies.at(levelIndex) += std::pow(res.at(indexRange), 2);
+		}
+	}
 
 	plt::named_plot("Signal", xdot, "r--");
 	plt::named_plot("Wavelet", wavelet, "b--");
 	plt::named_plot("Transformed", res, "g--");
+	plt::named_plot("Energy", energies, "y--");
 	plt::xlim(0, (int) std::max(xdot.size(), wavelet.size()));
 	plt::title("Wavelet transform");
 	plt::legend();
