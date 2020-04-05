@@ -1,11 +1,11 @@
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz1.wav
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/0/Voz1.wav
-/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz5.wav
-/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/0/Voz5.wav
-/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz20.wav
-/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/0/Voz20.wav
-/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/1/Voz1.wav
-/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/1/Voz1.wav
+# /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz5.wav
+# /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/0/Voz5.wav
+# /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz20.wav
+# /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/0/Voz20.wav
+# /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/1/Voz1.wav
+# /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/1/Voz1.wav
 # /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/1/Voz5.wav
 # /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/playback/en_US/1/Voz5.wav
 # /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/1/Voz20.wav
