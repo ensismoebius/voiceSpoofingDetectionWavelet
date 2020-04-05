@@ -121,9 +121,11 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 	namespace plt = matplotlibcpp;
 
-	unsigned int level = 3;
+	unsigned int level = 4;
 	std::vector<double> wavelet = wavelets::daub76;
 	std::vector<double> xdot(signal, signal + signalLength);
+
+	//TODO Create an object witch returns all details and aproximations
 	std::vector<double> res = wavelets::malat(xdot, wavelet, level);
 
 	std::vector<double> energies(level + 1);
@@ -133,20 +135,53 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 		unsigned sstart = res.size() / std::pow(2, levelIndex + 1);
 		unsigned send = res.size() / std::pow(2, levelIndex);
 
+		//TODO VERY inefficient: Plot directlly from an object (see above)
+		plt::subplot(level + 1, 1, levelIndex + 1);
+		unsigned int xcounter = 0;
+		std::vector<int> x;
+		std::vector<double> y;
+
 		for (unsigned int indexRange = sstart; indexRange < send; indexRange++) {
+
+			if (indexRange % 1 == 0) {
+				x.push_back(xcounter++);
+				y.push_back(res.at(indexRange));
+			}
+
 			energies.at(levelIndex) += std::pow(res.at(indexRange), 2);
 		}
+
+		plt::title("Level " + std::to_string(levelIndex + 1));
+		plt::xlim(0, (int) xcounter);
+		plt::plot(x, y);
+		plt::pause(0.0000000000001);
+
+		xcounter = 0;
+		x.clear();
+		y.clear();
 	}
 
-	plt::named_plot("Signal", xdot, "r-");
-	plt::named_plot("Wavelet", wavelet, "b-");
-	plt::named_plot("Transformed", res, "g-");
-//	plt::named_plot("Energy", energies, "y-");
-//	plt::xlim(0, (int) energies.size());
-	plt::xlim(0, (int) std::max(xdot.size(), wavelet.size()));
-	plt::title("Wavelet transform");
-	plt::legend();
 	plt::show();
+//	plt::subplot(3, 1, 1);
+//	plt::title("Signal");
+//	plt::xlim(0, (int) xdot.size());
+//	plt::named_plot("Signal", xdot, "r-");
+
+//	plt::subplot(2, 2, 2);
+//	plt::title("Wavelet");
+//	plt::named_plot("Wavelet", wavelet, "b-");
+
+//	plt::subplot(3, 1, 2);
+//	plt::title("Transformed");
+//	plt::named_plot("Transformed", res, "g-");
+//
+//	plt::subplot(3, 1, 3);
+//	plt::title("Energies");
+//	plt::named_plot("Energy", energies, "y-");
+//
+//	plt::xlim(0, (int) std::max(xdot.size(), wavelet.size()));
+//	plt::legend();
+
 }
 
 int main(int i, char *args[]) {
