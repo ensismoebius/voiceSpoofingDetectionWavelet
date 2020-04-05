@@ -122,6 +122,7 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 	namespace plt = matplotlibcpp;
 
 	unsigned int level = 4;
+	unsigned int plotResolution = 1; //the lower the better
 	std::vector<double> wavelet = wavelets::daub76;
 	std::vector<double> xdot(signal, signal + signalLength);
 
@@ -136,14 +137,14 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 		unsigned send = res.size() / std::pow(2, levelIndex);
 
 		//TODO VERY inefficient: Plot directlly from an object (see above)
-		plt::subplot(level + 1, 1, levelIndex + 1);
+		plt::subplot(level + 2, 1, levelIndex + 1);
 		unsigned int xcounter = 0;
 		std::vector<int> x;
 		std::vector<double> y;
 
 		for (unsigned int indexRange = sstart; indexRange < send; indexRange++) {
 
-			if (indexRange % 1 == 0) {
+			if (indexRange % plotResolution == 0) {
 				x.push_back(xcounter++);
 				y.push_back(res.at(indexRange));
 			}
@@ -151,7 +152,7 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 			energies.at(levelIndex) += std::pow(res.at(indexRange), 2);
 		}
 
-		plt::title("Level " + std::to_string(levelIndex + 1));
+		plt::title("Scale " + std::to_string(levelIndex + 1));
 		plt::xlim(0, (int) xcounter);
 		plt::plot(x, y);
 		plt::pause(0.0000000000001);
@@ -161,7 +162,6 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 		y.clear();
 	}
 
-	plt::show();
 //	plt::subplot(3, 1, 1);
 //	plt::title("Signal");
 //	plt::xlim(0, (int) xdot.size());
@@ -175,9 +175,10 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 //	plt::title("Transformed");
 //	plt::named_plot("Transformed", res, "g-");
 //
-//	plt::subplot(3, 1, 3);
-//	plt::title("Energies");
-//	plt::named_plot("Energy", energies, "y-");
+	plt::subplot(level + 2, 1, level + 2);
+	plt::title("Energies");
+	plt::named_plot("Energy", energies, "y-");
+	plt::show();
 //
 //	plt::xlim(0, (int) std::max(xdot.size(), wavelet.size()));
 //	plt::legend();
