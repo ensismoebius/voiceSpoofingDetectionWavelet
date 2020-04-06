@@ -11,7 +11,7 @@
 
 namespace wavelets {
 
-	std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0) {
+	std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool packet = false) {
 
 		//If maxitens is not informed then get the full signal size
 		if (maxItens == 0) maxItens = signal.size();
@@ -51,7 +51,8 @@ namespace wavelets {
 		if (maxItens > 2 && level > 1) {
 
 			// The next level uses only half of the resulting transfomed signal
-			std::vector<double> tmp = malat(results, lowpassfilter, level - 1, maxItens / 2);
+			// that why the "maxItens / 2"
+			std::vector<double> tmp = malat(results, lowpassfilter, level - 1, maxItens / 2, packet);
 
 			// Write the result
 			for (unsigned int i = 0; i < tmp.size(); ++i) {

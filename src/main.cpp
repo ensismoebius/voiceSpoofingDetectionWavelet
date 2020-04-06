@@ -121,9 +121,9 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 	namespace plt = matplotlibcpp;
 
-	unsigned int level = 4;
+	unsigned int level = 10;
 	unsigned int plotResolution = 1; //the lower the better
-	std::vector<double> wavelet = wavelets::daub76;
+	std::vector<double> wavelet = wavelets::haar;
 	std::vector<double> xdot(signal, signal + signalLength);
 
 	//TODO Create an object witch returns all details and aproximations
