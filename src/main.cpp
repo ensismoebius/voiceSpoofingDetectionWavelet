@@ -151,6 +151,15 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 	plt::show();
 }
 
+/**
+ * Return the next power of two based number
+ * @param number - The reference number
+ * @return - Next power of two
+ */
+int getNextPowerOfTwo(double number) {
+	return std::pow(2, std::ceil(std::log2(number)));
+}
+
 int main(int i, char *args[]) {
 
 	std::cout << std::fixed;
@@ -168,30 +177,31 @@ int main(int i, char *args[]) {
 //
 //	waveletAnaliticFunction(signal, 8, 44100, "ssss");
 
-	Wav w;
-	w.setCallbackFunction(waveletAnaliticFunction);
+	/*----------------------------------------------------*/
 
-	std::ifstream fileListStream;
-	fileListStream.open(args[1], std::ios::in);
-
-	std::string line;
-	while (std::getline(fileListStream, line)) {
-		std::cout << resultIndex << ":" << line << std::endl;
-
-		// lines that begins with # are going to be ignored
-		if (line.find("#") == 0) continue;
-
-		w.read(line.data());
-		w.process();
-		//	w.write("/tmp/teste.wav");
-	}
-
-	for (unsigned int columns = 0; columns < 14; columns++) {
-		for (unsigned int files = 0; files < resultIndex; files++) {
-			std::cout << results[files][columns] << "\t";
-		}
-		std::cout << std::endl;
-	}
-
+//	Wav w;
+//	w.setCallbackFunction(waveletAnaliticFunction);
+//
+//	std::ifstream fileListStream;
+//	fileListStream.open(args[1], std::ios::in);
+//
+//	std::string line;
+//	while (std::getline(fileListStream, line)) {
+//		std::cout << resultIndex << ":" << line << std::endl;
+//
+//		// lines that begins with # are going to be ignored
+//		if (line.find("#") == 0) continue;
+//
+//		w.read(line.data());
+//		w.process();
+//		//	w.write("/tmp/teste.wav");
+//	}
+//
+//	for (unsigned int columns = 0; columns < 14; columns++) {
+//		for (unsigned int files = 0; files < resultIndex; files++) {
+//			std::cout << results[files][columns] << "\t";
+//		}
+//		std::cout << std::endl;
+//	}
 	return 0;
 }
