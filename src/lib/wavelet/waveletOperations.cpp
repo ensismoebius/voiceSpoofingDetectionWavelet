@@ -7,11 +7,12 @@
 
 #include <vector>
 
+#include "WaveletTransformResults.cpp"
 #include "../linearAlgebra/linearAlgebra.h"
 
 namespace wavelets {
 
-	std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool packet = false) {
+	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool packet = false) {
 
 		//If maxitens is not informed then get the full signal size
 		if (maxItens == 0) maxItens = signal.size();
@@ -20,7 +21,7 @@ namespace wavelets {
 		std::vector<double> highpassfilter = linearAlgebra::calcOrthogonalVector(lowpassfilter);
 
 		// Store the final results
-		std::vector<double> results(maxItens);
+		WaveletTransformResults results(maxItens);
 
 		double lowPassSum = 0;
 		double highPassSum = 0;
@@ -42,8 +43,8 @@ namespace wavelets {
 			}
 
 			// Stores the values according to Malat's algorithm
-			results.at(translation / 2) = lowPassSum;
-			results.at((translation / 2) + (maxItens / 2)) = highPassSum;
+			results.transformedSignal.at(translation / 2) = lowPassSum;
+			results.transformedSignal.at((translation / 2) + (maxItens / 2)) = highPassSum;
 
 		}
 
@@ -52,11 +53,11 @@ namespace wavelets {
 
 			// The next level uses only half of the resulting transfomed signal
 			// that why the "maxItens / 2"
-			std::vector<double> tmp = malat(results, lowpassfilter, level - 1, maxItens / 2, packet);
+			WaveletTransformResults tmp = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, packet);
 
 			// Write the result
-			for (unsigned int i = 0; i < tmp.size(); ++i) {
-				results.at(i) = tmp.at(i);
+			for (unsigned int i = 0; i < tmp.transformedSignal.size(); ++i) {
+				results.transformedSignal.at(i) = tmp.transformedSignal.at(i);
 			}
 		}
 

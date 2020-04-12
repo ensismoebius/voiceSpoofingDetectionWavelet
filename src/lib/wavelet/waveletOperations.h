@@ -11,6 +11,8 @@
 
 #include <vector>
 
+#include "WaveletTransformResults.cpp"
+
 namespace wavelets {
 
 	/**
@@ -22,7 +24,7 @@ namespace wavelets {
 	 * @param maxItens - the signal upper limit to be processed
 	 * @return transformed signal
 	 */
-	std::vector<double> malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool packet = false);
+	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool packet = false);
 }
 
 #endif /* SRC_LIB_WAVELET_WAVELETOPERATIONS_H_ */

@@ -126,15 +126,14 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 	std::vector<double> wavelet = wavelets::haar;
 	std::vector<double> xdot(signal, signal + signalLength);
 
-	//TODO Create an object witch returns all details and aproximations
-	std::vector<double> res = wavelets::malat(xdot, wavelet, level);
+	WaveletTransformResults res = wavelets::malat(xdot, wavelet, level);
 
 	std::vector<double> energies(level + 1);
 
 	for (unsigned int levelIndex = 0; levelIndex <= level; levelIndex++) {
 
-		unsigned sstart = res.size() / std::pow(2, levelIndex + 1);
-		unsigned send = res.size() / std::pow(2, levelIndex);
+		unsigned sstart = res.transformedSignal.size() / std::pow(2, levelIndex + 1);
+		unsigned send = res.transformedSignal.size() / std::pow(2, levelIndex);
 
 		//TODO VERY inefficient: Plot directlly from an object (see above)
 		plt::subplot(level + 3, 1, levelIndex + 1);
@@ -146,10 +145,10 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 			if (indexRange % plotResolution == 0) {
 				x.push_back(xcounter++);
-				y.push_back(res.at(indexRange));
+				y.push_back(res.transformedSignal.at(indexRange));
 			}
 
-			energies.at(levelIndex) += std::pow(res.at(indexRange), 2);
+			energies.at(levelIndex) += std::pow(res.transformedSignal.at(indexRange), 2);
 		}
 
 		plt::title("Scale " + std::to_string(levelIndex + 1));

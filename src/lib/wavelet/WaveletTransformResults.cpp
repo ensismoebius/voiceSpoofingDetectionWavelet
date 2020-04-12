@@ -18,8 +18,11 @@ class WaveletTransformResults {
 
 	public:
 		unsigned int levelsOfTransformation;
-
 		std::vector<double> transformedSignal;
+
+		WaveletTransformResults(unsigned int maxItens = 0) {
+			this->transformedSignal.resize(maxItens);
+		}
 
 		std::vector<double> getTransformedSignal(unsigned int level = 1) {
 
