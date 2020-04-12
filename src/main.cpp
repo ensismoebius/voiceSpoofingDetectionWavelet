@@ -121,7 +121,7 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 	namespace plt = matplotlibcpp;
 
-	unsigned int level = 10;
+	unsigned int level = 3;
 	unsigned int plotResolution = 1; //the lower the better
 	std::vector<double> wavelet = wavelets::haar;
 	std::vector<double> xdot(signal, signal + signalLength);
@@ -137,7 +137,7 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 		unsigned send = res.size() / std::pow(2, levelIndex);
 
 		//TODO VERY inefficient: Plot directlly from an object (see above)
-		plt::subplot(level + 2, 1, levelIndex + 1);
+		plt::subplot(level + 3, 1, levelIndex + 1);
 		unsigned int xcounter = 0;
 		std::vector<int> x;
 		std::vector<double> y;
@@ -162,27 +162,16 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 		y.clear();
 	}
 
-//	plt::subplot(3, 1, 1);
-//	plt::title("Signal");
-//	plt::xlim(0, (int) xdot.size());
-//	plt::named_plot("Signal", xdot, "r-");
-
-//	plt::subplot(2, 2, 2);
-//	plt::title("Wavelet");
-//	plt::named_plot("Wavelet", wavelet, "b-");
-
-//	plt::subplot(3, 1, 2);
-//	plt::title("Transformed");
-//	plt::named_plot("Transformed", res, "g-");
-//
-	plt::subplot(level + 2, 1, level + 2);
+	plt::subplot(level + 3, 1, level + 2);
 	plt::title("Energies");
 	plt::named_plot("Energy", energies, "y-");
-	plt::show();
-//
-//	plt::xlim(0, (int) std::max(xdot.size(), wavelet.size()));
-//	plt::legend();
 
+	plt::subplot(level + 3, 1, level + 3);
+	plt::xlim(0, (int) xdot.size());
+	plt::title("Signal");
+	plt::named_plot("Signal", xdot, "r-");
+
+	plt::show();
 }
 
 int main(int i, char *args[]) {
@@ -190,30 +179,42 @@ int main(int i, char *args[]) {
 	std::cout << std::fixed;
 	std::cout << std::setprecision(20);
 
-	Wav w;
-	w.setCallbackFunction(waveletAnaliticFunction);
+	double *signal = new double[8];
+	signal[0] = 1;
+	signal[1] = 2;
+	signal[2] = 3;
+	signal[3] = 4;
+	signal[4] = 5;
+	signal[5] = 6;
+	signal[6] = 7;
+	signal[7] = 8;
 
-	std::ifstream fileListStream;
-	fileListStream.open(args[1], std::ios::in);
+	waveletAnaliticFunction(signal, 8, 44100, "ssss");
 
-	std::string line;
-	while (std::getline(fileListStream, line)) {
-		std::cout << resultIndex << ":" << line << std::endl;
-
-		// lines that begins with # are going to be ignored
-		if (line.find("#") == 0) continue;
-
-		w.read(line.data());
-		w.process();
-		//	w.write("/tmp/teste.wav");
-	}
-
-	for (unsigned int columns = 0; columns < 14; columns++) {
-		for (unsigned int files = 0; files < resultIndex; files++) {
-			std::cout << results[files][columns] << "\t";
-		}
-		std::cout << std::endl;
-	}
+//	Wav w;
+//	w.setCallbackFunction(waveletAnaliticFunction);
+//
+//	std::ifstream fileListStream;
+//	fileListStream.open(args[1], std::ios::in);
+//
+//	std::string line;
+//	while (std::getline(fileListStream, line)) {
+//		std::cout << resultIndex << ":" << line << std::endl;
+//
+//		// lines that begins with # are going to be ignored
+//		if (line.find("#") == 0) continue;
+//
+//		w.read(line.data());
+//		w.process();
+//		//	w.write("/tmp/teste.wav");
+//	}
+//
+//	for (unsigned int columns = 0; columns < 14; columns++) {
+//		for (unsigned int files = 0; files < resultIndex; files++) {
+//			std::cout << results[files][columns] << "\t";
+//		}
+//		std::cout << std::endl;
+//	}
 
 	return 0;
 }
