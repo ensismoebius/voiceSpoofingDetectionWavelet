@@ -131,13 +131,13 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 		plt::subplot(level + 2, 1, detailIndex + 1);
 
-		std::vector<double> y = res.getTransformedSignal(detailIndex);
-
 		if (detailIndex > 0) {
 			plt::title("Scale " + std::to_string(detailIndex));
 		} else {
 			plt::title("Aproximation (level " + std::to_string(detailIndex) + ")");
 		}
+
+		std::vector<double> y = res.getTransformedSignal(detailIndex);
 		plt::xlim(0, (int) y.size());
 		plt::plot(y);
 		plt::pause(0.0000000000001);
