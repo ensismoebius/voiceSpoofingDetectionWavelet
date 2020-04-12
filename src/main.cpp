@@ -121,51 +121,29 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 	namespace plt = matplotlibcpp;
 
-	unsigned int level = 3;
-	unsigned int plotResolution = 1; //the lower the better
-	std::vector<double> wavelet = wavelets::haar;
+	int level = 8;
+	std::vector<double> wavelet = wavelets::daub4;
 	std::vector<double> xdot(signal, signal + signalLength);
 
-	WaveletTransformResults res = wavelets::malat(xdot, wavelet, level);
+	wavelets::WaveletTransformResults res = wavelets::malat(xdot, wavelet, level);
 
-	std::vector<double> energies(level + 1);
+	for (int detailIndex = 0; detailIndex <= level; detailIndex++) {
 
-	for (unsigned int levelIndex = 0; levelIndex <= level; levelIndex++) {
+		plt::subplot(level + 2, 1, detailIndex + 1);
 
-		unsigned sstart = res.transformedSignal.size() / std::pow(2, levelIndex + 1);
-		unsigned send = res.transformedSignal.size() / std::pow(2, levelIndex);
+		std::vector<double> y = res.getTransformedSignal(detailIndex);
 
-		//TODO VERY inefficient: Plot directlly from an object (see above)
-		plt::subplot(level + 3, 1, levelIndex + 1);
-		unsigned int xcounter = 0;
-		std::vector<int> x;
-		std::vector<double> y;
-
-		for (unsigned int indexRange = sstart; indexRange < send; indexRange++) {
-
-			if (indexRange % plotResolution == 0) {
-				x.push_back(xcounter++);
-				y.push_back(res.transformedSignal.at(indexRange));
-			}
-
-			energies.at(levelIndex) += std::pow(res.transformedSignal.at(indexRange), 2);
+		if (detailIndex > 0) {
+			plt::title("Scale " + std::to_string(detailIndex));
+		} else {
+			plt::title("Aproximation (level " + std::to_string(detailIndex) + ")");
 		}
-
-		plt::title("Scale " + std::to_string(levelIndex + 1));
-		plt::xlim(0, (int) xcounter);
-		plt::plot(x, y);
+		plt::xlim(0, (int) y.size());
+		plt::plot(y);
 		plt::pause(0.0000000000001);
-
-		xcounter = 0;
-		x.clear();
-		y.clear();
 	}
 
-	plt::subplot(level + 3, 1, level + 2);
-	plt::title("Energies");
-	plt::named_plot("Energy", energies, "y-");
-
-	plt::subplot(level + 3, 1, level + 3);
+	plt::subplot(level + 2, 1, level + 2);
 	plt::xlim(0, (int) xdot.size());
 	plt::title("Signal");
 	plt::named_plot("Signal", xdot, "r-");
@@ -178,42 +156,42 @@ int main(int i, char *args[]) {
 	std::cout << std::fixed;
 	std::cout << std::setprecision(20);
 
-	double *signal = new double[8];
-	signal[0] = 1;
-	signal[1] = 2;
-	signal[2] = 3;
-	signal[3] = 4;
-	signal[4] = 5;
-	signal[5] = 6;
-	signal[6] = 7;
-	signal[7] = 8;
+//	double *signal = new double[8];
+//	signal[0] = -1;
+//	signal[1] = 2;
+//	signal[2] = 3;
+//	signal[3] = -4;
+//	signal[4] = 5;
+//	signal[5] = 5;
+//	signal[6] = 12;
+//	signal[7] = -8;
+//
+//	waveletAnaliticFunction(signal, 8, 44100, "ssss");
 
-	waveletAnaliticFunction(signal, 8, 44100, "ssss");
+	Wav w;
+	w.setCallbackFunction(waveletAnaliticFunction);
 
-//	Wav w;
-//	w.setCallbackFunction(waveletAnaliticFunction);
-//
-//	std::ifstream fileListStream;
-//	fileListStream.open(args[1], std::ios::in);
-//
-//	std::string line;
-//	while (std::getline(fileListStream, line)) {
-//		std::cout << resultIndex << ":" << line << std::endl;
-//
-//		// lines that begins with # are going to be ignored
-//		if (line.find("#") == 0) continue;
-//
-//		w.read(line.data());
-//		w.process();
-//		//	w.write("/tmp/teste.wav");
-//	}
-//
-//	for (unsigned int columns = 0; columns < 14; columns++) {
-//		for (unsigned int files = 0; files < resultIndex; files++) {
-//			std::cout << results[files][columns] << "\t";
-//		}
-//		std::cout << std::endl;
-//	}
+	std::ifstream fileListStream;
+	fileListStream.open(args[1], std::ios::in);
+
+	std::string line;
+	while (std::getline(fileListStream, line)) {
+		std::cout << resultIndex << ":" << line << std::endl;
+
+		// lines that begins with # are going to be ignored
+		if (line.find("#") == 0) continue;
+
+		w.read(line.data());
+		w.process();
+		//	w.write("/tmp/teste.wav");
+	}
+
+	for (unsigned int columns = 0; columns < 14; columns++) {
+		for (unsigned int files = 0; files < resultIndex; files++) {
+			std::cout << results[files][columns] << "\t";
+		}
+		std::cout << std::endl;
+	}
 
 	return 0;
 }

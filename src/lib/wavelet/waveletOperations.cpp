@@ -59,7 +59,13 @@ namespace wavelets {
 			for (unsigned int i = 0; i < tmp.transformedSignal.size(); ++i) {
 				results.transformedSignal.at(i) = tmp.transformedSignal.at(i);
 			}
+
+			// Add the transformation levels done in recursion to current level
+			results.levelsOfTransformation += tmp.levelsOfTransformation;
 		}
+
+		// Increase the levels of trasformation
+		results.levelsOfTransformation++;
 
 		// Return the whole thing
 		return results;
