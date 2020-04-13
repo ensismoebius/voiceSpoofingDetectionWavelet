@@ -42,6 +42,7 @@ namespace wavelets {
 				highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
 			}
 
+			// TODO plot the highpass values to see if the signal is, for sure, inverted when the high pass part of the signal is downsampled
 			// Stores the values according to Malat's algorithm
 			results.transformedSignal.at(translation / 2) = lowPassSum;
 			results.transformedSignal.at((translation / 2) + (maxItens / 2)) = highPassSum;
