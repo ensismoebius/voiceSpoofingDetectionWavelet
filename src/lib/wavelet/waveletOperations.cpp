@@ -42,6 +42,9 @@ namespace wavelets {
 				highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
 			}
 
+			// TODO for the recursion we must create two vectors: One for lowpass filtered signal and another for highpass filtered signal
+			// TODO AND do the recursion BEFORE alter the results, i think that is it... 
+
 			// Stores the values according to Malat's algorithm
 			if (highPassBranch) {
 				/*

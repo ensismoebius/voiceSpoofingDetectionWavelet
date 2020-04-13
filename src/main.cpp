@@ -130,13 +130,13 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 	namespace plt = matplotlibcpp;
 
-	int level = 4;
+	int level = 2;
 	std::vector<double> xdot(signal, signal + signalLength);
 
-	// Fits the signal length to optimize the wavelet transform
+	// Expands the signal length to optimize the wavelet transform
 	xdot.resize(getNextPowerOfTwo(xdot.size()), 0);
 
-	wavelets::WaveletTransformResults res = wavelets::malat(xdot, wavelets::altHaar, level, 0, false, false);
+	wavelets::WaveletTransformResults res = wavelets::malat(xdot, wavelets::altHaar, level, 0, false, true);
 
 	for (int detailIndex = 0; detailIndex <= level; detailIndex++) {
 
