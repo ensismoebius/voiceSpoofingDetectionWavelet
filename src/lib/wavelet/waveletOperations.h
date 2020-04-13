@@ -22,10 +22,12 @@ namespace wavelets {
 	 * @param lowpassfilter - the wavelet lowpass filter
 	 * @param level - levels of the signal decomposition
 	 * @param maxItens - the signal upper limit to be processed
-	 * @param packet - true: Do a wavelet packet transform. false: Do a regular wavelet transform
+	 * @param highPassBranch - true: Do the decomposition in the highpass portion of the signal
+	 * (wavelet packet transform). false: Do a regular wavelet transform
+	 * @param packet - true: wavelet package, false: regular wavelet
 	 * @return transformed signal
 	 */
-	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool packet = false);
+	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false, bool packet = false);
 }
 
 #endif /* SRC_LIB_WAVELET_WAVELETOPERATIONS_H_ */
