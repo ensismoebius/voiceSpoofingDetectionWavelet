@@ -17,17 +17,17 @@ namespace wavelets {
 		//If maxitens is not informed then get the full signal size
 		if (maxItens == 0) maxItens = signal.size();
 
-		// Get the highpass filter based on lowṕass filter
+		// Get the highpass filter based on lowpass filter
 		std::vector<double> highpassfilter = linearAlgebra::calcOrthogonalVector(lowpassfilter);
 
-		// Store the final results
+		// Stores the final results
 		WaveletTransformResults results(maxItens);
 
 		double lowPassSum = 0;
 		double highPassSum = 0;
 		unsigned int signalIndex = 0;
 
-		//Translate de filters over the signal
+		//Translate the filters over the signal
 		for (unsigned int translation = 0; translation < maxItens; translation += 2) {
 
 			lowPassSum = 0;
