@@ -13,7 +13,7 @@
 
 namespace wavelets {
 
-	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch) {
+	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch) {
 
 		//If maxitens is not informed then get the full signal size
 		if (maxItens == 0) {
@@ -30,6 +30,16 @@ namespace wavelets {
 			if (highPassBranch && (maxItens > signal.size() / 2)) {
 				throw std::runtime_error("The number of itens must be equal or less than the half of signal length when in the high pass branch of the signal");
 			}
+		}
+
+		/*
+		 * There is a limit of transformations that can be done, depending
+		 * on the length of the signal, until we get coeficients with only
+		 * one number. The transformation levels shall not pass this limit
+		 * (log2(maxItens))
+		 */
+		if (level > std::log2(maxItens)) {
+			throw std::runtime_error(std::string("This signal only supports a maximum of ") + std::to_string((int) std::log2(maxItens)) + " levels.");
 		}
 
 		// Get the highpass filter based on lowpass filter

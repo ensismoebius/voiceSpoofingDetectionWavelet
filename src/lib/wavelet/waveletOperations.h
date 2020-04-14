@@ -24,8 +24,7 @@ namespace wavelets {
 	};
 
 	/**
-	 * Applies a wavelets transform over a
-	 * signal using the Mallat algorithm
+	 * Applies a wavelets transform over a signal using the Mallat's algorithm
 	 * @param signal - signal to be transformed
 	 * @param lowpassfilter - the wavelet lowpass filter
 	 * @param level - levels of the signal decomposition
@@ -35,7 +34,7 @@ namespace wavelets {
 	 * @param packet - PACKET_WAVELET: wavelet packet, REGULAR_WAVELET: regular wavelet
 	 * @return transformed signal
 	 */
-	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, TransformMode mode = REGULAR_WAVELET, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false);
+	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> lowpassfilter, TransformMode mode = REGULAR_WAVELET, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false);
 }
 
 #endif /* SRC_LIB_WAVELET_WAVELETOPERATIONS_H_ */
