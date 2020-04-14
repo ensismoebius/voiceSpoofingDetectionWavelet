@@ -130,7 +130,7 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 
 	namespace plt = matplotlibcpp;
 
-	int level = 2;
+	int level = 4;
 	std::vector<double> xdot(signal, signal + signalLength);
 
 	// Expands the signal length to optimize the wavelet transform

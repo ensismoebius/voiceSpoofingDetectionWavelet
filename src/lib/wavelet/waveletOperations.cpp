@@ -18,10 +18,13 @@ namespace wavelets {
 		if (maxItens == 0) {
 			maxItens = signal.size();
 		} else {
+			// The number of itens must be equal or less than the signal length
 			if (maxItens > signal.size()) {
 				throw std::runtime_error("The number of itens must be equal or less than the signal length");
 			}
 
+			// The number of itens must be equal or less than the half of signal length
+			// when in the high pass branch of the signal (used in the wavelet packet)
 			if (highPassBranch && (maxItens > signal.size() / 2)) {
 				throw std::runtime_error("The number of itens must be equal or less than the half of signal length when in the high pass branch of the signal");
 			}
