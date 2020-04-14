@@ -25,7 +25,8 @@ namespace wavelets {
 			}
 
 			// The number of itens must be equal or less than the half of signal length
-			// when in the high pass branch of the signal (used in the wavelet packet)
+			// when in the high pass branch of the signal (used in the wavelet packet
+			// starting in the second transformation level)
 			if (highPassBranch && (maxItens > signal.size() / 2)) {
 				throw std::runtime_error("The number of itens must be equal or less than the half of signal length when in the high pass branch of the signal");
 			}
@@ -53,13 +54,17 @@ namespace wavelets {
 				signalIndex = (translation + filterIndex) % maxItens;
 
 				if (highPassBranch) {
-					// When in highpass branch of the signal we just want the
-					// second half of the signal (signalIndex + maxItens)
+					/*
+					 * When in highpass branch of the signal we just want the
+					 * second half of the signal (signalIndex + maxItens). This
+					 * is used only with wavelet packet transformations
+					 */
 					lowPassSum += signal.at(signalIndex + maxItens) * lowpassfilter.at(filterIndex);
 					highPassSum += signal.at(signalIndex + maxItens) * highpassfilter.at(filterIndex);
 				} else {
-					// When in lowpass branch of the signal we just want the
-					// first half of the signal (signalIndex)
+					/* When in lowpass branch of the signal we just want the
+					 * first half of the signal (signalIndex)
+					 */
 					lowPassSum += signal.at(signalIndex) * lowpassfilter.at(filterIndex);
 					highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
 				}
@@ -70,7 +75,8 @@ namespace wavelets {
 				/*
 				 * If we are decomposing the highpass branch then we need to swap the
 				 * high pass and low pass filtered signals in order to maintain the
-				 * signal order in the frequency domain
+				 * signal order in the frequency domain. This is used only with
+				 * wavelet packet transformations
 				 */
 				results.transformedSignal.at(translation / 2) = highPassSum;
 				results.transformedSignal.at((translation / 2) + (maxItens / 2)) = lowPassSum;
@@ -89,7 +95,7 @@ namespace wavelets {
 		if (maxItens > 2 && level > 1) {
 
 			// Used only when in wavelet packet transform
-			if (mode == PACKAGE_WAVELET) {
+			if (mode == PACKET_WAVELET) {
 				// The next level uses only half of the resulting transfomed signal
 				// that why the "maxItens / 2"
 				WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, false);

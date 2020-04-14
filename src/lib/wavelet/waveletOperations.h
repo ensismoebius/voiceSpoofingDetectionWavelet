@@ -20,7 +20,7 @@ namespace wavelets {
 	 * transformation must be done
 	 */
 	enum TransformMode {
-		PACKAGE_WAVELET, REGULAR_WAVELET
+		PACKET_WAVELET, REGULAR_WAVELET
 	};
 
 	/**
@@ -32,7 +32,7 @@ namespace wavelets {
 	 * @param maxItens - the signal upper limit to be processed
 	 * @param highPassBranch - true: Do the decomposition in the highpass portion of the signal
 	 * (wavelet packet transform). false: Do a regular wavelet transform
-	 * @param packet - PACKAGE_WAVELET: wavelet package, REGULAR_WAVELET: regular wavelet
+	 * @param packet - PACKET_WAVELET: wavelet packet, REGULAR_WAVELET: regular wavelet
 	 * @return transformed signal
 	 */
 	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, TransformMode mode = REGULAR_WAVELET, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false);
