@@ -7,12 +7,13 @@
 
 #include <vector>
 
+#include "waveletOperations.h"
 #include "WaveletTransformResults.cpp"
 #include "../linearAlgebra/linearAlgebra.h"
 
 namespace wavelets {
 
-	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false, bool packet = false) {
+	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch) {
 
 		//If maxitens is not informed then get the full signal size
 		if (maxItens == 0) {
@@ -88,14 +89,14 @@ namespace wavelets {
 		if (maxItens > 2 && level > 1) {
 
 			// Used only when in wavelet packet transform
-			if (packet) {
+			if (mode == PACKAGE_WAVELET) {
 				// The next level uses only half of the resulting transfomed signal
 				// that why the "maxItens / 2"
-				WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, false, packet);
+				WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, false);
 
 				// The next level uses only half of the resulting transfomed signal
 				// that why the "maxItens / 2"
-				WaveletTransformResults highPassBranchFiltered = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, true, packet);
+				WaveletTransformResults highPassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, true);
 
 				// Write the result
 				for (unsigned int i = 0; i < lowpassBranchFiltered.transformedSignal.size(); ++i) {
@@ -113,7 +114,7 @@ namespace wavelets {
 			} else {
 				// The next level uses only half of the resulting transfomed signal
 				// that why the "maxItens / 2"
-				WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, false, packet);
+				WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, false);
 
 				// Write the result
 				for (unsigned int i = 0; i < lowpassBranchFiltered.transformedSignal.size(); ++i) {

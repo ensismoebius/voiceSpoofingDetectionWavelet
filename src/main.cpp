@@ -136,7 +136,7 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 	// Expands the signal length to optimize the wavelet transform
 	xdot.resize(getNextPowerOfTwo(xdot.size()), 0);
 
-	wavelets::WaveletTransformResults res = wavelets::malat(xdot, wavelets::altHaar, level, 0, false, true);
+	wavelets::WaveletTransformResults res = wavelets::malat(xdot, wavelets::altHaar, wavelets::REGULAR_WAVELET, level, 0, false);
 
 	for (int detailIndex = 0; detailIndex <= level; detailIndex++) {
 
