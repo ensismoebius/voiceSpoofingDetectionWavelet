@@ -13,7 +13,7 @@
 
 namespace wavelets {
 
-	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch) {
+	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> &lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch) {
 
 		//If maxitens is not informed then get the full signal size
 		if (maxItens == 0) {
@@ -160,4 +160,9 @@ namespace wavelets {
 		// Return the whole thing
 		return results;
 	}
+
+	int getNextPowerOfTwo(double number) {
+		return std::pow(2, std::ceil(std::log2(number)));
+	}
+
 }

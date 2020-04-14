@@ -117,27 +117,24 @@ void analiticFunction(double *signal, int signalLength, unsigned int samplingRat
 	resultIndex++;
 }
 
-/**
- * Return the next power of two based number
- * @param number - The reference number
- * @return - Next power of two
- */
-int getNextPowerOfTwo(double number) {
-	return std::pow(2, std::ceil(std::log2(number)));
-}
-
 void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samplingRate, std::string path) {
 
+	// Alias for a easier use of matplotlib
 	namespace plt = matplotlibcpp;
 
-	int level = 4;
-	std::vector<double> xdot(signal, signal + signalLength);
+	// Transformation level
+	int level = 15;
+
+	// Store for streched signal
+	std::vector<double> strechedSignal(signal, signal + signalLength);
 
 	// Expands the signal length to optimize the wavelet transform
-	xdot.resize(getNextPowerOfTwo(xdot.size()), 0);
+	strechedSignal.resize(wavelets::getNextPowerOfTwo(strechedSignal.size()), 0);
 
-	wavelets::WaveletTransformResults res = wavelets::malat(xdot, wavelets::altHaar, wavelets::REGULAR_WAVELET, level);
+	// Does the transformations
+	wavelets::WaveletTransformResults res = wavelets::malat(strechedSignal, wavelets::altHaar, wavelets::REGULAR_WAVELET, level);
 
+	// Plots the transformations
 	for (int detailIndex = 0; detailIndex <= level; detailIndex++) {
 
 		plt::subplot(level + 2, 1, detailIndex + 1);
@@ -149,15 +146,17 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 		}
 
 		std::vector<double> y = res.getTransformedSignal(detailIndex);
-		plt::xlim(0, (int) y.size());
+		plt::ylim(-2500, 2500);
+		plt::xlim(0, int(y.size()));
 		plt::plot(y);
 		plt::pause(0.0000000000001);
 	}
 
 	plt::subplot(level + 2, 1, level + 2);
-	plt::xlim(0, int(xdot.size()));
+	plt::ylim(-2500, 2500);
+	plt::xlim(0, int(strechedSignal.size()));
 	plt::title("Signal");
-	plt::named_plot("Signal", xdot, "r-");
+	plt::named_plot("Signal", strechedSignal, "r-");
 
 	plt::show();
 }
@@ -167,51 +166,51 @@ int main(int i, char *args[]) {
 	std::cout << std::fixed;
 	std::cout << std::setprecision(20);
 
-	double *signal = new double[16];
-	signal[0] = 32;
-	signal[1] = 10;
-	signal[2] = 20;
-	signal[3] = 38;
-	signal[4] = 37;
-	signal[5] = 28;
-	signal[6] = 38;
-	signal[7] = 34;
-	signal[8] = 18;
-	signal[9] = 24;
-	signal[10] = 24;
-	signal[11] = 9;
-	signal[12] = 23;
-	signal[13] = 24;
-	signal[14] = 28;
-	signal[15] = 34;
-
-	waveletAnaliticFunction(signal, 16, 44100, "ssss");
+//	double *signal = new double[16];
+//	signal[0] = 32;
+//	signal[1] = 10;
+//	signal[2] = 20;
+//	signal[3] = 38;
+//	signal[4] = 37;
+//	signal[5] = 28;
+//	signal[6] = 38;
+//	signal[7] = 34;
+//	signal[8] = 18;
+//	signal[9] = 24;
+//	signal[10] = 24;
+//	signal[11] = 9;
+//	signal[12] = 23;
+//	signal[13] = 24;
+//	signal[14] = 28;
+//	signal[15] = 34;
+//
+//	waveletAnaliticFunction(signal, 16, 44100, "ssss");
 
 	/*----------------------------------------------------*/
 
-//	Wav w;
-//	w.setCallbackFunction(waveletAnaliticFunction);
-//
-//	std::ifstream fileListStream;
-//	fileListStream.open(args[1], std::ios::in);
-//
-//	std::string line;
-//	while (std::getline(fileListStream, line)) {
-//		std::cout << resultIndex << ":" << line << std::endl;
-//
-//		// lines that begins with # are going to be ignored
-//		if (line.find("#") == 0) continue;
-//
-//		w.read(line.data());
-//		w.process();
-//		//	w.write("/tmp/teste.wav");
-//	}
-//
-//	for (unsigned int columns = 0; columns < 14; columns++) {
-//		for (unsigned int files = 0; files < resultIndex; files++) {
-//			std::cout << results[files][columns] << "\t";
-//		}
-//		std::cout << std::endl;
-//	}
+	Wav w;
+	w.setCallbackFunction(waveletAnaliticFunction);
+
+	std::ifstream fileListStream;
+	fileListStream.open(args[1], std::ios::in);
+
+	std::string line;
+	while (std::getline(fileListStream, line)) {
+		std::cout << resultIndex << ":" << line << std::endl;
+
+		// lines that begins with # are going to be ignored
+		if (line.find("#") == 0) continue;
+
+		w.read(line.data());
+		w.process();
+		//	w.write("/tmp/teste.wav");
+	}
+
+	for (unsigned int columns = 0; columns < 14; columns++) {
+		for (unsigned int files = 0; files < resultIndex; files++) {
+			std::cout << results[files][columns] << "\t";
+		}
+		std::cout << std::endl;
+	}
 	return 0;
 }
