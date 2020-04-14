@@ -15,7 +15,17 @@ namespace wavelets {
 	WaveletTransformResults malat(std::vector<double> signal, std::vector<double> lowpassfilter, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false, bool packet = false) {
 
 		//If maxitens is not informed then get the full signal size
-		if (maxItens == 0) maxItens = signal.size();
+		if (maxItens == 0) {
+			maxItens = signal.size();
+		} else {
+			if (maxItens > signal.size()) {
+				throw std::runtime_error("The number of itens must be equal or less than the signal length");
+			}
+
+			if (highPassBranch && (maxItens > signal.size() / 2)) {
+				throw std::runtime_error("The number of itens must be equal or less than the half of signal length when in the high pass branch of the signal");
+			}
+		}
 
 		// Get the highpass filter based on lowpass filter
 		std::vector<double> highpassfilter = linearAlgebra::calcOrthogonalVector(lowpassfilter);
@@ -38,12 +48,18 @@ namespace wavelets {
 
 				signalIndex = (translation + filterIndex) % maxItens;
 
-				lowPassSum += signal.at(signalIndex) * lowpassfilter.at(filterIndex);
-				highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
+				if (highPassBranch) {
+					// When in highpass branch of the signal we just want the
+					// second half of the signal (signalIndex + maxItens)
+					lowPassSum += signal.at(signalIndex + maxItens) * lowpassfilter.at(filterIndex);
+					highPassSum += signal.at(signalIndex + maxItens) * highpassfilter.at(filterIndex);
+				} else {
+					// When in lowpass branch of the signal we just want the
+					// first half of the signal (signalIndex)
+					lowPassSum += signal.at(signalIndex) * lowpassfilter.at(filterIndex);
+					highPassSum += signal.at(signalIndex) * highpassfilter.at(filterIndex);
+				}
 			}
-
-			// TODO for the recursion we must create two vectors: One for lowpass filtered signal and another for highpass filtered signal
-			// TODO AND do the recursion BEFORE alter the results, i think that is it... 
 
 			// Stores the values according to Malat's algorithm
 			if (highPassBranch) {
@@ -68,30 +84,44 @@ namespace wavelets {
 		// If there is more levels to made the transform do it!
 		if (maxItens > 2 && level > 1) {
 
-			// The next level uses only half of the resulting transfomed signal
-			// that why the "maxItens / 2"
-			WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, false, packet);
-
-			// Write the result
-			for (unsigned int i = 0; i < lowpassBranchFiltered.transformedSignal.size(); ++i) {
-				results.transformedSignal.at(i) = lowpassBranchFiltered.transformedSignal.at(i);
-			}
-
 			// Used only when in wavelet packet transform
 			if (packet) {
+				// The next level uses only half of the resulting transfomed signal
+				// that why the "maxItens / 2"
+				WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, false, packet);
+
 				// The next level uses only half of the resulting transfomed signal
 				// that why the "maxItens / 2"
 				WaveletTransformResults highPassBranchFiltered = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, true, packet);
 
 				// Write the result
+				for (unsigned int i = 0; i < lowpassBranchFiltered.transformedSignal.size(); ++i) {
+					results.transformedSignal.at(i) = lowpassBranchFiltered.transformedSignal.at(i);
+				}
+
+				// Write the result
 				for (unsigned int i = 0; i < highPassBranchFiltered.transformedSignal.size(); ++i) {
 					results.transformedSignal.at(i + results.transformedSignal.size() / 2) = highPassBranchFiltered.transformedSignal.at(i);
 				}
+
+				// Add the transformation levels done in recursion to current level
+				// Even when we do an wavelet transform the way we count it remains
+				results.levelsOfTransformation += lowpassBranchFiltered.levelsOfTransformation;
+			} else {
+				// The next level uses only half of the resulting transfomed signal
+				// that why the "maxItens / 2"
+				WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, level - 1, maxItens / 2, false, packet);
+
+				// Write the result
+				for (unsigned int i = 0; i < lowpassBranchFiltered.transformedSignal.size(); ++i) {
+					results.transformedSignal.at(i) = lowpassBranchFiltered.transformedSignal.at(i);
+				}
+
+				// Add the transformation levels done in recursion to current level
+				// Even when we do an wavelet transform the way we count it remains
+				results.levelsOfTransformation += lowpassBranchFiltered.levelsOfTransformation;
 			}
 
-			// Add the transformation levels done in recursion to current level
-			// Even when we do an wavelet transform the way we count it remains
-			results.levelsOfTransformation += lowpassBranchFiltered.levelsOfTransformation;
 		}
 
 		// Increase the levels of trasformation
