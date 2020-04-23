@@ -123,7 +123,7 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 	namespace plt = matplotlibcpp;
 
 	// Transformation level
-	int level = 15;
+	int level = 6;
 
 	// Store for streched signal
 	std::vector<double> strechedSignal(signal, signal + signalLength);
@@ -132,12 +132,18 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 	strechedSignal.resize(wavelets::getNextPowerOfTwo(strechedSignal.size()), 0);
 
 	// Does the transformations
-	wavelets::WaveletTransformResults res = wavelets::malat(strechedSignal, wavelets::altHaar, wavelets::REGULAR_WAVELET, level);
+	wavelets::WaveletTransformResults res = wavelets::malat(strechedSignal, wavelets::altHaar, wavelets::PACKET_WAVELET, level);
+
+	plt::subplot(level + 2, 1, 1);
+	plt::ylim(-2500, 2500);
+	plt::xlim(0, int(strechedSignal.size()));
+	plt::title("Signal");
+	plt::named_plot("Signal", strechedSignal, "r-");
 
 	// Plots the transformations
 	for (int detailIndex = 0; detailIndex <= level; detailIndex++) {
 
-		plt::subplot(level + 2, 1, detailIndex + 1);
+		plt::subplot(level + 2, 1, detailIndex + 2);
 
 		if (detailIndex > 0) {
 			plt::title("Scale " + std::to_string(detailIndex));
@@ -145,18 +151,12 @@ void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samp
 			plt::title("Aproximation (level " + std::to_string(detailIndex) + ")");
 		}
 
-		std::vector<double> y = res.getTransformedSignal(detailIndex);
+		std::vector<double> y = res.getWaveletTransforms(detailIndex);
 		plt::ylim(-2500, 2500);
 		plt::xlim(0, int(y.size()));
 		plt::plot(y);
 		plt::pause(0.0000000000001);
 	}
-
-	plt::subplot(level + 2, 1, level + 2);
-	plt::ylim(-2500, 2500);
-	plt::xlim(0, int(strechedSignal.size()));
-	plt::title("Signal");
-	plt::named_plot("Signal", strechedSignal, "r-");
 
 	plt::show();
 }

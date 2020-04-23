@@ -157,6 +157,9 @@ namespace wavelets {
 		// Increase the levels of trasformation
 		results.levelsOfTransformation++;
 
+		// Mark or not as a packet wavelet transform
+		results.packet = mode == PACKET_WAVELET;
+
 		// Return the whole thing
 		return results;
 	}

@@ -18,7 +18,21 @@ namespace wavelets {
 	class WaveletTransformResults {
 
 		public:
+			/**
+			 * If true the results comes from a
+			 * packet wavelet transform
+			 */
+			bool packet = false;
+
+			/**
+			 * The levels of transformations
+			 * we have done to the signal
+			 */
 			unsigned int levelsOfTransformation = 0;
+
+			/**
+			 * The transformed signal
+			 */
 			std::vector<double> transformedSignal;
 
 			WaveletTransformResults(unsigned int maxItens = 0) {
@@ -32,7 +46,7 @@ namespace wavelets {
 			 * @param detailIndex 1 or more: Extracts the corresponding detail
 			 * @return Whole transformed signal, aproximation or details
 			 */
-			std::vector<double> getTransformedSignal(int detailIndex = -1) {
+			std::vector<double> getWaveletTransforms(int detailIndex = -1) {
 
 				// User is requesting more details then we had produced
 				if (detailIndex > (int) this->levelsOfTransformation) {
@@ -42,7 +56,7 @@ namespace wavelets {
 				// Returns the full transformed signal
 				if (detailIndex == -1) return this->transformedSignal;
 
-				// Creating the indexers wich will point to the start (sstrat)
+				// Creating the indexers witch will point to the start (sstrat)
 				// and the end (send) of the signal we want
 				unsigned send = 0;
 				unsigned sstart = 0;
@@ -72,6 +86,36 @@ namespace wavelets {
 				}
 
 				return levelTransformedSignal;
+			}
+
+			/**
+			 * Extracts the values of a wavelet packet transformation
+			 * differently from @getWaveletTransforms it DO NOT returns
+			 * the details of transformation, otherwise, returns the
+			 * generated chunks of the transformed signal
+			 * @param partIndex : A value from 0 up to @getWaveletPacketAmountOfParts
+			 * @return the requested chunk
+			 */
+			std::vector<double> getWaveletPacketTransforms(unsigned int partIndex) {
+
+				if (!this->packet) {
+					throw std::runtime_error("This is not a wavelet packet transfomed signal");
+				}
+
+				if (this->getWaveletPacketAmountOfParts() - 1 < partIndex) {
+					throw std::runtime_error("You are trying to access a non existent part of transformation");
+				}
+
+				int chunkSize = this->transformedSignal.size() / this->levelsOfTransformation;
+
+				int sstart = partIndex * chunkSize;
+				int send = sstart + chunkSize;
+
+				return std::vector<double>(this->transformedSignal.begin() + sstart, this->transformedSignal.begin() + send);
+			}
+
+			unsigned int getWaveletPacketAmountOfParts() {
+				return std::pow(2, this->levelsOfTransformation);
 			}
 	};
 }
