@@ -98,19 +98,24 @@ namespace wavelets {
 			 */
 			std::vector<double> getWaveletPacketTransforms(unsigned int partIndex) {
 
+				// Checks if this is a wavelet transform
 				if (!this->packet) {
 					throw std::runtime_error("This is not a wavelet packet transfomed signal");
 				}
 
+				// The partIndex must not access non existent parts of the transformation
 				if (this->getWaveletPacketAmountOfParts() - 1 < partIndex) {
 					throw std::runtime_error("You are trying to access a non existent part of transformation");
 				}
 
-				int chunkSize = this->transformedSignal.size() / this->levelsOfTransformation;
+				// Calculate de size of the chuncks
+				int chunkSize = this->transformedSignal.size() / this->getWaveletPacketAmountOfParts();
 
+				// Get the ranges that must be returned
 				int sstart = partIndex * chunkSize;
 				int send = sstart + chunkSize;
 
+				// Returns the data
 				return std::vector<double>(this->transformedSignal.begin() + sstart, this->transformedSignal.begin() + send);
 			}
 
