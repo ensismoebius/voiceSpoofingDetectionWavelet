@@ -133,6 +133,49 @@ namespace wavelets {
 
 				return std::pow(2, this->levelsOfTransformation);
 			}
+
+			/**
+			 * Static version of @getWaveletPacketTransforms(unsigned int partIndex)
+			 * Extracts the values of a wavelet packet transformation
+			 * differently from @getWaveletTransforms it DO NOT returns
+			 * the details of transformation, otherwise, returns the
+			 * generated chunks of the transformed signal
+			 * USE ONLY WITH PACKET WAVELETS!!
+			 * @param transformedSignal : vector with transformed signal
+			 * @param partIndex : A value from 0 up to @getWaveletPacketAmountOfParts
+			 * @param levelsOfTransformation : levels of transformation of the signal
+			 * @return the requested chunk
+			 */
+			static std::vector<double> getWaveletPacketTransforms(std::vector<double> transformedSignal, unsigned int partIndex, unsigned int levelsOfTransformation) {
+
+				// The partIndex must not access non existent parts of the transformation
+				if (WaveletTransformResults::getWaveletPacketAmountOfParts(levelsOfTransformation) - 1 < partIndex) {
+					throw std::runtime_error("You are trying to access a non existent part of transformation");
+				}
+
+				// Calculate de size of the chuncks
+				int chunkSize = transformedSignal.size() / WaveletTransformResults::getWaveletPacketAmountOfParts(levelsOfTransformation);
+
+				// Get the ranges that must be returned
+				int sstart = partIndex * chunkSize;
+				int send = sstart + chunkSize;
+
+				// Returns the data
+				return std::vector<double>(transformedSignal.begin() + sstart, transformedSignal.begin() + send);
+			}
+
+			/**
+			 * Static version of @getWaveletPacketAmountOfParts()
+			 * Calculate the maximum number of generated
+			 * parts in a packet wavelet transform given
+			 * the levels of transformations perfomed
+			 * USE ONLY WITH PACKET WAVELETS!!
+			 * @param levelsOfTransformation
+			 * @return maximum number of generated parts
+			 */
+			static unsigned int getWaveletPacketAmountOfParts(unsigned int levelsOfTransformation) {
+				return std::pow(2, levelsOfTransformation);
+			}
 	};
 }
 

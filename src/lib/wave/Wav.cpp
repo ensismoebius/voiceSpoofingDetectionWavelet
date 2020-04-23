@@ -58,7 +58,7 @@ class Wav {
 		char *path;
 
 		// callback function (applied on data)
-		void (*callbackFunction)(std::vector<double> signal, int &signalLength, unsigned int samplingRate, std::string path);
+		void (*callbackFunction)(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path);
 
 	public:
 
@@ -150,7 +150,7 @@ class Wav {
 			return path;
 		}
 
-		void setCallbackFunction(void (*callbackFunction)(std::vector<double> signal, int &signalLength, unsigned int samplingRate, std::string path)) {
+		void setCallbackFunction(void (*callbackFunction)(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path)) {
 			this->callbackFunction = callbackFunction;
 		}
 
