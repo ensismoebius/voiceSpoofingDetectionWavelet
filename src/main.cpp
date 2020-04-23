@@ -90,6 +90,8 @@ int main(int i, char *args[]) {
 
 		w.read(line.data());
 		w.process();
+
+		// does not need to write a new file: We will just analise it
 		//w.write("/tmp/teste.wav");
 
 		int parts = wavelets::WaveletTransformResults::getWaveletPacketAmountOfParts(level);
