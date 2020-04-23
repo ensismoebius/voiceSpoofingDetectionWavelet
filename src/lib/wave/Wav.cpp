@@ -85,7 +85,7 @@ class Wav {
 
 		void read(char *path) {
 
-			this->~Wav();
+			this->clearVectors();
 			this->resetMetaData();
 
 			this->path = path;
@@ -259,7 +259,7 @@ class Wav {
 
 		inline void read8Res1Channel(std::ifstream &ifs) {
 			unsigned char waveformdata;
-			this->data.resize(amountOfData);
+			this->data.resize(amountOfData, 0);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata), sizeof(waveformdata));
 				this->data.at(i) = (double) ((waveformdata));
@@ -269,8 +269,8 @@ class Wav {
 		inline void read8Res2Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_right;
 			unsigned char waveformdata_left;
-			this->dataLeft.resize(amountOfData);
-			this->dataRight.resize(amountOfData);
+			this->dataLeft.resize(amountOfData, 0);
+			this->dataRight.resize(amountOfData, 0);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata_left), sizeof(waveformdata_left));
 				ifs.read((char*) (&waveformdata_right), sizeof(waveformdata_right));
@@ -281,7 +281,7 @@ class Wav {
 
 		inline void read16Res1Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_lsb, waveformdata_msb;
-			this->data.resize(amountOfData);
+			this->data.resize(amountOfData, 0);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata_lsb), sizeof(waveformdata_lsb));
 				ifs.read((char*) (&waveformdata_msb), sizeof(waveformdata_msb));
@@ -291,8 +291,8 @@ class Wav {
 
 		inline void read16Res2Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_lsb_left, waveformdata_lsb_right, waveformdata_msb_left, waveformdata_msb_right;
-			this->dataLeft.resize(amountOfData);
-			this->dataRight.resize(amountOfData);
+			this->dataLeft.resize(amountOfData, 0);
+			this->dataRight.resize(amountOfData, 0);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata_lsb_left), sizeof(waveformdata_lsb_left));
 				ifs.read((char*) (&waveformdata_msb_left), sizeof(waveformdata_msb_left));
@@ -301,6 +301,12 @@ class Wav {
 				this->dataLeft.at(i) = (double) ((convert2of8to1of16(waveformdata_lsb_left, waveformdata_msb_left)));
 				this->dataRight.at(i) = (double) ((convert2of8to1of16(waveformdata_lsb_right, waveformdata_msb_right)));
 			}
+		}
+
+		void clearVectors() {
+			this->data.clear();
+			this->dataLeft.clear();
+			this->dataRight.clear();
 		}
 
 		void resetMetaData() {

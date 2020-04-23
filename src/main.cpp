@@ -16,15 +16,15 @@
 
 void plotResults(std::vector<double> data) {
 
-//	// Alias for a easier use of matplotlib
-//	namespace plt = matplotlibcpp;
-//
-//	plt::xlim(0, int(data.size()));
-//	plt::title("Signal");
-//
-//	plt::named_plot("Signal", data, "r-");
-//	plt::show();
-//	plt::pause(.1);
+	// Alias for a easier use of matplotlib
+	namespace plt = matplotlibcpp;
+
+	plt::xlim(0, int(data.size()));
+	plt::title("Signal");
+
+	plt::named_plot("Signal", data, "r-");
+	plt::show();
+	plt::pause(.1);
 }
 
 double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false) {
@@ -140,13 +140,12 @@ void waveletAnaliticFunction(std::vector<double> signal, int &signalLength, unsi
 
 	// Does the transformations
 	// wavelets::WaveletTransformResults res = wavelets::malat(signal, wavelets::altHaar, wavelets::PACKET_WAVELET, level);
-	wavelets::WaveletTransformResults res = wavelets::malat(signal, wavelets::altHaar, wavelets::REGULAR_WAVELET, level);
+	wavelets::WaveletTransformResults res = wavelets::malat(signal, wavelets::altHaar, wavelets::PACKET_WAVELET, level);
 
+	std::cout << "Mostrando: " << path << std::endl;
 	for (int i = 0; i < level; ++i) {
 		plotResults(res.getWaveletTransforms(i));
 	}
-	//plotResults(res.transformedSignal);
-
 }
 
 int main(int i, char *args[]) {
@@ -192,9 +191,7 @@ int main(int i, char *args[]) {
 		w.read(line.data());
 		w.process();
 		//w.write("/tmp/teste.wav");
-		std::vector<double> transformed = w.getData();
-		plotResults(transformed);
-		std::cout << "hhh";
+		plotResults(w.getData());
 	}
 
 	for (unsigned int columns = 0; columns < 14; columns++) {
