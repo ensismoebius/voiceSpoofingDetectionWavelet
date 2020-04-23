@@ -1,10 +1,12 @@
-//============================================================================
-// Name        : DSPFeature.cpp
-// Author      :
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
+/**
+ * @author André Furlan
+ * @email ensismoebius@gmail.com
+ * This whole project are under GPLv3, for
+ * more information read the license file
+ * 
+ * 23 de abr de 2020
+ * 
+ */
 
 #include <stdlib.h>
 #include <iostream>
@@ -12,14 +14,14 @@
 
 double calcCertaintyDegree_G1(double alpha, double betha);
 double calcContradictionDegree_G2(double alpha, double betha);
-double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double * * * &arrClasses);
-double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double * * * &arrClasses);
-void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double * * *arrClasses);
+double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double ***&arrClasses);
+double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double ***&arrClasses);
+void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double ***arrClasses);
 double pow(double __x, double __y);
 void showInParaconsistentPlane(char textMode, double certaintyDegree_G1, double contradictionDegree_G2);
 double sqrt(double __x);
 
-static void randomlyPopulateClassFeatureVectors(double**& featureVectors, unsigned int samplesPerClass, unsigned int featureVectorSize) {
+static void randomlyPopulateClassFeatureVectors(double **&featureVectors, unsigned int samplesPerClass, unsigned int featureVectorSize) {
 	for (unsigned int ci = 0; ci < samplesPerClass; ci++) {
 		for (unsigned int fi = 0; fi < featureVectorSize; fi++) {
 			featureVectors[ci][fi] = (random() / (double) RAND_MAX);
@@ -27,7 +29,7 @@ static void randomlyPopulateClassFeatureVectors(double**& featureVectors, unsign
 	}
 }
 
-static void clearClasses(double***& arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
+static void clearClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
 
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++) {
 		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++) {
@@ -37,7 +39,7 @@ static void clearClasses(double***& arrClasses, unsigned int amountOfClasses, un
 	}
 }
 
-static void show(double***& arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
+static void show(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
 
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++) {
 		std::cout << "Class: " << ci << std::endl;
@@ -51,7 +53,7 @@ static void show(double***& arrClasses, unsigned int amountOfClasses, unsigned i
 	}
 }
 
-void initializeClasses(double***& arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
+void initializeClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
 
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++) {
 
@@ -62,7 +64,7 @@ void initializeClasses(double***& arrClasses, unsigned int amountOfClasses, unsi
 	}
 }
 
-void populateClasses(double***& arrClasses, unsigned int amountOfClasses, unsigned int samplesPerClass, unsigned int featureVectorSize, char genRandom = 0) {
+void populateClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int samplesPerClass, unsigned int featureVectorSize, char genRandom = 0) {
 
 	// random values for test
 	if (genRandom) {
@@ -119,7 +121,7 @@ void example() {
 	unsigned int featureVectorSize = 2; //20
 	unsigned int featureVectorsPerClass = 4; //10
 
-	double*** arrClasses = new double**[amountOfClasses];
+	double ***arrClasses = new double**[amountOfClasses];
 	initializeClasses(arrClasses, amountOfClasses, featureVectorsPerClass, featureVectorSize);
 	populateClasses(arrClasses, amountOfClasses, featureVectorsPerClass, featureVectorSize, 0);
 	normalizeClassesFeatureVectors(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);

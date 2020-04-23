@@ -17,6 +17,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 class Wav {
 
@@ -49,29 +50,17 @@ class Wav {
 		int waveResolution;
 
 		// signal data
-		double *data;
-		double *dataLeft;
-		double *dataRight;
+		std::vector<double> data;
+		std::vector<double> dataLeft;
+		std::vector<double> dataRight;
 
 		// path of file containing the signal
 		char *path;
 
 		// callback function (applied on data)
-		void (*callbackFunction)(double *signal, int signalLength, unsigned int samplingRate, std::string path);
+		void (*callbackFunction)(std::vector<double> signal, int &signalLength, unsigned int samplingRate, std::string path);
 
 	public:
-		Wav() {
-			path = nullptr;
-			data = nullptr;
-			dataLeft = nullptr;
-			dataRight = nullptr;
-		}
-
-		~Wav() {
-			if (data != nullptr) delete[] data;
-			if (dataLeft != nullptr) delete[] dataLeft;
-			if (dataRight != nullptr) delete[] dataRight;
-		}
 
 		void process() {
 
@@ -82,11 +71,11 @@ class Wav {
 			switch (resPlusCha) {
 				case 82:
 				case 162:
-					(*callbackFunction)(dataLeft, amountOfData, this->headers.samplingrate, this->path);
-					(*callbackFunction)(dataRight, amountOfData, this->headers.samplingrate, this->path);
+					(*callbackFunction)(this->dataLeft, amountOfData, this->headers.samplingrate, this->path);
+					(*callbackFunction)(this->dataRight, amountOfData, this->headers.samplingrate, this->path);
 				case 81:
 				case 161:
-					(*callbackFunction)(data, amountOfData, this->headers.samplingrate, this->path);
+					(*callbackFunction)(this->data, amountOfData, this->headers.samplingrate, this->path);
 					break;
 				default:
 					throw std::runtime_error("Invalid number of channels and/or resolution");
@@ -145,15 +134,15 @@ class Wav {
 			ofs.close();
 		}
 
-		double* getData() const {
+		std::vector<double> getData() const {
 			return data;
 		}
 
-		double* getDataLeft() const {
+		std::vector<double> getDataLeft() const {
 			return dataLeft;
 		}
 
-		double* getDataRight() const {
+		std::vector<double> getDataRight() const {
 			return dataRight;
 		}
 
@@ -161,7 +150,7 @@ class Wav {
 			return path;
 		}
 
-		void setCallbackFunction(void (*callbackFunction)(double *signal, int signalLength, unsigned int samplingRate, std::string path)) {
+		void setCallbackFunction(void (*callbackFunction)(std::vector<double> signal, int &signalLength, unsigned int samplingRate, std::string path)) {
 			this->callbackFunction = callbackFunction;
 		}
 
@@ -220,7 +209,7 @@ class Wav {
 			unsigned char waveformdata;
 
 			for (int i = 0; i < amountOfData; i++) {
-				waveformdata = (unsigned char) (data[i]);
+				waveformdata = (unsigned char) (this->data.at(i));
 				ofs.write((char*) (&waveformdata), sizeof(waveformdata));
 			}
 		}
@@ -232,9 +221,9 @@ class Wav {
 			unsigned char waveformdata_right, waveformdata_left;
 
 			for (int i = 0; i < amountOfData; i++) {
-				waveformdata_left = (unsigned char) (dataLeft[i]);
+				waveformdata_left = (unsigned char) (this->dataLeft.at(i));
 				ofs.write((char*) (&waveformdata_left), sizeof(waveformdata_left));
-				waveformdata_right = (unsigned char) (dataRight[i]);
+				waveformdata_right = (unsigned char) (this->dataRight.at(i));
 				ofs.write((char*) (&waveformdata_right), sizeof(waveformdata_right));
 			}
 		}
@@ -246,7 +235,7 @@ class Wav {
 			unsigned char waveformdata_lsb, waveformdata_msb;
 
 			for (int i = 0; i < amountOfData; i++) {
-				convert1of16to2of8((short) ((data[i])), &waveformdata_lsb, &waveformdata_msb);
+				convert1of16to2of8((short) ((this->data.at(i))), &waveformdata_lsb, &waveformdata_msb);
 				ofs.write((char*) (&waveformdata_lsb), sizeof(waveformdata_lsb));
 				ofs.write((char*) (&waveformdata_msb), sizeof(waveformdata_msb));
 			}
@@ -259,8 +248,8 @@ class Wav {
 			unsigned char waveformdata_lsb_left, waveformdata_lsb_right, waveformdata_msb_left, waveformdata_msb_right;
 
 			for (int i = 0; i < amountOfData; i++) {
-				convert1of16to2of8((short) (dataLeft[i]), &waveformdata_lsb_left, &waveformdata_msb_left);
-				convert1of16to2of8((short) (dataRight[i]), &waveformdata_lsb_right, &waveformdata_msb_right);
+				convert1of16to2of8((short) (this->dataLeft.at(i)), &waveformdata_lsb_left, &waveformdata_msb_left);
+				convert1of16to2of8((short) (this->dataRight.at(i)), &waveformdata_lsb_right, &waveformdata_msb_right);
 				ofs.write((char*) (&waveformdata_lsb_left), sizeof(waveformdata_lsb_left));
 				ofs.write((char*) (&waveformdata_msb_left), sizeof(waveformdata_msb_left));
 				ofs.write((char*) (&waveformdata_lsb_right), sizeof(waveformdata_lsb_right));
@@ -270,47 +259,47 @@ class Wav {
 
 		inline void read8Res1Channel(std::ifstream &ifs) {
 			unsigned char waveformdata;
-			data = new double[amountOfData];
+			this->data.resize(amountOfData);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata), sizeof(waveformdata));
-				data[i] = (double) ((waveformdata));
+				this->data.at(i) = (double) ((waveformdata));
 			}
 		}
 
 		inline void read8Res2Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_right;
 			unsigned char waveformdata_left;
-			dataLeft = new double[amountOfData];
-			dataRight = new double[amountOfData];
+			this->dataLeft.resize(amountOfData);
+			this->dataRight.resize(amountOfData);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata_left), sizeof(waveformdata_left));
 				ifs.read((char*) (&waveformdata_right), sizeof(waveformdata_right));
-				dataLeft[i] = (double) ((waveformdata_right));
-				dataRight[i] = (double) ((waveformdata_left));
+				this->dataLeft.at(i) = (double) ((waveformdata_right));
+				this->dataRight.at(i) = (double) ((waveformdata_left));
 			}
 		}
 
 		inline void read16Res1Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_lsb, waveformdata_msb;
-			data = new double[amountOfData];
+			this->data.resize(amountOfData);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata_lsb), sizeof(waveformdata_lsb));
 				ifs.read((char*) (&waveformdata_msb), sizeof(waveformdata_msb));
-				data[i] = (double) ((convert2of8to1of16(waveformdata_lsb, waveformdata_msb)));
+				this->data.at(i) = (double) ((convert2of8to1of16(waveformdata_lsb, waveformdata_msb)));
 			}
 		}
 
 		inline void read16Res2Channel(std::ifstream &ifs) {
 			unsigned char waveformdata_lsb_left, waveformdata_lsb_right, waveformdata_msb_left, waveformdata_msb_right;
-			dataLeft = new double[amountOfData];
-			dataRight = new double[amountOfData];
+			this->dataLeft.resize(amountOfData);
+			this->dataRight.resize(amountOfData);
 			for (int i = 0; i < amountOfData; i++) {
 				ifs.read((char*) (&waveformdata_lsb_left), sizeof(waveformdata_lsb_left));
 				ifs.read((char*) (&waveformdata_msb_left), sizeof(waveformdata_msb_left));
 				ifs.read((char*) (&waveformdata_lsb_right), sizeof(waveformdata_lsb_right));
 				ifs.read((char*) (&waveformdata_msb_right), sizeof(waveformdata_msb_right));
-				dataLeft[i] = (double) ((convert2of8to1of16(waveformdata_lsb_left, waveformdata_msb_left)));
-				dataRight[i] = (double) ((convert2of8to1of16(waveformdata_lsb_right, waveformdata_msb_right)));
+				this->dataLeft.at(i) = (double) ((convert2of8to1of16(waveformdata_lsb_left, waveformdata_msb_left)));
+				this->dataRight.at(i) = (double) ((convert2of8to1of16(waveformdata_lsb_right, waveformdata_msb_right)));
 			}
 		}
 

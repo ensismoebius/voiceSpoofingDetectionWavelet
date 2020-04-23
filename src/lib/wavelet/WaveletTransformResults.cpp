@@ -119,7 +119,18 @@ namespace wavelets {
 				return std::vector<double>(this->transformedSignal.begin() + sstart, this->transformedSignal.begin() + send);
 			}
 
+			/**
+			 * Calculate the maximum number of generated
+			 * parts in a packet wavelet transform
+			 * @return maximum number of generated parts
+			 */
 			unsigned int getWaveletPacketAmountOfParts() {
+
+				// Checks if this is a wavelet transform
+				if (!this->packet) {
+					throw std::runtime_error("This is not a wavelet packet transfomed signal");
+				}
+
 				return std::pow(2, this->levelsOfTransformation);
 			}
 	};

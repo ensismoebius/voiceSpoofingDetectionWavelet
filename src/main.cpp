@@ -14,6 +14,19 @@
 #include "lib/linearAlgebra/linearAlgebra.h"
 #include "lib/matplotlib-cpp/matplotlibcpp.h"
 
+void plotResults(std::vector<double> data) {
+
+//	// Alias for a easier use of matplotlib
+//	namespace plt = matplotlibcpp;
+//
+//	plt::xlim(0, int(data.size()));
+//	plt::title("Signal");
+//
+//	plt::named_plot("Signal", data, "r-");
+//	plt::show();
+//	plt::pause(.1);
+}
+
 double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false) {
 
 	// size of the range
@@ -117,48 +130,23 @@ void analiticFunction(double *signal, int signalLength, unsigned int samplingRat
 	resultIndex++;
 }
 
-void waveletAnaliticFunction(double *signal, int signalLength, unsigned int samplingRate, std::string path) {
-
-	// Alias for a easier use of matplotlib
-	namespace plt = matplotlibcpp;
+void waveletAnaliticFunction(std::vector<double> signal, int &signalLength, unsigned int samplingRate, std::string path) {
 
 	// Transformation level
-	int level = 6;
-
-	// Store for streched signal
-	std::vector<double> strechedSignal(signal, signal + signalLength);
+	int level = 8;
 
 	// Expands the signal length to optimize the wavelet transform
-	strechedSignal.resize(wavelets::getNextPowerOfTwo(strechedSignal.size()), 0);
+	signal.resize(wavelets::getNextPowerOfTwo(signal.size()), 0);
 
 	// Does the transformations
-	wavelets::WaveletTransformResults res = wavelets::malat(strechedSignal, wavelets::altHaar, wavelets::PACKET_WAVELET, level);
+	// wavelets::WaveletTransformResults res = wavelets::malat(signal, wavelets::altHaar, wavelets::PACKET_WAVELET, level);
+	wavelets::WaveletTransformResults res = wavelets::malat(signal, wavelets::altHaar, wavelets::REGULAR_WAVELET, level);
 
-	plt::subplot(level + 2, 1, 1);
-	plt::ylim(-2500, 2500);
-	plt::xlim(0, int(strechedSignal.size()));
-	plt::title("Signal");
-	plt::named_plot("Signal", strechedSignal, "r-");
-
-	// Plots the transformations
-	for (int detailIndex = 0; detailIndex <= level; detailIndex++) {
-
-		plt::subplot(level + 2, 1, detailIndex + 2);
-
-		if (detailIndex > 0) {
-			plt::title("Scale " + std::to_string(detailIndex));
-		} else {
-			plt::title("Aproximation (level " + std::to_string(detailIndex) + ")");
-		}
-
-		std::vector<double> y = res.getWaveletTransforms(detailIndex);
-		plt::ylim(-2500, 2500);
-		plt::xlim(0, int(y.size()));
-		plt::plot(y);
-		plt::pause(0.0000000000001);
+	for (int i = 0; i < level; ++i) {
+		plotResults(res.getWaveletTransforms(i));
 	}
+	//plotResults(res.transformedSignal);
 
-	plt::show();
 }
 
 int main(int i, char *args[]) {
@@ -203,7 +191,10 @@ int main(int i, char *args[]) {
 
 		w.read(line.data());
 		w.process();
-		//	w.write("/tmp/teste.wav");
+		//w.write("/tmp/teste.wav");
+		std::vector<double> transformed = w.getData();
+		plotResults(transformed);
+		std::cout << "hhh";
 	}
 
 	for (unsigned int columns = 0; columns < 14; columns++) {
