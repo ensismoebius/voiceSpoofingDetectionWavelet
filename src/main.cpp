@@ -64,10 +64,6 @@ std::vector<double> createFeatureVector(wavelets::WaveletTransformResults transf
 	double rangeEnd = 0;
 	double rangeStart = 0;
 
-	// for every pair of ranges we need to copy the original signal
-	std::vector<double> copiedSignal(transformedSignal.transformedSignal);
-	//std::vector<double> copiedSignal(signal.size());
-
 	for (unsigned int i = 0; i < ranges.size() - 1; i++) {
 
 		// Select start and end ranges
