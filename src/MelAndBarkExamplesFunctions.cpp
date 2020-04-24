@@ -86,7 +86,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 	linearAlgebra::normalizeVector(featureVector, rangesSize - 1);
 
 	// Apply a DCT (Discrete Cosine Transform)
-	linearAlgebra::discreteCosineTransform(featureVector, rangesSize - 1);
+	//linearAlgebra::discreteCosineTransform(featureVector, rangesSize - 1);
 
 	delete[] window;
 	delete[] copiedSignal;

@@ -118,12 +118,12 @@ namespace linearAlgebra {
 		return true;
 	}
 
-	void discreteCosineTransform(double *vector, long vectorLength) {
+	void discreteCosineTransform(std::vector<double> vector) {
 
-		long N = vectorLength;
 		double sum;
 		double multi;
-		double F[vectorLength];
+		long N = vector.size();
+		std::vector<double> F(vector.size());
 
 		for (int u = 0; u < N; u++) {
 
@@ -131,27 +131,27 @@ namespace linearAlgebra {
 			multi = u == 0 ? 1.0 / std::sqrt(2.0) : 1.0;
 
 			for (int i = 0; i < N; i++) {
-				sum += multi * std::cos(((M_PI * u) / (2.0 * N)) * (2.0 * i + 1)) * vector[u];
+				sum += multi * std::cos(((M_PI * u) / (2.0 * N)) * (2.0 * i + 1)) * vector.at(u);
 			}
-			F[u] = sum;
+			F.at(u) = sum;
 		}
 
 		double maior = 0;
-		maior = F[1];
+		maior = F.at(1);
 
 		for (int i = 2; i < N; i++) {
 
-			if (F[i] > maior) {
-				maior = F[i];
+			if (F.at(i) > maior) {
+				maior = F.at(i);
 			}
 		}
 
 		for (int i = 1; i < N; i++) {
-			F[i] /= maior;
+			F.at(i) /= maior;
 		}
 
 		for (int i = 0; i < N; i++) {
-			vector[i] = F[i];
+			vector.at(i) = F.at(i);
 		}
 
 	}

@@ -64,5 +64,11 @@ namespace linearAlgebra {
 	 * @param vectorLength
 	 */
 	void discreteCosineTransform(double *vector, long vectorLength);
+
+	/**
+	 * Perform a DCT on vector
+	 * @param vector
+	 */
+	void discreteCosineTransform(std::vector<double> vector);
 }
 #endif /* SRC_LIB_LINEARALGEBRA_LINEARALGEBRA_H_ */
