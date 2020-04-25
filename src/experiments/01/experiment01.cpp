@@ -15,146 +15,224 @@
 #include <iostream>
 
 #include "../../lib/wave/Wav.cpp"
+#include "../../lib/wavelet/Types.h"
 #include "../../lib/wavelet/waveletOperations.h"
-#include "../../lib/wavelet/waveletCoeficients.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 
-namespace experiment01 {
+namespace waveletExperiments {
 
-	/**
-	 * Analityc function which performs an wavelet transform
-	 * of the value and calculate the energies based on MEL
-	 * or BARK intervals
-	 * @param signal
-	 * @param signalLength
-	 * @param samplingRate
-	 * @param path
-	 */
-	void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path) {
+	enum BARK_MEL {
+		BARK, MEL
+	};
 
-		///////////////////////
-		/// Wavelet section ///
-		///////////////////////
+	class Experiment01 {
 
-		// Expands the signal length to optimize the wavelet transform
-		signalLength = wavelets::getNextPowerOfTwo(signal.size());
-		signal.resize(signalLength, 0);
+		public:
+			// Use bark or mel?
+			static inline BARK_MEL barkOrMel;
 
-		// Calculate the max levels of decompositions
-		// i.e. until the coeficients are formed by
-		// just single numbers.
-		// This is needed because at the end of the
-		// transformation we will perform a MEL and
-		// BARK decomposition
-		int level = std::log2(signal.size());
+			// Wavelet waveform function
+			static inline std::vector<double> wavelet;
 
-		// Wavelet waveform function
-		std::vector<double> wavelet = wavelets::altHaar;
+			// Wavelet type
+			static inline wavelets::TransformMode mode;
 
-		// Wavelet type
-		wavelets::TransformMode mode = wavelets::PACKET_WAVELET;
-
-		// Does the transformations
-		wavelets::WaveletTransformResults transformedSignal = wavelets::malat(signal, wavelet, mode, level);
-
-		///////////////////////////
-		/// MEL or BARK section ///
-		///////////////////////////
-
-		// Ranges for MEL scale
-		std::vector<double> scaleRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
-
-		// feature vector has the amount of values minus 1 than ranges
-		// because we are summing up intervals
-		std::vector<double> featureVector(scaleRanges.size() - 1);
-
-		// We need to known the max frequency supported
-		// by the signal in order to find the values in
-		// which the sums of the BARK and MEL scales
-		// will be performed
-		double maxFrequency = samplingRate / 2;
-
-		// Calculate the minimum frequency range which
-		// will enable the correct interval sums to
-		// be performed
-		double frequencyChunckSize = maxFrequency / transformedSignal.getWaveletPacketAmountOfParts();
-
-		// Used to retrieve the interval for the sums
-		double rangeScaleEnd = 0;
-		double rangeScaleStart = 0;
-
-		// Loop over all the ranges and calculate the energies inside it
-		for (unsigned int i = 0; i < scaleRanges.size() - 1; i++) {
-
-			// Retrieve the interval for the sums
-			rangeScaleStart = scaleRanges.at(i);
-			rangeScaleEnd = scaleRanges.at(i + 1);
-
-			// Calculate the interval indexes inside the transformed signal
-			int startIndex = rangeScaleStart / frequencyChunckSize;
-			int endIndex = rangeScaleEnd / frequencyChunckSize;
-
-			// Sum the values from selected range
-			for (int j = startIndex; j < endIndex; ++j) {
-
-				// Retrieve the values
-				std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
-
-				// Sum them all!! (i.e. calculaate the energies)
-				featureVector.at(i) = 0;
-				for (double v : sig1) {
-					featureVector.at(i) += std::pow(v, 2);
-				}
-
+			static void init(std::vector<double> wavelet, wavelets::TransformMode mode, BARK_MEL barkOrMel) {
+				Experiment01::mode = mode;
+				Experiment01::wavelet = wavelet;
+				Experiment01::barkOrMel = barkOrMel;
 			}
 
-		}
+			/**
+			 * Analityc function which performs an wavelet transform
+			 * of the value and calculate the energies based on MEL
+			 * or BARK intervals
+			 * @param signal
+			 * @param signalLength
+			 * @param samplingRate
+			 * @param path
+			 */
+			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path) {
 
-		// Normalize the resulting feature vector
-		linearAlgebra::normalizeVector(featureVector);
+				///////////////////////
+				/// Wavelet section ///
+				///////////////////////
 
-		// Apply a DCT (Discrete Cosine Transform)
-		linearAlgebra::discreteCosineTransform(featureVector);
+				// Expands the signal length to optimize the wavelet transform
+				signalLength = wavelets::getNextPowerOfTwo(signal.size());
+				signal.resize(signalLength, 0);
 
-		// Replaces the original signal
-		signal = featureVector;
-	}
+				// Calculate the max levels of decompositions
+				// i.e. until the coeficients are formed by
+				// just single numbers.
+				// This is needed because at the end of the
+				// transformation we will perform a MEL and
+				// BARK decomposition
+				int level = std::log2(signal.size());
 
-	void plotResults(std::vector<double> data) {
+				// Does the transformations
+				wavelets::WaveletTransformResults transformedSignal = wavelets::malat(signal, Experiment01::wavelet, Experiment01::mode, level);
+
+				///////////////////////////
+				/// MEL or BARK section ///
+				///////////////////////////
+
+				std::vector<double> scaleRanges;
+
+				if (Experiment01::barkOrMel == MEL) {
+					// Ranges for MEL scale
+					scaleRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
+				} else if (Experiment01::barkOrMel == BARK) {
+					// Ranges for BARK scale
+					scaleRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
+				}
+
+				// feature vector has the amount of values minus 1 than ranges
+				// because we are summing up intervals
+				std::vector<double> featureVector(scaleRanges.size() - 1);
+
+				// We need to known the max frequency supported
+				// by the signal in order to find the values in
+				// which the sums of the BARK and MEL scales
+				// will be performed
+				double maxFrequency = samplingRate / 2;
+
+				// Calculate the minimum frequency range which
+				// will enable the correct interval sums to
+				// be performed
+				double frequencyChunckSize = maxFrequency / transformedSignal.getWaveletPacketAmountOfParts();
+
+				// Used to retrieve the interval for the sums
+				double rangeScaleEnd = 0;
+				double rangeScaleStart = 0;
+
+				// Loop over all the ranges and calculate the energies inside it
+				for (unsigned int i = 0; i < scaleRanges.size() - 1; i++) {
+
+					// Retrieve the interval for the sums
+					rangeScaleStart = scaleRanges.at(i);
+					rangeScaleEnd = scaleRanges.at(i + 1);
+
+					// Calculate the interval indexes inside the transformed signal
+					int startIndex = rangeScaleStart / frequencyChunckSize;
+					int endIndex = rangeScaleEnd / frequencyChunckSize;
+
+					// Sum the values from selected range
+					for (int j = startIndex; j < endIndex; ++j) {
+
+						// Retrieve the values
+						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
+
+						// Sum them all!! (i.e. calculaate the energies)
+						featureVector.at(i) = 0;
+						for (double v : sig1) {
+							featureVector.at(i) += std::pow(v, 2);
+						}
+
+					}
+
+				}
+
+				// Normalize the resulting feature vector
+				linearAlgebra::normalizeVector(featureVector);
+
+				// Apply a DCT (Discrete Cosine Transform)
+				linearAlgebra::discreteCosineTransform(featureVector);
+
+				// Replaces the original signal
+				signal = featureVector;
+			}
+	};
+
+	/**
+	 * Plot the results
+	 * @param data
+	 */
+	void plotResults(std::vector<double> data, std::string title) {
 
 		// Alias for a easier use of matplotlib
 		namespace plt = matplotlibcpp;
 
 		plt::xlim(0, int(data.size()));
-		plt::title("Signal");
+		plt::title(title);
 
-		plt::named_plot("Signal", data, "r-");
+		plt::plot(data, "r-");
 		plt::show();
 		plt::pause(.1);
+	}
+
+	std::vector<std::string> explode(std::string str, std::string delimiter) {
+		std::vector<std::string> res;
+
+		size_t pos = 0;
+		std::string token;
+		while ((pos = str.find(delimiter)) != std::string::npos) {
+			token = str.substr(0, pos);
+			if (token.compare("") != 0) {
+				res.push_back(token);
+			}
+			str.erase(0, pos + delimiter.length());
+		}
+
+		res.push_back(str);
+
+		return res;
 	}
 
 	void perform(char *args[]) {
 		std::cout << std::fixed;
 		std::cout << std::setprecision(20);
 
-		Wav w;
-		w.setCallbackFunction(waveletAnaliticFunction);
-
 		std::ifstream fileListStream;
 		fileListStream.open(args[1], std::ios::in);
 
+		// set the callback function in the Experiment01 class
+		Wav w;
+		w.setCallbackFunction(Experiment01::waveletAnaliticFunction);
+
+		// store the file path to be processed
 		std::string line;
-		while (std::getline(fileListStream, line)) {
 
-			// lines that begins with # are going to be ignored
-			if (line.find("#") == 0) continue;
+		// Plot title
+		std::string plotTitle;
 
-			w.read(line.data());
-			w.process();
+		// iterates over all wavelets types
+		for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
 
-			plotResults(w.getData());
+			// clear fail and eof bits
+			fileListStream.clear();
+			// back to the start!
+			fileListStream.seekg(0, std::ios::beg);
+
+			// gets the file path to process
+			while (std::getline(fileListStream, line)) {
+
+				// Iterates over all barkOrMel
+				for (int bm = BARK; bm <= MEL; bm++) {
+
+					// set current wavelet and barkOrMel to the experiment
+					Experiment01::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));
+
+					// lines that begins with # are going to be ignored
+					if (line.find("#") == 0) continue;
+
+					w.read(line.data());
+					w.process();
+
+					plotTitle = bm == BARK ? "BARK <" : "MEL <";
+					plotTitle += v.first + "> - ";
+
+					std::vector<std::string> parts = explode(line, "/");
+
+					plotTitle += parts.at(parts.size() - 4) + " - [" + parts.at(parts.size() - 2) + "] - " + parts.at(parts.size() - 1);
+
+					plotResults(w.getData(), plotTitle);
+				}
+			}
 		}
+
 	}
+
 }
