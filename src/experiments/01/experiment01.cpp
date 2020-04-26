@@ -146,23 +146,6 @@ namespace waveletExperiments {
 			}
 	};
 
-	/**
-	 * Plot the results
-	 * @param data
-	 */
-	void plotResults(std::vector<double> data, std::string title) {
-
-		// Alias for a easier use of matplotlib
-		namespace plt = matplotlibcpp;
-
-		plt::xlim(0, int(data.size()));
-		plt::title(title);
-
-		plt::plot(data, "r-");
-		plt::show();
-		plt::pause(.1);
-	}
-
 	std::vector<std::string> explode(std::string str, std::string delimiter) {
 		std::vector<std::string> res;
 
@@ -181,6 +164,31 @@ namespace waveletExperiments {
 		return res;
 	}
 
+	/**
+	 * Plot the results
+	 * @param data
+	 */
+	void plotResults(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
+
+		// Plot title
+		std::string plotTitle;
+
+		plotTitle = bm == BARK ? "BARK <" : "MEL <";
+		plotTitle += waveletName + "> - ";
+		std::vector<std::string> parts = explode(filePath, "/");
+		plotTitle += parts.at(parts.size() - 4) + " - [" + parts.at(parts.size() - 2) + "] - " + parts.at(parts.size() - 1);
+
+		// Alias for a easier use of matplotlib
+		namespace plt = matplotlibcpp;
+
+		plt::xlim(0, int(signal.size()));
+		plt::title(plotTitle);
+
+		plt::plot(signal, "r-");
+		plt::show();
+		plt::pause(.1);
+	}
+
 	void perform(char *args[]) {
 		std::cout << std::fixed;
 		std::cout << std::setprecision(20);
@@ -195,22 +203,19 @@ namespace waveletExperiments {
 		// store the file path to be processed
 		std::string line;
 
-		// Plot title
-		std::string plotTitle;
-
 		// iterates over all wavelets types
 		for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
 
-			// clear fail and eof bits
-			fileListStream.clear();
-			// back to the start!
-			fileListStream.seekg(0, std::ios::beg);
+			// Iterates over all barkOrMel
+			for (int bm = BARK; bm <= MEL; bm++) {
 
-			// gets the file path to process
-			while (std::getline(fileListStream, line)) {
+				// clear fail and eof bits
+				fileListStream.clear();
+				// back to the start!
+				fileListStream.seekg(0, std::ios::beg);
 
-				// Iterates over all barkOrMel
-				for (int bm = BARK; bm <= MEL; bm++) {
+				// gets the file path to process
+				while (std::getline(fileListStream, line)) {
 
 					// set current wavelet and barkOrMel to the experiment
 					Experiment01::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));
@@ -221,12 +226,7 @@ namespace waveletExperiments {
 					w.read(line.data());
 					w.process();
 
-					plotTitle = bm == BARK ? "BARK <" : "MEL <";
-					plotTitle += v.first + "> - ";
-					std::vector<std::string> parts = explode(line, "/");
-					plotTitle += parts.at(parts.size() - 4) + " - [" + parts.at(parts.size() - 2) + "] - " + parts.at(parts.size() - 1);
-
-					plotResults(w.getData(), plotTitle);
+					plotResults(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
 				}
 			}
 		}
