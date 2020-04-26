@@ -165,16 +165,50 @@ namespace waveletExperiments {
 	}
 
 	/**
+	 * Save the results
+	 * @param data
+	 */
+	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
+
+		std::vector<std::string> parts = explode(filePath, "/");
+
+		std::string barOrMel = (bm == BARK ? "BARK" : "MEL");
+		std::string fileName = parts.at(parts.size() - 1);
+		std::string digit = parts.at(parts.size() - 2);
+		std::string liveOrPlayback = parts.at(parts.size() - 4);
+
+		filePath = "results.csv";
+
+		std::ofstream ofs(filePath, std::ios::app | std::ios::out);
+
+		if (!ofs.is_open()) {
+			std::cout << "Cannot open file: " << filePath;
+			throw std::runtime_error("Impossible to open the file!");
+			return;
+		}
+
+		ofs << waveletName + '\t' + liveOrPlayback + '\t' + barOrMel + '\t' + fileName + '\t' + digit + '\t';
+
+		for (unsigned int i = 0; i < signal.size(); i++) {
+			ofs << std::to_string(signal.at(i)) << '\t';
+		}
+
+		ofs << std::endl;
+
+		ofs.close();
+	}
+
+	/**
 	 * Plot the results
 	 * @param data
 	 */
-	void plotResults(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
+	void plotFeatureVector(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
 
 		// Plot title
 		std::string plotTitle;
 
-		plotTitle = bm == BARK ? "BARK <" : "MEL <";
-		plotTitle += waveletName + "> - ";
+		plotTitle = (bm == BARK ? "BARK <" : "MEL <") + waveletName + "> - ";
+
 		std::vector<std::string> parts = explode(filePath, "/");
 		plotTitle += parts.at(parts.size() - 4) + " - [" + parts.at(parts.size() - 2) + "] - " + parts.at(parts.size() - 1);
 
@@ -226,7 +260,8 @@ namespace waveletExperiments {
 					w.read(line.data());
 					w.process();
 
-					plotResults(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
+					saveDataToFile(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
+					//plotFeatureVector(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
 				}
 			}
 		}

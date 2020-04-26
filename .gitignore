@@ -57,3 +57,4 @@ tmp
 /Debug/
 src/lib/matplotlib-cpp
 /Release/
+/results.csv
