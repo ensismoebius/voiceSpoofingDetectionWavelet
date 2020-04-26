@@ -56,3 +56,4 @@ latex.rul.xml
 tmp
 /Debug/
 src/lib/matplotlib-cpp
+/Release/

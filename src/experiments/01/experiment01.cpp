@@ -223,9 +223,7 @@ namespace waveletExperiments {
 
 					plotTitle = bm == BARK ? "BARK <" : "MEL <";
 					plotTitle += v.first + "> - ";
-
 					std::vector<std::string> parts = explode(line, "/");
-
 					plotTitle += parts.at(parts.size() - 4) + " - [" + parts.at(parts.size() - 2) + "] - " + parts.at(parts.size() - 1);
 
 					plotResults(w.getData(), plotTitle);

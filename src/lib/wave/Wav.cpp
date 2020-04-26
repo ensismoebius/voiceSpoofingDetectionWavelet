@@ -55,7 +55,7 @@ class Wav {
 		std::vector<double> dataRight;
 
 		// path of file containing the signal
-		char *path;
+		std::string path;
 
 		// callback function (applied on data)
 		void (*callbackFunction)(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path);
@@ -83,7 +83,7 @@ class Wav {
 			}
 		}
 
-		void read(char *path) {
+		void read(std::string path) {
 
 			this->clearVectors();
 			this->resetMetaData();
