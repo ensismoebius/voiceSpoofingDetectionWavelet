@@ -1,3 +1,4 @@
+
 dialog --title "Welcome guys" --msgbox "This is the auto split script" 5 50
 
 randomNumber=$(printf '%s\n' $(echo "scale=8; $RANDOM/32768" | bc ) | sed  's/\.//g')
@@ -32,31 +33,54 @@ else
 	sourceFile=$1
 fi
 
+# Play first 2 seconds of the audio in order to user known the noise level
+dialog --infobox "Listen..." 5 40
+play -q $sourceFile trim 00:00 00:03 2> /dev/null
+
+# This dialog let you choose noise levels
+noiseTorelance=$(dialog --title 'Noise levels' --menu 'Now choose a noise level:' 0 0 0 \
+0.1	silentPlace \
+0.6	notSoSilentPlace \
+1	noisyPlaceLevel01 \
+1.5	noisyPlaceLevel02 \
+2	veryNoisyPalce \
+3	veryVeryNoisyPlace \
+--stdout)
+
+# This dialog asks if the sound comes from zippy or slow speakers
+speechVel=$(dialog --title 'Speech velocity' --menu 'Choose:' 0 0 0 \
+0.08	'very fast' \
+0.1	fast \
+0.2	regular \
+0.3	slow \
+--stdout)
 
 # Separate audio using the silences within
-sox $sourceFile res$randomNumber.wav silence -l 1 0.1 0.7% 1 0.1 0.7% : newfile : restart
+echo sox $sourceFile res$randomNumber.wav silence -l 1 $speechVel $noiseTorelance% 1 $speechVel $noiseTorelance% : newfile : restart
+sox $sourceFile res$randomNumber.wav silence -l 1 ${speechVel} ${noiseTorelance}% 1 ${speechVel} ${noiseTorelance}% : newfile : restart
 
 # Stores the newly created files in an directory
 mkdir dir$randomNumber
 mv res$randomNumber* dir$randomNumber
 
-
 # Interactive stores the files in choosen by user places
+dialog --infobox "Separation has begun!" 5 40
 for file in dir$randomNumber/*;
 do
-	play $file
+	play -q $file 2> /dev/null
 
 	moveTo=$(dialog --title "Select a directory to this split" --dselect "$fileDestiny" 10 70 --stdout) 
 	
 	if [ "$moveTo" == "" ]
 	then
-		echo "ignoring $file"
+		dialog --infobox "$file ignored" 5 40
 	else
-		echo "Moving file $file to $moveTo"
+		dialog --infobox "Moving file $file to $moveTo" 5 40
 		fileDestiny=$moveTo
 		mkdir -p $moveTo
-		mv $file $moveTo/$sourceFile
+		mv $file $moveTo/$(basename $sourceFile)
 	fi
 done
 
 rm -rf dir$randomNumber	
+clear
