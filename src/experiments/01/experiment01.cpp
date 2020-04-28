@@ -177,7 +177,7 @@ namespace waveletExperiments {
 		std::string digit = parts.at(parts.size() - 2);
 		std::string liveOrPlayback = parts.at(parts.size() - 4);
 
-		filePath = "results.csv";
+		filePath = barOrMel + "_results.csv";
 
 		std::ofstream ofs(filePath, std::ios::app | std::ios::out);
 
@@ -187,7 +187,7 @@ namespace waveletExperiments {
 			return;
 		}
 
-		ofs << waveletName + '\t' + liveOrPlayback + '\t' + barOrMel + '\t' + fileName + '\t' + digit + '\t';
+		ofs << waveletName + '\t' + barOrMel + '\t' + liveOrPlayback + '\t' + fileName + '\t' + digit + '\t';
 
 		for (unsigned int i = 0; i < signal.size(); i++) {
 			ofs << std::to_string(signal.at(i)) << '\t';
