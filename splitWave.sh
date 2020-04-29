@@ -78,7 +78,31 @@ do
 		dialog --infobox "Moving file $file to $moveTo" 5 40
 		fileDestiny=$moveTo
 		mkdir -p $moveTo
-		mv $file $moveTo/$(basename $sourceFile)
+
+		# If the file already exists asks for overwrite or append 
+		if [[ -f $moveTo/$(basename $sourceFile) ]]
+		then
+			over=$(dialog --title 'Overwrite or append?' --menu 'Choose:' 0 0 0 \
+			1    Overwrite \
+			2    Append \
+			--stdout)
+
+			# Overwrite file
+			if [ "$over" == "1" ]
+			then
+				mv $file $moveTo/$(basename $sourceFile)
+			fi
+
+			# Append to file
+			if [ "$over" == "2" ]
+			then
+				mv $moveTo/$(basename $sourceFile) $moveTo/temp.wav
+				sox $moveTo/temp.wav $file $moveTo/$(basename $sourceFile)
+				rm $moveTo/temp.wav
+			fi
+		else
+			mv $file $moveTo/$(basename $sourceFile)
+		fi
 	fi
 done
 
