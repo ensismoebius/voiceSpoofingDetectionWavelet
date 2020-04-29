@@ -50,9 +50,9 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1261129630" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.157627384" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.link.option.libs.288776191" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="python3.6m"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="python2.7"/>
 									<listOptionValue builtIn="false" value="python3.6m"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="python2.7"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="gnu.cpp.link.option.paths.609056984" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1608511063" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
@@ -70,15 +70,15 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
 				<externalSettings containerId="org.eclipse.cdt.managedbuilder.pkgconfig.extSettings" factoryId="org.eclipse.cdt.core.extension.container.factory">
 					<externalSetting contentTypes="org.eclipse.cdt.managedbuilder.core.compiledObjectFile">
-						<entry flags="UNDEFINED" kind="libraryFile" name="python3.6m" srcPrefixMapping="" srcRootPath=""/>
+						<entry flags="UNDEFINED" kind="libraryFile" name="python2.7" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 					<externalSetting contentTypes="org.eclipse.cdt.core.cSource:org.eclipse.cdt.core.cxxSource">
 						<entry flags="NONE" kind="includePath" name="/usr/include/python3.6m"/>
 						<entry flags="NONE" kind="includePath" name="/usr/include/x86_64-linux-gnu/python3.6m"/>
 						<entry flags="NONE" kind="includePath" name="/usr/include/python2.7"/>
 						<entry flags="NONE" kind="includePath" name="/usr/include/x86_64-linux-gnu/python2.7"/>
-						<entry flags="BUILTIN" kind="includePath" name="/usr/include/python3.6m"/>
-						<entry flags="BUILTIN" kind="includePath" name="/usr/include/x86_64-linux-gnu/python3.6m"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/python2.7"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/x86_64-linux-gnu/python2.7"/>
 					</externalSetting>
 				</externalSettings>
 			</storageModule>
@@ -101,7 +101,7 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.exe.release.415696720." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.release.1093077798" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.release">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.release.1236636513" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.release"/>
-							<builder buildPath="${workspace_loc:/mestrado}/Release" id="cdt.managedbuild.target.gnu.builder.exe.release.1832444639" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.exe.release"/>
+							<builder buildPath="${workspace_loc:/mestrado}/Release" id="cdt.managedbuild.target.gnu.builder.exe.release.1832444639" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="cdt.managedbuild.target.gnu.builder.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.873944116" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1153532789" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release">
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1329155876" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
@@ -128,9 +128,9 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1086569959" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.1631082296" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.link.option.libs.1788147977" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="python3.6m"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="python2.7"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="python3.6m"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="python2.7"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.2086120788" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -147,15 +147,15 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
 				<externalSettings containerId="org.eclipse.cdt.managedbuilder.pkgconfig.extSettings" factoryId="org.eclipse.cdt.core.extension.container.factory">
 					<externalSetting contentTypes="org.eclipse.cdt.managedbuilder.core.compiledObjectFile">
-						<entry flags="UNDEFINED" kind="libraryFile" name="python3.6m" srcPrefixMapping="" srcRootPath=""/>
+						<entry flags="UNDEFINED" kind="libraryFile" name="python2.7" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 					<externalSetting contentTypes="org.eclipse.cdt.core.cSource:org.eclipse.cdt.core.cxxSource">
 						<entry flags="NONE" kind="includePath" name="/usr/include/python3.6m"/>
 						<entry flags="NONE" kind="includePath" name="/usr/include/x86_64-linux-gnu/python3.6m"/>
 						<entry flags="NONE" kind="includePath" name="/usr/include/python2.7"/>
 						<entry flags="NONE" kind="includePath" name="/usr/include/x86_64-linux-gnu/python2.7"/>
-						<entry flags="BUILTIN" kind="includePath" name="/usr/include/python3.6m"/>
-						<entry flags="BUILTIN" kind="includePath" name="/usr/include/x86_64-linux-gnu/python3.6m"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/python2.7"/>
+						<entry flags="BUILTIN" kind="includePath" name="/usr/include/x86_64-linux-gnu/python2.7"/>
 					</externalSetting>
 				</externalSettings>
 			</storageModule>

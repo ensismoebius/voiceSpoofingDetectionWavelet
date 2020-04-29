@@ -216,12 +216,9 @@ namespace waveletExperiments {
 		ofs.close();
 	}
 
-	void perform(char *args[]) {
+	void perform(char *args[], int fileCount) {
 		std::cout << std::fixed;
 		std::cout << std::setprecision(20);
-
-		std::ifstream fileListStream;
-		fileListStream.open(args[1], std::ios::in);
 
 		// set the callback function in the Experiment01 class
 		Wav w;
@@ -230,34 +227,81 @@ namespace waveletExperiments {
 		// store the file path to be processed
 		std::string line;
 
-		// iterates over all wavelets types
-		for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
+		/**
+		 * wavelet1
+		 * 	BARK
+		 * 		Class1
+		 * 			data1
+		 * 			data2
+		 * 			data3
+		 * 			etc.
+		 * 		Class2
+		 * 			data1
+		 * 			data2
+		 * 			data3
+		 * 			etc.
+		 * 		Etc.
+		 * 	MEL
+		 * 		Class1
+		 * 			data1
+		 * 			data2
+		 * 			data3
+		 * 			etc.
+		 * 		Class2
+		 * 			data1
+		 * 			data2
+		 * 			data3
+		 * 			etc.
+		 * 		Etc.
+		 * 	ETC.
+		 * wavelet2
+		 * 	...
+		 */
+		std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results;
 
-			// Iterates over all barkOrMel
-			for (int bm = BARK; bm <= MEL; bm++) {
+		// Iterates over all files, this files
+		// should represent our data classes
+		for (int i = 1; i < fileCount; i++) {
 
-				// clear fail and eof bits
-				fileListStream.clear();
-				// back to the start!
-				fileListStream.seekg(0, std::ios::beg);
+			// file reader
+			std::ifstream fileListStream;
+			fileListStream.open(args[i], std::ios::in);
 
-				// gets the file path to process
-				while (std::getline(fileListStream, line)) {
+			// iterates over all wavelets types
+			for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
 
-					// set current wavelet and barkOrMel to the experiment
-					Experiment01::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));
+				// Iterates over all barkOrMel
+				for (int bm = BARK; bm <= MEL; bm++) {
 
-					// lines that begins with # are going to be ignored
-					if (line.find("#") == 0) continue;
+					// clear fail and eof bits
+					fileListStream.clear();
+					// back to the start!
+					fileListStream.seekg(0, std::ios::beg);
 
-					w.read(line.data());
-					w.process();
+					// gets the file path to process
+					while (std::getline(fileListStream, line)) {
 
-					saveDataToFile(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
-					//plotFeatureVector(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
+						// set current wavelet and barkOrMel to the experiment
+						Experiment01::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));
+
+						// lines that begins with # are going to be ignored
+						if (line.find("#") == 0) continue;
+
+						w.read(line.data());
+						w.process();
+
+						///////////////////////////////////////////////////////////////////////
+
+						results[v.first][static_cast<BARK_MEL>(bm)][args[i]].push_back(w.getData());
+
+						//saveDataToFile(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
+						//plotFeatureVector(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
+					}
 				}
 			}
 		}
+
+		std::cout << "teste";
 
 	}
 

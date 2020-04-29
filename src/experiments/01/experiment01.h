@@ -64,7 +64,7 @@ namespace waveletExperiments {
 
 	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath);
 
-	void perform(char *args[]);
+	void perform(char *args[], int fileCount);
 
 }
 

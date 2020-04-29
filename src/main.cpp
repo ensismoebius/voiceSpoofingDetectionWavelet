@@ -8,7 +8,7 @@
 
 int main(int i, char *args[]) {
 
-	waveletExperiments::perform(args);
+	waveletExperiments::perform(args, i);
 
 	return 0;
 }
