@@ -59,3 +59,4 @@ src/lib/matplotlib-cpp
 /Release/
 /results.csv
 /.splitWave.sh.swp
+/dir*

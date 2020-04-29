@@ -79,13 +79,25 @@ do
 		fileDestiny=$moveTo
 		mkdir -p $moveTo
 
-		# If the file already exists asks for overwrite or append 
+		# If the file already exists asks for overwrite or append or to hear it again 
 		if [[ -f $moveTo/$(basename $sourceFile) ]]
 		then
-			over=$(dialog --title 'Overwrite or append?' --menu 'Choose:' 0 0 0 \
-			1    Overwrite \
-			2    Append \
-			--stdout)
+			# Emulates a do while loop
+			over=3
+			while [ "$over" == "3" ]
+			do
+				over=$(dialog --title 'File already exist!!!' --menu 'Choose an action:' 0 0 0 \
+				1	Overwrite \
+				2	Append \
+				3	Hear \
+				--stdout)
+
+				# Plays the audio
+				if [ "$over" == "3" ]
+				then
+					play -q $moveTo/$(basename $sourceFile) 2> /dev/null
+				fi
+			done
 
 			# Overwrite file
 			if [ "$over" == "1" ]
