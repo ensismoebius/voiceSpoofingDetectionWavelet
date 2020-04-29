@@ -1,4 +1,4 @@
-t=$(ls soundSamples/separated/playback/Voz??/*/? | sed -z 's/:\n/\//g' | sed -z 's/\n\n/\n/g')
+t=$(ls soundSamples/separated/playback/Voz?/*/? | sed -z 's/:\n/\//g' | sed -z 's/\n\n/\n/g')
 for file in $t
 do
 	fileName=$(echo $file | cut -d'/' -f4); 
