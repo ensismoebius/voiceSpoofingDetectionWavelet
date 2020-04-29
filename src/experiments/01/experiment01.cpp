@@ -16,6 +16,7 @@
 
 #include "../../lib/wave/Wav.cpp"
 #include "../../lib/wavelet/Types.h"
+#include "../../lib/gnuplot/gnuplotCalls.h"
 #include "../../lib/wavelet/waveletOperations.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
@@ -220,7 +221,7 @@ namespace waveletExperiments {
 		ofs.close();
 	}
 
-	void perform(char *args[], int classCount) {
+	void perform(char *classes[], int classCount) {
 		std::cout << std::fixed;
 		std::cout << std::setprecision(20);
 
@@ -269,7 +270,7 @@ namespace waveletExperiments {
 
 			// file reader
 			std::ifstream fileListStream;
-			fileListStream.open(args[i], std::ios::in);
+			fileListStream.open(classes[i], std::ios::in);
 
 			// iterates over all wavelets types
 			for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
@@ -294,16 +295,26 @@ namespace waveletExperiments {
 						w.read(line.data());
 						w.process();
 
-						results[v.first][static_cast<BARK_MEL>(bm)][args[i]].push_back(w.getData());
+						results[v.first][static_cast<BARK_MEL>(bm)][classes[i]].push_back(w.getData());
 
 						//saveDataToFile(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
 						//plotFeatureVector(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
 					}
 
-					///////////////////////////////////////////////////////////////////////
+				}
 
-					unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[i]).size();
-					unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[i]).at(0).size();
+			}
+		}
+		///////////////////////////////////////////////////////////////////////
+
+		// iterates over all data classes
+		for (int i = 1; i < classCount; i++) {
+			// iterates over all wavelets types
+			for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
+				// Iterates over all barkOrMel
+				for (int bm = BARK; bm <= MEL; bm++) {
+					unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classes[i]).size();
+					unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classes[i]).at(0).size();
 					std::map<std::string, std::vector<std::vector<double>>> arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
 
 					double alpha = calculateAlpha(classCount, featureVectorsPerClass, featureVectorSize, arrClasses);
@@ -316,9 +327,8 @@ namespace waveletExperiments {
 					std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
 
 					// calculating the position at the paraconsistent plane
-					//showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
+					showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
 					std::cout << "teste";
-
 				}
 			}
 		}
