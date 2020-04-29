@@ -194,13 +194,15 @@ namespace waveletExperiments {
 	 * @param data
 	 */
 	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
+
 		std::vector<std::string> parts = explode(filePath, "/");
 		std::string barOrMel = (bm == BARK ? "BARK" : "MEL");
 		std::string fileName = parts.at(parts.size() - 1);
 		std::string digit = parts.at(parts.size() - 2);
 		std::string liveOrPlayback = parts.at(parts.size() - 4);
-		filePath = barOrMel + "_results.csv";
-		std::ofstream ofs("/tmp/" + filePath, std::ios::app | std::ios::out);
+
+		filePath = "/tmp/" + barOrMel + "_results.csv";
+		std::ofstream ofs(filePath, std::ios::app | std::ios::out);
 		if (!ofs.is_open()) {
 			std::cout << "Cannot open file: " << filePath;
 			throw std::runtime_error("Impossible to open the file!");
