@@ -3,9 +3,9 @@
  * @email ensismoebius@gmail.com
  * This whole project are under GPLv3, for
  * more information read the license file
- * 
+ *
  * 23 de abr de 2020
- * 
+ *
  */
 
 #include <stdlib.h>

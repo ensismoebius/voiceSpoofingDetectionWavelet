@@ -19,6 +19,7 @@
 #include "../../lib/wavelet/waveletOperations.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
+#include "../../lib/paraconsistent/paraconsistent.h"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 
 namespace waveletExperiments {
