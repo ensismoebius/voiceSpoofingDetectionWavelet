@@ -165,40 +165,6 @@ namespace waveletExperiments {
 	}
 
 	/**
-	 * Save the results
-	 * @param data
-	 */
-	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
-
-		std::vector<std::string> parts = explode(filePath, "/");
-
-		std::string barOrMel = (bm == BARK ? "BARK" : "MEL");
-		std::string fileName = parts.at(parts.size() - 1);
-		std::string digit = parts.at(parts.size() - 2);
-		std::string liveOrPlayback = parts.at(parts.size() - 4);
-
-		filePath = barOrMel + "_results.csv";
-
-		std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-
-		if (!ofs.is_open()) {
-			std::cout << "Cannot open file: " << filePath;
-			throw std::runtime_error("Impossible to open the file!");
-			return;
-		}
-
-		ofs << waveletName + '\t' + barOrMel + '\t' + liveOrPlayback + '\t' + fileName + '\t' + digit + '\t';
-
-		for (unsigned int i = 0; i < signal.size(); i++) {
-			ofs << std::to_string(signal.at(i)) << '\t';
-		}
-
-		ofs << std::endl;
-
-		ofs.close();
-	}
-
-	/**
 	 * Plot the results
 	 * @param data
 	 */
@@ -221,6 +187,31 @@ namespace waveletExperiments {
 		plt::plot(signal, "r-");
 		plt::show();
 		plt::pause(.1);
+	}
+
+	/**
+	 * Save the results
+	 * @param data
+	 */
+	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
+		std::vector<std::string> parts = explode(filePath, "/");
+		std::string barOrMel = (bm == BARK ? "BARK" : "MEL");
+		std::string fileName = parts.at(parts.size() - 1);
+		std::string digit = parts.at(parts.size() - 2);
+		std::string liveOrPlayback = parts.at(parts.size() - 4);
+		filePath = barOrMel + "_results.csv";
+		std::ofstream ofs("/tmp/" + filePath, std::ios::app | std::ios::out);
+		if (!ofs.is_open()) {
+			std::cout << "Cannot open file: " << filePath;
+			throw std::runtime_error("Impossible to open the file!");
+			return;
+		}
+		ofs << waveletName + '\t' + barOrMel + '\t' + liveOrPlayback + '\t' + fileName + '\t' + digit + '\t';
+		for (unsigned int i = 0; i < signal.size(); i++) {
+			ofs << std::to_string(signal.at(i)) << '\t';
+		}
+		ofs << std::endl;
+		ofs.close();
 	}
 
 	void perform(char *args[]) {

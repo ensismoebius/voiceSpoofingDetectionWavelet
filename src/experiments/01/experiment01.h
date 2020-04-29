@@ -62,7 +62,10 @@ namespace waveletExperiments {
 	 */
 	void plotResults(std::vector<double> data);
 
+	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath);
+
 	void perform(char *args[]);
 
 }
+
 #endif /* SRC_EXPERIMENTS_01_EXPERIMENTS01_CPP_ */
