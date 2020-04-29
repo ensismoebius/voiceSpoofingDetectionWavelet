@@ -11,7 +11,6 @@
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz1.wav
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz20.wav
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz21.wav
-/home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz2.wav
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz3.wav
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz4.wav
 /home/ensismoebius/workspaces/c-workspace/mestrado/soundSamples/separated/live/en_US/0/Voz5.wav

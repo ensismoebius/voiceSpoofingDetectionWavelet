@@ -28,6 +28,9 @@ namespace waveletExperiments {
 		BARK, MEL
 	};
 
+	std::vector<double> MELRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
+	std::vector<double> BARKRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
+
 	class Experiment01 {
 
 		public:
@@ -84,10 +87,10 @@ namespace waveletExperiments {
 
 				if (Experiment01::barkOrMel == MEL) {
 					// Ranges for MEL scale
-					scaleRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
+					scaleRanges = MELRanges;
 				} else if (Experiment01::barkOrMel == BARK) {
 					// Ranges for BARK scale
-					scaleRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
+					scaleRanges = BARKRanges;
 				}
 
 				// feature vector has the amount of values minus 1 than ranges
@@ -217,7 +220,7 @@ namespace waveletExperiments {
 		ofs.close();
 	}
 
-	void perform(char *args[], int fileCount) {
+	void perform(char *args[], int classCount) {
 		std::cout << std::fixed;
 		std::cout << std::setprecision(20);
 
@@ -262,7 +265,7 @@ namespace waveletExperiments {
 
 		// Iterates over all files, this files
 		// should represent our data classes
-		for (int i = 1; i < fileCount; i++) {
+		for (int i = 1; i < classCount; i++) {
 
 			// file reader
 			std::ifstream fileListStream;
@@ -291,18 +294,34 @@ namespace waveletExperiments {
 						w.read(line.data());
 						w.process();
 
-						///////////////////////////////////////////////////////////////////////
-
 						results[v.first][static_cast<BARK_MEL>(bm)][args[i]].push_back(w.getData());
 
 						//saveDataToFile(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
 						//plotFeatureVector(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
 					}
+
+					///////////////////////////////////////////////////////////////////////
+
+					unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[i]).size();
+					unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[i]).at(0).size();
+					std::map<std::string, std::vector<std::vector<double>>> arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
+
+					double alpha = calculateAlpha(classCount, featureVectorsPerClass, featureVectorSize, arrClasses);
+					double betha = calculateBeta(classCount, featureVectorsPerClass, featureVectorSize, arrClasses);
+
+					double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
+					double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
+
+					std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
+					std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
+
+					// calculating the position at the paraconsistent plane
+					//showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
+					std::cout << "teste";
+
 				}
 			}
 		}
-
-		std::cout << "teste";
 
 	}
 
