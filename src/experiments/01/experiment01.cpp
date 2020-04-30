@@ -32,6 +32,8 @@ namespace waveletExperiments {
 	std::vector<double> MELRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 	std::vector<double> BARKRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
 
+	std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> finalResults;
+
 	class Experiment01 {
 
 		public:
@@ -173,23 +175,33 @@ namespace waveletExperiments {
 	 * Plot the results
 	 * @param data
 	 */
-	void plotFeatureVector(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
-
-		// Plot title
-		std::string plotTitle;
-
-		plotTitle = (bm == BARK ? "BARK <" : "MEL <") + waveletName + "> - ";
-
-		std::vector<std::string> parts = explode(filePath, "/");
-		plotTitle += parts.at(parts.size() - 4) + " - [" + parts.at(parts.size() - 2) + "] - " + parts.at(parts.size() - 1);
+	void plotFeatureVector(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> results) {
 
 		// Alias for a easier use of matplotlib
 		namespace plt = matplotlibcpp;
 
-		plt::xlim(0, int(signal.size()));
-		plt::title(plotTitle);
+		// The values of contradiction and certaint ever goes around 0 and 1
+		//		plt::xlim(0, 1);
+		//		plt::ylim(0, 1);
+		//
+		//		plt::xlabel("Certaint");
+		//		plt::ylabel("Contradiction");
 
-		plt::plot(signal, "r-");
+		// Plot title
+		std::string plotTitle;
+
+		// Iterates over all wavelets
+		for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results) {
+
+			// Iterates over BARK and MEL (yes, just two values)
+			for (std::pair<BARK_MEL, std::vector<std::vector<double>>> barkOrMel : wavelet.second) {
+				plotTitle = (barkOrMel.first == BARK ? "BARK <" : "MEL <") + wavelet.first + "> - ";
+				plt::title(plotTitle);
+				plt::scatter(barkOrMel.second[0], barkOrMel.second[1], 1.0);
+				plt::annotate(plotTitle, barkOrMel.second[0][0], barkOrMel.second[1][0]);
+			}
+		}
+
 		plt::show();
 		plt::pause(.1);
 	}
@@ -302,37 +314,42 @@ namespace waveletExperiments {
 					}
 
 				}
+				std::map<std::string, std::map<BARK_MEL, std::vector<double>>> results2;
 
 			}
 		}
 		///////////////////////////////////////////////////////////////////////
 
 		// iterates over all data classes
-		for (int i = 1; i < classCount; i++) {
-			// iterates over all wavelets types
-			for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
-				// Iterates over all barkOrMel
-				for (int bm = BARK; bm <= MEL; bm++) {
-					unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classes[i]).size();
-					unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classes[i]).at(0).size();
-					std::map<std::string, std::vector<std::vector<double>>> arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
+		// iterates over all wavelets types
+		for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
+			// Iterates over all barkOrMel
+			for (int bm = BARK; bm <= MEL; bm++) {
+				unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classes[1]).size();
+				unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classes[1]).at(0).size();
 
-					double alpha = calculateAlpha(classCount, featureVectorsPerClass, featureVectorSize, arrClasses);
-					double betha = calculateBeta(classCount, featureVectorsPerClass, featureVectorSize, arrClasses);
+				std::map<std::string, std::vector<std::vector<double>>> arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
 
-					double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
-					double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
+				double alpha = calculateAlpha(classCount, featureVectorsPerClass, featureVectorSize, arrClasses);
+				double betha = calculateBeta(classCount, featureVectorsPerClass, featureVectorSize, arrClasses);
 
-					std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
-					std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
+				double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
+				double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
 
-					// calculating the position at the paraconsistent plane
-					showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
-					std::cout << "teste";
-				}
+				// Calculating the position at the paraconsistent plane
+				std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
+				std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
+
+				// Storing the final results
+				finalResults[v.first][static_cast<BARK_MEL>(bm)].resize(2);
+				finalResults[v.first][static_cast<BARK_MEL>(bm)].at(0) = { certaintyDegree_G1 };
+				finalResults[v.first][static_cast<BARK_MEL>(bm)].at(0) = { contradictionDegree_G2 };
+
+				//showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
 			}
 		}
-
+		plotFeatureVector(finalResults);
+		std::cout << "teste";
 	}
 
 }

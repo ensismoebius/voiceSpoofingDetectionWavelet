@@ -56,7 +56,6 @@ speechVel=$(dialog --title 'Speech velocity' --menu 'Choose:' 0 0 0 \
 --stdout)
 
 # Separate audio using the silences within
-echo sox $sourceFile res$randomNumber.wav silence -l 1 $speechVel $noiseTorelance% 1 $speechVel $noiseTorelance% : newfile : restart
 sox $sourceFile res$randomNumber.wav silence -l 1 ${speechVel} ${noiseTorelance}% 1 ${speechVel} ${noiseTorelance}% : newfile : restart
 
 # Stores the newly created files in an directory

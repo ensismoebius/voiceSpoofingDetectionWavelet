@@ -82,7 +82,7 @@ double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsP
 	// initializes the vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses) {
 		// creates sub vector
-		arrLargestRange[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::min());
+		arrLargestRange[clazz.first].resize(featureVectorSize, -std::numeric_limits<double>::max());
 		arrSmallestRange[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::max());
 	}
 
@@ -175,7 +175,7 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 	// initializes the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses) {
 		// creates sub vector
-		arrLargestItens[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::min());
+		arrLargestItens[clazz.first].resize(featureVectorSize, -std::numeric_limits<double>::max());
 		arrSmallestItems[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::max());
 	}
 
