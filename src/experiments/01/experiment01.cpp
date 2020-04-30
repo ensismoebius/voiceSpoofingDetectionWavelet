@@ -181,11 +181,11 @@ namespace waveletExperiments {
 		namespace plt = matplotlibcpp;
 
 		// The values of contradiction and certaint ever goes around 0 and 1
-		//		plt::xlim(0, 1);
-		//		plt::ylim(0, 1);
-		//
-		//		plt::xlabel("Certaint");
-		//		plt::ylabel("Contradiction");
+		plt::xlim(0, 1);
+		plt::ylim(0, 1);
+
+		plt::xlabel("Certaint");
+		plt::ylabel("Contradiction");
 
 		// Plot title
 		std::string plotTitle;
