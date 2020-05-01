@@ -181,25 +181,51 @@ namespace waveletExperiments {
 		namespace plt = matplotlibcpp;
 
 		// The values of contradiction and certaint ever goes around 0 and 1
-		plt::xlim(0, 1);
+		plt::xlim(-1, 1);
 		plt::ylim(-1, 1);
 
 		plt::grid(true);
 
+		// Preparing the paraconsistent plane
+		std::vector<int> x = { 1, 0 };
+		std::vector<int> y = { 0, 1 };
+
+		x = { 0, 1 };
+		y = { 1, 0 };
+		plt::plot(x, y);
+		plt::text(1, 0, "Truth");
+
+		x = { 1, 0 };
+		y = { 0, -1 };
+		plt::plot(x, y);
+		plt::text(0, -1, "Indefinition");
+
+		x = { 0, -1 };
+		y = { -1, 0 };
+		plt::plot(x, y);
+		plt::text(-1, 0, "Falsehood");
+
+		x = { -1, 0 };
+		y = { 0, 1 };
+		plt::plot(x, y);
+		plt::text(0, 1, "Ambiguity");
+		// Paraconsistent plane ready!
+
 		plt::xlabel("Certaint");
 		plt::ylabel("Contradiction");
 
-		std::string plotTitle;
+		std::string annotation;
 
 		// Iterates over all wavelets
 		for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results) {
 
 			// Iterates over BARK and MEL (yes, just two values)
-			for (std::pair<BARK_MEL, std::vector<std::vector<double>>> barkOrMel : wavelet.second) {
-				plotTitle = (barkOrMel.first == BARK ? "B-" : "M-") + wavelet.first;
+			for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second) {
+				annotation = (data.first == BARK ? "B-" : "M-") + wavelet.first;
+
 				plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
-				plt::scatter(barkOrMel.second[0], barkOrMel.second[1], 100.0);
-				plt::annotate(plotTitle, barkOrMel.second[0][0], barkOrMel.second[1][0]);
+				plt::scatter(data.second[0], data.second[1], 100.0);
+				plt::annotate(annotation, data.second[0][0], data.second[1][0]);
 			}
 		}
 
@@ -351,6 +377,11 @@ namespace waveletExperiments {
 				//showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
 			}
 		}
+
+//		// Storing the final results
+//		finalResults["uiaga"][MEL].resize(2);
+//		finalResults["uiaga"][MEL].at(0) = { 0.5 };
+//		finalResults["uiaga"][MEL].at(1) = { 0.5 };
 
 		plotFeatureVector(finalResults);
 		std::cout << "teste";
