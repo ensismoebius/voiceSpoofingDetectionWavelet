@@ -182,12 +182,13 @@ namespace waveletExperiments {
 
 		// The values of contradiction and certaint ever goes around 0 and 1
 		plt::xlim(0, 1);
-		plt::ylim(0, 1);
+		plt::ylim(-1, 1);
+
+		plt::grid(true);
 
 		plt::xlabel("Certaint");
 		plt::ylabel("Contradiction");
 
-		// Plot title
 		std::string plotTitle;
 
 		// Iterates over all wavelets
@@ -195,9 +196,9 @@ namespace waveletExperiments {
 
 			// Iterates over BARK and MEL (yes, just two values)
 			for (std::pair<BARK_MEL, std::vector<std::vector<double>>> barkOrMel : wavelet.second) {
-				plotTitle = (barkOrMel.first == BARK ? "BARK <" : "MEL <") + wavelet.first + "> - ";
-				plt::title(plotTitle);
-				plt::scatter(barkOrMel.second[0], barkOrMel.second[1], 1.0);
+				plotTitle = (barkOrMel.first == BARK ? "B-" : "M-") + wavelet.first;
+				plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
+				plt::scatter(barkOrMel.second[0], barkOrMel.second[1], 100.0);
 				plt::annotate(plotTitle, barkOrMel.second[0][0], barkOrMel.second[1][0]);
 			}
 		}
@@ -206,32 +207,32 @@ namespace waveletExperiments {
 		plt::pause(.1);
 	}
 
-	/**
-	 * Save the results
-	 * @param data
-	 */
-	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
-
-		std::vector<std::string> parts = explode(filePath, "/");
-		std::string barOrMel = (bm == BARK ? "BARK" : "MEL");
-		std::string fileName = parts.at(parts.size() - 1);
-		std::string digit = parts.at(parts.size() - 2);
-		std::string liveOrPlayback = parts.at(parts.size() - 4);
-
-		filePath = "/tmp/" + barOrMel + "_results.csv";
-		std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-		if (!ofs.is_open()) {
-			std::cout << "Cannot open file: " << filePath;
-			throw std::runtime_error("Impossible to open the file!");
-			return;
-		}
-		ofs << waveletName + '\t' + barOrMel + '\t' + liveOrPlayback + '\t' + fileName + '\t' + digit + '\t';
-		for (unsigned int i = 0; i < signal.size(); i++) {
-			ofs << std::to_string(signal.at(i)) << '\t';
-		}
-		ofs << std::endl;
-		ofs.close();
-	}
+//	/**
+//	 * Save the results
+//	 * @param data
+//	 */
+//	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath) {
+//
+//		std::vector<std::string> parts = explode(filePath, "/");
+//		std::string barOrMel = (bm == BARK ? "BARK" : "MEL");
+//		std::string fileName = parts.at(parts.size() - 1);
+//		std::string digit = parts.at(parts.size() - 2);
+//		std::string liveOrPlayback = parts.at(parts.size() - 4);
+//
+//		filePath = "/tmp/" + barOrMel + "_results.csv";
+//		std::ofstream ofs(filePath, std::ios::app | std::ios::out);
+//		if (!ofs.is_open()) {
+//			std::cout << "Cannot open file: " << filePath;
+//			throw std::runtime_error("Impossible to open the file!");
+//			return;
+//		}
+//		ofs << waveletName + '\t' + barOrMel + '\t' + liveOrPlayback + '\t' + fileName + '\t' + digit + '\t';
+//		for (unsigned int i = 0; i < signal.size(); i++) {
+//			ofs << std::to_string(signal.at(i)) << '\t';
+//		}
+//		ofs << std::endl;
+//		ofs.close();
+//	}
 
 	void perform(char *classes[], int classCount) {
 		std::cout << std::fixed;
@@ -276,6 +277,9 @@ namespace waveletExperiments {
 		 */
 		std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results;
 
+		double totalCycles = wavelets::all().size() * 2 * classCount * 820;
+		double cycles = 0;
+
 		// Iterates over all files, this files
 		// should represent our data classes
 		for (int i = 1; i < classCount; i++) {
@@ -298,6 +302,10 @@ namespace waveletExperiments {
 					// gets the file path to process
 					while (std::getline(fileListStream, line)) {
 
+						// Status
+						cycles++;
+						std::cout << "\r" << (cycles / totalCycles) * 3 * 100 << "%" << std::flush;
+
 						// set current wavelet and barkOrMel to the experiment
 						Experiment01::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));
 
@@ -308,14 +316,9 @@ namespace waveletExperiments {
 						w.process();
 
 						results[v.first][static_cast<BARK_MEL>(bm)][classes[i]].push_back(w.getData());
-
-						//saveDataToFile(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
-						//plotFeatureVector(w.getData(), static_cast<BARK_MEL>(bm), v.first, line);
 					}
 
 				}
-				std::map<std::string, std::map<BARK_MEL, std::vector<double>>> results2;
-
 			}
 		}
 		///////////////////////////////////////////////////////////////////////
@@ -343,13 +346,15 @@ namespace waveletExperiments {
 				// Storing the final results
 				finalResults[v.first][static_cast<BARK_MEL>(bm)].resize(2);
 				finalResults[v.first][static_cast<BARK_MEL>(bm)].at(0) = { certaintyDegree_G1 };
-				finalResults[v.first][static_cast<BARK_MEL>(bm)].at(0) = { contradictionDegree_G2 };
+				finalResults[v.first][static_cast<BARK_MEL>(bm)].at(1) = { contradictionDegree_G2 };
 
 				//showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
 			}
 		}
+
 		plotFeatureVector(finalResults);
 		std::cout << "teste";
 	}
 
 }
+
