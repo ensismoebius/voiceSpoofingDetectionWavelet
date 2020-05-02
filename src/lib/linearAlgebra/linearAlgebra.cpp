@@ -15,6 +15,26 @@
 
 namespace linearAlgebra {
 
+	std::vector<double> derivative(std::vector<double> &vector, unsigned int level) {
+
+		if (vector.size() < 2) {
+			return std::vector<double>( { vector.at(0) });
+		}
+
+		for (unsigned int i = 0; i < vector.size() - 1; ++i) {
+			vector.at(i) = vector.at(i + 1) - vector.at(i);
+		}
+
+		level--;
+
+		vector.resize(vector.size() - 1);
+
+		if (level > 0) {
+			vector = derivative(vector, level);
+		}
+		return vector;
+	}
+
 	long double dotProduct(std::vector<double> a, std::vector<double> b) {
 
 		long double product = 0;

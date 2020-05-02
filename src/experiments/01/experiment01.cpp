@@ -145,8 +145,13 @@ namespace waveletExperiments {
 				// Normalize the resulting feature vector
 				linearAlgebra::normalizeVector(featureVector);
 
-				// Apply a DCT (Discrete Cosine Transform)
-				linearAlgebra::discreteCosineTransform(featureVector);
+				//FIXME that steps are exclusive for MEL or not?
+				if (Experiment01::barkOrMel == MEL) {
+					// Apply a DCT (Discrete Cosine Transform)
+					linearAlgebra::discreteCosineTransform(featureVector);
+
+					linearAlgebra::derivative(featureVector, 2);
+				}
 
 				// Replaces the original signal
 				signal = featureVector;
@@ -221,7 +226,7 @@ namespace waveletExperiments {
 
 			// Iterates over BARK and MEL (yes, just two values)
 			for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second) {
-				annotation = (data.first == BARK ? "B-" : "M-") + wavelet.first;
+				annotation = std::string("←-----------------") + (data.first == BARK ? "B-" : "M-") + wavelet.first;
 
 				plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
 				plt::scatter(data.second[0], data.second[1], 100.0);
@@ -330,7 +335,7 @@ namespace waveletExperiments {
 
 						// Status
 						cycles++;
-						std::cout << "\r" << (cycles / totalCycles) * 3 * 100 << "%" << std::flush;
+						std::cout << "\rCompletion: " << (cycles / totalCycles) * 3 * 100 << "%" << std::flush;
 
 						// set current wavelet and barkOrMel to the experiment
 						Experiment01::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));

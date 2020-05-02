@@ -12,6 +12,16 @@
 #include <vector>
 
 namespace linearAlgebra {
+
+	/**
+	 * Calculates the derivative of a vector
+	 * and change the given vector
+	 * @param vector - A reference to the vector to be derived
+	 * @param level - Amount of derivatives over the same vector
+	 * @return resulting vector (optional)
+	 */
+	std::vector<double> derivative(std::vector<double> &vector, unsigned int level = 1);
+
 	/**
 	 * Function that return dot product of two vectors.
 	 * @param a
