@@ -1,8 +1,12 @@
-/*
- * waveletCoeficients.cpp
+/**
+ * @author André Furlan
+ * @email ensismoebius@gmail.com
+ * This whole project are under GPLv3, for
+ * more information read the license file
  *
- *  Created on: 29 de mar de 2020
- *      Author: ensismoebius
+ * 29 de mar de 2020
+ *
+ *
  */
 
 #include <vector>
