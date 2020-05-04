@@ -62,7 +62,7 @@ namespace waveletExperiments {
 	 */
 	void plotResults(std::vector<double> data);
 
-	void saveDataToFile(std::vector<double> signal, BARK_MEL bm, std::string waveletName, std::string filePath);
+	void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> data);
 
 	void perform(char *args[], int fileCount);
 
