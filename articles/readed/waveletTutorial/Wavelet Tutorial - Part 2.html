@@ -1,0 +1,910 @@
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Wavelet Tutorial - Part 2</title>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- JQuery -->
+    <script src="Wavelet%20Tutorial%20-%20Part%202_arquivos/jquery-3.js"></script>
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="Wavelet%20Tutorial%20-%20Part%202_arquivos/bootstrap.css">
+    <script src="Wavelet%20Tutorial%20-%20Part%202_arquivos/bootstrap.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Wavelet%20Tutorial%20-%20Part%202_arquivos/stylesheet.css">
+
+		<!-- Custom JS -->
+		<script src="Wavelet%20Tutorial%20-%20Part%202_arquivos/main.js"></script>
+
+    <!-- Allows for inline LaTeX equations! -->
+    <script type="text/x-mathjax-config;executed=true">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+    </script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+
+  <style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+
+  <body><div id="MathJax_Message" style="display: none;"></div>
+
+    <div id="header"><script>
+
+var pages = [
+  ["Home", "index.html"],
+  ["About Me", "aboutme.html"],
+  ["Research", "research.html"],
+  ["Publications", "publications.html"],
+  ["Signal Processing And Pattern Recognition Laboratory", "spprl.html"],
+  ["Research Funding", "research-funding.html"],
+  ["The Wavelet Tutorial", "WTtutorial.html"],
+  ["Rowan ECE", "https://academics.rowan.edu/engineering/programs/electricalcomputer/index.html"]
+];
+
+/* -- Do not edit below this line ---------------------------------------------------------------------------------------- */
+
+</script>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://users.rowan.edu/~polikar/">Robi Polikar</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown active">
+        <a id="page-label" class="dropdown-toggle" data-toggle="dropdown" href="http://users.rowan.edu/~polikar/"><span class="caret"></span></a>
+        <ul id="pages" class="dropdown-menu"><li><a href="http://users.rowan.edu/~polikar/index.html">Home</a></li>
+<li><a href="http://users.rowan.edu/~polikar/aboutme.html">About Me</a></li>
+<li><a href="http://users.rowan.edu/~polikar/research.html">Research</a></li>
+<li><a href="http://users.rowan.edu/~polikar/publications.html">Publications</a></li>
+<li><a href="http://users.rowan.edu/~polikar/spprl.html">Signal Processing And Pattern Recognition Laboratory</a></li>
+<li><a href="http://users.rowan.edu/~polikar/research-funding.html">Research Funding</a></li>
+<li><a href="http://users.rowan.edu/~polikar/WTtutorial.html">The Wavelet Tutorial</a></li>
+<li><a href="https://academics.rowan.edu/engineering/programs/electricalcomputer/index.html">Rowan ECE</a></li>
+</ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+
+body {
+  margin-top: 50px; /* Gives a little space under header */
+}
+
+</style>
+
+<script>
+
+  // Initialize the HTML as empty
+  var pagesHTML = "";
+
+  // Get the current page name
+  // Removed for cleaner UI - BW
+  /*var pageName = location.href.split('/');
+  pageName = pageName[pageName.length - 1];*/
+
+  for(var i = 0; i < pages.length; i++){
+
+    // Iterate through all pages and build the HTML
+    pagesHTML += "<li><a href='" + pages[i][1] + "'>" + pages[i][0] + "</a></li>\n"
+
+    // Search for page name and update top bar if found
+    // Removed for cleaner UI - BW
+    /*if(pages[i][1] == pageName){
+      $("#page-label").html(pages[i][0] + "<span class='caret'></span>");
+    }*/
+
+  }
+
+  // Put the generated HTML
+  document.getElementById("pages").innerHTML = pagesHTML;
+
+  // Make the dropdown show on hover
+  $('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(100);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+  });
+
+</script>
+</div>
+
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-8 page-body">
+
+      <h1 class="page-title">Wavlet Tutorial - Part 2</h1>
+      <h1 class="page-subtitle">by Robi Polikar</h1>
+      <hr>
+
+      <h1 class="section-title">
+        Fundamentals: the fourier Transform and The Short Term Fourier Transform
+      </h1>
+
+      <br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/stft2.png" class="img-responsive" style="display:block; margin:auto;">
+
+      <br><br>
+
+      <hr>
+      <h1 class="section-title">
+        Fundamentals
+      </h1>
+
+      <br><br>
+
+      Let's have a short review of the first part. We basically need 
+Wavelet Transform (WT) to analyze non-stationary signals, i.e., whose 
+frequency response varies in time. I have written that Fourier Transform
+ (FT) is not suitable for non-stationary signals, and I have shown 
+examples of it to make it more clear. For a quick recall, let me give 
+the following example.
+
+      Suppose we have two different signals. Also suppose that they both
+ have the same spectral components, with one major difference. Say one 
+of the signals have four frequency components at all times, and the 
+other have the same four frequency components at different times. The FT
+ of both of the signals would be the same, as shown in the example in 
+part 1 of this tutorial. Although the two signals are completely 
+different, their (magnitude of) FT are the SAME !. This, obviously tells
+ us that we can not use the FT for non-stationary signals.
+
+      <br><br>
+
+      <strong>
+        But why does this happen? In other words, how come both of the 
+signals have the same FT? HOW DOES FOURIER TRANSFORM WORK ANYWAY?
+      </strong>
+
+      <br><br>
+
+      <strong>
+        An Important Milestone in Signal Processing:
+      </strong>
+
+      <hr>
+      <h1 class="section-title">
+        The Fourier Transform
+      </h1>
+
+      <br>
+
+      I will not go into the details of FT for two reasons:
+      <ol>
+        <li>It is too wide of a subject to discuss in this tutorial.</li>
+        <li>It is not our main concern anyway.</li>
+      </ol>
+
+      <br><br>
+
+      However, I would like to mention a couple important points again for two reasons:
+      <ol>
+        <li>It is a necessary background to understand how WT works.</li>
+        <li>It has been by far the most important signal processing tool for many (and I mean many many) years.</li>
+      </ol>
+
+      <br><br>
+
+      In 19th century (1822*, to be exact, but you do not need to know 
+the exact time. Just trust me that it is far before than you can 
+remember), the French mathematician J. Fourier, showed that any periodic
+ function can be expressed as an infinite sum of periodic complex 
+exponential functions. Many years after he had discovered this 
+remarkable property of (periodic) functions, his ideas were generalized 
+to first non-periodic functions, and then periodic or non-periodic 
+discrete time signals. It is after this generalization that it became a 
+very suitable tool for computer calculations. In 1965, a new algorithm 
+called fast Fourier Transform (FFT) was developed and FT became even 
+more popular.
+
+      <br><br>
+
+      (* I thank Dr. Pedregal for the valuable information he has provided)
+
+      <br><br>
+
+      Now let us take a look at how Fourier transform works:
+      <br>
+      FT decomposes a signal to complex exponential functions of 
+different frequencies. The way it does this, is defined by the following
+ two equations:
+
+      <br><br>
+
+      <!--img src="res/wavelet/part2/figure2_1.png" class="img-responsive" style="display:block; margin:auto;"-->
+      <div class="text-center">
+        <span class="MathJax_Preview">X(f) = \int_{-\infty}^{\infty} x(t) \cdot e^{-2 j \pi f t} dt</span><script type="math/tex">X(f) = \int_{-\infty}^{\infty} x(t) \cdot e^{-2 j \pi f t} dt</script> <br><br>
+        <span class="MathJax_Preview">x(t) = \int_{-\infty}^{\infty} X(f) \cdot e^{2 j \pi f t} df</span><script type="math/tex">x(t) = \int_{-\infty}^{\infty} X(f) \cdot e^{2 j \pi f t} df</script> <br><br>
+        Figure 2.1
+      </div>
+
+      <br><br>
+
+      In the above equation, t stands for time, f stands for frequency, 
+and x denotes the signal at hand. Note that x denotes the signal in time
+ domain and the X denotes the signal in frequency domain. This 
+convention is used to distinguish the two representations of the signal.
+ Equation (1) is called the <strong>Fourier transform of x(t)</strong>, and equation (2) is called the <strong>inverse Fourier transform of X(f)</strong>, which is x(t).
+
+      <br><br>
+
+      For those of you who have been using the Fourier transform are 
+already familiar with this. Unfortunately many people use these 
+equations without knowing the underlying principle.
+
+      <br><br>
+
+      Please take a closer look at equation (1):
+
+      <br><br>
+
+      The signal x(t), is multiplied with an exponential term, <strong>at some certain frequency "f"</strong>, and then integrated over <strong>ALL TIMES !!!</strong> (The key words here are "all times" , as will explained below).
+
+      <br><br>
+
+      Note that the exponential term in Eqn. (1) can also be written as:
+
+      <br><br>
+
+      <div class="text-center">
+        <!--strong>Cos(2.pi.f.t)+j.Sin(2.pi.f.t).......(3)</strong-->
+        <span class="MathJax_Preview">cos(2 \pi f t) \cdot sin(2 \pi f t)</span><script type="math/tex">cos(2 \pi f t) \cdot sin(2 \pi f t)</script>
+      </div>
+
+      <br><br>
+
+      The above expression has a real part of cosine of frequency <strong>f</strong>, and an imaginary part of sine of frequency <strong>f</strong>.
+ So what we are actually doing is, multiplying the original signal with a
+ complex expression which has sines and cosines of frequency <strong>f</strong>.
+ Then we integrate this product. In other words, we add all the points 
+in this product. If the result of this integration (which is nothing but
+ some sort of infinite summation) is a large value, then we say that : <strong>the signal x(t), has a dominant spectral component at frequency "f"</strong>.
+ This means that, a major portion of this signal is composed of 
+frequency f. If the integration result is a small value, than this means
+ that the signal does not have a major frequency component of f in it. 
+If this integration result is zero, then the signal does not contain the
+ frequency "f" at all.
+
+      <br><br>
+
+      It is of particular interest here to see how this integration 
+works: The signal is multiplied with the sinusoidal term of frequency 
+"f". If the signal has a high amplitude component of frequency "f", then
+ that component and the sinusoidal term will coincide, and the product 
+of them will give <strong>a (relatively) large value</strong>. This shows that, the signal "x", has a major frequency component of "f".
+
+      <br><br>
+
+      However, if the signal does not have a frequency component of "f",
+ the product will yield zero, which shows that, the signal does not have
+ a frequency component of "f". If the frequency "f", is not a major 
+component of the signal "x(t)", then the product will give <strong>a (relatively) small value</strong>.
+ This shows that, the frequency component "f" in the signal "x", has a 
+small amplitude, in other words, it is not a major component of "x".
+
+      <br><br>
+
+      Now, note that the integration in the transformation equation 
+(Eqn. 1) is over time. The left hand side of (1), however, is a function
+ of frequency. Therefore, the integral in (1), is calculated for every 
+value of <strong>f</strong>.
+
+      <br><br>
+
+      <strong>IMPORTANT(!)</strong> The information provided by the 
+integral, corresponds to all time instances, since the integration is 
+from minus infinity to plus infinity over time. It follows that no 
+matter where in time the component with frequency "f" appears, it will 
+affect the result of the integration equally as well. In other words, 
+whether the frequency component "f" appears at time t1 or t2 , it will 
+have the same effect on the integration. This is why <strong>Fourier transform is not suitable if the signal has time varying frequency</strong>, i.e., the signal is <strong>non-stationary</strong>.
+ If only the signal has the frequency component "f" at all times (for 
+all "t" values), then the result obtained by the Fourier transform makes
+ sense.
+
+      <br><br>
+
+      Note that <strong>the Fourier transform tells whether a certain frequency component exists or not</strong>.
+ This information is independent of where in time this component 
+appears. It is therefore very important to know whether a signal is 
+stationary or not, prior to processing it with the FT.
+
+      <br><br>
+
+      The example given in part one should now be clear. I would like to give it here again:
+
+      <br><br>
+
+      Look at the following figure, which shows the signal:
+
+      <br><br>
+
+      <div class="text-center">
+        <!--strong>x(t)=cos(2*pi*5*t)+cos(2*pi*10*t)+cos(2*pi*20*t)+cos(2*pi*50*t)</strong-->
+        <span class="MathJax_Preview">x(t) = cos(2 \pi \cdot 5 t) + cos(2 \pi \cdot 10 t) + cos(2 \pi \cdot 20 t) + cos(2 \pi \cdot 50 t)</span><script type="math/tex">x(t) = cos(2 \pi \cdot 5 t) + cos(2 \pi \cdot 10 t) + cos(2 \pi \cdot 20 t) + cos(2 \pi \cdot 50 t)</script>
+      </div>
+
+      <br><br>
+
+      that is , it has four frequency components of 5, 10, 20, and 50 Hz., all occurring at all times.
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_2.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.2
+      </div>
+
+      <br><br>
+
+      And here is the FT of it. The frequency axis has been cut here, 
+but theoretically it extends to infinity (for continuous Fourier 
+transform (CFT). Actually, here we calculate the discrete Fourier 
+transform (DFT), in which case the frequency axis goes up to (at least) 
+twice the sampling frequency of the signal, and the transformed signal 
+is symmetrical. However, this is not that important at this time.)
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_3.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.3
+      </div>
+
+      <br><br>
+
+      Note the four peaks in the above figure, which correspond to four different frequencies.
+
+      <br><br>
+
+      Now, look at the following figure: Here the signal is again the 
+cosine signal, and it has the same four frequencies. However, these 
+components occur at <strong>different times</strong>.
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_4.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.4
+      </div>
+
+      <br><br>
+
+      And here is the Fourier transform of this signal:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_5.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.5
+      </div>
+
+      <br><br>
+
+      What you are supposed to see in the above figure, is it is 
+(almost) same with the previous FT figure. Please look carefully and 
+note the major four peaks corresponding to 5, 10, 20, and 50 Hz. I could
+ have made this figure look very similar to the previous one, but I did 
+not do that on purpose. The reason of the noise like thing in between 
+peaks show that, those frequencies also exist in the signal. But the 
+reason they have a small amplitude , is because, <strong>they are not major spectral components of the given signal</strong>,
+ and the reason we see those, is because of the sudden change between 
+the frequencies. Especially note how time domain signal changes at 
+around time 250 (ms) (With some suitable filtering techniques, the noise
+ like part of the frequency domain signal can be cleaned, but this has 
+not nothing to do with our subject now. If you need further information 
+please send me an e-mail).
+
+      <br><br>
+
+      By this time you should have understood the basic concepts of 
+Fourier transform, when we can use it and we can not. As you can see 
+from the above example, FT cannot distinguish the two signals very well.
+ To FT, both signals are the same, because they constitute of the same 
+frequency components. Therefore, FT is not a suitable tool for analyzing
+ non-stationary signals, i.e., signals with time varying spectra.
+
+      <br><br>
+
+      Please keep this very important property in mind. Unfortunately, 
+many people using the FT do not think of this. They assume that the 
+signal they have is stationary where it is not in many practical cases. 
+Of course if you are not interested in <strong>at what times these frequency components occur</strong>, but only interested in what frequency components exist, then FT can be a suitable tool to use.
+
+      <br><br>
+
+      So, now that we know that we can not use (well, we can, but we 
+shouldn't) FT for non-stationary signals, what are we going to do?
+
+      <br><br>
+
+      Remember that, I have mentioned that wavelet transform is only 
+(about) a decade old. You may wonder if researchers noticed this 
+non-stationarity business only ten years ago or not.
+
+      <br><br>
+
+      Obviously not.
+
+      <br><br>
+
+      Apparently they must have done something about it before they figured out the wavelet transform....?
+
+      <br><br>
+
+      Well..., they sure did...
+
+      <br><br>
+
+      They have come up with ...
+
+      <br><br>
+
+      <h4>LINEAR TIME FREQUENCY REPRESENTATIONS</h4>
+
+      <br>
+
+      <hr>
+      <h1 class="section-title">
+        The Short Term Fourier Transform
+      </h1>
+
+      <br>
+
+      So, how are we going to insert this time business into our 
+frequency plots? Let's look at the problem in hand little more closer.
+
+      <br><br>
+
+      What was wrong with FT? It did not work for non-stationary signals. Let's think this: <strong>Can we assume that , some portion of a non-stationary signal is stationary?</strong>
+
+      <br><br>
+
+      The answer is yes.
+
+      <br><br>
+
+      Just look at the third figure above. The signal is stationary every 250 time unit intervals.
+
+      <br><br>
+
+      You may ask the following question?
+
+      <br><br>
+
+      What if the part that we can consider to be stationary is very small?
+
+      <br><br>
+
+      Well, if it is too small, it is too small. There is nothing we can
+ do about that, and actually, there is nothing wrong with that either. 
+We have to play this game with the physicists' rules.
+
+      <br><br>
+
+      If this region where the signal can be assumed to be stationary is
+ too small, then we look at that signal from narrow windows, narrow 
+enough that the portion of the signal seen from these windows are indeed
+ stationary.
+
+      <br><br>
+
+      This approach of researchers ended up with a <strong>revised</strong> version of the Fourier transform, so-called : The Short Time Fourier Transform (STFT)
+
+      <br><br>
+
+      There is only a minor difference between STFT and FT. In STFT, the
+ signal is divided into small enough segments, where these segments 
+(portions) of the signal can be assumed to be stationary. For this 
+purpose, a window function "w" is chosen. The width of this window must 
+be equal to the segment of the signal where its stationarity is valid.
+
+      <br><br>
+
+      This window function is first located to the very beginning of the
+ signal. That is, the window function is located at t=0. Let's suppose 
+that the width of the window is "T" s. At this time instant (t=0), the 
+window function will overlap with the first T/2 seconds (I will assume 
+that all time units are in seconds). The window function and the signal 
+are then multiplied. By doing this, only the first T/2 seconds of the 
+signal is being chosen, with the appropriate weighting of the window (if
+ the window is a rectangle, with amplitude "1", then the product will be
+ equal to the signal). Then this product is assumed to be just another 
+signal, whose FT is to be taken. In other words, FT of this product is 
+taken, just as taking the FT of any signal.
+
+      <br><br>
+
+      The result of this transformation is the FT of the first T/2 
+seconds of the signal. If this portion of the signal is stationary, as 
+it is assumed, then there will be no problem and the obtained result 
+will be a true frequency representation of the first T/2 seconds of the 
+signal.
+
+      <br><br>
+
+      The next step, would be shifting this window (for some t1 seconds)
+ to a new location, multiplying with the signal, and taking the FT of 
+the product. This procedure is followed, until the end of the signal is 
+reached by shifting the window with "t1" seconds intervals.
+
+      <br><br>
+
+      The following definition of the STFT summarizes all the above explanations in one line:
+
+      <br><br>
+
+      <!--img src="res/wavelet/part2/figure2_6.png" class="img-responsive" style="display:block; margin:auto;"-->
+      <div class="text-center">
+        <span class="MathJax_Preview">STFT_X^{(\omega)}(t,f) = \int_t \left[ x(t) \cdot \omega^*(t - t') \right] \cdot e^{-j 2 \pi f t} dt</span><script type="math/tex">STFT_X^{(\omega)}(t,f) = \int_t \left[ x(t) \cdot \omega^*(t - t') \right] \cdot e^{-j 2 \pi f t} dt</script> <br><br>
+        Figure 2.6
+      </div>
+
+      <br><br>
+
+      Please look at the above equation carefully. <strong>x(t)</strong> is the signal itself, <strong>w(t)</strong> is the window function, and <strong>*</strong>
+ is the complex conjugate. As you can see from the equation, the STFT of
+ the signal is nothing but the FT of the signal multiplied by a window 
+function.
+
+      <br><br>
+
+      For every <strong>t'</strong> and <strong>f</strong> a new STFT 
+coefficient is computed (Correction: The "t" in the parenthesis of STFT 
+should be "t'". I will correct this soon. I have just noticed that I 
+have mistyped it).
+
+      <br><br>
+
+      The following figure may help you to understand this a little better:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_7.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.7
+      </div>
+
+      <br><br>
+
+      The Gaussian-like functions in color are the windowing functions. 
+The red one shows the window located at t = t1', the blue shows t = t2',
+ and the green one shows the window located at t = t3'. These will 
+correspond to three different FTs at three different times. Therefore, 
+we will obtain a true <strong>time-frequency representation (TFR)</strong> of the signal.
+
+      <br><br>
+
+      Probably the best way of understanding this would be looking at an
+ example. First of all, since our transform is a function of both time 
+and frequency (unlike FT, which is a function of frequency only), the 
+transform would be two dimensional (three, if you count the amplitude 
+too). Let's take a non-stationary signal, such as the following one:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_8.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.8
+      </div>
+
+      <br><br>
+
+      In this signal, there are four frequency components at different 
+times. The interval 0 to 250 ms is a simple sinusoid of 300 Hz, and the 
+other 250 ms intervals are sinusoids of 200 Hz, 100 Hz, and 50 Hz, 
+respectively. Apparently, this is a non-stationary signal. Now, let's 
+look at its STFT:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_9.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.9
+      </div>
+
+      <br><br>
+
+      As expected, this is two dimensional plot (3 dimensional, if you 
+count the amplitude too). The "x" and "y" axes are time and frequency, 
+respectively. Please, ignore the numbers on the axes, since they are 
+normalized in some respect, which is not of any interest to us at this 
+time. Just examine the shape of the time-frequency representation.
+
+      <br><br>
+
+      First of all, note that the graph is symmetric with respect to 
+midline of the frequency axis. Remember that, although it was not shown,
+ FT of a real signal is always symmetric, since STFT is nothing but a 
+windowed version of the FT, it should come as no surprise that STFT is 
+also symmetric in frequency. The symmetric part is said to be associated
+ with negative frequencies, an odd concept which is difficult to 
+comprehend, fortunately, it is not important; it suffices to know that 
+STFT and FT are symmetric.
+
+      <br><br>
+
+      What is important, are the four peaks; note that there are four 
+peaks corresponding to four different frequency components. Also note 
+that, unlike FT, <strong>these four peaks are located at different time intervals along the time axis</strong>. Remember that the original signal had four spectral components located at different times.
+
+      <br><br>
+
+      Now we have a true time-frequency representation of the signal. We
+ not only know what frequency components are present in the signal, but 
+we also know where they are located in time.
+
+      <br><br>
+
+      It is grrrreeeaaatttttt!!!! Right?
+
+      <br><br>
+
+      Well, not really!
+
+      <br><br>
+
+      You may wonder, since STFT gives the TFR of the signal, why do we 
+need the wavelet transform. The implicit problem of the STFT is not 
+obvious in the above example. Of course, an example that would work 
+nicely was chosen on purpose to demonstrate the concept.
+
+      <br><br>
+
+      The problem with STFT is the fact whose roots go back to what is known as the <strong>Heisenberg Uncertainty Principle</strong>.
+ This principle originally applied to the momentum and location of 
+moving particles, can be applied to time-frequency information of a 
+signal. Simply, this principle states that one cannot know the exact 
+time-frequency representation of a signal, i.e., one cannot know what 
+spectral components exist at what instances of times. What one <strong>can</strong> know are the <strong>time intervals</strong> in which certain <strong>band of frequencies</strong> exist, which is a <strong>resolution</strong> problem.
+
+      <br><br>
+
+      The problem with the STFT has something to do with the <strong>width</strong> of the window function that is used. To be technically correct, this width of the window function is known as <strong>the support</strong> of the window. If the window function is narrow, than it is known as <strong>compactly supported</strong>. This terminology is more often used in the wavelet world, as we will see later.
+
+      <br><br>
+
+      Here is what happens:
+
+      <br><br>
+
+      Recall that in the FT there is no resolution problem in the 
+frequency domain, i.e., we know exactly what frequencies exist; 
+similarly we there is no time resolution problem in the time domain, 
+since we know the value of the signal at every instant of time. 
+Conversely, the time resolution in the FT, and the frequency resolution 
+in the time domain are zero, since we have no information about them. 
+What gives the perfect frequency resolution in the FT is the fact that 
+the window used in the FT is its kernel, the <span class="MathJax_Preview">e^{j \omega t}</span><script type="math/tex">e^{j \omega t}</script>
+ function, which lasts at all times from minus infinity to plus 
+infinity. Now, in STFT, our window is of finite length, thus it covers 
+only a portion of the signal, which causes the frequency resolution to 
+get poorer. What I mean by getting poorer is that, we no longer know the
+ exact frequency components that exist in the signal, but we only know a
+ band of frequencies that exist:
+
+      <br><br>
+
+      In FT, the kernel function, allows us to obtain perfect frequency 
+resolution, because the kernel itself is a window of infinite length. In
+ STFT is window is of finite length, and we no longer have perfect 
+frequency resolution. You may ask, why don't we make the length of the 
+window in the STFT infinite, just like as it is in the FT, to get 
+perfect frequency resolution? Well, than you loose all the time 
+information, you basically end up with the FT instead of STFT. To make a
+ long story real short, we are faced with the following dilemma:
+
+      <br><br>
+
+      If we use a window of infinite length, we get the FT, which gives 
+perfect frequency resolution, but no time information. Furthermore, in 
+order to obtain the stationarity, we have to have a short enough window,
+ in which the signal is stationary. The narrower we make the window, the
+ better the time resolution, and better the assumption of stationarity, 
+but poorer the frequency resolution:
+
+      <br><br>
+
+      Narrow window ===&gt;good time resolution, poor frequency resolution.
+      <br>
+      Wide window ===&gt;good frequency resolution, poor time resolution.
+
+      <br>
+
+      In order to see these effects, let's look at a couple examples: I 
+will show four windows of different length, and we will use these to 
+compute the STFT, and see what happens:
+
+      <br><br>
+
+      The window function we use is simply a Gaussian function in the form:
+
+      <br><br>
+
+      <div class="text-center">
+        <!--strong>w(t)=exp(-a*(t^2)/2);</strong-->
+        <span class="MathJax_Preview">e^{-a \left( \frac{t^2}{2} \right)}</span><script type="math/tex">e^{-a \left( \frac{t^2}{2} \right)}</script>
+      </div>
+
+      <br><br>
+
+      where <strong>a</strong> determines the length of the window, and <strong>t</strong> is the time. The following figure shows four window functions of varying regions of support, determined by the value of <strong>a</strong>. Please disregard the numeric values of <strong>a</strong>
+ since the time interval where this function is computed also determines
+ the function. Just note the length of each window. The above example 
+given was computed with the second value, <strong>a = 0.001</strong>. I will now show the STFT of the same signal given above computed with the other windows.
+
+      <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_10.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 2.10
+      </div>
+
+        <br><br>
+
+        First let's look at the first most narrow window. We expect the 
+STFT to have a very good time resolution, but relatively poor frequency 
+resolution:
+
+        <br><br>
+
+        <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_11.png" class="img-responsive" style="display:block; margin:auto;">
+        <div class="text-center">
+            Figure 2.11
+        </div>
+
+        <br><br>
+
+        The above figure shows this STFT. The figure is shown from a top
+ bird-eye view with an angle for better interpretation. Note that the 
+four peaks are well separated from each other in time. Also note that, 
+in frequency domain, every peak covers a range of frequencies, instead 
+of a single frequency value. Now let's make the window wider, and look 
+at the third window (the second one was already shown in the first 
+example).
+
+        <br><br>
+
+        <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_12.png" class="img-responsive" style="display:block; margin:auto;">
+        <div class="text-center">
+            Figure 2.12
+        </div>
+
+        <br><br>
+
+        Note that the peaks are not well separated from each other in 
+time, unlike the previous case, however, in frequency domain the 
+resolution is much better. Now let's further increase the width of the 
+window, and see what happens:
+
+        <br><br>
+
+        <img src="Wavelet%20Tutorial%20-%20Part%202_arquivos/figure2_13.png" class="img-responsive" style="display:block; margin:auto;">
+        <div class="text-center">
+            Figure 2.13
+        </div>
+
+        <br><br>
+
+        Well, this should be of no surprise to anyone now, since we 
+would expect a terrible (and I mean absolutely terrible) time 
+resolution.
+
+        <br><br>
+
+        These examples should have illustrated the implicit problem of 
+resolution of the STFT. Anyone who would like to use STFT is faced with 
+this problem of resolution. What kind of a window to use? Narrow windows
+ give good time resolution, but poor frequency resolution. Wide windows 
+give good frequency resolution, but poor time resolution; furthermore, 
+wide windows may violate the condition of stationarity. The problem, of 
+course, is a result of choosing a window function, once and for all, and
+ use that window in the entire analysis. The answer, of course, is 
+application dependent: If the frequency components are well separated 
+from each other in the original signal, than we may sacrifice some 
+frequency resolution and go for good time resolution, since the spectral
+ components are already well separated from each other. However, if this
+ is not the case, then a good window function, could be more difficult 
+than finding a good stock to invest in.
+
+        <br><br>
+
+        By now, you should have realized how wavelet transform comes 
+into play. The Wavelet transform (WT) solves the dilemma of resolution 
+to a certain extent, as we will see in the next part.
+
+        <br><br>
+
+        This completes Part II of this tutorial. The continuous wavelet 
+transform is the subject of the Part III of this tutorial. If you did 
+not have much trouble in coming this far, and what have been written 
+above make sense to you, you are now ready to take the ultimate 
+challenge in understanding the basic concepts of the wavelet theory.
+
+        <br>
+        <hr>
+
+        Send your comments / questions to:
+        <a href="mailto:polikar@rowan.edu">polikar@rowan.edu</a>
+
+        <br>
+        <hr>
+
+        All Rights Reserved. This tutorial is intended for educational 
+purposes only. Unauthorized copying, duplicating and publishing is 
+strictly prohibited.
+
+        <br><br>
+
+        Robi Polikar
+        <br>
+        Rowan University
+        <br>
+        Phone: (856) 256 5372
+        <br>
+        <a href="mailto:polikar@rowan.edu">polikar@rowan.edu</a>
+
+
+
+    </div> <!-- col-sm-8 page-body -->
+
+    <div class="col-sm-2"></div>
+
+  
+
+  <style>
+
+    /* Put any CSS here */
+
+  </style>
+
+  <script>
+  // loads the header
+  $(document).ready(function(){
+    $("#header").load("header.html");
+  });
+
+  // Put any additional JS here
+
+  </script>
+
+
+</body></html>
