@@ -183,7 +183,6 @@ namespace waveletExperiments {
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
-						// FIXME its really the log on base e?
 						featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
 					}
 
@@ -192,8 +191,7 @@ namespace waveletExperiments {
 				// Normalize the resulting feature vector
 				linearAlgebra::normalizeVector(featureVector);
 
-				// FIXME that steps are exclusive for MEL or not?
-				// Actually this block is turnning the results worse for MEL
+				// Just for MEL
 				if (Experiment01::barkOrMel == MEL) {
 					// Apply a DCT (Discrete Cosine Transform)
 					linearAlgebra::discreteCosineTransform(featureVector);

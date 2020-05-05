@@ -1,5 +1,7 @@
+#include <cmath>
 #include <vector>
 #include <string>
+#include <stdexcept>
 
 std::vector<std::string> explode(std::string str, std::string delimiter) {
 	std::vector<std::string> res;
@@ -17,4 +19,19 @@ std::vector<std::string> explode(std::string str, std::string delimiter) {
 	res.push_back(str);
 
 	return res;
+}
+
+double euclidianDistance(std::vector<double> &point1, std::vector<double> &point2) {
+	if (point1.size() != point2.size()) {
+		throw std::runtime_error("Vectors must have the same size");
+	}
+
+	double temp = 0;
+
+	for (unsigned int i = 0; i < point1.size(); ++i) {
+		temp = std::pow(point1[i] - point2[i], 2);
+	}
+
+	return std::sqrt(temp);
+
 }
