@@ -29,7 +29,22 @@ double euclidianDistance(std::vector<double> &point1, std::vector<double> &point
 	double temp = 0;
 
 	for (unsigned int i = 0; i < point1.size(); ++i) {
-		temp = std::pow(point1[i] - point2[i], 2);
+		temp += std::pow(point1[i] - point2[i], 2);
+	}
+
+	return std::sqrt(temp);
+
+}
+
+double manhattanDistance(std::vector<double> point1, std::vector<double> point2) {
+	if (point1.size() != point2.size()) {
+		throw std::runtime_error("Vectors must have the same size");
+	}
+
+	double temp = 0;
+
+	for (unsigned int i = 0; i < point1.size(); ++i) {
+		temp += std::abs(point1[i] - point2[i]);
 	}
 
 	return std::sqrt(temp);
