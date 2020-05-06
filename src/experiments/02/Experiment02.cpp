@@ -291,7 +291,7 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
-			static void perform(char *args[], int argCount) {
+			static void perform(std::vector<std::string> args, int argCount) {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(20);
 
@@ -327,7 +327,7 @@ namespace waveletExperiments {
 				double totalCycles = 0;
 
 				// Computes the cicles needed to compute all signals
-				for (int i = 1; i < argCount; i++) {
+				for (int i = 0; i < argCount; i++) {
 					std::ifstream fileListStream;
 					fileListStream.open(args[i], std::ios::out);
 
@@ -345,7 +345,7 @@ namespace waveletExperiments {
 
 				// Iterates over all files, this files
 				// have to represent our data classes
-				for (int i = 1; i < argCount; i++) {
+				for (int i = 0; i < argCount; i++) {
 
 					// file reader
 					std::ifstream fileListStream;
@@ -382,8 +382,8 @@ namespace waveletExperiments {
 
 				classifiers::DistanceClassifier c;
 
-				std::vector<std::vector<double>> live = results["haar"][BARK][args[1]];
-				std::vector<std::vector<double>> spoofing = results["haar"][BARK][args[2]];
+				std::vector<std::vector<double>> live = results["haar"][BARK][args[0]];
+				std::vector<std::vector<double>> spoofing = results["haar"][BARK][args[0]];
 
 				std::vector<std::vector<double>> modelLive(live.begin(), live.begin() + live.size() / 2);
 				std::vector<std::vector<double>> modelSpoofing(spoofing.begin(), spoofing.begin() + spoofing.size() / 2);

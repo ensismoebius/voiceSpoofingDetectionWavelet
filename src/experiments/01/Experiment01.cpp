@@ -305,7 +305,7 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
-			static void perform(char *args[], int argCount) {
+			static void perform(std::vector<std::string> args, int argCount) {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(20);
 
@@ -354,7 +354,7 @@ namespace waveletExperiments {
 				double totalCycles = 0;
 
 				// Computes the cicles needed to compute all signals
-				for (int i = 1; i < argCount; i++) {
+				for (int i = 0; i < argCount; i++) {
 					std::ifstream fileListStream;
 					fileListStream.open(args[i], std::ios::out);
 
@@ -368,7 +368,7 @@ namespace waveletExperiments {
 
 				// Iterates over all files, this files
 				// have to represent our data classes
-				for (int i = 1; i < argCount; i++) {
+				for (int i = 0; i < argCount; i++) {
 
 					// file reader
 					std::ifstream fileListStream;
@@ -418,8 +418,8 @@ namespace waveletExperiments {
 				for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
 					// Iterates over all barkOrMel
 					for (int bm = BARK; bm <= MEL; bm++) {
-						unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[1]).size();
-						unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[1]).at(0).size();
+						unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[0]).size();
+						unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(args[0]).at(0).size();
 
 						std::map<std::string, std::vector<std::vector<double>>> arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
 
