@@ -25,6 +25,7 @@
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
+#include "../../lib/classifiers/DistanceClassifier.cpp"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 
 /**
@@ -375,11 +376,36 @@ namespace waveletExperiments {
 					fileListStream.close();
 				}
 
-				//////////////////////////////////////////////////
-				/// Processing data with wavelet haar and BARK ///
-				//////////////////////////////////////////////////
+				////////////////////////////
+				/// Classification phase ///
+				////////////////////////////
 
-				saveDataToFile(results);
+				classifiers::DistanceClassifier c;
+
+				std::vector<std::vector<double>> live = results["haar"][BARK][args[1]];
+				std::vector<std::vector<double>> spoofing = results["haar"][BARK][args[2]];
+
+				std::vector<std::vector<double>> modelLive(live.begin(), live.begin() + live.size() / 2);
+				std::vector<std::vector<double>> modelSpoofing(spoofing.begin(), spoofing.begin() + spoofing.size() / 2);
+
+				std::vector<std::vector<double>> testLive(live.begin() + live.size() / 2, live.begin() + live.size());
+				std::vector<std::vector<double>> testSpoofing(spoofing.begin() + spoofing.size() / 2, spoofing.begin() + spoofing.size());
+
+				c.setDistanceType(classifiers::MANHATTAN);
+				c.addReferenceModels("live", modelLive);
+				c.addReferenceModels("spoofing", modelSpoofing);
+
+				for (auto test : testLive) {
+					std::cout << c.classify(test) << std::endl;
+				}
+
+				std::cout << "////////////////////////////////////" << std::endl;
+
+				for (auto test : testSpoofing) {
+					std::cout << c.classify(test) << std::endl;
+				}
+
+				//saveDataToFile(results);
 			}
 	};
 

@@ -36,7 +36,7 @@ double euclidianDistance(std::vector<double> &point1, std::vector<double> &point
 
 }
 
-double manhattanDistance(std::vector<double> point1, std::vector<double> point2) {
+double manhattanDistance(std::vector<double> &point1, std::vector<double> &point2) {
 	if (point1.size() != point2.size()) {
 		throw std::runtime_error("Vectors must have the same size");
 	}
