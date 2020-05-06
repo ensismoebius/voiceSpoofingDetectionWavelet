@@ -18,9 +18,10 @@
 #include <string>
 namespace wavelets {
 
+	void init(std::vector<std::string> choosenWavelets = { });
 	void resetInitialization();
 	std::vector<double> get(std::string waveletName);
-	std::map<std::string, std::vector<double>> all(std::vector<std::string> wavelets = { });
+	std::map<std::string, std::vector<double>> all();
 }
 
 #endif /* SRC_LIB_WAVELET_TYPES_H_ */

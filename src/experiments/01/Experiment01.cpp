@@ -349,7 +349,7 @@ namespace waveletExperiments {
 				 */
 				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results;
 
-				// Used to compute
+				// Used to compute the progress
 				double cycles = 0;
 				double totalCycles = 0;
 
@@ -367,7 +367,7 @@ namespace waveletExperiments {
 				totalCycles = wavelets::all().size() * (argCount - 1) * totalCycles;
 
 				// Iterates over all files, this files
-				// should represent our data classes
+				// have to represent our data classes
 				for (int i = 1; i < argCount; i++) {
 
 					// file reader
