@@ -16,15 +16,17 @@
 
 namespace classifiers {
 
-	enum DISTANCE_TYPE {
-		EUCLICIDIAN, MANHATTAN
-	};
-
 	class DistanceClassifier {
 
+		public:
+			enum DISTANCE_TYPE {
+				EUCLICIDIAN, MANHATTAN
+			};
+
 		private:
-			DISTANCE_TYPE distanceType;
 			std::map<std::string, std::vector<std::vector<double>>> referenceModels;
+			DISTANCE_TYPE distanceType;
+
 		public:
 
 			void clearRefenceModels() {

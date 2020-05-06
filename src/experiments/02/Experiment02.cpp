@@ -391,7 +391,7 @@ namespace waveletExperiments {
 				std::vector<std::vector<double>> testLive(live.begin() + live.size() / 2, live.begin() + live.size());
 				std::vector<std::vector<double>> testSpoofing(spoofing.begin() + spoofing.size() / 2, spoofing.begin() + spoofing.size());
 
-				c.setDistanceType(classifiers::MANHATTAN);
+				c.setDistanceType(classifiers::DistanceClassifier::MANHATTAN);
 				c.addReferenceModels("live", modelLive);
 				c.addReferenceModels("spoofing", modelSpoofing);
 
