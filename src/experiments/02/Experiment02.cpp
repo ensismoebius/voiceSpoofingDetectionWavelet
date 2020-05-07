@@ -357,7 +357,7 @@ namespace waveletExperiments {
 
 						// Status
 						cycles++;
-						std::cout << "\rCompletion " << (cycles / totalCycles) * 100 << "%" << std::flush;
+						std::cout << "\rPreparing feature vectors... " << (cycles / totalCycles) * 100 << "%" << std::flush;
 
 						// Initializes the experiment
 						Experiment02::init();
@@ -381,33 +381,100 @@ namespace waveletExperiments {
 				/// Classification phase ///
 				////////////////////////////
 
+				// Start a new line to give space
+				// to the next resports
+				std::cout << std::endl;
+
+				// Holds the parcial user friendly reports
+				std::string partialReport;
+
+				// Both variables used to calculate the
+				// maximum accuracy
+				double accuracy = 0;
+				double temp;
+
+				// The percentage of the feature vectors
+				// used as models for the classifier
+				float modelPercentage = 0.1;
+
+				// Holds the tests features vectors for live signals
+				std::vector<std::vector<double>> testLive;
+
+				// Holds the models features vectors for live signals
+				std::vector<std::vector<double>> modelLive;
+
+				// Holds the tests features vectors for spoofing signals
+				std::vector<std::vector<double>> testSpoofing;
+
+				// Holds the models features vectors for spoofing signals
+				std::vector<std::vector<double>> modelSpoofing;
+
+				// Creating the classifier
 				classifiers::DistanceClassifier c;
 
-				std::vector<std::vector<double>> live = results["haar"][BARK][classFilesList[0]];
-				std::vector<std::vector<double>> testLive;
-				std::vector<std::vector<double>> modelLive;
-				classifiers::raflleFeaturesVectors(live, modelLive, testLive, 0.1);
+				// Creating the confusion matrix structure
+				enum CONFUSION_POS {
+					TP, FP, FN, TN
+				};
+				std::map<CONFUSION_POS, int> confusionMatrix;
 
-				std::vector<std::vector<double>> spoofing = results["haar"][BARK][classFilesList[1]];
-				std::vector<std::vector<double>> testSpoofing;
-				std::vector<std::vector<double>> modelSpoofing;
-				classifiers::raflleFeaturesVectors(spoofing, modelSpoofing, testSpoofing, 0.1);
+				// Changes the amount of tests done against the dataset
+				for (unsigned int amountOfLoops = 1; amountOfLoops < 420; amountOfLoops++) {
 
-				c.setDistanceType(classifiers::DistanceClassifier::MANHATTAN);
-				c.addReferenceModels("live", modelLive);
-				c.addReferenceModels("spoofing", modelSpoofing);
+					// Do the classification and populate the confusion matrix
+					for (unsigned int k = 0; k < amountOfLoops; k++) {
 
-				for (auto test : testLive) {
-					std::cout << c.classify(test) << std::endl;
+						// Sampling the live signals
+						classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
+						// Sampling the spoofing signals
+						classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+
+						// Setting up the classifier
+						c.setDistanceType(classifiers::DistanceClassifier::MANHATTAN);
+						c.addReferenceModels("live", modelLive);
+						c.addReferenceModels("spoofing", modelSpoofing);
+
+						// Preparing confusion matrix
+						confusionMatrix[TP] = 0;
+						confusionMatrix[FP] = 0;
+						confusionMatrix[TN] = 0;
+						confusionMatrix[FN] = 0;
+
+						// Test it out!!
+						for (auto test : testLive) {
+							if (c.classify(test).compare("live") == 0) {
+								confusionMatrix[TP] += 1;
+							} else {
+								confusionMatrix[FN] += 1;
+							}
+						}
+
+						for (auto test : testSpoofing) {
+							if (c.classify(test).compare("spoofing") == 0) {
+								confusionMatrix[TN] += 1;
+							} else {
+								confusionMatrix[FP] += 1;
+							}
+						}
+
+						////////////////////////
+						/// Conclusion phase ///
+						////////////////////////
+
+						// calculate the best accuracy
+						temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
+						if (temp > accuracy) {
+							accuracy = temp;
+							partialReport = std::to_string(accuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
+							partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
+						}
+
+					}
+
+					// Report for this amount of tests
+					accuracy = 0;
+					std::cout << amountOfLoops << "\t" << partialReport << std::endl;
 				}
-
-				std::cout << "////////////////////////////////////" << std::endl;
-
-				for (auto test : testSpoofing) {
-					std::cout << c.classify(test) << std::endl;
-				}
-
-				//saveDataToFile(results);
 			}
 	};
 

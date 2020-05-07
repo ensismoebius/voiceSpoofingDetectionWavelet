@@ -23,7 +23,7 @@ namespace classifiers {
 		std::random_shuffle(indexes.begin(), indexes.end());
 
 		// Based on the modelSize informed percentage
-		// calculates the amount of points needed
+		// calculates the amount of points model needs
 		unsigned int amountOfModelSamples = modelSize * source.size();
 
 		// Resize the the ones who will receive
