@@ -211,52 +211,19 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> results) {
+			static void plotResults(std::vector<int> numberOfTests, std::vector<double> testsAccuracy) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
 
-				// The values of contradiction and certaint ever goes around 0 and 1
-				plt::xlim(-1, 1);
-				plt::ylim(-1, 1);
+				plt::xlabel("Amount of tests");
+				plt::ylabel("Accuracy");
 
-				plt::grid(true);
+				plt::title("Accuracy of Wavelet Haar with BARK(B) with Manhattan distance classifier");
 
-				// Preparing the paraconsistent plane
-				std::vector<int> x = { 1, 0 };
-				std::vector<int> y = { 0, 1 };
-
-				x = { 0, 1 };
-				y = { 1, 0 };
-				plt::plot(x, y);
-				plt::text(1, 0, "Truth");
-
-				x = { 1, 0 };
-				y = { 0, -1 };
-				plt::plot(x, y);
-				plt::text(0, -1, "Indefinition");
-
-				x = { 0, -1 };
-				y = { -1, 0 };
-				plt::plot(x, y);
-				plt::text(-1, 0, "Falsehood");
-
-				x = { -1, 0 };
-				y = { 0, 1 };
-				plt::plot(x, y);
-				plt::text(0, 1, "Ambiguity");
-				// Paraconsistent plane ready!
-
-				plt::xlabel("Certaint");
-				plt::ylabel("Contradiction");
-
-				plt::title("Wavelet Haar with BARK(B) on paraconsistent measures");
-				plt::scatter(results["haar"][BARK][0], results["haar"][BARK][1], 100.0);
-
-				plt::annotate("←B haar", results["haar"][BARK][0][0], results["haar"][BARK][0][1]);
+				plt::plot(numberOfTests, testsAccuracy);
 
 				plt::show();
-				plt::pause(.1);
 			}
 
 			/**
@@ -385,6 +352,12 @@ namespace waveletExperiments {
 				// to the next resports
 				std::cout << std::endl;
 
+				// Holds the values for the graphic
+				// of accuracy versus the number of
+				// tests
+				std::vector<int> numberOfTests;
+				std::vector<double> testAccuracy;
+
 				// Holds the parcial user friendly reports
 				std::string partialReport;
 
@@ -419,10 +392,10 @@ namespace waveletExperiments {
 				std::map<CONFUSION_POS, int> confusionMatrix;
 
 				// Changes the amount of tests done against the dataset
-				for (unsigned int amountOfLoops = 1; amountOfLoops < 420; amountOfLoops++) {
+				for (unsigned int amountOfTests = 1; amountOfTests < 100; amountOfTests++) {
 
 					// Do the classification and populate the confusion matrix
-					for (unsigned int k = 0; k < amountOfLoops; k++) {
+					for (unsigned int k = 0; k < amountOfTests; k++) {
 
 						// Sampling the live signals
 						classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
@@ -471,10 +444,16 @@ namespace waveletExperiments {
 
 					}
 
+					// Store the results for the graphic
+					testAccuracy.push_back(accuracy);
+					numberOfTests.push_back(amountOfTests);
+
 					// Report for this amount of tests
 					accuracy = 0;
-					std::cout << amountOfLoops << "\t" << partialReport << std::endl;
+					std::cout << amountOfTests << "\t" << partialReport << std::endl;
 				}
+
+				plotResults(numberOfTests, testAccuracy);
 			}
 	};
 
