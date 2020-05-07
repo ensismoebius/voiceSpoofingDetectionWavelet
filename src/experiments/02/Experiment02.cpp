@@ -25,6 +25,7 @@
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
+#include "../../lib/classifiers/featureVectorsUtils.h"
 #include "../../lib/classifiers/DistanceClassifier.cpp"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 
@@ -383,13 +384,14 @@ namespace waveletExperiments {
 				classifiers::DistanceClassifier c;
 
 				std::vector<std::vector<double>> live = results["haar"][BARK][classFilesList[0]];
+				std::vector<std::vector<double>> testLive;
+				std::vector<std::vector<double>> modelLive;
+				classifiers::raflleFeaturesVectors(live, modelLive, testLive, 0.1);
+
 				std::vector<std::vector<double>> spoofing = results["haar"][BARK][classFilesList[1]];
-
-				std::vector<std::vector<double>> modelLive(live.begin(), live.begin() + live.size() / 2);
-				std::vector<std::vector<double>> modelSpoofing(spoofing.begin(), spoofing.begin() + spoofing.size() / 2);
-
-				std::vector<std::vector<double>> testLive(live.begin() + live.size() / 2, live.begin() + live.size());
-				std::vector<std::vector<double>> testSpoofing(spoofing.begin() + spoofing.size() / 2, spoofing.begin() + spoofing.size());
+				std::vector<std::vector<double>> testSpoofing;
+				std::vector<std::vector<double>> modelSpoofing;
+				classifiers::raflleFeaturesVectors(spoofing, modelSpoofing, testSpoofing, 0.1);
 
 				c.setDistanceType(classifiers::DistanceClassifier::MANHATTAN);
 				c.addReferenceModels("live", modelLive);

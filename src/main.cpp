@@ -28,7 +28,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 				continue;
 			}
 		}
-		std::cout << "Usage: mestrado --live <file> --spoofing <file>" << std::endl;
+		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files>" << std::endl;
 		return 2;
 	}
 

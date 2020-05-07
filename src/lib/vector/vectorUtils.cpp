@@ -1,6 +1,8 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <random>
+#include <algorithm>
 #include <stdexcept>
 
 std::vector<std::string> explode(std::string str, std::string delimiter) {
