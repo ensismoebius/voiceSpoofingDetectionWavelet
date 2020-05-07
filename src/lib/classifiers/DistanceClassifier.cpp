@@ -80,6 +80,7 @@ namespace classifiers {
 					return nearestLabel;
 				}
 
+				return "";
 			}
 	};
 }

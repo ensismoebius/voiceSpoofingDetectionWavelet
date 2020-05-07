@@ -291,7 +291,7 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
-			static void perform(std::vector<std::string> args, int argCount) {
+			static void perform(std::vector<std::string> classFilesList) {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(20);
 
@@ -327,9 +327,9 @@ namespace waveletExperiments {
 				double totalCycles = 0;
 
 				// Computes the cicles needed to compute all signals
-				for (int i = 0; i < argCount; i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++) {
 					std::ifstream fileListStream;
-					fileListStream.open(args[i], std::ios::out);
+					fileListStream.open(classFilesList[i], std::ios::out);
 
 					while (std::getline(fileListStream, line))
 						totalCycles++;
@@ -337,7 +337,7 @@ namespace waveletExperiments {
 					fileListStream.clear();
 					fileListStream.close();
 				}
-				totalCycles = (argCount - 1) * totalCycles / 2;
+				totalCycles = (classFilesList.size() - 1) * totalCycles;
 
 				//////////////////////////////////////////////////
 				/// Processing data with wavelet haar and BARK ///
@@ -345,11 +345,11 @@ namespace waveletExperiments {
 
 				// Iterates over all files, this files
 				// have to represent our data classes
-				for (int i = 0; i < argCount; i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++) {
 
 					// file reader
 					std::ifstream fileListStream;
-					fileListStream.open(args[i], std::ios::in);
+					fileListStream.open(classFilesList[i], std::ios::in);
 
 					// gets the file path to process
 					while (std::getline(fileListStream, line)) {
@@ -369,7 +369,7 @@ namespace waveletExperiments {
 						w.process();
 
 						// Store the parcial results
-						results["haar"][BARK][args[i]].push_back(w.getData());
+						results["haar"][BARK][classFilesList[i]].push_back(w.getData());
 					}
 
 					fileListStream.clear();
@@ -382,8 +382,8 @@ namespace waveletExperiments {
 
 				classifiers::DistanceClassifier c;
 
-				std::vector<std::vector<double>> live = results["haar"][BARK][args[0]];
-				std::vector<std::vector<double>> spoofing = results["haar"][BARK][args[0]];
+				std::vector<std::vector<double>> live = results["haar"][BARK][classFilesList[0]];
+				std::vector<std::vector<double>> spoofing = results["haar"][BARK][classFilesList[1]];
 
 				std::vector<std::vector<double>> modelLive(live.begin(), live.begin() + live.size() / 2);
 				std::vector<std::vector<double>> modelSpoofing(spoofing.begin(), spoofing.begin() + spoofing.size() / 2);

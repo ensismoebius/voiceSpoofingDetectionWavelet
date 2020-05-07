@@ -1,22 +1,15 @@
 #include <string>
 
+#include "lib/file/fileUtils.h"
 #include "experiments/01/Experiment01.cpp"
 #include "experiments/02/Experiment02.cpp"
 
-bool fileExistis(const std::string &name) {
-	struct stat buffer;
-	return (stat(name.c_str(), &buffer) == 0);
-}
-
-int main(int argc, char *args[]) {
+int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList) {
 
 	if (argc != 5) {
-		std::cout << "Usage: mestrado --live <file> --spoofing <file>" << std::endl;
+		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files>" << std::endl;
 		return 1;
 	}
-
-	std::string liveFileList;
-	std::string spoofingFileList;
 
 	for (int j = 1; j < argc; ++j) {
 		std::string argument(args[j]);
@@ -39,8 +32,20 @@ int main(int argc, char *args[]) {
 		return 2;
 	}
 
-	//waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, 2);
-	waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, 2);
+	return 0;
+}
+
+int main(int argc, char *args[]) {
+
+	std::string liveFileList;
+	std::string spoofingFileList;
+
+	int res = parseArguments(argc, args, liveFileList, spoofingFileList);
+
+	if (res != 0) return res;
+
+	//waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList });
+	waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList });
 
 	return 0;
 }
