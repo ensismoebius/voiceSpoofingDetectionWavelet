@@ -215,7 +215,7 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void savePlotResults(std::vector<double> numberOfTests, std::vector<double> bestTestAccuracy, std::vector<double> worseTestAccuracy, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType) {
+			static void savePlotResults(std::vector<double> numberOfTests, std::vector<double> bestTestAccuracy, std::vector<double> worseTestAccuracy, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string resultsDestiny) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -231,7 +231,7 @@ namespace waveletExperiments {
 				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy);
 				plt::grid(true);
 				plt::legend();
-				plt::save("/tmp/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
+				plt::save(resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
 				plt::clf();
 			}
 
@@ -263,12 +263,12 @@ namespace waveletExperiments {
 				ofs.close();
 			}
 
-			static void saveConfusionMatrices(std::map<CONFUSION_POS, int> bestMatrix, std::map<CONFUSION_POS, int> worstMatrix, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType) {
+			static void saveConfusionMatrices(std::map<CONFUSION_POS, int> bestMatrix, std::map<CONFUSION_POS, int> worstMatrix, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string resultsDestiny) {
 
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
 				// Open the file
-				std::string filePath = "/tmp/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
+				std::string filePath = resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
 				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
 				if (!ofs.is_open()) {
 					std::cout << "Cannot open file: " << filePath;
@@ -286,9 +286,9 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
-			static void perform(std::vector<std::string> classFilesList) {
-//				std::cout << std::fixed;
-//				std::cout << std::setprecision(20);
+			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny) {
+				std::cout << std::fixed;
+				std::cout << std::setprecision(4);
 
 				// set the callback function in the Experiment02 class
 				Wav w;
@@ -422,90 +422,101 @@ namespace waveletExperiments {
 				// Creating the classifier
 				classifiers::DistanceClassifier c;
 
-				// Changes the percentage of the feature vectors used as models for the classifier
-				for (double modelPercentage = .5; modelPercentage >= .1; modelPercentage -= .1) {
+				// Changes the type of distance classifier used
+				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++) {
 
-					percentageBestAccuracy = -std::numeric_limits<double>().max();
-					percentageWorstAccuracy = std::numeric_limits<double>().max();
+					// Changes the percentage of the feature vectors used as models for the classifier
+					for (double modelPercentage = .5; modelPercentage >= .1; modelPercentage -= .1) {
 
-					// Changes the amount of tests done against the dataset
-					for (unsigned int amountOfTests = 1; amountOfTests < 200; amountOfTests++) {
+						percentageBestAccuracy = -std::numeric_limits<double>().max();
+						percentageWorstAccuracy = std::numeric_limits<double>().max();
 
-						// Do the classification and populate the confusion matrix
-						for (unsigned int k = 0; k < amountOfTests; k++) {
+						// Changes the amount of tests done against the dataset
+						for (unsigned int amountOfTests = 1; amountOfTests < 10; amountOfTests++) {
 
-							// Sampling the live signals
-							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
-							// Sampling the spoofing signals
-							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+							// Do the classification and populate the confusion matrix
+							for (unsigned int k = 0; k < amountOfTests; k++) {
 
-							// Setting up the classifier
-							c.setDistanceType(classifiers::DistanceClassifier::MANHATTAN);
-							c.addReferenceModels("live", modelLive);
-							c.addReferenceModels("spoofing", modelSpoofing);
+								// Sampling the live signals
+								classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
+								// Sampling the spoofing signals
+								classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
-							// Preparing confusion matrix
-							confusionMatrix[TP] = 0;
-							confusionMatrix[FP] = 0;
-							confusionMatrix[TN] = 0;
-							confusionMatrix[FN] = 0;
+								// Setting up the classifier
+								c.setDistanceType(static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType));
+								c.addReferenceModels("live", modelLive);
+								c.addReferenceModels("spoofing", modelSpoofing);
 
-							// Test it out!!
-							for (auto test : testLive) {
-								if (c.classify(test).compare("live") == 0) {
-									confusionMatrix[TP] += 1;
-								} else {
-									confusionMatrix[FN] += 1;
+								// Preparing confusion matrix
+								confusionMatrix[TP] = 0;
+								confusionMatrix[FP] = 0;
+								confusionMatrix[TN] = 0;
+								confusionMatrix[FN] = 0;
+
+								// Test it out!!
+								for (auto test : testLive) {
+									if (c.classify(test).compare("live") == 0) {
+										confusionMatrix[TP] += 1;
+									} else {
+										confusionMatrix[FN] += 1;
+									}
 								}
-							}
 
-							for (auto test : testSpoofing) {
-								if (c.classify(test).compare("spoofing") == 0) {
-									confusionMatrix[TN] += 1;
-								} else {
-									confusionMatrix[FP] += 1;
+								for (auto test : testSpoofing) {
+									if (c.classify(test).compare("spoofing") == 0) {
+										confusionMatrix[TN] += 1;
+									} else {
+										confusionMatrix[FP] += 1;
+									}
 								}
+
+								////////////////////////
+								/// Conclusion phase ///
+								////////////////////////
+
+								// calculate the best accuracy
+								temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
+
+								if (temp > percentageBestAccuracy) {
+									percentageBestAccuracy = temp;
+									percentageBestConfusionMatrix = confusionMatrix;
+									partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
+									partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
+								}
+
+								if (temp < percentageWorstAccuracy) {
+									percentageWorstAccuracy = temp;
+									percentageWorseConfusionMatrix = confusionMatrix;
+									partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
+									partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
+								}
+
 							}
 
-							////////////////////////
-							/// Conclusion phase ///
-							////////////////////////
+							// Store the results for the graphic
+							numberOfTests[modelPercentage].push_back(amountOfTests);
+							bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
+							worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
+							bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
+							worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
 
-							// calculate the best accuracy
-							temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
+							// Report for this amount of tests
 
-							if (temp > percentageBestAccuracy) {
-								percentageBestAccuracy = temp;
-								percentageBestConfusionMatrix = confusionMatrix;
-								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-							}
-
-							if (temp < percentageWorstAccuracy) {
-								percentageWorstAccuracy = temp;
-								percentageWorseConfusionMatrix = confusionMatrix;
-								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-							}
-
+							std::cout << (static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType) == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan: " : "Euclidian: ") << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
 						}
-
-						// Store the results for the graphic
-						numberOfTests[modelPercentage].push_back(amountOfTests);
-						bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
-						worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
-						bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
-						worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
-
-						// Report for this amount of tests
-						std::cout << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
 					}
-				}
 
-				// Plot everything
-				for (auto test : numberOfTests) {
-					saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, classifiers::DistanceClassifier::MANHATTAN);
-					savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, classifiers::DistanceClassifier::MANHATTAN);
+					// Plot everything
+					for (auto test : numberOfTests) {
+						saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
+						savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
+					}
+
+					numberOfTests.clear();
+					bestTestAccuracy.clear();
+					worseTestAccuracy.clear();
+					bestConfusionMatrix.clear();
+					worseConfusionMatrix.clear();
 				}
 
 			}
