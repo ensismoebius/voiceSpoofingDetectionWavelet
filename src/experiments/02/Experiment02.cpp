@@ -114,9 +114,6 @@ namespace waveletExperiments {
 
 			/**
 			 * Initialises the experiment
-			 * @param wavelet
-			 * @param mode
-			 * @param barkOrMel
 			 */
 			static void init() {
 				wavelets::init( { "haar" });
@@ -215,7 +212,7 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny) {
+			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny, double yrange[2]) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -224,6 +221,8 @@ namespace waveletExperiments {
 
 				plt::xlabel("Amount of tests");
 				plt::ylabel("Accuracy");
+
+				plt::ylim(yrange[0], yrange[1]);
 
 				plt::title("Accuracy of BARK over Haar wavelet using " + distType + " distance classifier\n with model size of " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data");
 
@@ -518,10 +517,28 @@ namespace waveletExperiments {
 						}
 					}
 
+					// Calculates the range of y axis
+					// for a more regular ploting
+					double yrange[2] = { 1, 0 };
+					for (auto test : numberOfTests) {
+
+						for (double v : worseTestAccuracy[test.first]) {
+							yrange[0] = v < yrange[0] ? v : yrange[0];
+						}
+						for (double v : bestTestAccuracy[test.first]) {
+							yrange[1] = v > yrange[1] ? v : yrange[1];
+						}
+
+						float temp = (yrange[1] - yrange[0]) / 30;
+						yrange[0] -= temp;
+						yrange[1] += temp;
+
+					}
+
 					// Plot everything
 					for (auto test : numberOfTests) {
 						saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
-						savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
+						savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny, yrange);
 					}
 
 				}
