@@ -80,5 +80,21 @@ namespace linearAlgebra {
 	 * @param vector
 	 */
 	void discreteCosineTransform(std::vector<double> vector);
+
+	/**
+	 * Scales a given matrix
+	 * @param matrix
+	 */
+	void scaleMatrix(std::vector<std::vector<double>> &matrix);
+
+	/**
+	 * Solves the linear system represented by
+	 * the matrix and return the results.
+	 * The matrix MUST be scaled before!!!
+	 * @see scaleMatrix
+	 * @param matrix - A scaled matrix
+	 * @return a vetor with results
+	 */
+	std::vector<double> solveMatrix(std::vector<std::vector<double>> &matrix);
 }
 #endif /* SRC_LIB_LINEARALGEBRA_LINEARALGEBRA_H_ */

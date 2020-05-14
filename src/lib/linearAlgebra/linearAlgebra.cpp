@@ -175,4 +175,86 @@ namespace linearAlgebra {
 		}
 
 	}
+
+	void scaleMatrix(std::vector<std::vector<double>> &matrix) {
+
+		// Points to the best line that can nullify our values
+		unsigned int bestLineForSubtration = 0;
+
+		// Selecting the line on which we have the value to nullyfy
+		for (unsigned int lineIndex = 1; lineIndex < matrix.size(); lineIndex++) {
+
+			// Selecting the column on which we have the value to nullyfy
+			for (unsigned columnIndex = 0; columnIndex < lineIndex; columnIndex++) {
+
+				// If this value is already zero then we are ok, move on
+				if (matrix[lineIndex][columnIndex] == 0) continue;
+
+				// Otherwise we must find the best line for subtraction
+				bestLineForSubtration = 0;
+				for (; bestLineForSubtration < matrix.size(); bestLineForSubtration++) {
+
+					// The line must have an value diferent of
+					// zero at the position we want nullify
+					if (matrix[bestLineForSubtration][columnIndex] == 0) continue;
+
+					// The line must have zeros BEFORE the
+					// current position we want to nullify
+					bool zeroedBefore = true;
+					for (unsigned int ci = 0; ci < columnIndex; ci++) {
+						if (matrix[bestLineForSubtration][ci] != 0) {
+							zeroedBefore = false;
+							break;
+						}
+					}
+					if (!zeroedBefore) continue;
+
+					// We got it! Stop now!
+					break;
+				}
+
+				// Ready to calculate the coefficient
+				double coef = matrix[lineIndex][columnIndex] / matrix[bestLineForSubtration][columnIndex];
+
+				for (unsigned int ci = 0; ci < matrix[lineIndex].size(); ci++) {
+					matrix[lineIndex][ci] -= coef * matrix[bestLineForSubtration][ci];
+				}
+			}
+
+		}
+
+	}
+
+	std::vector<double> solveMatrix(std::vector<std::vector<double>> &matrix) {
+		// Used to make the substitutions
+		double temp;
+
+		// final result
+		std::vector<double> result(matrix.size());
+
+		// The amount of the matrix columns
+		unsigned int colums = matrix[0].size();
+
+		// loop over all matrix lines from botton to up
+		for (int li = matrix.size() - 1; li >= 0; li--) {
+
+			// Make the substitutions:
+			//	-Ignore the incognito variable (all values from main diagonal).-> "ci = li + 1"
+			//	-Ignore the right side of the equation.-> "colums - 1"
+			temp = 0;
+			for (unsigned ci = li + 1; ci < colums - 1; ci++) {
+				temp -= matrix[li][ci] * result[ci];
+			}
+
+			// The result is computed as follows:
+			//	-Take the rigth side of the equation (the number) -> matrix[li][colums - 1]
+			//	-Take the value multipling the incognito variable -> matrix[li][li]
+			//	-Make a substituition with previous result (the loop above)
+			//	-Then sum the substitutions with the right side of equation and divide by incognito
+			result[li] = (matrix[li][colums - 1] + temp) / matrix[li][li];
+		}
+
+		return result;
+	}
+
 }
