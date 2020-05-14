@@ -11,85 +11,83 @@
 #ifndef SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_
 #define SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_
 
-#include <iostream>
 #include <cmath>
 #include <vector>
 #include "../vector/vectorUtils.h"
 #include "../linearAlgebra/linearAlgebra.h"
 
-class SupportVectorMachine {
-	public:
-		enum LABEL {
-			POSITIVE = 1, NEGATIVE = -1
-		};
-	private:
+namespace classifiers {
 
-		std::vector<std::vector<double>> trainningModels;
-		std::vector<LABEL> trainningLabels;
+	class SupportVectorMachine {
+		public:
+			enum LABEL {
+				POSITIVE = 1, NEGATIVE = -1
+			};
+		private:
 
-		std::vector<double> hiddenToOutputWeights;
-		std::vector<double> outputLayer;
+			std::vector<std::vector<double>> trainningModels;
+			std::vector<LABEL> trainningLabels;
 
-		inline double radialDistance(std::vector<double> currentInputVector, std::vector<double> v2) {
-			return std::exp(-euclidianDistance(currentInputVector, v2));
-		}
+			std::vector<double> hiddenToOutputWeights;
+			std::vector<double> outputLayer;
 
-	public:
-
-		void addTrainningCases(std::vector<std::vector<double>> input, LABEL label) {
-			this->trainningLabels.resize(this->trainningLabels.size() + input.size(), label);
-			this->trainningModels.insert(this->trainningModels.end(), input.begin(), input.end());
-		}
-
-		LABEL evaluate(std::vector<double> input) {
-
-			std::vector<double> distances(this->trainningModels.size());
-
-			// creating the layer values
-			for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++) {
-				distances[fi] = this->radialDistance(input, this->trainningModels[fi]) * this->hiddenToOutputWeights[fi];
+			inline double radialDistance(std::vector<double> currentInputVector, std::vector<double> v2) {
+				return std::exp(-euclidianDistance(currentInputVector, v2));
 			}
 
-			double result = 0;
+		public:
 
-			for (double v : distances)
-				result += v;
-
-			// If the distance from NEGATIVE is greater
-			// than the distance from POSITIVE return
-			// POSITIVE otherwise return NEGATIVE
-			if ((result - NEGATIVE) > (result - POSITIVE)) {
-				return POSITIVE;
+			void addTrainningCases(std::vector<std::vector<double>> input, LABEL label) {
+				this->trainningLabels.resize(this->trainningLabels.size() + input.size(), label);
+				this->trainningModels.insert(this->trainningModels.end(), input.begin(), input.end());
 			}
-			return NEGATIVE;
-		}
 
-		void train() {
-			std::vector<std::vector<double>> intermediateLayer;
-			intermediateLayer.resize(this->trainningModels.size(), std::vector<double>(this->trainningModels.size()));
+			LABEL evaluate(std::vector<double> input) {
 
-			// creating the layer values
-			for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++) {
-				for (unsigned int ii = 0; ii < this->trainningModels.size(); ii++) {
-					intermediateLayer[fi][ii] = this->radialDistance(this->trainningModels[fi], this->trainningModels[ii]);
+				double result = 0;
+
+				// creating the layer values
+				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++) {
+					result += this->radialDistance(input, this->trainningModels[fi]) * this->hiddenToOutputWeights[fi];
 				}
 
-				// Adding labels to the data
-				intermediateLayer[fi].push_back(this->trainningLabels[fi]);
+				// If the distance from NEGATIVE is greater
+				// than the distance from POSITIVE return
+				// POSITIVE otherwise return NEGATIVE
+				if (std::pow(result - NEGATIVE, 2) > std::pow(result - POSITIVE, 2)) {
+					return POSITIVE;
+				}
+				return NEGATIVE;
 			}
 
-			// Tests:
-			//	intermediateLayer = { { 1, 1, 1, 7 }, { 2, 1, -1, 9 }, { 1, -2, 2, 2 } };
-			//		results 4,2,1
-			//	intermediateLayer = { { 4, 2, 1, -2, 3 }, { 3, -3, -1, -1, 2 }, { 3, 5, 1, 1, 0 }, { 1, -1, -1, 4, -2 } };
-			//		results 0.461538, -0.384615, 1, -0.461538
+			void train() {
+				// Used to determine the weights for the connections to the output
+				std::vector<std::vector<double>> distancesMatrix;
+				distancesMatrix.resize(this->trainningModels.size(), std::vector<double>(this->trainningModels.size()));
 
-			// Matrix scaling for linear system solving
-			linearAlgebra::scaleMatrix(intermediateLayer);
+				// creating the distances matrix values
+				// i.e. the distances between the vectors
+				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++) {
+					for (unsigned int ii = 0; ii < this->trainningModels.size(); ii++) {
+						distancesMatrix[fi][ii] = this->radialDistance(this->trainningModels[fi], this->trainningModels[ii]);
+					}
 
-			// system solved!!!
-			this->hiddenToOutputWeights = linearAlgebra::solveMatrix(intermediateLayer);
-		}
-};
+					// Adding labels to the data
+					distancesMatrix[fi].push_back(this->trainningLabels[fi]);
+				}
 
+				// Tests:
+				//	intermediateLayer = { { 1, 1, 1, 7 }, { 2, 1, -1, 9 }, { 1, -2, 2, 2 } };
+				//		results 4,2,1
+				//	intermediateLayer = { { 4, 2, 1, -2, 3 }, { 3, -3, -1, -1, 2 }, { 3, 5, 1, 1, 0 }, { 1, -1, -1, 4, -2 } };
+				//		results 0.461538, -0.384615, 1, -0.461538
+
+				// Matrix scaling for linear system solving
+				linearAlgebra::scaleMatrix(distancesMatrix);
+
+				// system solved!!! Return the coeficcients
+				this->hiddenToOutputWeights = linearAlgebra::solveMatrix(distancesMatrix);
+			}
+	};
+}
 #endif /* SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_ */
