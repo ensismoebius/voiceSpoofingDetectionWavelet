@@ -4,12 +4,12 @@
  * This whole project are under GPLv3, for
  * more information read the license file
  *
- * 5 de mai de 2020
+ * 14 de mai de 2020
  *
  */
 
-#ifndef SRC_WAVELETEXPERIMENTS_02_EXPERIMENT02_CPP_
-#define SRC_WAVELETEXPERIMENTS_02_EXPERIMENT02_CPP_
+#ifndef SRC_WAVELETEXPERIMENTS_03_EXPERIMENT03_CPP_
+#define SRC_WAVELETEXPERIMENTS_03_EXPERIMENT03_CPP_
 
 #include <cmath>
 #include <string>
@@ -26,15 +26,15 @@
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
 #include "../../lib/classifiers/featureVectorsUtils.h"
-#include "../../lib/classifiers/DistanceClassifier.cpp"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
+#include "../../lib/classifiers/SupportVectorMachine.cpp"
 
 namespace waveletExperiments {
 
 	/**
-	 * Contains the code for experiment 02.
+	 * Contains the code for experiment 03.
 	 */
-	class Experiment02 {
+	class Experiment03 {
 		private:
 
 			/**
@@ -65,8 +65,8 @@ namespace waveletExperiments {
 			 */
 			static void init() {
 				wavelets::init( { "haar" });
-				Experiment02::wavelet = wavelets::get("haar");
-				Experiment02::barkRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
+				Experiment03::wavelet = wavelets::get("haar");
+				Experiment03::barkRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
 			}
 
 			/**
@@ -96,7 +96,7 @@ namespace waveletExperiments {
 				int level = std::log2(signal.size());
 
 				// Does the transformations
-				wavelets::WaveletTransformResults transformedSignal = wavelets::malat(signal, Experiment02::wavelet, wavelets::PACKET_WAVELET, level);
+				wavelets::WaveletTransformResults transformedSignal = wavelets::malat(signal, Experiment03::wavelet, wavelets::PACKET_WAVELET, level);
 
 				////////////////////
 				/// BARK section ///
@@ -160,19 +160,17 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny, double yrange[2]) {
+			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double pencentageSizeOfModel, std::string &resultsDestiny, double yrange[2]) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
-
-				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
 				plt::xlabel("Amount of tests");
 				plt::ylabel("Accuracy");
 
 				plt::ylim(yrange[0], yrange[1]);
 
-				plt::title("Accuracy of BARK over Haar wavelet using " + distType + " distance classifier\n with model size of " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data");
+				plt::title("Accuracy of BARK over Haar wavelet using SVM classifier\n with model size of " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data");
 
 				plt::named_plot("Best accuracy", numberOfTests, bestTestAccuracy, "-");
 				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
@@ -182,7 +180,7 @@ namespace waveletExperiments {
 
 				plt::grid(true);
 				plt::legend();
-				plt::save(resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
+				plt::save(resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
 				plt::clf();
 			}
 
@@ -214,12 +212,10 @@ namespace waveletExperiments {
 				ofs.close();
 			}
 
-			static void saveConfusionMatrices(std::map<CONFUSION_POS, int> &bestMatrix, std::map<CONFUSION_POS, int> &worstMatrix, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny) {
-
-				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
+			static void saveConfusionMatrices(std::map<CONFUSION_POS, int> &bestMatrix, std::map<CONFUSION_POS, int> &worstMatrix, double pencentageSizeOfModel, std::string &resultsDestiny) {
 
 				// Open the file
-				std::string filePath = resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
+				std::string filePath = resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
 				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
 				if (!ofs.is_open()) {
 					std::cout << "Cannot open file: " << filePath;
@@ -241,9 +237,9 @@ namespace waveletExperiments {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(4);
 
-				// set the callback function in the Experiment02 class
+				// set the callback function in the Experiment03 class
 				Wav w;
-				w.setCallbackFunction(Experiment02::waveletAnaliticFunction);
+				w.setCallbackFunction(Experiment03::waveletAnaliticFunction);
 
 				// store the file path to be processed
 				std::string line;
@@ -305,7 +301,7 @@ namespace waveletExperiments {
 						std::cout << "\rPreparing feature vectors... " << (cycles / totalCycles) * 100 << "%" << std::flush;
 
 						// Initializes the experiment
-						Experiment02::init();
+						Experiment03::init();
 
 						// lines that begins with # are going to be ignored
 						if (line.find("#") == 0) continue;
@@ -371,128 +367,115 @@ namespace waveletExperiments {
 				std::vector<std::vector<double>> modelSpoofing;
 
 				// Creating the classifier
-				classifiers::DistanceClassifier c;
+				classifiers::SupportVectorMachine c;
 
-				// Changes the type of distance classifier used
-				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++) {
+				// Changes the percentage of the feature vectors used as models for the classifier
+				for (double modelPercentage = .5; modelPercentage >= .1; modelPercentage -= .1) {
 
-					// Clearing the results for the next iteration
-					numberOfTests.clear();
-					bestTestAccuracy.clear();
-					worseTestAccuracy.clear();
-					bestConfusionMatrix.clear();
-					worseConfusionMatrix.clear();
+					// Initializing the accuracies
+					percentageBestAccuracy = -std::numeric_limits<double>().max();
+					percentageWorstAccuracy = std::numeric_limits<double>().max();
 
-					// Changes the percentage of the feature vectors used as models for the classifier
-					for (double modelPercentage = .5; modelPercentage >= .1; modelPercentage -= .1) {
+					// Changes the amount of tests done against the dataset
+					for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {
 
-						// Initializing the accuracies
-						percentageBestAccuracy = -std::numeric_limits<double>().max();
-						percentageWorstAccuracy = std::numeric_limits<double>().max();
+						// Do the classification and populate the confusion matrix
+						for (unsigned int k = 0; k < amountOfTests; k++) {
 
-						// Changes the amount of tests done against the dataset
-						for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {
+							// Sampling the live signals
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
+							// Sampling the spoofing signals
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
-							// Do the classification and populate the confusion matrix
-							for (unsigned int k = 0; k < amountOfTests; k++) {
+							// Setting up the classifier
+							c.addTrainningCases(modelLive, classifiers::SupportVectorMachine::POSITIVE);
+							c.addTrainningCases(modelSpoofing, classifiers::SupportVectorMachine::NEGATIVE);
 
-								// Sampling the live signals
-								classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
-								// Sampling the spoofing signals
-								classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+							// Preparing confusion matrix
+							confusionMatrix[TP] = 0;
+							confusionMatrix[FP] = 0;
+							confusionMatrix[TN] = 0;
+							confusionMatrix[FN] = 0;
 
-								// Setting up the classifier
-								c.setDistanceType(static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType));
-								c.addReferenceModels("live", modelLive);
-								c.addReferenceModels("spoofing", modelSpoofing);
-
-								// Preparing confusion matrix
-								confusionMatrix[TP] = 0;
-								confusionMatrix[FP] = 0;
-								confusionMatrix[TN] = 0;
-								confusionMatrix[FN] = 0;
-
-								// Test it out!!
-								for (auto test : testLive) {
-									if (c.classify(test).compare("live") == 0) {
-										confusionMatrix[TP] += 1;
-									} else {
-										confusionMatrix[FN] += 1;
-									}
+							// Test it out!!
+							for (auto test : testLive) {
+								if (c.evaluate(test) == classifiers::SupportVectorMachine::POSITIVE) {
+									confusionMatrix[TP] += 1;
+								} else {
+									confusionMatrix[FN] += 1;
 								}
-
-								for (auto test : testSpoofing) {
-									if (c.classify(test).compare("spoofing") == 0) {
-										confusionMatrix[TN] += 1;
-									} else {
-										confusionMatrix[FP] += 1;
-									}
-								}
-
-								////////////////////////
-								/// Conclusion phase ///
-								////////////////////////
-
-								// calculate the best accuracy
-								temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
-
-								if (temp > percentageBestAccuracy) {
-									percentageBestAccuracy = temp;
-									percentageBestConfusionMatrix = confusionMatrix;
-									partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-									partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-								}
-
-								if (temp < percentageWorstAccuracy) {
-									percentageWorstAccuracy = temp;
-									percentageWorseConfusionMatrix = confusionMatrix;
-									partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-									partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-								}
-
 							}
 
-							// Store the results for the graphic
-							numberOfTests[modelPercentage].push_back(amountOfTests);
-							bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
-							worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
-							bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
-							worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
+							for (auto test : testSpoofing) {
+								if (c.evaluate(test) == classifiers::SupportVectorMachine::NEGATIVE) {
+									confusionMatrix[TN] += 1;
+								} else {
+									confusionMatrix[FP] += 1;
+								}
+							}
 
-							// Report for this amount of tests
+							////////////////////////
+							/// Conclusion phase ///
+							////////////////////////
 
-							std::cout << (static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType) == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan: " : "Euclidian: ") << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
+							// calculate the best accuracy
+							temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
+
+							if (temp > percentageBestAccuracy) {
+								percentageBestAccuracy = temp;
+								percentageBestConfusionMatrix = confusionMatrix;
+								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
+								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
+							}
+
+							if (temp < percentageWorstAccuracy) {
+								percentageWorstAccuracy = temp;
+								percentageWorseConfusionMatrix = confusionMatrix;
+								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
+								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
+							}
+
 						}
+
+						// Store the results for the graphic
+						numberOfTests[modelPercentage].push_back(amountOfTests);
+						bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
+						worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
+						bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
+						worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
+
+						// Report for this amount of tests
+
+						std::cout << "SVM: " << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
+					}
+				}
+
+				// Calculates the range of y axis
+				// for a more regular ploting
+				double yrange[2] = { 1, 0 };
+				for (auto test : numberOfTests) {
+
+					for (double v : worseTestAccuracy[test.first]) {
+						yrange[0] = v < yrange[0] ? v : yrange[0];
+					}
+					for (double v : bestTestAccuracy[test.first]) {
+						yrange[1] = v > yrange[1] ? v : yrange[1];
 					}
 
-					// Calculates the range of y axis
-					// for a more regular ploting
-					double yrange[2] = { 1, 0 };
-					for (auto test : numberOfTests) {
+					float temp = (yrange[1] - yrange[0]) / 30;
+					yrange[0] -= temp;
+					yrange[1] += temp;
 
-						for (double v : worseTestAccuracy[test.first]) {
-							yrange[0] = v < yrange[0] ? v : yrange[0];
-						}
-						for (double v : bestTestAccuracy[test.first]) {
-							yrange[1] = v > yrange[1] ? v : yrange[1];
-						}
+				}
 
-						float temp = (yrange[1] - yrange[0]) / 30;
-						yrange[0] -= temp;
-						yrange[1] += temp;
-
-					}
-
-					// Plot everything
-					for (auto test : numberOfTests) {
-						saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
-						savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny, yrange);
-					}
-
+				// Plot everything
+				for (auto test : numberOfTests) {
+					saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, resultsDestiny);
+					savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, resultsDestiny, yrange);
 				}
 
 			}
 	};
 
 }
-#endif /* SRC_WAVELETEXPERIMENTS_02_EXPERIMENT02_CPP_ */
+#endif /* SRC_WAVELETEXPERIMENTS_03_EXPERIMENT03_CPP_ */

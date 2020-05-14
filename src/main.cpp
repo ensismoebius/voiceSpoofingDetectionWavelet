@@ -3,6 +3,7 @@
 #include "lib/file/fileUtils.h"
 #include "experiments/01/Experiment01.cpp"
 #include "experiments/02/Experiment02.cpp"
+#include "experiments/03/Experiment03.cpp"
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests) {
 
@@ -59,7 +60,8 @@ int main(int argc, char *args[]) {
 	if (res != 0) return res;
 
 	//waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests);
-	waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests);
+	//waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests);
+	waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests);
 
 	return 0;
 }

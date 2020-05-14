@@ -1,0 +1,52 @@
+/**
+ * Amostragem:
+ * Pegar metade dos arquivos de cada classe,
+ * gerar os feature vectors com o método
+ * escolhido (nesse caso BARK sobre wavelet
+ * haar) e separá-los.
+ *
+ * A primeira metade vamos usar para treinar o
+ * (modelar) classificador em relação à
+ * "posição" de ambas as classes.
+ *
+ * A segunda metade será usada para testar o classificador.
+ *
+ * A classificação será feita da seguinte forma:
+ * 	Para cada arquivo do conjunto de testes mediremos
+ * 	a distância euclidiana/manhattan deste em relação a cada um
+ * 	dos arquivos do conjunto de modelo (ou treino).
+ *
+ * 	Feito isso considera-se apenas distância, e, com
+ * 	essa distância em mãos verificamos se a mesma vem
+ * 	dos conjuntos dos arquivos genuínos ou dos regravados.
+ *
+ * 	Se o arquivo de teste for genuíno e a menor distância
+ * 	resultante vier do conjunto dos arquivos genuínos dos
+ * 	modelos então a classificação está correta, senão, o
+ * 	classificador por distância euclidiana/manhattan falhou.
+ *
+ * Faça isso para todos os arquivos do conjunto de testes e
+ * monte uma tabela de confunsão.
+ *
+ * Feita a matriz de confusão precisamos calcular a acurácia
+ * que é soma do elementos da diagonal principal da tabela de
+ * confusão. O idela da matriz de confusão é que haja apenas
+ * valores não nulos na diagonal principal e que tudo mais seja
+ * nulo.
+ *
+ * O esquema descrito acima deve ser feito centenas ou milhares de
+ * vezes, sempre sorteando o conjunto de modelo e de testes de
+ * forma aleatória. O limitante da quantidade de sorteios será a
+ * medida da melhor acurácia, quando a mesma estabilizar paramos de
+ * aumentar a quantidade de sorteios. É importante fazer o gráfico
+ * dessa evolução: Na horizontal o número de testes, na vertical a
+ * acurácia.
+ *
+ * Ao fim de tudo isso apresentaremos a melhor e a pior matriz
+ * de confusão. (Uma possibilidade também é apresentar a curva
+ * ROC, mais isso é opcional)
+ *
+ * Outro coisa opcional a se fazer é pegar um conjunto menor
+ * para o modelo (uns 10% ou/depois 20%) afim de generalizar
+ * melhor o classificador
+ */
