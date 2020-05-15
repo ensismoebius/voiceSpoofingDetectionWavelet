@@ -1,0 +1,76 @@
+linha de pesquisa: Sistemas inteligentes
+
+acesso aas internet pedir accesso na área da pós.
+
+
+Disciplinas:
+
+	Estudos especiais: Tema da tese - só pode fazer quando já estudo algum disciplina
+	Três displinas:
+		Algumas são video conferencia - pode fazer
+		
+		Computação inspirada na natureza
+
+		Analise e projeto de algortimos
+		Estruturade dados
+	
+	Livro: Rede neurais para engenharia e ciencias aplicadas - ed art med
+
+Perguntar prazo de trancamento.
+
+
+DMAP - Departamento de matematica aplicada
+
+Próximo encontro 
+	Lembrar:
+		Lugar para ficar
+		Ligar na sexta de manhã
+	Data:
+		Menos segundo feira
+		Talvez na sexta ou terça a tarde
+	
+
+
+Research topics: Speaker verification
+	Voice spoofing - falsificação de voz
+		Playback speech  - gravação da voz do usuário
+	
+	Voice databases - ASV spoofing	(automatic speak verification spoofing)
+
+	ASV patterns:	
+		Text dependent
+		Text indenpent
+
+	Tasks:
+		Create a new voice database
+
+	Conceito de amostragem e quantização, convolução discreta, transformada (numérica) discreta de fourrier.
+
+Next meet:
+	Encontrar 15 pessoas para gravar as vozes
+		Dados:
+			- sexo - (50% / 50%)
+			- idade  - (criança, adultos e idosos)
+			- saudável
+			- palavras básicas em inglês: 3 a 4: frutas, cores; numeros de 1 a 10 (recomendado, gerar numeros aleatórios); - pegar os professores nativos das letras 
+
+	Terça-feira: 09:00 
+
+
+
+Criar diretórios 1  para cada digito e dentro do diretorio
+	L001_original.wav
+	L002_playback.wav
+
+
+Próximo encontro:
+
+	Sexta feira  - 22/02/2019 - as 14:00
+
+
+
+
+
+
+
+

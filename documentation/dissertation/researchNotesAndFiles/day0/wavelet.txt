@@ -1,0 +1,38 @@
+Cálculo de entropia de Shannon
+
+E=VN/VN+FP -> classificar como negativo o que é negativo (os não doentes entre os não doentes)
+S=VP/VP+FN -> classificar como correto o que é correto (os doentes entre os doentes)
+Acurácia=VP+VN/TOTAL
+Área sob a curva rock (roque?) método de medição que cruza E e S.
+
+Para testes:
+	Aplicar ruídos no input
+	Ou aplicar no vetor de características
+
+O formato do elemento estruturante está diretamento ligado ao formato dos objetos buscados.
+
+Para o seminário:
+Respeitar o tempo
+Ser formal
+Estruturado
+
+
+Mostrando os problemas de fourrier para imagens
+
+
+
+Passa na POS peguntar sobre o agendamento da banca (perguntar se precisa de um formúlario ou carta do orientador)
+Fazer isso até 22 de outubro de 2019.
+Qual dia você prefere sextas ou quartas de novembro?
+
+Pedir de banca:
+Aleardo
+Renata
+Rodrigo
+Conversar com sobre as datas.
+
+
+Preparar um resumo sobre o que se vai apresentar: Aprsentar umas revisao de conceitos e um peqna apresentação, revisão bibliografica.
+
+
+11, 15, 25, 38

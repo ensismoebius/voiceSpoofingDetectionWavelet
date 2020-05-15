@@ -1,0 +1,848 @@
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Wavelet Tutorial - Part 1</title>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- JQuery -->
+    <script src="Wavelet%20Tutorial%20-%20Part%201_arquivos/jquery-3.js"></script>
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="Wavelet%20Tutorial%20-%20Part%201_arquivos/bootstrap.css">
+    <script src="Wavelet%20Tutorial%20-%20Part%201_arquivos/bootstrap.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Wavelet%20Tutorial%20-%20Part%201_arquivos/stylesheet.css">
+
+		<!-- Custom JS -->
+		<script src="Wavelet%20Tutorial%20-%20Part%201_arquivos/main.js"></script>
+
+    <!-- Allows for inline LaTeX equations! -->
+    <script type="text/x-mathjax-config;executed=true">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+
+  <style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+
+  <body><div id="MathJax_Message" style="display: none;"></div>
+
+    <div id="header"><script>
+
+var pages = [
+  ["Home", "index.html"],
+  ["About Me", "aboutme.html"],
+  ["Research", "research.html"],
+  ["Publications", "publications.html"],
+  ["Signal Processing And Pattern Recognition Laboratory", "spprl.html"],
+  ["Research Funding", "research-funding.html"],
+  ["The Wavelet Tutorial", "WTtutorial.html"],
+  ["Rowan ECE", "https://academics.rowan.edu/engineering/programs/electricalcomputer/index.html"]
+];
+
+/* -- Do not edit below this line ---------------------------------------------------------------------------------------- */
+
+</script>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://users.rowan.edu/~polikar/">Robi Polikar</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown active">
+        <a id="page-label" class="dropdown-toggle" data-toggle="dropdown" href="http://users.rowan.edu/~polikar/"><span class="caret"></span></a>
+        <ul id="pages" class="dropdown-menu"><li><a href="http://users.rowan.edu/~polikar/index.html">Home</a></li>
+<li><a href="http://users.rowan.edu/~polikar/aboutme.html">About Me</a></li>
+<li><a href="http://users.rowan.edu/~polikar/research.html">Research</a></li>
+<li><a href="http://users.rowan.edu/~polikar/publications.html">Publications</a></li>
+<li><a href="http://users.rowan.edu/~polikar/spprl.html">Signal Processing And Pattern Recognition Laboratory</a></li>
+<li><a href="http://users.rowan.edu/~polikar/research-funding.html">Research Funding</a></li>
+<li><a href="http://users.rowan.edu/~polikar/WTtutorial.html">The Wavelet Tutorial</a></li>
+<li><a href="https://academics.rowan.edu/engineering/programs/electricalcomputer/index.html">Rowan ECE</a></li>
+</ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+
+body {
+  margin-top: 50px; /* Gives a little space under header */
+}
+
+</style>
+
+<script>
+
+  // Initialize the HTML as empty
+  var pagesHTML = "";
+
+  // Get the current page name
+  // Removed for cleaner UI - BW
+  /*var pageName = location.href.split('/');
+  pageName = pageName[pageName.length - 1];*/
+
+  for(var i = 0; i < pages.length; i++){
+
+    // Iterate through all pages and build the HTML
+    pagesHTML += "<li><a href='" + pages[i][1] + "'>" + pages[i][0] + "</a></li>\n"
+
+    // Search for page name and update top bar if found
+    // Removed for cleaner UI - BW
+    /*if(pages[i][1] == pageName){
+      $("#page-label").html(pages[i][0] + "<span class='caret'></span>");
+    }*/
+
+  }
+
+  // Put the generated HTML
+  document.getElementById("pages").innerHTML = pagesHTML;
+
+  // Make the dropdown show on hover
+  $('ul.nav li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(100);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+  });
+
+</script>
+</div>
+
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-8 page-body">
+
+      <h1 class="page-title">Wavelet Tutorial - Part 1</h1>
+      <h1 class="page-subtitle">by Robi Polikar</h1>
+      <hr>
+
+      <h1 class="section-title">
+        Fundamental Concepts and an Overview of the Wavelet Theory
+      </h1>
+
+      <br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/wavelet.png" class="img-responsive" style="display:block; margin:auto;">
+
+      <br><br>
+
+      Welcome to this introductory tutorial on wavelet transforms. The 
+wavelet transform is a relatively new concept (about 10 years old), but 
+yet there are quite a few articles and books written on them. However, 
+most of these books and articles are written by math people, for the 
+other math people; still most of the math people don't know what the 
+other math people are talking about (a math professor of mine made this 
+confession). In other words, majority of the literature available on 
+wavelet transforms are of little help, if any, to those who are new to 
+this subject (this is my personal opinion).
+
+      <br><br>
+
+      When I first started working on wavelet transforms I have 
+struggled for many hours and days to figure out what was going on in 
+this mysterious world of wavelet transforms, due to the lack of 
+introductory level text(s) in this subject. Therefore, I have decided to
+ write this tutorial for the ones who are new to the this topic. I 
+consider myself quite new to the subject too, and I have to confess that
+ I have not figured out all the theoretical details yet. However, as far
+ as the engineering applications are concerned, I think all the 
+theoretical details are not necessarily necessary (!).
+
+      <br><br>
+
+      In this tutorial I will try to give basic principles underlying 
+the wavelet theory. The proofs of the theorems and related equations 
+will not be given in this tutorial due to the simple assumption that the
+ intended readers of this tutorial do not need them at this time. 
+However, interested readers will be directed to related references for 
+further and in-depth information.
+
+      <br><br>
+
+      In this document I am assuming that you have no background 
+knowledge, whatsoever. If you do have this background, please disregard 
+the following information, since it may be trivial.
+
+      <br><br>
+
+      Should you find any inconsistent, or incorrect information in the 
+following tutorial, please feel free to contact me. I will appreciate 
+any comments on this page.
+
+      <br><br>
+
+      Robi Polikar
+      <hr>
+      <br>
+
+      <strong>TRANS... WHAT?</strong>
+
+      <br><br>
+
+      First of all, why do we need a transform, or what is a transform anyway?
+
+      <br><br>
+
+      Mathematical transformations are applied to signals to obtain a 
+further information from that signal that is not readily available in 
+the <strong>raw</strong> signal. In the following tutorial I will assume
+ a time-domain signal as a raw signal, and a signal that has been 
+"transformed" by any of the available mathematical transformations as a <strong>processed</strong> signal.
+
+      <br><br>
+
+      There are number of transformations that can be applied, among 
+which the Fourier transforms are probably by far the most popular.
+
+      <br><br>
+
+      Most of the signals in practice, are <strong>TIME-DOMAIN</strong> 
+signals in their raw format. That is, whatever that signal is measuring,
+ is a function of time. In other words, when we plot the signal one of 
+the axes is time (independent variable), and the other (dependent 
+variable) is usually the amplitude. When we plot time-domain signals, we
+ obtain a <strong>time-amplitude representation</strong> of the signal. 
+This representation is not always the best representation of the signal 
+for most signal processing related applications. In many cases, the most
+ distinguished information is hidden in the frequency content of the 
+signal. The <strong>frequency SPECTRUM</strong> of a signal is basically
+ the frequency components (spectral components) of that signal. The 
+frequency spectrum of a signal shows what frequencies exist in the 
+signal.
+
+      <br><br>
+
+      Intuitively, we all know that the frequency is something to do 
+with the change in rate of something. If something ( a mathematical or 
+physical variable, would be the technically correct term) changes 
+rapidly, we say that it is of high frequency, where as if this variable 
+does not change rapidly, i.e., it changes smoothly, we say that it is of
+ low frequency. If this variable does not change at all, then we say it 
+has zero frequency, or no frequency. For example the publication 
+frequency of a daily newspaper is higher than that of a monthly magazine
+ (it is published more frequently).
+
+      <br><br>
+
+      The frequency is measured in cycles/second, or with a more common 
+name, in "Hertz". For example the electric power we use in our daily 
+life in the US is 60 Hz (50 Hz elsewhere in the world). This means that 
+if you try to plot the electric current, it will be a sine wave passing 
+through the same point 50 times in 1 second. Now, look at the following 
+figures. The first one is a sine wave at 3 Hz, the second one at 10 Hz, 
+and the third one at 50 Hz. Compare them.
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_3.png" class="img-responsive" style="display:block; margin:auto;">
+
+      <br><br>
+
+      So how do we measure frequency, or how do we find the frequency content of a signal? The answer is <strong>FOURIER TRANSFORM (FT)</strong>.
+ If the FT of a signal in time domain is taken, the frequency-amplitude 
+representation of that signal is obtained. In other words, we now have a
+ plot with one axis being the frequency and the other being the 
+amplitude. This plot tells us how much of each frequency exists in our 
+signal.
+
+      <br><br>
+
+      The frequency axis starts from zero, and goes up to infinity. For 
+every frequency, we have an amplitude value. For example, if we take the
+ FT of the electric current that we use in our houses, we will have one 
+spike at 50 Hz, and nothing elsewhere, since that signal has only 50 Hz 
+frequency component. No other signal, however, has a FT which is this 
+simple. For most practical purposes, signals contain more than one 
+frequency component. The following shows the FT of the 50 Hz signal:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_4.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.4 The FT of the 50 Hz signal given in Figure 1.3
+      </div>
+
+      <br><br>
+
+      One word of caution is in order at this point. Note that two plots
+ are given in Figure 1.4. The bottom one plots only the first half of 
+the top one. Due to reasons that are not crucial to know at this time, 
+the frequency spectrum of a real valued signal is always symmetric. The 
+top plot illustrates this point. However, since the symmetric part is 
+exactly a mirror image of the first part, it provides no additional 
+information, and therefore, this symmetric second part is usually not 
+shown. In most of the following figures corresponding to FT, I will only
+ show the first half of this symmetric spectrum.
+
+      <hr>
+      <h1 class="section-title">
+        Why do we need the frequency information?
+      </h1>
+
+      <br>
+
+      Often times, the information that cannot be readily seen in the time-domain can be seen in the frequency domain.
+
+      <br><br>
+
+      Let's give an example from biological signals. Suppose we are 
+looking at an ECG signal (ElectroCardioGraphy, graphical recording of 
+heart's electrical activity). The typical shape of a healthy ECG signal 
+is well known to cardiologists. Any significant deviation from that 
+shape is usually considered to be a symptom of a pathological condition.
+
+      <br><br>
+
+      This pathological condition, however, may not always be quite 
+obvious in the original time-domain signal. Cardiologists usually use 
+the time-domain ECG signals which are recorded on strip-charts to 
+analyze ECG signals. Recently, the new computerized ECG 
+recorders/analyzers also utilize the frequency information to decide 
+whether a pathological condition exists. A pathological condition can 
+sometimes be diagnosed more easily when the frequency content of the 
+signal is analyzed.
+
+      <br><br>
+
+      This, of course, is only one simple example why frequency content 
+might be useful. Today Fourier transforms are used in many different 
+areas including all branches of engineering.
+
+      <br><br>
+
+      Although FT is probably the most popular transform being used 
+(especially in electrical engineering), it is not the only one. There 
+are many other transforms that are used quite often by engineers and 
+mathematicians. Hilbert transform, short-time Fourier transform (more 
+about this later), Wigner distributions, the Radon Transform, and of 
+course our <strong>featured transformation</strong>, the wavelet 
+transform, constitute only a small portion of a huge list of transforms 
+that are available at engineer's and mathematician's disposal. Every 
+transformation technique has its own area of application, with 
+advantages and disadvantages, and the wavelet transform (WT) is no 
+exception.
+
+      <br><br>
+
+      For a better understanding of the need for the WT let's look at 
+the FT more closely. FT (as well as WT) is a reversible transform, that 
+is, it allows to go back and forward between the raw and processed 
+(transformed) signals. However, only either of them is available at any 
+given time. That is, no frequency information is available in the 
+time-domain signal, and no time information is available in the Fourier 
+transformed signal. The natural question that comes to mind is that is 
+it necessary to have both the time and the frequency information at the 
+same time?
+
+      <br><br>
+
+      As we will see soon, the answer depends on the particular 
+application, and the nature of the signal in hand. Recall that the FT 
+gives the frequency information of the signal, which means that it tells
+ us how much of each frequency exists in the signal, but it does not 
+tell us <strong>when in time</strong> these frequency components exist. This information is not required when the signal is so-called <strong>stationary</strong>.
+
+      <br><br>
+
+      Let's take a closer look at this <strong>stationarity</strong> 
+concept more closely, since it is of paramount importance in signal 
+analysis. Signals whose frequency content do not change in time are 
+called <strong>stationary signals</strong>. In other words, the frequency content of stationary signals do not change in time. In this case, one does not need to know <strong>at what times frequency components exist</strong>, since all frequency components exist at all times!!!
+
+      <br><br>
+
+      For example the following signal
+
+      <br><br>
+
+      <div class="text-center">
+        <!-- x(t)=cos(2*pi*10*t)+cos(2*pi*25*t)+cos(2*pi*50*t)+cos(2*pi*100*t) -->
+        <span class="MathJax_Preview">x(t) = cos(2 \pi \cdot 10 t) + cos(2 \pi \cdot 25 t) + cos(2 \pi \cdot 50 t) + cos(2 \pi \cdot 100 t)</span><script type="math/tex">x(t) = cos(2 \pi \cdot 10 t) + cos(2 \pi \cdot 25 t) + cos(2 \pi \cdot 50 t) + cos(2 \pi \cdot 100 t)</script>
+      </div>
+
+      <br><br>
+
+      is a stationary signal, because it has frequencies of 10, 25, 50, 
+and 100 Hz at any given time instant. This signal is plotted below:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_5.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.5
+      </div>
+
+      <br><br>
+
+      And the following is its FT:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_6.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.6
+      </div>
+
+      <br><br>
+
+      The top plot in Figure 1.6 is the (half of the symmetric) 
+frequency spectrum of the signal in Figure 1.5. The bottom plot is the 
+zoomed version of the top plot, showing only the range of frequencies 
+that are of interest to us. Note the four spectral components 
+corresponding to the frequencies 10, 25, 50 and 100 Hz.
+
+      <br><br>
+
+      Contrary to the signal in Figure 1.5, the following signal is not 
+stationary. Figure 1.7 plots a signal whose frequency constantly changes
+ in time. This signal is known as the "chirp" signal. This is a 
+non-stationary signal.
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_7.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.7
+      </div>
+
+      <br><br>
+
+      Let's look at another example. Figure 1.8 plots a signal with four
+ different frequency components at four different time intervals, hence a
+ non-stationary signal. The interval 0 to 300 ms has a 100 Hz sinusoid, 
+the interval 300 to 600 ms has a 50 Hz sinusoid, the interval 600 to 800
+ ms has a 25 Hz sinusoid, and finally the interval 800 to 1000 ms has a 
+10 Hz sinusoid.
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_8.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.8
+      </div>
+
+      <br><br>
+
+      And the following is its FT:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_9.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.9
+      </div>
+
+      <br><br>
+
+      Do not worry about the little ripples at this time; they are due 
+to sudden changes from one frequency component to another, which have no
+ significance in this text. Note that the amplitudes of higher frequency
+ components are higher than those of the lower frequency ones. This is 
+due to fact that higher frequencies last longer (300 ms each) than the 
+lower frequency components (200 ms each). (The exact value of the 
+amplitudes are not important).
+
+      <br><br>
+
+      Other than those ripples, everything seems to be right. The FT has
+ four peaks, corresponding to four frequencies with reasonable 
+amplitudes... Right?
+
+      <br><br>
+
+      <strong>WRONG (!)</strong>
+
+      <br><br>
+
+      Well, not exactly wrong, but not exactly right either... Here is why:
+
+      <br><br>
+
+      For the first signal, plotted in Figure 1.5, consider the following question:
+
+      <br><br>
+
+      At what times (or time intervals), do these frequency components occur?
+
+      <br><br>
+
+      Answer:
+
+      <br><br>
+
+      At all times! Remember that in stationary signals, all frequency 
+components that exist in the signal, exist throughout the entire 
+duration of the signal. There is 10 Hz at all times, there is 50 Hz at 
+all times, and there is 100 Hz at all times.
+
+      <br><br>
+
+      Now, consider the same question for the non-stationary signal in Figure 1.7 or in Figure 1.8.
+
+      <br><br>
+
+      For the signal in Figure 1.8, we know that in the first interval 
+we have the highest frequency component, and in the last interval we 
+have the lowest frequency component. For the signal in Figure 1.7, the 
+frequency components change continuously. Therefore, for these signals 
+the frequency components <strong>do not</strong> appear at all times!
+
+      <br><br>
+
+      Now, compare the Figures 1.6 and 1.9. The similarity between these
+ two spectrum should be apparent. Both of them show four spectral 
+components at exactly the same frequencies, i.e., at 10, 25, 50, and 100
+ Hz. Other than the ripples, and the difference in amplitude (which can 
+always be normalized), the two spectrums are almost identical, although 
+the corresponding time-domain signals are not even close to each other. 
+Both of the signals involves the same frequency components, but the 
+first one has these frequencies at all times, the second one has these 
+frequencies at different intervals. So, how come the spectrums of two 
+entirely different signals look very much alike? Recall that the FT 
+gives the spectral content of the signal, but it gives no information 
+regarding <strong>where in time those spectral components appear</strong>. Therefore, FT is not a suitable technique for non-stationary signal, with one exception:
+
+      <br><br>
+
+      FT can be used for non-stationary signals, if we are only 
+interested in what spectral components exist in the signal, but not 
+interested where these occur. However, if this information is needed, 
+i.e., if we want to know, what spectral component occur at what time 
+(interval) , then Fourier transform is not the right transform to use.
+
+      <br><br>
+
+      For practical purposes it is difficult to make the separation, 
+since there are a lot of practical stationary signals, as well as 
+non-stationary ones. Almost all biological signals, for example, are 
+non-stationary. Some of the most famous ones are ECG (electrical 
+activity of the heart , electrocardiograph), EEG (electrical activity of
+ the brain, electroencephalograph), and EMG (electrical activity of the 
+muscles, electromyogram).
+
+      <br><br>
+
+      <strong>
+        Once again please note that, the FT gives what frequency 
+components (spectral components) exist in the signal. Nothing more, 
+nothing less.
+      </strong>
+
+      <br><br>
+
+      When the <strong>time localization</strong> of the spectral components are needed, a transform giving the TIME-FREQUENCY REPRESENTATION of the signal is needed.
+
+      <hr>
+      <h1 class="section-title">
+        The Ultimate Solution: The Wavelet Transform
+      </h1>
+
+      <br><br>
+
+      The Wavelet transform is a transform of this type. It provides the
+ time-frequency representation. (There are other transforms which give 
+this information too, such as short time Fourier transform, Wigner 
+distributions, etc.)
+
+      <br><br>
+
+      Often times a particular spectral component occurring at any 
+instant can be of particular interest. In these cases it may be very 
+beneficial to know the time intervals these particular spectral 
+components occur. For example, in EEGs, the latency of an event-related 
+potential is of particular interest (Event-related potential is the 
+response of the brain to a specific stimulus like flash-light, the 
+latency of this response is the amount of time elapsed between the onset
+ of the stimulus and the response).
+
+      <br><br>
+
+      Wavelet transform is capable of providing the time and frequency 
+information simultaneously, hence giving a time-frequency representation
+ of the signal.
+
+      <br><br>
+
+      How wavelet transform works is completely a different fun story, and should be explained after <strong>short time Fourier Transform (STFT)</strong>.
+ The WT was developed as an alternative to the STFT. The STFT will be 
+explained in great detail in the second part of this tutorial. It 
+suffices at this time to say that the WT was developed to overcome some 
+resolution related problems of the STFT, as explained in Part II.
+
+      <br><br>
+
+      To make a real long story short, we pass the time-domain signal 
+from various highpass and low pass filters, which filters out either 
+high frequency or low frequency portions of the signal. This procedure 
+is repeated, every time some portion of the signal corresponding to some
+ frequencies being removed from the signal.
+
+      <br><br>
+
+      Here is how this works: Suppose we have a signal which has 
+frequencies up to 1000 Hz. In the first stage we split up the signal in 
+to two parts by passing the signal from a highpass and a lowpass filter 
+(filters should satisfy some certain conditions, so-called <strong>admissibility condition</strong>)
+ which results in two different versions of the same signal: portion of 
+the signal corresponding to 0-500 Hz (low pass portion), and 500-1000 Hz
+ (high pass portion).
+
+      <br><br>
+
+      Then, we take either portion (usually low pass portion) or both, and do the same thing again. This operation is called <strong>decomposition</strong>.
+
+      <br><br>
+
+      Assuming that we have taken the lowpass portion, we now have 3 
+sets of data, each corresponding to the same signal at frequencies 0-250
+ Hz, 250-500 Hz, 500-1000 Hz.
+
+      <br><br>
+
+      Then we take the lowpass portion again and pass it through low and
+ high pass filters; we now have 4 sets of signals corresponding to 0-125
+ Hz, 125-250 Hz,250-500 Hz, and 500-1000 Hz. We continue like this until
+ we have decomposed the signal to a pre-defined certain level. Then we 
+have a bunch of signals, which actually represent the same signal, but 
+all corresponding to different frequency bands. We know which signal 
+corresponds to which frequency band, and if we put all of them together 
+and plot them on a 3-D graph, we will have time in one axis, frequency 
+in the second and amplitude in the third axis. This will show us which 
+frequencies exist at which time ( there is an issue, called "uncertainty
+ principle", which states that, we cannot exactly know <strong>what frequency exists</strong> at <strong>what time instance</strong>, but we can only know <strong>what frequency bands exist</strong> at <strong>what time intervals</strong>, more about this in the subsequent parts of this tutorial).
+
+      <br><br>
+
+      However, I still would like to explain it briefly:
+
+      <br><br>
+
+      The uncertainty principle, originally found and formulated by 
+Heisenberg, states that, the momentum and the position of a moving 
+particle cannot be known simultaneously. This applies to our subject as 
+follows:
+
+      <br><br>
+
+      The frequency and time information of a signal at some certain 
+point in the time-frequency plane cannot be known. In other words: We 
+cannot know what <strong>spectral component</strong> exists at any given time <strong>instant</strong>. The best we can do is to investigate what <strong>spectral components</strong> exist at any given <strong>interval</strong>
+ of time. This is a problem of resolution, and it is the main reason why
+ researchers have switched to WT from STFT. STFT gives a fixed 
+resolution at all times, whereas WT gives a variable resolution as 
+follows:
+
+      <br><br>
+
+      Higher frequencies are better resolved in time, and lower 
+frequencies are better resolved in frequency. This means that, a certain
+ high frequency component can be located better in time (with less 
+relative error) than a low frequency component. On the contrary, a low 
+frequency component can be located better in frequency compared to high 
+frequency component.
+
+      <br><br>
+
+      Take a look at the following grid:
+
+      <br><br>
+
+      <pre>        f ^
+          |*******************************************         continuous
+          |*  *  *  *  *  *  *  *  *  *  *  *  *  *  *         wavelet transform
+          |*     *     *     *     *     *     *
+          |*           *           *           *
+          |*                       *
+          --------------------------------------------&gt; time
+      </pre>
+
+      <br><br>
+
+      Interpret the above grid as follows: The top row shows that at 
+higher frequencies we have more samples corresponding to smaller 
+intervals of time. In other words, higher frequencies can be resolved 
+better in time. The bottom row however, corresponds to low frequencies, 
+and there are less number of points to characterize the signal, 
+therefore, low frequencies are not resolved well in time.
+
+      <br><br>
+
+      <pre>        ^frequency
+        |
+        |
+        |
+        | *******************************************************
+        |
+        |
+        |
+        | *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *   discrete time
+        |                                                           wavelet transform
+        | *     *     *     *     *     *     *     *     *     *
+        |
+        | *           *           *           *           *
+        | *                       *                       *
+        |----------------------------------------------------------&gt; time
+      </pre>
+
+      In discrete time case, the time resolution of the signal works the
+ same as above, but now, the frequency information has different 
+resolutions at every stage too. Note that, lower frequencies are better 
+resolved in frequency, where as higher frequencies are not. Note how the
+ spacing between subsequent frequency components increase as frequency 
+increases.
+
+      <br><br>
+
+      Below , are some examples of continuous wavelet transform: Let's 
+take a sinusoidal signal, which has two different frequency components 
+at two different times:
+
+      <br><br>
+
+      Note the low frequency portion first, and then the high frequency.
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_10.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.10
+      </div>
+
+      <br><br>
+
+      The continuous wavelet transform of the above signal:
+
+      <br><br>
+
+      <img src="Wavelet%20Tutorial%20-%20Part%201_arquivos/figure1_11.png" class="img-responsive" style="display:block; margin:auto;">
+      <div class="text-center">
+        Figure 1.11
+      </div>
+
+      <br><br>
+
+      Note however, the frequency axis in these plots are labeled as 
+scale . The concept of the scale will be made more clear in the 
+subsequent sections, but it should be noted at this time that the scale 
+is inverse of frequency. That is, high scales correspond to low 
+frequencies, and low scales correspond to high frequencies. 
+Consequently, the little peak in the plot corresponds to the high 
+frequency components in the signal, and the large peak corresponds to 
+low frequency components (which appear before the high frequency 
+components in time) in the signal.
+
+      <br><br>
+
+      You might be puzzled from the frequency resolution shown in the 
+plot, since it shows good frequency resolution at high frequencies. Note
+ however that, it is the good  scale resolution  that looks good at high
+ frequencies (low scales), and good scale resolution means poor 
+frequency resolution and vice versa. More about this in Part II and III.
+
+      <br>
+
+      <hr>
+      <h1 class="section-title">
+        To Be Continued...
+      </h1>
+
+      <br><br>
+
+      This concludes the first part of this tutorial, where I have tried
+ to give a brief overview of signal processing, the Fourier transform 
+and the wavelet transform.\
+
+      <br>
+      <hr>
+
+      First written: November 1994
+
+      <br><br>
+
+      Revised: July 23, 1995
+
+      <br><br>
+
+      Second Edition: June 5 , 1996
+
+      <br>
+      <hr>
+
+      All Rights Reserved. This tutorial is intended for educational 
+purposes only. Unauthorized copying, duplicating and publishing is 
+strictly prohibited.
+
+      <br><br>
+
+      Robi Polikar
+      <br>
+      Rowan University
+      <br>
+      Phone: (856) 256 5372
+      <br>
+      <a href="mailto:polikar@rowan.edu">polikar@rowan.edu</a>
+
+    </div> <!-- col-sm-8 page-body -->
+
+    <div class="col-sm-2"></div>
+
+  
+
+  <style>
+
+    /* Put any CSS here */
+
+  </style>
+
+  <script>
+  // loads the header
+  $(document).ready(function(){
+    $("#header").load("header.html");
+  });
+
+  // Put any additional JS here
+
+  </script>
+
+
+</body></html>

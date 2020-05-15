@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="funcaoSinc.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="423.53939"
+     inkscape:cy="467.19689"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="709"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g81"
+       transform="translate(79.375004)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path21"
+         d="M -0.07559775,126.91071 V 264.49405"
+         style="fill:none;stroke:#000000;stroke-width:0.31427026px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path23"
+         d="M -87.690476,212.33333 H 152.3244"
+         style="fill:none;stroke:#000000;stroke-width:0.41818526px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         id="text27"
+         y="221.40475"
+         x="92.98214"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="221.40475"
+           x="92.98214"
+           id="tspan25"
+           sodipodi:role="line">Frequência</tspan></text>
+      <text
+         transform="rotate(90)"
+         id="text31"
+         y="10.43605"
+         x="181.32358"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="10.43605"
+           x="181.32358"
+           id="tspan29"
+           sodipodi:role="line">Amplitude</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path37"
+         d="m -87.690475,212.33333 c 4.535715,-7.55952 4.593138,3.94343 6.80357,4.53571 2.210435,0.59229 2.267858,-13.98511 6.047621,-13.98511 3.779761,0 3.779761,19.27678 10.583333,19.65476 6.80357,0.37797 7.559524,-38.55357 12.851191,-38.93155 5.291666,-0.37798 10.583333,51.02679 19.276785,51.02679 8.693451,0 11.339285,-96.00595 31.74999882,-96.00595"
+         style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path37-3"
+         d="m 87.822761,212.33336 c -4.535715,-7.55952 -4.593138,3.94343 -6.80357,4.53571 -2.210435,0.59229 -2.267858,-13.98511 -6.047621,-13.98511 -3.779761,0 -3.779761,19.27678 -10.583335,19.65476 -6.803575,0.37797 -7.55953,-38.55357 -12.8512,-38.93155 -5.291669,-0.37798 -10.583332,51.02679 -19.276779,51.02679 -8.69345,0 -11.339282,-96.00595 -31.74999712,-96.00595"
+         style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

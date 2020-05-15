@@ -1,0 +1,9 @@
+Por que no esquema de subamostragem se divide o sinal ao meio?
+Por que se pega a parte de menor frequência em vez da mais alta?
+Por que a ortogonalidade é tão importante nas funções?
+
+Como são feitos os cálculos das wavelets? Existe alguma lista das wavelets?
+As wavelets são apenas vetores?0
+
+No esquema das wavelets há a convolução os o deslocamento da onda é feita de acordo com se tamanho?
+
