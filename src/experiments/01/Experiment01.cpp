@@ -270,10 +270,10 @@ namespace waveletExperiments {
 			 * Save the results to file on /tmp/results.csv
 			 * @param data
 			 */
-			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> data) {
+			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> data, std::string resultsDestiny) {
 
 				// Open the file
-				std::string filePath = "/tmp/results.csv";
+				std::string filePath = resultsDestiny + "/results.csv";
 				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
 				if (!ofs.is_open()) {
 					std::cout << "Cannot open file: " << filePath;
@@ -305,7 +305,7 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param args.size() - The amount of these files
 			 */
-			static void perform(std::vector<std::string> classFileList) {
+			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny) {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(20);
 
@@ -440,7 +440,7 @@ namespace waveletExperiments {
 					}
 				}
 
-				saveDataToFile(finalResults);
+				saveDataToFile(finalResults, resultsDestiny);
 				plotResults(finalResults);
 			}
 	};

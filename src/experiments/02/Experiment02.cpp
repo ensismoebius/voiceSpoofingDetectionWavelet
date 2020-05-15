@@ -237,7 +237,7 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
-			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom) {
+			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(4);
 
@@ -384,7 +384,7 @@ namespace waveletExperiments {
 					worseConfusionMatrix.clear();
 
 					// Changes the percentage of the feature vectors used as models for the classifier
-					for (double modelPercentage = .5; modelPercentage >= .1; modelPercentage -= .1) {
+					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
 
 						// Initializing the accuracies
 						percentageBestAccuracy = -std::numeric_limits<double>().max();

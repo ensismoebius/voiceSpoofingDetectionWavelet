@@ -71,8 +71,8 @@ int main(int argc, char *args[]) {
 
 	if (res != 0) return res;
 
-	//waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-	//waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+	waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
+	waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 	waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 
 	return 0;
