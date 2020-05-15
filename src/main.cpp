@@ -5,10 +5,10 @@
 #include "experiments/02/Experiment02.cpp"
 #include "experiments/03/Experiment03.cpp"
 
-int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests) {
+int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel) {
 
-	if (argc != 9) {
-		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests>" << std::endl;
+	if (argc != 13) {
+		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
 		return 1;
 	}
 
@@ -41,7 +41,17 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 			++j;
 			continue;
 		}
-		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests>" << std::endl;
+		if (argument.compare("--minModel") == 0) {
+			minModel = std::stod(args[j + 1]);
+			++j;
+			continue;
+		}
+		if (argument.compare("--maxModel") == 0) {
+			maxModel = std::stod(args[j + 1]);
+			++j;
+			continue;
+		}
+		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
 		return 2;
 	}
 
@@ -54,14 +64,16 @@ int main(int argc, char *args[]) {
 	std::string spoofingFileList;
 	std::string resultsDestiny;
 	unsigned int numberOfTests;
+	double minModel;
+	double maxModel;
 
-	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests);
+	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel);
 
 	if (res != 0) return res;
 
-	//waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests);
-	//waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests);
-	waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests);
+	//waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+	//waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+	waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 
 	return 0;
 }

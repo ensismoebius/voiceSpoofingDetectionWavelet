@@ -216,7 +216,11 @@ namespace linearAlgebra {
 				// Ready to calculate the coefficient
 				double coef = matrix[lineIndex][columnIndex] / matrix[bestLineForSubtration][columnIndex];
 
-				for (unsigned int ci = 0; ci < matrix[lineIndex].size(); ci++) {
+				unsigned int ci = columnIndex;
+				matrix[lineIndex][ci] = 0;
+				ci++;
+
+				for (; ci < matrix[lineIndex].size(); ci++) {
 					matrix[lineIndex][ci] -= coef * matrix[bestLineForSubtration][ci];
 				}
 			}

@@ -10,7 +10,6 @@
 
 #ifndef SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_
 #define SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_
-
 #include <cmath>
 #include <vector>
 #include "../vector/vectorUtils.h"
@@ -38,7 +37,7 @@ namespace classifiers {
 			std::vector<LABEL> trainningLabels;
 
 			/**
-			 * This is the reference for trainning 
+			 * This is the reference for trainning
 			 * and classification of further data
 			 */
 			std::vector<std::vector<double>> trainningModels;
@@ -62,7 +61,7 @@ namespace classifiers {
 
 			/**
 			 * Add trainning matrices to SVM
-			 * @param matrix - A matrix (2d vector) with trainning cases 
+			 * @param matrix - A matrix (2d vector) with trainning cases
 			 * @param label - Label indicating if it is positive or negative sample
 			 */
 			void addTrainningCases(std::vector<std::vector<double>> matrix, LABEL label) {
@@ -116,9 +115,9 @@ namespace classifiers {
 				}
 
 				// Tests:
-				//	intermediateLayer = { { 1, 1, 1, 7 }, { 2, 1, -1, 9 }, { 1, -2, 2, 2 } };
+				//	distancesMatrix = { { 1, 1, 1, 7 }, { 2, 1, -1, 9 }, { 1, -2, 2, 2 } };
 				//		results 4,2,1
-				//	intermediateLayer = { { 4, 2, 1, -2, 3 }, { 3, -3, -1, -1, 2 }, { 3, 5, 1, 1, 0 }, { 1, -1, -1, 4, -2 } };
+				//	distancesMatrix = { { 4, 2, 1, -2, 3 }, { 3, -3, -1, -1, 2 }, { 3, 5, 1, 1, 0 }, { 1, -1, -1, 4, -2 } };
 				//		results 0.461538, -0.384615, 1, -0.461538
 
 				// Matrix scaling for linear system solving
@@ -126,6 +125,12 @@ namespace classifiers {
 
 				// system solved!!! Return the coeficcients
 				this->outputWeights = linearAlgebra::solveMatrix(distancesMatrix);
+			}
+
+			void clearTrain() {
+				this->outputWeights.clear();
+				this->trainningLabels.clear();
+				this->trainningModels.clear();
 			}
 	};
 }

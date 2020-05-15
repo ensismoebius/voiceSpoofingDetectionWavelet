@@ -233,7 +233,7 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
-			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom) {
+			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(4);
 
@@ -323,7 +323,7 @@ namespace waveletExperiments {
 				////////////////////////////
 
 				// Start a new line to give space
-				// to the next resports
+				// to the next reports
 				std::cout << std::endl;
 
 				// Creating the confusion matrix structure
@@ -370,7 +370,7 @@ namespace waveletExperiments {
 				classifiers::SupportVectorMachine c;
 
 				// Changes the percentage of the feature vectors used as models for the classifier
-				for (double modelPercentage = .5; modelPercentage >= .1; modelPercentage -= .1) {
+				for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
 
 					// Initializing the accuracies
 					percentageBestAccuracy = -std::numeric_limits<double>().max();
@@ -388,8 +388,10 @@ namespace waveletExperiments {
 							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
 							// Setting up the classifier
+							c.clearTrain();
 							c.addTrainningCases(modelLive, classifiers::SupportVectorMachine::POSITIVE);
 							c.addTrainningCases(modelSpoofing, classifiers::SupportVectorMachine::NEGATIVE);
+							c.train();
 
 							// Preparing confusion matrix
 							confusionMatrix[TP] = 0;

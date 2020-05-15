@@ -18,7 +18,7 @@
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="run"/>
 <booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN_SYMBOL" value="main"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="--live /home/ensismoebius/workspaces/c-workspace/mestrado/data/inputListLive.txt --spoofing /home/ensismoebius/workspaces/c-workspace/mestrado/data/inputListSpoofing.txt --out /tmp --tests 50"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="--live /home/ensismoebius/workspaces/c-workspace/mestrado/data/inputListLive.txt --spoofing /home/ensismoebius/workspaces/c-workspace/mestrado/data/inputListSpoofing.txt --out /tmp --tests 50 --minModel 0.1 --maxModel 0.5"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/mestrado"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="mestrado"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="true"/>
