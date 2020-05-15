@@ -1,5 +1,5 @@
 #include <iostream>
-#include "lib/classifiers/SupportVectorMachine.cpp"
+#include "../lib/classifiers/SupportVectorMachine.cpp"
 
 void test(int argc, char *args[]) {
 

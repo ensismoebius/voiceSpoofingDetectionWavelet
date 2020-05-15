@@ -11,8 +11,8 @@
 #include <string>
 #include <sstream>
 
-#include "lib/wave/filtersOperations.h"
-#include "lib/linearAlgebra/linearAlgebra.h"
+#include "../lib/wave/filtersOperations.h"
+#include "../lib/linearAlgebra/linearAlgebra.h"
 
 double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false) {
 

@@ -5,15 +5,29 @@
 #include "experiments/02/Experiment02.cpp"
 #include "experiments/03/Experiment03.cpp"
 
-int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel) {
-
-	if (argc != 13) {
-		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
-		return 1;
-	}
+/**
+ * Parses the command line arguments
+ * @param argc
+ * @param args
+ * @param liveFileList
+ * @param spoofingFileList
+ * @param resultsDestiny
+ * @param numberOfTests
+ * @param minModel
+ * @param maxModel
+ * @param experiment
+ * @return the experiment choosen
+ */
+int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment) {
 
 	for (int j = 1; j < argc; ++j) {
 		std::string argument(args[j]);
+
+		if (argument.compare("--experiment") == 0) {
+			experiment = std::stoi(args[j + 1]);
+			++j;
+			continue;
+		}
 
 		if (argument.compare("--live") == 0) {
 			if (fileExistis(args[j + 1])) {
@@ -51,29 +65,92 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 			++j;
 			continue;
 		}
-		std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
-		return 2;
 	}
 
-	return 0;
+	if (experiment == -1) {
+		std::cout << "You must choose an experiment:\n";
+		std::cout << "Wavelet feature vectors over BARK or MEL comparation: 1\n";
+		std::cout << "Wavelet feature vector over BARK using distance classifiers:2\n";
+		std::cout << "Wavelet feature vector over BARK using SVM classifier: 3\n";
+		std::cout << "All experimets:0" << std::endl;
+	}
+
+	if (liveFileList.empty() || spoofingFileList.empty()) {
+		std::cout << "Please inform the lists of spoofing wav files and the list of live wav files" << std::endl;
+		std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
+		return -1;
+	}
+
+	if (experiment == 1) {
+		if (argc != 9) {
+			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl;
+			return -1;
+		}
+
+		bool ok = true;
+		ok &= !liveFileList.empty();
+		ok &= !resultsDestiny.empty();
+		ok &= !spoofingFileList.empty();
+
+		if (ok) return experiment;
+
+		std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl;
+		return -1;
+
+	}
+
+	if (experiment == 2 || experiment == 3) {
+		if (argc != 15) {
+			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
+			return -1;
+		}
+
+		bool ok = true;
+		ok &= !liveFileList.empty();
+		ok &= !resultsDestiny.empty();
+		ok &= !spoofingFileList.empty();
+		ok &= numberOfTests > 0;
+		ok &= minModel >= .1;
+		ok &= maxModel >= minModel;
+
+		if (ok) return experiment;
+
+		std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
+		return -1;
+	}
+
+	std::cout << "Usage: mestrado --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl;
+	return -1;
 }
 
 int main(int argc, char *args[]) {
 
-	std::string liveFileList;
-	std::string spoofingFileList;
-	std::string resultsDestiny;
-	unsigned int numberOfTests;
+	int experiment = -1;
+
 	double minModel;
 	double maxModel;
+	std::string liveFileList;
+	std::string resultsDestiny;
+	unsigned int numberOfTests;
+	std::string spoofingFileList;
 
-	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel);
+	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel, experiment);
 
-	if (res != 0) return res;
+	switch (res) {
+		case 1:
+			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
+			return 0;
+			break;
+		case 2:
+			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			return 0;
+			break;
+		case 3:
+			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			return 0;
+			break;
+	}
 
-	waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-	waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-	waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-
-	return 0;
+	// Bad arguments nothing done!
+	return -1;
 }
