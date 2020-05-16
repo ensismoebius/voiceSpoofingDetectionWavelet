@@ -1,5 +1,5 @@
 # Caracterização de voice spoofing para fins de verificação de locutores com base na transformada wavelet e na análise paraconsistente de características
-Characterization of voice spoofing announcers verification based on the wavelet transform and paraconsistent analysis of characteristics
+Characterization of voice spoofing: Announcers verification based on the wavelet transform and paraconsistent analysis of characteristics
 [English Version](#english-version)
 
 # Universidade do estado de São Paulo - UNESP
