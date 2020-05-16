@@ -3,7 +3,7 @@
 	Universidade do estado de São Paulo - UNESP
 
 ## Abstract
-Sistemas de autenticação de usuário por voz e o processo de falseamento usando voice spoofing é o tema de estudo que se pretende explorar. Um sistema de reconhecimento  de voz idealmente não deve se deixar enganar por, como exemplo, uma voz gravada, neste trbalho serão apresentados métodos que visam a construção de métodos que reconheçam esse ataque.
+Sistemas de autenticação de usuário por voz e o processo de falseamento usando voice spoofing é o tema de estudo que se pretende explorar. Um sistema de reconhecimento  de voz idealmente não deve se deixar enganar por, como exemplo, uma voz gravada, neste trabalho serão apresentados métodos que visam a construção de métodos que reconheçam esse ataque.
 
 ## Results
 
