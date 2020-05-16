@@ -12,8 +12,7 @@
  * for each range defined in MEL or BARK scales and following
  * the respectives rules for BARK or MEL scales to build a
  * feature vector witch will be analised by a paraconsistent
- * algorithm. The results will be plotted and saved in
- * /tmp/results.csv directory
+ * algorithm. The results will be plotted and saved.
  * It will be done for all files and wavelets.
  */
 
