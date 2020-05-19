@@ -1,0 +1,121 @@
+\documentclass[a4paper,12pt,openright,oneside]{book}
+
+% Enables Portuguese Brasil
+\usepackage[portuguese]{babel}
+
+% Enables code listing
+\usepackage{listings}
+
+% Enables file importing
+\usepackage{import}
+%--------------------------------------
+
+\usepackage{xcolor}
+
+%--------------------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[figuresright]{rotating}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{picinpar}
+\usepackage{colortbl}
+\usepackage{wasysym}
+\usepackage{txfonts}
+\usepackage{pb-diagram}
+\usepackage{relsize}
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{positioning}
+	\usetikzlibrary{mindmap}
+	\usetikzlibrary{snakes}
+	\usetikzlibrary{shapes}
+	\usetikzlibrary{decorations.pathreplacing}
+	\usetikzlibrary{spy}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{patterns}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+	\pgfplotsset{compat=newest}
+	\usepgfplotslibrary{units}
+\usepackage{subfigure}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{calc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{indentfirst}        % indenta primeiro par�grafo
+\usepackage{fancyhdr}
+\usepackage{pifont}
+\usepackage{textcomp}      % \texttrademark
+\usepackage{url}  
+\usepackage{multirow}  
+\usepackage[numbers]{natbib}
+\usepackage{notoccite}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{helvet}
+
+\renewcommand{\familydefault}{\sfdefault}
+\headheight 16pt
+\setlength{\topmargin}{-15pt} % extra vert. space + at the top of header: 23pt
+\setlength{\oddsidemargin}{0pt} % extra spc added at the left of odd page: 0pt
+\setlength{\evensidemargin}{-12pt} % ext. spc added at the left of even pg: 59pt
+\setlength{\textheight}{638pt} % height of the body: 592pt
+\setlength{\textwidth}{483pt} % width of the body: 470pt
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+\cfoot[\fancyplain{\bfseries\thepage}{}]{\fancyplain{\bfseries\thepage}{}}
+\newenvironment{myenv}[1]
+  {\begin{spacing}{#1}}
+  {\end{spacing}}
+
+%% Actual content
+\begin{document}
+	
+	%% Cover
+	\include{chapters/00-cover}
+
+	%% Face
+	\include{chapters/00-face}
+
+	%% Approval
+	\include{chapters/00-aproval}
+
+	%% Abstract
+	\include{chapters/00-abstract}
+
+	%% Document indexes
+	\include{chapters/01-indexes}
+	
+	\mainmatter
+	\setlength{\parindent}{1.25cm}
+
+	%% Introduction
+	\include{chapters/02-Introduction}
+
+	%% Bibliographic revision
+	\include{chapters/03-bibliographicRevision}
+
+	%% Schedule
+	\include{chapters/99-Schecule}
+
+	%% Bibliography
+	\bibliography{bibliography.bib}
+	\bibliographystyle{alpha}
+
+\end{document}
+

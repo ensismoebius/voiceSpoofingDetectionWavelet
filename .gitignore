@@ -52,6 +52,14 @@
 *.blg
 *.idx
 *.log
+*.lof
+*.lot
+*.gz
+*.toc
+*.nav
+*.snm
+
+# Other exceptions
 latex.rul.xml
 tmp
 /Debug/
@@ -61,3 +69,4 @@ src/lib/matplotlib-cpp
 /.splitWave.sh.swp
 /dir*
 /documentation/dissertation/articlesToRead
+
