@@ -1,89 +1,5 @@
-\documentclass[a4paper,12pt,openright,oneside]{book}
-
-% Enables Portuguese Brasil
-\usepackage[portuguese]{babel}
-
-% Enables code listing
-\usepackage{listings}
-
-% Enables file importing
-\usepackage{import}
-%--------------------------------------
-
-\usepackage{xcolor}
-
-%--------------------------------------
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-
-\usepackage[figuresright]{rotating}
-\usepackage{amsthm}
-\usepackage{graphics}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{fancybox}
-\usepackage{amsmath}
-\usepackage{picinpar}
-\usepackage{colortbl}
-\usepackage{wasysym}
-\usepackage{txfonts}
-\usepackage{pb-diagram}
-\usepackage{relsize}
-\usepackage{tikz}
-	\usetikzlibrary{calc}
-	\usetikzlibrary{datavisualization}
-	\usetikzlibrary{positioning}
-	\usetikzlibrary{mindmap}
-	\usetikzlibrary{snakes}
-	\usetikzlibrary{shapes}
-	\usetikzlibrary{decorations.pathreplacing}
-	\usetikzlibrary{spy}
-	\usetikzlibrary{backgrounds}
-	\usetikzlibrary{patterns}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
-	\pgfplotsset{compat=newest}
-	\usepgfplotslibrary{units}
-\usepackage{subfigure}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{verbatim}
-\usepackage{wrapfig}
-\usepackage{array}
-\usepackage{calc}
-\usepackage[T1]{fontenc}
-\usepackage{times}
-\usepackage{indentfirst}        % indenta primeiro par�grafo
-\usepackage{fancyhdr}
-\usepackage{pifont}
-\usepackage{textcomp}      % \texttrademark
-\usepackage{url}  
-\usepackage{multirow}  
-\usepackage[numbers]{natbib}
-\usepackage{notoccite}
-\usepackage{setspace}
-\usepackage{array}
-\usepackage{helvet}
-
-\renewcommand{\familydefault}{\sfdefault}
-\headheight 16pt
-\setlength{\topmargin}{-15pt} % extra vert. space + at the top of header: 23pt
-\setlength{\oddsidemargin}{0pt} % extra spc added at the left of odd page: 0pt
-\setlength{\evensidemargin}{-12pt} % ext. spc added at the left of even pg: 59pt
-\setlength{\textheight}{638pt} % height of the body: 592pt
-\setlength{\textwidth}{483pt} % width of the body: 470pt
-\pagestyle{fancyplain}
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
-\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
-\cfoot[\fancyplain{\bfseries\thepage}{}]{\fancyplain{\bfseries\thepage}{}}
-
-%% Creates a flexible spaceble environment
-\newenvironment{myenv}[1]
-  {\begin{spacing}{#1}}
-  {\end{spacing}}
+%% Preamble (document settings)
+\input{chapters/preamble.tex}
 
 %% Actual content
 \begin{document}
@@ -92,37 +8,45 @@
 	\include{chapters/00-cover}
 
 	%% Face
-	\include{chapters/00-face}
+	\include{chapters/01-face}
 
 	%% Approval
-	\include{chapters/00-aproval}
+	\include{chapters/02-aproval}
+	
+	%% Special thanks
+	\include{chapters/03-specialThanks}
 
 	%% Abstract
-	\include{chapters/00-abstract}
+	\include{chapters/04-abstract}
 
 	%% Document indexes
-	\include{chapters/01-indexes}
+	\include{chapters/05-indexes}
 	
 	%% Restarts the page count and
 	%% Starts the chapter numbering
 	\mainmatter
-	\setcounter{page}{9}
+	%\setcounter{page}{10}
 	
 	%% Set new paragraph indentation sized
 	\setlength{\parindent}{1.25cm}
 
 	%% Introduction
-	\include{chapters/02-Introduction}
+	\include{chapters/06-Introduction}
 
 	%% Bibliographic revision
-	\include{chapters/03-bibliographicRevision}
+	\include{chapters/07-bibliographicRevision}
+	
+	%% Proposed approach
+	\include{chapters/08-proposedApproach}
 
-	%% Schedule
-	\include{chapters/99-Schecule}
-
+	%% Tests and results
+	\include{chapters/09-testsAndResults}
+	
+	%% Conclusions
+	\include{chapters/10-conclusions}
+	
 	%% Bibliography
 	\bibliography{bibliography.bib}
 	\bibliographystyle{alpha}
 
 \end{document}
-
