@@ -79,6 +79,8 @@
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
 \cfoot[\fancyplain{\bfseries\thepage}{}]{\fancyplain{\bfseries\thepage}{}}
+
+%% Creates a flexible spaceble environment
 \newenvironment{myenv}[1]
   {\begin{spacing}{#1}}
   {\end{spacing}}
@@ -101,7 +103,12 @@
 	%% Document indexes
 	\include{chapters/01-indexes}
 	
+	%% Restarts the page count and
+	%% Starts the chapter numbering
 	\mainmatter
+	\setcounter{page}{9}
+	
+	%% Set new paragraph indentation sized
 	\setlength{\parindent}{1.25cm}
 
 	%% Introduction
