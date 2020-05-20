@@ -1,19 +1,24 @@
 \chapter{Introdução}
 	\begin{myenv}{1.5}
-		
 		\section{Considerações Iniciais}
+			\par Os \textit{voice spoofing attacks} do tipo \textit{playback speech} constituem o tema de estudo deste trabalho.
+			\par Para a realização desta pesquisa coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas em São José do Rio Preto no estado de São Paulo. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua inglesa como em portuguesa totalizando assim uma base com 820 trechos de áudio.
+						 
 		\section{Objetivos}
+			\par No presente momento muito poucos artigos tratam da detecção de \textit{voice spoofing} usando a tecnologia de \textit{wavelets/wavelets packet} apesar de sua promissora capacidade em analisar de forma detalhada tanto as baixas quanto as altas frequências de um sinal.
+			\par A proposta desse trabalho é tentar cobrir um pouco dessa deficiência usando wavelets em conjunção com tecnologias já estabelecidas como análise de espectro baseado na escala MEL ou BARK e análise paraconsistente de características.
+			
 		\section{Estrutura do trabalho}
-		\par Os sistemas de autenticação de usuário por voz e o processo de falseamento usando \textit{voice spoofing} é o tema de estudo que se pretende explorar. Um sistema de reconhecimento \textbf{idealmente} não deve se deixar enganar por, como exemplo, uma voz gravada, neste documento será apresentada uma revisão de conceitos que visa preparar as bases para a construção de métodos que reconheçam esse ataque.
-		
-		\par No capítulo 2 se realizará uma revisão dos seguintes conceitos:
-		\begin{itemize}
-			\item Engenharia paraconsistente.
-			\item Filtros digitais usando wavelets.
-			\item Caracterização dos processos de produção da voz humana.
-			\item Amostragem, quantização, entre outros.
-		\end{itemize}
-		\par Em seguida apresentar-se-á uma revisão bibliográfica finalizando com o cronograma previsto.
+			\par No capítulo \ref{chap:revBibli} se realizará uma revisão dos seguintes conceitos:
+			\begin{itemize}
+				\item Engenharia paraconsistente.
+				\item Filtros digitais usando wavelets.
+				\item Caracterização dos processos de produção da voz humana.
+				\item Amostragem, quantização, entre outros.
+			\end{itemize}
+			\par Em seguida no capítulo \ref{chap:propApproach} apresentar-se-á a proposta de aproximação do problema usada nesta investigação. 
+			\par No capítulo \ref{chap:testsResults} são mostrados os testes e resultados obtidos para, no capítulo \ref{chap:conclusions} se apresentar as conclusões.
+			\par Ao final do documento se encontram as referências usadas.
 		
 		
 	\end{myenv}
