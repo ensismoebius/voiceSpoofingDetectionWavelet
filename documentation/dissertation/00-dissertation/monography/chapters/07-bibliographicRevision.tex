@@ -87,7 +87,7 @@
 					\item (0,-1) $\rightarrow$ Indefinição.
 					\item (0,1) $\rightarrow$ Ambiguidade.
 				\end{itemize}
-				\par É importante perceber que na figura \ref{fig:paraconsistentplane} existe um pequeno círculo, este indica onde se encontram as classes nos graus explicados da listagem anterior.
+				\par Perceba que na figura \ref{fig:paraconsistentplane} existe um pequeno círculo, este indica onde se encontram as classes nos graus explicados da listagem anterior.
 				\par Para se ter ideia em que área exatamente se encontram as classes avaliadas se deve calcular as distâncias$(D)$ do ponto $P=(G_1,G_2)$ dos limites supracitados. Tal cálculo pode ser feito da seguinte forma:
 
 				\begin{equation}
@@ -109,15 +109,17 @@
 					\caption{O plano paraconsistente.}
 					\label{fig:paraconsistentplane}
 				\end{figure}
+			
+			\par Na prática, ou seja, para fins de classificação geralmente considera-se a distância em relação ao ponto \textit{"(1,0) $\rightarrow$ Verdade"} para se dizer os quão separados são os vetores de características analisados: Quanto mais próximo o círculo estiver de \textit{(1,0)} mais disjuntos eles serão.
 
 			\subsection{Filtros digitais wavelets}
 				\par Filtros digitais \textit{wavelet} vem para suprir as deficiências de janelamento de sinal apresentadas pelas transformadas de Fourier e pelas transformadas curtas de Fourier. \textit{Wavelets} contam com variadas funções filtro e tem tamanho de janela variável o que permite uma análise multirresolução \cite{Rod5254905}.
 				
 				\par As \textit{wavelets} proporcionam a análise do sinal de forma detalhada tanto no espectro de baixa frequência quanto no de alta frequência.
 				
-				\par É importante observar que, quando se trata de transformada \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características então os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa. A abordagem usada será baseada nos filtros de análise digitais que proporcionarão a decomposição do sinal com o uso de filtros passa baixas e passa altas estritamente no domínio discreto.
+				\par É importante observar que, quando se trata de transformada \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características, portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa. A abordagem usada será baseada nos filtros de análise digitais que proporcionarão a decomposição do sinal com o uso de filtros passa baixas e passa altas estritamente no domínio discreto.
 	
-				\par No contexto dos filtros digitais baseados em \textit{wavelets} o tamanho da janela recebe o nome de \textbf{suporte}. Janelas definem o tamanho do filtro que será aplicado ao sinal quando esse é pequeno se diz que a janela tem \textbf{um suporte compacto} \cite{robi2003}.
+				\par No contexto dos filtros digitais baseados em \textit{wavelets} o tamanho da janela recebe o nome de \textbf{suporte}. Janelas definem o tamanho do filtro que será aplicado ao sinal, quando esse é pequeno se diz que a janela tem \textbf{um suporte compacto} \cite{robi2003}.
 			
 				\par Se diz que uma \textit{wavelet} tem boa \textbf{resposta em frequência} quando, na aplicação da mesma na filtragem das frequências não são causadas muitas pertubações indesejadas ao sinal, as wavelets de Daubechies se destacam neste quesito por serem \textit{maximamente planas} (Maximally-flat) nos platôs de resposta em frequência como indicado na figura \ref{fig:daubechies}.
 
@@ -145,84 +147,91 @@
 				
 				\par Idealmente é desejável que todo filtro apresente boa resposta em frequência e resposta em fase linear.
 				
-				\begin{table}[h]
-					\centering
-					\begin{tabular}{|c|c|c|}
-							\hline 
-							\textbf{Wavelet} & \textbf{Resposta em frequência} & \textbf{Resposta em fase} \\ 
-							\hline 
-							Haar & Pobre &  Linear \\ 
-							\hline 
-							Daubechies & Quanto maior o suporte, melhor. \textit{Maximally-flat}  &  Não linear \\ 
-							\hline 
-							Symmlets & Quanto maior o suporte, melhor. Não \textit{Maximally-flat} & Quase linear \\ 
-							\hline 
-							Coiflets & Quanto maior o suporte, melhor. Não \textit{Maximally-flat} & Quase linear \\ 
-							\hline 
-					\end{tabular} 
-					\caption{Algumas wavelets mais populares e suas propriedades}
-					\label{tab:waveletsProperties}
-				\end{table}
+			\input{tables/someWaveletsProperties.tex}
 			
-			\subsubsection{O algoritmo de Malat}
-			\par O algoritmo de Malat torna aplicação das \textit{wavelets} no sinal em uma simples multiplicação de matrizes, o sinal que deve ser transformado se torna uma matriz linear vertical já os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante.
-			\par É importante que essa matriz quadrada tenha de aresta a mesma quantidade de itens que o nosso sinal, ou seja, se o sinal tem quatro elementos então a matriz de filtros deve ser uma de 4x4.
-			\par Algo interessante a se notar é que, para que seja possível a transformada wavelet, basta ter disponível o filtro passa-baixa construído a partir da \textit{mother wavelet} já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.
-			\par A título de exemplo considere:
-			\par O filtro passa baixa baseado na wavelet Haar:
-			$h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]\qquad,$
-			
-			\par E seu respectivo valor ortogonal:
-			$g[\cdot] = [\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}]\qquad,$
-			
-			\par Considere também o seguinte sinal:	$sinal = [1,2,3,4]\qquad.$
+			\subsubsection{O algoritmo de Malat para transformada wavelet}
+				\par O algoritmo de Malat torna aplicação das \textit{wavelets} no sinal em uma simples multiplicação de matrizes, o sinal que deve ser transformado se torna uma matriz linear vertical já os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante.
+				\par É importante que essa matriz quadrada tenha de aresta a mesma quantidade de itens que o nosso sinal, ou seja, se o sinal tem quatro elementos então a matriz de filtros deve ser uma de 4x4.
+				\par Algo interessante a se notar é que, para que seja possível a transformada wavelet, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}(que é a função geradora desse filtro) já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.\\
+				\par A título de exemplo considere:
+				\begin{itemize}
+					\item O filtro passa baixa baseado na wavelet Haar: $h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]\qquad,$
+					\item E seu respectivo valor ortogonal: $g[\cdot] = [\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}]\qquad,$
+					\item Considere também o seguinte sinal:	$sinal = [1,2,3,4]\qquad.$
+				\end{itemize}
+	
+				\par Se o tamanho do sinal a ser tratado é quatro, ou seja, o sinal tem quatro pulsos, e se pretende-se aplicar o filtro Haar, a seguinte matriz é construída:
+				\begin{equation}
+					\begin{pmatrix}
+						\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
+						\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
+						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+						\label{eq:haarFilters}
+					\end{pmatrix} 
+				\end{equation}
+				\par No entanto, filtros Haar tem apenas dois valores e, necessariamente, a linha da matriz deve ter quatro itens. Para resolver este problema basta completar cada uma das linhas com zeros. A matriz é montada de forma que a mesma seja ortogonal.
+	
+				\par Montada a matriz de filtros segue-se com os cálculos da transformada:
+				\begin{equation}
+					\begin{pmatrix}
+						\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
+						\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
+						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+					\end{pmatrix} 
+					\cdot
+					\begin{pmatrix}
+						1\\
+						2\\
+						3\\
+						4\\
+					\end{pmatrix} 
+					=
+					\begin{pmatrix}
+						\frac{3}{\sqrt{2}}\\
+						\frac{-1}{\sqrt{2}}\\
+						\frac{7}{\sqrt{2}}\\
+						\frac{-1}{\sqrt{2}}\\
+					\end{pmatrix}
+					\label{eq:haarMultiplic}
+				\end{equation}
+				
+				\par Realizada a multiplicação é necessário agora montar o sinal filtrado, isso é feito escolhendo, dentro do resultado, valores alternadamente de forma que o vetor resultante seja:
+	
+				\begin{equation}
+					resultado = \Big[
+					\frac{3}{\sqrt{2}},
+					\frac{7}{\sqrt{2}},
+					\frac{-1}{\sqrt{2}},
+					\frac{-1}{\sqrt{2}}
+					\Big]\qquad.
+					\label{eq:haarResult}
+				\end{equation}
+				
+				\par Perceba que na transformada wavelet mostrada em \ref{eq:haarFilters}, \ref{eq:haarMultiplic} e \ref{eq:haarResult} a \textbf{aplicação dos filtros sobre  o vetor ocorreu apenas uma vez}, sendo assim, se diz que o sinal recebeu a \textbf{transformada wavelet nível 1}. A cada transformada há uma separação do sinal em dois componentes: O de baixa e o de alta frequência.
+				
+				\par É possível aplicar mais de um nível de transformadas ao sinal, para que se possa fazer isso a transformada wavelet nível 2 deve considerar apenas a parte de baixa frequência da primeira transformada, já transformada de nível 3 deve considerar apenas a parte de baixa frequência da transformada nível 2 e assim consecutivamente.
+				
+				\par Nos exemplos numéricos mostrados nas tabelas \ref{tab:regularWaveletExample}, \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} usou-se um filtro haar cujos valores são $\dfrac{1}{2}$ e $-\dfrac{1}{2}$. Os dados destacados em \textbf{verde} correspondem ao \textbf{vetor original} que será tratado, cada uma das linhas são os resultados das transformadas wavelets nível 1, 2, 3 e 4 respectivamente, as partes em \textbf{azul} correspondem a porção de \textbf{baixa frequência}, as partes em \textbf{amarelo} correspondem as porções de \textbf{alta frequência}.
+				
+				\par Perceba que na tabela \ref{tab:regularWaveletExample}, a partir da transformada nível 2, apenas as partes de baixa frequência são modificadas.
+				
+				\par Isso implica que, no momento da implementação do algoritmo de Malat \textbf{para níveis maiores que 1} a abordagem será \textbf{recursiva}, em outras palavras, a partir do nível 1 se deve aplicar Malat apenas às metades de baixa frequência geradas pela transformação anterior.
+				
+				\input{tables/regularWaveletExample.tex}
 
-			\par Se o tamanho do sinal a ser tratado é quatro, ou seja, o sinal tem quatro pulsos, e se pretende-se aplicar o filtro Haar, a seguinte matriz é construída:
-			\begin{equation}
-				\begin{pmatrix}
-					\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
-					\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
-					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-				\end{pmatrix} 
-			\end{equation}
-			\par No entanto, filtros Haar tem apenas dois valores e, necessariamente, a linha da matriz deve ter quatro itens. Para resolver este problema basta completar cada uma das linhas com zeros. A matriz é montada de forma que a mesma seja ortogonal.
+			\subsubsection{O algoritmo de Malat e a Wavelet packet}
+				\par Na transformada \textit{wavelet packet} os filtros aplicados são os mesmos e a recursividade da abordagem também é a mesma, no entato, aplicada a transformada nível 1, é necessário que a transformada nível 2 seja aplicada aos componentes de baixa e de alta frequência. Sendo assim a transformada \textit{wavelet packet} obtém um nível de detalhes em todo o espectro de frequência maior do que uma \textit{wavelet} regular. 
+				
+				\par Os exemplos mostrados nas tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} mostram como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequência respectivamente após a \textit{wavelet} nível 1.
+	
+				\par Devido ao \textit{downsampling} aplicado as porções de alta frequência essas partes acabam por ficar "espelhadas", ou seja, suas sequências ficam invertidas. Para resolver  esse problema e preservar a ordem do sinal os filtros são aplicados em ordem inversa nas porções de alta frequência \cite{Jensen_2001}. Isso altera como o algoritmo de Malat deve ser implementado para a transformada \textit{wavelet packet}, já que dessa vez, é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
 
-			\par Montada a matriz de filtros segue-se com os cálculos da transformada:
-			\begin{equation}
-				\begin{pmatrix}
-					\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
-					\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
-					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-				\end{pmatrix} 
-				\cdot
-				\begin{pmatrix}
-					1\\
-					2\\
-					3\\
-					4\\
-				\end{pmatrix} 
-				=
-				\begin{pmatrix}
-					\frac{3}{\sqrt{2}}\\
-					\frac{-1}{\sqrt{2}}\\
-					\frac{7}{\sqrt{2}}\\
-					\frac{-1}{\sqrt{2}}\\
-				\end{pmatrix}
-			\end{equation}
-			
-			\par realizada a multiplicação é necessário agora montar o sinal filtrado, isso é feito escolhendo, dentro do resultado, valores alternadamente de forma que o vetor resultante seja:
+				\input{tables/packetWaveletExample.tex}
+				
+				\par Em caso de dúvidas consulte a figura \ref{fig:haarWaveletExamples} no apêndice deste documento.
 
-			\begin{equation}
-				resultado = \Big[
-				\frac{3}{\sqrt{2}},
-				\frac{7}{\sqrt{2}},
-				\frac{-1}{\sqrt{2}},
-				\frac{-1}{\sqrt{2}}
-				\Big]\qquad.
-			\end{equation}
-		
 			\subsection{Amostragem, quantização e o formato do arquivo Wave}
 				\par Serão usados arquivos no formato \textit{wave} usando \textit{pulse-code modulation} (PCM), neste esquema os dados são armazenados sem perdas. O arquivo, segundo \cite{WAVE2019}, se estrutura como o ilustrado na figura \ref{fig:wavePcmStructure}.
 				
