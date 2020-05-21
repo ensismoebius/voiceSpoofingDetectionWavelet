@@ -225,13 +225,13 @@
 				\par Na transformada \textit{wavelet packet} os filtros aplicados são os mesmos e a recursividade da abordagem também é a mesma, no entato, aplicada a transformada nível 1, é necessário que a transformada nível 2 seja aplicada aos componentes de baixa e de alta frequência. Sendo assim a transformada \textit{wavelet packet} obtém um nível de detalhes em todo o espectro de frequência maior do que uma \textit{wavelet} regular. 
 				
 				\par Os exemplos mostrados nas tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} mostram como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequência respectivamente após a \textit{wavelet} nível 1.
-	
+
+				\newpage
 				\par Devido ao \textit{downsampling} aplicado as porções de alta frequência essas partes acabam por ficar "espelhadas", ou seja, suas sequências ficam invertidas. Para resolver  esse problema e preservar a ordem do sinal os filtros são aplicados em ordem inversa nas porções de alta frequência \cite{Jensen_2001}. Isso altera como o algoritmo de Malat deve ser implementado para a transformada \textit{wavelet packet}, já que dessa vez, é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
 
 				\input{tables/packetWaveletExample.tex}
 				
-				\par Em caso de dúvidas consulte a figura \ref{fig:haarWaveletExamples} no apêndice deste documento.
-
+				\par Para uma visualização mais completa consulte a figura \ref{fig:haarWaveletExamples} no apêndice deste documento.
 			\subsection{Amostragem, quantização e o formato do arquivo Wave}
 				\par Serão usados arquivos no formato \textit{wave} usando \textit{pulse-code modulation} (PCM), neste esquema os dados são armazenados sem perdas. O arquivo, segundo \cite{WAVE2019}, se estrutura como o ilustrado na figura \ref{fig:wavePcmStructure}.
 				

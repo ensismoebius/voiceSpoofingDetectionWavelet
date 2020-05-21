@@ -1,0 +1,22 @@
+Sex	Age	file name	performed?	status
+m	3	voz1.wav	yes	accepted
+f	3	voz2.wav	parcial	discarded
+f	4	voz3.wav	yes	accepted
+m	4	voz4.wav	yes	accepted
+f	35	voz5.wav	yes	accepted
+f	32	voz6.wav	yes	accepted
+f	58	voz7.wav	yes	accepted
+m	38	voz8.wav	yes	accepted
+m	24	voz9.wav	yes	accepted
+m	49	voz10.wav	yes	accepted
+f	20	voz11.wav	yes	accepted
+f	22	voz12.wav	yes	accepted
+f	13	voz13.wav	yes	accepted
+m	20	voz14.wav	yes	accepted
+m	19	voz15.wav	yes	accepted
+m	18	voz16.wav	yes	accepted
+m	29	voz17.wav	yes	accepted
+m	27	voz18.wav	yes	accepted
+f	34	voz19.wav	yes	accepted
+m	67	voz20.wav	yes	accepted
+f	46	voz21.wav	yes	accepted
