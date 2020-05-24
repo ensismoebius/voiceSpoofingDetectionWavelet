@@ -226,7 +226,6 @@
 				
 				\par Os exemplos mostrados nas tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} mostram como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequência respectivamente após a \textit{wavelet} nível 1.
 
-				\newpage
 				\par Devido ao \textit{downsampling} aplicado as porções de alta frequência essas partes acabam por ficar "espelhadas", ou seja, suas sequências ficam invertidas. Para resolver  esse problema e preservar a ordem do sinal os filtros são aplicados em ordem inversa nas porções de alta frequência \cite{Jensen_2001}. Isso altera como o algoritmo de Malat deve ser implementado para a transformada \textit{wavelet packet}, já que dessa vez, é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
 
 				\input{tables/packetWaveletExample.tex}
@@ -310,8 +309,5 @@
 		\par Neste trabalho \cite{ISI:000392503100008} é proposto o uso do \textit{gammatone frequency cepstral coefficients}(MGFCC). O gammatone é o produto de uma distribuição gamma com um sinal senoide e é usado na construção de filtros auditivos que, neste caso, são usados para extrair características do sinal de voz. A base de dados usada foi a ASVspoof 2015. O classificador usado foi um GMM e o EER chegou a 0,02556.
 		
 		\par Segundo \cite{8396208} \textit{Hashing} sensível a locus(LSH) é frequentemente usado como um classificador para problemas relacionados a \textit{big data}, neste trabalho é proposto uma junção de MFCC e LSH a fim de se reconhecer o locutor. Neste método o MFCC é extraído dos arquivos de sinal para posterior aplicação do LSH gerando assim uma tabela \textit{hash}, estes valores de \textit{hash} são então comparados identificando assim o locutor ou locutora. Nos testes realizados houve uma acurácia de 92,66\%. A base de dados usada foi a TIMIT 2018 \cite{TIMIT2018}. 
-
-		\subsection{Contextualização}
-		\par No trabalho proposto para dissertação de mestrado do autor a intenção é encontrar um conjunto de características que demonstrem ser as mais disjuntas possíveis para fins de separação entre as classes, com o objetivo de melhorar a acurácia de classificadores para detecção de ataques de \textit{voice spoofing}. Caraterísticas essas com base na transformada \textit{wavelet}, devido a sua boa resolução em relação às dimensões de tempo e frequência. Essas características serão avaliadas usando a análise paraconsistente de acordo com o trabalho \cite{8588433} recentemente publicado.
 
 	\end{myenv}

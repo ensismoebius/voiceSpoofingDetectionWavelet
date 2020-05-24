@@ -1,0 +1,47 @@
+\begin{lstlisting}[language=C++, caption={Algoritmo do experimento 2}, label={lst:experiment02Algo}]
+tamanhosDoModelo={0.1, 0,2, 0,4, 0,5};
+modeloDeReferenciaNaoSpoofing={};
+modeloDeReferenciaSpoofing={};
+testesNaoSpoofing={};
+testesSpoofing={};
+
+for (distancia : {Euclidiana, Manhattan}) {
+	for(porcentagem : tamanhosDoModelo){
+		for(teste = 0; teste < 300; teste++){
+			// Escolhe aleatoriamente os sinais para o modelo com spoofing 
+			// e os grava em 'modeloDeReferenciaSpoofing' o restante vai 
+			// para 'testesSpoofing'
+			escolherAleatoriamente(listaComVoiceSpoofing, porcentagem, modeloDeReferenciaSpoofing, testesSpoofing);
+			
+			// Escolhe aleatoriamente os sinais para o modelo sem spoofing
+			// e os grava em 'modeloDeReferenciaNaoSpoofing' o restante vai 
+			// para 'testesNaoSpoofing'
+			escolherAleatoriamente(listaSemVoiceSpoofing, porcentagem, modeloDeReferenciaNaoSpoofing, testesNaoSpoofing);
+			treinarClassificador("spoofing", modeloDeReferenciaSpoofing);
+			treinarClassificador("naoSpoofing", modeloDeReferenciaNaoSpoofing);
+
+			// Classifica os testes e preenche a tabela de confusao
+			for(sinal : testesSpoofing){
+				preencherTabelaDeConfusao(sinal, "spoofing");
+			} 
+
+			// Classifica os testes e preenche a tabela de confusao
+			for(sinal : testesNaoSpoofing){
+				preencherTabelaDeConfusao(sinal, "naoSpoofing");
+			}
+
+			acuracia=calculaAcuracia();
+
+			// Salva a melhor acuracia e matriz de confusao
+			if(ehAMelhorAcuracia(acuracia)){
+				salvaAcuraciaEMatrizDeConfusao();
+			}
+			
+			// Salva a pior acuracia e matriz de confusao
+			if(ehAPiorAcuracia(acuracia)){
+				salvaAcuraciaEMatrizDeConfusao();
+			}
+		}
+	}
+}				
+\end{lstlisting}
