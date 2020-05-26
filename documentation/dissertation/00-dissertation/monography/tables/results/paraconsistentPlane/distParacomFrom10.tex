@@ -1,0 +1,160 @@
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcC}{rgb}{1,0.94902,0}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			Wavelet & G1 & G2 & Distância do ponto (1,0)\\\hline
+			\rowcolor{tcB}
+			haar & 0.93615 & 4.68316e-310 & 0.0638503\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub4} & \mc{1}{>{\columncolor{tcC}}c|}{0.928088} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0719123}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub6} & \mc{1}{>{\columncolor{tcC}}c|}{0.927885} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.072115}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif6} & \mc{1}{>{\columncolor{tcC}}c|}{0.927823} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.072177}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym8} & \mc{1}{>{\columncolor{tcC}}c|}{0.92769} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0723096}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub12} & \mc{1}{>{\columncolor{tcC}}c|}{0.926541} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.073459}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif12} & \mc{1}{>{\columncolor{tcC}}c|}{0.926479} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0735206}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub10} & \mc{1}{>{\columncolor{tcC}}c|}{0.925778} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.074222}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif18} & \mc{1}{>{\columncolor{tcC}}c|}{0.925636} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0743642}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub38} & \mc{1}{>{\columncolor{tcC}}c|}{0.924105} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0758951}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub58} & \mc{1}{>{\columncolor{tcC}}c|}{0.923782} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0762175}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif24} & \mc{1}{>{\columncolor{tcC}}c|}{0.923759} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0762411}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub32} & \mc{1}{>{\columncolor{tcC}}c|}{0.923231} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0767692}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub72} & \mc{1}{>{\columncolor{tcC}}c|}{0.923049} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.076951}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub18} & \mc{1}{>{\columncolor{tcC}}c|}{0.922752} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0772476}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub76} & \mc{1}{>{\columncolor{tcC}}c|}{0.922538} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0774616}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub70} & \mc{1}{>{\columncolor{tcC}}c|}{0.922464} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0775363}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub16} & \mc{1}{>{\columncolor{tcC}}c|}{0.922434} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0775664}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub26} & \mc{1}{>{\columncolor{tcC}}c|}{0.921938} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0780617}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub20} & \mc{1}{>{\columncolor{tcC}}c|}{0.921789} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0782114}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym16} & \mc{1}{>{\columncolor{tcC}}c|}{0.921534} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0784657}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub40} & \mc{1}{>{\columncolor{tcC}}c|}{0.921381} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0786195}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub8} & \mc{1}{>{\columncolor{tcC}}c|}{0.921189} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0788111}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Combinação wavelet\textit{X}BARK no plano paraconsistente (Parte 01)}
+	\label{tab:distParacomFrom10Bark_1}
+\end{table}
+
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcC}{rgb}{1,0.94902,0}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			Wavelet & G1 & G2 & Distância do ponto (1,0)\\\hline
+			\rowcolor{tcB}
+			haar & 0.93615 & 4.68316e-310 & 0.0638503\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub62} & \mc{1}{>{\columncolor{tcC}}c|}{0.921129} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0788712}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub74} & \mc{1}{>{\columncolor{tcC}}c|}{0.921103} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0788972}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub22} & \mc{1}{>{\columncolor{tcC}}c|}{0.921018} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0789818}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub68} & \mc{1}{>{\columncolor{tcC}}c|}{0.920958} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0790417}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub52} & \mc{1}{>{\columncolor{tcC}}c|}{0.920935} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0790645}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub66} & \mc{1}{>{\columncolor{tcC}}c|}{0.920698} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0793024}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{vaidyanathan24} & \mc{1}{>{\columncolor{tcC}}c|}{0.92032} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0796802}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub46} & \mc{1}{>{\columncolor{tcC}}c|}{0.920243} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0797574}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym32} & \mc{1}{>{\columncolor{tcC}}c|}{0.920126} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0798735}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub64} & \mc{1}{>{\columncolor{tcC}}c|}{0.919111} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0808888}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub60} & \mc{1}{>{\columncolor{tcC}}c|}{919} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0809997}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub48} & \mc{1}{>{\columncolor{tcC}}c|}{0.918767} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.081233}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub24} & \mc{1}{>{\columncolor{tcC}}c|}{0.918569} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0814307}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif30} & \mc{1}{>{\columncolor{tcC}}c|}{0.918532} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0814678}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub14} & \mc{1}{>{\columncolor{tcC}}c|}{0.918381} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0816185}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub54} & \mc{1}{>{\columncolor{tcC}}c|}{0.918312} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.081688}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub44} & \mc{1}{>{\columncolor{tcC}}c|}{0.918082} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0819177}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub30} & \mc{1}{>{\columncolor{tcC}}c|}{0.917617} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0823828}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{beylkin18} & \mc{1}{>{\columncolor{tcC}}c|}{0.917392} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0826082}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub36} & \mc{1}{>{\columncolor{tcC}}c|}{0.91732} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0826799}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub56} & \mc{1}{>{\columncolor{tcC}}c|}{0.917317} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0826829}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub50} & \mc{1}{>{\columncolor{tcC}}c|}{0.917195} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0828052}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub28} & \mc{1}{>{\columncolor{tcC}}c|}{0.916716} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0832843}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub34} & \mc{1}{>{\columncolor{tcC}}c|}{0.916594} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.0834055}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub42} & \mc{1}{>{\columncolor{tcC}}c|}{0.916039} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.083961}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Combinação wavelet\textit{X}BARK no plano paraconsistente (Parte 02)}
+	\label{tab:distParacomFrom10Bark_2}
+\end{table}
+
+\begin{table}[t]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcC}{rgb}{1,0.94902,0}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			Wavelet & G1 & G2 & Distância do ponto (1,0)\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{haar} & \mc{1}{>{\columncolor{tcC}}c|}{0.728548} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.271452}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub4} & \mc{1}{>{\columncolor{tcC}}c|}{0.685787} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.314213}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym16} & \mc{1}{>{\columncolor{tcC}}c|}{0.684548} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.315452}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub18} & \mc{1}{>{\columncolor{tcC}}c|}{0.679639} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.320361}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif6} & \mc{1}{>{\columncolor{tcC}}c|}{0.677144} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.322856}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub32} & \mc{1}{>{\columncolor{tcC}}c|}{0.67416} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.32584}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub8} & \mc{1}{>{\columncolor{tcC}}c|}{0.672315} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.327685}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym8} & \mc{1}{>{\columncolor{tcC}}c|}{0.668039} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.331961}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub68} & \mc{1}{>{\columncolor{tcC}}c|}{0.663504} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.336496}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub28} & \mc{1}{>{\columncolor{tcC}}c|}{0.661634} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.338366}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub20} & \mc{1}{>{\columncolor{tcC}}c|}{0.658861} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.341139}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub76} & \mc{1}{>{\columncolor{tcC}}c|}{0.655598} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.344402}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub48} & \mc{1}{>{\columncolor{tcC}}c|}{0.655121} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.344879}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub38} & \mc{1}{>{\columncolor{tcC}}c|}{0.65436} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.34564}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub24} & \mc{1}{>{\columncolor{tcC}}c|}{0.652545} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.347455}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub12} & \mc{1}{>{\columncolor{tcC}}c|}{0.64926} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.35074}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif30} & \mc{1}{>{\columncolor{tcC}}c|}{0.648829} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.351171}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub52} & \mc{1}{>{\columncolor{tcC}}c|}{0.644251} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.355749}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif12} & \mc{1}{>{\columncolor{tcC}}c|}{0.643978} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.356022}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub22} & \mc{1}{>{\columncolor{tcC}}c|}{0.640718} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.359282}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub42} & \mc{1}{>{\columncolor{tcC}}c|}{0.639246} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.360754}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym32} & \mc{1}{>{\columncolor{tcC}}c|}{0.638775} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.361225}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{beylkin18} & \mc{1}{>{\columncolor{tcC}}c|}{0.638489} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.361511}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Combinação wavelet\textit{X}MEL no plano paraconsistente (Parte 01)}
+	\label{tab:distParacomFrom10Mel_1}
+\end{table}
+
+\begin{table}[t]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcC}{rgb}{1,0.94902,0}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			Wavelet & G1 & G2 & Distância do ponto (1,0)\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{haar} & \mc{1}{>{\columncolor{tcC}}c|}{0.728548} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.271452}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub4} & \mc{1}{>{\columncolor{tcC}}c|}{0.685787} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.314213}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym16} & \mc{1}{>{\columncolor{tcC}}c|}{0.684548} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.315452}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub18} & \mc{1}{>{\columncolor{tcC}}c|}{0.679639} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.320361}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif6} & \mc{1}{>{\columncolor{tcC}}c|}{0.677144} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.322856}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub32} & \mc{1}{>{\columncolor{tcC}}c|}{0.67416} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.32584}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub8} & \mc{1}{>{\columncolor{tcC}}c|}{0.672315} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.327685}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym8} & \mc{1}{>{\columncolor{tcC}}c|}{0.668039} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.331961}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub68} & \mc{1}{>{\columncolor{tcC}}c|}{0.663504} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.336496}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub28} & \mc{1}{>{\columncolor{tcC}}c|}{0.661634} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.338366}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub20} & \mc{1}{>{\columncolor{tcC}}c|}{0.658861} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.341139}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub76} & \mc{1}{>{\columncolor{tcC}}c|}{0.655598} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.344402}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub48} & \mc{1}{>{\columncolor{tcC}}c|}{0.655121} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.344879}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub38} & \mc{1}{>{\columncolor{tcC}}c|}{0.65436} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.34564}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub24} & \mc{1}{>{\columncolor{tcC}}c|}{0.652545} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.347455}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub12} & \mc{1}{>{\columncolor{tcC}}c|}{0.64926} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.35074}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif30} & \mc{1}{>{\columncolor{tcC}}c|}{0.648829} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.351171}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub52} & \mc{1}{>{\columncolor{tcC}}c|}{0.644251} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.355749}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif12} & \mc{1}{>{\columncolor{tcC}}c|}{0.643978} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.356022}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub22} & \mc{1}{>{\columncolor{tcC}}c|}{0.640718} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.359282}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{daub42} & \mc{1}{>{\columncolor{tcC}}c|}{0.639246} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.360754}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{sym32} & \mc{1}{>{\columncolor{tcC}}c|}{0.638775} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.361225}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{beylkin18} & \mc{1}{>{\columncolor{tcC}}c|}{0.638489} & \mc{1}{>{\columncolor{tcC}}c|}{4.68316e-310} & \mc{1}{>{\columncolor{tcC}}c|}{0.361511}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Combinação wavelet\textit{X}MEL no plano paraconsistente (Parte 02)}
+	\label{tab:distParacomFrom10Mel_2}
+\end{table}

@@ -1,0 +1,19 @@
+\begin{table}[h]
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+\definecolor{tcC}{rgb}{0,0,0}
+\definecolor{tcD}{rgb}{0,0.4,0.701961}
+\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+\begin{center}
+	\begin{tabular}{ccc}
+		% use packages: color,colortbl
+		\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
+
+		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{231}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{32}}\\
+
+		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{15}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{214}}
+	\end{tabular}
+	\caption{Tabela de confusão para classificador Manhattan 40\%}
+	\label{tab:classifier_Manhattan_40}
+\end{center}
+\end{table}

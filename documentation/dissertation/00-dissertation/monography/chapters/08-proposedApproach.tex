@@ -45,6 +45,7 @@
 
 		\section{Experimentos}
 			\subsection{Experimento 01 - Melhor combinação Wavelet x BARK ou MEL}
+			\label{chap:propApproach:sec:Experimento01}
 				\subsubsection{Apresentação}
 					\par O objetivo desse experimento verificar, segundo análise paraconsistente, qual das combinações entre as escalas BARK ou MEL e as várias \textit{wavelets} consideradas geram os vetores de características com menos sobreposição (disjuntos).
 					
@@ -93,7 +94,8 @@
 				\subsubsection{Algoritmo}
 				\input{codeListings/experiment01Algo.tex}
 
-			\subsection{Experimento 02 - Desempenho da combinação mais disjunta em classificadores por distância.}
+			\subsection{Experimento 02 - Desempenho da combinação mais disjunta em classificadores por distância}
+			\label{chap:propApproach:sec:Experimento01}
 				\subsubsection{Apresentação}
 					\par O objetivo deste é verificar, considerando as melhores combinações descobertas pelo experimento 1, o desempenho de classificadores por distâncias Euclidiana e Manhattan. Nesta fase do estudo os vetores de características gerados pelo experimento 1 são fornecidos aos classificadores cujos desempenhos serão medidos.
 					
@@ -117,6 +119,7 @@
 				\input{codeListings/experiment02Algo.tex}
 
 			\subsection{Experimento 03 - Desempenho da combinação mais disjunta em uma SVM.}
+			\label{chap:propApproach:sec:Experimento03}
 				\subsubsection{Apresentação}
 					\par Considerando as melhores combinações descobertas pelo experimento 1, nesta parte pretende-se medir o desempenho de uma \textit{Support Vector Machine} (SVM). Nesta fase do estudo os vetores de características gerados pelo experimento 1 são fornecidos ao classificador cujo desempenho será medido. São idênticas ao experimento 2 as quantidades de testes, as formas de separação dos conjuntos de modelo e teste (amostragem), assim como boa porção do algoritmo, este, será apresentado apenas como garantia do entendimento e se encontra na listagem \ref{lst:experiment03Algo}.
 
