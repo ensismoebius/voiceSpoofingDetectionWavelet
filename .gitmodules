@@ -1,3 +1,6 @@
 [submodule "src/lib/matplotlib-cpp"]
 	path = src/lib/matplotlib-cpp
-	url = https://github.com/lava/matplotlib-cpp.git
+	url = https://github.com/ensismoebius/matplotlib-cpp.git
+[submodule "src/lib/rapidcsv"]
+	path = src/lib/rapidcsv
+	url = https://github.com/d99kris/rapidcsv.git

@@ -225,18 +225,15 @@ namespace waveletExperiments {
 					// Iterates over BARK and MEL (yes, just two values)
 					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second) {
 
-						posVect.push_back(std::pow(2, pos++));
+						posVect.push_back(pos++);
 						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
 						distancesFrom1_0.push_back(std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2)));
-
-						//plt::annotate(annotations, data.second[0][0], data.second[1][0]);
 					}
 				}
 
 				plt::hbar(posVect, distancesFrom1_0);
-				plt::xticks(posVect, annotations);
+				plt::yticks(posVect, annotations);
 				plt::show();
-				plt::pause(.1);
 			}
 
 			/**
