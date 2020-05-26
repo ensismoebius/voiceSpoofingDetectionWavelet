@@ -212,55 +212,29 @@ namespace waveletExperiments {
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
 
-				// The values of contradiction and certaint ever goes around 0 and 1
-				plt::xlim(-1, 1);
-				plt::ylim(-1, 1);
+				int pos = 1;
+				std::vector<double> posVect;
+				std::vector<double> distancesFrom1_0;
+				std::vector<std::string> annotations;
 
-				plt::grid(true);
-
-				// Preparing the paraconsistent plane
-				std::vector<int> x = { 1, 0 };
-				std::vector<int> y = { 0, 1 };
-
-				x = { 0, 1 };
-				y = { 1, 0 };
-				plt::plot(x, y);
-				plt::text(1, 0, "Truth");
-
-				x = { 1, 0 };
-				y = { 0, -1 };
-				plt::plot(x, y);
-				plt::text(0, -1, "Indefinition");
-
-				x = { 0, -1 };
-				y = { -1, 0 };
-				plt::plot(x, y);
-				plt::text(-1, 0, "Falsehood");
-
-				x = { -1, 0 };
-				y = { 0, 1 };
-				plt::plot(x, y);
-				plt::text(0, 1, "Ambiguity");
-				// Paraconsistent plane ready!
-
-				plt::xlabel("Certaint");
-				plt::ylabel("Contradiction");
-
-				std::string annotation;
+				plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
 
 				// Iterates over all wavelets
 				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results) {
 
 					// Iterates over BARK and MEL (yes, just two values)
 					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second) {
-						annotation = std::string("←") + (data.first == BARK ? "B-" : "M-") + wavelet.first;
 
-						plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
-						plt::scatter(data.second[0], data.second[1], 100.0);
-						plt::annotate(annotation, data.second[0][0], data.second[1][0]);
+						posVect.push_back(std::pow(2, pos++));
+						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
+						distancesFrom1_0.push_back(std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2)));
+
+						//plt::annotate(annotations, data.second[0][0], data.second[1][0]);
 					}
 				}
 
+				plt::hbar(posVect, distancesFrom1_0);
+				plt::xticks(posVect, annotations);
 				plt::show();
 				plt::pause(.1);
 			}
