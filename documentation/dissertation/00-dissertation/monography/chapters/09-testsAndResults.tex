@@ -3,13 +3,20 @@
 		\section{Experimento 01}
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.7\linewidth]{images/results/paraconsistentPlane/Figure_1}
+			\includegraphics[width=\linewidth]{images/results/paraconsistentPlane/ParaconsistentParcial.png}
 			\caption{Distância da combinação Wavelet\textit{X}BARK ou MEL do ponto (1,0)}
-			\label{fig:figure1}
+			\label{fig:ParaconsistentParcial}
 		\end{figure}
 
 		\input{tables/results/paraconsistentPlane/distParacomFrom10Best.tex}
-		\par Das Wavelets testadas a que conseguiu \textbf{melhor desempenho} na criação de vetores de características mais disjuntos foi a wavelet \textit{\textbf{Haar combinada com BARK}}. A tabela \ref{tab:distParacomBest} mostra os 6 melhores resultados em termos de distância do ponto (1,0)(verdade) no plano paraconsistente, a totalidade dos resultados se encontram no apêndice deste documento nas tabelas \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2}.
+
+		\par Na figura \ref{fig:ParaconsistentParcial} quanto menor o valor, mais disjuntos tendem ser os vetores de características gerados para as duas classes testadas (\textit{spoofing }e não \textit{spoofing}).
+
+		\par Como se pode constatar, das Wavelets testadas, a que conseguiu \textbf{melhor desempenho} na criação dos melhores vetores de características foi a wavelet \textit{\textbf{Haar com BARK}}. A tabela \ref{tab:distParacomBest} mostra os 6 melhores resultados em termos de distância do ponto (1,0)(verdade) no plano paraconsistente, a totalidade dos dados se encontram no apêndice deste documento nas tabelas \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} e na figura \ref{fig:paraconsistentfull}.
+		
+		\par A combinação \textbf{\textit{wavelet + BARK}} teve, consistentemente, um desempenho \textbf{melhor} do que as respectivas combinações \textbf{\textit{wavelet + MEL}}.
+		
+		\par 
 		
 		\section{Experimento 02}
 		
