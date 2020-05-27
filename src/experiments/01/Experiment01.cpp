@@ -271,13 +271,6 @@ namespace waveletExperiments {
 				ofs.close();
 			}
 
-			void doHeavyStuff(std::string line, std::string wavelet, BARK_MEL bm, std::string clazz, std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> &results) {
-				Wav w;
-				w.read(line.data());
-				w.process();
-				results[wavelet][bm][clazz].push_back(w.getData());
-			}
-
 			/**
 			 * Perform the experiment
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
