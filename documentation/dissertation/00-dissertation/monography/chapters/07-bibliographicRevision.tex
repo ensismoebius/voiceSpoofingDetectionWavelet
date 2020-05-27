@@ -117,7 +117,7 @@
 				
 				\par As \textit{wavelets} proporcionam a análise do sinal de forma detalhada tanto no espectro de baixa frequência quanto no de alta frequência.
 				
-				\par É importante observar que, quando se trata de transformada \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características, portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa. A abordagem usada será baseada nos filtros de análise digitais que proporcionarão a decomposição do sinal com o uso de filtros passa baixas e passa altas estritamente no domínio discreto.
+				\par É importante observar que, quando se trata de transformada \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características, portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa.
 	
 				\par No contexto dos filtros digitais baseados em \textit{wavelets} o tamanho da janela recebe o nome de \textbf{suporte}. Janelas definem o tamanho do filtro que será aplicado ao sinal, quando esse é pequeno se diz que a janela tem \textbf{um suporte compacto} \cite{robi2003}.
 			
@@ -148,11 +148,47 @@
 				\par Idealmente é desejável que todo filtro apresente boa resposta em frequência e resposta em fase linear.
 				
 			\input{tables/someWaveletsProperties.tex}
-			
+			\subsection{Sub-amostragem ou \textit{Downsampling}}
+				\par O termo sub amostragem ou \textit{downsampling} se refere ao processo de diminuir o tamanho do sinal após a aplicação de um  filtro digital, em \textit{wavelets} isso se dá excluindo-se alternadamente os itens do vetor que representa o sinal como mostrado na figura \ref{fig:downsampling}.
+				
+				\par Na figura \ref{fig:downsampling} as partes pretas contêm dados e as brancas representam os elementos removidos.
+				\begin{figure}[h]
+					\centering
+					\includegraphics[width=0.7\linewidth]{images/downsampling}
+					\caption{Sub-amostragem}
+					\label{fig:downsampling}
+				\end{figure}
+
 			\subsubsection{O algoritmo de Malat para transformada wavelet}
 				\par O algoritmo de Malat torna aplicação das \textit{wavelets} no sinal em uma simples multiplicação de matrizes, o sinal que deve ser transformado se torna uma matriz linear vertical já os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante.
 				\par É importante que essa matriz quadrada tenha de aresta a mesma quantidade de itens que o nosso sinal, ou seja, se o sinal tem quatro elementos então a matriz de filtros deve ser uma de 4x4.
-				\par Algo interessante a se notar é que, para que seja possível a transformada wavelet, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}(que é a função geradora desse filtro) já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.\\
+				\par Algo interessante a se notar é que, para que seja possível a transformada wavelet, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}(que é a função geradora desse filtro) já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.
+				
+				\par Determinar a ortogonal de um vetor significa construir um vetor, tal que, o produto escalar do vetor original com sua respectiva ortogonal tenha como resultado zero.
+				
+				\par Considere $h[\cdot]$ como sendo o vetor do filtro passa baixa e $g[\cdot]$ seu correspondente ortogonal. Sendo assim temos $h[\cdot] . g[\cdot] = 0\qquad,$.
+				
+				\par Portanto, se $h[\cdot]=[a, b, c, d]$ então seu ortogonal será $g[\cdot]=[d, -c, b, -a]$ pois:
+				
+				\begin{equation}
+					h[\cdot] . g[\cdot]  = 0
+				\end{equation}
+				\begin{equation}
+					h[\cdot] . g[\cdot]  = [a, b, c, d] . [d, -c, b, -a] = 0
+				\end{equation}
+				\begin{equation}
+					h[\cdot] . g[\cdot]  = (a.d) + (b.-c) + (c.b) + (d.-a) = 0
+				\end{equation}
+				\begin{equation}
+					h[\cdot] . g[\cdot]  = a.d – b.c + c.b – d.a = 0
+				\end{equation}
+				\begin{equation}
+					h[\cdot] . g[\cdot]  = a.d – a.d + b.c – b.c = 0
+				\end{equation}
+				\begin{equation}
+					h[\cdot] . g[\cdot]  = 0 + 0 = 0
+				\end{equation}
+
 				\par A título de exemplo considere:
 				\begin{itemize}
 					\item O filtro passa baixa baseado na wavelet Haar: $h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]\qquad,$
@@ -232,9 +268,7 @@
 				
 				\par Para uma visualização mais completa consulte a figura \ref{fig:haarWaveletExamples} no apêndice deste documento.
 			\subsection{Amostragem, quantização e o formato do arquivo Wave}
-				\par Serão usados arquivos no formato \textit{wave} usando \textit{pulse-code modulation} (PCM), neste esquema os dados são armazenados sem perdas. O arquivo, segundo \cite{WAVE2019}, se estrutura como o ilustrado na figura \ref{fig:wavePcmStructure}.
-				
-				\par A taxa de amostragem de 44100hz permite, segundo o teorema de Nyquist, que seja realizada a quantização de frequências de até 22050hz a uma resolução de 16bits.
+				\par Os arquivos no formato \textit{wave}, segundo \cite{WAVE2019}, se estruturam como o ilustrado na figura \ref{fig:wavePcmStructure}.
 			
 				\begin{figure}[h]
 					\centering
@@ -268,11 +302,28 @@
 					
 					\par \textit{O primeiro formante ($f_1$), relaciona-se à  amplificação  sonora  na  cavidade  oral  posterior  e  à  posição  da  língua  no  plano  vertical;  o segundo  formante  ($f_2$)  à  cavidade  oral  anterior  e  à  posição  da  língua  no  plano  horizontal.  O terceiro  formante  ($f_3$)  relaciona-se  às  cavidades  à  frente  e  atrás  do  ápice  da  língua;  o  quarto formante  ($f_4$),  ao  formato  da  laringe  e  da  faringe  na  mesma  altura} \cite{valencca2014analise}.
 
-			%\subsubsection{Duvidas}
-			%	\par Como o tamanho da janela funciona em wavelet? Pensei que o tamanho da janela era dado pela função de escalamento da wavelet.
-			%	\par Como eu defino o tamanho da janela no algoritmo de Malat?	
-			%	\par O número de sobre posições no cálculo de R é de valor ou de intervalo?
-
+	\subsection{Escalas e energias dos sinais}
+		\par O cálculo da energia de uma sinal consiste na soma dos quadrados de seus valores dentro de intervalos definidos, após  isso, se pode aplicar uma normalização do sinal. As escalas escolhidas são BARK e MEL.
+		\subsubsection{A escala BARK}
+			\par BARK foi pensada tendo em mente vários tipos de sons. Essa escala corresponde a 25 bandas críticas de audição. Suas frequências base de audiometria são, em Hz: \textbf{20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500}. Nesses intervalos que se dão os cálculos de energia.
+			\par Desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala BARK podem, por si mesmas ser um vetor de características, como mostrado na figura \ref{fig:barkfeaturevect}.
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.6\linewidth]{images/barkFeatureVect}
+				\caption{Cálculo de vetores de características com BARK}
+				\label{fig:barkfeaturevect}
+			\end{figure}
+		\subsubsection{A escala MEL}
+			\par Escala Mel é uma adaptação da escala Bark para sinais de voz. MEL é mais adaptada a voz humana, pois, foi construída a partir de experimentos com humanos. Nessa escala a bandas consideradas são em Hz: \textbf{20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000}.
+			\par A variante que será usada neste trabalho é conhecida como \textit{Mel-frequency cepstral coefficients}(MFCC) a qual inclui, além dos intervalos definidos, a aplicação da transformada direta cosseno ou  análise de componente principal seguida de derivações no vetor do sinal resultante.
+			\par Novamente, desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala MEL podem, por si mesmas ser um vetor de características, como mostrado na figura \ref{fig:barkfeaturevect}.
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.7\linewidth]{images/melFeatureVect}
+				\caption{Cálculo de vetores de características com MEL}
+				\label{fig:melfeaturevect}
+			\end{figure}
+				
 	\section{Trabalhos correlatos}
 		\par No artigo \cite{Ren2019} foi apresentado um esquema de diferenciação entre a fala comum e aquela vinda de um dispositivo reprodutor. O foco da análise se dá na distorção causada pelo alto-falante segundo a energia e outras várias características do espectro do sinal. Uma base com 771 sinais de fala foi criada para cada um dos quatro dispositivos de gravação usados totalizando 3084 trechos de áudio. Uma \textit{support vector machine} (SVM) foi usada como classificador. De  acordo com os experimentos a \textit{taxa de verdadeiros positivos} é de 98,75\% e a \textit{taxa de verdadeiros negativos} é de 98,75\%.
 		
