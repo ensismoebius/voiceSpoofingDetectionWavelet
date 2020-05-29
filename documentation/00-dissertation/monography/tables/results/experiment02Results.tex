@@ -1,0 +1,49 @@
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\begin{center}
+		\begin{tabular}{|l|l|l|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			\textbf{Tamanho do modelo} & \textbf{Acurácia mínima} & \textbf{Acurácia máxima}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,6666} & \mc{1}{c|}{0,8861}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,7439} & \mc{1}{c|}{0,8902}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,7665} & \mc{1}{c|}{0,8919}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,7784} & \mc{1}{c|}{0,9024}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,7804} & \mc{1}{c|}{0,9097}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Resultados do experimento 02 - Distância Euclidiana}
+	\label{tab:experiment02ResultsEuclidian}
+\end{table}
+
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\begin{center}
+		\begin{tabular}{|l|l|l|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			\textbf{Tamanho do modelo} & \textbf{Acurácia mínima} & \textbf{Acurácia máxima}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,6720} & \mc{1}{c|}{0,8943}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,7500} & \mc{1}{c|}{0,8917}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,7578} & \mc{1}{c|}{0,8954}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,7845} & \mc{1}{c|}{0,9044}\\\hline
+			\rowcolor{tcB}
+			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,7829} & \mc{1}{c|}{0,9097}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Resultados do experimento 02 - Distância Manhattan}
+	\label{tab:experiment02ResultsManhattan}
+\end{table}

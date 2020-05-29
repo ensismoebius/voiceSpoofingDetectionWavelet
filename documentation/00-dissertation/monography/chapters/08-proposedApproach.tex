@@ -3,14 +3,14 @@
 		\section{Coleta de dados}
 			\par Para a realização desta pesquisa coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas em São José do Rio Preto no estado de São Paulo. Foram coletadas amostras de 21 Indivíduos, das quais 20 foram usadas já que, em um dos casos, não foi possível coletar todos os dados necessários. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua inglesa como em portuguesa. Os locutores foram escolhidos de acordo com seu sexo e idade de forma que a amostra estudada tenha uma abrangência que cubra desde crianças em época pré-escolar até adultos entre 50 e 60 anos do sexo masculino e feminino.
 						
-			\par As gravações foram feitas em ambientes distintos com diferentes níveis de ruído ao fundo garantindo uma boa variabilidade de interferências que certamente irão impactar nos resultados dos classificadores que serão usados.
+			\par As gravações foram feitas em ambientes distintos com diferentes níveis de ruído ao fundo garantindo uma boa variabilidade de interferências que certamente impactaram nos resultados dos classificadores usados.
 			
-			\par Coletadas as amostras, os dígitos das mesmas foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em uma base de dados com 820 trechos. No apêndice deste documento é possível entender a ferramenta criada para auxiliar na preparação desta base de dados.
+			\par Coletadas as amostras, os dígitos das mesmas foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em uma base de dados com 820 trechos.
 			
 		\section{Formato dos dados}
 			\par Foram usados arquivos no formato \textit{wave} \textit{pulse-code modulation} (PCM), neste esquema, fora os descartes de informação que ocorrem pela da discretização do sinal. Os dados são armazenados sem perdas significativas para a análise necessária, já que não são empregados métodos de corte nas frequências ou outro método de compactação destrutiva.
 			
-			\par A taxa de amostragem escolhida é 44100hz, que permite, segundo o teorema de Nyquist, que seja realizada a quantização de frequências de até 22050hz. A resolução dos valores é 16bits.
+			\par A taxa de amostragem escolhida foi de 44100hz, que permite, segundo o teorema de Nyquist, que seja realizada a quantização de frequências de até 22050hz, bem acima do máximo medido nas escalas escolhidas. A resolução dos valores é de 16bits.
 			
 			\subsection{Áudios originais}
 				\par Para a constituição da base de dados não regravada os áudios originais foram editados e separados digito a dígito.
@@ -23,7 +23,7 @@
 			
 			\par Para facilitar a automação do processamento foram criados três arquivos de texto:
 			\begin{itemize}
-				\item \textit{\textbf{dataSurvey.txt}}: Contêm os dados de idade e sexo de cada entrevistado.
+				\item \textit{\textbf{dataSurvey.txt}}: Contêm os dados de idade e sexo e nome do arquivo gerado para cada entrevistado.
 				\item \textit{\textbf{inputListLive.txt}}: Uma lista de caminhos para todos os arquivo não regravados.
 				\item \textit{\textbf{inputListSpoofing.txt}}: Apresenta uma listagem dos caminhos para todos os arquivos regravados.
 			\end{itemize}
@@ -78,9 +78,9 @@
 					
 					\par Mais informações sobre a análise paraconsistente se encontram no capítulo \ref{chap:revBibli}. 
 					
-					\par O uso de \textit{wavelets} geralmente tem como objetivo a geração de vetores que serão analisados ou processados posteriormente, tais sequências de valores carregam a informação de frequência e tempo que podem ser úteis para uma análise específica. Neste trabalho, porém, a decomposição deve ser feita até seu limite, pois, após isso será realizada a soma das energias nos intervalos definidos pela escala BARK e MEL que seriam impossíveis, ou imprecisas se assim não fosse. Por fim, é feito o posicionamento dos resultados no plano paraconsistente.
+					\par O uso de \textit{wavelets} geralmente tem como objetivo a geração de vetores que serão analisados ou processados posteriormente, tais sequências de valores carregam a informação de frequência e tempo que podem ser úteis para uma análise específica. Neste trabalho a decomposição foi feita até seu limite  para que, após isso, fosse executada a soma das energias nos intervalos definidos pela escala BARK e MEL que seriam impossíveis, ou imprecisas se assim não se precedesse. Por fim, foram  feitos os posicionamentos dos resultados no plano paraconsistente.
 					
-					\par O algoritmo para a realização das etapas é mostrado na listagem \ref{lst:experiment01Algo}.
+					\par O algoritmo \ref{lst:experiment01Algo} mostra a realização dessas etapas.
 				
 				\subsubsection{Redimensionando o sinal}
 					\par Antes da aplicação da transformada \textit{wavelet} é necessário redimensionar o sinal para que este tenha um comprimento correspondente a uma potência de 2 como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de informação ao final da transformação, pois, como a transformada \textit{wavelet} realiza o \textit{downsampling} numa ordem de 2, ou seja, em cada nível o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algum/alguns valores dentro do processamento não sejam considerados.
@@ -109,9 +109,9 @@
 				\subsubsection{Apresentação}
 					\par O objetivo deste é verificar, considerando as melhores combinações descobertas pelo experimento 1, o desempenho de classificadores por distâncias Euclidiana e Manhattan. Nesta fase do estudo os vetores de características gerados pelo experimento 1 são fornecidos aos classificadores cujos desempenhos serão medidos.
 					
-					\par Objetivando medir o comportamento da classificação com diversos tamanhos para os modelos de referência, o tamanho dos mesmos foi definido segundo porcentagens da quantidade total de amostras.
+					\par Objetivando mensurar o comportamento da classificação com diversos tamanhos para os modelos de referência, o tamanho dos mesmos foi definido segundo porcentagens da quantidade total de amostras.
 					
-					\par Para cada porcentagem escolhida o experimento deve ser uma vez, depois duas vezes, após isso 3, 4, 5, até que se chegue a execução de um número definido de testes dado pela equação \ref{eq:amountOftests}. Em cada uma dessas execuções, a ordem dos sinais dentro das amostras (\textit{spoofing} e não \textit{spoofing}) foi permutada aleatoriamente para evitar que uma coincidência afetasse os valores dos resultados.
+					\par Para cada porcentagem escolhida o experimento deve ser executado uma vez, depois duas vezes, após isso 3, 4, 5, até que se chegue a execução de um número definido de testes. A quantidade total de testes realizados é dado pela equação \ref{eq:amountOftests}. Em cada uma dessas execuções, a ordem dos vetores dentro das amostras (\textit{spoofing} e não \textit{spoofing}) foi permutada aleatoriamente para evitar que uma coincidência afetasse os valores dos resultados.
 					
 					\par Abaixo: \textit{\textbf{numTestes}} representa número máximo de testes que podem ser feitos usando uma certa porcentagem.
 					\begin{equation}
@@ -121,7 +121,7 @@
 					
 					\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão.
 					
-					\par O algoritmo deste experimento é mostrado na listagem \ref{lst:experiment02Algo}.
+					\par No algoritmo \ref{lst:experiment02Algo} é explicado as etapas do experimento.
 									
 				\subsubsection{Amostragem}
 					\par Houve uma separação entre amostras para teste e outras constituir o modelo de referência para o classificador. Os modelos de referência foram dimensionados usando-se 10\%, 20\%, 30\%, 40\% e 50\% da quantidade total de amostras para ambas as classes (\textit{spoofing} e não \textit{spoofing}) as restantes foram usadas nos testes.	
@@ -131,7 +131,7 @@
 			\subsection{Experimento 03 - Desempenho da combinação mais disjunta em uma SVM.}
 			\label{chap:propApproach:sec:Experimento03}
 				\subsubsection{Apresentação}
-					\par Considerando as melhores combinações descobertas pelo experimento 1, nesta parte pretende-se medir o desempenho de uma \textit{Support Vector Machine} (SVM). Nesta fase do estudo os vetores de características gerados pelo experimento 1 são fornecidos ao classificador cujo desempenho será medido. São idênticas ao experimento 2 as quantidades de testes, as formas de separação dos conjuntos de modelo e teste (amostragem), assim como boa porção do algoritmo, este, será apresentado apenas como garantia do entendimento e se encontra na listagem \ref{lst:experiment03Algo}.
+					\par Considerando as melhores combinações descobertas pelo experimento 1, nesta parte pretende-se medir o desempenho de uma \textit{Support Vector Machine} (SVM). Nesta fase do estudo os vetores de características gerados pelo experimento 1 são fornecidos ao classificador cujo desempenho será medido. São idênticas ao experimento 2 as quantidades de testes, as formas de separação dos conjuntos de modelo e teste (amostragem), assim como boa porção da lógica, esta, será apresentada apenas como garantia do entendimento e se encontra no algoritmo \ref{lst:experiment03Algo}.
 
 				\subsubsection{Algoritmo}
 				\input{codeListings/experiment03Algo.tex}
