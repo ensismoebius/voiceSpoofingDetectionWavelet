@@ -69,4 +69,9 @@ src/lib/matplotlib-cpp
 /.splitWave.sh.swp
 /dir*
 /documentation/dissertation/articlesToRead
+/documentation/00-dissertation/monography/monografia.brf
+/documentation/00-dissertation/monography/monografia.loq
+/documentation/00-dissertation/monography/monografia2.brf
+/documentation/00-dissertation/monography/monografia2.loq
+/documentation/00-dissertation/monography/monografia2.tex
 

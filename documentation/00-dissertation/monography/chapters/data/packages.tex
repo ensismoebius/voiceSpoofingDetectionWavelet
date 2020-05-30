@@ -1,0 +1,63 @@
+% Basic packages 
+	% Use Latin Modern fonts
+	\usepackage{lmodern}
+	
+	% Use latim special characters
+	\usepackage[utf8]{inputenc}
+	
+	% Use colors
+	\usepackage{color}
+	
+	% Enables landscape pages
+	\usepackage{lscape}
+	
+	% Enables graphics
+	\usepackage{graphicx}
+	
+	% Better text jstification
+	\usepackage{microtype}
+	
+	% Indent the section first paragraph.
+	\usepackage{indentfirst}
+	
+	% Tables colors!!
+	\usepackage[table]{xcolor}
+	
+	% Enables code listing
+	\usepackage{listings}
+	
+	% Enables multicolumn text
+	\usepackage{multicol}
+	
+	% Enables math
+	\usepackage{amsthm}
+	\usepackage{amsmath}
+	\usepackage{amssymb}
+	
+	% Adds some symbols (like slash on a non mathematical context)
+	\usepackage{textcomp}
+	
+	% Enables the use of subfigures
+	\usepackage{subfig}
+
+% Quote packages
+	% ABNT standard
+	\usepackage[alf]{abntex2cite}
+	% Bibliography 
+	\usepackage[brazilian,hyperpageref]{backref}
+
+
+% Packages configuration
+
+	% Backref confis
+	\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+	\renewcommand{\backref}{}
+	% Quote text
+	\renewcommand*{\backrefalt}[4]{
+		\ifcase #1
+			Nenhuma citação no texto.
+		\or
+			Citado na página #2.
+		\else
+			Citado #1 vezes nas páginas #2.
+		\fi}

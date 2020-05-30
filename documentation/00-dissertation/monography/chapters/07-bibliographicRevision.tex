@@ -1,331 +1,330 @@
 \chapter{Revisão de Bibliográfica} \label{chap:revBibli}
-	\begin{myenv}{1.5}
-		\section{Conceitos utilizados}
-				\subsection{Engenharia paraconsistente de características}
-					\par Dentro do processo de classificação frequentemente surge a questão:\\
-					Os vetores de características criados proporcionam uma boa separação de classes?
-					
-					\par O método de cálculo do plano paraconsistente é uma ferramenta que pode ser usada para responder essa questão.
-					
-					\par O processo inicia-se após a aquisição dos vetores de características para cada classe ($C_n$) onde $n$ é o índice de cada uma delas. Se o número de classes presentes for, por exemplo, quatro então estas poderão ser representadas por $C_1, C_2, C_3, C_4$.
-					\par Em seguida será necessário o cálculo de duas grandezas:
-					
-					\begin{itemize}
-						\item A menor similaridade intraclasse ($\alpha$).
-						\item A razão de sobreposição interclasse ($\beta$)
-					\end{itemize}
+	\section{Conceitos utilizados}
+			\subsection{Engenharia paraconsistente de características}
+				\par Dentro do processo de classificação frequentemente surge a questão:\\
+				Os vetores de características criados proporcionam uma boa separação de classes?
 				
-					\par $\alpha$ indica o quanto de similaridade os dados têm entre si dentro de uma mesma classe, $\beta$ mostra a razão de sobreposição entre diferentes classes. Idealmente $\alpha$ deve ser maximizada e $\beta$ minimizada para um desempenho ótimo dos classificadores.
-					
-					\par Inicialmente é necessária a normalização dos vetores de características de forma que a soma de todos os seus valores seja um.
-					
-					\par Em seguida, a obtenção de $\alpha$ se dá selecionando-se os maiores e os menores valores de cada uma das posições de todos os vetores de características para cada classe gerando assim um vetor para os valores maiores e outro para os menores.
-					
-					\par O \textbf{vetor de similaridade}$(svC_n)$ é obtido fazendo-se a diferença item a item dos maiores em relação aos menores.
-					
-					\par Finalmente, e para cada classe, é tirada a média dos valores para cada vetor de similaridade, $\alpha$ é o menor valor dentre essas médias.
-					
-					\par A figura \ref{fig:calculoalpha} ilustra este processo.
-					
-					\begin{figure}[h]
-						\centering
-						\includegraphics[width=0.7\linewidth]{images/calculoAlpha.pdf}
-						\caption{Cálculo de $\alpha$}
-						\label{fig:calculoalpha}
-					\end{figure}
-					
-					\par A obtenção de $\beta$, assim como ilustrado na figura \ref{fig:betacalculation}, também se dá selecionando-se os maiores e os menores valores de cada uma das posições de todos os vetores de características de cada classe gerando assim um vetor para os valores maiores e outro para os menores.
-					
-					\par Na sequência realiza-se o cálculo de $R$ cujo valor é a quantidade de vezes que um valor do vetor de características de uma classe se encontra entre os valores maiores e menores de outra classe.
-					
-					\par Seja:
-					\begin{itemize}
-						\item N é a quantidades de classes.
-						\item X é quantidade de vetores de características por classe.
-						\item T é o tamanho do vetor de características.
-					\end{itemize}
-					
-					\par É necessário o cálculo de $F$ que é o número máximo de sobreposições possíveis entre classes e é dado por:
-					\begin{equation}
-							F=N.(N-1).X.T
-					\end{equation}
-					\par Finalmente, $\beta$ é calculado:
-					\begin{equation}
-						\beta=\dfrac{R}{F}
-					\end{equation}
+				\par O método de cálculo do plano paraconsistente é uma ferramenta que pode ser usada para responder essa questão.
 				
-					\par Nesse ponto é importante notar que $\alpha=1$ sugere fortemente que os vetores de características de cada classe são similares e representam suas respectivas classes precisamente. Complementarmente $\beta=0$ sugere os vetores de características de classes diferentes não se sobrepõe \cite{8588433}.
-					
-					\begin{figure}[h]
-						\centering
-						\includegraphics[width=0.55\linewidth]{images/betaCalculation.pdf}
-						\caption{Cálculo de $\beta$}
-						\label{fig:betacalculation}
-					\end{figure}
-					
-					\begin{itemize}
-						\item Verdade $\rightarrow$ Fé total ($\alpha = 1$) e nenhum descrédito ($\beta = 0$)
-						\item Ambiguidade $\rightarrow$ Fé total ($\alpha = 1$) e descrédito total ($\beta = 1$)
-						\item Falsidade $\rightarrow$ Fé nula ($\alpha = 0$) e descrédito total ($\beta = 1$)
-						\item Indefinição $\rightarrow$ Fé nula ($\alpha = 0$) e descrédito total ($\beta = 0$)
-					\end{itemize}
-					
-					\par No entanto, raramente $\alpha$ e $\beta$ terão tais valores, na maioria do tempo $0 \leqslant \alpha \leqslant 1$ e $0 \leqslant \beta \leqslant 1$, por isso, se torna necessário o cálculo do \textbf{grau de certeza}($G_1$) e do \textbf{grau de contradição}($G_2$).
-					\begin{equation}
-						G_1=\alpha-\beta 
-					\end{equation}
-					\begin{equation}
-						G_2=\alpha+\beta-1 \qquad,
-					\end{equation}
-				onde: $-1 \leqslant G_1$ e  $1 \geqslant G_2$.
-
-				\par Os valores de $G_1$ e $G_2$ em conjunto definem os graus entre verdade e falsidade, ou seja, $G_1=-1$ e $G_1=1$ respectivamente e também os graus entre indefinição e ambiguidade, ou seja, $G_2=-1$ e $G_2=1$ respectivamente.
-				\par O plano paraconsistente para fins de visualização e maior rapidez na avaliação dos resultados como ilustrado na figura \ref{fig:paraconsistentplane} tem quatro cantos definidos:
+				\par O processo inicia-se após a aquisição dos vetores de características para cada classe ($C_n$) onde $n$ é o índice de cada uma delas. Se o número de classes presentes for, por exemplo, quatro então estas poderão ser representadas por $C_1, C_2, C_3, C_4$.
+				\par Em seguida será necessário o cálculo de duas grandezas:
+				
 				\begin{itemize}
-					\item (-1,0) $\rightarrow$ Falsidade.
-					\item (1,0) $\rightarrow$ Verdade.
-					\item (0,-1) $\rightarrow$ Indefinição.
-					\item (0,1) $\rightarrow$ Ambiguidade.
+					\item A menor similaridade intraclasse ($\alpha$).
+					\item A razão de sobreposição interclasse ($\beta$)
 				\end{itemize}
-				\par Perceba que na figura \ref{fig:paraconsistentplane} existe um pequeno círculo, este indica onde se encontram as classes nos graus explicados da listagem anterior.
-				\par Para se ter ideia em que área exatamente se encontram as classes avaliadas se deve calcular as distâncias$(D)$ do ponto $P=(G_1,G_2)$ dos limites supracitados. Tal cálculo pode ser feito da seguinte forma:
-
-				\begin{equation}
-					D_{-1,0}=\sqrt{(G_1+1)^2+(G_2)^2}\qquad,
-				\end{equation}
-				\begin{equation}
-					D_{1,0}=\sqrt{(G_1-1)^2+(G_2)^2}\qquad,
-				\end{equation}
-				\begin{equation}
-					D_{0,-1}=\sqrt{(G_1)^2+(G_2+1)^2}\qquad,		
-				\end{equation}
-				\begin{equation}
-					D_{0,1}=\sqrt{(G_1)^2+(G_2-1)^2}\qquad,
-				\end{equation}		
-
+			
+				\par $\alpha$ indica o quanto de similaridade os dados têm entre si dentro de uma mesma classe, $\beta$ mostra a razão de sobreposição entre diferentes classes. Idealmente $\alpha$ deve ser maximizada e $\beta$ minimizada para um desempenho ótimo dos classificadores.
+				
+				\par Inicialmente é necessária a normalização dos vetores de características de forma que a soma de todos os seus valores seja um.
+				
+				\par Em seguida, a obtenção de $\alpha$ se dá selecionando-se os maiores e os menores valores de cada uma das posições de todos os vetores de características para cada classe gerando assim um vetor para os valores maiores e outro para os menores.
+				
+				\par O \textbf{vetor de similaridade}$(svC_n)$ é obtido fazendo-se a diferença item a item dos maiores em relação aos menores.
+				
+				\par Finalmente, e para cada classe, é tirada a média dos valores para cada vetor de similaridade, $\alpha$ é o menor valor dentre essas médias.
+				
+				\par A figura \ref{fig:calculoalpha} ilustra este processo.
+				
 				\begin{figure}[h]
 					\centering
-					\includegraphics[width=0.69\linewidth]{images/paraconsistentPlane.pdf}
-					\caption{O plano paraconsistente.}
-					\label{fig:paraconsistentplane}
+					\includegraphics[width=0.7\linewidth]{images/calculoAlpha.pdf}
+					\caption{Cálculo de $\alpha$}
+					\label{fig:calculoalpha}
 				\end{figure}
-			
-			\par Na prática, ou seja, para fins de classificação geralmente considera-se a distância em relação ao ponto \textit{"(1,0) $\rightarrow$ Verdade"} para se dizer os quão separados são os vetores de características analisados: Quanto mais próximo o círculo estiver de \textit{(1,0)} mais disjuntos eles serão.
-
-			\newpage
-			\subsection{Filtros digitais wavelets}
-				\par Filtros digitais \textit{wavelet} vem para suprir as deficiências de janelamento de sinal apresentadas pelas transformadas de Fourier e pelas transformadas curtas de Fourier. \textit{Wavelets} contam com variadas funções filtro e tem tamanho de janela variável o que permite uma análise multirresolução \cite{Rod5254905}.
 				
-				\par As \textit{wavelets} proporcionam a análise do sinal de forma detalhada tanto no espectro de baixa frequência quanto no de alta frequência.
+				\par A obtenção de $\beta$, assim como ilustrado na figura \ref{fig:betacalculation}, também se dá selecionando-se os maiores e os menores valores de cada uma das posições de todos os vetores de características de cada classe gerando assim um vetor para os valores maiores e outro para os menores.
 				
-				\par É importante observar que, quando se trata de transformada \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características, portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa.
-	
-				\par No contexto dos filtros digitais baseados em \textit{wavelets} o tamanho da janela recebe o nome de \textbf{suporte}. Janelas definem o tamanho do filtro que será aplicado ao sinal, quando esse é pequeno se diz que a janela tem \textbf{um suporte compacto} \cite{robi2003}.
-			
-				\par Se diz que uma \textit{wavelet} tem boa \textbf{resposta em frequência} quando, na aplicação da mesma na filtragem das frequências não são causadas muitas pertubações indesejadas ao sinal, as wavelets de Daubechies se destacam neste quesito por serem \textit{maximamente planas} (Maximally-flat) nos platôs de resposta em frequência como indicado na figura \ref{fig:daubechies}.
-
-				\begin{figure}[h]
-					\centering
-					\includegraphics[width=0.3\linewidth]{images/daubechies}
-					\caption{Platôs maximamente planos em um filtro digital}
-					\label{fig:daubechies}
-				\end{figure}
-
-				\begin{figure}[h]
-					\centering
-					\includegraphics[width=0.3\linewidth]{images/noMaximallyFlat}
-					\caption{Platôs não maximamente planos de um filtro digital}
-					\label{fig:nomaximallyflat}
-				\end{figure}
-			
-				\par Além da resposta em frequência a aplicação de um filtro digital \textit{wavelets} também pode gerar o que se chama de \textbf{resposta em fase}, esse deslocamento pode ser \textbf{linear}, \textbf{quase linear} ou \textbf{não linear}. 
+				\par Na sequência realiza-se o cálculo de $R$ cujo valor é a quantidade de vezes que um valor do vetor de características de uma classe se encontra entre os valores maiores e menores de outra classe.
 				
+				\par Seja:
 				\begin{itemize}
-					\item Na resposta em fase \textbf{linear} há o mesmo deslocamento de fase para todos os componentes do sinal.
-					\item Quando a resposta em fase é \textbf{quase linear} existe uma pequena diferença no deslocamento dos diferentes componentes do sinal.
-					\item Finalmente, quando a resposta é \textbf{não linear} acontece um deslocamento significativamente heterogêneo para as diferentes frequências formantes do sinal.
-					\end{itemize}
-				
-				\par Idealmente é desejável que todo filtro apresente boa resposta em frequência e resposta em fase linear.
-				
-			\input{tables/someWaveletsProperties.tex}
-
-			\subsubsection{O algoritmo de Malat para transformada wavelet}
-				\par O algoritmo de Malat torna aplicação das \textit{wavelets} no sinal em uma simples multiplicação de matrizes, o sinal que deve ser transformado se torna uma matriz linear vertical já os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante.
-				\par É importante que essa matriz quadrada tenha de aresta a mesma quantidade de itens que o nosso sinal, ou seja, se o sinal tem quatro elementos então a matriz de filtros deve ser uma de 4x4.
-				\par Algo interessante a se notar é que, para que seja possível a transformada wavelet, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}(que é a função geradora desse filtro) já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.
-				
-				\par Determinar a ortogonal de um vetor significa construir um vetor, tal que, o produto escalar do vetor original com sua respectiva ortogonal tenha como resultado zero.
-				
-				\par Considere $h[\cdot]$ como sendo o vetor do filtro passa baixa e $g[\cdot]$ seu correspondente ortogonal. Sendo assim temos $h[\cdot] . g[\cdot] = 0\qquad,$.
-				
-				\par Portanto, se $h[\cdot]=[a, b, c, d]$ então seu ortogonal será $g[\cdot]=[d, -c, b, -a]$ pois:
-				
-				\begin{equation}
-					h[\cdot] . g[\cdot]  = 0
-				\end{equation}
-				\begin{equation}
-					h[\cdot] . g[\cdot]  = [a, b, c, d] . [d, -c, b, -a] = 0
-				\end{equation}
-				\begin{equation}
-					h[\cdot] . g[\cdot]  = (a.d) + (b.-c) + (c.b) + (d.-a) = 0
-				\end{equation}
-				\begin{equation}
-					h[\cdot] . g[\cdot]  = a.d - b.c + c.b - d.a = 0
-				\end{equation}
-				\begin{equation}
-					h[\cdot] . g[\cdot]  = a.d - a.d + b.c - b.c = 0
-				\end{equation}
-				\begin{equation}
-					h[\cdot] . g[\cdot]  = 0 + 0 = 0
-				\end{equation}
-
-				\par A título de exemplo considere:
-				\begin{itemize}
-					\item O filtro passa baixa baseado na wavelet Haar: $h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]\qquad,$
-					\item E seu respectivo valor ortogonal: $g[\cdot] = [\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}]\qquad,$
-					\item Considere também o seguinte sinal:	$sinal = [1,2,3,4]\qquad.$
+					\item N é a quantidades de classes.
+					\item X é quantidade de vetores de características por classe.
+					\item T é o tamanho do vetor de características.
 				\end{itemize}
-	
-				\par Se o tamanho do sinal a ser tratado é quatro, ou seja, o sinal tem quatro pulsos, e se pretende-se aplicar o filtro Haar, a seguinte matriz é construída:
+				
+				\par É necessário o cálculo de $F$ que é o número máximo de sobreposições possíveis entre classes e é dado por:
 				\begin{equation}
-					\begin{pmatrix}
-						\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
-						\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
-						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-						\label{eq:haarFilters}
-					\end{pmatrix} 
+						F=N.(N-1).X.T
 				\end{equation}
-				\par No entanto, filtros Haar tem apenas dois valores e, necessariamente, a linha da matriz deve ter quatro itens. Para resolver este problema basta completar cada uma das linhas com zeros. A matriz é montada de forma que a mesma seja ortogonal.
-	
-				\par Montada a matriz de filtros segue-se com os cálculos da transformada:
+				\par Finalmente, $\beta$ é calculado:
 				\begin{equation}
-					\begin{pmatrix}
-						\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
-						\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
-						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-						0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
-					\end{pmatrix} 
-					\cdot
-					\begin{pmatrix}
-						1\\
-						2\\
-						3\\
-						4\\
-					\end{pmatrix} 
-					=
-					\begin{pmatrix}
-						\frac{3}{\sqrt{2}}\\
-						\frac{-1}{\sqrt{2}}\\
-						\frac{7}{\sqrt{2}}\\
-						\frac{-1}{\sqrt{2}}\\
-					\end{pmatrix}
-					\label{eq:haarMultiplic}
+					\beta=\dfrac{R}{F}
 				\end{equation}
-				
-				\par Realizada a multiplicação é necessário agora montar o sinal filtrado, isso é feito escolhendo, dentro do resultado, valores alternadamente de forma que o vetor resultante seja:
-	
-				\begin{equation}
-					resultado = \Big[
-					\frac{3}{\sqrt{2}},
-					\frac{7}{\sqrt{2}},
-					\frac{-1}{\sqrt{2}},
-					\frac{-1}{\sqrt{2}}
-					\Big]\qquad.
-					\label{eq:haarResult}
-				\end{equation}
-				
-				\par Perceba que na transformada wavelet mostrada em \ref{eq:haarFilters}, \ref{eq:haarMultiplic} e \ref{eq:haarResult} a \textbf{aplicação dos filtros sobre  o vetor ocorreu apenas uma vez}, sendo assim, se diz que o sinal recebeu a \textbf{transformada wavelet nível 1}. A cada transformada há uma separação do sinal em dois componentes: O de baixa e o de alta frequência.
-				
-				\par É possível aplicar mais de um nível de transformadas ao sinal, para que se possa fazer isso a transformada wavelet nível 2 deve considerar apenas a parte de baixa frequência da primeira transformada, já transformada de nível 3 deve considerar apenas a parte de baixa frequência da transformada nível 2 e assim consecutivamente.
-				
-				\par Nos exemplos numéricos mostrados nas tabelas \ref{tab:regularWaveletExample}, \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} usou-se um filtro haar cujos valores são $\dfrac{1}{2}$ e $-\dfrac{1}{2}$. Os dados destacados em \textbf{verde} correspondem ao \textbf{vetor original} que será tratado, cada uma das linhas são os resultados das transformadas wavelets nível 1, 2, 3 e 4 respectivamente, as partes em \textbf{azul} correspondem a porção de \textbf{baixa frequência}, as partes em \textbf{amarelo} correspondem as porções de \textbf{alta frequência}.
-				
-				\par Perceba que na tabela \ref{tab:regularWaveletExample}, a partir da transformada nível 2, apenas as partes de baixa frequência são modificadas.
-				
-				\par Isso implica que, no momento da implementação do algoritmo de Malat \textbf{para níveis maiores que 1} a abordagem será \textbf{recursiva}, em outras palavras, a partir do nível 1 se deve aplicar Malat apenas às metades de baixa frequência geradas pela transformação anterior.
-				
-				\input{tables/regularWaveletExample.tex}
-
-			\subsubsection{O algoritmo de Malat e a Wavelet packet}
-				\par Na transformada \textit{wavelet packet} os filtros aplicados são os mesmos e a recursividade da abordagem também é a mesma, no entato, aplicada a transformada nível 1, é necessário que a transformada nível 2 seja aplicada aos componentes de baixa e de alta frequência. Sendo assim a transformada \textit{wavelet packet} obtém um nível de detalhes em todo o espectro de frequência maior do que uma \textit{wavelet} regular. 
-				
-				\par Os exemplos mostrados nas tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} mostram como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequência respectivamente após a \textit{wavelet} nível 1.
-
-				\par Devido ao \textit{downsampling} aplicado as porções de alta frequência essas partes acabam por ficar "espelhadas", ou seja, suas sequências ficam invertidas. Para resolver  esse problema e preservar a ordem do sinal os filtros são aplicados em ordem inversa nas porções de alta frequência \cite{Jensen_2001}. Isso altera como o algoritmo de Malat deve ser implementado para a transformada \textit{wavelet packet}, já que dessa vez, é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
-
-				\input{tables/packetWaveletExample.tex}
-				
-				\par Para uma visualização mais completa consulte a figura \ref{fig:haarWaveletExamples} no apêndice deste documento.
-				
-			\subsection{Sub-amostragem ou \textit{Downsampling}}
-				\par O termo sub amostragem ou \textit{downsampling} se refere ao processo de diminuir o tamanho do sinal após a aplicação de um  filtro digital, em \textit{wavelets} isso se dá excluindo-se alternadamente os itens do vetor que representa o sinal como mostrado na figura \ref{fig:downsampling}.
-				
-				\par Na figura \ref{fig:downsampling} as partes pretas contêm dados e as brancas representam os elementos removidos.
-				\begin{figure}[h]
-					\centering
-					\includegraphics[width=0.7\linewidth]{images/downsampling}
-					\caption{Sub-amostragem}
-					\label{fig:downsampling}
-				\end{figure}
-			\subsection{O formato do arquivo Wave}
-				\par Os arquivos no formato \textit{wave}, segundo \cite{WAVE2019}, se estruturam como o ilustrado na figura \ref{fig:wavePcmStructure}.
 			
+				\par Nesse ponto é importante notar que $\alpha=1$ sugere fortemente que os vetores de características de cada classe são similares e representam suas respectivas classes precisamente. Complementarmente $\beta=0$ sugere os vetores de características de classes diferentes não se sobrepõe \cite{8588433}.
+				
 				\begin{figure}[h]
 					\centering
-					\includegraphics[width=0.45\linewidth, angle=-90]{images/wavePcmStructure.pdf}
-					\caption{Estrutura do arquivo Wave}
-					\label{fig:wavePcmStructure}
+					\includegraphics[width=0.55\linewidth]{images/betaCalculation.pdf}
+					\caption{Cálculo de $\beta$}
+					\label{fig:betacalculation}
 				\end{figure}
 				
-				\par A estrutura de interesse se localiza na última parte do arquivo, mais especificamente no bloco "data", aqui os dados são organizados como um grande vetor de números, cada um deles, indicando a intensidade do sinal naquele ponto.
-			\subsection{Caracterização dos processos de produção da voz humana}
-				\par A fala possui três grandes áreas de estudo: fisiológica (ou fonética articulatória),  acústica  (ou fonética acústica)  e  perceptual  (ou  comumente  chamada percepção  da  fala) \cite{kremer2014eficiencia}.
-				\par Neste trabalho o foco será apenas na acústica, já que não serão analisados aspectos da fisiologia relacionada a voz e sim o sinal sonoro propriamente dito.
+				\begin{itemize}
+					\item Verdade $\rightarrow$ Fé total ($\alpha = 1$) e nenhum descrédito ($\beta = 0$)
+					\item Ambiguidade $\rightarrow$ Fé total ($\alpha = 1$) e descrédito total ($\beta = 1$)
+					\item Falsidade $\rightarrow$ Fé nula ($\alpha = 0$) e descrédito total ($\beta = 1$)
+					\item Indefinição $\rightarrow$ Fé nula ($\alpha = 0$) e descrédito total ($\beta = 0$)
+				\end{itemize}
 				
-				\subsubsection{Vozeada versus não-vozeada}
+				\par No entanto, raramente $\alpha$ e $\beta$ terão tais valores, na maioria do tempo $0 \leqslant \alpha \leqslant 1$ e $0 \leqslant \beta \leqslant 1$, por isso, se torna necessário o cálculo do \textbf{grau de certeza}($G_1$) e do \textbf{grau de contradição}($G_2$).
+				\begin{equation}
+					G_1=\alpha-\beta 
+				\end{equation}
+				\begin{equation}
+					G_2=\alpha+\beta-1 \qquad,
+				\end{equation}
+			onde: $-1 \leqslant G_1$ e  $1 \geqslant G_2$.
 
-				\par Quando da análise de voz se pode levar em consideração as partes vozeadas e/ou não-vozeadas do sinal. As partes vozeadas são aquelas produzidas com ajuda das pregas vocais, as partes não-vozeadas não tem participação desta estrutura.
-				
-				\subsubsection{Frequência fundamental da voz}
-					\par Também conhecida como $f_0$ é o componente periódico resultante da vibração das pregas vocais, em termos de percepção se pode interpretar $f_0$ como o tom da voz (pitch) \cite{kremer2014eficiencia}.
-				
-					\par Vozes agudas tem um pitch alto, vozes mais graves tem um pitch baixo, a alteração do pitch durante a fala é definido como entonação.
-					
-					\par A frequência fundamental da voz é a velocidade na qual uma forma de onda se repete
-					por unidade de tempo, ou seja, o número de ciclos vibratórios produzidos pelas pregas vocais, num segundo, sendo assim, as medidas de $f_0$ geralmente são apresentadas em Hz \cite{freitas2013avaliaccao}.
-				
-					\par A medição de $f_0$ está sujeita a contaminações surgidas das variações naturais de \textit{pitch} tipicas da voz humana \cite{freitas2013avaliaccao}.
-					
-					\par A importância de se medir $f_0$ corretamente vem do fato de que, além de carregar boa parte da informação da fala, $f_0$ é a base para construção das outras frequências, pois essas são múltiplas de $f_0$.
-					
-					\subsubsection{Formantes}
-					
-					\par \textit{O primeiro formante ($f_1$), relaciona-se à  amplificação  sonora  na  cavidade  oral  posterior  e  à  posição  da  língua  no  plano  vertical;  o segundo  formante  ($f_2$)  à  cavidade  oral  anterior  e  à  posição  da  língua  no  plano  horizontal.  O terceiro  formante  ($f_3$)  relaciona-se  às  cavidades  à  frente  e  atrás  do  ápice  da  língua;  o  quarto formante  ($f_4$),  ao  formato  da  laringe  e  da  faringe  na  mesma  altura} \cite{valencca2014analise}.
+			\par Os valores de $G_1$ e $G_2$ em conjunto definem os graus entre verdade e falsidade, ou seja, $G_1=-1$ e $G_1=1$ respectivamente e também os graus entre indefinição e ambiguidade, ou seja, $G_2=-1$ e $G_2=1$ respectivamente.
+			\par O plano paraconsistente para fins de visualização e maior rapidez na avaliação dos resultados como ilustrado na figura \ref{fig:paraconsistentplane} tem quatro cantos definidos:
+			\begin{itemize}
+				\item (-1,0) $\rightarrow$ Falsidade.
+				\item (1,0) $\rightarrow$ Verdade.
+				\item (0,-1) $\rightarrow$ Indefinição.
+				\item (0,1) $\rightarrow$ Ambiguidade.
+			\end{itemize}
+			\par Perceba que na figura \ref{fig:paraconsistentplane} existe um pequeno círculo, este indica onde se encontram as classes nos graus explicados da listagem anterior.
+			\par Para se ter ideia em que área exatamente se encontram as classes avaliadas se deve calcular as distâncias$(D)$ do ponto $P=(G_1,G_2)$ dos limites supracitados. Tal cálculo pode ser feito da seguinte forma:
 
-	\subsection{Escalas e energias dos sinais}
-		\par O cálculo da energia de uma sinal consiste na soma dos quadrados de seus valores dentro de intervalos definidos, após  isso, se pode aplicar uma normalização do sinal. As escalas escolhidas são BARK e MEL.
-		\subsubsection{A escala BARK}
-			\par BARK foi pensada tendo em mente vários tipos de sons. Essa escala corresponde a 25 bandas críticas de audição. Suas frequências base de audiometria são, em Hz: \textbf{20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500}. Nesses intervalos que se dão os cálculos de energia.
-			\par Desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala BARK podem, por si mesmas ser um vetor de características, como mostrado na figura \ref{fig:barkfeaturevect}.
+			\begin{equation}
+				D_{-1,0}=\sqrt{(G_1+1)^2+(G_2)^2}\qquad,
+			\end{equation}
+			\begin{equation}
+				D_{1,0}=\sqrt{(G_1-1)^2+(G_2)^2}\qquad,
+			\end{equation}
+			\begin{equation}
+				D_{0,-1}=\sqrt{(G_1)^2+(G_2+1)^2}\qquad,		
+			\end{equation}
+			\begin{equation}
+				D_{0,1}=\sqrt{(G_1)^2+(G_2-1)^2}\qquad,
+			\end{equation}		
+
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=0.6\linewidth]{images/barkFeatureVect}
-				\caption{Cálculo de vetores de características com BARK}
-				\label{fig:barkfeaturevect}
+				\includegraphics[width=0.69\linewidth]{images/paraconsistentPlane.pdf}
+				\caption{O plano paraconsistente.}
+				\label{fig:paraconsistentplane}
 			\end{figure}
-		\subsubsection{A escala MEL}
-			\par Escala Mel é uma adaptação da escala Bark para sinais de voz. MEL é mais adaptada a voz humana, pois, foi construída a partir de experimentos com humanos. Nessa escala a bandas consideradas são em Hz: \textbf{20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000}.
-			\par A variante que será usada neste trabalho é conhecida como \textit{Mel-frequency cepstral coefficients}(MFCC) a qual inclui, além dos intervalos definidos, a aplicação da transformada direta cosseno ou  análise de componente principal seguida de derivações no vetor do sinal resultante.
-			\par Novamente, desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala MEL podem, por si mesmas ser um vetor de características, como mostrado na figura \ref{fig:barkfeaturevect}.
+		
+		\par Na prática, ou seja, para fins de classificação geralmente considera-se a distância em relação ao ponto \textit{"(1,0) $\rightarrow$ Verdade"} para se dizer os quão separados são os vetores de características analisados: Quanto mais próximo o círculo estiver de \textit{(1,0)} mais disjuntos eles serão.
+
+		\newpage
+		\subsection{Filtros digitais wavelets}
+			\par Filtros digitais \textit{wavelet} vem para suprir as deficiências de janelamento de sinal apresentadas pelas transformadas de Fourier e pelas transformadas curtas de Fourier. \textit{Wavelets} contam com variadas funções filtro e tem tamanho de janela variável o que permite uma análise multirresolução \cite{Rod5254905}.
+			
+			\par As \textit{wavelets} proporcionam a análise do sinal de forma detalhada tanto no espectro de baixa frequência quanto no de alta frequência.
+			
+			\par É importante observar que, quando se trata de transformada \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características, portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa.
+
+			\par No contexto dos filtros digitais baseados em \textit{wavelets} o tamanho da janela recebe o nome de \textbf{suporte}. Janelas definem o tamanho do filtro que será aplicado ao sinal, quando esse é pequeno se diz que a janela tem \textbf{um suporte compacto} \cite{robi2003}.
+		
+			\par Se diz que uma \textit{wavelet} tem boa \textbf{resposta em frequência} quando, na aplicação da mesma na filtragem das frequências não são causadas muitas pertubações indesejadas ao sinal, as wavelets de Daubechies se destacam neste quesito por serem \textit{maximamente planas} (Maximally-flat) nos platôs de resposta em frequência como indicado na figura \ref{fig:daubechies}.
+
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=0.6\linewidth]{images/melFeatureVect}
-				\caption{Cálculo de vetores de características com MEL}
-				\label{fig:melfeaturevect}
+				\includegraphics[width=0.3\linewidth]{images/daubechies}
+				\caption{Platôs maximamente planos em um filtro digital}
+				\label{fig:daubechies}
 			\end{figure}
+
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.3\linewidth]{images/noMaximallyFlat}
+				\caption{Platôs não maximamente planos de um filtro digital}
+				\label{fig:nomaximallyflat}
+			\end{figure}
+		
+			\par Além da resposta em frequência a aplicação de um filtro digital \textit{wavelets} também pode gerar o que se chama de \textbf{resposta em fase}, esse deslocamento pode ser \textbf{linear}, \textbf{quase linear} ou \textbf{não linear}. 
+			
+			\begin{itemize}
+				\item Na resposta em fase \textbf{linear} há o mesmo deslocamento de fase para todos os componentes do sinal.
+				\item Quando a resposta em fase é \textbf{quase linear} existe uma pequena diferença no deslocamento dos diferentes componentes do sinal.
+				\item Finalmente, quando a resposta é \textbf{não linear} acontece um deslocamento significativamente heterogêneo para as diferentes frequências formantes do sinal.
+				\end{itemize}
+			
+			\par Idealmente é desejável que todo filtro apresente boa resposta em frequência e resposta em fase linear.
+			
+		\input{tables/someWaveletsProperties.tex}
+
+		\subsubsection{O algoritmo de Malat para transformada wavelet}
+			\par O algoritmo de Malat torna aplicação das \textit{wavelets} no sinal em uma simples multiplicação de matrizes, o sinal que deve ser transformado se torna uma matriz linear vertical já os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante.
+			\par É importante que essa matriz quadrada tenha de aresta a mesma quantidade de itens que o nosso sinal, ou seja, se o sinal tem quatro elementos então a matriz de filtros deve ser uma de 4x4.
+			\par Algo interessante a se notar é que, para que seja possível a transformada wavelet, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}(que é a função geradora desse filtro) já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.
+			
+			\par Determinar a ortogonal de um vetor significa construir um vetor, tal que, o produto escalar do vetor original com sua respectiva ortogonal tenha como resultado zero.
+			
+			\par Considere $h[\cdot]$ como sendo o vetor do filtro passa baixa e $g[\cdot]$ seu correspondente ortogonal. Sendo assim temos $h[\cdot] . g[\cdot] = 0\qquad,$.
+			
+			\par Portanto, se $h[\cdot]=[a, b, c, d]$ então seu ortogonal será $g[\cdot]=[d, -c, b, -a]$ pois:
+			
+			\begin{equation}
+				h[\cdot] . g[\cdot]  = 0
+			\end{equation}
+			\begin{equation}
+				h[\cdot] . g[\cdot]  = [a, b, c, d] . [d, -c, b, -a] = 0
+			\end{equation}
+			\begin{equation}
+				h[\cdot] . g[\cdot]  = (a.d) + (b.-c) + (c.b) + (d.-a) = 0
+			\end{equation}
+			\begin{equation}
+				h[\cdot] . g[\cdot]  = a.d - b.c + c.b - d.a = 0
+			\end{equation}
+			\begin{equation}
+				h[\cdot] . g[\cdot]  = a.d - a.d + b.c - b.c = 0
+			\end{equation}
+			\begin{equation}
+				h[\cdot] . g[\cdot]  = 0 + 0 = 0
+			\end{equation}
+
+			\par A título de exemplo considere:
+			\begin{itemize}
+				\item O filtro passa baixa baseado na wavelet Haar: $h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]\qquad,$
+				\item E seu respectivo valor ortogonal: $g[\cdot] = [\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}]\qquad,$
+				\item Considere também o seguinte sinal:	$sinal = [1,2,3,4]\qquad.$
+			\end{itemize}
+
+			\par Se o tamanho do sinal a ser tratado é quatro, ou seja, o sinal tem quatro pulsos, e se pretende-se aplicar o filtro Haar, a seguinte matriz é construída:
+			\begin{equation}
+				\begin{pmatrix}
+					\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
+					\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
+					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+					\label{eq:haarFilters}
+				\end{pmatrix} 
+			\end{equation}
+			\par No entanto, filtros Haar tem apenas dois valores e, necessariamente, a linha da matriz deve ter quatro itens. Para resolver este problema basta completar cada uma das linhas com zeros. A matriz é montada de forma que a mesma seja ortogonal.
+
+			\par Montada a matriz de filtros segue-se com os cálculos da transformada:
+			\begin{equation}
+				\begin{pmatrix}
+					\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\\
+					\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}, 0, 0\\
+					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+					0, 0, \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}\\
+				\end{pmatrix} 
+				\cdot
+				\begin{pmatrix}
+					1\\
+					2\\
+					3\\
+					4\\
+				\end{pmatrix} 
+				=
+				\begin{pmatrix}
+					\frac{3}{\sqrt{2}}\\
+					\frac{-1}{\sqrt{2}}\\
+					\frac{7}{\sqrt{2}}\\
+					\frac{-1}{\sqrt{2}}\\
+				\end{pmatrix}
+				\label{eq:haarMultiplic}
+			\end{equation}
+			
+			\par Realizada a multiplicação é necessário agora montar o sinal filtrado, isso é feito escolhendo, dentro do resultado, valores alternadamente de forma que o vetor resultante seja:
+
+			\begin{equation}
+				resultado = \Big[
+				\frac{3}{\sqrt{2}},
+				\frac{7}{\sqrt{2}},
+				\frac{-1}{\sqrt{2}},
+				\frac{-1}{\sqrt{2}}
+				\Big]\qquad.
+				\label{eq:haarResult}
+			\end{equation}
+			
+			\par Perceba que na transformada wavelet mostrada em \ref{eq:haarFilters}, \ref{eq:haarMultiplic} e \ref{eq:haarResult} a \textbf{aplicação dos filtros sobre  o vetor ocorreu apenas uma vez}, sendo assim, se diz que o sinal recebeu a \textbf{transformada wavelet nível 1}. A cada transformada há uma separação do sinal em dois componentes: O de baixa e o de alta frequência.
+			
+			\par É possível aplicar mais de um nível de transformadas ao sinal, para que se possa fazer isso a transformada wavelet nível 2 deve considerar apenas a parte de baixa frequência da primeira transformada, já transformada de nível 3 deve considerar apenas a parte de baixa frequência da transformada nível 2 e assim consecutivamente.
+			
+			\par Nos exemplos numéricos mostrados nas tabelas \ref{tab:regularWaveletExample}, \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} usou-se um filtro haar cujos valores são $\dfrac{1}{2}$ e $-\dfrac{1}{2}$. Os dados destacados em \textbf{verde} correspondem ao \textbf{vetor original} que será tratado, cada uma das linhas são os resultados das transformadas wavelets nível 1, 2, 3 e 4 respectivamente, as partes em \textbf{azul} correspondem a porção de \textbf{baixa frequência}, as partes em \textbf{amarelo} correspondem as porções de \textbf{alta frequência}.
+			
+			\par Perceba que na tabela \ref{tab:regularWaveletExample}, a partir da transformada nível 2, apenas as partes de baixa frequência são modificadas.
+			
+			\par Isso implica que, no momento da implementação do algoritmo de Malat \textbf{para níveis maiores que 1} a abordagem será \textbf{recursiva}, em outras palavras, a partir do nível 1 se deve aplicar Malat apenas às metades de baixa frequência geradas pela transformação anterior.
+			
+			\input{tables/regularWaveletExample.tex}
+
+		\subsubsection{O algoritmo de Malat e a Wavelet packet}
+			\par Na transformada \textit{wavelet packet} os filtros aplicados são os mesmos e a recursividade da abordagem também é a mesma, no entato, aplicada a transformada nível 1, é necessário que a transformada nível 2 seja aplicada aos componentes de baixa e de alta frequência. Sendo assim a transformada \textit{wavelet packet} obtém um nível de detalhes em todo o espectro de frequência maior do que uma \textit{wavelet} regular. 
+			
+			\par Os exemplos mostrados nas tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} mostram como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequência respectivamente após a \textit{wavelet} nível 1.
+
+			\par Devido ao \textit{downsampling} aplicado as porções de alta frequência essas partes acabam por ficar "espelhadas", ou seja, suas sequências ficam invertidas. Para resolver  esse problema e preservar a ordem do sinal os filtros são aplicados em ordem inversa nas porções de alta frequência \cite{Jensen_2001}. Isso altera como o algoritmo de Malat deve ser implementado para a transformada \textit{wavelet packet}, já que dessa vez, é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
+
+			\input{tables/packetWaveletExample.tex}
+			
+			\par Para uma visualização mais completa consulte a figura \ref{fig:haarWaveletExamples} no apêndice deste documento.
+			
+		\subsection{Sub-amostragem ou \textit{Downsampling}}
+			\par O termo sub amostragem ou \textit{downsampling} se refere ao processo de diminuir o tamanho do sinal após a aplicação de um  filtro digital, em \textit{wavelets} isso se dá excluindo-se alternadamente os itens do vetor que representa o sinal como mostrado na figura \ref{fig:downsampling}.
+			
+			\par Na figura \ref{fig:downsampling} as partes pretas contêm dados e as brancas representam os elementos removidos.
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.7\linewidth]{images/downsampling}
+				\caption{Sub-amostragem}
+				\label{fig:downsampling}
+			\end{figure}
+		\subsection{O formato do arquivo Wave}
+			\par Os arquivos no formato \textit{wave}, segundo \cite{WAVE2019}, se estruturam como o ilustrado na figura \ref{fig:wavePcmStructure}.
+		
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.45\linewidth, angle=-90]{images/wavePcmStructure.pdf}
+				\caption{Estrutura do arquivo Wave}
+				\label{fig:wavePcmStructure}
+			\end{figure}
+			
+			\par A estrutura de interesse se localiza na última parte do arquivo, mais especificamente no bloco "data", aqui os dados são organizados como um grande vetor de números, cada um deles, indicando a intensidade do sinal naquele ponto.
+		\subsection{Caracterização dos processos de produção da voz humana}
+			\par A fala possui três grandes áreas de estudo: fisiológica (ou fonética articulatória),  acústica  (ou fonética acústica)  e  perceptual  (ou  comumente  chamada percepção  da  fala) \cite{kremer2014eficiencia}.
+			\par Neste trabalho o foco será apenas na acústica, já que não serão analisados aspectos da fisiologia relacionada a voz e sim o sinal sonoro propriamente dito.
+			
+			\subsubsection{Vozeada versus não-vozeada}
+
+			\par Quando da análise de voz se pode levar em consideração as partes vozeadas e/ou não-vozeadas do sinal. As partes vozeadas são aquelas produzidas com ajuda das pregas vocais, as partes não-vozeadas não tem participação desta estrutura.
+			
+			\subsubsection{Frequência fundamental da voz}
+				\par Também conhecida como $f_0$ é o componente periódico resultante da vibração das pregas vocais, em termos de percepção se pode interpretar $f_0$ como o tom da voz (pitch) \cite{kremer2014eficiencia}.
+			
+				\par Vozes agudas tem um pitch alto, vozes mais graves tem um pitch baixo, a alteração do pitch durante a fala é definido como entonação.
 				
+				\par A frequência fundamental da voz é a velocidade na qual uma forma de onda se repete
+				por unidade de tempo, ou seja, o número de ciclos vibratórios produzidos pelas pregas vocais, num segundo, sendo assim, as medidas de $f_0$ geralmente são apresentadas em Hz \cite{freitas2013avaliaccao}.
+			
+				\par A medição de $f_0$ está sujeita a contaminações surgidas das variações naturais de \textit{pitch} tipicas da voz humana \cite{freitas2013avaliaccao}.
+				
+				\par A importância de se medir $f_0$ corretamente vem do fato de que, além de carregar boa parte da informação da fala, $f_0$ é a base para construção das outras frequências, pois essas são múltiplas de $f_0$.
+				
+				\subsubsection{Formantes}
+				
+				\par \textit{O primeiro formante ($f_1$), relaciona-se à  amplificação  sonora  na  cavidade  oral  posterior  e  à  posição  da  língua  no  plano  vertical;  o segundo  formante  ($f_2$)  à  cavidade  oral  anterior  e  à  posição  da  língua  no  plano  horizontal.  O terceiro  formante  ($f_3$)  relaciona-se  às  cavidades  à  frente  e  atrás  do  ápice  da  língua;  o  quarto formante  ($f_4$),  ao  formato  da  laringe  e  da  faringe  na  mesma  altura} \cite{valencca2014analise}.
+
+\subsection{Escalas e energias dos sinais}
+	\par O cálculo da energia de uma sinal consiste na soma dos quadrados de seus valores dentro de intervalos definidos, após  isso, se pode aplicar uma normalização do sinal. As escalas escolhidas são BARK e MEL.
+	\subsubsection{A escala BARK}
+		\par BARK foi pensada tendo em mente vários tipos de sons. Essa escala corresponde a 25 bandas críticas de audição. Suas frequências base de audiometria são, em Hz: \textbf{20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500}. Nesses intervalos que se dão os cálculos de energia.
+		\par Desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala BARK podem, por si mesmas ser um vetor de características, como mostrado na figura \ref{fig:barkfeaturevect}.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.6\linewidth]{images/barkFeatureVect}
+			\caption{Cálculo de vetores de características com BARK}
+			\label{fig:barkfeaturevect}
+		\end{figure}
+	\subsubsection{A escala MEL}
+		\par Escala Mel é uma adaptação da escala Bark para sinais de voz. MEL é mais adaptada a voz humana, pois, foi construída a partir de experimentos com humanos. Nessa escala a bandas consideradas são em Hz: \textbf{20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000}.
+		\par A variante que será usada neste trabalho é conhecida como \textit{Mel-frequency cepstral coefficients}(MFCC) a qual inclui, além dos intervalos definidos, a aplicação da transformada direta cosseno ou  análise de componente principal seguida de derivações no vetor do sinal resultante.
+		\par Novamente, desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala MEL podem, por si mesmas ser um vetor de características, como mostrado na figura \ref{fig:barkfeaturevect}.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.6\linewidth]{images/melFeatureVect}
+			\caption{Cálculo de vetores de características com MEL}
+			\label{fig:melfeaturevect}
+		\end{figure}
+			
 %	\section{Trabalhos correlatos}
 %		\par No artigo \cite{Ren2019} foi apresentado um esquema de diferenciação entre a fala comum e aquela vinda de um dispositivo reprodutor. O foco da análise se dá na distorção causada pelo alto-falante segundo a energia e outras várias características do espectro do sinal. Uma base com 771 sinais de fala foi criada para cada um dos quatro dispositivos de gravação usados totalizando 3084 trechos de áudio. Uma \textit{support vector machine} (SVM) foi usada como classificador. De  acordo com os experimentos a \textit{taxa de verdadeiros positivos} é de 98,75\% e a \textit{taxa de verdadeiros negativos} é de 98,75\%.
 %		
@@ -361,6 +360,4 @@
 %
 %		\par Neste trabalho \cite{ISI:000392503100008} é proposto o uso do \textit{gammatone frequency cepstral coefficients}(MGFCC). O gammatone é o produto de uma distribuição gamma com um sinal senoide e é usado na construção de filtros auditivos que, neste caso, são usados para extrair características do sinal de voz. A base de dados usada foi a ASVspoof 2015. O classificador usado foi um GMM e o EER chegou a 0,02556.
 %		
-%		\par Segundo \cite{8396208} \textit{Hashing} sensível a locus(LSH) é frequentemente usado como um classificador para problemas relacionados a \textit{big data}, neste trabalho é proposto uma junção de MFCC e LSH a fim de se reconhecer o locutor. Neste método o MFCC é extraído dos arquivos de sinal para posterior aplicação do LSH gerando assim uma tabela \textit{hash}, estes valores de \textit{hash} são então comparados identificando assim o locutor ou locutora. Nos testes realizados houve uma acurácia de 92,66\%. A base de dados usada foi a TIMIT 2018 \cite{TIMIT2018}. 
-
-	\end{myenv}
+%		\par Segundo \cite{8396208} \textit{Hashing} sensível a locus(LSH) é frequentemente usado como um classificador para problemas relacionados a \textit{big data}, neste trabalho é proposto uma junção de MFCC e LSH a fim de se reconhecer o locutor. Neste método o MFCC é extraído dos arquivos de sinal para posterior aplicação do LSH gerando assim uma tabela \textit{hash}, estes valores de \textit{hash} são então comparados identificando assim o locutor ou locutora. Nos testes realizados houve uma acurácia de 92,66\%. A base de dados usada foi a TIMIT 2018 \cite{TIMIT2018}.

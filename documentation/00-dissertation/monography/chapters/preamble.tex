@@ -1,130 +1,127 @@
-\documentclass[a4paper,12pt,openright,oneside]{book}
+\documentclass[
+12pt,				% Font size
+openright,			% Chapters begin in odd pages (creates a new page if needed)
+oneside,			% Enables two side print
+a4paper,			% Paper size 
+english,			% Main language hyphenation
+french,				% Second language hyphenation
+spanish,			% Third language hyphenation
+brazil				% Document main language
+]{abntex2}
 
-% Enables Portuguese Brasil
-\usepackage[portuguese]{babel}
+% Packages used
+	\input{chapters/data/packages.tex}
 
-% Enables code listing
-\usepackage{listings}
+% Document and author informations
+	\input{chapters/data/faceAndCover.tex}
+	\input{chapters/data/documentPreamble.tex}
+	\input{chapters/data/keyWords.tex}
 
-% Enables file importing
-\usepackage{import}
+% Code listing settings
+	% Translate Listing -> Algoritmo
+	\renewcommand{\lstlistingname}{Algoritmo}
+	% Translate List of Listings -> Lista de Algoritmos
+	\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}
+	
+	% The code style
+	\definecolor{codegreen}{rgb}{0,0.6,0}
+	\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+	\definecolor{codepurple}{rgb}{0.58,0,0.82}
+	\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+	
+	% Defines code listing style
+	\lstdefinestyle{mystyle}{
+		backgroundcolor=\color{backcolour},   
+		commentstyle=\color{codegreen},
+		keywordstyle=\color{magenta},
+		numberstyle=\tiny\color{codegray},
+		stringstyle=\color{codepurple},
+		basicstyle=\footnotesize,
+		breakatwhitespace=false,         
+		breaklines=true,                 
+		captionpos=b,                    
+		keepspaces=true,                 
+		numbers=left,                    
+		numbersep=2pt,                  
+		showspaces=false,                
+		showstringspaces=false,
+		showtabs=false,                  
+		tabsize=2
+	}
+	\lstset{style=mystyle}
 
-% Enables landscape orientation for certain pages
-\usepackage{lscape}
-
-% Enables the use of subfigures
-\usepackage{subfigure}
-
-% Enables multicolumn text
-\usepackage{multicol}
-
-% The code style
-\usepackage{color}
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-% Defines code listing style
-\lstdefinestyle{mystyle}{
-	backgroundcolor=\color{backcolour},   
-	commentstyle=\color{codegreen},
-	keywordstyle=\color{magenta},
-	numberstyle=\tiny\color{codegray},
-	stringstyle=\color{codepurple},
-	basicstyle=\footnotesize,
-	breakatwhitespace=false,         
-	breaklines=true,                 
-	captionpos=b,                    
-	keepspaces=true,                 
-	numbers=left,                    
-	numbersep=2pt,                  
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false,                  
-	tabsize=2
+% Redefine cover macro
+\renewcommand{\imprimircapa}{%
+	\begin{capa}%
+		\center
+		\centering \includegraphics[angle=-90]{unesp.pdf}
+		\vspace{2cm}
+		\par \ABNTEXchapterfont\Large\imprimirinstituicao
+		\vspace{3cm}
+		\par {\ABNTEXchapterfont\Large\imprimirautor}
+		\vfill
+		\begin{center}
+			\ABNTEXchapterfont\bfseries\LARGE\imprimirtitulo
+		\end{center}
+		\vfill
+		\large\imprimirlocal\\
+		\large\imprimirdata
+		\vspace*{1cm}
+	\end{capa}
 }
-\lstset{style=mystyle}
 
-%--------------------------------------
+% Pdf informations
+	\makeatletter
+	\hypersetup{
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+		pdfsubject={\imprimirpreambulo},
+		pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={\ptBRkeyWords, \enUSkeyWords}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+		linkcolor=blue,          	% color of internal links
+		citecolor=blue,        		% color of links to bibliography
+		filecolor=magenta,      	% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+	}
+	\makeatother
 
-\usepackage{xcolor}
+% Put orfan images on the top of page. 
+% See https://github.com/abntex/abntex2/issues/170
+	\makeatletter
+	\setlength{\@fptop}{5pt}
+	\makeatother
 
-%--------------------------------------
+% Enables the creation of frame en frame lists.
+% See https://github.com/abntex/abntex2/issues/176
+	\newcommand{\quadroname}{Quadro}
+	\newcommand{\listofquadrosname}{Lista de quadros}
+	\newfloat[chapter]{quadro}{loq}{\quadroname}
+	\newlistof{listofquadros}{loq}{\listofquadrosname}
+	\newlistentry{quadro}{loq}{0}
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+% ABNT settings
+	\setfloatadjustment{quadro}{\centering}
+	\counterwithout{quadro}{chapter}
+	\renewcommand{\cftquadroname}{\quadroname\space} 
+	\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
 
-\usepackage[figuresright]{rotating}
-\usepackage{amsthm}
-\usepackage{graphics}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{fancybox}
-\usepackage{amsmath}
-\usepackage{picinpar}
-\usepackage{colortbl}
-\usepackage{wasysym}
-\usepackage{txfonts}
-\usepackage{pb-diagram}
-\usepackage{relsize}
-\usepackage{tikz}
-	\usetikzlibrary{calc}
-	\usetikzlibrary{datavisualization}
-	\usetikzlibrary{positioning}
-	\usetikzlibrary{mindmap}
-	\usetikzlibrary{snakes}
-	\usetikzlibrary{shapes}
-	\usetikzlibrary{decorations.pathreplacing}
-	\usetikzlibrary{spy}
-	\usetikzlibrary{backgrounds}
-	\usetikzlibrary{patterns}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
-	\pgfplotsset{compat=newest}
-	\usepgfplotslibrary{units}
+% See https://github.com/abntex/abntex2/issues/176
+	\setfloatlocations{quadro}{hbtp} 
 
+% Paragraph size
+	\setlength{\parindent}{1.3cm}
 
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{verbatim}
-\usepackage{wrapfig}
-\usepackage{array}
-\usepackage{calc}
-\usepackage[T1]{fontenc}
-\usepackage{times}
-\usepackage{indentfirst}        % indenta primeiro par�grafo
-\usepackage{fancyhdr}
-\usepackage{pifont}
-\usepackage{textcomp}      % \texttrademark
-\usepackage{url}  
-\usepackage{multirow}  
-\usepackage[numbers]{natbib}
-\usepackage{notoccite}
-\usepackage{setspace}
-\usepackage{array}
-\usepackage{helvet}
+% Beetween paragraph spacing:
+	\setlength{\parskip}{0.2cm}  % tente também \onelineskip
 
-\renewcommand{\familydefault}{\sfdefault}
-\headheight 16pt
-\setlength{\topmargin}{-15pt} % extra vert. space + at the top of header: 23pt
-\setlength{\oddsidemargin}{0pt} % extra spc added at the left of odd page: 0pt
-\setlength{\evensidemargin}{-12pt} % ext. spc added at the left of even pg: 59pt
-\setlength{\textheight}{638pt} % height of the body: 592pt
-\setlength{\textwidth}{483pt} % width of the body: 470pt
-\pagestyle{fancyplain}
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
-\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
-\cfoot[\fancyplain{\bfseries\thepage}{}]{\fancyplain{\bfseries\thepage}{}}
+% Document language
+	\selectlanguage{brazil}
 
-% Listing -> Algoritmo
-\renewcommand{\lstlistingname}{Algoritmo}
-% List of Listings -> Lista de Algoritmos
-\renewcommand{\lstlistlistingname}{Lista de \lstlistingname s}
+% Builds the index
+	\makeindex
 
-%% Creates a flexible spaceble environment
-\newenvironment{myenv}[1]
-  {\begin{spacing}{#1}}
-  {\end{spacing}}
+% Remove useless extra spaces
+	\frenchspacing 
+
