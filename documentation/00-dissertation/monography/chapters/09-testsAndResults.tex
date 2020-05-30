@@ -1,173 +1,169 @@
 \chapter{Testes e Resultados} \label{chap:testsResults}
-	\begin{myenv}{1.5}
-		\section{Experimento 01}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=\linewidth]{images/results/paraconsistentPlane/ParaconsistentParcial.png}
-			\caption{Distância da combinação Wavelet\textit{X}BARK ou MEL do ponto (1,0)}
-			\label{fig:ParaconsistentParcial}
-		\end{figure}
+	\section{Experimento 01}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\linewidth]{images/results/paraconsistentPlane/ParaconsistentParcial.png}
+		\caption{Distância da combinação Wavelet\textit{X}BARK ou MEL do ponto (1,0)}
+		\label{fig:ParaconsistentParcial}
+	\end{figure}
 
-		\input{tables/results/paraconsistentPlane/distParacomFrom10Best.tex}
+	\input{tables/results/paraconsistentPlane/distParacomFrom10Best.tex}
 
-		\par Na figura \ref{fig:ParaconsistentParcial} quanto menor o valor, mais disjuntos tendem ser os vetores de características gerados para as duas classes testadas (\textit{spoofing }e não \textit{spoofing}). Como se pode constatar, das combinações testadas, a \textit{\textbf{Haar com BARK}} conseguiu o \textbf{melhor desempenho} na criação dos melhores vetores de características. A tabela \ref{tab:distParacomBest} mostra os 6 melhores resultados em distância do ponto (1,0)(verdade) no plano paraconsistente, a totalidade dos dados se encontram no apêndice deste documento nas tabelas \ref{tab:distParacomFrom10Bark_1} e \ref{tab:distParacomFrom10Bark_2} para todos os resultados com BARK e nas tabelas \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} para os com MEL. Na figura \ref{fig:paraconsistentfull} se pode ver o gráfico de barras para todas as combinações \textit{wavelets}X\textit{BARK/MEL}.
-		
-		\par A combinação \textbf{\textit{wavelet + BARK}} teve, consistentemente, um desempenho \textbf{melhor} do que as respectivas combinações \textbf{\textit{wavelet + MEL}}.
-		
-		\newpage
-		\section{Experimento 02}
-			\par Considerando que o experimento 1 teve como melhor resultado a combinação \textbf{Haar+BARK} o objetivo deste é constatar a máxima acurácia que se consegue atingir em um classificador baseado em distâncias Euclidianas e Manhattan. O dimensionamento do tamanho das amostras de referência que neste caso são os itens usados para o treinamento do classificador variou em 10\%, 20\%, 30\%, 40\% e finalmente 50\% do total das amostras. 300 foi a quantidade máxima de testes escolhida.
-			\par Os resultados gerais são mostrados na tabela \ref{tab:experiment02ResultsEuclidian} para distância Euclidiana e na tabela \ref{tab:experiment02ResultsManhattan} para distância Manhattan. 
-			
-			\par Mais níveis de detalhes para a distância Euclidiana pode ser conseguido consultando-se as tabelas \ref{tab:classifier_Euclidian_10}, \ref{tab:classifier_Euclidian_20}, \ref{tab:classifier_Euclidian_30}, \ref{tab:classifier_Euclidian_40},  \ref{tab:classifier_Euclidian_50} e seus respectivos gráficos \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40}, \ref{fig:classifiereuclidian50}.
-			
-			\par E para a distância Manhattan podem ser consultadas as tabelas 	\ref{tab:classifier_Manhattan_10}, \ref{tab:classifier_Manhattan_20}, \ref{tab:classifier_Manhattan_30}, \ref{tab:classifier_Manhattan_40}, \ref{tab:classifier_Manhattan_50} e seus respectivos gráficos 		 
-			 \ref{fig:classifiermanhattan10}, \ref{fig:classifiermanhattan20}, 	 \ref{fig:classifiermanhattan30}, \ref{fig:classifiermanhattan40},  \ref{fig:classifiermanhattan50}.
-			\input{tables/results/experiment02Results.tex}
-			
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_10}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 10\%}
-				\label{fig:classifiereuclidian10}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_10.tex}
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_20}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 20\%}
-				\label{fig:classifiereuclidian20}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_20.tex}
+	\par Na figura \ref{fig:ParaconsistentParcial} quanto menor o valor, mais disjuntos tendem ser os vetores de características gerados para as duas classes testadas (\textit{spoofing }e não \textit{spoofing}). Como se pode constatar, das combinações testadas, a \textit{\textbf{Haar com BARK}} conseguiu o \textbf{melhor desempenho} na criação dos melhores vetores de características. A tabela \ref{tab:distParacomBest} mostra os 6 melhores resultados em distância do ponto (1,0)(verdade) no plano paraconsistente, a totalidade dos dados se encontram no apêndice deste documento nas tabelas \ref{tab:distParacomFrom10Bark_1} e \ref{tab:distParacomFrom10Bark_2} para todos os resultados com BARK e nas tabelas \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} para os com MEL. Na figura \ref{fig:paraconsistentfull} se pode ver o gráfico de barras para todas as combinações \textit{wavelets}X\textit{BARK/MEL}.
 	
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_30}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 30\%}
-				\label{fig:classifiereuclidian30}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_30.tex}
+	\par A combinação \textbf{\textit{wavelet + BARK}} teve, consistentemente, um desempenho \textbf{melhor} do que as respectivas combinações \textbf{\textit{wavelet + MEL}}.
 	
-			\newpage	
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_40}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 40\%}
-				\label{fig:classifiereuclidian40}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_40.tex}
+	\newpage
+	\section{Experimento 02}
+		\par Considerando que o experimento 1 teve como melhor resultado a combinação \textbf{Haar+BARK} o objetivo deste é constatar a máxima acurácia que se consegue atingir em um classificador baseado em distâncias Euclidianas e Manhattan. O dimensionamento do tamanho das amostras de referência que neste caso são os itens usados para o treinamento do classificador variou em 10\%, 20\%, 30\%, 40\% e finalmente 50\% do total das amostras. 300 foi a quantidade máxima de testes escolhida.
+		\par Os resultados gerais são mostrados na tabela \ref{tab:experiment02ResultsEuclidian} para distância Euclidiana e na tabela \ref{tab:experiment02ResultsManhattan} para distância Manhattan. 
 		
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_50}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 50\%}
-				\label{fig:classifiereuclidian50}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_50.tex}
+		\par Mais níveis de detalhes para a distância Euclidiana pode ser conseguido consultando-se as tabelas \ref{tab:classifier_Euclidian_10}, \ref{tab:classifier_Euclidian_20}, \ref{tab:classifier_Euclidian_30}, \ref{tab:classifier_Euclidian_40},  \ref{tab:classifier_Euclidian_50} e seus respectivos gráficos \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40}, \ref{fig:classifiereuclidian50}.
 		
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_10.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 10\%}
-				\label{fig:classifiermanhattan10}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_10.tex}
-		
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_20.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 20\%}
-				\label{fig:classifiermanhattan20}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_20.tex}
-	
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_30.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 30\%}
-				\label{fig:classifiermanhattan30}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_30.tex}
-			
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_40.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 40\%}
-				\label{fig:classifiermanhattan40}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
-			
-			\newpage
-			\begin{figure}[h]
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_50.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 50\%}
-				\label{fig:classifiermanhattan50}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
-
-		\newpage
-		\section{Experimento 03}
-			\par Novamente, considerando que o experimento 1 teve como melhor resultado a combinação \textbf{Haar+BARK} o objetivo deste é constatar a máxima acurácia se consegue atingir em uma SVM. O dimensionamento do tamanho das amostras para o treinamento do classificador variou em 10\%, 20\%, 30\%, 40\% e finalmente 50\% do total das amostras. 300 foi a quantidade máxima de testes escolhida.
-			
-			\par Os resultados gerais são mostrados na tabela \ref{tab:experiment03Results}. 
-			
-			\par Mais níveis de detalhes podem ser consultados nas tabelas \ref{tab:classifier_SVM_10}, \ref{tab:classifier_Euclidian_20}, \ref{tab:classifier_SVM_30}, \ref{tab:classifier_Euclidian_40},  \ref{tab:classifier_SVM_50} e seus respectivos gráficos \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40}, \ref{fig:classifiersvm50}.
-
-			\input{tables/results/experiment03Results.tex}
-		
-			\newpage
-		\begin{figure}[h]
-			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_10.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 10\%}
-			\label{fig:classifiersvm10}
-		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
-
-		\newpage
-		\begin{figure}[h]
-			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_20.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 20\%}
-			\label{fig:classifiersvm20}
-		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
+		\par E para a distância Manhattan podem ser consultadas as tabelas 	\ref{tab:classifier_Manhattan_10}, \ref{tab:classifier_Manhattan_20}, \ref{tab:classifier_Manhattan_30}, \ref{tab:classifier_Manhattan_40}, \ref{tab:classifier_Manhattan_50} e seus respectivos gráficos 		 
+	 \ref{fig:classifiermanhattan10}, \ref{fig:classifiermanhattan20}, 	 \ref{fig:classifiermanhattan30}, \ref{fig:classifiermanhattan40},  \ref{fig:classifiermanhattan50}.
+		\input{tables/results/experiment02Results.tex}
 		
 		\newpage
 		\begin{figure}[h]
 			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_30.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 30\%}
-			\label{fig:classifiersvm30}
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_10}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 10\%}
+			\label{fig:classifiereuclidian10}
 		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_30.tex}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_10.tex}
+		\newpage
+		\begin{figure}[h]
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_20}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 20\%}
+			\label{fig:classifiereuclidian20}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_20.tex}
+
+		\newpage
+		\begin{figure}[h]
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_30}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 30\%}
+			\label{fig:classifiereuclidian30}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_30.tex}
+
+		\newpage	
+		\begin{figure}[h]
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_40}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 40\%}
+			\label{fig:classifiereuclidian40}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_40.tex}
 	
 		\newpage
 		\begin{figure}[h]
 			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_40.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 40\%}
-			\label{fig:classifiersvm40}
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_50}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 50\%}
+			\label{fig:classifiereuclidian50}
 		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_50.tex}
 	
 		\newpage
 		\begin{figure}[h]
 			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_50.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 50\%}
-			\label{fig:classifiersvm50}
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_10.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 10\%}
+			\label{fig:classifiermanhattan10}
 		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_50.tex}
-		
-	\end{myenv}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_10.tex}
+	
+		\newpage
+		\begin{figure}[h]
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_20.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 20\%}
+			\label{fig:classifiermanhattan20}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_20.tex}
 
+		\newpage
+		\begin{figure}[h]
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_30.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 30\%}
+			\label{fig:classifiermanhattan30}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_30.tex}
+		
+		\newpage
+		\begin{figure}[h]
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_40.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 40\%}
+			\label{fig:classifiermanhattan40}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
+		
+		\newpage
+		\begin{figure}[h]
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_50.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 50\%}
+			\label{fig:classifiermanhattan50}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
+
+	\newpage
+	\section{Experimento 03}
+		\par Novamente, considerando que o experimento 1 teve como melhor resultado a combinação \textbf{Haar+BARK} o objetivo deste é constatar a máxima acurácia se consegue atingir em uma SVM. O dimensionamento do tamanho das amostras para o treinamento do classificador variou em 10\%, 20\%, 30\%, 40\% e finalmente 50\% do total das amostras. 300 foi a quantidade máxima de testes escolhida.
+		
+		\par Os resultados gerais são mostrados na tabela \ref{tab:experiment03Results}. 
+		
+		\par Mais níveis de detalhes podem ser consultados nas tabelas \ref{tab:classifier_SVM_10}, \ref{tab:classifier_Euclidian_20}, \ref{tab:classifier_SVM_30}, \ref{tab:classifier_Euclidian_40},  \ref{tab:classifier_SVM_50} e seus respectivos gráficos \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40}, \ref{fig:classifiersvm50}.
+
+		\input{tables/results/experiment03Results.tex}
+	
+		\newpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics{images/results/confusionMatrices/classifier_SVM_10.png}
+		\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 10\%}
+		\label{fig:classifiersvm10}
+	\end{figure}
+	\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
+
+	\newpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics{images/results/confusionMatrices/classifier_SVM_20.png}
+		\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 20\%}
+		\label{fig:classifiersvm20}
+	\end{figure}
+	\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
+	
+	\newpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics{images/results/confusionMatrices/classifier_SVM_30.png}
+		\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 30\%}
+		\label{fig:classifiersvm30}
+	\end{figure}
+	\input{tables/results/confusionMatrices/classifier_SVM_30.tex}
+
+	\newpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics{images/results/confusionMatrices/classifier_SVM_40.png}
+		\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 40\%}
+		\label{fig:classifiersvm40}
+	\end{figure}
+	\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
+
+	\newpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics{images/results/confusionMatrices/classifier_SVM_50.png}
+		\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 50\%}
+		\label{fig:classifiersvm50}
+	\end{figure}
+	\input{tables/results/confusionMatrices/classifier_SVM_50.tex}

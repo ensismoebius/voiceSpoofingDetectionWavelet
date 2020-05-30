@@ -1,4 +1,4 @@
-%% Preamble (document settings)
+%% Preamble (document settings and packages)
 \input{chapters/preamble.tex}
 
 %% Actual content
@@ -18,24 +18,24 @@
 	
 	\include{chapters/04-abstract}
 	
-	% inserir lista de ilustrações
+	% Figures list
 	\pdfbookmark[0]{\listfigurename}{lof}
 	\listoffigures*
 	\cleardoublepage
 	
-	% inserir lista de quadros
-	\pdfbookmark[0]{\listofquadrosname}{loq}
-	\listofquadros*
-	\cleardoublepage
+	% Frames list
+	%\pdfbookmark[0]{\listofquadrosname}{loq}
+	%\listofquadros*
+	%\cleardoublepage
 	
-	% inserir lista de tabelas
+	% Tables list
 	\pdfbookmark[0]{\listtablename}{lot}
 	\listoftables*
 	\cleardoublepage
 	
-	\include{chapters/00-siglas}
+	%\include{chapters/00-siglas}
 
-	\include{chapters/00-simbols}
+	%\include{chapters/00-simbols}
 
 	% inserir o sumario
 	\pdfbookmark[0]{\contentsname}{toc}
@@ -50,13 +50,13 @@
 	
 	\include{chapters/08-proposedApproach}
 	
-	\include{chapters/09-testsAndResults.tex}
+	\include{chapters/09-testsAndResults}
 	
 	\include{chapters/10-conclusions}
 	
 	\postextual
 	
-	\bibliography{abntex2-modelo-references}
+	\bibliography{bibliography.bib}
 	
 	\include{chapters/11-appendices}
 
