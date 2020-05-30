@@ -1,16 +1,23 @@
-% Figures index
-\cleardoublepage
-\pagenumbering{gobble}
-\listoffigures
+	% Figures list
+	\pdfbookmark[0]{\listfigurename}{lof}
+	\listoffigures*
+	\cleardoublepage
+	
+	% Frames list
+	%\pdfbookmark[0]{\listofquadrosname}{loq}
+	%\listofquadros*
+	%\cleardoublepage
+	
+	% Tables list
+	\pdfbookmark[0]{\listtablename}{lot}
+	\listoftables*
+	\cleardoublepage
+	
+	%\include{chapters/00-siglas}
 
-% Tables index
-\cleardoublepage
-\pagenumbering{gobble}
-\listoftables
-\frontmatter
+	%\include{chapters/00-simbols}
 
-%% Document index
-\def\contentsname{Sumário} 
-\pagenumbering{gobble}
-\tableofcontents
-\cleardoublepage
+	% inserir o sumario
+	\pdfbookmark[0]{\contentsname}{toc}
+	\tableofcontents*
+	\cleardoublepage

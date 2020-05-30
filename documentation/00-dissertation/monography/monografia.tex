@@ -8,39 +8,17 @@
 	
 	\imprimirfolhaderosto*
 	
-	\include{chapters/02-aproval}
+	\include{chapters/00-approvalSheet}
 
-	\include{chapters/00-dedicatoria}
+	\include{chapters/01-dedication}
 	
-	\include{chapters/03-specialThanks}
+	\include{chapters/02-specialThanks}
 
-	\include{chapters/00-epigrafe}
+	\include{chapters/03-epigraph}
 	
 	\include{chapters/04-abstract}
 	
-	% Figures list
-	\pdfbookmark[0]{\listfigurename}{lof}
-	\listoffigures*
-	\cleardoublepage
-	
-	% Frames list
-	%\pdfbookmark[0]{\listofquadrosname}{loq}
-	%\listofquadros*
-	%\cleardoublepage
-	
-	% Tables list
-	\pdfbookmark[0]{\listtablename}{lot}
-	\listoftables*
-	\cleardoublepage
-	
-	%\include{chapters/00-siglas}
-
-	%\include{chapters/00-simbols}
-
-	% inserir o sumario
-	\pdfbookmark[0]{\contentsname}{toc}
-	\tableofcontents*
-	\cleardoublepage
+	\include{chapters/05-indexes}
 	
 	\textual
 	
@@ -53,17 +31,14 @@
 	\include{chapters/09-testsAndResults}
 	
 	\include{chapters/10-conclusions}
-	
+
+	\phantompart
 	\postextual
-	
+		
 	\bibliography{bibliography.bib}
 	
 	\include{chapters/11-appendices}
-
+	
 	\phantompart
 	\printindex
 \end{document}
-
-
-
-
