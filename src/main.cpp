@@ -6,6 +6,45 @@
 #include "experiments/03/Experiment03.cpp"
 #include "experiments/04/Experiment04.cpp"
 
+int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
+
+int main(int argc, char *args[]) {
+
+	int experiment = -1;
+
+	double minModel;
+	double maxModel;
+	std::string liveFileList;
+	std::string resultsDestiny;
+	unsigned int numberOfTests;
+	std::string spoofingFileList;
+
+	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel, experiment);
+
+	switch (res) {
+		case 1:
+			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
+			return 0;
+		case 2:
+			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			return 0;
+		case 3:
+			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			return 0;
+		case 4:
+			waveletExperiments::Experiment04::perform();
+			return 0;
+		case 0:
+			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
+			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			return 0;
+	}
+
+	// Bad arguments nothing done!
+	return -1;
+}
+
 /**
  * Parses the command line arguments
  * @param argc
@@ -130,42 +169,5 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 	}
 
 	std::cout << "Usage: mestrado --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
-	return -1;
-}
-
-int main(int argc, char *args[]) {
-
-	int experiment = -1;
-
-	double minModel;
-	double maxModel;
-	std::string liveFileList;
-	std::string resultsDestiny;
-	unsigned int numberOfTests;
-	std::string spoofingFileList;
-
-	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel, experiment);
-
-	switch (res) {
-		case 1:
-			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-			return 0;
-		case 2:
-			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-		case 3:
-			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-		case 4:
-			waveletExperiments::Experiment04::perform();
-			return 0;
-		case 0:
-			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-	}
-
-	// Bad arguments nothing done!
 	return -1;
 }
