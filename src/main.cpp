@@ -4,6 +4,7 @@
 #include "experiments/01/Experiment01.cpp"
 #include "experiments/02/Experiment02.cpp"
 #include "experiments/03/Experiment03.cpp"
+#include "experiments/04/Experiment04.cpp"
 
 /**
  * Parses the command line arguments
@@ -124,6 +125,10 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 		return -1;
 	}
 
+	if (experiment == 4) {
+		return experiment;
+	}
+
 	std::cout << "Usage: mestrado --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
 	return -1;
 }
@@ -145,21 +150,20 @@ int main(int argc, char *args[]) {
 		case 1:
 			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			return 0;
-			break;
 		case 2:
 			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
-			break;
 		case 3:
 			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
-			break;
+		case 4:
+			waveletExperiments::Experiment04::perform();
+			return 0;
 		case 0:
 			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
-			break;
 	}
 
 	// Bad arguments nothing done!

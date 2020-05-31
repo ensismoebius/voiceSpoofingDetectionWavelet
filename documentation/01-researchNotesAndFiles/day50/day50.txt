@@ -1,0 +1,19 @@
+see 1
+Qualitative selection similar properties of the signal: Para qual sinal devo olhar? Para os coefiecientes ou para os gráficos da função?
+
+See 2
+
+cross correlation
+shannon entropy
+
+See 5 and 6
+
+why???
+if wavelets with more coefficients separates best the frequencies why am i having such results?
+
+why:
+Because WPT decompose not only the aproximantion part of the signal but also de details.
+
+conclusion
+Looks like that the eficiency of the feature vector creation has much more correlation with the scales choosen than with the wavlets
+
