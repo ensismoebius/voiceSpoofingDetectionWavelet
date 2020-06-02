@@ -329,8 +329,11 @@ namespace waveletExperiments {
 					std::ifstream fileListStream;
 					fileListStream.open(classFileList[i], std::ios::out);
 
-					while (std::getline(fileListStream, line))
+					while (std::getline(fileListStream, line)) {
+						// lines that begins with # are going to be ignored
+						if (line.find("#") == 0) continue;
 						totalCycles++;
+					}
 
 					fileListStream.clear();
 					fileListStream.close();
@@ -359,15 +362,15 @@ namespace waveletExperiments {
 							// gets the file path to process
 							while (std::getline(fileListStream, line)) {
 
+								// lines that begins with # are going to be ignored
+								if (line.find("#") == 0) continue;
+
 								// Status
 								cycles++;
 								std::cout << "\rCompletion " << (cycles / totalCycles) * 100 << "%" << std::flush;
 
 								// set current wavelet and barkOrMel to the experiment
 								Experiment01::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));
-
-								// lines that begins with # are going to be ignored
-								if (line.find("#") == 0) continue;
 
 								w.read(line.data());
 								w.process();

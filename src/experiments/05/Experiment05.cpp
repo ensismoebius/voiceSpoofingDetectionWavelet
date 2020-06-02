@@ -188,8 +188,9 @@ namespace waveletExperiments {
 					// Apply a DCT (Discrete Cosine Transform)
 					linearAlgebra::discreteCosineTransform(featureVector);
 
+					// For the sake of this experiment we need to known MEL values without derivation
 					// Takes the double derivative of the features vector
-					linearAlgebra::derivative(featureVector, 2);
+					// linearAlgebra::derivative(featureVector, 2);
 				}
 
 				// Replaces the original signal
@@ -200,67 +201,57 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> results) {
+			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<double>>>> results) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
 
-				int pos = 1;
-				std::vector<double> posVect;
-				std::vector<double> distancesFrom1_0;
-				std::vector<std::string> annotations;
+				// Prepare the labels for MEL scale
+				std::vector<double> melTicks(MELRanges.size() - 1);
+				std::vector<std::string> melLabels(MELRanges.size() - 1);
+				for (unsigned int i = 0; i < MELRanges.size() - 1; i++) {
+					melLabels[i] = std::to_string(int(MELRanges[i])) + "-" + std::to_string(int(MELRanges[i + 1]));
+					melTicks[i] = i;
+				}
 
-				plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
+				// Prepare the labels for BARK scale
+				std::vector<double> barkTicks(BARKRanges.size() - 1);
+				std::vector<std::string> barkLabels(BARKRanges.size() - 1);
+				for (unsigned int i = 0; i < BARKRanges.size() - 1; i++) {
+					barkLabels[i] = std::to_string(int(BARKRanges[i])) + "-" + std::to_string(int(BARKRanges[i + 1]));
+					barkTicks[i] = i;
+				}
 
-				// Iterates over all wavelets
-				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results) {
+				// Labels configurations
+				std::map<std::string, std::string> parans;
+				parans["rotation"] = "40";
+				parans["rotation_mode"] = "anchor";
+				parans["horizontalalignment"] = "right";
 
-					// Iterates over BARK and MEL (yes, just two values)
-					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second) {
+				for (auto wavelets : results) {
+					for (auto barkMel : wavelets.second) {
 
-						posVect.push_back(pos++);
-						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
-						distancesFrom1_0.push_back(std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2)));
+						// For each two classes we have one plot
+						plt::title(wavelets.first + "-" + (barkMel.first == BARK ? "Bark" : "Mel") + " Average energy values");
+						plt::xlim(0, int(BARKRanges.size()));
+						if (barkMel.first == BARK) {
+							plt::xticks(barkTicks, barkLabels, parans);
+						} else {
+							plt::xticks(melTicks, melLabels, parans);
+						}
+
+						// Ploting classes average values
+						for (auto clazz : barkMel.second) {
+							plt::named_plot(clazz.first, clazz.second);
+						}
+
+						plt::grid(true);
+						plt::legend();
+						plt::save("/tmp/" + wavelets.first + "-" + (barkMel.first == BARK ? "Bark" : "Mel") + ".pdf");
+
+						//plt::pause(0000.1);
 					}
 				}
-
-				plt::hbar(posVect, distancesFrom1_0);
-				plt::yticks(posVect, annotations);
-				plt::show();
-			}
-
-			/**
-			 * Save the results to file on /tmp/results.csv
-			 * @param data
-			 */
-			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> data, std::string resultsDestiny) {
-
-				// Open the file
-				std::string filePath = resultsDestiny + "/results.csv";
-				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open()) {
-					std::cout << "Cannot open file: " << filePath;
-					throw std::runtime_error("Impossible to open the file!");
-					return;
-				}
-
-				// A misplaced variable used to store the distance
-				// from the point 1,0 at the paraconsistent plane
-				double distanceTo1_0 = 0;
-
-				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : data) {
-					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> barkOrMelSAndData : wavelet.second) {
-
-						// Calculating the distance
-						distanceTo1_0 = std::sqrt(std::pow(barkOrMelSAndData.second[0][0] - 1, 2) + std::pow(barkOrMelSAndData.second[0][1], 2));
-
-						// Writing in to the file
-						ofs << (barkOrMelSAndData.first == BARK ? "BARK" : "MEL") << '\t' << wavelet.first << '\t';
-						ofs << barkOrMelSAndData.second[0][0] << '\t' << barkOrMelSAndData.second[0][1] << '\t' << distanceTo1_0 << '\t';
-						ofs << std::endl;
-					}
-				}
-				ofs.close();
 			}
 
 			/**
@@ -324,8 +315,11 @@ namespace waveletExperiments {
 					std::ifstream fileListStream;
 					fileListStream.open(classFileList[i], std::ios::out);
 
-					while (std::getline(fileListStream, line))
+					while (std::getline(fileListStream, line)) {
+						// lines that begins with # are going to be ignored
+						if (line.find("#") == 0) continue;
 						totalCycles++;
+					}
 
 					fileListStream.clear();
 					fileListStream.close();
@@ -354,15 +348,15 @@ namespace waveletExperiments {
 							// gets the file path to process
 							while (std::getline(fileListStream, line)) {
 
+								// lines that begins with # are going to be ignored
+								if (line.find("#") == 0) continue;
+
 								// Status
 								cycles++;
 								std::cout << "\rCompletion " << (cycles / totalCycles) * 100 << "%" << std::flush;
 
 								// set current wavelet and barkOrMel to the experiment
 								Experiment05::init(v.second, wavelets::PACKET_WAVELET, static_cast<BARK_MEL>(bm));
-
-								// lines that begins with # are going to be ignored
-								if (line.find("#") == 0) continue;
 
 								w.read(line.data());
 								w.process();
@@ -375,38 +369,34 @@ namespace waveletExperiments {
 					fileListStream.close();
 				}
 
-				//////////////////////////////
-				/// Paraconsistent section ///
-				//////////////////////////////
+				//////////////////////
+				/// Sum up section ///
+				//////////////////////
 
-				// iterates over all wavelets types
-				for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
-					// Iterates over all barkOrMel
-					for (int bm = BARK; bm <= MEL; bm++) {
-						unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).size();
-						unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).at(0).size();
+				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<double>>>> res;
 
-						std::map<std::string, std::vector<std::vector<double>>> arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
+				for (auto wavelets : results) {
+					for (auto barkMel : wavelets.second) {
+						for (auto clazz : barkMel.second) {
 
-						double alpha = calculateAlpha(classFileList.size(), featureVectorsPerClass, featureVectorSize, arrClasses);
-						double betha = calculateBeta(classFileList.size(), featureVectorsPerClass, featureVectorSize, arrClasses);
+							// Do the sum of the filtered signals
+							for (auto vector : clazz.second) {
+								res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first].resize(vector.size());
+								for (unsigned int i = 0; i < vector.size(); i++) {
+									res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first][i] += vector[i];
+								}
+							}
 
-						double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
-						double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
+							// Calculate the average
+							for (unsigned int i = 0; i < res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first].size(); i++) {
+								res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first][i] /= clazz.second.size();
+							}
 
-						// Calculating the position at the paraconsistent plane
-						std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
-						std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
-
-						// Storing the final results
-						finalResults[v.first][static_cast<BARK_MEL>(bm)].resize(2);
-						finalResults[v.first][static_cast<BARK_MEL>(bm)].at(0) = { certaintyDegree_G1 };
-						finalResults[v.first][static_cast<BARK_MEL>(bm)].at(1) = { contradictionDegree_G2 };
+						}
 					}
 				}
 
-				saveDataToFile(finalResults, resultsDestiny);
-				plotResults(finalResults);
+				plotResults(res);
 			}
 	};
 }
