@@ -5,6 +5,7 @@
 #include "experiments/02/Experiment02.cpp"
 #include "experiments/03/Experiment03.cpp"
 #include "experiments/04/Experiment04.cpp"
+#include "experiments/05/Experiment05.cpp"
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
 
@@ -34,10 +35,15 @@ int main(int argc, char *args[]) {
 		case 4:
 			waveletExperiments::Experiment04::perform();
 			return 0;
+		case 5:
+			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
+			return 0;
 		case 0:
 			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			waveletExperiments::Experiment04::perform();
+			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			return 0;
 	}
 
@@ -126,7 +132,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 		return -1;
 	}
 
-	if (experiment == 1) {
+	if (experiment == 1 || experiment == 5) {
 		if (argc != 9) {
 			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl << std::endl;
 			return -1;
