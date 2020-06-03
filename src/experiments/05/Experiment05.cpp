@@ -54,6 +54,11 @@ namespace waveletExperiments {
 			static inline std::vector<double> BARKRanges;
 
 			/**
+			 * Contains the paths to the lists of files
+			 */
+			static inline std::vector<std::string> classFileList;
+
+			/**
 			 * Contains the final results
 			 */
 			static inline std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> finalResults;
@@ -201,7 +206,7 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<double>>>> results) {
+			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results, std::string resultsDestiny) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -228,28 +233,52 @@ namespace waveletExperiments {
 				parans["rotation_mode"] = "anchor";
 				parans["horizontalalignment"] = "right";
 
+				std::map<std::string, std::string> parans2;
+				parans2["color"] = "red";
+
 				for (auto wavelets : results) {
 					for (auto barkMel : wavelets.second) {
 
-						// For each two classes we have one plot
-						plt::title(wavelets.first + "-" + (barkMel.first == BARK ? "Bark" : "Mel") + " Average energy values");
-						plt::xlim(0, int(BARKRanges.size()));
-						if (barkMel.first == BARK) {
-							plt::xticks(barkTicks, barkLabels, parans);
-						} else {
-							plt::xticks(melTicks, melLabels, parans);
-						}
-
-						// Ploting classes average values
+						// For each class we have one plot
 						for (auto clazz : barkMel.second) {
-							plt::named_plot(clazz.first, clazz.second);
+
+							// Building the title
+							std::string title;
+							if (clazz.first.compare(Experiment05::classFileList[0]) == 0) {
+								title = "Non spoofing ";
+							} else {
+								title = "Spoofing ";
+							}
+							title += wavelets.first + "-" + (barkMel.first == BARK ? "Bark" : "Mel");
+
+							// Setting up ticks and labels
+							if (static_cast<BARK_MEL>(barkMel.first) == BARK) {
+								plt::xticks(barkTicks, barkLabels, parans);
+							} else {
+								plt::xticks(melTicks, melLabels, parans);
+							}
+
+							// Setting up the width and heigth of plot
+							if (static_cast<BARK_MEL>(barkMel.first) == BARK) {
+								plt::xlim(0, int(BARKRanges.size()));
+							} else {
+								plt::xlim(0, int(MELRanges.size()));
+							}
+							plt::ylim(-0.11, 0.16);
+
+							// Plotting the values
+							plt::title(title);
+							for (auto vector : clazz.second) {
+								if (static_cast<BARK_MEL>(barkMel.first) == BARK) {
+									plt::scatter(barkTicks, vector, 8, parans2);
+								} else {
+									plt::scatter(melTicks, vector, 8, parans2);
+								}
+							}
+							plt::tight_layout();
+							plt::grid(true);
+							plt::show();
 						}
-
-						plt::grid(true);
-						plt::legend();
-						plt::save("/tmp/" + wavelets.first + "-" + (barkMel.first == BARK ? "Bark" : "Mel") + ".pdf");
-
-						//plt::pause(0000.1);
 					}
 				}
 			}
@@ -260,8 +289,10 @@ namespace waveletExperiments {
 			 * @param args.size() - The amount of these files
 			 */
 			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny) {
-				std::cout << std::fixed;
-				std::cout << std::setprecision(20);
+				//std::cout << std::fixed;
+				//std::cout << std::setprecision(20);
+
+				Experiment05::classFileList = classFileList;
 
 				// set the callback function in the Experiment05 class
 				Wav w;
@@ -369,34 +400,7 @@ namespace waveletExperiments {
 					fileListStream.close();
 				}
 
-				//////////////////////
-				/// Sum up section ///
-				//////////////////////
-
-				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<double>>>> res;
-
-				for (auto wavelets : results) {
-					for (auto barkMel : wavelets.second) {
-						for (auto clazz : barkMel.second) {
-
-							// Do the sum of the filtered signals
-							for (auto vector : clazz.second) {
-								res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first].resize(vector.size());
-								for (unsigned int i = 0; i < vector.size(); i++) {
-									res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first][i] += vector[i];
-								}
-							}
-
-							// Calculate the average
-							for (unsigned int i = 0; i < res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first].size(); i++) {
-								res[wavelets.first][static_cast<BARK_MEL>(barkMel.first)][clazz.first][i] /= clazz.second.size();
-							}
-
-						}
-					}
-				}
-
-				plotResults(res);
+				plotResults(results, resultsDestiny);
 			}
 	};
 }

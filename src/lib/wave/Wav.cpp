@@ -92,6 +92,11 @@ class Wav {
 
 			std::ifstream ifs;
 			ifs.open(path, std::ios::in | std::ios::binary);
+
+			if (ifs.rdstate()) {
+				throw std::runtime_error("Reading the file " + path + " failed");
+			}
+
 			// Reads the file headers
 			readWaveHeaders(ifs);
 			// Reads actual data
@@ -194,7 +199,7 @@ class Wav {
 			ifs.read((char*) &this->headers, sizeof(this->headers));
 
 			if (this->headers.audioFormat != 1) {
-				throw std::runtime_error("Not in PCM format!");
+				throw std::runtime_error(this->path + " not in PCM format!");
 				return;
 			}
 
