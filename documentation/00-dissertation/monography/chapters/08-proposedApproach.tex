@@ -79,7 +79,7 @@
 				
 				\par O uso de \textit{wavelets} geralmente tem como objetivo a geração de vetores que serão analisados ou processados posteriormente, tais sequências de valores carregam a informação de frequência e tempo que podem ser úteis para uma análise específica. Neste trabalho a decomposição foi feita até seu limite  para que, após isso, fosse executada a soma das energias nos intervalos definidos pela escala BARK e MEL que seriam impossíveis, ou imprecisas se assim não se precedesse. Por fim, foram  feitos os posicionamentos dos resultados no plano paraconsistente.
 				
-				\par O algoritmo \ref{lst:experiment01Algo} mostra a realização dessas etapas.
+				\par O algoritmo \ref{lst:experiment01Algo} demonstra a realização dessas etapas.
 			
 			\subsubsection{Redimensionando o sinal}
 				\par Antes da aplicação da transformada \textit{wavelet} é necessário redimensionar o sinal para que este tenha um comprimento correspondente a uma potência de 2 como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de informação ao final da transformação, pois, como a transformada \textit{wavelet} realiza o \textit{downsampling} numa ordem de 2, ou seja, em cada nível o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algum/alguns valores dentro do processamento não sejam considerados.
@@ -127,10 +127,37 @@
 			\subsubsection{Algoritmo}
 			\input{codeListings/experiment02Algo.tex}
 
-		\subsection{Experimento 03 - Desempenho da combinação mais disjunta em uma SVM.}
+		\subsection{Experimento 03 - Desempenho da combinação mais disjunta em uma SVM}
 		\label{chap:propApproach:sec:Experimento03}
 			\subsubsection{Apresentação}
 				\par Considerando as melhores combinações descobertas pelo experimento 1, nesta parte pretende-se medir o desempenho de uma \textit{Support Vector Machine} (SVM). Nesta fase do estudo os vetores de características gerados pelo experimento 1 são fornecidos ao classificador cujo desempenho será medido. São idênticas ao experimento 2 as quantidades de testes, as formas de separação dos conjuntos de modelo e teste (amostragem), assim como boa porção da lógica, esta, será apresentada apenas como garantia do entendimento e se encontra no algoritmo \ref{lst:experiment03Algo}.
 
 			\subsubsection{Algoritmo}
-			\input{codeListings/experiment03Algo.tex}
+				\input{codeListings/experiment03Algo.tex}
+
+		\subsection{Experimento 04 - Análise das \textit{wavelets}}
+		\label{chap:propApproach:sec:Experimento04}
+			\subsubsection{Apresentação}
+				\par Verificando o comportamento das melhores e piores \textit{wavelets} encontradas, este experimento visa entender a razão que faz \textbf{Haar} a melhor escolha para este tipo de análise.
+				\par Os experimentos \ref{chap:propApproach:sec:Experimento01}, \ref{chap:propApproach:sec:Experimento02}, \ref{chap:propApproach:sec:Experimento03} mostraram que a combinação \textbf{\textit{wavelet packet haar + escala BARK}} é a melhor para geração de vetores de características e que esses possibilitam um desempenho razoável com classificadores simples. Esse experimento visa responder, qual o motivo dessa combinação funcionar melhor em se tratando da decomposição feita pelas \textit{wavelets}.
+				\par As \textit{wavelets} \textbf{haar} e \textbf{daubechies 42} foram escolhidas pois conseguiram respectivamente os melhores e os piores vetores de características na escala \textit{BARK}. Já em \textit{MEL}, \textbf{haar} foi a melhor e \textbf{daubechies 54} a pior. Tais valores provém do experimento \ref{chap:propApproach:sec:Experimento01}, mais especificamente das tabelas \ref{tab:distParacomFrom10Bark_1},  \ref{tab:distParacomFrom10Bark_2},  \ref{tab:distParacomFrom10Mel_1} e 	\ref{tab:distParacomFrom10Mel_2} no apêndice deste documento.
+				
+			\subsubsection{Base de comparação}
+				\par Para fins comparativos, foi criado um sinal periódico sobre o qual serão aplicadas as transformadas \textit{wavelet} correspondentes aos melhores e piores desempenhos, os resultados dessa aplicação, assim como o sinal original, constituem um gráfico comparativo.
+				\par O sinal periódico foi construído com a sequência \textit{32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34} repetida 32 vezes totalizando um total de 512 posições. Considerando a abordagem de decomposição máxima, foram aplicadas as transformadas \textit{wavelet packet} até o nível 8.
+			\subsubsection{Comparativo}
+				\par O comparativo foi feito em um gráfico gerado a partir das transformadas \textit{wavelet packet} supracitadas no qual se pode notar as diferenças entre os sinais gerados.
+			\subsubsection{Algoritmo}
+				\input{codeListings/experiment04Algo.tex}
+
+		\subsection{Experimento 05 - Comparação da escalas BARK e MEL}
+		\label{chap:propApproach:sec:Experimento05}
+			\subsubsection{Apresentação}
+				\par Por fim, nesta parte foram verificados os desempenhos das escalas combinadas com suas respectivas \textit{wavelets}, novamente tais dados foram retirados do experimento \ref{chap:propApproach:sec:Experimento01}.
+				\par A geração dos vetores de características foi feita utilizando-se a base de dados já constituída e os mesmos algoritmos de análise com uma pequena diferença: \textbf{A derivação} dos sinais, realizada na finalização da escala \textbf{MEL}, foi \textbf{desativada} para que fosse possível analisar os valores gerados dentro dos seus intervalos que, de outro modo, seriam diminuídos em dois.
+
+				\par O objetivo aqui é mostrar por quê a escala \textbf{BARK} fornece um conjunto melhor de vetores de características dentro do contexto da análise de \textit{voice spoofing}.
+
+			\subsubsection{Comparativo}
+				\par O comparativo foi feito em vários gráficos de dispersão que aglutinam os intervalos das escalas em eixos verticais. 
+				\par As combinações \textit{wavelet packet + escalas BARK ou MEL} e sinais \textit{spoofing}/\textit{não spoofing} geram, cada uma, um gráfico.

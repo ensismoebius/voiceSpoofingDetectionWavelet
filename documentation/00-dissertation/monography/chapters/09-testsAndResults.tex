@@ -1,5 +1,6 @@
 \chapter{Testes e Resultados} \label{chap:testsResults}
 	\section{Experimento 01}
+	\label{chap:testsResults:sec:Experimento01}
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=\linewidth]{images/results/paraconsistentPlane/ParaconsistentParcial.png}
@@ -9,12 +10,13 @@
 
 	\input{tables/results/paraconsistentPlane/distParacomFrom10Best.tex}
 
-	\par Na figura \ref{fig:ParaconsistentParcial} quanto menor o valor, mais disjuntos tendem ser os vetores de características gerados para as duas classes testadas (\textit{spoofing }e não \textit{spoofing}). Como se pode constatar, das combinações testadas, a \textit{\textbf{Haar com BARK}} conseguiu o \textbf{melhor desempenho} na criação dos melhores vetores de características. A tabela \ref{tab:distParacomBest} mostra os 6 melhores resultados em distância do ponto (1,0)(verdade) no plano paraconsistente, a totalidade dos dados se encontram no apêndice deste documento nas tabelas \ref{tab:distParacomFrom10Bark_1} e \ref{tab:distParacomFrom10Bark_2} para todos os resultados com BARK e nas tabelas \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} para os com MEL. Na figura \ref{fig:paraconsistentfull} se pode ver o gráfico de barras para todas as combinações \textit{wavelets}X\textit{BARK/MEL}.
+	\par Na figura \ref{fig:ParaconsistentParcial} quanto menor o valor, mais disjuntos tendem ser os vetores de características gerados para as duas classes testadas (\textit{spoofing }e não \textit{spoofing}). Como se pode constatar, das combinações testadas, a \textit{\textbf{Haar com BARK}} conseguiu o \textbf{melhor desempenho} na criação dos melhores vetores de características. A tabela \ref{tab:distParacomBest} lista os 6 melhores resultados em distância do ponto (1,0)(verdade) no plano paraconsistente, a totalidade dos dados se encontram no apêndice deste documento nas tabelas \ref{tab:distParacomFrom10Bark_1} e \ref{tab:distParacomFrom10Bark_2} para todos os resultados com BARK e nas tabelas \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} para os com MEL. Na figura \ref{fig:paraconsistentfull} se pode ver o gráfico de barras para todas as combinações \textit{wavelets}X\textit{BARK/MEL}.
 	
 	\par A combinação \textbf{\textit{wavelet + BARK}} teve, consistentemente, um desempenho \textbf{melhor} do que as respectivas combinações \textbf{\textit{wavelet + MEL}}.
 	
 	\newpage
 	\section{Experimento 02}
+	\label{chap:testsResults:sec:Experimento02}
 		\par Considerando que o experimento 1 teve como melhor resultado a combinação \textbf{Haar+BARK} o objetivo deste é constatar a máxima acurácia que se consegue atingir em um classificador baseado em distâncias Euclidianas e Manhattan. O dimensionamento do tamanho das amostras de referência que neste caso são os itens usados para o treinamento do classificador variou em 10\%, 20\%, 30\%, 40\% e finalmente 50\% do total das amostras. 300 foi a quantidade máxima de testes escolhida.
 		\par Os resultados gerais são mostrados na tabela \ref{tab:experiment02ResultsEuclidian} para distância Euclidiana e na tabela \ref{tab:experiment02ResultsManhattan} para distância Manhattan. 
 		
@@ -115,6 +117,7 @@
 	
 		\newpage
 		\section{Experimento 03}
+		\label{chap:testsResults:sec:Experimento03}
 			\par Novamente, considerando que o experimento 1 teve como melhor resultado a combinação \textbf{Haar+BARK} o objetivo deste é constatar a máxima acurácia se consegue atingir em uma SVM. O dimensionamento do tamanho das amostras para o treinamento do classificador variou em 10\%, 20\%, 30\%, 40\% e finalmente 50\% do total das amostras. 300 foi a quantidade máxima de testes escolhida.
 			
 			\par Os resultados gerais são mostrados na tabela \ref{tab:experiment03Results}. 
@@ -170,12 +173,9 @@
 	
 	\newpage
 	\section{Experimento 04}
-		\par Os experimentos \ref{chap:propApproach:sec:Experimento01}, \ref{chap:propApproach:sec:Experimento02}, \ref{chap:propApproach:sec:Experimento03} mostraram que a combinação \textbf{\textit{wavelet haar + escala BARK}} é a melhor para geração de vetores de características e que esses possibilitam classificações razoáveis com classificadores simples. Esse experimento visa responder, qual o motivo dessa combinação funcionar melhor.
-		\par As \textit{wavelets} \textbf{haar} e \textbf{daubechies 42} conseguiram respectivamente os melhores e os piores vetores de características na escala \textit{BARK}. Já em \textit{MEL}, \textbf{haar} foi a melhor e \textbf{daubechies 54} a pior.
-		\par Para fins comparativos, foi criado um sinal periódico sobre o qual serão aplicadas as transformadas \textit{wavelet} correspondentes aos melhores e piores desempenhos, os resultados dessa aplicação, assim como o sinal original, constituem o gráfico mostrado na figura \ref{fig:haardaub42comparison}.
-		\par O sinal periódico foi construído com a sequência \textit{32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34} repetida 32 vezes.
-		\par No gráfico supracitado o sinal de controle é periódico e contém 512 posições, portanto, considerando a abordagem de decomposição máxima, foram aplicadas as transformadas \textit{wavelet packet} até o nível 8.
-		
+	\label{chap:testsResults:sec:Experimento04}
+		\par É possível perceber que a separação das componentes do sinal é muito melhor delimitada na \textit{wavelet haar} do que na mesma transformação com a \textit{daubechies 42 e 54}, gerando assim um sinal mais separável, para ser lido tanto segundo a escala \textit{BARK} como \textit{MEL}.
+				
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.6\linewidth]{images/results/haarDaubComparison/haarDaub42Comparison.pdf}
@@ -183,7 +183,61 @@
 			\label{fig:haardaub42comparison}
 		\end{figure}
 		
-		\par É possível perceber que a separação das componentes do sinal é muito melhor delimitada na \textit{wavelet haar} do que na mesma transformação com a \textit{daubechies 42 e 54}, gerando assim um sinal mais separável, para ser lido tanto segundo a escala \textit{BARK} como \textit{MEL}.
-		
-
+	\newpage
+	\section{Experimento 05}
+	\label{chap:testsResults:sec:Experimento05}
+		As figuras \ref{fig:livehaarbark} e \ref{fig:spoofinghaarbark} ilustram o espalhamento de valores dos vetores de características na \textit{packet wavelet haar + escala BARK}, se pode perceber que, comparadas com as figuras \ref{fig:livehaarmel} e \ref{fig:spoofinghaarmel} o \textbf{espalhamento dos valores é muito maior na escala \textbf{MEL}}.
+		\par Essa diferença na distribuição dos dados também ocorre nas combinações \textit{packet wavelet daubechies 42 + BARK} (figuras \ref{fig:livedaub42bark} e \ref{fig:spoofingdaub42bark}) além de \textit{packet wavelet daubechies 54 + MEL} (figura \ref{fig:livedaub54mel} e \ref{fig:spoofingdaub54mel}).
+		\par Para fins de comparação os gráficos foram colocados em mesma escala no eixo \textbf{Y}. O eixo \textbf{X} assumiu os valores das escalas \textit{BARK} ou \textit{MEL}.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveHaarBark}
+			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{BARK} }
+			\label{fig:livehaarbark}
+		\end{figure}
 	
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingHaarBark}
+			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{BARK} }
+			\label{fig:spoofinghaarbark}
+		\end{figure}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveDaub42Bark}
+			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet daubechies 42} + escala \textit{BARK} }
+			\label{fig:livedaub42bark}
+		\end{figure}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingDaub42Bark}
+			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet daubechies 42} + escala \textit{BARK} }
+			\label{fig:spoofingdaub42bark}
+		\end{figure}
+
+
+
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveHaarMel}
+			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{MEL} }
+			\label{fig:livehaarmel}
+		\end{figure}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingHaarMel}
+			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{MEL} }
+			\label{fig:spoofinghaarmel}
+		\end{figure}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveDaub54Mel}
+			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet daubechies 54} + escala \textit{MEL} }
+			\label{fig:livedaub54mel}
+		\end{figure}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingDaub54Mel}
+			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet daubechies 54} + escala \textit{MEL} }
+			\label{fig:spoofingdaub54mel}
+		\end{figure}
