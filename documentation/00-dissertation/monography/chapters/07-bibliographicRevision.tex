@@ -1,4 +1,4 @@
-\chapter{Revisão de Bibliográfica} \label{chap:revBibli}
+\chapter{Revisão bibliográfica} \label{chap:revBibli}
 	\section{Conceitos utilizados}
 			\subsection{Engenharia paraconsistente de características}
 				\par Dentro do processo de classificação frequentemente surge a questão:\\
@@ -115,13 +115,13 @@
 		\subsection{Filtros digitais wavelets}
 			\par Filtros digitais \textit{wavelet} vem para suprir as deficiências de janelamento de sinal apresentadas pelas transformadas de Fourier e pelas transformadas curtas de Fourier. \textit{Wavelets} contam com variadas funções filtro e tem tamanho de janela variável o que permite uma análise multirresolução \cite{Rod5254905}.
 			
-			\par As \textit{wavelets} proporcionam a análise do sinal de forma detalhada tanto no espectro de baixa frequência quanto no de alta frequência.
+			\par As \textit{wavelets} proporcionam a análise do sinal de forma detalhada tanto no espectro de baixa frequência quanto no de alta.
 			
-			\par É importante observar que, quando se trata de transformada \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características, portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa.
+			\par É importante observar que, quando se trata de transformadas \textit{wavelet} seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação só a transformada direta, e não a inversa, será usada na construção dos vetores de características, portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui, pois, esses só interessariam caso houvesse a necessidade da transformada inversa.
 
 			\par No contexto dos filtros digitais baseados em \textit{wavelets} o tamanho da janela recebe o nome de \textbf{suporte}. Janelas definem o tamanho do filtro que será aplicado ao sinal, quando esse é pequeno se diz que a janela tem \textbf{um suporte compacto} \cite{robi2003}.
 		
-			\par Se diz que uma \textit{wavelet} tem boa \textbf{resposta em frequência} quando, na aplicação da mesma na filtragem das frequências não são causadas muitas pertubações indesejadas ao sinal, as wavelets de Daubechies se destacam neste quesito por serem \textit{maximamente planas} (Maximally-flat) nos platôs de resposta em frequência como indicado na figura \ref{fig:daubechies}.
+			\par Se diz que uma \textit{wavelet} tem boa \textbf{resposta em frequência} quando, na aplicação da mesma para filtragem, não são causadas muitas pertubações indesejadas ao sinal, no domínio da frequência, as wavelets de Daubechies se destacam neste quesito por serem \textit{maximamente planas} (Maximally-flat) nos platôs de resposta em frequência como indicado na figura \ref{fig:daubechies}.
 
 			\begin{figure}[h]
 				\centering
@@ -137,7 +137,7 @@
 				\label{fig:nomaximallyflat}
 			\end{figure}
 		
-			\par Além da resposta em frequência a aplicação de um filtro digital \textit{wavelets} também pode gerar o que se chama de \textbf{resposta em fase}, esse deslocamento pode ser \textbf{linear}, \textbf{quase linear} ou \textbf{não linear}. 
+			\par Além da resposta em frequência na aplicação de um filtro digital \textit{wavelets} também é possível gerar o que se chama de \textbf{resposta em fase}, esse deslocamento pode ser \textbf{linear}, \textbf{quase linear} ou \textbf{não linear}. 
 			
 			\begin{itemize}
 				\item Na resposta em fase \textbf{linear} há o mesmo deslocamento de fase para todos os componentes do sinal.
@@ -145,12 +145,12 @@
 				\item Finalmente, quando a resposta é \textbf{não linear} acontece um deslocamento significativamente heterogêneo para as diferentes frequências formantes do sinal.
 				\end{itemize}
 			
-			\par Idealmente é desejável que todo filtro apresente boa resposta em frequência e resposta em fase linear.
+			\par Idealmente é desejável que todo filtro apresente boa resposta em frequência e em fase linear.
 			
-		\input{tables/someWaveletsProperties.tex}
+			\input{tables/someWaveletsProperties.tex}
 
 		\subsubsection{O algoritmo de Malat para transformada wavelet}
-			\par O algoritmo de Malat torna aplicação das \textit{wavelets} no sinal em uma simples multiplicação de matrizes, o sinal que deve ser transformado se torna uma matriz linear vertical já os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante.
+			\par Baseando-se no artigo \cite{7079589} percebe-se que algoritmo de Malat faz com que aplicação das \textit{wavelets} seja uma simples multiplicação de matrizes, o sinal que deve ser transformado se torna uma matriz linear vertical já os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante.
 			\par É importante que essa matriz quadrada tenha de aresta a mesma quantidade de itens que o nosso sinal, ou seja, se o sinal tem quatro elementos então a matriz de filtros deve ser uma de 4x4.
 			\par Algo interessante a se notar é que, para que seja possível a transformada wavelet, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}(que é a função geradora desse filtro) já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.
 			
@@ -235,11 +235,11 @@
 				\label{eq:haarResult}
 			\end{equation}
 			
-			\par Perceba que na transformada wavelet mostrada em \ref{eq:haarFilters}, \ref{eq:haarMultiplic} e \ref{eq:haarResult} a \textbf{aplicação dos filtros sobre  o vetor ocorreu apenas uma vez}, sendo assim, se diz que o sinal recebeu a \textbf{transformada wavelet nível 1}. A cada transformada há uma separação do sinal em dois componentes: O de baixa e o de alta frequência.
+			\par Perceba que na transformada wavelet mostrada em \ref{eq:haarFilters}, \ref{eq:haarMultiplic} e \ref{eq:haarResult} a \textbf{aplicação dos filtros sobre  o vetor ocorreu apenas uma vez}, sendo assim, se diz que o sinal recebeu uma \textbf{transformação de nível 1}. A cada transformada há uma separação do sinal em dois componentes: O de baixa e o de alta frequência.
 			
-			\par É possível aplicar mais de um nível de transformadas ao sinal, para que se possa fazer isso a transformada wavelet nível 2 deve considerar apenas a parte de baixa frequência da primeira transformada, já transformada de nível 3 deve considerar apenas a parte de baixa frequência da transformada nível 2 e assim consecutivamente.
+			\par Embora haja um limite, que será mostrado mais a frente, é possível aplicar mais de um nível de transformadas ao sinal, para que se possa fazer isso a transformada \textit{wavelet} nível 2 deve considerar apenas a parte de baixa frequência da primeira transformada, já transformada de nível 3 deve considerar apenas a parte de baixa frequência da transformada nível 2 e assim consecutivamente.
 			
-			\par Nos exemplos numéricos mostrados nas tabelas \ref{tab:regularWaveletExample}, \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} usou-se um filtro haar cujos valores são $\dfrac{1}{2}$ e $-\dfrac{1}{2}$. Os dados destacados em \textbf{verde} correspondem ao \textbf{vetor original} que será tratado, cada uma das linhas são os resultados das transformadas wavelets nível 1, 2, 3 e 4 respectivamente, as partes em \textbf{azul} correspondem a porção de \textbf{baixa frequência}, as partes em \textbf{amarelo} correspondem as porções de \textbf{alta frequência}.
+			\par Nos exemplos numéricos mostrados nas tabelas \ref{tab:regularWaveletExample}, \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} usou-se um filtro haar cujos valores são $\dfrac{1}{2}$ e $-\dfrac{1}{2}$. Os dados destacados em \textbf{verde} correspondem ao \textbf{vetor original} que será tratado, cada uma das linhas são os resultados das transformadas \textit{wavelets} nível 1, 2, 3 e 4 respectivamente, as partes em \textbf{azul} correspondem a porção de \textbf{baixa frequência}, as partes em \textbf{amarelo} correspondem as porções de \textbf{alta frequência}.
 			
 			\par Perceba que na tabela \ref{tab:regularWaveletExample}, a partir da transformada nível 2, apenas as partes de baixa frequência são modificadas.
 			
@@ -248,11 +248,11 @@
 			\input{tables/regularWaveletExample.tex}
 
 		\subsubsection{O algoritmo de Malat e a Wavelet packet}
-			\par Na transformada \textit{wavelet packet} os filtros aplicados são os mesmos e a recursividade da abordagem também é a mesma, no entato, aplicada a transformada nível 1, é necessário que a transformada nível 2 seja aplicada aos componentes de baixa e de alta frequência. Sendo assim a transformada \textit{wavelet packet} obtém um nível de detalhes em todo o espectro de frequência maior do que uma \textit{wavelet} regular. 
+			\par Na transformada \textit{wavelet packet} os filtros aplicados são os mesmos e a recursividade da abordagem também é a mesma, no entanto, aplicada a transformação de nível 1, a transformada de nível 2 deve ser aplicada aos componentes de baixa e de alta frequência. Sendo assim a transformada \textit{wavelet packet} obtém um nível de detalhes em todo o espectro de frequência maior do que uma \textit{wavelet} regular. 
 			
-			\par Os exemplos mostrados nas tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} mostram como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequência respectivamente após a \textit{wavelet} nível 1.
+			\par Os exemplos mostrados nas tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} mostram como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequência respectivamente após a \textit{wavelet packet} de nível 1.
 
-			\par Devido ao \textit{downsampling} aplicado as porções de alta frequência essas partes acabam por ficar "espelhadas", ou seja, suas sequências ficam invertidas. Para resolver  esse problema e preservar a ordem do sinal os filtros são aplicados em ordem inversa nas porções de alta frequência \cite{Jensen_2001}. Isso altera como o algoritmo de Malat deve ser implementado para a transformada \textit{wavelet packet}, já que dessa vez, é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
+			\par Devido ao \textit{downsampling} aplicado as porções de alta frequência essas partes acabam por ficar "espelhadas" \cite{Jensen_2001}, ou seja, suas sequências ficam invertidas. Para resolver  esse problema e preservar a ordem do sinal os filtros são aplicados em ordem inversa nas porções de alta frequência. Isso altera como o algoritmo de Malat deve ser implementado para a transformada \textit{wavelet packet}, já que dessa vez, é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
 
 			\input{tables/packetWaveletExample.tex}
 			
@@ -301,7 +301,9 @@
 				
 				\subsubsection{Formantes}
 				
-				\par \textit{O primeiro formante ($f_1$), relaciona-se à  amplificação  sonora  na  cavidade  oral  posterior  e  à  posição  da  língua  no  plano  vertical;  o segundo  formante  ($f_2$)  à  cavidade  oral  anterior  e  à  posição  da  língua  no  plano  horizontal.  O terceiro  formante  ($f_3$)  relaciona-se  às  cavidades  à  frente  e  atrás  do  ápice  da  língua;  o  quarto formante  ($f_4$),  ao  formato  da  laringe  e  da  faringe  na  mesma  altura} \cite{valencca2014analise}.
+				\begin{citacao}
+					\par O primeiro formante ($f_1$), relaciona-se à  amplificação  sonora  na  cavidade  oral  posterior  e  à  posição  da  língua  no  plano  vertical;  o segundo  formante  ($f_2$)  à  cavidade  oral  anterior  e  à  posição  da  língua  no  plano  horizontal.  O terceiro  formante  ($f_3$)  relaciona-se  às  cavidades  à  frente  e  atrás  do  ápice  da  língua;  o  quarto formante  ($f_4$),  ao  formato  da  laringe  e  da  faringe  na  mesma  altura  \cite{valencca2014analise}.
+				\end{citacao}
 
 \subsection{Escalas e energias dos sinais}
 	\par O cálculo da energia de uma sinal consiste na soma dos quadrados de seus valores dentro de intervalos definidos, após  isso, se pode aplicar uma normalização do sinal. As escalas escolhidas são BARK e MEL.
@@ -316,11 +318,11 @@
 		\end{figure}
 	\subsubsection{A escala MEL}
 		\par Escala Mel é uma adaptação da escala Bark para sinais de voz. MEL é mais adaptada a voz humana, pois, foi construída a partir de experimentos com humanos. Nessa escala a bandas consideradas são em Hz: \textbf{20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000}.
-		\par A variante que será usada neste trabalho é conhecida como \textit{Mel-frequency cepstral coefficients}(MFCC) a qual inclui, além dos intervalos definidos, a aplicação da transformada direta cosseno ou  análise de componente principal seguida de derivações no vetor do sinal resultante.
+		\par A variante que será usada neste trabalho é conhecida como \textit{Mel-frequency cepstral coefficients}(MFCC) a qual inclui, além dos intervalos definidos, a aplicação da transformada direta cosseno ou análise de componente principal seguida de derivações no vetor do sinal resultante.
 		\par Novamente, desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala MEL podem, por si mesmas ser um vetor de características, como mostrado na figura \ref{fig:barkfeaturevect}.
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.6\linewidth]{images/melFeatureVect}
+			\includegraphics[width=0.8\linewidth]{images/melFeatureVect}
 			\caption{Cálculo de vetores de características com MEL}
 			\label{fig:melfeaturevect}
 		\end{figure}

@@ -48,7 +48,7 @@
 		\end{figure}
 	
 	\section{Wavelets}
-		\par Como já explanado no capítulo \ref{chap:revBibli}, neste trabalho apenas as transformadas diretas serão realizadas já que, neste contexto, não interessa a reconstrução do sinal. A abordagem usada será baseada nos filtros de análise digitais que proporcionarão a decomposição do sinal com o uso de filtros passa baixas e passa altas estritamente no domínio discreto.
+		\par Como já explanado no capítulo \ref{chap:revBibli}, neste trabalho apenas as transformadas diretas serão realizadas já que, neste contexto, não interessa a reconstrução do sinal. A abordagem usada será baseada nos filtros de análise digitais, passa baixas e passa altas que proporcionarão a decomposição dos sinais estritamente no domínio discreto.
 
 		\subsection{Wavelets testadas}
 			\par Nós experimentos explicados mais a  frente foram testadas as seguintes wavelets:
@@ -70,19 +70,19 @@
 			\end{multicols}
 
 	\section{Experimentos}
-		\subsection{Experimento 01 - Melhor combinação Wavelet x BARK ou MEL}
+		\subsection{Experimento 01 - Melhor combinação Wavelet packet x BARK ou MEL}
 		\label{chap:propApproach:sec:Experimento01}
 			\subsubsection{Apresentação}
 				\par O objetivo desse experimento verificar, segundo análise paraconsistente, qual das combinações entre as escalas BARK ou MEL e as várias \textit{wavelets} consideradas geram os vetores de características com menos sobreposição (disjuntos).
 				
 				\par Mais informações sobre a análise paraconsistente se encontram no capítulo \ref{chap:revBibli}. 
 				
-				\par O uso de \textit{wavelets} geralmente tem como objetivo a geração de vetores que serão analisados ou processados posteriormente, tais sequências de valores carregam a informação de frequência e tempo que podem ser úteis para uma análise específica. Neste trabalho a decomposição foi feita até seu limite  para que, após isso, fosse executada a soma das energias nos intervalos definidos pela escala BARK e MEL que seriam impossíveis, ou imprecisas se assim não se precedesse. Por fim, foram  feitos os posicionamentos dos resultados no plano paraconsistente.
+				\par O uso de \textit{wavelets/wavelets packet} geralmente tem como objetivo a geração de vetores que serão analisados ou processados posteriormente, tais sequências de valores carregam a informação de frequência e tempo que podem ser úteis para uma análise específica. Neste trabalho a decomposição foi feita até seu limite  para que, após isso, fosse executada a soma das energias nos intervalos definidos pela escala BARK e MEL que seriam impossíveis, ou imprecisas se assim não se precedesse. Por fim, foram  feitos os posicionamentos dos resultados no plano paraconsistente.
 				
 				\par O algoritmo \ref{lst:experiment01Algo} demonstra a realização dessas etapas.
 			
 			\subsubsection{Redimensionando o sinal}
-				\par Antes da aplicação da transformada \textit{wavelet} é necessário redimensionar o sinal para que este tenha um comprimento correspondente a uma potência de 2 como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de informação ao final da transformação, pois, como a transformada \textit{wavelet} realiza o \textit{downsampling} numa ordem de 2, ou seja, em cada nível o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algum/alguns valores dentro do processamento não sejam considerados.
+				\par Antes da aplicação da transformada \textit{wavelet packet} é necessário redimensionar o sinal para que este tenha um comprimento correspondente a uma potência de 2 como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de informação ao final da transformação, pois, como a transformada \textit{wavelet} realiza o \textit{downsampling} numa ordem de 2, ou seja, em cada nível o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algum/alguns valores dentro do processamento não sejam considerados.
 				
 				\par Na equação \ref{eq:optimalSize} \textit{\textbf{proxInt}} é uma função que retorna o próximo número inteiro dado outro real (por exemplo, $proxInt(1,5) = 2$) e \textit{\textbf{tamanho}} é a quantidade de itens no vetor do sinal.
 
