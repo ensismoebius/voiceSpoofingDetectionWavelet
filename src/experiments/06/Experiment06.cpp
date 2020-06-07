@@ -367,7 +367,7 @@ namespace waveletExperiments {
 				std::vector<std::vector<double>> modelSpoofing;
 
 				// Creating the classifiers
-				classifiers::NeuralNetwork barkClassifier(Experiment06::barkRanges.size() - 1, Experiment06::barkRanges.size() - 1, 1, 0.1, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
+				classifiers::NeuralNetwork barkClassifier(Experiment06::barkRanges.size() - 1, Experiment06::barkRanges.size() * 2, 1, 0.1, classifiers::NeuralNetwork::sigmoid, classifiers::NeuralNetwork::dsigmoid);
 
 				// Clearing the results for the next iteration
 				numberOfTests.clear();
@@ -395,13 +395,15 @@ namespace waveletExperiments {
 							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
 							// Trainning
-							std::vector<double> target = { 0 };
-							for (auto &sample : modelLive) {
+							std::vector<double> target(1);
+
+							target[0] = 1;
+							for (auto sample : modelLive) {
 								barkClassifier.train(sample, target);
 							}
 
-							target[0] = 1;
-							for (auto &sample : modelSpoofing) {
+							target[0] = 0;
+							for (auto sample : modelSpoofing) {
 								barkClassifier.train(sample, target);
 							}
 
@@ -413,9 +415,18 @@ namespace waveletExperiments {
 						confusionMatrix[TN] = 0;
 						confusionMatrix[FN] = 0;
 
+//						// Test it out!!
+//						for (auto test : testLive) {
+//							std::cout << "Live:" << barkClassifier.feedForward(test)[0] << std::endl;
+//						}
+//
+//						for (auto test : testSpoofing) {
+//							std::cout << "Spof:" << barkClassifier.feedForward(test)[0] << std::endl;
+//						}
+
 						// Test it out!!
 						for (auto test : testLive) {
-							if (barkClassifier.feedForward(test)[0] == 0) {
+							if (barkClassifier.feedForward(test)[0] >= .5) {
 								confusionMatrix[TP] += 1;
 							} else {
 								confusionMatrix[FN] += 1;
@@ -423,7 +434,7 @@ namespace waveletExperiments {
 						}
 
 						for (auto test : testSpoofing) {
-							if (barkClassifier.feedForward(test)[0] == 1) {
+							if (barkClassifier.feedForward(test)[0] < .5) {
 								confusionMatrix[TN] += 1;
 							} else {
 								confusionMatrix[FP] += 1;
