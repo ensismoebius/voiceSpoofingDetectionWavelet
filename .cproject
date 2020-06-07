@@ -52,6 +52,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.157627384" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.link.option.libs.288776191" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="python2.7"/>
+									<listOptionValue builtIn="false" value="armadillo"/>
 									<listOptionValue builtIn="false" value="gomp"/>
 									<listOptionValue builtIn="false" value="python3.6m"/>
 								</option>
