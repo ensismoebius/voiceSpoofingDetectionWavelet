@@ -6,6 +6,7 @@
 #include "experiments/03/Experiment03.cpp"
 #include "experiments/04/Experiment04.cpp"
 #include "experiments/05/Experiment05.cpp"
+#include "experiments/06/Experiment06.cpp"
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
 
