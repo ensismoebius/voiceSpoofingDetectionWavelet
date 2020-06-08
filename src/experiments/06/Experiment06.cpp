@@ -235,18 +235,40 @@ namespace waveletExperiments {
 			 */
 			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
 
-				classifiers::NeuralNetwork nn(2, 1, 0.1, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
+				struct trainigSample {
+						std::vector<double> inputs;
+						std::vector<double> targets;
+
+						trainigSample(std::vector<double> inputs, std::vector<double> targets) {
+							this->inputs = inputs;
+							this->targets = targets;
+						}
+				};
+
+				std::vector<trainigSample> samples;
+
+				samples.push_back(trainigSample( { 0, 1 }, { 1 }));
+				samples.push_back(trainigSample( { 1, 0 }, { 1 }));
+				samples.push_back(trainigSample( { 0, 0 }, { 0 }));
+				samples.push_back(trainigSample( { 1, 1 }, { 0 }));
+
+				classifiers::NeuralNetwork nn(2, 1, 0.01, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
 
 				nn.addHiddenLayer(3);
 
-				std::vector<double> i = { 1, 0 };
-				std::vector<double> t = { 1 };
+				for (int i = 0; i < 2000; i++) {
 
-				nn.train(i, t);
+					std::random_shuffle(samples.begin(), samples.end());
 
-				std::vector<double> o = nn.feedForward(i);
+					for (auto sample : samples) {
+						nn.train(sample.inputs, sample.targets);
+					}
+				}
 
-				nn.showLayers();
+				for (auto sample : samples) {
+					std::cout << "Target|" + std::to_string(sample.targets[0]);
+					std::cout << "|" << nn.feedForward(sample.inputs)[0] << "|" << std::endl;
+				}
 
 //				std::cout << std::fixed;
 //				std::cout << std::setprecision(4);
