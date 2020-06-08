@@ -189,6 +189,7 @@ namespace classifiers {
 
 				this->errors = arma::Mat<double>(target) - layers[layerIndex];
 				this->weights.push_back(this->weights_ih);
+				std::rotate(this->weights.rbegin(), this->weights.rbegin() + 1, this->weights.rend());
 
 				for (; layerIndex > 0; layerIndex--) {
 
@@ -203,12 +204,13 @@ namespace classifiers {
 
 					// Updating weights
 					this->biases[layerIndex - 1] += gradients;
-					this->weights[weightIndex] += deltaWeights;
+					this->weights[layerIndex - 1] += deltaWeights;
 
 					// Calculating next error
-					this->errors = this->weights[weightIndex++].t() * this->errors;
+					this->errors = this->weights[layerIndex - 1].t() * this->errors;
 				}
 
+				std::rotate(this->weights.begin(), this->weights.begin() + 1, this->weights.end());
 				this->weights.pop_back();
 				this->layers.clear();
 			}
