@@ -29,7 +29,7 @@ void neuralNetwork() {
 	samples.push_back(trainigSample( { 0, 0 }, { 0 }));
 	samples.push_back(trainigSample( { 1, 1 }, { 0 }));
 
-	classifiers::NeuralNetwork nn(2, 3, 1, 0.01, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
+	classifiers::NeuralNetwork nn(2, 1, 0.01, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
 
 	for (int i = 0; i < 2000; i++) {
 
