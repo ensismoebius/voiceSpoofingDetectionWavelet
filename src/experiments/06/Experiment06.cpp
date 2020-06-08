@@ -242,6 +242,9 @@ namespace waveletExperiments {
 				nn.addHiddenLayer(5);
 				nn.addHiddenLayer(2);
 
+				std::vector<double> i = { 1, 2 };
+				std::vector<double> o = nn.feedForward(i);
+
 				nn.showLayers();
 
 //				std::cout << std::fixed;
