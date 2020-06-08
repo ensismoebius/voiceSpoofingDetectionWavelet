@@ -81,23 +81,9 @@ namespace classifiers {
 				// If there is not hidden weights yet
 				// connect it to a new weight
 				if (this->weights.size() == 0) {
-
 					// Weights that connects input to hidden
 					this->weights_ih.resize(hiddenLayerSize, this->inputNodes); //ok!
 					this->initilizeWeights(this->weights_ih); //ok!
-
-//					// Weights that connects new hidden to output
-//					arma::Mat<double> newHiddenWeight(this->outputNodes, hiddenLayerSize); //ok!
-//					this->initilizeWeights(newHiddenWeight); //ok!
-//
-//					// The output will be the last
-//					// result from the last weight
-//					this->weights.push_back(newHiddenWeight);
-//					this->hiddenNodes.push_back(hiddenLayerSize);
-//					this->biases.push_back(arma::Col<double>(hiddenLayerSize));
-//
-//					// Nothing else to do exit
-//					return;
 				} else {
 					// Resize the last weight
 					arma::Mat<double> &lastWeight = weights[weights.size() - 1]; //ok!
