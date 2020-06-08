@@ -132,56 +132,69 @@ namespace classifiers {
 
 				//// Feedforwarding all input to hidden layer
 				// Multiply inputs with the weights
-				arma::Mat<double> outputs = this->weights_ih * arma::Mat<double>(input);
+				arma::Mat<double> o = this->weights_ih * arma::Mat<double>(input);
 				// Sum the the first bias: Note that
 				// THE BIAS 0 IS THE OUTPUT BIAS
-				outputs += this->biases[biasIndex];
+				o += this->biases[biasIndex];
 				// Apply activation function
-				outputs.for_each(this->functions.func);
+				o.for_each(this->functions.func);
+
+				// We need to store layers values for trainning
+				// The number of layers is this->weights.size() + 1
+				std::vector<arma::Mat<double>> layers;
+				layers.reserve(this->weights.size() + 2);
+				layers.push_back(arma::Mat<double>(input));
+				layers.push_back(o);
 
 				//// Feedforwarding all hidden layers and the output layer
 				for (auto &w : this->weights) {
-					outputs = w * outputs;
-					outputs.for_each(this->functions.func);
+					o = w * o;
+					o.for_each(this->functions.func);
 
 					// When biasIndex reaches biases.size() its
 					// when we are calculating the output so
 					// we have to access the 0 index.
-					outputs += this->biases[++biasIndex % biasSize];
+					o += this->biases[++biasIndex % biasSize];
+					layers.push_back(o);
 				}
 
 				//// Backpropagation starts here
 				//////// From target to output
-				arma::Mat<double> outputErrors = arma::Mat<double>(target) - outputs;
+				int i = layers.size() - 1;
+
+				arma::Mat<double> outputErrors = arma::Mat<double>(target) - layers[i];
 
 				// Calculating the output gradient
-				arma::Mat<double> outputGradients = outputs;
+				arma::Mat<double> outputGradients = layers[i];
 				outputGradients.for_each(this->functions.dfunc);
 				outputGradients %= outputErrors;
 				outputGradients *= this->learningRate;
 
 				// Calculating hidden > output deltas weights
-				//arma::Mat<double> weight_ho_deltas = outputGradients * hidden.t();
+				arma::Mat<double> weight_ho_deltas = outputGradients * layers[i - 1].t();
 
 				// Updating weights
-				//this->bias_o += outputGradients;
-				//this->weights_ho += weight_ho_deltas;
+				this->biases[0] += outputGradients;
+				this->weights[i - 2] += weight_ho_deltas;
 
-				//////// From output to hidden
-				//arma::Mat<double> hiddenErrors = this->weights_ho.t() * outputErrors;
+				for (; i >= 0; i--) {
 
-				// Calculating the hidden gradient
-				//arma::Mat<double> hiddenGradients = hidden;
-				//hiddenGradients.for_each(this->functions.dfunc);
-				//hiddenGradients %= hiddenErrors;
-				//hiddenGradients *= this->learningRate;
+					//////// From output to hidden
+					outputErrors = this->weights[i - 2].t() * outputErrors;
 
-				// Calculating input > hidden deltas weights
-				//arma::Mat<double> weight_ih_deltas = hiddenGradients * arma::Mat<double>(input).t();
+					// Calculating the hidden gradient
+					arma::Mat<double> hiddenGradients = layers[i - 1];
+					hiddenGradients.for_each(this->functions.dfunc);
+					hiddenGradients %= outputErrors;
+					hiddenGradients *= this->learningRate;
 
-				// Updating weights
-				//this->bias_h += hiddenGradients;
-				//this->weights_ih += weight_ih_deltas;
+					// Calculating input > hidden deltas weights
+					arma::Mat<double> weight_deltas = hiddenGradients * layers[i].t();
+
+					// Updating weights
+					this->biases[i - 1] += hiddenGradients;
+					this->weights[i - 2] += weight_deltas;
+				}
 			}
 
 		private:

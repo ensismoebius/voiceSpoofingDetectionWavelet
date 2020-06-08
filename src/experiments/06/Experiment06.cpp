@@ -235,14 +235,15 @@ namespace waveletExperiments {
 			 */
 			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
 
-				classifiers::NeuralNetwork nn(2, 3, 0.1, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
+				classifiers::NeuralNetwork nn(2, 1, 0.1, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
 
-				nn.addHiddenLayer(4);
-				nn.addHiddenLayer(2);
-				nn.addHiddenLayer(5);
-				nn.addHiddenLayer(2);
+				nn.addHiddenLayer(3);
 
-				std::vector<double> i = { 1, 2 };
+				std::vector<double> i = { 1, 0 };
+				std::vector<double> t = { 1 };
+
+				nn.train(i, t);
+
 				std::vector<double> o = nn.feedForward(i);
 
 				nn.showLayers();
