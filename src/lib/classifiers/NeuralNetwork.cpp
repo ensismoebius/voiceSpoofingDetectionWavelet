@@ -225,6 +225,7 @@ namespace classifiers {
 				weights.randu();
 				weights -= .5;
 				weights *= 2;
+				// weights.ones();
 			}
 
 			void feedForward(std::vector<double> &input, arma::Mat<double> &output) {
@@ -250,4 +251,3 @@ namespace classifiers {
 	};
 }
 #endif /* NeuralNetwork_H_ */
-

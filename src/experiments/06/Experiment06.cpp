@@ -234,276 +234,271 @@ namespace waveletExperiments {
 			 * @param argCount - The amount of these files
 			 */
 			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
-//				std::cout << std::fixed;
-//				std::cout << std::setprecision(4);
-//
-//				// set the callback function in the Experiment06 class
-//				Wav w;
-//				w.setCallbackFunction(Experiment06::waveletAnaliticFunction);
-//
-//				// store the file path to be processed
-//				std::string line;
-//
-//				/**
-//				 * A data estructure witch will hold the wavelet transformed signals
-//				 * haar
-//				 * 	BARK
-//				 * 		Class1
-//				 * 			featureVector01
-//				 * 			featureVector02
-//				 * 			featureVector03
-//				 * 			etc.
-//				 * 		Class2
-//				 * 			featureVector01
-//				 * 			featureVector02
-//				 * 			featureVector03
-//				 * 			etc.
-//				 * 		Etc.
-//				 */
-//				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results;
-//
-//				////////////////////////////////////////
-//				/// Preparing to compute the progress //
-//				////////////////////////////////////////
-//				double cycles = 0;
-//				double totalCycles = 0;
-//
-//				// Computes the cicles needed to compute all signals
-//				for (unsigned int i = 0; i < classFilesList.size(); i++) {
-//					std::ifstream fileListStream;
-//					fileListStream.open(classFilesList[i], std::ios::out);
-//
-//					while (std::getline(fileListStream, line))
-//						totalCycles++;
-//
-//					fileListStream.clear();
-//					fileListStream.close();
-//				}
-//				totalCycles = (classFilesList.size() - 1) * totalCycles;
-//
-//				//////////////////////////////////////////////////
-//				/// Processing data with wavelet haar and BARK ///
-//				//////////////////////////////////////////////////
-//
-//				// Iterates over all files, this files
-//				// have to represent our data classes
-//				for (unsigned int i = 0; i < classFilesList.size(); i++) {
-//
-//					// file reader
-//					std::ifstream fileListStream;
-//					fileListStream.open(classFilesList[i], std::ios::in);
-//
-//					// gets the file path to process
-//					while (std::getline(fileListStream, line)) {
-//
-//						// Status
-//						cycles++;
-//						std::cout << "\rPreparing feature vectors... " << (cycles / totalCycles) * 100 << "%" << std::flush;
-//
-//						// Initializes the experiment
-//						Experiment06::init();
-//
-//						// lines that begins with # are going to be ignored
-//						if (line.find("#") == 0) continue;
-//
-//						// Read the files and process it
-//						w.read(line.data());
-//						w.process();
-//
-//						// Store the parcial results
-//						results["haar"][BARK][classFilesList[i]].push_back(w.getData());
-//					}
-//
-//					fileListStream.clear();
-//					fileListStream.close();
-//				}
-//
-//				////////////////////////////
-//				/// Classification phase ///
-//				////////////////////////////
-//
-//				// Start a new line to give space
-//				// to the next resports
-//				std::cout << std::endl;
-//
-//				// Creating the confusion matrix structure
-//				std::map<CONFUSION_POS, int> confusionMatrix;
-//
-//				// Holds the values for the graphic
-//				// of accuracy versus the number of
-//				// tests
-//				std::map<double, std::vector<double>> numberOfTests;
-//				std::map<double, std::vector<double>> bestTestAccuracy;
-//				std::map<double, std::vector<double>> worseTestAccuracy;
-//				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrix;
-//				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrix;
-//
-//				// Holds the parcial user friendly reports
-//				std::string partialReport;
-//
-//				// Used to calculate the accuracies
-//				double temp;
-//
-//				// Used to calculate the worst accuracy of a percentage
-//				double percentageWorstAccuracy;
-//
-//				// Used to calculate the best accuracy of a percentage
-//				double percentageBestAccuracy;
-//
-//				// Stores the best and the worst confusion matrix
-//				std::map<CONFUSION_POS, int> percentageBestConfusionMatrix;
-//				std::map<CONFUSION_POS, int> percentageWorseConfusionMatrix;
-//
-//				// Holds the tests features vectors for live signals
-//				std::vector<std::vector<double>> testLive;
-//
-//				// Holds the models features vectors for live signals
-//				std::vector<std::vector<double>> modelLive;
-//
-//				// Holds the tests features vectors for spoofing signals
-//				std::vector<std::vector<double>> testSpoofing;
-//
-//				// Holds the models features vectors for spoofing signals
-//				std::vector<std::vector<double>> modelSpoofing;
-//
-//				// Creating the classifiers
-//				classifiers::NeuralNetwork c(Experiment06::barkRanges.size() - 1, 2, 0.01, classifiers::NeuralNetwork::sigmoid, classifiers::NeuralNetwork::dsigmoid);
-//
-//				// Clearing the results for the next iteration
-//				numberOfTests.clear();
-//				bestTestAccuracy.clear();
-//				worseTestAccuracy.clear();
-//				bestConfusionMatrix.clear();
-//				worseConfusionMatrix.clear();
-//
-//				// Changes the percentage of the feature vectors used as models for the classifier
-//				for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
-//
-//					c.resetNetwork();
-//
-//					// Preparing network for the next iteration
-//					std::cout << "Next iteration!" << std::endl;
-//
-//					// Initializing the accuracies
-//					percentageBestAccuracy = -std::numeric_limits<double>().max();
-//					percentageWorstAccuracy = std::numeric_limits<double>().max();
-//
-//					// Used for trainning
-//					std::vector<double> target(2);
-//
-//					// Used for classification
-//					std::vector<double> guess(2);
-//
-//					// Changes the amount of tests done against the dataset
-//					for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {
-//
-//						// Do the classification and populate the confusion matrix
-//						for (unsigned int k = 0; k < amountOfTests; k++) {
-//
-//							// Sampling the live signals
-//							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
-//							// Sampling the spoofing signals
-//							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
-//
-//							// Trainning
-//							target[0] = 1;
-//							target[1] = 0;
-//							for (auto sample : modelLive) {
-//								c.train(sample, target);
-//							}
-//
-//							target[0] = 0;
-//							target[1] = 1;
-//							for (auto sample : modelSpoofing) {
-//								c.train(sample, target);
-//							}
-//
-//						}
-//
-//						// Preparing confusion matrix
-//						confusionMatrix[TP] = 0;
-//						confusionMatrix[FP] = 0;
-//						confusionMatrix[TN] = 0;
-//						confusionMatrix[FN] = 0;
-//
-//						// Test it out!!
-//						for (auto test : testLive) {
-//
-//							guess = c.feedForward(test);
-//
-//							if (guess[0] > guess[1]) {
-//								confusionMatrix[TP] += 1;
-//							} else {
-//								confusionMatrix[FN] += 1;
-//							}
-//						}
-//
-//						for (auto test : testSpoofing) {
-//							guess = c.feedForward(test);
-//
-//							if (guess[0] < guess[1]) {
-//								confusionMatrix[TN] += 1;
-//							} else {
-//								confusionMatrix[FP] += 1;
-//							}
-//						}
-//
-//						////////////////////////
-//						/// Conclusion phase ///
-//						////////////////////////
-//
-//						// calculate the best accuracy
-//						temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
-//
-//						if (temp > percentageBestAccuracy) {
-//							percentageBestAccuracy = temp;
-//							percentageBestConfusionMatrix = confusionMatrix;
-//							partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-//							partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-//						}
-//
-//						if (temp < percentageWorstAccuracy) {
-//							percentageWorstAccuracy = temp;
-//							percentageWorseConfusionMatrix = confusionMatrix;
-//							partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-//							partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-//						}
-//
-//						// Store the results for the graphic
-//						numberOfTests[modelPercentage].push_back(amountOfTests);
-//						bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
-//						worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
-//						bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
-//						worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
-//
-//						// Report for this amount of tests
-//						std::cout << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
-//					}
-//				}
-//
-//				// Calculates the range of y axis
-//				// for a more regular ploting
-//				double yrange[2] = { 1, 0 };
-//				for (auto test : numberOfTests) {
-//
-//					for (double v : worseTestAccuracy[test.first]) {
-//						yrange[0] = v < yrange[0] ? v : yrange[0];
-//					}
-//					for (double v : bestTestAccuracy[test.first]) {
-//						yrange[1] = v > yrange[1] ? v : yrange[1];
-//					}
-//
-//					float temp = (yrange[1] - yrange[0]) / 30;
-//					yrange[0] -= temp;
-//					yrange[1] += temp;
-//
-//				}
-//
-//				// Plot everything
-//				for (auto test : numberOfTests) {
-//					saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, resultsDestiny);
-//					savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, resultsDestiny, yrange);
-//				}
+				std::cout << std::fixed;
+				std::cout << std::setprecision(4);
+
+				// set the callback function in the Experiment06 class
+				Wav w;
+				w.setCallbackFunction(Experiment06::waveletAnaliticFunction);
+
+				// store the file path to be processed
+				std::string line;
+
+				/**
+				 * A data estructure witch will hold the wavelet transformed signals
+				 * haar
+				 * 	BARK
+				 * 		Class1
+				 * 			featureVector01
+				 * 			featureVector02
+				 * 			featureVector03
+				 * 			etc.
+				 * 		Class2
+				 * 			featureVector01
+				 * 			featureVector02
+				 * 			featureVector03
+				 * 			etc.
+				 * 		Etc.
+				 */
+				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results;
+
+				////////////////////////////////////////
+				/// Preparing to compute the progress //
+				////////////////////////////////////////
+				double cycles = 0;
+				double totalCycles = 0;
+
+				// Computes the cicles needed to compute all signals
+				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+					std::ifstream fileListStream;
+					fileListStream.open(classFilesList[i], std::ios::out);
+
+					while (std::getline(fileListStream, line))
+						totalCycles++;
+
+					fileListStream.clear();
+					fileListStream.close();
+				}
+				totalCycles = (classFilesList.size() - 1) * totalCycles;
+
+				//////////////////////////////////////////////////
+				/// Processing data with wavelet haar and BARK ///
+				//////////////////////////////////////////////////
+
+				// Initializes the experiment
+				Experiment06::init();
+
+				// Iterates over all files, this files
+				// have to represent our data classes
+				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+
+					// file reader
+					std::ifstream fileListStream;
+					fileListStream.open(classFilesList[i], std::ios::in);
+
+					// gets the file path to process
+					while (std::getline(fileListStream, line)) {
+
+						// Status
+						cycles++;
+						std::cout << "\rPreparing feature vectors... " << (cycles / totalCycles) * 100 << "%" << std::flush;
+
+						// lines that begins with # are going to be ignored
+						if (line.find("#") == 0) continue;
+
+						// Read the files and process it
+						w.read(line.data());
+						w.process();
+
+						// Store the parcial results
+						results["haar"][BARK][classFilesList[i]].push_back(w.getData());
+					}
+
+					fileListStream.clear();
+					fileListStream.close();
+				}
+
+				////////////////////////////
+				/// Classification phase ///
+				////////////////////////////
+
+				// Start a new line to give space
+				// to the next resports
+				std::cout << std::endl;
+
+				// Creating the confusion matrix structure
+				std::map<CONFUSION_POS, int> confusionMatrix;
+
+				// Holds the values for the graphic
+				// of accuracy versus the number of
+				// tests
+				std::map<double, std::vector<double>> numberOfTests;
+				std::map<double, std::vector<double>> bestTestAccuracy;
+				std::map<double, std::vector<double>> worseTestAccuracy;
+				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrix;
+				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrix;
+
+				// Holds the parcial user friendly reports
+				std::string partialReport;
+
+				// Used to calculate the accuracies
+				double temp;
+
+				// Used to calculate the worst accuracy of a percentage
+				double percentageWorstAccuracy;
+
+				// Used to calculate the best accuracy of a percentage
+				double percentageBestAccuracy;
+
+				// Stores the best and the worst confusion matrix
+				std::map<CONFUSION_POS, int> percentageBestConfusionMatrix;
+				std::map<CONFUSION_POS, int> percentageWorseConfusionMatrix;
+
+				// Holds the tests features vectors for live signals
+				std::vector<std::vector<double>> testLive;
+
+				// Holds the models features vectors for live signals
+				std::vector<std::vector<double>> modelLive;
+
+				// Holds the tests features vectors for spoofing signals
+				std::vector<std::vector<double>> testSpoofing;
+
+				// Holds the models features vectors for spoofing signals
+				std::vector<std::vector<double>> modelSpoofing;
+
+				// Creating the classifiers
+				classifiers::NeuralNetwork c(Experiment06::barkRanges.size() - 1, 1, 0.01, classifiers::NeuralNetwork::leakyRelu, classifiers::NeuralNetwork::dleakyRelu);
+				c.addHiddenLayer(4);
+
+				// Clearing the results for the next iteration
+				numberOfTests.clear();
+				bestTestAccuracy.clear();
+				worseTestAccuracy.clear();
+				bestConfusionMatrix.clear();
+				worseConfusionMatrix.clear();
+
+				// Changes the percentage of the feature vectors used as models for the classifier
+				for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
+
+					// Preparing network for the next iteration
+					std::cout << "Next iteration!" << std::endl;
+
+					// Initializing the accuracies
+					percentageBestAccuracy = -std::numeric_limits<double>().max();
+					percentageWorstAccuracy = std::numeric_limits<double>().max();
+
+					// Used for trainning
+					std::vector<double> target(1);
+
+					// Used for classification
+					std::vector<double> guess(2);
+
+					// Changes the amount of tests done against the dataset
+					for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {
+
+						// Do the classification and populate the confusion matrix
+						for (unsigned int k = 0; k < amountOfTests; k++) {
+
+							// Sampling the live signals
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
+							// Sampling the spoofing signals
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+
+							// Trainning
+							target[0] = 1;
+							for (auto sample : modelLive) {
+								c.train(sample, target);
+							}
+
+							target[0] = 0;
+							for (auto sample : modelSpoofing) {
+								c.train(sample, target);
+							}
+
+						}
+
+						// Preparing confusion matrix
+						confusionMatrix[TP] = 0;
+						confusionMatrix[FP] = 0;
+						confusionMatrix[TN] = 0;
+						confusionMatrix[FN] = 0;
+
+						// Test it out!!
+						for (auto test : testLive) {
+							guess = c.feedForward(test);
+
+							if (guess[0] >= .5) {
+								confusionMatrix[TP] += 1;
+							} else {
+								confusionMatrix[FP] += 1;
+							}
+						}
+
+						for (auto test : testSpoofing) {
+							guess = c.feedForward(test);
+
+							if (guess[0] < .5) {
+								confusionMatrix[TN] += 1;
+							} else {
+								confusionMatrix[FN] += 1;
+							}
+						}
+
+						////////////////////////
+						/// Conclusion phase ///
+						////////////////////////
+
+						// calculate the best accuracy
+						temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
+
+						if (temp > percentageBestAccuracy) {
+							percentageBestAccuracy = temp;
+							percentageBestConfusionMatrix = confusionMatrix;
+							partialReport = std::to_string(percentageBestAccuracy) + "\n";
+						}
+
+						if (temp < percentageWorstAccuracy) {
+							percentageWorstAccuracy = temp;
+							percentageWorseConfusionMatrix = confusionMatrix;
+							partialReport = std::to_string(percentageBestAccuracy) + "\n";
+						}
+						partialReport += "\n" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\n" + std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]) + "\n";
+
+						// Store the results for the graphic
+						numberOfTests[modelPercentage].push_back(amountOfTests);
+						bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
+						worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
+						bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
+						worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
+
+						// Report for this amount of tests
+						std::cout << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
+					}
+				}
+
+				// Calculates the range of y axis
+				// for a more regular ploting
+				double yrange[2] = { 1, 0 };
+				for (auto test : numberOfTests) {
+
+					for (double v : worseTestAccuracy[test.first]) {
+						yrange[0] = v < yrange[0] ? v : yrange[0];
+					}
+					for (double v : bestTestAccuracy[test.first]) {
+						yrange[1] = v > yrange[1] ? v : yrange[1];
+					}
+
+					float temp = (yrange[1] - yrange[0]) / 30;
+					yrange[0] -= temp;
+					yrange[1] += temp;
+
+				}
+
+				// Plot everything
+				for (auto test : numberOfTests) {
+					saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, resultsDestiny);
+					savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, resultsDestiny, yrange);
+				}
 
 			}
 	};

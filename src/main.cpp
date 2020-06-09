@@ -21,6 +21,10 @@ int main(int argc, char *args[]) {
 	unsigned int numberOfTests;
 	std::string spoofingFileList;
 
+	//Ensuring the random numbers
+	// are going to honor its names
+	std::srand(std::time(nullptr));
+
 	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel, experiment);
 
 	switch (res) {
