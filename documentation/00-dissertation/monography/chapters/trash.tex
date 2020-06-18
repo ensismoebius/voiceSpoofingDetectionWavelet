@@ -1,0 +1,19 @@
+			\subsubsection{Base de comparação}
+				\par Para fins comparativos, foi criado um sinal periódico sobre o qual serão aplicadas as transformadas \textit{wavelet} correspondentes aos melhores e piores desempenhos, os resultados dessa aplicação, assim como o sinal original, constituem um gráfico comparativo.
+				\par O sinal periódico foi construído com a sequência \textit{32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34} repetida 32 vezes totalizando um total de 512 posições. Considerando a abordagem de decomposição máxima, foram aplicadas as transformadas \textit{wavelet packet} até o nível 8.
+			\subsubsection{Comparativo}
+				\par O comparativo foi feito em um gráfico gerado a partir das transformadas \textit{wavelet packet} supracitadas no qual se pode notar as diferenças entre os sinais gerados.
+			\subsubsection{Algoritmo}
+				\input{codeListings/experiment04Algo.tex}
+
+		\subsection{Experimento 05 - Comparação da escalas BARK e MEL}
+		\label{chap:propApproach:sec:Experimento05}
+			\subsubsection{Apresentação}
+				\par Por fim, nesta parte foram verificados os desempenhos das escalas combinadas com suas respectivas \textit{wavelets}, novamente tais dados foram retirados do experimento \ref{chap:propApproach:sec:Experimento01}.
+				\par A geração dos vetores de características foi feita utilizando-se a base de dados já constituída e os mesmos algoritmos de análise com uma pequena diferença: \textbf{A derivação} dos sinais, realizada na finalização da escala \textbf{MEL}, foi \textbf{desativada} para que fosse possível analisar os valores gerados dentro dos seus intervalos que, de outro modo, seriam diminuídos em dois.
+
+				\par O objetivo aqui é mostrar por quê a escala \textbf{BARK} fornece um conjunto melhor de vetores de características dentro do contexto da análise de \textit{voice spoofing}.
+
+			\subsubsection{Comparativo}
+				\par O comparativo foi feito em vários gráficos de dispersão que aglutinam os intervalos das escalas em eixos verticais. 
+				\par As combinações \textit{wavelet packet + escalas BARK ou MEL} e sinais \textit{spoofing}/\textit{não spoofing} geram, cada uma, um gráfico.

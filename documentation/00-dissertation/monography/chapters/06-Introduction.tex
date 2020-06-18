@@ -1,20 +1,6 @@
 \chapter{Introdução}
-	\section{Considerações Iniciais}
-		\par Os \textit{voice spoofing attacks} do tipo \textit{playback speech} constituem o tema de estudo deste trabalho.
-						 
-	\section{Objetivos}
-		\par Encontrar um conjunto de características que demonstrem ser as mais disjuntas possíveis para fins de separação entre as classes, com o objetivo de melhorar a acurácia de classificadores para detecção de ataques de \textit{voice spoofing}. Caraterísticas essas com base nas transformadas \textit{wavelet}, devido as boas resoluções em relação às dimensões de tempo e frequência. Essas características serão avaliadas usando a análise paraconsistente de acordo com o trabalho \cite{8588433} recentemente publicado.
+	\section{Considerações Iniciais e Objetivos deste Trabalho}
+		\par Os \textit{voice spoofing attacks} do tipo \textit{playback speech} constituem o tema de estudo deste trabalho. Particularmente, objetiva-se encontrar um conjunto de características que demonstrem ser as mais disjuntas possíveis para fins de separação entre duas classes, isto é, locuções genuínas e falsificadas, com o objetivo de utilizá-las em associação com classificadores e, assim, obter uma técnica eficiente para detectar tentativas de burlar os sistemas de verificação de locutores por voz. As caraterísticas examinadas, que foram obtidas com base na Transformada \textit{Wavelet} devido as boas resoluções em relação às dimensões de tempo e frequência, foram avaliadas usando a Análise Paraconsistente de acordo com o trabalho \cite{8588433}, recentemente publicado. Uma vez avaliadas, os melhores descritores foram isolados para uso em conjunto com três estruturas de classificação: distância Euclidiana, distância Manhattan e Máquina de Vetores de Suporte (SVM). Os resultados foram apresentados e discutidos detalhadamente, conduzindo a um conjunto de interessantes conclusões, tanto do ponto de vista de processamento digital de sinais quanto de sistemas inteligentes. 
 			
 	\section{Estrutura do trabalho}
-		\par No capítulo \ref{chap:revBibli} se realizará uma revisão dos seguintes conceitos:
-		\begin{itemize}
-			\item Engenharia paraconsistente.
-			\item Filtros digitais usando wavelets e packet wavelets.
-			\item Sub-amostragem.
-			\item Amostragem, quantização e o formato do arquivo Wave.
-			\item Caracterização dos processos de produção da voz humana.
-			\item Escalas e energias dos sinais.
-		\end{itemize}
-		\par Em seguida no capítulo \ref{chap:propApproach} apresentar-se-á a proposta de aproximação do problema usada nesta investigação. 
-		\par No capítulo \ref{chap:testsResults} são mostrados os testes e resultados obtidos para, no capítulo \ref{chap:conclusions} se apresentar as conclusões.
-		\par Ao final do documento se encontram as referências usadas e um apêndice contendo mais informações em relação ao estudo.
+		\par No Capítulo \ref{chap:revBibli} é realizada uma revisão dos seguintes conceitos: amostragem, quantização e o formato do arquivos WAV, caracterização dos processos de produção da voz humana, escalas e energias dos sinais, filtros digitais usando \textit{wavelets} e \textit{wavelet-packets}, Engenharia Paraconsistente de Características, além dos trabalhos correlatos contemplando o estado-da-arte. Em seguida, no Capítulo \ref{chap:propApproach}, apresentar-se-á a abordagem proposta para solucionar o problema considerado nesta investigação. No capítulo \ref{chap:testsResults}, são mostrados os testes e os resultados obtidos para que, no Capítulo \ref{chap:conclusions}, apresentem-se as conclusões. Ao final do documento, encontram-se as referências usadas e um apêndice contendo informações complementares em relação ao estudo.
