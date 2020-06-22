@@ -14,7 +14,7 @@
 			\par A estrutura de interesse se localiza na última parte do arquivo, mais especificamente no bloco ``data'' ilustrado em azul na Figura. Nele, os dados são organizados como um grande vetor de números, em formato \textit{little endian} \cite{adiga2007writing}, sendo que cada um deles indica a intensidade do sinal naquele ponto. A descrição pormenorizada do bloco ``data'', consultada em \cite{microsoftIbmWaveSpec}, foi utilizada neste trabalho para possibilitar a extração dos dados brutos dos sinais utilizados. 
 
 		\subsection{Sinais Digitais e Sub-amostragem  (\textit{Downsampling})}
-			\par Os sinais de voz digitais, isto é, aqueles que estão amostrados e quantizados \cite{haykin2011sistemas}, constituem a base deste trabalho. Além do processo de digitalização, inerente ao ato de armazenar locuções em computadores, os sinais podem sofrer, a depender da necessidade ou possibilidade, sub-amostragens ou \textit{downsamplings} \cite{XXXXXX}. Isso implica a estratégia de redução de dimensão e, comumente, ocorre após a conversão de domínio dos sinais com base em filtros digitais do tipo \textit{wavelet}, a serem apresentados adiante. Um exemplo consta na Figura \ref{fig:downsampling}, na qual as partes pretas contêm dados e as brancas representam os elementos removidos. Tendo em vista que este trabalho está baseado em sinais de voz digitais filtrados com base em \textit{wavelets}, o processo de sub-amostragem é essencial. 
+			\par Os sinais de voz digitais, isto é, aqueles que estão amostrados e quantizados \cite{haykin2011sistemas}, constituem a base deste trabalho. Além do processo de digitalização, inerente ao ato de armazenar locuções em computadores, os sinais podem sofrer, a depender da necessidade ou possibilidade, sub-amostragens ou \textit{downsamplings} \cite{robi2003}. Isso implica a estratégia de redução de dimensão e, comumente, ocorre após a conversão de domínio dos sinais com base em filtros digitais do tipo \textit{wavelet}, a serem apresentados adiante. Um exemplo consta na Figura \ref{fig:downsampling}, na qual as partes pretas contêm dados e as brancas representam os elementos removidos. Tendo em vista que este trabalho está baseado em sinais de voz digitais filtrados com base em \textit{wavelets}, o processo de sub-amostragem é essencial. 
 			\begin{figure}[h]
 				\centering
 				\includegraphics[width=0.7\linewidth]{images/downsampling}
@@ -23,14 +23,14 @@
 			\end{figure}
 			
 		\subsection{Caracterização dos processos de produção da voz humana}
-			\par A fala possui três grandes áreas de estudo: a fisiológica, também conhecida como fonética articulatória, a acústica, referida como fonética acústica, e, ainda, a perceptual, que cuida da percepção  da  fala \cite{kremer2014eficiencia}. Neste trabalho, o foco será apenas na questão acústica, pois não serão analisados aspectos da fisiologia relacionada à voz, mas sim os sinais sonoros propriamente dito.
+			\par A fala possui três grandes áreas de estudo: a fisiológica, também conhecida como fonética articulatória, a acústica, referida como fonética acústica, e, ainda, a perceptual, que cuida da percepção  da  fala \cite{kremer2014eficiencia}. Neste trabalho, o foco será apenas na questão acústica, pois não serão analisados aspectos da fisiologia relacionada à voz, mas sim os sinais sonoros propriamente ditos.
 			
 			\subsubsection{Sinais Vozeados \textit{Versus} Não-vozeados}
 
 			\par Quando da análise dos sinais de voz, consideram-se as partes vozeadas e não-vozeadas. Aquelas são produzidas com a ajuda da vibração quase periódica das pregas vocais, enquanto estas praticamente não contam com participação regrada da referida estrutura.
 			
 			\subsubsection{Frequência fundamental da voz}
-				\par Também conhecida como $F_0$, é o componente periódico resultante da vibração das pregas vocais. Em termos de percepção, se pode interpretar $F_0$ como o tom da voz, isto é, \textit{pitch} \cite{kremer2014eficiencia}. Vozes agudas tem um \textit{pitch} alto, enquanto que vozes mais graves tem um \textit{pitch} baixo. A alteração do \textit{pitch} durante a fala é definido como entonação.
+				\par Também conhecida como $F_0$, é o componente periódico resultante da vibração das pregas vocais. Em termos de percepção, se pode interpretar $F_0$ como o tom da voz, isto é, \textit{pitch} \cite{kremer2014eficiencia}. Vozes agudas tem um \textit{pitch} alto, enquanto vozes mais graves tem um \textit{pitch} baixo. A alteração do \textit{pitch} durante a fala é definido como entonação.
 				
 				\par A frequência fundamental da voz é o número de vezes na qual uma forma de onda característica, que reflete a excitação pulmonar moldada pelas pregas vocais, se repete por unidade de tempo. Sendo assim, as medidas de $F_0$ geralmente são apresentadas em Hz \cite{freitas2013avaliaccao}.
 			
@@ -40,11 +40,11 @@
 					\par O sinal de excitação que atravessa as pregas vocais é rico em harmônicas, isto é, frequências múltiplas da fundamental. Tais harmônicas podem ser atenuadas ou amplificadas, em função da estrutura dos tratos vocal e nasal de cada locutor. Particularmente, o primeiro formante ($F_1$), relaciona-se à  amplificação  sonora  na  cavidade  oral  posterior  e  à  posição  da  língua  no  plano  vertical;  o segundo  formante  ($F_2$)  à  cavidade  oral  anterior  e  à  posição  da  língua  no  plano  horizontal; o terceiro  formante  ($F_3$)  relaciona-se  às  cavidades  à  frente  e  atrás  do  ápice  da  língua e, finalmente,  o  quarto formante  ($f_4$) relaciona-se  ao  formato  da  laringe  e  da  faringe  na  mesma  altura  \cite{valencca2014analise}. Formantes caracterizam fortemente os locutores, pois cada indivíduo possui um formato de trato vocal e nasal. Assim, tais frequências, que podem ser capturadas com ferramentas diversas, a exemplo da Transformada \textit{Wavelet}, são de suma importância na área de verificação de locutores.
 
 \subsection{Distâncias Euclidiana e Manhattan}
-    \par Por definição, as distâncias Euclidiana ($D_E$) e Manhattan ($D_M$) entre dos vetores $x[\cdot]$ e $y[\cdot]$ de tamanho $M$ são dadas, respectivamente, por:
+    \par Por definição, as distâncias Euclidiana ($D_E$) e Manhattan ($D_M$) entre dois vetores $x[\cdot]$ e $y[\cdot]$ de tamanho $M$ são dadas, respectivamente, por:
     \begin{equation}
      D_E = \sqrt{\sum\limits_{i=0}^{M-1}(x_i - y_i)^2}   
     \end{equation}
-e
+	e
     \begin{equation}
         D_M = \sqrt{\sum\limits_{i=0}^{M-1}|x_i - y_i|}   
         \qquad. 
@@ -55,9 +55,9 @@ e
 	\begin{equation}
 	E = \sum\limits_{i=0}^{M-1}(s_i)^2 \qquad.   
 	\end{equation}
-	$E$ pode ainda sofrer normalizações e ter a sua mensuração restrita a uma parte específica do sinal sob análise. Possibilidades para tais restrições podem, por exemplo, envolver as escalas BARK e MEL \cite{XXXXXX} que serão utilizadas neste trabalho.
+	$E$ pode ainda sofrer normalizações e ter a sua mensuração restrita a uma parte específica do sinal sob análise. Possibilidades para tais restrições podem, por exemplo, envolver as escalas BARK \cite{doi:10.1121-1.1908630} e MEL \cite{beranek1949acoustic} que serão utilizadas neste trabalho.
 	\subsubsection{A escala BARK}
-		\par BARK foi definida tendo em mente vários tipos de sinais acústicos. Essa escala corresponde ao conjunto de 25 bandas críticas da audição humana. Suas frequências-base de audiometria são, em Hz: \textbf{20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500}. Geralmente, sinais digitais no domínio temporal atravessam filtros passa-faixas \cite{XXXXXX} para os quais o início e o final da banda de passagem correspondem à frequências-base consecutivas e, em seguida, as e energias dos sinais filtrados são utilizadas como características descritivas de propriedades do sinal sob análise, como mostrado na Figura \ref{fig:barkfeaturevect}.
+		\par BARK foi definida tendo em mente vários tipos de sinais acústicos. Essa escala corresponde ao conjunto de 25 bandas críticas da audição humana. Suas frequências-base de audiometria são, em Hz: \textbf{20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500}. Nessa escala,os sinais digitais no domínio temporal atravessam filtros passa-faixas \cite{XXXXXX} para os quais o início e o final da banda de passagem correspondem à frequências-base consecutivas e, em seguida, as e energias dos sinais filtrados são utilizadas como características descritivas de propriedades do sinal sob análise, como mostrado na Figura \ref{fig:barkfeaturevect}.
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.6\linewidth]{images/barkFeatureVect}
@@ -65,8 +65,8 @@ e
 			\label{fig:barkfeaturevect}
 		\end{figure}
 	\subsubsection{A escala MEL}
-		\par Escala Mel, advinda do termo \textit{melody},  é uma adaptação da escala Bark para sinais de voz.  Nessa escala, as bandas consideradas são, em Hz: \textbf{20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000}.
-		\par A variante que será usada neste trabalho é conhecida como \textit{Mel-frequency cepstral coefficients}(MFCC) a qual inclui, além dos intervalos definidos, a aplicação da Transformada Discreta Cosseno \cite{XXXXXX} ou a Análise de Componentes Principais (PCA) \cite{XXXXXX} seguida de derivações no vetor do sinal resultante.
+		\par Escala Mel, advinda do termo \textit{melody},  é uma adaptação da escala Bark para sinais de voz. Dentre as várias implementações de bandas críticas a escolhida foi a implementação que contém os valores em Hz: \textbf{20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000}.
+		\par A variante que será usada neste trabalho é conhecida como \textit{Mel-frequency cepstral coefficients}(MFCC) a qual inclui, além dos intervalos definidos, a aplicação da Transformada Discreta Cosseno \cite{salomon2007data} ou a Análise de Componentes Principais (PCA) \cite{jolliffe2006principal} seguida de derivações no vetor do sinal resultante.
 		\par Novamente, desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala MEL podem, por si mesmas, constituir um vetor de características, como mostrado na Figura \ref{fig:barkfeaturevect}.
 		\begin{figure}[h]
 			\centering
@@ -75,7 +75,7 @@ e
 			\label{fig:melfeaturevect}
 		\end{figure}
 	
-			\subsection{Filtros Digitais \textit{Wavelet}}
+		\subsection{Filtros Digitais \textit{Wavelet}}
 			\par Filtros digitais \textit{wavelet} têm sido utilizados com sucesso para suprir as deficiências de janelamento de sinal apresentadas pelas Transformadas de Fourier e de Fourier de Tempo Reduzido. \textit{Wavelets} contam com variadas funções-filtro e têm tamanho de janela variável, o que permite uma análise multirresolução \cite{Rod5254905}. Particularmente, as \textit{wavelets} proporcionam a análise do sinal de forma detalhada tanto no espectro de baixa frequência quanto no de alta.
 			
 			\par É importante observar que, quando se trata de Transformadas \textit{Wavelet}, seis elementos estão presentes: dois filtros de análise, dois filtros de síntese e as funções ortogonais \textit{scaling} e \textit{wavelet}. No tocante a sua aplicação, só a transformada direta, e não a inversa, será usada na construção dos vetores de características. Portanto, os filtros de síntese, a função \textit{scaling} e a função \textit{wavelet} não serão elementos abordados aqui: eles somente interessariam caso houvesse a necessidade da transformada inversa.
@@ -106,18 +106,19 @@ e
 				\item finalmente, quando a resposta é \textbf{não linear}, acontece um deslocamento significativamente heterogêneo para as diferentes frequências que compõe o sinal.
 				\end{itemize}
 			
-			\par Idealmente, é desejável que todo filtro apresente boa resposta em frequência e em fase linear. Características de fase e frequência de algumas famílias de filtros \textit{wavelet} constam na Tabela 1.
+			\par Idealmente, é desejável que todo filtro apresente boa resposta em frequência e em fase linear. Características de fase e frequência de algumas famílias de filtros \textit{wavelet} constam na Tabela \ref{tab:waveletsProperties}.
 			
 			\input{tables/someWaveletsProperties.tex}
 
 		\subsubsection{O algoritmo de Mallat para a Transformada \textit{Wavelet}}
 			\par Baseando-se no artigo \cite{7079589}, percebe-se que algoritmo de Mallat faz com que aplicação das \textit{wavelets} seja uma simples multiplicação de matrizes. O sinal que deve ser transformado se torna uma matriz linear vertical. Os filtros passa-baixa e passa-alta tornam-se, nessa ordem, linhas de uma matriz quadrada que será completada segundo regras que serão mostradas mais adiante. É importante que essa matriz quadrada tenha a mesma dimensão que o sinal a ser transformado.
 		
-			\par Algo interessante a se notar é que, para que seja possível a transformação \textit{wavelet}, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}, que é a função geradora desse filtro, já que o filtro passa-alta pode ser construído a partir da ortogonalidade do primeiro.
+			\par Algo interessante a se notar é que, para que seja possível a transformação \textit{wavelet}, basta ter disponível o vetor do filtro passa-baixa calculado a partir da \textit{mother wavelet}, que é a função geradora desse filtro, já que o passa-alta pode ser construído a partindo-se da ortogonalidade do primeiro.
 			
 			\par Determinar a ortogonal de um vetor significa construir um vetor, tal que, o produto escalar do vetor original com sua respectiva ortogonal seja nulo.
 			
-			\par Considerando $h[\cdot]$ como sendo o vetor do filtro passa-baixas e $g[\cdot]$ seu correspondente ortogonal, tem-se que $h[\cdot] \cdot g[\cdot] = 0\qquad,$. Portanto, se $h[\cdot]=[a, b, c, d]$ então seu ortogonal será $g[\cdot]=[d, -c, b, -a]$ pois:
+			\par Considerando $h[\cdot]$ como sendo o vetor do filtro passa-baixas e $g[\cdot]$ seu correspondente ortogonal, tem-se que $h[\cdot] \cdot g[\cdot] = 0\qquad,$.
+			\par Portanto, se $h[\cdot]=[a, b, c, d]$ então seu ortogonal será $g[\cdot]=[d, -c, b, -a]$ pois:
 			
 			$$
 				h[\cdot] \cdot g[\cdot]  =
@@ -210,7 +211,7 @@ e
 			\par Para uma visualização mais completa, a Figura \ref{fig:haarWaveletExamples} pode ser consultada no apêndice deste documento.
 			
 			\subsection{Engenharia Paraconsistente de Características}
-				\par Nos processos de classificação, frequentemente surge a questão: ``Os vetores de características criados proporcionam uma boa separação de classes?''. A Engenharia Paraconsistente de Características \cite{XXXXXX}, recém publicada, é, em meio a outras técnicas, uma ferramenta que pode ser usada para responder essa questão.
+				\par Nos processos de classificação, frequentemente surge a questão: ``Os vetores de características criados proporcionam uma boa separação de classes?''. A Engenharia Paraconsistente de Características \cite{8588433}, recém publicada, é, em meio a outras técnicas, uma ferramenta que pode ser usada para responder essa questão.
 				
 				\par O processo inicia-se após a aquisição dos vetores de características para cada classe $C_n$. Se o número de classes presentes for, por exemplo, quatro então estas poderão ser representadas por $C_1, C_2, C_3, C_4$.
 				\par Em seguida é necessário o cálculo de duas grandezas:
@@ -262,7 +263,7 @@ e
 					\label{fig:betacalculation}
 				\end{figure}
 			
-			\par Uma vez que $\alpha$ e $\beta$ estejam definidos, é necessário obter os coeficientes $G_1$ e $G_2$, mencionados a seguir, considerando-se o plano paraconsistente \cite{XXXXXX}, isto é,  
+			\par Uma vez que $\alpha$ e $\beta$ estejam definidos, é necessário obter os coeficientes $G_1$ e $G_2$, mencionados a seguir, considerando-se o plano paraconsistente \cite{8588433}, isto é,  
 				
 				\begin{itemize}
 					\item verdade $\rightarrow$ fé total ($\alpha = 1$) e nenhum descrédito ($\beta = 0$)
