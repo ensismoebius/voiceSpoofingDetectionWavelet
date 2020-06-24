@@ -1,0 +1,11 @@
+Bases de dados:
+
+	- A maioria dos artigos usa as bases de dados prontas: ASVspoof2015, AVspoof2015 e reddots.
+
+	- A primeira foca em ataques chamados de "ataques de acesso lógico". Esses ataques envolvem sistemas nos quais o microfone não é controlado pelo sistema de detecção de spoofing. Como exemplo deste tipo de sistema temos aplicações em telefonia. Esses ataques sintetização de voz e replay.
+	- A segunda contêm uma mistura de ataques de acesso lógico e de acesso físico. Ataques de acesso físico tem como alvo aplicações nas quais o sistema tem controle do microfone. Neste tipo de aplicação os ataques são pensados para atuar diretamente no sensor do microfone.
+	- A terceira contém uma gama diversa de ataques baseados em replay a sistemas de acesso lógico.
+
+Estudar:
+	i-vectors
+	Gaussian Mixture Models	

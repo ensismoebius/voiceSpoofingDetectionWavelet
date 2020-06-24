@@ -230,7 +230,7 @@
 				\begin{figure}
 					\centering
 		       	\includegraphics[width=0.7\linewidth]{images/calculoAlpha.pdf}
-					\caption{Cálculo do coeficiente $\alpha$. XXXXXX XXXXXX ANDRÉ, insira aqui exemplos numéricos nas posições dos vetores.... fica bem mais fácil compreender se vc fizer isso XXXXXX XXXXXX}
+					\caption{Cálculo do coeficiente $\alpha$.}
 					\label{fig:calculoalpha}
 				\end{figure}
 				
@@ -259,7 +259,7 @@
 				\begin{figure}[h]
 					\centering
 		    	\includegraphics[width=0.55\linewidth]{images/betaCalculation.pdf}
-					\caption{Cálculo de $\beta$. XXXXXX XXXXXX ANDRÉ, idem Figura anterior XXXXXX XXXXXX.}
+					\caption{Cálculo de $\beta$.}
 					\label{fig:betacalculation}
 				\end{figure}
 			
@@ -317,11 +317,10 @@
 		\par Na prática, ou seja, para fins de classificação, geralmente considera-se a distância em relação ao ponto \textit{``(1,0) $\rightarrow$ Verdade''}, que é o ponto ótimo: quanto mais próximo o ponto $(G_1,G_2)$ estiver de $(1,0)$, mais as os vetores de características das diferentes classes estão naturalmente separados. Isso implica a possibilidade do uso de classificadores mais modestos. 
 		
 	\section{Estado-da-arte em \textit{Playback Speech Detection}}
-	
-	XXXXXX XXXXXX ANDRE, COLOQUE TODAS AS REFERÊNCIAS DESTA SEÇÃO XXXXXX XXXXXX
-	
 		\par No artigo \cite{Ren2019}, foi apresentado um esquema de diferenciação entre a fala comum e aquela vinda de um dispositivo reprodutor. O foco da análise se deu na distorção causada pelo alto-falante, segundo a energia e outras várias características do espectro do sinal. Uma base com 771 sinais de fala foi criada para cada um dos quatro dispositivos de gravação usados, totalizando 3084 segmentos de voz. Uma SVM foi usada como classificador. De acordo com os experimentos, a \textit{taxa de verdadeiros positivos} foi de 98,75\% e a \textit{taxa de verdadeiros negativos} foi de 98,75\%.
-		
+			
+		\par Em \cite{DiqunYan2019} é mostrado um método para diferenciar a voz de um locutor verdadeiro da voz gerada por sistemas usando sintetizadores baseados no \textit{modelo oculto de Markov} (HMM). SAS\cite{SAS2019} foi a escolha de base de dados. Este método usa coeficientes de características logarítmicos extraídos de wavelets que são apresentados a um classificador SVM. Os resultados obtidos tiverem, em média, mais de 99\% de acurácia.
+
 		\par Usando uma decomposição por espalhamento baseada em \textit{wavelets} e convertendo o resultado em coeficientes cepstrais (SCCs), o artigo \cite{7802552} contém a descrição de um vetor de características que é avaliado por Modelos de Misturas Gaussianas (GMM) para fins de \textit{playback speech detection}. SAS e ASVspoof 2015 \cite{ASVspoof2015} foram as bases de dados escolhidas para os testes. Em relação aos resultados, foram usadas a \textit{taxa de falsos verdadeiros} (FAR) que representa a taxa de ocorrências falsas classificadas como verdadeiras e a \textit{taxa de falsos falsos} (FRR) que é a taxa de ocorrências verdadeiras classificadas como falsas. Os pontos em que FAR é igual a FRR foram definidos como pontos de taxa de erros iguais (ERR) e a relação $\dfrac{FAR}{FRR}$, igual a 0,18 naquele caso, foi usada como parâmetro de avaliação.
 
 		\par Em \cite{alluri2019replay}, os autores usam o \textit{zero time windowing} ou janelamento de tempo zero (ZTW) para, em conjunto com a análise cepstral do espectro gerado, fazer a análise dos sinais de voz. Os experimentos foram feitos usando-se a base ASVspoof 2017\cite{ASVspoof2017} com um classificador GMM e a taxa geral de ERR dos experimentos foi de 0,1475.
@@ -332,26 +331,36 @@
 
 		\par Para detecção de \textit{playback speech}, os autores do artigo  \cite{ISI:000473343500086} importaram, da área de processamento de imagens, o conceito de textura para o processamento de voz. Padrões binários locais (LBP) e seus respectivos histogramas foram usados para a construção do vetor de características que foi avaliado por uma SVM. A base de dados usada para testes foi a ASVspoof 2015 e a taxa máxima de acurácia conseguida foi de 0,7167.
 		
-		\par Uma abordagem que combina análise de sinal de fala usando a \textit{Transformada Constante Q} (CQT) com o processamento cepstral foi mostrada no artigo \cite{TODISCO2017516}. Essa técnica resulta no que se chama \textit{coeficientes cepstrais de constante Q}(CQCCs). Segundo o artigo, a vantagem desses coeficientes é a resolução de espectro temporal variável. As base de dados usadas foram a RedDots \cite{redDots}, ASVspoof 2015 e AVSpoof. Foram usados três classificadores:
-		\begin{itemize}
-			\item DA-IICT: uma fusão de dois classificadores GMM, sendo que um deles usa \textit{coeficientes cepstrais de frequência MEL}(MFCC) e o outro usa características CFCC-IF \cite{Patel2015};
-			\item STC \cite{7472724} XXXXXX ANDRE PRECISA DEFINIR O QUE É ISSO XXXXXX;
-			\item SJTU \cite{korshunov2016overview} XXXXXX IDEM XXXXXX .
-		\end{itemize}			
-		Foram realizados testes para cada uma das bases com os seguintes resultados: ASVspoof 2015 $\rightarrow$ EER geral de 0.026; AVspoof $\rightarrow$ EER geral de 0; RedDots $\rightarrow$ EER geral de 0,185.
+		\par Uma abordagem que combina análise de sinal de fala usando a \textit{Transformada Constante Q} (CQT) com o processamento cepstral foi mostrada no artigo \cite{TODISCO2017516}. Essa técnica resulta no que se chama \textit{Coeficientes Cepstrais de Constante Q}(CQCCs). Segundo o artigo, a vantagem desses coeficientes é a resolução de espectro temporal variável. As bases de dados usadas foram a RedDots \cite{redDots}, ASVspoof 2015 e AVSpoof 2015. Em se tratando de classificadores foram usados dois GMMs, cada um treinado usando os dados genuínos e \textit{spoofing} respectivamente. Os testes realizados para cada uma das bases chegou aos seguintes resultados: ASVspoof 2015 $\rightarrow$ EER geral de 0.026; AVspoof 2015 $\rightarrow$ EER geral de 0; RedDots $\rightarrow$ EER geral de 0,185.
 
-		\par O artigo \cite{ISI:000490497200068} propõe uma solução para distinguir sinais de voz genuinos daqueles regrados usando reverberação e as partes não vozeadas da fala. Três GMMs foram definidos para a classificação, em uma estratégia que vota se uma ocorrência é ou não verdadeira, ganhado sempre a classificação que obtiver mais votos. A base de dados utilizada foi a ASVSpoof 2017. O sistema de avaliação de desempenho escolhido, novamente, foi o ERR e esta alcançou um valor de 2,99.
+		%% FIXME Ler o artigo e terminar esta parte
+		\par No artigo \cite{Patel2015} \textit{Coeficientes Cepstrais de Filtro coclear - Frequência Instantânea}(CFCC-IF) INCOMPLETO! TERMINAR!!!!.
+
+		\par O artigo \cite{ISI:000490497200068} propõe uma solução para distinguir sinais de voz genuínos daqueles regrados usando reverberação e as partes não vozeadas da fala. Três GMMs foram definidos para a classificação, em uma estratégia que vota se uma ocorrência é ou não verdadeira, ganhado sempre a classificação que obtiver mais votos. A base de dados utilizada foi a ASVSpoof 2017. O sistema de avaliação de desempenho escolhido, novamente, foi o ERR e esta alcançou um valor de 2,99.
 		
 		\par A principal ideia do artigo \cite{ISI:000465363900136} foi a de capturar a amplitude instantânea vinda de flutuações de energia para distinguir entre sinais de voz genuínos daqueles regravados. Segundo os autores, as modulações de amplitude são mais suscetíveis ao ruído inserido no sinal original por uma fonte reprodutora. O estudo usa a base de dados ASVSpoof 2017 e GMM como classificador. Os resultados apresentados chegaram a uma EER de 0.0019.
 
 		\par No trabalho \cite{ISI:000465363900139}, foram usadas as diferenças entre bandas de frequências específicas para diferenciar um sinal legítimo de um usado em ataques de falsificação. Particularmente, foi proposta a \textit{predição linear em domínio de frequência}(FDLP) juntamente com GMMs para classificação dos dados presentes na base ASVspoof  2017. Os resultados apresentados implicam a EER de 0.0803.
 		
-		\par No artigo \cite{Suthokumar2018}, os autores propuseram duas novas características que visam interpretar as componentes estáticas e dinâmicas do sinal, complementando as características de tempo restrito no espectro, para distinguir entre locuções genuínas e regravadas. São elas a \textit{modulation  spectral  centroid  frequency} e \textit{long term spectral average}. O sistema usa como classificador um GMM juntamente com a base dados ASVSpoof 2017. Os resultados implicam o valor de EER de 0,0654.
+		\par No artigo \cite{Suthokumar2018}, os autores propuseram duas novas características que visam interpretar as componentes estáticas e dinâmicas do sinal, complementando as características de tempo restrito no espectro, para distinguir entre locuções genuínas e regravadas. São elas a \textit{Modulation  Spectral Centroid Frequency} e \textit{Long Term Spectral Average}. O sistema usa como classificador um GMM juntamente com a base dados ASVSpoof 2017. Os resultados implicam o valor de EER de 0,0654.
 		
 		\par Considerando o envelopamento das amplitudes e das frequências instantâneas em cada banda estreita filtrada, os autores do artigo \cite{ISI:000458728700054} discutiram como diferenciar um sinal de voz legítimo de um regravado. A base de dados usada foi a  ASVSpoof 2015 e o GMM foi o classificador escolhido. A proposta alcançou a EER de 0,045.
 
 		\par No artigo científico \cite{ISI:000392503100008}, foi proposto o uso do \textit{gammatone frequency cepstral coefficients}(MGFCC). O gammatone é o produto de uma distribuição gamma com um sinal senoidal e é usado na construção de filtros auditivos que, neste caso, são usados para extrair características do sinal de voz. A base de dados usada foi a ASVspoof 2015 e o classificador usado foi um GMM. Na distinção entre vozes genuínas e regravadas, o EER chegou a 0,02556.
 		
-		\par Segundo o artigo \cite{8396208}, o \textit{hashing} sensível a \textit{locus} (LSH), que é frequentemente usado como um classificador para problemas relacionados a \textit{big data}, foi combinado com coeficientes MFCCs para distinção entre locuções genuínas e regravadas. No método, os MFCCs foram extraído dos arquivos de sinal para posterior aplicação do LSH, gerando assim uma tabela \textit{hash}. Esses valores de \textit{hash} foram então comparados, identificando assim o locutor ou locutora. Nos testes realizados houve uma acurácia de 92,66\% e base de dados usada foi a TIMIT 2018 \cite{TIMIT2018}.
+		\par Segundo o artigo \cite{8396208}, o \textit{hashing} sensível a \textit{locus} (LSH), que é frequentemente usado como um classificador para problemas relacionados a \textit{big data}, foi combinado com coeficientes MFCCs para distinção entre locuções genuínas e regravadas. No método, os MFCCs foram extraídos dos arquivos de sinal para posterior aplicação do LSH, gerando assim uma tabela \textit{hash}. Esses valores de \textit{hash} foram então comparados, identificando assim o locutor ou locutora. Nos testes realizados houve uma acurácia de 92,66\% e base de dados usada foi a TIMIT 2018 \cite{TIMIT2018}.
 		
-		XXXXXX XXXXXX ANDRE, aqui voce precisa de um longo parágrafo para fechar os comentários. Precisa comparar a sua proposta de trabalho com os artigos mencionados, contextualizando-o. aponte diferencas e semelhancas da sua proposta com os artigos. Pode pegar mais alguns artigos de 2019 e 2020, se puder.... Ficaria legal... Depois posso recorrigir esta seção novamente, se quiser.... 
+		\par A quase totalidade dos trabalhos apresentam como principal característica o uso de uma escala MEL combinada com outras técnicas para construção do método de detecção de \textit{voice spoofing}. Escolhidos os métodos de geração dos vetores de características, foram selecionados classificadores variados com destaque para o \textit{Gaussian Mixture Models}(GMM), o mais escolhido. Divergindo deste caminho este trabalho antes escolheu uma série de métodos candidatos para geração dos \textit{feature vectors} baseados em \textit{wavelets} e nas escalas \textit{BARK} e \textit{MEL}, tais candidaturas foram avaliadas segundo a engenharia paraconsistente de características que selecionou a melhor combinação  dentre as opções apresentadas. Surpreendentemente, apesar de boa parte dos artigos se basearem em bandas críticas baseadas em \textit{MEL}, os resultados nessa dissertação apontaram que a escala que mais destaca os elementos de classes diferentes é a \textit{BARK}. Outra coisa interessante a se notar é escasso uso de wavelets apesar das mesmas oferecerem uma boa resolução de frequência e tempo em diferentes escalas.
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		XXXXXX XXXXXX ANDRE, aqui voce precisa de um longo parágrafo para fechar os comentários. Precisa comparar a sua proposta de trabalho com os artigos mencionados, contextualizando-o. aponte diferencas e semelhancas da sua proposta com os artigos. Pode pegar mais alguns artigos de 2019 e 2020, se puder. Ficaria legal. Depois posso recorrigir esta seção novamente, se quiser.
