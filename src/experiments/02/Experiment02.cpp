@@ -21,6 +21,7 @@
 #include "../../lib/wavelet/Types.h"
 #include "../../lib/vector/vectorUtils.h"
 #include "../../lib/gnuplot/gnuplotCalls.h"
+#include "../../lib/statistics/statistics.h"
 #include "../../lib/wavelet/waveletOperations.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
@@ -160,7 +161,7 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny, double yrange[2]) {
+			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double stdDeviation, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny, double yrange[2]) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -172,7 +173,7 @@ namespace waveletExperiments {
 
 				plt::ylim(yrange[0], yrange[1]);
 
-				plt::title("Accuracy of BARK over Haar wavelet using " + distType + " distance classifier\n with model size of " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data");
+				plt::title("Accuracy of BARK over Haar wavelet using " + distType + " distance classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
 
 				plt::named_plot("Best accuracy", numberOfTests, bestTestAccuracy, "-");
 				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
@@ -336,11 +337,15 @@ namespace waveletExperiments {
 				// Holds the values for the graphic
 				// of accuracy versus the number of
 				// tests
-				std::map<double, std::vector<double>> numberOfTests;
-				std::map<double, std::vector<double>> bestTestAccuracy;
-				std::map<double, std::vector<double>> worseTestAccuracy;
-				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrix;
-				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrix;
+				std::map<double, std::vector<double>> numberOfTestForEachPercentage;
+
+				std::map<double, double> stdDeviationForEachPercentage;
+				std::map<double, std::vector<double>> allAccuracies;
+				std::map<double, std::vector<double>> bestTestAccuracyForEachPercentage;
+				std::map<double, std::vector<double>> worseTestAccuracyForEachPercentage;
+
+				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrixForEachPercentage;
+				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrixForEachPercentage;
 
 				// Holds the parcial user friendly reports
 				std::string partialReport;
@@ -377,11 +382,11 @@ namespace waveletExperiments {
 				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++) {
 
 					// Clearing the results for the next iteration
-					numberOfTests.clear();
-					bestTestAccuracy.clear();
-					worseTestAccuracy.clear();
-					bestConfusionMatrix.clear();
-					worseConfusionMatrix.clear();
+					numberOfTestForEachPercentage.clear();
+					bestTestAccuracyForEachPercentage.clear();
+					worseTestAccuracyForEachPercentage.clear();
+					bestConfusionMatrixForEachPercentage.clear();
+					worseConfusionMatrixForEachPercentage.clear();
 
 					// Changes the percentage of the feature vectors used as models for the classifier
 					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
@@ -450,30 +455,36 @@ namespace waveletExperiments {
 									partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
 								}
 
+								// store the current accuracy (will be use to calculate the standard deviation)
+								allAccuracies[modelPercentage].push_back(temp);
 							}
 
 							// Store the results for the graphic
-							numberOfTests[modelPercentage].push_back(amountOfTests);
-							bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
-							worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
-							bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
-							worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
+							numberOfTestForEachPercentage[modelPercentage].push_back(amountOfTests);
+							bestTestAccuracyForEachPercentage[modelPercentage].push_back(percentageBestAccuracy);
+							worseTestAccuracyForEachPercentage[modelPercentage].push_back(percentageWorstAccuracy);
+							bestConfusionMatrixForEachPercentage[modelPercentage] = percentageBestConfusionMatrix;
+							worseConfusionMatrixForEachPercentage[modelPercentage] = percentageWorseConfusionMatrix;
 
 							// Report for this amount of tests
-
 							std::cout << (static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType) == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan: " : "Euclidian: ") << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
 						}
+					}
+
+					//Calculates the standard deviation for each percentage
+					for (auto test : numberOfTestForEachPercentage) {
+						stdDeviationForEachPercentage[test.first] = statistics::standardDeviation(allAccuracies[test.first]);
 					}
 
 					// Calculates the range of y axis
 					// for a more regular ploting
 					double yrange[2] = { 1, 0 };
-					for (auto test : numberOfTests) {
+					for (auto test : numberOfTestForEachPercentage) {
 
-						for (double v : worseTestAccuracy[test.first]) {
+						for (double v : worseTestAccuracyForEachPercentage[test.first]) {
 							yrange[0] = v < yrange[0] ? v : yrange[0];
 						}
-						for (double v : bestTestAccuracy[test.first]) {
+						for (double v : bestTestAccuracyForEachPercentage[test.first]) {
 							yrange[1] = v > yrange[1] ? v : yrange[1];
 						}
 
@@ -484,9 +495,9 @@ namespace waveletExperiments {
 					}
 
 					// Plot everything
-					for (auto test : numberOfTests) {
-						saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
-						savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny, yrange);
+					for (auto test : numberOfTestForEachPercentage) {
+						saveConfusionMatrices(bestConfusionMatrixForEachPercentage[test.first], worseConfusionMatrixForEachPercentage[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
+						savePlotResults(test.second, bestTestAccuracyForEachPercentage[test.first], worseTestAccuracyForEachPercentage[test.first], stdDeviationForEachPercentage[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny, yrange);
 					}
 
 				}

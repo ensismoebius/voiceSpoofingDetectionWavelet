@@ -21,6 +21,7 @@
 #include "../../lib/wavelet/Types.h"
 #include "../../lib/vector/vectorUtils.h"
 #include "../../lib/gnuplot/gnuplotCalls.h"
+#include "../../lib/statistics/statistics.h"
 #include "../../lib/wavelet/waveletOperations.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
@@ -334,7 +335,7 @@ namespace waveletExperiments {
 				// tests
 				std::map<double, std::vector<double>> numberOfTestsForEachPercentage;
 
-				std::map<double, double> stdDeviation;
+				std::map<double, double> stdDeviationForEachPercentage;
 				std::map<double, std::vector<double>> allAccuracies;
 				std::map<double, std::vector<double>> bestTestAccuracyForEachPercentage;
 				std::map<double, std::vector<double>> worseTestAccuracyForEachPercentage;
@@ -445,7 +446,6 @@ namespace waveletExperiments {
 								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
 							}
 
-							// TODO calculate the standard deviation and save it for each percentage
 							// store the current accuracy (will be use to calculate the standard deviation)
 							allAccuracies[modelPercentage].push_back(temp);
 						}
@@ -463,27 +463,8 @@ namespace waveletExperiments {
 				}
 
 				//Calculates the standard deviation for each percentage
-				double mean;
-				double variance;
 				for (auto test : numberOfTestsForEachPercentage) {
-					mean = 0;
-					variance = 0;
-					stdDeviation[test.first] = 0;
-
-					// Calculate the mean
-					for (auto accuracy : allAccuracies[test.first]) {
-						mean += accuracy;
-					}
-					mean /= allAccuracies[test.first].size();
-
-					// Calculate the variance
-					for (auto accuracy : allAccuracies[test.first]) {
-						variance += std::pow(accuracy - mean, 2);
-					}
-					variance /= allAccuracies[test.first].size();
-
-					// Calculate the standard deviation
-					stdDeviation[test.first] = std::sqrt(variance);
+					stdDeviationForEachPercentage[test.first] = statistics::standardDeviation(allAccuracies[test.first]);
 				}
 
 				// Calculates the range of y axis
@@ -507,7 +488,7 @@ namespace waveletExperiments {
 				// save plots and results
 				for (auto test : numberOfTestsForEachPercentage) {
 					saveConfusionMatrices(bestConfusionMatrixForEachPercentage[test.first], worseConfusionMatrixForEachPercentage[test.first], test.first, resultsDestiny);
-					savePlotResults(test.second, bestTestAccuracyForEachPercentage[test.first], worseTestAccuracyForEachPercentage[test.first], stdDeviation[test.first], test.first, resultsDestiny, yrange);
+					savePlotResults(test.second, bestTestAccuracyForEachPercentage[test.first], worseTestAccuracyForEachPercentage[test.first], stdDeviationForEachPercentage[test.first], test.first, resultsDestiny, yrange);
 				}
 
 			}
