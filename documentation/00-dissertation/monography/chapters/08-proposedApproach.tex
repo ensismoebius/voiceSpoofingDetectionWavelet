@@ -73,7 +73,7 @@
 		\label{chap:propApproach:sec:Experimento01}
 		\par O objetivo deste procedimento é o de verificar, segundo a Engenharia Paraconsistente, qual das combinações entre as escalas BARK ou MEL e as várias \textit{wavelets} consideradas geram os vetores de características mais propícios, ou seja, que atraem o ponto $(G_1,G_2)$ para uma posição mais próxima do vértice $(1,0)$ do plano paraconsistente, conforme mencionado no Capítulo anterior. 
 				
-		\par As transformações \textit{wavelet-packet} foram realizadas, com os diversos filtros mencionados, até  o máximo nível possível, implicando máxima resolução em frequência, para que, após isso, as amostras dos sinais transformados fossem agrupadas visando corresponder aos intervalos espectrais definidos nas escalas BARK e MEL. Naquela escala, os vetores de características foram constituídos de XXXXXX coeficientes. Diferentemente, nesta escala, os vetores de características foram formados com XXXXXX coeficientes. O algoritmo \ref{lst:experiment01Algo} contém a descrição de tais procedimentos.
+		\par As transformações \textit{wavelet-packet} foram realizadas, com os diversos filtros mencionados, até  o máximo nível possível, implicando máxima resolução em frequência, para que, após isso, as amostras dos sinais transformados fossem agrupadas visando corresponder aos intervalos espectrais definidos nas escalas BARK e MEL. Naquela escala, os vetores de características foram constituídos de 24 coeficientes. Diferentemente, nesta escala, os vetores de características foram formados com 13 coeficientes devido a derivação do sinal ao final do processo de geração. O algoritmo \ref{lst:experiment01Algo} contém a descrição de tais procedimentos.
 			
 		\input{codeListings/experiment01Algo.tex}
 
@@ -107,7 +107,7 @@
 
 		\subsection{Procedimento 03 - classificações baseadas na SVM}
 		\label{chap:propApproach:sec:Experimento03}
-		\par Considerando as melhores combinações descobertas durante o procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido pois estudos anteriores comprovam a sua eficácia para classificação binária \cite{XXXXXX}. 
+		\par Considerando as melhores combinações descobertas durante o procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido pois estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. 
 		
 		\par Particularmente, a estrutura da SVM utilizada foi definida da seguinte forma e de acordo com a Figura \ref{fig_svm}: 
 		\begin{itemize}
