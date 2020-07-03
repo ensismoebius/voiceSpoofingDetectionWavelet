@@ -170,7 +170,7 @@ namespace waveletExperiments {
 
 				plt::ylim(yrange[0], yrange[1]);
 
-				plt::title("Accuracy of BARK over Haar wavelet using SVM classifier\n with model size of " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data.\n Standard deviation of " + std::to_string(stdDeviation));
+				plt::title("Accuracy of BARK over Haar wavelet using SVM classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
 
 				plt::named_plot("Best accuracy", numberOfTests, bestTestAccuracy, "-");
 				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
@@ -471,14 +471,14 @@ namespace waveletExperiments {
 					stdDeviation[test.first] = 0;
 
 					// Calculate the mean
-					for (auto accuracies : allAccuracies[test.first]) {
-						mean += accuracies;
+					for (auto accuracy : allAccuracies[test.first]) {
+						mean += accuracy;
 					}
 					mean /= allAccuracies[test.first].size();
 
 					// Calculate the variance
-					for (auto accuracies : allAccuracies[test.first]) {
-						variance += std::pow(mean - accuracies, 2);
+					for (auto accuracy : allAccuracies[test.first]) {
+						variance += std::pow(accuracy - mean, 2);
 					}
 					variance /= allAccuracies[test.first].size();
 
