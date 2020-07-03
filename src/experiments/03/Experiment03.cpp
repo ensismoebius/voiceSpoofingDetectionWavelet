@@ -160,7 +160,7 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double pencentageSizeOfModel, std::string &resultsDestiny, double yrange[2]) {
+			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double stdDeviation, double pencentageSizeOfModel, std::string &resultsDestiny, double yrange[2]) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -170,7 +170,7 @@ namespace waveletExperiments {
 
 				plt::ylim(yrange[0], yrange[1]);
 
-				plt::title("Accuracy of BARK over Haar wavelet using SVM classifier\n with model size of " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data");
+				plt::title("Accuracy of BARK over Haar wavelet using SVM classifier\n with model size of " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data.\n Standard deviation of " + std::to_string(stdDeviation));
 
 				plt::named_plot("Best accuracy", numberOfTests, bestTestAccuracy, "-");
 				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
@@ -332,11 +332,15 @@ namespace waveletExperiments {
 				// Holds the values for the graphic
 				// of accuracy versus the number of
 				// tests
-				std::map<double, std::vector<double>> numberOfTests;
-				std::map<double, std::vector<double>> bestTestAccuracy;
-				std::map<double, std::vector<double>> worseTestAccuracy;
-				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrix;
-				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrix;
+				std::map<double, std::vector<double>> numberOfTestsForEachPercentage;
+
+				std::map<double, double> stdDeviation;
+				std::map<double, std::vector<double>> allAccuracies;
+				std::map<double, std::vector<double>> bestTestAccuracyForEachPercentage;
+				std::map<double, std::vector<double>> worseTestAccuracyForEachPercentage;
+
+				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrixForEachPercentage;
+				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrixForEachPercentage;
 
 				// Holds the parcial user friendly reports
 				std::string partialReport;
@@ -399,7 +403,10 @@ namespace waveletExperiments {
 							confusionMatrix[TN] = 0;
 							confusionMatrix[FN] = 0;
 
-							// Test it out!!
+							/////////////////////////////////////////
+							/// Populating the confusion matrices ///
+							/////////////////////////////////////////
+
 							for (auto test : testLive) {
 								if (c.evaluate(test) == classifiers::SupportVectorMachine::POSITIVE) {
 									confusionMatrix[TP] += 1;
@@ -420,9 +427,9 @@ namespace waveletExperiments {
 							/// Conclusion phase ///
 							////////////////////////
 
-							// calculate the best accuracy
 							temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
 
+							// store the best accuracy yet
 							if (temp > percentageBestAccuracy) {
 								percentageBestAccuracy = temp;
 								percentageBestConfusionMatrix = confusionMatrix;
@@ -430,6 +437,7 @@ namespace waveletExperiments {
 								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
 							}
 
+							// store the worst accuracy yet
 							if (temp < percentageWorstAccuracy) {
 								percentageWorstAccuracy = temp;
 								percentageWorseConfusionMatrix = confusionMatrix;
@@ -437,30 +445,56 @@ namespace waveletExperiments {
 								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
 							}
 
+							// TODO calculate the standard deviation and save it for each percentage
+							// store the current accuracy (will be use to calculate the standard deviation)
+							allAccuracies[modelPercentage].push_back(temp);
 						}
 
 						// Store the results for the graphic
-						numberOfTests[modelPercentage].push_back(amountOfTests);
-						bestTestAccuracy[modelPercentage].push_back(percentageBestAccuracy);
-						worseTestAccuracy[modelPercentage].push_back(percentageWorstAccuracy);
-						bestConfusionMatrix[modelPercentage] = percentageBestConfusionMatrix;
-						worseConfusionMatrix[modelPercentage] = percentageWorseConfusionMatrix;
+						numberOfTestsForEachPercentage[modelPercentage].push_back(amountOfTests);
+						bestTestAccuracyForEachPercentage[modelPercentage].push_back(percentageBestAccuracy);
+						worseTestAccuracyForEachPercentage[modelPercentage].push_back(percentageWorstAccuracy);
+						bestConfusionMatrixForEachPercentage[modelPercentage] = percentageBestConfusionMatrix;
+						worseConfusionMatrixForEachPercentage[modelPercentage] = percentageWorseConfusionMatrix;
 
 						// Report for this amount of tests
-
 						std::cout << "SVM: " << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
 					}
+				}
+
+				//Calculates the standard deviation for each percentage
+				double mean;
+				double variance;
+				for (auto test : numberOfTestsForEachPercentage) {
+					mean = 0;
+					variance = 0;
+					stdDeviation[test.first] = 0;
+
+					// Calculate the mean
+					for (auto accuracies : allAccuracies[test.first]) {
+						mean += accuracies;
+					}
+					mean /= allAccuracies[test.first].size();
+
+					// Calculate the variance
+					for (auto accuracies : allAccuracies[test.first]) {
+						variance += std::pow(mean - accuracies, 2);
+					}
+					variance /= allAccuracies[test.first].size();
+
+					// Calculate the standard deviation
+					stdDeviation[test.first] = std::sqrt(variance);
 				}
 
 				// Calculates the range of y axis
 				// for a more regular ploting
 				double yrange[2] = { 1, 0 };
-				for (auto test : numberOfTests) {
+				for (auto test : numberOfTestsForEachPercentage) {
 
-					for (double v : worseTestAccuracy[test.first]) {
+					for (double v : worseTestAccuracyForEachPercentage[test.first]) {
 						yrange[0] = v < yrange[0] ? v : yrange[0];
 					}
-					for (double v : bestTestAccuracy[test.first]) {
+					for (double v : bestTestAccuracyForEachPercentage[test.first]) {
 						yrange[1] = v > yrange[1] ? v : yrange[1];
 					}
 
@@ -470,10 +504,10 @@ namespace waveletExperiments {
 
 				}
 
-				// Plot everything
-				for (auto test : numberOfTests) {
-					saveConfusionMatrices(bestConfusionMatrix[test.first], worseConfusionMatrix[test.first], test.first, resultsDestiny);
-					savePlotResults(test.second, bestTestAccuracy[test.first], worseTestAccuracy[test.first], test.first, resultsDestiny, yrange);
+				// save plots and results
+				for (auto test : numberOfTestsForEachPercentage) {
+					saveConfusionMatrices(bestConfusionMatrixForEachPercentage[test.first], worseConfusionMatrixForEachPercentage[test.first], test.first, resultsDestiny);
+					savePlotResults(test.second, bestTestAccuracyForEachPercentage[test.first], worseTestAccuracyForEachPercentage[test.first], stdDeviation[test.first], test.first, resultsDestiny, yrange);
 				}
 
 			}

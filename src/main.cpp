@@ -44,7 +44,7 @@ int main(int argc, char *args[]) {
 			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			return 0;
 		case 6:
-			waveletExperiments::Experiment06::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			//waveletExperiments::Experiment06::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
 		case 0:
 			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
@@ -52,7 +52,7 @@ int main(int argc, char *args[]) {
 			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			waveletExperiments::Experiment04::perform();
 			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-			waveletExperiments::Experiment06::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			//waveletExperiments::Experiment06::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
 	}
 
