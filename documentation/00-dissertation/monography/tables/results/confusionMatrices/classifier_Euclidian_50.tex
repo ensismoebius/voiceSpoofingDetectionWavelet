@@ -9,11 +9,31 @@
 		% use packages: color,colortbl
 		\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{regravado}}\\
 
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{198}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{30}}\\
+		\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{195}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{29}}\\
 
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{regravado}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{7}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{175}}
+		\mc{1}{>{\columncolor{tcA}}r}{\textbf{regravado}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{10}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{176}}
 	\end{tabular}
-	\caption{Matriz de confusão para o classificador por distâncias Euclidianas com o uso de 50\% da base para modelagem}
-	\label{tab:classifier_Euclidian_50}
+	\caption{Melhor matriz de confusão para o classificador por distâncias Euclidianas com o uso de 50\% da base para modelagem}
+	\label{tab:classifier_Euclidian_50_best}
 \end{center}
+\end{table}
+
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcC}{rgb}{0,0,0}
+	\definecolor{tcD}{rgb}{0,0.4,0.701961}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\begin{center}
+		\begin{tabular}{ccc}
+			% use packages: color,colortbl
+			\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{regravado}}\\
+			
+			\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{193}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{79}}\\
+			
+			\mc{1}{>{\columncolor{tcA}}r}{\textbf{regravado}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{12}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{126}}
+		\end{tabular}
+		\caption{Pior matriz de confusão para o classificador por distâncias Euclidianas com o uso de 50\% da base para modelagem}
+		\label{tab:classifier_Euclidian_50_worse}
+	\end{center}
 \end{table}
