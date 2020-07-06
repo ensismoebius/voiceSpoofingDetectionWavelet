@@ -1,22 +1,30 @@
+
+
+
 \begin{table}[h]
 	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
 	\begin{center}
-		\begin{tabular}{|l|l|l|}\hline
+		\begin{tabular}{|p{0.15\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.14\linewidth}|}\hline
 			% use packages: color,colortbl
 			\rowcolor{tcA}
-			\textbf{Tamanho do modelo} & \textbf{Acurácia mínima} & \textbf{Acurácia máxima}\\\hline
+			\centering\textbf{Tamanho do modelo} & \centering\textbf{Acurácia mínima} & \centering\textbf{Acurácia máxima} & \centering\textbf{Média das acurácias} & \textbf{Desvio padrão das acurácias}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,6666} & \mc{1}{c|}{0,8861}\\\hline
+			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,681572} & \mc{1}{c|}{0,879404} & \mc{1}{c|}{0,780488} & \mc{1}{c|}{0,023899}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,7439} & \mc{1}{c|}{0,8902}\\\hline
+			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,740854} & \mc{1}{c|}{0,893293} & \mc{1}{c|}{0,8170735} & \mc{1}{c|}{0,017426}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,7665} & \mc{1}{c|}{0,8919}\\\hline
+			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,750871} & \mc{1}{c|}{0,909408} & \mc{1}{c|}{0,8301395} & \mc{1}{c|}{0,015134}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,7784} & \mc{1}{c|}{0,9024}\\\hline
+			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,770325} & \mc{1}{c|}{0,900407} & \mc{1}{c|}{0,835366} & \mc{1}{c|}{0,014444}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,7804} & \mc{1}{c|}{0,9097}\\\hline
+			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,778049} & \mc{1}{c|}{0,904878} & \mc{1}{c|}{0,8414635} & \mc{1}{c|}{0,015132}\\\hline
 		\end{tabular}
 	\end{center}
 	\caption{Resultados do procedimento 02 - distância Euclidiana}
@@ -28,22 +36,28 @@
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
 	\begin{center}
-		\begin{tabular}{|l|l|l|}\hline
+		\begin{tabular}{|p{0.15\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.14\linewidth}|}\hline
 			% use packages: color,colortbl
 			\rowcolor{tcA}
-			\textbf{Tamanho do modelo} & \textbf{Acurácia mínima} & \textbf{Acurácia máxima}\\\hline
+			\centering\textbf{Tamanho do modelo} & \centering\textbf{Acurácia mínima} & \centering\textbf{Acurácia máxima} & \centering\textbf{Média das acurácias} & \textbf{Desvio padrão das acurácias}\\\hline
+			
 			\rowcolor{tcB}
-			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,6720} & \mc{1}{c|}{0,8943}\\\hline
+			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,669397} & \mc{1}{c|}{0,898374} & \mc{1}{c|}{0,7838855} & \mc{1}{c|}{0,024650}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,7500} & \mc{1}{c|}{0,8917}\\\hline
+			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,754573} & \mc{1}{c|}{0,902439} & \mc{1}{c|}{0,828506} & \mc{1}{c|}{0,018194}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,7578} & \mc{1}{c|}{0,8954}\\\hline
+			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,778746} & \mc{1}{c|}{0,904181} & \mc{1}{c|}{0,8414635} & \mc{1}{c|}{0,015747}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,7845} & \mc{1}{c|}{0,9044}\\\hline
+			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,776423} & \mc{1}{c|}{0,902439} & \mc{1}{c|}{0,839431} & \mc{1}{c|}{0,014994}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,7829} & \mc{1}{c|}{0,9097}\\\hline
+			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,782927} & \mc{1}{c|}{0,909756} & \mc{1}{c|}{0,8463415} & \mc{1}{c|}{0,015371}\\\hline
 		\end{tabular}
 	\end{center}
 	\caption{Resultados do procedimento 02 - distância Manhattan}
 	\label{tab:experiment02ResultsManhattan}
 \end{table}
+

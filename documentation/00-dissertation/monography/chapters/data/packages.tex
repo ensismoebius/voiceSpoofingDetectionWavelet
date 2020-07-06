@@ -41,15 +41,19 @@
 	% Enables the use of subfigures
 	\usepackage{subfig}
 
+	% Float barriers, prevents figures floats accross
+	% an determined \FloatBarrier
+	\usepackage[section]{placeins}
+
 % Quote packages
 	% ABNT standard
 	\usepackage[alf]{abntex2cite}
 	% Bibliography 
 	\usepackage[brazilian,hyperpageref]{backref}
 
-
-\usepackage{relsize}
-\usepackage{tikz}
+% Drawing and plot packages
+	\usepackage{relsize}
+	\usepackage{tikz}
 	\usetikzlibrary{calc}
 	\usetikzlibrary{datavisualization}
 	\usetikzlibrary{positioning}
@@ -60,12 +64,10 @@
 	\usetikzlibrary{spy}
 	\usetikzlibrary{backgrounds}
 	\usetikzlibrary{patterns}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
+	\usepackage{pgfplots}
+	\usepackage{pgfplotstable}
 	\pgfplotsset{compat=newest}
 	\usepgfplotslibrary{units}
-
-
 
 % Packages configuration
 

@@ -5,7 +5,7 @@
 					
 		\par As gravações foram realizadas em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wav} sem compressão. A taxa de amostragem escolhida foi de 44100Hz, que permite, segundo o teorema de Nyquist, que seja realizada a quantização de frequências de até 22050Hz, com quantização de 16 bits.
 		
-		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 820 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravados por um segundo dispositivo de gravação diferente do original, caracterizando os 820 sinais rotulados como ``regravados''.
+		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 820 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravado por um segundo dispositivo de gravação diferente do original, caracterizando os 820 sinais rotulados como ``regravados''.
 
 	    \subsection{Organização da Base de Sinais}
 		\par A organização da base de dados se deu por tipo, isto é, genuíno ou regravado, idioma, dígito ditado e interlocutor considerado. Foi criada uma estrutura hierárquica de diretórios de forma a permitir acesso fácil e intuitivo a cada um dos arquivos \textit{wav}, seja por vias automatizadas ou não. Os arquivos regravados residem no diretório ``playback'', enquanto que os genuínos se encontram no diretório ``live ''.	Essa organização está ilustrada nas Figuras \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} e \ref{fig:directorystructlevel03}.
@@ -18,8 +18,8 @@
 		\end{itemize}
 	
 		\par Apenas para ilustrar, o conteúdo do diretório \textbf{``separated \textfractionsolidus live \textfractionsolidus en\_US \textfractionsolidus 0''} se constitui de vários arquivos do tipo \textit{wav}, cada um identificando o locutor ao qual pertence como exibido na Figura \ref{fig:directorystructlevel03}.
-			
-		\begin{figure}
+
+		\begin{figure}[ht]
 			\centering
 			\subfloat[0.3\textwidth][Base em nível 1]{
 				\includegraphics{images/directoryStructLevel01}
@@ -36,39 +36,45 @@
 			\caption{Organização da base de dados}
 			\label{fig:directorystructlevel010203}
 		\end{figure}
-	
+
 	\section{Estrutura da Estratégia Proposta}
 		\par A estratégia proposta para diferenciar sinais de voz genuínos daqueles regravados deu-se conforme ilustrado na Figura \ref{fig_arq}. Particularmente, a metodologia consiste na obtenção dos dados brutos de todos os 820 + 820 = 1640 sinais de voz genuínos e regravados, seguida da conversão de cada um deles para um vetor de características correspondente, conforme explicado adiante. Na sequência, os melhores sub-conjuntos de características foram escolhidos com base na Engenharia Paraconsistente. Prosseguindo, separações aleatórias entre os vetores, com proporções diversas, foram realizadas para isolar aqueles destinados ao treinamento ou modelagem do classificador utilizado dos que foram destinados aos testes de classificação. Por fim, testes e resultados foram realizados, conforme descrito no Capítulo seguinte.
 		
-    \begin{figure}[h]
-    \scalebox{0.75}
-	{
-	\centering
-	\begin{tikzpicture} 
-	\node[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!10] (z1) at (0,2){\textbf{SINAL DE} \\ \textbf{ENTRADA} \\ \textbf{SOB} \\ \textbf{ANÁLISE}}; 	
-	\node[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!10] (z2) at (5.5,2){pré-processamento \\ e extração de \\ características no \\ domínio \textit{wavelet}}; 	
-	\node[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!10] (z3) at (11,2){agrupamento energético \\ nas bandas Bark / Mel}; 	
-	\node[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!10] (z4) at (16.5,2){análise paraconsistente \\ de características}; 	
-	\path[->] (z1) edge (z2);
-	\path[->] (z2) edge (z3);
-	\path[->] (z3) edge (z4);
-	\node (z5)[shape=circle, draw, align=center, top color=white, bottom color=blue!10] at (16.5,0.25) {};
-	\path[->] (z4) edge (z5);
-	\node[shape=circle, draw, align=center, top color=white, bottom color=blue!10] (z6) at (7,0.25) {};
-	\path[->] (z5) edge (z6);
-	\node[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!10] (z7) at (7,-1.25) {classificador \\ por distâncias \\ ou SVM};
-	\path[->] (z6) edge (z7);	
-	\node[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!10] (z8) at (12,-1.25) {\textbf{RESULTADOS}};
-	\path[->] (z7) edge (z8);
-	\end{tikzpicture}
-	}
-	\caption{Estrutura da estratégia proposta}
-	\label{fig_arq}
-	\end{figure}
+		\input{images/strategicStructure.tex}
 		
 		\par Conforme mencionado nos Capítulos anteriores, os vetores de características desta abordagem foram obtidos com base na Transformada \textit{Wavelet}, convertendo os sinais de voz do domínio do tempo para o domínio tempo-frequência. Particularmente, nos experimentos detalhados adiante, foram testados os seguintes filtros \textit{wavelet}: Haar, Daubechies de suportes 4 até 76, Symmlets com suportes 8, 16 e 32, Coiflets com suportes 6, 12, 18, 24 e 30, Beylkin com suporte 18 e, ainda, Vaidyanathan de suporte 24.
 
 	\section{Procedimentos}
+		\par Afim de garantir a comparação com outros trabalhos se fez necessário adotar várias formas de representar os resultados correspondentes para cada configuração experimental:
+		\begin{itemize}
+			\item Tabela de confusão.
+			\item Acurácia e seu respectivo desvio padrão.
+			\item EER (equal error rate).
+		\end{itemize}
+		
+		\par No exemplo constituído pela tabela de confusão \ref{tab:confusionMatrixSample} as \textbf{linhas} representam as \textbf{classes estimadas} e as \textbf{colunas} as \textbf{classes verdadeiras}, sendo que:
+		\begin{itemize}
+			\item \textbf{VV}: Quantidade de itens verdadeiros classificados como tal.
+			\item \textbf{VF}: Quantidade de itens falsos classificados como tal.
+			\item \textbf{FF}: Quantidade de itens verdadeiros classificados como falsos.
+			\item \textbf{FV}: Quantidade de itens falsos classificados como verdadeiros.
+		\end{itemize} 
+		\input{tables/results/confusionMatrices/confusionMatrixSample.tex}
+		
+		\par A acurácia usa os valores de \textit{VV}, \textit{VF} e a quantidade de elementos(\textit{n}) tal que a mesma pode ser calculada como mostrado na Equação \ref{eq:calculoDaAcuracia}.
+		
+		\begin{equation}
+			acuracia = \dfrac{VV + VF}{n} \qquad.
+			\label{eq:calculoDaAcuracia}
+		\end{equation}
+
+		\par Para o cálculo do EER \textit{FV} e \textit{FF} são utilizados \cite{ghazali2018recent} de acordo com a Equação \ref{eq:calculoDoEER}.
+		
+		\begin{equation}
+			EER = \dfrac{FV}{FF} \qquad.
+			\label{eq:calculoDoEER}
+		\end{equation}
+	
 		\subsection{Procedimento 01: filtros \textit{wavelet}, escalas Bark e Mel}
 		\label{chap:propApproach:sec:Experimento01}
 		\par O objetivo deste procedimento é o de verificar, segundo a Engenharia Paraconsistente, qual das combinações entre as escalas BARK ou MEL e as várias \textit{wavelets} consideradas geram os vetores de características mais propícios, ou seja, que atraem o ponto $(G_1,G_2)$ para uma posição mais próxima do vértice $(1,0)$ do plano paraconsistente, conforme mencionado no Capítulo anterior. 
@@ -77,7 +83,7 @@
 			
 		\input{codeListings/experiment01Algo.tex}
 
-		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação pois a transformada \textit{wavelet} realiza o \textit{downsampling} por 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais fossem perdidas.
+		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação pois a transformada \textit{wavelet} realiza o \textit{downsampling} por 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
 				
 		\par Para ajustar o tamanho do sinal de voz sob análise, foi usada a Equação \ref{eq:optimalSize}, na qual \textit{\textbf{proxInt}} é uma função que retorna o próximo número inteiro do argumento real. Por exemplo, $proxInt(1,5) = 2$.
 
@@ -89,7 +95,7 @@
 		\par Após o redimensionamento do tamanho do sinal, o nível máximo de transformações é dado pela Equação \ref{eq:maxWaveletTransf}. 
 				
 		\begin{equation}
-					maxTrans=\log_{2}tamanho \qquad.
+					maxTrans=\log_{2}(tamanho) \qquad.
 					\label{eq:maxWaveletTransf}
 		\end{equation}
 		
@@ -99,9 +105,9 @@
 				
 		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados para modelagem, até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores. Em cada uma dessas execuções, a ordem dos vetores dentro das amostras, regravados e genuínos, foi permutada aleatoriamente.
 				
-		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão, conforme consta no Capítulo seguinte. No algoritmo \ref{lst:experiment02Algo}, os passos estão detalhados.
+		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão e assim calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No algoritmo \ref{lst:experiment02Algo}, os passos estão detalhados.
 		
-		\par Essencialmente, este procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de testes sob análise como pertencente à classe para a qual o vetor de modelagem selecionado pertence.   
+		\par Essencialmente, este procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente à uma das classes dos vetores de modelagem selecionados.   
 								
 		\input{codeListings/experiment02Algo.tex}
 
@@ -109,7 +115,7 @@
 		\label{chap:propApproach:sec:Experimento03}
 		\par Considerando as melhores combinações descobertas durante o procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido pois estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. 
 		
-		\par Particularmente, a estrutura da SVM utilizada foi definida da seguinte forma e de acordo com a Figura \ref{fig_svm}: 
+		\par Particularmente, a estrutura da SVM utilizada foi definida da seguinte forma e de acordo com a Figura \ref{fig:3layersSVM}: 
 		\begin{itemize}
 		\item{}três camadas, sendo a primeira, isto é, de entrada, com elementos passivos, a segunda com elementos ativos não-lineares de núcleos Gaussianos e a terceira, isto é, a de saída, com um elemento ativo linear; 
 		\item{}inexistem pesos entre a camada de entrada e a camada intermediária, implicando que a saída de cada elemento da camada de entrada conecta-se com todas as entradas de cada elemento da camada intermediária, mantendo incólumes os valores propagados;
@@ -117,97 +123,11 @@
 		\item{}o valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída, isto é, os valores de saída da camada intermediária.
 		\end{itemize}
 		
-\begin{figure}
-\centering
-\scalebox{2}
-	{
-	\begin{tikzpicture}
-	%input layer
-	\node (input1) at (0.65,2.0) {};
-	\draw[->,in=180,out=0] (1.0,2.0) to (1.35,2.0);
-	\node (input2) at (0.65,1.5) {};
-	\draw[->,in=180,out=0] (1.0,1.5) to (1.35,1.5);
-	\node (input3) at (0.65,1.0) {};
-	\draw[->,in=180,out=0] (1.0,1.0) to (1.35,1.0);
-	\node (input3) at (0.65,0.0) {};
-	\draw[->,in=180,out=0] (1.0,0.0) to (1.35,0.0);
-	\node (IL_N1) at (1.5,2.0) {}; \filldraw[fill=gray!30] (1.5,2.0) circle (0.15cm);
-	\node (IL_N2) at (1.5,1.5) {}; \filldraw[fill=gray!30] (1.5,1.5) circle (0.15cm);
-	\node (IL_N3) at (1.5,1.0) {}; \filldraw[fill=gray!30] (1.5,1.0) circle (0.15cm);
-	\node at (1.5,0.625) {$\vdots$};
-	\node (IL_Nn) at (1.5,0.0) {}; \filldraw[fill=gray!30] (1.5,0.0) circle (0.15cm);
-	
-	%hidden layer 
-	\node (HL_N1) at (3.5,2.5) {}; \filldraw[fill=blue!20] (3.55,2.5) circle (0.15cm);
-	\node (HL_N2) at (3.5,2.0) {}; \filldraw[fill=blue!20] (3.55,2.0) circle (0.15cm);
-	\node (HL_N3) at (3.5,1.5) {}; \filldraw[fill=blue!20] (3.55,1.5) circle (0.15cm);
-	\node (HL_N4) at (3.5,1.0) {}; \filldraw[fill=blue!20] (3.55,1.0) circle (0.15cm);
-	\node at (3.55,0.625) {$\vdots$};
-	\node (HL_Nn-1) at (3.5,0.0) {}; \filldraw[fill=blue!20] (3.55,0.0) circle (0.15cm);	
-	\node (HL_Nn) at (3.5,-0.5) {}; \filldraw[fill=blue!20] (3.55,-0.5) circle (0.15cm);	
-	\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N1);
-	\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N2);
-	\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N3);
-	\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N4);
-	\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_Nn-1);
-	\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_Nn);
+		\input{images/3layersSVM.tex}
 
-	\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N1);
-	\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N2);
-	\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N3);
-	\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N4);
-	\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_Nn-1);
-	\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_Nn);
-
-	\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N1);
-	\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N2);
-	\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N3);
-	\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N4);
-	\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_Nn-1);
-	\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_Nn);
-
-	\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N1);
-	\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N2);
-	\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N3);
-	\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N4);
-	\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_Nn-1);
-	\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_Nn);
-
-	%output layer
-	\node (OL_N1) at (5.5,1.0) {}; \filldraw[fill=red!40] (5.55,1.0) circle (0.15cm);
-	
-	\draw[->,in=180,out=0] (HL_N1)+(2mm,0) to (OL_N1);
-	\draw[->,in=180,out=0] (HL_N2)+(2mm,0) to (OL_N1);
-	\draw[->,in=180,out=0] (HL_N3)+(2mm,0) to (OL_N1);
-	\draw[->,in=180,out=0] (HL_N4)+(2mm,0) to (OL_N1);
-	\draw[->,in=180,out=0] (HL_Nn-1)+(2mm,0) to (OL_N1);
-	\draw[->,in=180,out=0] (HL_Nn)+(2mm,0) to (OL_N1);
-%
-	\draw[snake=brace,mirror snake,raise snake=45pt,brown] (1.25,1.25) -- (1.75,1.25) node[black,midway,yshift=-50pt,below]{\tiny camada de} node[black,midway,yshift=-58pt,below]{\tiny entrada com} node[black,midway,yshift=-66pt,below]{\tiny $R$ elementos}
-	node[black,midway,yshift=-74pt,below]{\tiny passivos};
-	\draw[snake=brace,mirror snake,raise snake=45pt,brown] (3.25,0.75) -- (3.75,0.75) node[black,midway,yshift=-50pt,below]{\tiny camada} node[black,midway,yshift=-58pt,below]{\tiny intermediária} node[black,midway,yshift=-66pt,below]{\tiny com $X$ neurônios}
-	node[black,midway,yshift=-74pt,below]{\tiny ativos não-lineares};
-	\draw[snake=brace,mirror snake,raise snake=45pt,brown] (5.25,1.75) -- (5.75,1.75) node[black,midway,yshift=-50pt,below]{\tiny camada de} node[black,midway,yshift=-58pt,below]{\tiny saída com} node[black,midway,yshift=-66pt,below]{\tiny um elemento}
-node[black,midway,yshift=-74pt,below]{\tiny ativo linear};
-	%
-\node (OUT) at (6.5,1.0) {\tiny resultado}; 
-\draw[->,in=180,out=0] (OL_N1)+(2mm,0) to (OUT);	
-
-\node at (4,2.6) {\tiny $p_0$}; 
-\node at (4,2.1) {\tiny $p_1$}; 
-\node at (4,1.65) {\tiny $p_2$}; 
-\node at (4,1.2) {\tiny $p_3$}; 
-\node at (4,0.2) {\tiny $p_{X-2}$}; 
-\node at (4,-0.3) {\tiny $p_{X-1}$}; 
-	\end{tikzpicture}
-	}
-\caption{Estrutura da SVM para o procedimento 03 com $R$ neurônios na camada de entrada, sendo $R$ a dimensão dos vetores de características, e $X$ neurônios na camada intermediária, sendo $X$ o número de casos de treinamento}
-\label{fig_svm}
-\end{figure} 
-
-		\par Foram utilizados, na camada de entrada, um número de elementos igual a dimensão do vetor de características sendo considerado. Na camada intermediária, o número de elementos ativos não-lineares foi igual ao número de casos de treinamento, visando facilitar o procedimento que, em tal caso, implica na solução direta de um sistema linear quadrado, isto é, possível e determinado \cite{XXXXXX}. 
+		\par Foram utilizados, na camada de entrada, um número de elementos igual a dimensão do vetor de características sendo considerado. Na camada intermediária, o número de elementos ativos não-lineares foi igual ao número de casos de treinamento, visando facilitar o procedimento que, em tal caso, implica na solução direta de um sistema linear quadrado, isto é, possível e determinado \cite{poole2014linear}. 
 		
-		\par O treinamento da SVM consiste em, numa primeira etapa não-supervisionada, ajustar os parâmetros das funções Gaussianas da camada intermediária. Posteriormente, com b ase no sistema linear mencionado, os pesos foram encontrados com base em uma abordagem supervisionada, utilizando-se os rótulos -1 e 1 para os sinais regravados e genuínos, respectivamente.    
+		\par O treinamento da SVM consiste em, numa primeira etapa não-supervisionada, ajustar os parâmetros das funções Gaussianas da camada intermediária. Posteriormente, com base no sistema linear mencionado, os pesos foram encontrados com base em uma abordagem supervisionada, utilizando-se os rótulos -1 e 1 para os sinais regravados e genuínos, respectivamente.    
 		
 		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes,   são idênticos àqueles do procedimento 02 e encontram-se listados no algoritmo \ref{lst:experiment03Algo}. 
 		

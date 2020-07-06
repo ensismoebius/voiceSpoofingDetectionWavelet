@@ -3,20 +3,26 @@
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
 	\begin{center}
-		\begin{tabular}{|l|l|l|}\hline
+		\begin{tabular}{|p{0.15\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.14\linewidth}|}\hline
 			% use packages: color,colortbl
 			\rowcolor{tcA}
-			\textbf{Tamanho do modelo} & \textbf{Acurácia mínima} & \textbf{Acurácia máxima}\\\hline
+			\centering\textbf{Tamanho do modelo} & \centering\textbf{Acurácia mínima} & \centering\textbf{Acurácia máxima} & \centering\textbf{Média das acurácias} & \textbf{Desvio padrão das acurácias}\\\hline
+			
 			\rowcolor{tcB}
-			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,8130} & \mc{1}{c|}{0,9200}\\\hline
+			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,819783} & \mc{1}{c|}{0,926829} & \mc{1}{c|}{0,873306} & \mc{1}{c|}{0,011306}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,8506} & \mc{1}{c|}{0,9314}\\\hline
+			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,852134} & \mc{1}{c|}{0,932927} & \mc{1}{c|}{0,8925305} & \mc{1}{c|}{0,009243}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,8623} & \mc{1}{c|}{0,9390}\\\hline
+			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,858885} & \mc{1}{c|}{0,942509} & \mc{1}{c|}{0,900697} & \mc{1}{c|}{0,009262}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,8638} & \mc{1}{c|}{0,9451}\\\hline
+			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,863821} & \mc{1}{c|}{0,947154} & \mc{1}{c|}{0,9054875} & \mc{1}{c|}{0,009943}\\\hline
+
 			\rowcolor{tcB}
-			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,8509} & \mc{1}{c|}{0,9512}\\\hline
+			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,853659} & \mc{1}{c|}{0,953659} & \mc{1}{c|}{0,903689} & \mc{1}{c|}{0,011214}\\\hline
+
 		\end{tabular}
 	\end{center}
 	\caption{Resultados do procedimento 03}

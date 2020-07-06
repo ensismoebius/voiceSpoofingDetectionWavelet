@@ -5,6 +5,8 @@ modeloDeReferenciaSpoofing={};
 testesNaoSpoofing={};
 testesSpoofing={};
 
+listaDeAcuracias={};
+
 for (distancia : {Euclidiana, Manhattan}) {
 	for(porcentagem : tamanhosDoModelo){
 		for(teste = 0; teste < 300; teste++){
@@ -31,6 +33,9 @@ for (distancia : {Euclidiana, Manhattan}) {
 			}
 
 			acuracia=calculaAcuracia();
+			
+			// Guarda as acuracias para cada porcentegem
+			listaDeAcuracias[porcentagem].adicionar(acuracia);
 
 			// Salva a melhor acuracia e matriz de confusao
 			if(ehAMelhorAcuracia(acuracia)){
@@ -42,6 +47,9 @@ for (distancia : {Euclidiana, Manhattan}) {
 				salvaAcuraciaEMatrizDeConfusao();
 			}
 		}
+		
+		// Calcula e salva o desvio padrao para cada porcentagem
+		calculaESalvaDesvioPadrao(listaDeAcuracias[porcentagem]);
 	}
 }				
 \end{lstlisting}

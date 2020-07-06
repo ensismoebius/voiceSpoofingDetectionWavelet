@@ -4,6 +4,9 @@ modeloDeReferenciaNaoSpoofing={};
 modeloDeReferenciaSpoofing={};
 testesNaoSpoofing={};
 testesSpoofing={};
+
+listaDeAcuracias={};
+
 	for(porcentagem : tamanhosDoModelo){
 		for(teste = 0; teste < 300; teste++){
 			// Escolhe aleatoriamente os sinais para o modelo com spoofing 
@@ -30,6 +33,9 @@ testesSpoofing={};
 			
 			acuracia=calculaAcuracia();
 			
+			// Guarda as acuracias para cada porcentegem
+			listaDeAcuracias[porcentagem].adicionar(acuracia);
+			
 			// Salva a melhor acuracia e matriz de confusao
 			if(ehAMelhorAcuracia(acuracia)){
 				salvaAcuraciaEMatrizDeConfusao();
@@ -40,5 +46,8 @@ testesSpoofing={};
 				salvaAcuraciaEMatrizDeConfusao();
 			}
 		}
+		
+		// Calcula e salva o desvio padrao para cada porcentagem
+		calculaESalvaDesvioPadrao(listaDeAcuracias[porcentagem]);
 	}			
 \end{lstlisting}

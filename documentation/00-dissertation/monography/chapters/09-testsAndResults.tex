@@ -1,24 +1,24 @@
 \chapter{Testes e Resultados} \label{chap:testsResults}
 	\section{Procedimento 01}
 	\label{chap:testsResults:sec:Experimento01}
-	Os testes, e correspondentes resultados, para o procedimento 01 descrito no Capítulo anterior encontram-se nesta seção. Conforme explicado naquela oportunidade, este procedimento visa, com base na Engenharia Paraconsistente, qual filtro \textit{wavelet} proporciona, em conjunto com a escala Bark ou Mel, a menor distância do ponto $(G_1,G_2)$ até o vértice $(1,0)$ do plano paraconsistente. 
+	Os testes, e correspondentes resultados, para o procedimento 01 descrito no Capítulo anterior encontram-se nesta seção. Conforme explicado naquela oportunidade, este procedimento visa, com base na Engenharia Paraconsistente, encontrar qual filtro \textit{wavelet} proporciona, em conjunto com a escala Bark ou Mel, a menor distância do ponto $(G_1,G_2)$ até o vértice $(1,0)$ do plano paraconsistente. 
 
 	\par Particularmente, na Figura \ref{fig:paraconsistentfull}, que combina os resultados dos filtros com as escalas, quanto menor o comprimento horizontal das barras na cor azul, melhor a separabilidade entre as classes. Como se pode constatar, das combinações testadas, \textbf{Haar + Bark} proporcionou a menor distância. Complementarmente, as Tabelas \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} contém os valores específicos visualizados graficamente naquela Figura.
 	
 	\par A combinação \textbf{\textit{wavelet} + Bark} apresentou, consistentemente, \textbf{melhor} viabilidade do que as respectivas combinações \textbf{\textit{wavelet + Mel}}.
 	
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.99\linewidth]{images/results/paraconsistentPlane/ParaconsistentFull}
-				\caption{Gráfico completo da distância ao ponto (1,0) no plano paraconsistente.}
-				\label{fig:paraconsistentfull}
-			\end{figure}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.99\linewidth]{images/results/paraconsistentPlane/ParaconsistentFull}
+		\caption{Gráfico completo da distância ao ponto (1,0) no plano paraconsistente.}
+		\label{fig:paraconsistentfull}
+	\end{figure}
 
-			\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
+	\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
 
 	\par Analisando o comportamento das melhores e piores \textit{wavelets} encontradas, é interessante indagar o motivo pelo qual os filtros de \textbf{Haar} tenham proporcionado os melhores resultados. Particularmente interessante é o fato de que os filtros \textit{wavelet} de \textbf{Haar} e \textbf{Daubechies 42} proporcionaram, respectivamente, os melhores e os piores resultados associados com a escala Bark. Diferentemente, com a escala \textit{Mel}, \textbf{Haar} foi o melhor filtro e \textbf{Daubechies 54} o pior. 
 		
-	\par Refletindo acerca das características de resposta em fase e em frequência dos filtros \textit{wavelet}, pode-se constatar o seguinte: Haar apresenta a curva de resposta em frequência mais distante da ideal, pois constitui um filtro de resposta ao impulso finita (FIR) de ordem 1, isto é, com dois coeficientes \cite{XXXXXX}. Assim sendo, sub-bandas específicas de frequências estão, sem dúvidas, contaminadas com conteúdo espectral das sub-bandas adjacentes. Adicionalmente, Haar é a única família de filtros \textit{wavelet} que possui resposta em fase perfeitamente linear. Portanto, do ponto de vista dos filtros, o que foi constatado experimentalmente é que uma resposta em frequência não-rigorosa associada à uma resposta em fase perfeitamente linear é a melhor alternativa. 
+	\par Refletindo acerca das características de resposta em fase e em frequência dos filtros \textit{wavelet}, pode-se constatar o seguinte: Haar apresenta a curva de resposta em frequência mais distante da ideal, pois constitui um filtro de resposta ao impulso finita (FIR) de ordem 1, isto é, com dois coeficientes \cite{WaveletPropertiesBrowser}. Assim sendo, sub-bandas específicas de frequências estão, sem dúvidas, contaminadas com conteúdo espectral das sub-bandas adjacentes. Adicionalmente, Haar é a única família de filtros \textit{wavelet} que possui resposta em fase perfeitamente linear. Portanto, do ponto de vista dos filtros, o que foi constatado experimentalmente é que uma resposta em frequência não-rigorosa associada à uma resposta em fase perfeitamente linear é a melhor alternativa. 
 	
 	\par Do ponto de vista das bandas Bark e Mel, aquela é, de acordo com os comentários constantes no Capítulo 2, a que foi definida de modo mais amplo para refletir o comportamento da audição humana para sinais acústicos em geral. Diferentemente, esta banda, foi otimizada para voz mas, de acordo com os experimentos, não proporcionou os melhores resultados. Assim sendo, fica claro que a \textbf{característica ruidosa} dos sinais regravados, contendo, ao contrário das vozes originais, notórios componentes de altas frequências, é melhor detectada com uma escala mais apropriada ao tratamento de áudio em geral e não voz somente.
 	
@@ -26,147 +26,172 @@
 	\label{chap:testsResults:sec:Experimento02}
 		\par Considerando que, de acordo com o procedimento 01, o melhor resultado foi a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a máxima acurácia que se consegue atingir com o uso de um classificador baseado em distâncias Euclidianas e Manhattan, de acordo com os detalhes definidos no Capítulo anterior. 
 		
-		\par Assim sendo, constatou-se, para os montantes de 10\%, 20\%, 30\%, 40\% e 50\% da base de sinais reservados para treinamento, com o limite de 300  testes aleatórios em cada caso, os resultados constantes nas Tabelas \ref{tab:experiment02ResultsEuclidian} e \ref{tab:experiment02ResultsManhattan}. 
+		\par Assim sendo, constatou-se, para os montantes de 10\%, 20\%, 30\%, 40\% e 50\% da base de sinais reservados para treinamento, com o limite de 300 testes aleatórios em cada caso, os resultados constantes nas Tabelas \ref{tab:experiment02ResultsEuclidian} e \ref{tab:experiment02ResultsManhattan}. 
 		
-		\par Maiores detalhes para a distância Euclidiana podem ser conseguidos consultando-se as Tabelas \ref{tab:classifier_Euclidian_10}, \ref{tab:classifier_Euclidian_20}, \ref{tab:classifier_Euclidian_30}, \ref{tab:classifier_Euclidian_40},  \ref{tab:classifier_Euclidian_50} e seus respectivos gráficos nas Figuras \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40} e \ref{fig:classifiereuclidian50}. Para a distância Manhattan, podem ser consultadas as Tabelas 	\ref{tab:classifier_Manhattan_10}, \ref{tab:classifier_Manhattan_20}, \ref{tab:classifier_Manhattan_30}, \ref{tab:classifier_Manhattan_40}, \ref{tab:classifier_Manhattan_50} e seus respectivos gráficos nas Figuras		 
+		\par Maiores detalhes para a distância Euclidiana podem ser conseguidos consultando-se as Tabelas \ref{tab:classifier_Euclidian_10_best},\ref{tab:classifier_Euclidian_10_worse},
+		 \ref{tab:classifier_Euclidian_20_best}, \ref{tab:classifier_Euclidian_20_worse}, 
+		 \ref{tab:classifier_Euclidian_30_best}, \ref{tab:classifier_Euclidian_30_worse}, 
+		 \ref{tab:classifier_Euclidian_40_best}, \ref{tab:classifier_Euclidian_40_worse}, 
+		 \ref{tab:classifier_Euclidian_50_best}, \ref{tab:classifier_Euclidian_50_worse}
+		  e seus respectivos gráficos nas Figuras \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40} e \ref{fig:classifiereuclidian50}. Para a distância Manhattan, podem ser consultadas as Tabelas 	\ref{tab:classifier_Manhattan_10_best}, \ref{tab:classifier_Manhattan_10_worst}, 
+		  \ref{tab:classifier_Manhattan_20_best}, \ref{tab:classifier_Manhattan_20_worst}, 
+		  \ref{tab:classifier_Manhattan_30_best}, \ref{tab:classifier_Manhattan_30_worse}, 
+		  \ref{tab:classifier_Manhattan_40_best}, \ref{tab:classifier_Manhattan_40_worse}, 
+		  \ref{tab:classifier_Manhattan_50_best}, \ref{tab:classifier_Manhattan_50_worse} 
+		  e seus respectivos gráficos nas Figuras		 
 		 \ref{fig:classifiermanhattan10}, \ref{fig:classifiermanhattan20}, 	 \ref{fig:classifiermanhattan30}, \ref{fig:classifiermanhattan40},  \ref{fig:classifiermanhattan50}.
 		
 		\input{tables/results/experiment02Results.tex}
 			
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_10}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 10\%}
-				\label{fig:classifiereuclidian10}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_10.tex}
-			\newpage
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_20}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 20\%}
-				\label{fig:classifiereuclidian20}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_20.tex}
-	
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_30}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 30\%}
-				\label{fig:classifiereuclidian30}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_30.tex}
-	
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_40}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 40\%}
-				\label{fig:classifiereuclidian40}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_40.tex}
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_10}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 10\%}
+			\label{fig:classifiereuclidian10}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_10.tex}
 		
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Euclidian_50}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 50\%}
-				\label{fig:classifiereuclidian50}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Euclidian_50.tex}
-		
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_10.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 10\%}
-				\label{fig:classifiermanhattan10}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_10.tex}
-		
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_20.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 20\%}
-				\label{fig:classifiermanhattan20}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_20.tex}
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_20}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 20\%}
+			\label{fig:classifiereuclidian20}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_20.tex}
 	
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_30.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 30\%}
-				\label{fig:classifiermanhattan30}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_30.tex}
-			
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_40.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 40\%}
-				\label{fig:classifiermanhattan40}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
-			
-			\begin{figure}
-				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_Manhattan_50.png}
-				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 50\%}
-				\label{fig:classifiermanhattan50}
-			\end{figure}
-			\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_30}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 30\%}
+			\label{fig:classifiereuclidian30}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_30.tex}
 	
-	        Observando as Tabelas, nota-se que as melhores acurácias possuem o valor de 0.9097 para ambas as distâncias, Euclidiana e Manhattan.  Desse modo, constata-se nenhuma diferença prática no critério de métrica \textit{pattern-matching} utilizado e, além disso, um nível de acurácia relativamente alto considerando-se a simplicidade do algoritmo classificador.
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_40}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 40\%}
+			\label{fig:classifiereuclidian40}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_40.tex}
+	
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Euclidian_50}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 50\%}
+			\label{fig:classifiereuclidian50}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Euclidian_50.tex}
+	
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_10.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 10\%}
+			\label{fig:classifiermanhattan10}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_10.tex}
+	
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_20.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 20\%}
+			\label{fig:classifiermanhattan20}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_20.tex}
+	
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_30.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 30\%}
+			\label{fig:classifiermanhattan30}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_30.tex}
+		
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_40.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 40\%}
+			\label{fig:classifiermanhattan40}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
+		
+		\newpage
+		\begin{figure}
+			\centering
+			\includegraphics{images/results/confusionMatrices/classifier_Manhattan_50.png}
+			\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 50\%}
+			\label{fig:classifiermanhattan50}
+		\end{figure}
+		\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
+		
+		\par Observando as Tabelas, nota-se que as melhores acurácias possuem o valor de 0.9097 para ambas as distâncias, Euclidiana e Manhattan.  Desse modo, constata-se nenhuma diferença prática no critério de métrica \textit{pattern-matching} utilizado e, além disso, um nível de acurácia relativamente alto considerando-se a simplicidade do algoritmo classificador.
 	
 		\section{Procedimento 03}
 		\label{chap:testsResults:sec:Experimento03}
-			\par Novamente, considerando que o procedimento 01 apresentou, como melhor resultado, a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a máxima acurácia que se consegue atingir com uma SVM. OS resultados, obedecendo os mesmo moldes do procedimento anterior, constam na Tabela \ref{tab:experiment03Results}. 
+			\par Novamente, considerando que o procedimento 01 apresentou, como melhor resultado, a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a máxima acurácia que se consegue atingir com uma SVM. Os resultados, obedecendo os mesmo moldes do procedimento anterior, constam na Tabela \ref{tab:experiment03Results}. 
 			
-			\par Mais níveis de detalhes podem ser consultados nas Tabelas \ref{tab:classifier_SVM_10}, \ref{tab:classifier_SVM_20}, \ref{tab:classifier_SVM_30}, \ref{tab:classifier_SVM_40} e  \ref{tab:classifier_SVM_50}, além dos seus respectivos gráficos nas Figuras \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40} e \ref{fig:classifiersvm50}.
+			\par Mais níveis de detalhes podem ser consultados nas Tabelas \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best} e \ref{tab:classifier_SVM_50_worse}, além dos seus respectivos gráficos nas Figuras \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40} e \ref{fig:classifiersvm50}.
 	
 			\input{tables/results/experiment03Results.tex}
 		
-		    \begin{figure}
-			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_10.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 10\%}
-			\label{fig:classifiersvm10}
-		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
-	
-		\begin{figure}
-			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_20.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 20\%}
-			\label{fig:classifiersvm20}
-		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
+			\newpage
+			\begin{figure}
+				\centering
+				\includegraphics{images/results/confusionMatrices/classifier_SVM_10.png}
+				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 10\%}
+				\label{fig:classifiersvm10}
+			\end{figure}
+			\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
 		
-		\begin{figure}
-			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_30.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 30\%}
-			\label{fig:classifiersvm30}
-		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_30.tex}
-	
-		\begin{figure}
-			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_40.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 40\%}
-			\label{fig:classifiersvm40}
-		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
-	
-		\begin{figure}
-			\centering
-			\includegraphics{images/results/confusionMatrices/classifier_SVM_50.png}
-			\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 50\%}
-			\label{fig:classifiersvm50}
-		\end{figure}
-		\input{tables/results/confusionMatrices/classifier_SVM_50.tex}
-	
-	    \par Em suma, percebe-se que a melhor acurácia obtida foi de 0.951220 com o uso da SVM e 50\% da base de sinais para treiná-la, condizente com as expectativas. Em tal caso, a respectiva matriz de confusão revela uma quantidade mínima de falsos-genuínos e falsos-regravados, condizentes com os trabalhos correlatos revisados anteriormente. 
-	    
-	    
-	    \par XXXXXX XXXXXX ANDRÉ, AQUI, SERIA MUITO IMPORTANTE FAZER DUAS COISAS: NAS TABELAS ONDE EXISTEM AS COLUNAS "ACURACIA MINIMA" E "ACURACIA MAXIMA", SERIA MUITO LEGAL INSERIR UMA TERCEIRA E UMA QUARTA COLUNA, SE FOR POSSIVEL, CONSTANDO A "ACURÁCIA MÉDIA" E "DESVIO-PADRÃO DAS ACURÁCIAS". ALÉM DISSO, APÓS O ÚLTIMO GRÁFICO DO PROCEDIMENTO 02, SERIA MUITO LEGAL COLOCAR UMA CURVA DO TIPO EER (EQUAL ERROR RATE), POIS ALÉM DE SER UM PADRÃO NA AREA, QUASE TODOS OS TRABALHOS DA REIVSAO BIBLIOGRAFICA USAM EER.... A MESMA COISA PARA ESTE PONTO AQUI, NO FINAL DO PROCEDIMENTO 03. ESSAS CURVAS PODEM SER SOMENTE COM BASE NOS RESULTADOS USANDO 50\% DA BASE PARA MODELAMENTO / TREINAMENTO: UMA CURVA EER NO FINAL DO PROCEDIMENTO 02 E UMA NO FINAL DO  PROCEDIMENTO 03.
+			\newpage
+			\begin{figure}
+				\centering
+				\includegraphics{images/results/confusionMatrices/classifier_SVM_20.png}
+				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 20\%}
+				\label{fig:classifiersvm20}
+			\end{figure}
+			\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
+			
+			\newpage
+			\begin{figure}
+				\centering
+				\includegraphics{images/results/confusionMatrices/classifier_SVM_30.png}
+				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 30\%}
+				\label{fig:classifiersvm30}
+			\end{figure}
+			\input{tables/results/confusionMatrices/classifier_SVM_30.tex}
+		
+			\newpage
+			\begin{figure}
+				\centering
+				\includegraphics{images/results/confusionMatrices/classifier_SVM_40.png}
+				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 40\%}
+				\label{fig:classifiersvm40}
+			\end{figure}
+			\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
+		
+			\newpage
+			\begin{figure}
+				\centering
+				\includegraphics{images/results/confusionMatrices/classifier_SVM_50.png}
+				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 50\%}
+				\label{fig:classifiersvm50}
+			\end{figure}
+			\input{tables/results/confusionMatrices/classifier_SVM_50.tex}
+		
+		    \par Em suma, percebe-se que a melhor acurácia obtida foi de 0.951220 com o uso da SVM e 50\% da base de sinais para treiná-la, condizente com as expectativas. Em tal caso, a respectiva matriz de confusão revela uma quantidade mínima de falsos-genuínos e falsos-regravados, condizentes com os trabalhos correlatos revisados anteriormente. 
+		    
+		    
+		    \par XXXXXX ALÉM DISSO, APÓS O ÚLTIMO GRÁFICO DO PROCEDIMENTO 02, SERIA MUITO LEGAL COLOCAR UMA CURVA DO TIPO EER (EQUAL ERROR RATE), POIS ALÉM DE SER UM PADRÃO NA AREA, QUASE TODOS OS TRABALHOS DA REIVSAO BIBLIOGRAFICA USAM EER.... A MESMA COISA PARA ESTE PONTO AQUI, NO FINAL DO PROCEDIMENTO 03. ESSAS CURVAS PODEM SER SOMENTE COM BASE NOS RESULTADOS USANDO 50\% DA BASE PARA MODELAMENTO / TREINAMENTO: UMA CURVA EER NO FINAL DO PROCEDIMENTO 02 E UMA NO FINAL DO  PROCEDIMENTO 03.
 	
 	\section{Testes Complementares}
 	\label{chap:testsResults:sec:Experimento05}

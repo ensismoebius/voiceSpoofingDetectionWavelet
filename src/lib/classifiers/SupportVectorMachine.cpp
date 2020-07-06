@@ -48,6 +48,12 @@ namespace classifiers {
 			std::vector<double> outputWeights;
 
 			/**
+			 * Weighted distance from input and trainning models
+			 * Used on @see evaluate method
+			 */
+			double wDistance = 0;
+
+			/**
 			 * Used to calculate the radial distances between two vectors
 			 * @param currentInputVector
 			 * @param v2
@@ -76,26 +82,20 @@ namespace classifiers {
 			 */
 			LABEL evaluate(std::vector<double> input) {
 
-				// Weighted distance from input and trainning models
-				double wDistance = 0;
+				// Reset Weighted distance for next classification
+				wDistance = 0;
 
 				// creating the layer values
 				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++) {
 					wDistance += this->outputWeights[fi] * this->radialDistance(input, this->trainningModels[fi]);
 				}
 
-				// If the distance from NEGATIVE is greater
-				// than the distance from POSITIVE return
-				// POSITIVE otherwise return NEGATIVE
-				if (std::pow(wDistance - NEGATIVE, 2) > std::pow(wDistance - POSITIVE, 2)) {
-					return POSITIVE;
-				}
-				return NEGATIVE;
+				return (wDistance / this->trainningModels.size() < 0) ? NEGATIVE : POSITIVE;
 			}
 
 			/**
 			 * Trainning method, use this after use
-			 * @addTrainningCases method
+			 * @see addTrainningCases method
 			 * @see addTrainningCases
 			 */
 			void train() {
