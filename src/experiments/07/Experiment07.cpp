@@ -44,10 +44,6 @@ namespace waveletExperiments {
 				BARK, MEL
 			};
 
-			enum CONFUSION_POS {
-				TP, FP, FN, TN
-			};
-
 			/**
 			 * Contains the BARK ranges values
 			 */
@@ -160,22 +156,25 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void savePlotResults(double yrange[2]) {
+			static void savePlotResults(std::map<double, std::vector<std::map<CONFUSION_POS, int>>> confusionMatrixForEachPercentage, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string destiny) {
 
-//				// Alias for a easier use of matplotlib
-//				namespace plt = matplotlibcpp;
+				// Alias for a easier use of matplotlib
+				namespace plt = matplotlibcpp;
+
+				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
+
+				plt::xlabel("Amount of tests");
+				plt::ylabel("Accuracy");
+
+//				plt::ylim();
+
+				plt::title("Detection Error Tradeoff curve and EER for " + distType);
 //
-//				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
-//
-//				plt::xlabel("Amount of tests");
-//				plt::ylabel("Accuracy");
-//
-//				plt::ylim(yrange[0], yrange[1]);
-//
-//				plt::title("Accuracy of BARK over Haar wavelet using " + distType + " distance classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
-//
-//				plt::named_plot("Best accuracy", numberOfTests, accuracies, "-");
-//				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
+
+				//TODO Calc EER
+
+				plt::named_plot("FAR", numberOfTests, accuracies, "-");
+				plt::named_plot("FRR", numberOfTests, worseTestAccuracy, "--");
 //
 //				plt::text(numberOfTests[numberOfTests.size() - 1], accuracies[accuracies.size() - 1], std::to_string(accuracies[accuracies.size() - 1]));
 //				plt::text(numberOfTests[numberOfTests.size() - 1], worseTestAccuracy[worseTestAccuracy.size() - 1], std::to_string(worseTestAccuracy[worseTestAccuracy.size() - 1]));
@@ -315,10 +314,6 @@ namespace waveletExperiments {
 				// Creating the confusion matrix structure
 				std::map<CONFUSION_POS, int> confusionMatrix;
 
-				// Holds the values for the graphic
-				// of accuracy versus the number of
-				// tests
-				std::map<double, std::vector<double>> numberOfTestForEachPercentage;
 				std::map<double, std::vector<std::map<CONFUSION_POS, int>>> confusionMatrixForEachPercentage;
 
 				// Holds the parcial user friendly reports
@@ -343,7 +338,6 @@ namespace waveletExperiments {
 				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++) {
 
 					// Clearing the results for the next iteration
-					numberOfTestForEachPercentage.clear();
 					confusionMatrixForEachPercentage.clear();
 
 					// Changes the percentage of the feature vectors used as models for the classifier
@@ -388,15 +382,12 @@ namespace waveletExperiments {
 									}
 								}
 
-								////////////////////////
-								/// Conclusion phase ///
-								////////////////////////
+								confusionMatrixForEachPercentage[modelPercentage].push_back(confusionMatrix);
+
+								// Some reporting
 								partialReport = std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
 								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
 							}
-
-							// Store the results for the graphic
-							numberOfTestForEachPercentage[modelPercentage].push_back(amountOfTests);
 
 							// Report for this amount of tests
 							std::cout << (static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType) == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan: " : "Euclidian: ") << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
@@ -404,9 +395,7 @@ namespace waveletExperiments {
 					}
 
 					// Plot everything
-					for (auto test : numberOfTestForEachPercentage) {
-						//savePlotResults(test.second, bestTestAccuracyForEachPercentage[test.first], worseTestAccuracyForEachPercentage[test.first], stdDeviationForEachPercentage[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny, yrange);
-					}
+					savePlotResults(confusionMatrixForEachPercentage, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
 
 				}
 
