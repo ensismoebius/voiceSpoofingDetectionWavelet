@@ -52,6 +52,9 @@ int main(int argc, char *args[]) {
 		case 7:
 			waveletExperiments::Experiment07::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
+		case 8:
+			waveletExperiments::Experiment08::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			return 0;
 		case 0:
 			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
@@ -59,6 +62,8 @@ int main(int argc, char *args[]) {
 			waveletExperiments::Experiment04::perform();
 			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			//waveletExperiments::Experiment06::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			waveletExperiments::Experiment07::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			waveletExperiments::Experiment08::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
 	}
 
@@ -165,7 +170,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 
 	}
 
-	if (experiment == 2 || experiment == 3 || experiment == 0 || experiment == 6 || experiment == 7) {
+	if (experiment == 2 || experiment == 3 || experiment == 0 || experiment == 6 || experiment == 7 || experiment == 8) {
 		if (argc != 15) {
 			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
 			return -1;

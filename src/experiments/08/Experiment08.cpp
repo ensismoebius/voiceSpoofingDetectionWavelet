@@ -23,6 +23,7 @@
 #include "../../lib/gnuplot/gnuplotCalls.h"
 #include "../../lib/statistics/statistics.h"
 #include "../../lib/wavelet/waveletOperations.h"
+#include "../../lib/statistics/confusionMatrix.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
@@ -157,76 +158,33 @@ namespace waveletExperiments {
 				signal = featureVector;
 			}
 
-			/**
-			 * Plot the results on a paraconsistent plane
-			 * @param results
-			 */
-			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double stdDeviation, double pencentageSizeOfModel, std::string &resultsDestiny, double yrange[2]) {
+			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, std::string destiny) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
 
-				plt::xlabel("Amount of tests");
-				plt::ylabel("Accuracy");
+				// Preparing data for ploting
+				std::vector<double> fpr;
+				std::vector<double> fnr;
+				double eer;
 
-				plt::ylim(yrange[0], yrange[1]);
+				statistics::calculateEER(confusionMatrices, eer, fpr, fnr);
 
-				plt::title("Accuracy of BARK over Haar wavelet using SVM classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
+				// Ploting data
+				plt::text(eer, eer, "EER:" + std::to_string(eer));
+				plt::plot( { 0, 1 });
+				plt::plot(fpr, fnr);
 
-				plt::named_plot("Best accuracy", numberOfTests, bestTestAccuracy, "-");
-				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
-
-				plt::text(numberOfTests[numberOfTests.size() - 1], bestTestAccuracy[bestTestAccuracy.size() - 1], std::to_string(bestTestAccuracy[bestTestAccuracy.size() - 1]));
-				plt::text(numberOfTests[numberOfTests.size() - 1], worseTestAccuracy[worseTestAccuracy.size() - 1], std::to_string(worseTestAccuracy[worseTestAccuracy.size() - 1]));
+				plt::title("Detection Error Tradeoff curve and EER using SVM classifier.\n Model size: " + std::to_string(int(percentage * 100)) + "%");
+				plt::xlabel("False Acceptance Rate");
+				plt::ylabel("False Rejection Rate");
+				plt::xlim(0.0, 1.1);
+				plt::ylim(0.0, 1.0);
 
 				plt::grid(true);
-				plt::legend();
-				plt::save(resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
-				plt::clf();
-			}
-
-			/**
-			 * Save the results to file on /tmp/results.csv
-			 * @param data
-			 */
-
-			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> data) {
-
-				// Open the file
-				std::string filePath = "/tmp/results.csv";
-				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open()) {
-					std::cout << "Cannot open file: " << filePath;
-					throw std::runtime_error("Impossible to open the file!");
-					return;
-				}
-
-				for (auto clazz : data["haar"][BARK]) {
-					for (std::vector<double> featureVector : clazz.second) {
-						ofs << clazz.first << '\t';
-						for (double value : featureVector) {
-							ofs << value << '\t';
-						}
-						ofs << std::endl;
-					}
-				}
-				ofs.close();
-			}
-
-			static void saveConfusionMatrices(std::map<CONFUSION_POS, int> &bestMatrix, std::map<CONFUSION_POS, int> &worstMatrix, double pencentageSizeOfModel, std::string &resultsDestiny) {
-
-				// Open the file
-				std::string filePath = resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
-				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open()) {
-					std::cout << "Cannot open file: " << filePath;
-					throw std::runtime_error("Impossible to open the file!");
-					return;
-				}
-
-				ofs << "Best confusion matrix" << "\n" << std::to_string(bestMatrix[TP]) << "\t" << std::to_string(bestMatrix[FP]) << "\n" << std::to_string(bestMatrix[FN]) << "\t" << std::to_string(bestMatrix[TN]) << std::endl;
-				ofs << "Worst confusion matrix" << "\n" << std::to_string(worstMatrix[TP]) << "\t" << std::to_string(worstMatrix[FP]) << "\n" << std::to_string(worstMatrix[FN]) << "\t" << std::to_string(worstMatrix[TN]) << std::endl;
-				ofs.close();
+				plt::show();
+//				plt::save(destiny + "/DET_for_classifier_SVM_" + std::to_string(int(percentage * 100)) + ".png");
+//				plt::clf();
 			}
 
 			/**
@@ -328,36 +286,9 @@ namespace waveletExperiments {
 				std::cout << std::endl;
 
 				// Creating the confusion matrix structure
-				std::map<CONFUSION_POS, int> confusionMatrix;
+				statistics::ConfusionMatrix confusionMatrix;
 
-				// Holds the values for the graphic
-				// of accuracy versus the number of
-				// tests
-				std::map<double, std::vector<double>> numberOfTestsForEachPercentage;
-
-				std::map<double, double> stdDeviationForEachPercentage;
-				std::map<double, std::vector<double>> allAccuracies;
-				std::map<double, std::vector<double>> bestTestAccuracyForEachPercentage;
-				std::map<double, std::vector<double>> worseTestAccuracyForEachPercentage;
-
-				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrixForEachPercentage;
-				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrixForEachPercentage;
-
-				// Holds the parcial user friendly reports
-				std::string partialReport;
-
-				// Used to calculate the accuracies
-				double temp;
-
-				// Used to calculate the worst accuracy of a percentage
-				double percentageWorstAccuracy;
-
-				// Used to calculate the best accuracy of a percentage
-				double percentageBestAccuracy;
-
-				// Stores the best and the worst confusion matrix
-				std::map<CONFUSION_POS, int> percentageBestConfusionMatrix;
-				std::map<CONFUSION_POS, int> percentageWorseConfusionMatrix;
+				std::map<double, std::vector<statistics::ConfusionMatrix>> confusionMatricesForEachPercentage;
 
 				// Holds the tests features vectors for live signals
 				std::vector<std::vector<double>> testLive;
@@ -377,122 +308,61 @@ namespace waveletExperiments {
 				// Changes the percentage of the feature vectors used as models for the classifier
 				for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
 
-					// Initializing the accuracies
-					percentageBestAccuracy = -std::numeric_limits<double>().max();
-					percentageWorstAccuracy = std::numeric_limits<double>().max();
-
 					// Changes the amount of tests done against the dataset
-					for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {
+					confusionMatricesForEachPercentage[modelPercentage].resize(amountOfTestsToPerfom);
+					for (unsigned int testIndex = 1; testIndex < amountOfTestsToPerfom + 1; testIndex++) {
 
-						// Do the classification and populate the confusion matrix
-						for (unsigned int k = 0; k < amountOfTests; k++) {
+						// Sampling the live signals
+						classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
+						// Sampling the spoofing signals
+						classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
-							// Sampling the live signals
-							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
-							// Sampling the spoofing signals
-							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+						// Setting up the classifier
+						c.clearTrain();
+						c.addTrainningCases(modelLive, classifiers::SupportVectorMachine::POSITIVE);
+						c.addTrainningCases(modelSpoofing, classifiers::SupportVectorMachine::NEGATIVE);
+						c.train();
 
-							// Setting up the classifier
-							c.clearTrain();
-							c.addTrainningCases(modelLive, classifiers::SupportVectorMachine::POSITIVE);
-							c.addTrainningCases(modelSpoofing, classifiers::SupportVectorMachine::NEGATIVE);
-							c.train();
+						// Preparing confusion matrix
+						confusionMatrix.truePositive = 0;
+						confusionMatrix.falsePositive = 0;
+						confusionMatrix.trueNegative = 0;
+						confusionMatrix.falseNegative = 0;
 
-							// Preparing confusion matrix
-							confusionMatrix[TP] = 0;
-							confusionMatrix[FP] = 0;
-							confusionMatrix[TN] = 0;
-							confusionMatrix[FN] = 0;
+						/////////////////////////////////////////
+						/// Populating the confusion matrices ///
+						/////////////////////////////////////////
 
-							/////////////////////////////////////////
-							/// Populating the confusion matrices ///
-							/////////////////////////////////////////
-
-							for (auto test : testLive) {
-								if (c.evaluate(test) == classifiers::SupportVectorMachine::POSITIVE) {
-									confusionMatrix[TP] += 1;
-								} else {
-									confusionMatrix[FN] += 1;
-								}
+						for (auto test : testLive) {
+							if (c.evaluate(test) == classifiers::SupportVectorMachine::POSITIVE) {
+								confusionMatrix.truePositive += 1;
+							} else {
+								confusionMatrix.falseNegative += 1;
 							}
-
-							for (auto test : testSpoofing) {
-								if (c.evaluate(test) == classifiers::SupportVectorMachine::NEGATIVE) {
-									confusionMatrix[TN] += 1;
-								} else {
-									confusionMatrix[FP] += 1;
-								}
-							}
-
-							////////////////////////
-							/// Conclusion phase ///
-							////////////////////////
-
-							temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
-
-							// store the best accuracy yet
-							if (temp > percentageBestAccuracy) {
-								percentageBestAccuracy = temp;
-								percentageBestConfusionMatrix = confusionMatrix;
-								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-							}
-
-							// store the worst accuracy yet
-							if (temp < percentageWorstAccuracy) {
-								percentageWorstAccuracy = temp;
-								percentageWorseConfusionMatrix = confusionMatrix;
-								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
-							}
-
-							// store the current accuracy (will be use to calculate the standard deviation)
-							allAccuracies[modelPercentage].push_back(temp);
 						}
 
-						// Store the results for the graphic
-						numberOfTestsForEachPercentage[modelPercentage].push_back(amountOfTests);
-						bestTestAccuracyForEachPercentage[modelPercentage].push_back(percentageBestAccuracy);
-						worseTestAccuracyForEachPercentage[modelPercentage].push_back(percentageWorstAccuracy);
-						bestConfusionMatrixForEachPercentage[modelPercentage] = percentageBestConfusionMatrix;
-						worseConfusionMatrixForEachPercentage[modelPercentage] = percentageWorseConfusionMatrix;
+						for (auto test : testSpoofing) {
+							if (c.evaluate(test) == classifiers::SupportVectorMachine::NEGATIVE) {
+								confusionMatrix.trueNegative += 1;
+							} else {
+								confusionMatrix.falsePositive += 1;
+							}
+						}
 
-						// Report for this amount of tests
-						std::cout << "SVM: " << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
-					}
-				}
+						confusionMatricesForEachPercentage[modelPercentage][testIndex] = confusionMatrix;
 
-				//Calculates the standard deviation for each percentage
-				for (auto test : numberOfTestsForEachPercentage) {
-					stdDeviationForEachPercentage[test.first] = statistics::standardDeviation(allAccuracies[test.first]);
-				}
-
-				// Calculates the range of y axis
-				// for a more regular ploting
-				double yrange[2] = { 1, 0 };
-				for (auto test : numberOfTestsForEachPercentage) {
-
-					for (double v : worseTestAccuracyForEachPercentage[test.first]) {
-						yrange[0] = v < yrange[0] ? v : yrange[0];
-					}
-					for (double v : bestTestAccuracyForEachPercentage[test.first]) {
-						yrange[1] = v > yrange[1] ? v : yrange[1];
+						std::cout << "\rPreparing DET curve... " << 100 * testIndex / amountOfTestsToPerfom << "%" << std::flush;
 					}
 
-					float temp = (yrange[1] - yrange[0]) / 30;
-					yrange[0] -= temp;
-					yrange[1] += temp;
-
+					// Report for this amount of tests
+					std::cout << std::endl << "SVM " << modelPercentage * 100 << "%\t" << std::endl;
 				}
 
-				// save plots and results
-				for (auto test : numberOfTestsForEachPercentage) {
-					saveConfusionMatrices(bestConfusionMatrixForEachPercentage[test.first], worseConfusionMatrixForEachPercentage[test.first], test.first, resultsDestiny);
-					savePlotResults(test.second, bestTestAccuracyForEachPercentage[test.first], worseTestAccuracyForEachPercentage[test.first], stdDeviationForEachPercentage[test.first], test.first, resultsDestiny, yrange);
+				// Plot everything
+				for (auto confusionMatrices : confusionMatricesForEachPercentage) {
+					savePlotResults(confusionMatrices.second, confusionMatrices.first, resultsDestiny);
 				}
-
 			}
 	};
-
 }
-#endif /* SRC_WAVELETEXPERIMENTS_08_EXPERIMENT03_CPP_ */
+#endif /* SRC_WAVELETEXPERIMENTS_08_EXPERIMENT08_CPP_ */

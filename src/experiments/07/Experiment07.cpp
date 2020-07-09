@@ -180,7 +180,7 @@ namespace waveletExperiments {
 				plt::ylim(0.0, 1.0);
 
 				plt::grid(true);
-				plt::save(destiny);
+				plt::save(destiny + "/DET_for_classifier_" + distType + "_" + std::to_string(int(percentage * 100)) + ".png");
 				plt::clf();
 			}
 
@@ -328,7 +328,10 @@ namespace waveletExperiments {
 							confusionMatrix.trueNegative = 0;
 							confusionMatrix.falseNegative = 0;
 
-							// Test it out!!
+							/////////////////////////////////////////
+							/// Populating the confusion matrices ///
+							/////////////////////////////////////////
+
 							for (auto test : testLive) {
 								if (c.classify(test).compare("live") == 0) {
 									confusionMatrix.truePositive += 1;
@@ -358,9 +361,7 @@ namespace waveletExperiments {
 						savePlotResults(confusionMatrices.second, confusionMatrices.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
 					}
 				}
-
 			}
 	};
-
 }
 #endif /* SRC_WAVELETEXPERIMENTS_07_EXPERIMENT07_CPP_ */
