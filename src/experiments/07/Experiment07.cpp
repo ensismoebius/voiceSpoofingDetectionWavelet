@@ -180,7 +180,10 @@ namespace waveletExperiments {
 				plt::ylim(0.0, 1.0);
 
 				plt::grid(true);
-				plt::save(destiny + "/DET_for_classifier_" + distType + "_" + std::to_string(int(percentage * 100)) + ".png");
+
+				std::string file = destiny + "/DET_for_classifier_" + distType + "_" + std::to_string(int(percentage * 100)) + ".png";
+				plt::save(file);
+
 				plt::clf();
 			}
 
