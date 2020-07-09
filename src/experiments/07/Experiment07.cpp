@@ -154,44 +154,6 @@ namespace waveletExperiments {
 				signal = featureVector;
 			}
 
-			static double calculateEER(std::vector<double> far, std::vector<double> frr) {
-				double dist = std::numeric_limits<double>::max();
-				double disttemp = -std::numeric_limits<double>::max();
-
-				double prev[2] = { 0, 0 };
-				double next[2] = { 0, 0 };
-
-				for (unsigned int i = 0; i < far.size(); i++) {
-
-					// Calculate the distance between the coordinates
-					// and the x=y line in the graph
-					disttemp = std::abs((far[i] - frr[i]) / std::sqrt(2));
-
-					// Store the first nearest point ABOVE x=y line
-					if (disttemp <= dist && frr[i] >= far[i]) {
-						dist = disttemp;
-						prev[0] = far[i];
-						prev[1] = frr[i];
-						continue;
-					}
-
-					// Second nearest point to x=y BELLOW line
-					next[0] = far[i];
-					next[1] = frr[i];
-					break;
-
-				}
-
-				// Calculating the line equation determined by
-				// the points prev and next and its crossing
-				// point with the line x=y witch is the EER
-				double y = prev[0] - next[0] - 1;
-				double x = next[1] - prev[1] + 1;
-				double c = prev[1] * next[0] - prev[0] * next[1];
-
-				return -(c / (x + y));
-			}
-
 			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string destiny) {
 
 				// Alias for a easier use of matplotlib
@@ -199,32 +161,27 @@ namespace waveletExperiments {
 
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
-				std::vector<double> far;
-				std::vector<double> frr;
+				// Preparing data for ploting
+				std::vector<double> fpr;
+				std::vector<double> fnr;
+				double eer;
 
-				for (auto confusionMatrix : confusionMatrices) {
-					far.push_back(statistics::falsePositiveRate(confusionMatrix));
-					frr.push_back(statistics::falseNegativeRate(confusionMatrix));
-				}
+				statistics::calculateEER(confusionMatrices, eer, fpr, fnr);
 
-				std::sort(far.begin(), far.end());
-				std::sort(frr.rbegin(), frr.rend());
+				// Ploting data
+				plt::text(eer, eer, "EER:" + std::to_string(eer));
+				plt::plot( { 0, 1 });
+				plt::plot(fpr, fnr);
 
-				double eer = calculateEER(far, frr);
-
+				plt::title("Detection Error Tradeoff curve and EER using " + distType + " distance classifier.\n Model size: " + std::to_string(int(percentage * 100)) + "%");
 				plt::xlabel("False Acceptance Rate");
 				plt::ylabel("False Rejection Rate");
-				plt::title("Detection Error Tradeoff curve and EER for " + distType + " and " + std::to_string(percentage));
-				plt::plot(far, frr);
-				plt::plot( { 0, 1 });
-				plt::text(eer, eer, "EER:" + std::to_string(eer));
-
-				plt::xlim(0.0, 0.5);
-				plt::ylim(0.0, 0.5);
+				plt::xlim(0.0, 1.1);
+				plt::ylim(0.0, 1.0);
 
 				plt::grid(true);
-				plt::legend();
-				plt::show();
+				plt::save(destiny);
+				plt::clf();
 			}
 
 			/**

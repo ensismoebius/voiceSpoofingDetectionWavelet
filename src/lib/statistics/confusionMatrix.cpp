@@ -8,8 +8,10 @@
  *
  */
 
+#include <cmath>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "confusionMatrix.h"
 
@@ -30,7 +32,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falsePositiveRate(ConfusionMatrix matrix) {
+	double falsePositiveRate(ConfusionMatrix &matrix) {
 		return falsePositiveRate(matrix.falsePositive, matrix.trueNegative);
 	}
 
@@ -49,7 +51,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falseNegativeRate(ConfusionMatrix matrix) {
+	double falseNegativeRate(ConfusionMatrix &matrix) {
 		return falseNegativeRate(matrix.truePositive, matrix.falseNegative);
 	}
 
@@ -68,7 +70,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double truePositiveRate(ConfusionMatrix matrix) {
+	double truePositiveRate(ConfusionMatrix &matrix) {
 		return truePositiveRate(matrix.falseNegative, matrix.truePositive);
 	}
 
@@ -89,7 +91,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double accuracyRate(ConfusionMatrix matrix) {
+	double accuracyRate(ConfusionMatrix &matrix) {
 		return accuracyRate(matrix.truePositive, matrix.trueNegative, matrix.falsePositive, matrix.falseNegative);
 	}
 
@@ -108,7 +110,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double precision(ConfusionMatrix matrix) {
+	double precision(ConfusionMatrix &matrix) {
 		return precision(matrix.truePositive, matrix.falsePositive);
 	}
 
@@ -127,7 +129,71 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double recall(ConfusionMatrix matrix) {
+	double recall(ConfusionMatrix &matrix) {
 		return recall(matrix.truePositive, matrix.falseNegative);
+	}
+
+	/**
+	 * Calculate the Equal Error Rate
+	 * @param eer
+	 * @param falsePositiveRates
+	 * @param falseNegativeRates
+	 */
+	void calculateEER(double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates) {
+		double dist = std::numeric_limits<double>::max();
+		double disttemp = -std::numeric_limits<double>::max();
+
+		double prev[2] = { 0, 0 };
+		double next[2] = { 0, 0 };
+
+		std::sort(falsePositiveRates.begin(), falsePositiveRates.end());
+		std::sort(falseNegativeRates.rbegin(), falseNegativeRates.rend());
+
+		for (unsigned int i = 0; i < falsePositiveRates.size(); i++) {
+
+			// Calculate the distance between the coordinates
+			// and the x=y line in the graph
+			disttemp = std::abs((falsePositiveRates[i] - falseNegativeRates[i]) / std::sqrt(2));
+
+			// Store the first nearest point ABOVE x=y line
+			if (disttemp <= dist && falseNegativeRates[i] >= falsePositiveRates[i]) {
+				dist = disttemp;
+				prev[0] = falsePositiveRates[i];
+				prev[1] = falseNegativeRates[i];
+				continue;
+			}
+
+			// Second nearest point to x=y BELLOW line
+			next[0] = falsePositiveRates[i];
+			next[1] = falseNegativeRates[i];
+			break;
+		}
+
+		// Calculating the line equation determined by
+		// the points prev and next and its crossing
+		// point with the line x=y witch is the EER
+		double y = prev[0] - next[0] - 1;
+		double x = next[1] - prev[1] + 1;
+		double c = prev[1] * next[0] - prev[0] * next[1];
+
+		eer = -(c / (x + y));
+	}
+
+	/**
+	 * Calculate the Equal Error Rate
+	 * @param confusionMatrices - A vector of @ConfusionMatrix
+	 * @param eer
+	 * @param falsePositiveRates
+	 * @param falseNegativeRates
+	 */
+	void calculateEER(std::vector<ConfusionMatrix> &confusionMatrices, double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates) {
+
+		// Calculate all false positive and false negative rates
+		for (auto confusionMatrix : confusionMatrices) {
+			falsePositiveRates.push_back(falsePositiveRate(confusionMatrix));
+			falseNegativeRates.push_back(falseNegativeRate(confusionMatrix));
+		}
+
+		calculateEER(eer, falsePositiveRates, falseNegativeRates);
 	}
 }

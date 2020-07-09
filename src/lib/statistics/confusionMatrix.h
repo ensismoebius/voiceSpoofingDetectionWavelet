@@ -42,7 +42,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falsePositiveRate(ConfusionMatrix matrix);
+	double falsePositiveRate(ConfusionMatrix &matrix);
 
 	/**
 	 * False negative rate
@@ -57,7 +57,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falseNegativeRate(ConfusionMatrix matrix);
+	double falseNegativeRate(ConfusionMatrix &matrix);
 
 	/**
 	 * True positive rate
@@ -72,7 +72,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double truePositiveRate(ConfusionMatrix matrix);
+	double truePositiveRate(ConfusionMatrix &matrix);
 
 	/**
 	 * Accuracy rate
@@ -89,7 +89,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double accuracyRate(ConfusionMatrix matrix);
+	double accuracyRate(ConfusionMatrix &matrix);
 
 	/**
 	 * Precision
@@ -104,7 +104,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double precision(ConfusionMatrix matrix);
+	double precision(ConfusionMatrix &matrix);
 
 	/**
 	 * Recall
@@ -119,7 +119,24 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double recall(ConfusionMatrix matrix);
+	double recall(ConfusionMatrix &matrix);
+
+	/**
+	 * Calculate the Equal Error Rate
+	 * @param eer
+	 * @param falsePositiveRates
+	 * @param falseNegativeRates
+	 */
+	void calculateEER(double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates);
+
+	/**
+	 * Calculate the Equal Error Rate
+	 * @param confusionMatrices - A vector of @ConfusionMatrix
+	 * @param eer
+	 * @param falsePositiveRates
+	 * @param falseNegativeRates
+	 */
+	void calculateEER(std::vector<ConfusionMatrix> &confusionMatrices, double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates);
 
 }
 
