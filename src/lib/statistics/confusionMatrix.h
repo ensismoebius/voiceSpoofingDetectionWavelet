@@ -19,7 +19,14 @@
 namespace statistics {
 
 	enum CONFUSION_POS {
-		TP, FP, FN, TN
+		TruePositive, FalsePositive, FalseNegative, TrueNegative
+	};
+
+	struct ConfusionMatrix {
+			int truePositive;
+			int falsePositive;
+			int falseNegative;
+			int trueNegative;
 	};
 
 	/**
@@ -35,7 +42,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falsePositiveRate(std::map<CONFUSION_POS, int> matrix);
+	double falsePositiveRate(ConfusionMatrix matrix);
 
 	/**
 	 * False negative rate
@@ -50,7 +57,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falseNegativeRate(std::map<CONFUSION_POS, int> matrix);
+	double falseNegativeRate(ConfusionMatrix matrix);
 
 	/**
 	 * True positive rate
@@ -65,7 +72,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double truePositiveRate(std::map<CONFUSION_POS, int> matrix);
+	double truePositiveRate(ConfusionMatrix matrix);
 
 	/**
 	 * Accuracy rate
@@ -82,7 +89,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double accuracyRate(std::map<CONFUSION_POS, int> matrix);
+	double accuracyRate(ConfusionMatrix matrix);
 
 	/**
 	 * Precision
@@ -97,7 +104,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double precision(std::map<CONFUSION_POS, int> matrix);
+	double precision(ConfusionMatrix matrix);
 
 	/**
 	 * Recall
@@ -112,7 +119,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double recall(std::map<CONFUSION_POS, int> matrix);
+	double recall(ConfusionMatrix matrix);
 
 }
 

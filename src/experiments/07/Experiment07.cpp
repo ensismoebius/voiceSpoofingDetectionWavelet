@@ -16,12 +16,14 @@
 #include <vector>
 #include <iomanip>
 #include <iostream>
+#include <algorithm>
 
 #include "../../lib/wave/Wav.cpp"
 #include "../../lib/wavelet/Types.h"
 #include "../../lib/vector/vectorUtils.h"
 #include "../../lib/gnuplot/gnuplotCalls.h"
 #include "../../lib/wavelet/waveletOperations.h"
+#include "../../lib/statistics/confusionMatrix.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
@@ -84,7 +86,7 @@ namespace waveletExperiments {
 				signalLength = wavelets::getNextPowerOfTwo(signal.size());
 				signal.resize(signalLength, 0);
 
-				// Calculate the max levels of decompositions
+				// Calculate the max levels of decomposi				std::sort(far);tions
 				// i.e. until the coeficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
@@ -152,11 +154,7 @@ namespace waveletExperiments {
 				signal = featureVector;
 			}
 
-			/**
-			 * Plot the results on a paraconsistent plane
-			 * @param results
-			 */
-			static void savePlotResults(std::map<double, std::vector<std::map<CONFUSION_POS, int>>> confusionMatrixForEachPercentage, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string destiny) {
+			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string destiny) {
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -166,23 +164,33 @@ namespace waveletExperiments {
 				plt::xlabel("Amount of tests");
 				plt::ylabel("Accuracy");
 
-//				plt::ylim();
+				plt::title("Detection Error Tradeoff curve and EER for " + distType + " and " + std::to_string(percentage));
 
-				plt::title("Detection Error Tradeoff curve and EER for " + distType);
-//
+				std::vector<double> far;
+				std::vector<double> frr;
+				std::vector<double> x;
 
-				//TODO Calc EER
+				int xi = 0;
+				for (auto confusionMatrix : confusionMatrices) {
+					far.push_back(statistics::falsePositiveRate(confusionMatrix));
+					frr.push_back(statistics::falseNegativeRate(confusionMatrix));
+					x.push_back(xi++);
+				}
 
-				plt::named_plot("FAR", numberOfTests, accuracies, "-");
-				plt::named_plot("FRR", numberOfTests, worseTestAccuracy, "--");
-//
-//				plt::text(numberOfTests[numberOfTests.size() - 1], accuracies[accuracies.size() - 1], std::to_string(accuracies[accuracies.size() - 1]));
-//				plt::text(numberOfTests[numberOfTests.size() - 1], worseTestAccuracy[worseTestAccuracy.size() - 1], std::to_string(worseTestAccuracy[worseTestAccuracy.size() - 1]));
-//
-//				plt::grid(true);
-//				plt::legend();
-//				plt::save(resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
-//				plt::clf();
+				std::sort(far.rbegin(), far.rend());
+				std::sort(frr.begin(), frr.end());
+
+//				plt::named_plot("far", far);
+//				plt::named_plot("frr", frr);
+				plt::named_plot("det", far, frr);
+				plt::plot(x, x);
+
+				plt::xlim(0.0, 0.5);
+				plt::ylim(0.0, 0.5);
+
+				plt::grid(true);
+				plt::legend();
+				plt::show();
 			}
 
 			/**
@@ -312,12 +320,9 @@ namespace waveletExperiments {
 				std::cout << std::endl;
 
 				// Creating the confusion matrix structure
-				std::map<CONFUSION_POS, int> confusionMatrix;
+				statistics::ConfusionMatrix confusionMatrix;
 
-				std::map<double, std::vector<std::map<CONFUSION_POS, int>>> confusionMatrixForEachPercentage;
-
-				// Holds the parcial user friendly reports
-				std::string partialReport;
+				std::map<double, std::vector<statistics::ConfusionMatrix>> confusionMatricesForEachPercentage;
 
 				// Holds the tests features vectors for live signals
 				std::vector<std::vector<double>> testLive;
@@ -337,66 +342,58 @@ namespace waveletExperiments {
 				// Changes the type of distance classifier used
 				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++) {
 
-					// Clearing the results for the next iteration
-					confusionMatrixForEachPercentage.clear();
-
 					// Changes the percentage of the feature vectors used as models for the classifier
 					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
 
 						// Changes the amount of tests done against the dataset
-						for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {
+						confusionMatricesForEachPercentage[modelPercentage].resize(amountOfTestsToPerfom);
+						for (unsigned int testIndex = 0; testIndex < amountOfTestsToPerfom; testIndex++) {
 
-							// Do the classification and populate the confusion matrix
-							for (unsigned int k = 0; k < amountOfTests; k++) {
+							// Sampling the live signals
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
+							// Sampling the spoofing signals
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
-								// Sampling the live signals
-								classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
-								// Sampling the spoofing signals
-								classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+							// Setting up the classifier
+							c.setDistanceType(static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType));
+							c.addReferenceModels("live", modelLive);
+							c.addReferenceModels("spoofing", modelSpoofing);
 
-								// Setting up the classifier
-								c.setDistanceType(static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType));
-								c.addReferenceModels("live", modelLive);
-								c.addReferenceModels("spoofing", modelSpoofing);
+							// Preparing confusion matrix
+							confusionMatrix.truePositive = 0;
+							confusionMatrix.falsePositive = 0;
+							confusionMatrix.trueNegative = 0;
+							confusionMatrix.falseNegative = 0;
 
-								// Preparing confusion matrix
-								confusionMatrix[TP] = 0;
-								confusionMatrix[FP] = 0;
-								confusionMatrix[TN] = 0;
-								confusionMatrix[FN] = 0;
-
-								// Test it out!!
-								for (auto test : testLive) {
-									if (c.classify(test).compare("live") == 0) {
-										confusionMatrix[TP] += 1;
-									} else {
-										confusionMatrix[FN] += 1;
-									}
+							// Test it out!!
+							for (auto test : testLive) {
+								if (c.classify(test).compare("live") == 0) {
+									confusionMatrix.truePositive += 1;
+								} else {
+									confusionMatrix.falseNegative += 1;
 								}
-
-								for (auto test : testSpoofing) {
-									if (c.classify(test).compare("spoofing") == 0) {
-										confusionMatrix[TN] += 1;
-									} else {
-										confusionMatrix[FP] += 1;
-									}
-								}
-
-								confusionMatrixForEachPercentage[modelPercentage].push_back(confusionMatrix);
-
-								// Some reporting
-								partialReport = std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
 							}
 
-							// Report for this amount of tests
-							std::cout << (static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType) == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan: " : "Euclidian: ") << modelPercentage * 100 << "%\t" << amountOfTests << "\t" << partialReport << std::endl;
+							for (auto test : testSpoofing) {
+								if (c.classify(test).compare("spoofing") == 0) {
+									confusionMatrix.trueNegative += 1;
+								} else {
+									confusionMatrix.falsePositive += 1;
+								}
+							}
+
+							confusionMatricesForEachPercentage[modelPercentage][testIndex] = confusionMatrix;
+
+							std::cout << "\rPreparing DET curve... " << 100 * testIndex / amountOfTestsToPerfom << "%" << std::flush;
 						}
+						// Report for this amount of tests
+						std::cout << std::endl << (static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType) == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan: " : "Euclidian: ") << modelPercentage * 100 << "%\t" << std::endl;
 					}
 
 					// Plot everything
-					savePlotResults(confusionMatrixForEachPercentage, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
-
+					for (auto confusionMatrices : confusionMatricesForEachPercentage) {
+						savePlotResults(confusionMatrices.second, confusionMatrices.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
+					}
 				}
 
 			}

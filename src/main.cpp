@@ -7,6 +7,8 @@
 #include "experiments/04/Experiment04.cpp"
 #include "experiments/05/Experiment05.cpp"
 #include "experiments/06/Experiment06.cpp"
+#include "experiments/07/Experiment07.cpp"
+#include "experiments/08/Experiment08.cpp"
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
 
@@ -44,7 +46,11 @@ int main(int argc, char *args[]) {
 			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			return 0;
 		case 6:
+			// TODO Neural network experiment
 			//waveletExperiments::Experiment06::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
+			return 0;
+		case 7:
+			waveletExperiments::Experiment07::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
 		case 0:
 			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
@@ -159,7 +165,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 
 	}
 
-	if (experiment == 2 || experiment == 3 || experiment == 0 || experiment == 6) {
+	if (experiment == 2 || experiment == 3 || experiment == 0 || experiment == 6 || experiment == 7) {
 		if (argc != 15) {
 			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
 			return -1;

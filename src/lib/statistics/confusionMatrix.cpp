@@ -30,8 +30,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falsePositiveRate(std::map<CONFUSION_POS, int> matrix) {
-		return falsePositiveRate(matrix[FP], matrix[TN]);
+	double falsePositiveRate(ConfusionMatrix matrix) {
+		return falsePositiveRate(matrix.falsePositive, matrix.trueNegative);
 	}
 
 	/**
@@ -49,8 +49,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falseNegativeRate(std::map<CONFUSION_POS, int> matrix) {
-		return falseNegativeRate(matrix[TP], matrix[FN]);
+	double falseNegativeRate(ConfusionMatrix matrix) {
+		return falseNegativeRate(matrix.truePositive, matrix.falseNegative);
 	}
 
 	/**
@@ -68,8 +68,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double truePositiveRate(std::map<CONFUSION_POS, int> matrix) {
-		return truePositiveRate(matrix[FN], matrix[TP]);
+	double truePositiveRate(ConfusionMatrix matrix) {
+		return truePositiveRate(matrix.falseNegative, matrix.truePositive);
 	}
 
 	/**
@@ -89,8 +89,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double accuracyRate(std::map<CONFUSION_POS, int> matrix) {
-		return accuracyRate(matrix[TP], matrix[TN], matrix[FP], matrix[FN]);
+	double accuracyRate(ConfusionMatrix matrix) {
+		return accuracyRate(matrix.truePositive, matrix.trueNegative, matrix.falsePositive, matrix.falseNegative);
 	}
 
 	/**
@@ -108,8 +108,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double precision(std::map<CONFUSION_POS, int> matrix) {
-		return precision(matrix[TP], matrix[FP]);
+	double precision(ConfusionMatrix matrix) {
+		return precision(matrix.truePositive, matrix.falsePositive);
 	}
 
 	/**
@@ -127,7 +127,7 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double recall(std::map<CONFUSION_POS, int> matrix) {
-		return recall(matrix[TP], matrix[FN]);
+	double recall(ConfusionMatrix matrix) {
+		return recall(matrix.truePositive, matrix.falseNegative);
 	}
 }
