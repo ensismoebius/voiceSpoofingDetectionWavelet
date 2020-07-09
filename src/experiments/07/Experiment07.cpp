@@ -154,6 +154,44 @@ namespace waveletExperiments {
 				signal = featureVector;
 			}
 
+			static double calculateEER(std::vector<double> far, std::vector<double> frr) {
+				double dist = std::numeric_limits<double>::max();
+				double disttemp = -std::numeric_limits<double>::max();
+
+				double prev[2] = { 0, 0 };
+				double next[2] = { 0, 0 };
+
+				for (unsigned int i = 0; i < far.size(); i++) {
+
+					// Calculate the distance between the coordinates
+					// and the x=y line in the graph
+					disttemp = std::abs((far[i] - frr[i]) / std::sqrt(2));
+
+					// Store the first nearest point ABOVE x=y line
+					if (disttemp <= dist && frr[i] >= far[i]) {
+						dist = disttemp;
+						prev[0] = far[i];
+						prev[1] = frr[i];
+						continue;
+					}
+
+					// Second nearest point to x=y BELLOW line
+					next[0] = far[i];
+					next[1] = frr[i];
+					break;
+
+				}
+
+				// Calculating the line equation determined by
+				// the points prev and next and its crossing
+				// point with the line x=y witch is the EER
+				double y = prev[0] - next[0] - 1;
+				double x = next[1] - prev[1] + 1;
+				double c = prev[1] * next[0] - prev[0] * next[1];
+
+				return -(c / (x + y));
+			}
+
 			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string destiny) {
 
 				// Alias for a easier use of matplotlib
@@ -161,29 +199,25 @@ namespace waveletExperiments {
 
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
-				plt::xlabel("Amount of tests");
-				plt::ylabel("Accuracy");
-
-				plt::title("Detection Error Tradeoff curve and EER for " + distType + " and " + std::to_string(percentage));
-
 				std::vector<double> far;
 				std::vector<double> frr;
-				std::vector<double> x;
 
-				int xi = 0;
 				for (auto confusionMatrix : confusionMatrices) {
 					far.push_back(statistics::falsePositiveRate(confusionMatrix));
 					frr.push_back(statistics::falseNegativeRate(confusionMatrix));
-					x.push_back(xi++);
 				}
 
-				std::sort(far.rbegin(), far.rend());
-				std::sort(frr.begin(), frr.end());
+				std::sort(far.begin(), far.end());
+				std::sort(frr.rbegin(), frr.rend());
 
-//				plt::named_plot("far", far);
-//				plt::named_plot("frr", frr);
-				plt::named_plot("det", far, frr);
-				plt::plot(x, x);
+				double eer = calculateEER(far, frr);
+
+				plt::xlabel("False Acceptance Rate");
+				plt::ylabel("False Rejection Rate");
+				plt::title("Detection Error Tradeoff curve and EER for " + distType + " and " + std::to_string(percentage));
+				plt::plot(far, frr);
+				plt::plot( { 0, 1 });
+				plt::text(eer, eer, "EER:" + std::to_string(eer));
 
 				plt::xlim(0.0, 0.5);
 				plt::ylim(0.0, 0.5);
@@ -191,34 +225,6 @@ namespace waveletExperiments {
 				plt::grid(true);
 				plt::legend();
 				plt::show();
-			}
-
-			/**
-			 * Save the results to file on /tmp/results.csv
-			 * @param data
-			 */
-
-			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> data) {
-
-				// Open the file
-				std::string filePath = "/tmp/results.csv";
-				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open()) {
-					std::cout << "Cannot open file: " << filePath;
-					throw std::runtime_error("Impossible to open the file!");
-					return;
-				}
-
-				for (auto clazz : data["haar"][BARK]) {
-					for (std::vector<double> featureVector : clazz.second) {
-						ofs << clazz.first << '\t';
-						for (double value : featureVector) {
-							ofs << value << '\t';
-						}
-						ofs << std::endl;
-					}
-				}
-				ofs.close();
 			}
 
 			/**
@@ -400,4 +406,4 @@ namespace waveletExperiments {
 	};
 
 }
-#endif /* SRC_WAVELETEXPERIMENTS_07_EXPERIMENT02_CPP_ */
+#endif /* SRC_WAVELETEXPERIMENTS_07_EXPERIMENT07_CPP_ */
