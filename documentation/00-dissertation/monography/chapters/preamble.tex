@@ -6,7 +6,8 @@ a4paper,			% Paper size
 english,			% Main language hyphenation
 french,				% Second language hyphenation
 spanish,			% Third language hyphenation
-brazil				% Document main language
+brazil,				% Document main language
+twocolumn			% Enables two column parts
 ]{abntex2}
 
 % Packages used
@@ -49,6 +50,13 @@ brazil				% Document main language
 		tabsize=2
 	}
 	\lstset{style=mystyle}
+
+% Forces a new page
+\newcommand{\forceNewPage}{
+	\FloatBarrier
+	\clearpage
+	\newpage
+}
 
 % Redefine cover macro
 \renewcommand{\imprimircapa}{%
@@ -124,4 +132,7 @@ brazil				% Document main language
 
 % Remove useless extra spaces
 	\frenchspacing 
+	
+% By default this is a one column document, use	\twocolumn to enable two columns
+	\onecolumn
 

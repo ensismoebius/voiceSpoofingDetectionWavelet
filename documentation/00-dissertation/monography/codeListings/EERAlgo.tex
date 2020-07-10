@@ -1,0 +1,38 @@
+\begin{lstlisting}[language=C++, caption={Algoritmo para o cálculo do EER}, label={lst:EERAlgo}]
+double menorDistanciaDaReta = valorMaximo();
+double distanciaAtual = -valorMaximo();
+
+double coordenadaAcimaDaRetaDiagonal = { 0, 0 };
+double coordenadaAbaixoDaRetaDiagonal = { 0, 0 };
+
+ordenarCrescente(vetorFAR);
+ordenarDecrescente(vetorFRR);
+
+for (i = 0; i < vetorFAR.size(); i++) {
+	// Calcula a distancia entre a coordenada definida pelos valores de FAR e FRR
+	// e a reta definida pela equacao x=y
+	distanciaAtual = valorAbsoluto((vetorFAR[i] - vetorFRR[i]) / raizQuadrada(2));
+	
+	// Armazena apenas a menor distancia dos pontos acima da reta x=y
+	if (distanciaAtual <= menorDistanciaDaReta && vetorFRR[i] >= vetorFAR[i]) {
+		menorDistanciaDaReta = distanciaAtual;
+		coordenadaAcimaDaRetaDiagonal[0] = vetorFAR[i];
+		coordenadaAcimaDaRetaDiagonal[1] = vetorFRR[i];
+
+		pularIteracao();
+	}
+
+	// Armazena apenas a menor distancia dos pontos abaixo da reta x=y
+	coordenadaAbaixoDaRetaDiagonal[0] = vetorFAR[i];
+	coordenadaAbaixoDaRetaDiagonal[1] = vetorFRR[i];
+	
+	paraIteracao();
+}
+
+// Calcula o ponto de interseccao da curva com a reta x=y
+y = coordenadaAcimaDaRetaDiagonal[0] - coordenadaAbaixoDaRetaDiagonal[0] - 1;
+x = coordenadaAbaixoDaRetaDiagonal[1] - coordenadaAcimaDaRetaDiagonal[1] + 1;
+c = coordenadaAcimaDaRetaDiagonal[1] * coordenadaAbaixoDaRetaDiagonal[0] - coordenadaAcimaDaRetaDiagonal[0] * coordenadaAbaixoDaRetaDiagonal[1];
+
+EER = -(c / (x + y));
+\end{lstlisting}

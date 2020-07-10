@@ -140,41 +140,40 @@ namespace statistics {
 	 * @param falseNegativeRates
 	 */
 	void calculateEER(double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates) {
-		double dist = std::numeric_limits<double>::max();
-		double disttemp = -std::numeric_limits<double>::max();
+		double minorDistance = std::numeric_limits<double>::max();
+		double tempDistance = -std::numeric_limits<double>::max();
 
-		double prev[2] = { 0, 0 };
-		double next[2] = { 0, 0 };
+		double pointAbove[2] = { 0, 0 };
+		double pointBellow[2] = { 0, 0 };
 
 		std::sort(falsePositiveRates.begin(), falsePositiveRates.end());
 		std::sort(falseNegativeRates.rbegin(), falseNegativeRates.rend());
 
 		for (unsigned int i = 0; i < falsePositiveRates.size(); i++) {
 
-			// Calculate the distance between the coordinates
-			// and the x=y line in the graph
-			disttemp = std::abs((falsePositiveRates[i] - falseNegativeRates[i]) / std::sqrt(2));
+			// Calculate the distance between the coordinates and the x=y line in the graph
+			tempDistance = std::abs((falsePositiveRates[i] - falseNegativeRates[i]) / std::sqrt(2));
 
 			// Store the first nearest point ABOVE x=y line
-			if (disttemp <= dist && falseNegativeRates[i] >= falsePositiveRates[i]) {
-				dist = disttemp;
-				prev[0] = falsePositiveRates[i];
-				prev[1] = falseNegativeRates[i];
+			if (tempDistance <= minorDistance && falseNegativeRates[i] >= falsePositiveRates[i]) {
+				minorDistance = tempDistance;
+				pointAbove[0] = falsePositiveRates[i];
+				pointAbove[1] = falseNegativeRates[i];
 				continue;
 			}
 
 			// Second nearest point to x=y BELLOW line
-			next[0] = falsePositiveRates[i];
-			next[1] = falseNegativeRates[i];
+			pointBellow[0] = falsePositiveRates[i];
+			pointBellow[1] = falseNegativeRates[i];
 			break;
 		}
 
 		// Calculating the line equation determined by
 		// the points prev and next and its crossing
 		// point with the line x=y witch is the EER
-		double y = prev[0] - next[0] - 1;
-		double x = next[1] - prev[1] + 1;
-		double c = prev[1] * next[0] - prev[0] * next[1];
+		double y = pointAbove[0] - pointBellow[0] - 1;
+		double x = pointBellow[1] - pointAbove[1] + 1;
+		double c = pointAbove[1] * pointBellow[0] - pointAbove[0] * pointBellow[1];
 
 		eer = -(c / (x + y));
 	}

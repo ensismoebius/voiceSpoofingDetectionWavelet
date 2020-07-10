@@ -49,31 +49,44 @@
 		\begin{itemize}
 			\item Tabela de confusão.
 			\item Acurácia e seu respectivo desvio padrão.
-			\item EER (equal error rate).
+			\item EER (Equal Error Rate).
 		\end{itemize}
 		
 		\par No exemplo constituído pela tabela de confusão \ref{tab:confusionMatrixSample} as \textbf{linhas} representam as \textbf{classes estimadas} e as \textbf{colunas} as \textbf{classes verdadeiras}, sendo que:
 		\begin{itemize}
-			\item \textbf{VV}: Quantidade de itens verdadeiros classificados como tal.
-			\item \textbf{VF}: Quantidade de itens falsos classificados como tal.
-			\item \textbf{FF}: Quantidade de itens verdadeiros classificados como falsos.
-			\item \textbf{FV}: Quantidade de itens falsos classificados como verdadeiros.
+			\item \textbf{TP}: Quantidade de itens verdadeiros classificados como tal (\textit{True Positive}).
+			\item \textbf{TN}: Quantidade de itens falsos classificados como tal (\textit{True Negative}).
+			\item \textbf{FN}: Quantidade de itens verdadeiros classificados como falsos (\textit{False Negative}).
+			\item \textbf{FP}: Quantidade de itens falsos classificados como verdadeiros (\textit{False Positive}).
 		\end{itemize} 
 		\input{tables/results/confusionMatrices/confusionMatrixSample.tex}
 		
-		\par A acurácia usa os valores de \textit{VV}, \textit{VF} e a quantidade de elementos(\textit{n}) tal que a mesma pode ser calculada como mostrado na Equação \ref{eq:calculoDaAcuracia}.
+		\par A acurácia usa os valores de \textit{TP}, \textit{TN} e a quantidade de elementos(\textit{N}) para ser calculada como mostrado na Equação \ref{eq:calculoDaAcuracia}.
 		
 		\begin{equation}
-			acuracia = \dfrac{VV + VF}{n} \qquad.
+			acuracia = \dfrac{TP + TN}{N} \qquad.
 			\label{eq:calculoDaAcuracia}
 		\end{equation}
 
-		\par Para o cálculo do EER \textit{FV} e \textit{FF} são utilizados \cite{ghazali2018recent} de acordo com a Equação \ref{eq:calculoDoEER}.
+		\par Para se calcular o EER se leva em consideração os valores de \textit{FP} e \textit{FN} \cite{ghazali2018recent}, a partir desse valores são calculadas as \textit{False Acceptance Rate (\textbf{FAR})} representada na equação \ref{eq:FAR} e \textit{False Rejection Rate (\textbf{FRR})} representada por \ref{eq:FRR} ou \textbf{Taxa de falsos positivos} e \textbf{Taxa de falsos negativos} respectivamente.
 		
 		\begin{equation}
-			EER = \dfrac{FV}{FF} \qquad.
-			\label{eq:calculoDoEER}
+			FAR=\dfrac{FP}{TN+FP} \qquad.
+			\label{eq:FAR}
 		\end{equation}
+		
+		\begin{equation}
+			FRR=\dfrac{FN}{FN+TP} \qquad.
+			\label{eq:FRR}
+		\end{equation}
+				
+		\par São calculadas tabelas de confusão por um número suficiente de vezes até que \textbf{\textit{FAR} seja igual \textit{FRR}}, a cada ciclo os vetores de características são comutados de forma aleatória para que se consiga valores diferentes, neste trabalho alguns casos precisaram de mais que 12000 iterações.
+		
+		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico juntamente com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.
+		
+		\par O efetivo valor de \textbf{ERR se encontra na intersecção da reta $x=y$} com a curva definida por FAR e FRR como demonstrado no algoritmo \ref{lst:EERAlgo}.
+	
+		\input{codeListings/EERAlgo.tex}
 	
 		\subsection{Procedimento 01: filtros \textit{wavelet}, escalas Bark e Mel}
 		\label{chap:propApproach:sec:Experimento01}
