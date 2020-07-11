@@ -58,6 +58,17 @@ twocolumn			% Enables two column parts
 	\newpage
 }
 
+% Toggle off clearpage
+\newcommand{\disableClearpage}{
+	\let\oldclearpage\clearpage
+	\let\clearpage\relax
+}
+
+% Toggle on clearpage
+\newcommand{\enableClearpage}{
+	\let\clearpage\oldclearpage
+}
+
 % Redefine cover macro
 \renewcommand{\imprimircapa}{%
 	\begin{capa}%
@@ -69,13 +80,48 @@ twocolumn			% Enables two column parts
 		\par {\ABNTEXchapterfont\Large\imprimirautor}
 		\vfill
 		\begin{center}
-			\ABNTEXchapterfont\bfseries\LARGE\imprimirtitulo
+			\ABNTEXchapterfont\LARGE\huge\imprimirtitulo
 		\end{center}
 		\vfill
 		\large\imprimirlocal\\
 		\large\imprimirdata
 		\vspace*{1cm}
 	\end{capa}
+}
+
+% Redefine face macro
+\renewcommand{\folhaderostocontent}{
+	\begin{center}
+		
+		%\vspace*{1cm}
+		\ABNTEXchapterfont\large\imprimirautor
+		
+		\vspace*{\fill}
+		\vspace*{\fill}
+		\begin{center}
+			\ABNTEXchapterfont\LARGE\imprimirtitulo
+		\end{center}
+		\vspace*{\fill}
+		
+		\hspace{.45\textwidth}
+		\begin{minipage}{.5\textwidth}
+			\SingleSpacing
+			\abntex\imprimirpreambulo
+		\end{minipage}%
+		\vspace*{\fill}
+		
+		\imprimirinstituicao\vspace*{\fill}
+		
+		\large\imprimirorientadorRotulo~\imprimirorientador\par
+		
+		\vspace*{\fill}
+		
+		\large\imprimirlocal
+		\par
+		\large\imprimirdata
+		\vspace*{1cm}
+		
+	\end{center}
 }
 
 % Pdf informations
