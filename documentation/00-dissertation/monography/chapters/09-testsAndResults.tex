@@ -28,11 +28,11 @@
 	\section{Procedimento 02} \label{chap:testsResults:sec:Experimento02}
 		\enableClearpage
 	
-		\par Considerando que, de acordo com o procedimento 01, o melhor resultado foi a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a máxima acurácia que se consegue atingir com o uso de um classificador baseado em distâncias Euclidianas e Manhattan, de acordo com os detalhes definidos no Capítulo anterior. 
+		\par Considerando que, de acordo com o procedimento 01, o melhor resultado foi a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é \textbf{constatar a máxima acurácia e o mínimo EER} que se consegue atingir com o uso de um classificador baseado em distâncias Euclidianas e Manhattan, de acordo com os detalhes definidos no Capítulo anterior.
 		
-		\par Assim sendo, constatou-se, para os montantes de 10\%, 20\%, 30\%, 40\% e 50\% da base de sinais reservados para treinamento, com o limite de 300 testes aleatórios em cada caso, os resultados constantes nas Tabelas \ref{tab:experiment02ResultsEuclidian} e \ref{tab:experiment02ResultsManhattan}. 
+		\par Assim sendo, constatou-se, para os montantes de 10\%, 20\%, 30\%, 40\% e 50\% da base de sinais reservados para treinamento, com o limite de 300 testes aleatórios em cada caso, os resultados constantes nas Tabelas \ref{tab:experiment02ResultsEuclidian} e \ref{tab:experiment02ResultsManhattan}. Particularmente interessante nelas, é a medida da taxa de erros iguais (EER), que equilibra as taxas de falsos positivos e falsos negativos. 
 		
-		\par Maiores detalhes para a distância Euclidiana podem ser conseguidos consultando-se as Tabelas \ref{tab:classifier_Euclidian_10_best},\ref{tab:classifier_Euclidian_10_worse},
+		\par Maiores detalhes para a distância Euclidiana podem ser conseguidos consultando-se as Tabelas \ref{tab:classifier_Euclidian_10_best}, \ref{tab:classifier_Euclidian_10_worse},
 		\ref{tab:classifier_Euclidian_20_best}, \ref{tab:classifier_Euclidian_20_worse}, 
 		\ref{tab:classifier_Euclidian_30_best}, \ref{tab:classifier_Euclidian_30_worse}, 
 		\ref{tab:classifier_Euclidian_40_best}, \ref{tab:classifier_Euclidian_40_worse}, 
@@ -51,23 +51,23 @@
 
 			\input{tables/results/confusionMatrices/classifier_Euclidian_10.tex}
 	
-			\begin{figure}[!t]
+			\begin{figure}[!h]
 				\centering
-				\includegraphics[width=.8\linewidth]{images/results/confusionMatrices/classifier_Euclidian_10}
+				\includegraphics[width=\linewidth]{images/results/confusionMatrices/classifier_Euclidian_10}
 				\caption{Acurácia \textit{X} quantidade de testes - Distância Euclidiana, modelo a 10\%}
 				\label{fig:classifiereuclidian10}
 			\end{figure}
 
-			\begin{figure}[h]
+			\begin{figure}[!h]
 				\centering
-				\includegraphics[width=.7\linewidth]{images/results/det/DET_for_classifier_Euclidian_10}
+				\includegraphics[width=.9\linewidth]{images/results/det/DET_for_classifier_Euclidian_10}
 				\caption{Curva DET dos resultados de distância Euclidiana, modelo a 10\%}
 				\label{fig:detforclassifiereuclidian10}
 			\end{figure}
-			
+
 			\FloatBarrier
+					
 		\subsection{Escala BARK com \textit{wavelet} Haar usando um classificador de distância Euclidiana com tamanho de modelo a 20\%}
-			
 			\input{tables/results/confusionMatrices/classifier_Euclidian_20.tex}
 			
 			\begin{figure}[ht]
@@ -77,9 +77,9 @@
 				\label{fig:classifiereuclidian20}
 			\end{figure}
 		
-			\begin{figure}[ht]
+			\begin{figure}[!ht]
 				\centering
-				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Euclidian_20}
+				\includegraphics[width=.9\linewidth]{images/results/det/DET_for_classifier_Euclidian_20}
 				\caption{Curva DET dos resultados de distância Euclidiana, modelo a 20\%}
 				\label{fig:detforclassifiereuclidian20}
 			\end{figure}
@@ -115,9 +115,9 @@
 				\label{fig:classifiereuclidian40}
 			\end{figure}
 		
-			\begin{figure}[ht]
+			\begin{figure}[!ht]
 				\centering
-				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Euclidian_40}
+				\includegraphics[width=.9\linewidth]{images/results/det/DET_for_classifier_Euclidian_40}
 				\caption{Curva DET dos resultados de distância Euclidiana, modelo a 40\%}
 				\label{fig:detforclassifiereuclidian40}
 			\end{figure}
@@ -136,12 +136,12 @@
 		
 			\begin{figure}[ht]
 				\centering
-				\includegraphics[width=.8\linewidth]{images/results/det/DET_for_classifier_Euclidian_50}
+				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Euclidian_50}
 				\caption{Curva DET dos resultados de distância Euclidiana, modelo a 50\%}
 				\label{fig:detforclassifiereuclidian50}
 			\end{figure}
 		
-			\forceNewPage
+			\FloatBarrier
 		\subsection{Escala BARK com \textit{wavelet} Haar usando um classificador de distância Manhattan com tamanho de modelo a 10\%}
 		
 			\input{tables/results/confusionMatrices/classifier_Manhattan_10.tex}
@@ -153,9 +153,9 @@
 				\label{fig:classifiermanhattan10}
 			\end{figure}
 		
-			\begin{figure}[ht]
+			\begin{figure}[!ht]
 				\centering
-				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Manhattan_10}
+				\includegraphics[width=.9\linewidth]{images/results/det/DET_for_classifier_Manhattan_10}
 				\caption{Curva DET dos resultados de distância Manhattan, modelo a 10\%}
 				\label{fig:detforclassifiermanhattan10}
 			\end{figure}
@@ -174,7 +174,7 @@
 		
 			\begin{figure}[ht]
 				\centering
-				\includegraphics[width=.8\linewidth]{images/results/det/DET_for_classifier_Manhattan_20}
+				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Manhattan_20}
 				\caption{Curva DET dos resultados de distância Manhattan, modelo a 20\%}
 				\label{fig:detforclassifiermanhattan20}
 			\end{figure}
@@ -191,9 +191,9 @@
 				\label{fig:classifiermanhattan30}
 			\end{figure}
 		
-			\begin{figure}[ht]
+			\begin{figure}[!ht]
 				\centering
-				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Manhattan_30}
+				\includegraphics[width=.9\linewidth]{images/results/det/DET_for_classifier_Manhattan_30}
 				\caption{Curva DET dos resultados de distância Manhattan, modelo a 30\%}
 				\label{fig:detforclassifiermanhattan30}
 			\end{figure}
@@ -212,7 +212,7 @@
 		
 			\begin{figure}[ht]
 				\centering
-				\includegraphics[width=.8\linewidth]{images/results/det/DET_for_classifier_Manhattan_40}
+				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Manhattan_40}
 				\caption{Curva DET dos resultados de distância Manhattan, modelo a 40\%}
 				\label{fig:detforclassifiermanhattan40}
 			\end{figure}
@@ -229,71 +229,73 @@
 				\label{fig:classifiermanhattan50}
 			\end{figure}
 	
-			\begin{figure}[ht]
+			\begin{figure}[!ht]
 				\centering
-				\includegraphics[width=\linewidth]{images/results/det/DET_for_classifier_Manhattan_50}
+				\includegraphics[width=.9\linewidth]{images/results/det/DET_for_classifier_Manhattan_50}
 				\caption{Curva DET dos resultados de distância Manhattan, modelo a 50\%}
 				\label{fig:detforclassifiermanhattan50}
 			\end{figure}
-			
+		
+			\FloatBarrier
 		\subsection{Síntese}
-			\par Observando as Tabelas, nota-se que as melhores acurácias possuem o valor de 0.9097 e 0,9048 para as distâncias Euclidiana e Manhattan respectivamente.  Desse modo, constata-se nenhuma diferença prática no critério de métrica \textit{pattern-matching} utilizado e, além disso, um nível de acurácia relativamente alto considerando-se a simplicidade do algoritmo classificador.
+			\par Observando as Tabelas, nota-se que as \textbf{melhores acurácias/EERs} possuem os valores de \textbf{0,904878/0,136585} e \textbf{0,909756/0,129268} para as distâncias Euclidiana e Manhattan respectivamente. Desse modo, constata-se nenhuma diferença prática no critério de métrica \textit{pattern-matching} utilizado e, além disso, um nível de acurácia relativamente alto considerando-se a simplicidade do algoritmo classificador.
 
 	\section{Procedimento 03}
 		\label{chap:testsResults:sec:Experimento03}
-		\par Novamente, considerando que o procedimento 01 apresentou, como melhor resultado, a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a máxima acurácia que se consegue atingir com uma SVM. Os resultados, obedecendo os mesmo moldes do procedimento anterior, constam na Tabela \ref{tab:experiment03Results}. 
+		\par Novamente, considerando que o procedimento 01 apresentou, como melhor resultado, a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a \textbf{máxima acurácia e mínimo EER} que se consegue atingir com uma SVM. Os resultados, obedecendo os mesmo moldes do procedimento anterior, constam na Tabela \ref{tab:experiment03Results}. \\
 		
-		\par Mais níveis de detalhes podem ser consultados nas Tabelas \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best} e \ref{tab:classifier_SVM_50_worse}, além dos seus respectivos gráficos nas Figuras \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40} e \ref{fig:classifiersvm50}.
+		\par Mais níveis de detalhes podem ser consultados nas Tabelas \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best} e \ref{tab:classifier_SVM_50_worse}, além dos seus respectivos gráficos nas Figuras \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40} e \ref{fig:classifiersvm50}.\\
 
 		\input{tables/results/experiment03Results.tex}
 		
 		\subsection{Escala BARK com \textit{wavelet} Haar usando um classificador SVM com tamanho de modelo a 10\%}
+		
+			\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
+		
 			\begin{figure}[!h]
 				\centering
-				\includegraphics[width=\linewidth]{images/results/confusionMatrices/classifier_SVM_10.png}
+				\includegraphics[width=.9\linewidth]{images/results/confusionMatrices/classifier_SVM_10.png}
 				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 10\%}
 				\label{fig:classifiersvm10}
 			\end{figure}
 		
-			\begin{figure}[h]
+			\begin{figure}[!h]
 				\centering
-				\includegraphics[width=\linewidth]{images/results/det/DET_SVM_10}
+				\includegraphics[width=.73\linewidth]{images/results/det/DET_SVM_10}
 				\caption{Curva DET dos resultados da SVM, modelo a 10\%}
 				\label{fig:detsvm10}
 			\end{figure}
 
-			\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
-
 			\FloatBarrier
 		\subsection{Escala BARK com \textit{wavelet} Haar usando um classificador SVM com tamanho de modelo a 20\%}
-			\begin{figure}[ht]
+			\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
+			
+			\begin{figure}[h]
 				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_SVM_20.png}
+				\includegraphics[width=\linewidth]{images/results/confusionMatrices/classifier_SVM_20.png}
 				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 20\%}
 				\label{fig:classifiersvm20}
 			\end{figure}
 		
-			\begin{figure}[!h]
+			\begin{figure}[h]
 				\centering
-				\includegraphics[width=.8\linewidth]{images/results/det/DET_SVM_20}
+				\includegraphics[width=\linewidth]{images/results/det/DET_SVM_20}
 				\caption{Curva DET dos resultados da SVM, modelo a 20\%}
 				\label{fig:detsvm20}
 			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
-		
+
 			\FloatBarrier
 		\subsection{Escala BARK com \textit{wavelet} Haar usando um classificador SVM com tamanho de modelo a 30\%}
 			\begin{figure}[ht]
 				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_SVM_30.png}
+				\includegraphics[width=\linewidth]{images/results/confusionMatrices/classifier_SVM_30.png}
 				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 30\%}
 				\label{fig:classifiersvm30}
 			\end{figure}
 		
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=.8\linewidth]{images/results/det/DET_SVM_30}
+				\includegraphics[width=.9\linewidth]{images/results/det/DET_SVM_30}
 				\caption{Curva DET dos resultados da SVM, modelo a 30\%}
 				\label{fig:detsvm30}
 			\end{figure}
@@ -302,22 +304,22 @@
 	
 			\FloatBarrier
 		\subsection{Escala BARK com \textit{wavelet} Haar usando um classificador SVM com tamanho de modelo a 40\%}
+			\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
+			
 			\begin{figure}[ht]
 				\centering
-				\includegraphics{images/results/confusionMatrices/classifier_SVM_40.png}
+				\includegraphics[width=\linewidth]{images/results/confusionMatrices/classifier_SVM_40.png}
 				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 40\%}
 				\label{fig:classifiersvm40}
 			\end{figure}
 		
 			\begin{figure}[!h]
 				\centering
-				\includegraphics[width=.8\linewidth]{images/results/det/DET_SVM_40}
+				\includegraphics[width=\linewidth]{images/results/det/DET_SVM_40}
 				\caption{Curva DET dos resultados da SVM, modelo a 40\%}
 				\label{fig:detsvm40}
 			\end{figure}
 
-			\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
-	
 			\FloatBarrier
 		\subsection{Escala BARK com \textit{wavelet} Haar usando um classificador SVM com tamanho de modelo a 50\%}
 
@@ -325,7 +327,7 @@
 
 			\begin{figure}[!h]
 				\centering
-				\includegraphics[width=.95\linewidth]{images/results/confusionMatrices/classifier_SVM_50.png}
+				\includegraphics[width=\linewidth]{images/results/confusionMatrices/classifier_SVM_50.png}
 				\caption{Acurácia \textit{X} quantidade de testes - SVM, modelo a 50\%}
 				\label{fig:classifiersvm50}
 			\end{figure}
@@ -339,60 +341,64 @@
 
 			\FloatBarrier
 		\subsection{Síntese}
-   			\par Em suma, percebe-se que a melhor acurácia obtida foi de 0,9536 com o uso da SVM e 50\% da base de sinais para treiná-la, condizente com as expectativas. Em tal caso, a respectiva matriz de confusão revela uma quantidade mínima de falsos-genuínos e falsos-regravados, condizentes com os trabalhos correlatos revisados anteriormente.
+   			\par Em suma, percebe-se que a \textbf{melhor acurácia/EER} obtida foi de \textbf{0,953659/0,087805} com o uso da SVM e 50\% da base de sinais para treiná-la, condizente com as expectativas. Em tal caso, a respectiva matriz de confusão revela uma quantidade mínima de falsos-genuínos e falsos-regravados, condizentes com os trabalhos correlatos revisados anteriormente.
 
 	\section{Testes Complementares}
 	\label{chap:testsResults:sec:Experimento05}
 		As figuras \ref{fig:livehaarbark} e \ref{fig:spoofinghaarbark} contém, como complemento, o espalhamento de valores dos vetores de características na \textit{wavelet-packet} Haar + escala Bark. Notavelmente, comparando-se com as Figuras \ref{fig:livehaarmel} e \ref{fig:spoofinghaarmel}, o \textbf{espalhamento dos valores é muito maior na escala \textbf{Mel}}. Essa diferença na distribuição dos dados também ocorre nas combinações \textit{wavelet-packet} daubechies 42 + Bark, conforme as Figuras \ref{fig:livedaub42bark} e \ref{fig:spoofingdaub42bark}, além de \textit{wavelet-packet} daubechies 54 + Mel, conforme as Figuras \ref{fig:livedaub54mel} e \ref{fig:spoofingdaub54mel}.
 		
 		\par Para fins de comparação, os gráficos foram colocados em uma mesma escala no eixo das amplitudes (vertical).
-		\begin{figure}
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveHaarBark}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/liveHaarBark}
 			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{BARK} }
 			\label{fig:livehaarbark}
 		\end{figure}
 	
-		\begin{figure}
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingHaarBark}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/spoofingHaarBark}
 			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{BARK} }
 			\label{fig:spoofinghaarbark}
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveDaub42Bark}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/liveDaub42Bark}
 			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet daubechies 42} + escala \textit{BARK} }
 			\label{fig:livedaub42bark}
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingDaub42Bark}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/spoofingDaub42Bark}
 			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet daubechies 42} + escala \textit{BARK} }
 			\label{fig:spoofingdaub42bark}
 		\end{figure}
 		
-		\begin{figure}
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveHaarMel}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/liveHaarMel}
 			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{MEL} }
 			\label{fig:livehaarmel}
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingHaarMel}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/spoofingHaarMel}
 			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet haar} + escala \textit{MEL} }
 			\label{fig:spoofinghaarmel}
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/liveDaub54Mel}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/liveDaub54Mel}
 			\caption{Espalhamento dos vetores de características sem \textit{voice spoofing} com \textit{wavelet daubechies 54} + escala \textit{MEL} }
 			\label{fig:livedaub54mel}
 		\end{figure}
-		\begin{figure}
+		
+		\FloatBarrier
+		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=\linewidth]{images/results/barkVersusMel/spoofingDaub54Mel}
+			\includegraphics[width=.66\linewidth]{images/results/barkVersusMel/spoofingDaub54Mel}
 			\caption{Espalhamento dos vetores de características para \textit{voice spoofing} com \textit{wavelet daubechies 54} + escala \textit{MEL} }
 			\label{fig:spoofingdaub54mel}
 		\end{figure}
+
+		\disableClearpage
