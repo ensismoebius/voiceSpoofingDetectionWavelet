@@ -82,8 +82,6 @@ namespace waveletExperiments {
 
 			/**
 			 * Perform the experiment
-			 * @param args - A list of wavefiles of the same class (ignore the first one)
-			 * @param argCount - The amount of these files
 			 */
 			static void perform() {
 				std::cout << std::fixed;

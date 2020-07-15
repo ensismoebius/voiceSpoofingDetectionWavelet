@@ -75,8 +75,7 @@ namespace waveletExperiments {
 
 			/**
 			 * Analityc function which performs an wavelet transform
-			 * of the value and calculate the energies based on MEL
-			 * or BARK intervals
+			 * of the value and calculate the energies based on BARK intervals
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -161,8 +160,15 @@ namespace waveletExperiments {
 			}
 
 			/**
-			 * Plot the results on a paraconsistent plane
-			 * @param results
+			 * Plot the results
+			 *
+			 * @param numberOfTests
+			 * @param bestTestAccuracy
+			 * @param worseTestAccuracy
+			 * @param stdDeviation
+			 * @param pencentageSizeOfModel
+			 * @param resultsDestiny
+			 * @param yrange
 			 */
 			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double stdDeviation, double pencentageSizeOfModel, std::string &resultsDestiny, double yrange[2]) {
 
@@ -192,7 +198,6 @@ namespace waveletExperiments {
 			 * Save the results to file on /tmp/results.csv
 			 * @param data
 			 */
-
 			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> data) {
 
 				// Open the file
@@ -216,6 +221,13 @@ namespace waveletExperiments {
 				ofs.close();
 			}
 
+			/**
+			 * Save confusion matrices in @resultsDestiny
+			 * @param bestMatrix
+			 * @param worstMatrix
+			 * @param pencentageSizeOfModel
+			 * @param resultsDestiny
+			 */
 			static void saveConfusionMatrices(statistics::ConfusionMatrix &bestMatrix, statistics::ConfusionMatrix &worstMatrix, double pencentageSizeOfModel, std::string &resultsDestiny) {
 
 				// Open the file
@@ -234,8 +246,12 @@ namespace waveletExperiments {
 
 			/**
 			 * Perform the experiment
-			 * @param args - A list of wavefiles of the same class (ignore the first one)
-			 * @param argCount - The amount of these files
+			 *
+			 * @param classFilesList - A list of wavefiles of the same class (ignore the first one)
+			 * @param resultsDestiny
+			 * @param amountOfTestsToPerfom
+			 * @param minModel
+			 * @param maxModel
 			 */
 			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
 				std::cout << std::fixed;

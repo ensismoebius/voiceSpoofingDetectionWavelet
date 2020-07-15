@@ -48,10 +48,6 @@ namespace waveletExperiments {
 				BARK, MEL
 			};
 
-			enum CONFUSION_POS {
-				TP, FP, FN, TN
-			};
-
 			/**
 			 * Contains the BARK ranges values
 			 */
@@ -75,8 +71,7 @@ namespace waveletExperiments {
 
 			/**
 			 * Analityc function which performs an wavelet transform
-			 * of the value and calculate the energies based on MEL
-			 * or BARK intervals
+			 * of signal and calculate the energies based on BARK intervals
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -160,6 +155,12 @@ namespace waveletExperiments {
 				signal = featureVector;
 			}
 
+			/**
+			 * Save confusion matrices in @destiny
+			 * @param confusionMatrices
+			 * @param percentage
+			 * @param destiny
+			 */
 			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, std::string destiny) {
 
 				// Alias for a easier use of matplotlib
@@ -185,14 +186,18 @@ namespace waveletExperiments {
 
 				plt::grid(true);
 				plt::show();
-//				plt::save(destiny + "/DET_for_classifier_SVM_" + std::to_string(int(percentage * 100)) + ".png");
-//				plt::clf();
+				plt::save(destiny + "/DET_for_classifier_SVM_" + std::to_string(int(percentage * 100)) + ".png");
+				plt::clf();
 			}
 
 			/**
 			 * Perform the experiment
-			 * @param args - A list of wavefiles of the same class (ignore the first one)
-			 * @param argCount - The amount of these files
+			 *
+			 * @param classFilesList - A list of wavefiles of the same class (ignore the first one)
+			 * @param resultsDestiny
+			 * @param amountOfTestsToPerfom
+			 * @param minModel
+			 * @param maxModel
 			 */
 			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
 				std::cout << std::fixed;

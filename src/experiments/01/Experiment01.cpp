@@ -100,6 +100,7 @@ namespace waveletExperiments {
 			 * Analityc function which performs an wavelet transform
 			 * of the value and calculate the energies based on MEL
 			 * or BARK intervals
+			 *
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -238,8 +239,10 @@ namespace waveletExperiments {
 			}
 
 			/**
-			 * Save the results to file on /tmp/results.csv
+			 *
+			 * Save the results to @resultsDestiny
 			 * @param data
+			 * @param resultsDestiny
 			 */
 			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> data, std::string resultsDestiny) {
 
@@ -272,9 +275,10 @@ namespace waveletExperiments {
 			}
 
 			/**
+			 *
 			 * Perform the experiment
-			 * @param args - A list of wavefiles of the same class (ignore the first one)
-			 * @param args.size() - The amount of these files
+			 * @param classFileList - A list of wavefiles of the same class (ignore the first one)
+			 * @param resultsDestiny
 			 */
 			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny) {
 				std::cout << std::fixed;

@@ -72,7 +72,7 @@ namespace waveletExperiments {
 
 			/**
 			 * Analityc function which performs an wavelet transform
-			 * of the value and calculate the energies based on BARK intervals
+			 * of signal and calculate the energies based on BARK intervals
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -195,8 +195,12 @@ namespace waveletExperiments {
 
 			/**
 			 * Perform the experiment
-			 * @param args - A list of wavefiles of the same class (ignore the first one)
-			 * @param argCount - The amount of these files
+			 *
+			 * @param classFilesList - A list of wavefiles of the same class (ignore the first one)
+			 * @param resultsDestiny
+			 * @param amountOfTestsToPerfom
+			 * @param minModel
+			 * @param maxModel
 			 */
 			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
 				std::cout << std::fixed;

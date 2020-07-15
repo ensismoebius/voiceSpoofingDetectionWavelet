@@ -162,8 +162,16 @@ namespace waveletExperiments {
 			}
 
 			/**
-			 * Plot the results on a paraconsistent plane
-			 * @param results
+			 * Plot the results
+			 *
+			 * @param numberOfTests
+			 * @param bestTestAccuracy
+			 * @param worseTestAccuracy
+			 * @param stdDeviation
+			 * @param pencentageSizeOfModel
+			 * @param distanceType
+			 * @param resultsDestiny
+			 * @param yrange
 			 */
 			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double stdDeviation, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny, double yrange[2]) {
 
@@ -195,7 +203,6 @@ namespace waveletExperiments {
 			 * Save the results to file on /tmp/results.csv
 			 * @param data
 			 */
-
 			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> data) {
 
 				// Open the file
@@ -219,6 +226,14 @@ namespace waveletExperiments {
 				ofs.close();
 			}
 
+			/**
+			 * Save confusion matrices in @resultsDestiny
+			 * @param bestMatrix
+			 * @param worstMatrix
+			 * @param pencentageSizeOfModel
+			 * @param distanceType
+			 * @param resultsDestiny
+			 */
 			static void saveConfusionMatrices(statistics::ConfusionMatrix &bestMatrix, statistics::ConfusionMatrix &worstMatrix, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny) {
 
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";

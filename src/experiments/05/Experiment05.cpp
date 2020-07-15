@@ -291,8 +291,9 @@ namespace waveletExperiments {
 
 			/**
 			 * Perform the experiment
-			 * @param args - A list of wavefiles of the same class (ignore the first one)
-			 * @param args.size() - The amount of these files
+			 * 
+			 * @param classFileList - A list of wavefiles of the same class (ignore the first one)
+			 * @param resultsDestiny
 			 */
 			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny) {
 
