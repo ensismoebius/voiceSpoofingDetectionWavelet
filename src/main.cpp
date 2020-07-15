@@ -146,12 +146,6 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 		return -1;
 	}
 
-	if (liveFileList.empty() || spoofingFileList.empty()) {
-		std::cout << "Please inform the lists of spoofing wav files and the list of live wav files" << std::endl;
-		std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
-		return -1;
-	}
-
 	if (experiment == 1 || experiment == 5) {
 		if (argc != 9) {
 			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl << std::endl;

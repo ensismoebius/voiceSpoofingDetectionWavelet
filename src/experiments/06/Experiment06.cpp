@@ -5,7 +5,7 @@
 // * more information read the license file
 // *
 // * 5 de mai de 2020
-// *
+// * One day we going to use a NN to do the classification
 // */
 //
 //#ifndef SRC_WAVELETEXPERIMENTS_06_EXPERIMENT06_CPP_

@@ -6,6 +6,9 @@
  *
  * 8 de jul. de 2020
  *
+ * This code create the EER(Equal Error Rate) plots
+ * for Euclidian and Manhattan distance classifiers
+ *
  */
 
 #ifndef SRC_WAVELETEXPERIMENTS_07_EXPERIMENT07_CPP_
@@ -69,8 +72,7 @@ namespace waveletExperiments {
 
 			/**
 			 * Analityc function which performs an wavelet transform
-			 * of the value and calculate the energies based on MEL
-			 * or BARK intervals
+			 * of the value and calculate the energies based on BARK intervals
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -162,19 +164,23 @@ namespace waveletExperiments {
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
 				// Preparing data for ploting
-				std::vector<double> fpr;
-				std::vector<double> fnr;
-				double eer;
+				std::vector<double> falsePositiveRate;
+				std::vector<double> falseNegativeRate;
+				double equalErrorRate;
 
-				statistics::calculateEER(confusionMatrices, eer, fpr, fnr);
+				statistics::calculateEER(confusionMatrices, equalErrorRate, falsePositiveRate, falseNegativeRate);
 
 				// Ploting data
-				plt::text(eer, eer, "EER:" + std::to_string(eer));
+				plt::text(equalErrorRate, equalErrorRate, "EER:" + std::to_string(equalErrorRate));
 				plt::plot( { 0, 1 });
-				plt::plot(fpr, fnr);
+				plt::plot(falsePositiveRate, falseNegativeRate);
 
 				plt::title("Detection Error Tradeoff curve and EER using " + distType + " distance classifier.\n Model size: " + std::to_string(int(percentage * 100)) + "%");
+
+				// False Acceptance Rate = False Positive Rate
 				plt::xlabel("False Acceptance Rate");
+
+				// False Rejection Rate = False Negative Rate
 				plt::ylabel("False Rejection Rate");
 				plt::xlim(0.0, 1.1);
 				plt::ylim(0.0, 1.0);

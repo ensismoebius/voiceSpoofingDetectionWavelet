@@ -6,6 +6,8 @@
  *
  * 14 de mai de 2020
  *
+ * This code create the EER(Equal Error Rate) plots
+ * for SVM classifier
  */
 
 #ifndef SRC_WAVELETEXPERIMENTS_08_EXPERIMENT08_CPP_

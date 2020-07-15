@@ -5,7 +5,11 @@
  * more information read the license file
  *
  * 04 de mai de 2020
- * QUEM SABE DEPOIS DA QUALIFICAÇÃO!!!!
+ *
+ * This experiment visually demonstrates the wavelet packet
+ * transformation give a reapeated dummy signal. This was
+ * made in order to justify why the wavelet haar is better
+ * for create feature vectors for classifications
  */
 
 #ifndef SRC_WAVELETEXPERIMENTS_04_EXPERIMENT04_CPP_
@@ -46,25 +50,24 @@ namespace waveletExperiments {
 			}
 
 			/**
-			 * Plot the results on a paraconsistent plane
+			 * Plot the results
 			 * @param results
 			 */
 			static void plotResults(std::map<std::string, std::vector<double>> results, int level, int size) {
 				namespace plt = matplotlibcpp;
 
-				int plot = 1;
-				double ylimMax = -100000;
-				double ylimMin = +100000;
-
-				plt::legend();
-				plt::grid(true);
-
+				// Calculates the limits of the graphic
+				double ylimMax = -std::numeric_limits<double>().max();
+				double ylimMin = +std::numeric_limits<double>().max();
 				for (auto v : results) {
 					for (auto number : v.second) {
 						ylimMax = ylimMax < number ? number : ylimMax;
 						ylimMin = ylimMin > number ? number : ylimMin;
 					}
 				}
+
+				// Plots all results
+				int plot = 1;
 				for (auto v : results) {
 					plt::subplot(results.size(), 1, plot++);
 					plt::ylim(ylimMin, ylimMax);
@@ -72,6 +75,8 @@ namespace waveletExperiments {
 					plt::title("name: " + v.first + " lvl:" + std::to_string(level) + " size:" + std::to_string(size));
 				}
 
+				plt::grid(true);
+				plt::legend();
 				plt::show();
 			}
 
@@ -84,11 +89,16 @@ namespace waveletExperiments {
 				std::cout << std::fixed;
 				std::cout << std::setprecision(20);
 
+				// Dummy signal
 				std::vector<double> signal = { 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34 };
+
+				// Store the original signal
 				finalResults["Original"] = signal;
 
+				// Select the wavelets are going to be used
 				wavelets::init( { "haar", "daub42", "daub54" });
 
+				// Calculate the maximum levels of decomposition
 				int level = std::log2(signal.size());
 
 				// iterates over all wavelets types
@@ -97,6 +107,8 @@ namespace waveletExperiments {
 					finalResults[v.first][0] = 0;
 					finalResults[v.first][1] = 0;
 				}
+
+				// Plot the results
 				plotResults(finalResults, level, signal.size());
 			}
 	};

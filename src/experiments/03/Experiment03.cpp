@@ -6,6 +6,12 @@
  *
  * 14 de mai de 2020
  *
+ * Based on the results of experiment 01, which has selected
+ * wavelet Haar and BARK scale as the best feature vector
+ * generators, this experiment do some classifications using
+ * SVM classificator generating the respectives confusion
+ * matrices, standard deviations and accuracy measurements.
+ *
  */
 
 #ifndef SRC_WAVELETEXPERIMENTS_03_EXPERIMENT03_CPP_
@@ -23,6 +29,7 @@
 #include "../../lib/gnuplot/gnuplotCalls.h"
 #include "../../lib/statistics/statistics.h"
 #include "../../lib/wavelet/waveletOperations.h"
+#include "../../lib/statistics/confusionMatrix.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
@@ -43,10 +50,6 @@ namespace waveletExperiments {
 			 */
 			enum BARK_MEL {
 				BARK, MEL
-			};
-
-			enum CONFUSION_POS {
-				TP, FP, FN, TN
 			};
 
 			/**
@@ -213,7 +216,7 @@ namespace waveletExperiments {
 				ofs.close();
 			}
 
-			static void saveConfusionMatrices(std::map<CONFUSION_POS, int> &bestMatrix, std::map<CONFUSION_POS, int> &worstMatrix, double pencentageSizeOfModel, std::string &resultsDestiny) {
+			static void saveConfusionMatrices(statistics::ConfusionMatrix &bestMatrix, statistics::ConfusionMatrix &worstMatrix, double pencentageSizeOfModel, std::string &resultsDestiny) {
 
 				// Open the file
 				std::string filePath = resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
@@ -224,8 +227,8 @@ namespace waveletExperiments {
 					return;
 				}
 
-				ofs << "Best confusion matrix" << "\n" << std::to_string(bestMatrix[TP]) << "\t" << std::to_string(bestMatrix[FP]) << "\n" << std::to_string(bestMatrix[FN]) << "\t" << std::to_string(bestMatrix[TN]) << std::endl;
-				ofs << "Worst confusion matrix" << "\n" << std::to_string(worstMatrix[TP]) << "\t" << std::to_string(worstMatrix[FP]) << "\n" << std::to_string(worstMatrix[FN]) << "\t" << std::to_string(worstMatrix[TN]) << std::endl;
+				ofs << "Best confusion matrix" << "\n" << std::to_string(bestMatrix.truePositive) << "\t" << std::to_string(bestMatrix.falsePositive) << "\n" << std::to_string(bestMatrix.falseNegative) << "\t" << std::to_string(bestMatrix.trueNegative) << std::endl;
+				ofs << "Worst confusion matrix" << "\n" << std::to_string(worstMatrix.truePositive) << "\t" << std::to_string(worstMatrix.falsePositive) << "\n" << std::to_string(worstMatrix.falseNegative) << "\t" << std::to_string(worstMatrix.trueNegative) << std::endl;
 				ofs.close();
 			}
 
@@ -328,7 +331,7 @@ namespace waveletExperiments {
 				std::cout << std::endl;
 
 				// Creating the confusion matrix structure
-				std::map<CONFUSION_POS, int> confusionMatrix;
+				statistics::ConfusionMatrix confusionMatrix;
 
 				// Holds the values for the graphic
 				// of accuracy versus the number of
@@ -340,8 +343,8 @@ namespace waveletExperiments {
 				std::map<double, std::vector<double>> bestTestAccuracyForEachPercentage;
 				std::map<double, std::vector<double>> worseTestAccuracyForEachPercentage;
 
-				std::map<double, std::map<CONFUSION_POS, int>> bestConfusionMatrixForEachPercentage;
-				std::map<double, std::map<CONFUSION_POS, int>> worseConfusionMatrixForEachPercentage;
+				std::map<double, statistics::ConfusionMatrix> bestConfusionMatrixForEachPercentage;
+				std::map<double, statistics::ConfusionMatrix> worseConfusionMatrixForEachPercentage;
 
 				// Holds the parcial user friendly reports
 				std::string partialReport;
@@ -356,8 +359,8 @@ namespace waveletExperiments {
 				double percentageBestAccuracy;
 
 				// Stores the best and the worst confusion matrix
-				std::map<CONFUSION_POS, int> percentageBestConfusionMatrix;
-				std::map<CONFUSION_POS, int> percentageWorseConfusionMatrix;
+				statistics::ConfusionMatrix percentageBestConfusionMatrix;
+				statistics::ConfusionMatrix percentageWorseConfusionMatrix;
 
 				// Holds the tests features vectors for live signals
 				std::vector<std::vector<double>> testLive;
@@ -399,10 +402,10 @@ namespace waveletExperiments {
 							c.train();
 
 							// Preparing confusion matrix
-							confusionMatrix[TP] = 0;
-							confusionMatrix[FP] = 0;
-							confusionMatrix[TN] = 0;
-							confusionMatrix[FN] = 0;
+							confusionMatrix.truePositive = 0;
+							confusionMatrix.falsePositive = 0;
+							confusionMatrix.trueNegative = 0;
+							confusionMatrix.falseNegative = 0;
 
 							/////////////////////////////////////////
 							/// Populating the confusion matrices ///
@@ -410,17 +413,17 @@ namespace waveletExperiments {
 
 							for (auto test : testLive) {
 								if (c.evaluate(test) == classifiers::SupportVectorMachine::POSITIVE) {
-									confusionMatrix[TP] += 1;
+									confusionMatrix.truePositive += 1;
 								} else {
-									confusionMatrix[FN] += 1;
+									confusionMatrix.falseNegative += 1;
 								}
 							}
 
 							for (auto test : testSpoofing) {
 								if (c.evaluate(test) == classifiers::SupportVectorMachine::NEGATIVE) {
-									confusionMatrix[TN] += 1;
+									confusionMatrix.trueNegative += 1;
 								} else {
-									confusionMatrix[FP] += 1;
+									confusionMatrix.falsePositive += 1;
 								}
 							}
 
@@ -428,22 +431,22 @@ namespace waveletExperiments {
 							/// Conclusion phase ///
 							////////////////////////
 
-							temp = double(confusionMatrix[TP] + confusionMatrix[TN]) / double(testLive.size() + testSpoofing.size());
+							temp = double(confusionMatrix.truePositive + confusionMatrix.trueNegative) / double(testLive.size() + testSpoofing.size());
 
 							// store the best accuracy yet
 							if (temp > percentageBestAccuracy) {
 								percentageBestAccuracy = temp;
 								percentageBestConfusionMatrix = confusionMatrix;
-								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
+								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix.truePositive) + "\t" + std::to_string(confusionMatrix.falsePositive) + "\t";
+								partialReport += std::to_string(confusionMatrix.falseNegative) + "\t" + std::to_string(confusionMatrix.trueNegative);
 							}
 
 							// store the worst accuracy yet
 							if (temp < percentageWorstAccuracy) {
 								percentageWorstAccuracy = temp;
 								percentageWorseConfusionMatrix = confusionMatrix;
-								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix[TP]) + "\t" + std::to_string(confusionMatrix[FP]) + "\t";
-								partialReport += std::to_string(confusionMatrix[FN]) + "\t" + std::to_string(confusionMatrix[TN]);
+								partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix.truePositive) + "\t" + std::to_string(confusionMatrix.falsePositive) + "\t";
+								partialReport += std::to_string(confusionMatrix.falseNegative) + "\t" + std::to_string(confusionMatrix.trueNegative);
 							}
 
 							// store the current accuracy (will be use to calculate the standard deviation)
