@@ -1,14 +1,41 @@
-\usepackage[alf]{abntex2cite}		% Citações padrão ABNT
-\usepackage[brazil]{babel}		% Idioma do documento
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[portuguese]{babel}
-\usepackage{textgreek}
-\usepackage{ragged2e}
-\usepackage{amsmath}
+\documentclass[aspectratio=169]{beamer}
 
-\setbeamercolor{title}{parent=structure,bg=cyan}
-\setbeamercolor{frametitle}{parent=structure,bg=cyan}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{textgreek}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[alf]{abntex2cite}
+\usepackage[absolute,overlay]{textpos}
+
+\usetikzlibrary{spy}
+\usetikzlibrary{calc}
+\usetikzlibrary{snakes}
+\usetikzlibrary{shapes}
+\usetikzlibrary{mindmap}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{decorations.pathreplacing}
+
 \setbeamercolor{background canvas}{bg=}
 \setbeamercolor{normal text}{bg=black!20}
+\setbeamercolor{title}{parent=structure,bg=cyan}
+\setbeamercolor{frametitle}{parent=structure,bg=cyan}
 
+% Enables section slides
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=18pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}\insertsectionhead\par
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}

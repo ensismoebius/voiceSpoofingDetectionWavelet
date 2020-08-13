@@ -3,21 +3,28 @@
 	\only<1>{
 		\framesubtitle{Propriedades}
 		\begin{itemize}
-			\item Tamanho de janelas variável.
+			\item Suporte compacto.
 			\item Análise multiresolução.
+			\item Wavelet regular e wavelet packet.
 			\item Análise detalhada em altas e baixas frequências.
 		\end{itemize}
 	}
 	\only<2>{
 		\framesubtitle{Restrição de escopo}
 		\begin{itemize}
+			\item Domínio discreto.
 			\item Apenas transformadas diretas.
 			\item Não haverá reconstrução do sinal.
 			\item Construção de vetores de características.
-			\item Domínio discreto.
 		\end{itemize}
 	}
+
 	\only<3>{
+		\framesubtitle{Resposta em frequência e linearidade}
+		\input{../monography/tables/someWaveletsProperties.tex}
+	}
+
+	\only<4>{
 		\framesubtitle{Algoritmo de Malat}
 		\begin{itemize}
 			\item \textit{Wavelet} Haar: $h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]$.
@@ -55,4 +62,18 @@
 		\end{equation*}
 	}
 
+	\only<5>{
+		\framesubtitle{Exemplo de wavelet regular e packet}
+		\begin{figure}
+			\centering
+			\includegraphics[width=\linewidth]{../monography/images/haarWaveletExamples}
+		\end{figure}
+	}
 \end{frame}
+
+
+
+
+
+
+

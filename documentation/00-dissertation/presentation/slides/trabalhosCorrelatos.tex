@@ -1,5 +1,5 @@
 \begin{frame}[allowframebreaks]
-	\frametitle{Trabalhos correlatos}
+	\frametitle{Trabalhos}
 	\begin{itemize}
 		\item \cite{Ren2019}: Energia e outras várias características do espectro do sinal, SVM.
 		\item \cite{DiqunYan2019} \textit{Modelo oculto de Markov} (HMM); \textit{Wavelets}, SVM.
@@ -8,14 +8,37 @@
 		\item \cite{8725688} Coeficientes cepstrais, GMM.
 		\item \cite{Hanilci2018} Predição linear, coeficientes cepstrais, GMM.
 		\item \cite{ISI:000473343500086} ``Texturas de voz'', padrões binários locais (LBP) e seus respectivos histogramas, SVM.
-		\item \cite{TODISCO2017516} \textit{Transformada de constante Q} (CQT), Processamento cepstral, fusão de dois classificadores GMM, sendo que um deles usa \textit{coeficientes cepstrais de frequência MEL}(MFCC) e o outro usa características CFCC-IF \cite{Patel2015}; STC \cite{7472724}; SJTU \cite{korshunov2016overview}.
+		\item Uma abordagem que combina análise de sinal de fala usando a \textit{Transformada Constante Q} (CQT) com o processamento cepstral foi mostrada no artigo \cite{TODISCO2017516}.
+		\item No artigo \cite{Patel2015} é usada a \textit{Transformação Auditiva (TU)} que tem como base a transformada \textit{wavelet}, e a \textit{Cochlear Filter Cepstral Coefficients (CFCC)} juntamente com  \textit{estimação da frequência instantânea (IF)}.
 		\item \cite{ISI:000490497200068} Partes não vozeadas da fala, três GMMs.
 		\item \cite{ISI:000465363900136} amplitude instantânea vinda de flutuações de energia, GMM.
 		\item \cite{ISI:000465363900139} Diferenças entre bandas de frequências específicas, \textit{predição linear em domínio de frequência}(FDLP), GMMs.
 		\item \cite{Suthokumar2018} \textit{Modulation  spectral  centroid  frequency}, \textit{long term spectral average}, GMM.
 		\item \cite{ISI:000458728700054} Envelopamento das amplitudes e das frequências instantâneas em cada banda estreita filtrada, GMM.
 		\item \cite{ISI:000392503100008} \textit{Gammatone frequency cepstral coefficients}(MGFCC), GMM.
-		\item \cite{8396208} \textit{Hashing} sensível a locus(LSH), MFCC e LSH, \\
-		tabela \textit{hash}. 
+		\item \cite{8396208} \textit{Hashing} sensível a locus(LSH), MFCC e LSH, tabela \textit{hash}. 
 	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Comparativo}
+		\begin{columns}
+			\column{0.5\textwidth}
+				\par \textbf{Referências}
+				\begin{itemize}
+					\item Apenas escala MEL.
+					\item Classificadores simples.
+					\item Uso escasso de wavelets.
+					\item Uso do EER como métrica.
+					\item Sem metodologia de comparação automática.
+				\end{itemize}
+			\column{0.5\textwidth}
+				\par \textbf{Dissertação}
+				\begin{itemize}
+					\item Escalas MEL e BARK.
+					\item Classificadores simples.
+					\item Uso intensivo wavelets.
+					\item Uso de EER e acurácia como métrica.
+					\item Comparação automática baseada na engenharia paraconsistente de características.
+				\end{itemize}
+		\end{columns}
 \end{frame}

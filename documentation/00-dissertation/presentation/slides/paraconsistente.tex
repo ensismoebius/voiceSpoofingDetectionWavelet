@@ -27,11 +27,10 @@
 		\framesubtitle{Cálculo de $\alpha$}
 		\begin{columns}
 			\column{.5\textwidth}
-			\begin{figure}
+			\begin{textblock*}{0cm}(.4cm,1.5cm)
 				\centering
 				\includegraphics[height=0.82\textheight]{../monography/images/calculoAlpha.pdf}
-				\label{fig:calculoalpha}
-			\end{figure}
+			\end{textblock*}
 			\column{.5\textwidth}
 			\par Menor similaridade intraclasse, $\alpha$
 		\end{columns}
@@ -40,11 +39,10 @@
 		\framesubtitle{Cálculo de $\beta$}
 		\begin{columns}
 			\column{.5\textwidth}
-			\begin{figure}
+			\begin{textblock*}{0cm}(.4cm,1.5cm)
 				\centering
-				\includegraphics[height=0.82\textheight]{../monography/images/betaCalculation.pdf}
-				\label{fig:calculobeta}
-			\end{figure}
+				\includegraphics[height=.83\textheight]{../monography/images/betaCalculation.pdf}
+			\end{textblock*}
 			\column{.5\textwidth}
 			\par Razão de sobreposição interclasse, $\beta$.
 		\end{columns}
@@ -59,7 +57,7 @@
 		Seja $P=(G_1,G_2)$
 		\begin{itemize}
 			\item (-1,0) $\rightarrow$ Falsidade;
-			\item (1,0) $\rightarrow$ Verdade;
+			\item \alert{(1,0) $\rightarrow$ Verdade;}
 			\item (0,-1) $\rightarrow$ Indefinição;
 			\item (0,1) $\rightarrow$ Ambiguidade.
 		\end{itemize}
@@ -70,9 +68,11 @@
 		\begin{equation*}
 		D_{-1,0}=\sqrt{(G_1+1)^2+(G_2)^2}\qquad,
 		\end{equation*}
-		\begin{equation*}
-		D_{1,0}=\sqrt{(G_1-1)^2+(G_2)^2}\qquad,
-		\end{equation*}
+		\alert{
+			\begin{equation*}
+			D_{1,0}=\sqrt{(G_1-1)^2+(G_2)^2}\qquad,
+			\end{equation*}
+		}
 		\begin{equation*}
 		D_{0,-1}=\sqrt{(G_1)^2+(G_2+1)^2}\qquad,		
 		\end{equation*}

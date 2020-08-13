@@ -1,6 +1,62 @@
 \begin{frame}
 	\frametitle{Estrutura da Estratégia Proposta}
-	\begin{itemize}
-		\item 
-	\end{itemize}
+		\only<1>{
+			\framesubtitle{Diagrama}
+				\input{../monography/images/strategicStructure.tex}
+		}
+	
+		\only<2>{
+			\framesubtitle{Wavelets usadas}
+				\begin{itemize}
+					\item Haar.
+					\item Beylkin com suporte 18.
+					\item Vaidyanathan de suporte 24.
+					\item Daubechies de	suportes 4 até 76.
+					\item Symmlets com suportes 8, 16 e 32.
+					\item Coiflets com suportes 6, 12, 18, 24 e 30.
+				\end{itemize}
+		}
+		\only<3>{
+			\framesubtitle{Métricas}
+				\begin{itemize}
+					\item Tabela de confusão.
+					\begin{itemize}
+						\item EER (Equal Error Rate).
+						\item Acurácia e seu respectivo desvio padrão.
+					\end{itemize}
+				\end{itemize}
+		}
+		\only<4>{
+			\framesubtitle{Tabela de confusão}
+				\begin{itemize}
+					\item \textbf{TP}: Quantidade de itens verdadeiros classificados como tal (\textit{True Positive}).
+					\item \textbf{TN}: Quantidade de itens falsos classificados como tal (\textit{True Negative}).
+					\item \textbf{FN}: Quantidade de itens verdadeiros classificados como falsos (\textit{False Negative}).
+					\item \textbf{FP}: Quantidade de itens falsos classificados como verdadeiros (\textit{False Positive}).
+				\end{itemize} 
+				\input{../monography/tables/results/confusionMatrices/confusionMatrixSample.tex}
+		}
+		\only<5>{
+			\framesubtitle{Acurácia e EER}
+				\begin{columns}
+					\column{.5\textwidth}
+					\begin{equation}
+						acuracia = \dfrac{TP + TN}{N} \qquad.
+						\label{eq:calculoDaAcuracia}
+					\end{equation}
+					
+					\column{.5\textwidth}
+					\par São calculadas tabelas de confusão por um número suficiente de vezes até que \textbf{\textit{FAR} = \textit{FRR} = \textit{EER}}, a cada ciclo os vetores de características são comutados de forma aleatória.\newline
+
+					\begin{equation}
+						FAR=\dfrac{FP}{TN+FP} \qquad.
+						\label{eq:FAR}
+					\end{equation}
+					
+					\begin{equation}
+						FRR=\dfrac{FN}{TP+FN} \qquad.
+						\label{eq:FRR}
+					\end{equation}
+				\end{columns}
+		}
 \end{frame}

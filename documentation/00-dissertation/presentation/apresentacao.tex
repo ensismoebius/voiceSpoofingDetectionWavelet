@@ -1,20 +1,4 @@
-\documentclass[
-	aspectratio=169
-]{beamer}
-
 \input{preamble.tex}
-
-% Enables section slides
-\AtBeginSection[]{
-	\begin{frame}
-		\vfill
-		\centering
-		\begin{beamercolorbox}[sep=18pt,center,shadow=true,rounded=true]{title}
-			\usebeamerfont{title}\insertsectionhead\par
-		\end{beamercolorbox}
-		\vfill
-	\end{frame}
-}
 
 \title{Qualificação apresentada como parte dos requisitos para obtenção do título de Mestre em Ciência da Computação}
 \institute{Universidade Estadual Paulista Júlio de Mesquita Filho}
@@ -58,8 +42,7 @@
 	
 	\begin{frame}[allowframebreaks]
 		\frametitle{Referências}
-		\bibliography{../monography/bibliography.bib}
-		\bibliographystyle{alpha}
+		\bibliography{bibliography.bib}
 	\end{frame}
 	
 \end{document}
