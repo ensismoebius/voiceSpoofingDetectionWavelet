@@ -1,0 +1,24 @@
+\begin{lstlisting}[language=C++]
+// Carregue para a memoria um dos conjuntos de amostra
+for (listaDeAmostras : {listaComVoiceSpoofing, listaSemVoiceSpoofing}) {
+	// Selecione o proximo tipo de wavelet
+	for (wavelet : wavelets) {
+		// Selecione entre BARK ou MEL
+		for (barkOuMel : {BARK, MEL}) {
+			// Selecione o proximo sinal dentro da amostra
+			for (sinal : listaDeAmostras) {
+				tamanhoOtimo=calcularTamanhoOtimo(sinal);
+				redimensionar(sinal, tamanhoOtimo);
+				sinalTransformado=wavelet(sinal, wavelet);
+				energias=calcularEnergias(sinalTransformado, barkOuMel);
+				energias=normalizar(energias);
+				
+				// Armazene os resultados
+				resultados[wavelet.nome()][barkOuMel][listaDeAmostras.nome()].adicionar(energias);
+			}
+		}
+	}
+}
+// Posicione os resultados no plano paraconsistente
+mostraResultadosNoPlanoParaconsistente(resultados);
+\end{lstlisting}

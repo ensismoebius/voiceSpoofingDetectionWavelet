@@ -1,0 +1,27 @@
+\begin{lstlisting}[language=C++]
+for (distancia : {Euclidiana, Manhattan}) {
+	for(porcentagem : tamanhosDoModelo){
+		for(teste = 0; teste < 300; teste++){
+			// Escolhe aleatoriamente os sinais para o modelo com e sem spoofing
+			escolherAleatoriamente(listaComVoiceSpoofing, porcentagem, modeloDeReferenciaSpoofing, testesSpoofing);
+			escolherAleatoriamente(listaSemVoiceSpoofing, porcentagem, modeloDeReferenciaNaoSpoofing, testesNaoSpoofing);
+			
+			treinarClassificador("spoofing", modeloDeReferenciaSpoofing);
+			treinarClassificador("naoSpoofing", modeloDeReferenciaNaoSpoofing);
+
+			// Classificacao
+			for(sinal : testesSpoofing) preencherTabelaDeConfusao(sinal, "spoofing"); 
+			for(sinal : testesNaoSpoofing) preencherTabelaDeConfusao(sinal, "naoSpoofing");
+
+			// Guarda as acuracias para cada porcentegem
+			acuracia=calculaAcuracia();
+			listaDeAcuracias[porcentagem].adicionar(acuracia);
+
+			if(ehAMelhorAcuracia(acuracia)) salvaAcuraciaEMatrizDeConfusao();
+			if(ehAPiorAcuracia(acuracia)) salvaAcuraciaEMatrizDeConfusao();
+		}
+		
+		calculaESalvaDesvioPadrao(listaDeAcuracias[porcentagem]);
+	}
+}				
+\end{lstlisting}

@@ -1,0 +1,23 @@
+\begin{lstlisting}[language=C++]
+	for(porcentagem : tamanhosDoModelo){
+		for(teste = 0; teste < 300; teste++){
+			escolherAleatoriamente(listaComVoiceSpoofing, porcentagem, modeloDeReferenciaSpoofing, testesSpoofing);
+			
+			escolherAleatoriamente(listaSemVoiceSpoofing, porcentagem, modeloDeReferenciaNaoSpoofing, testesNaoSpoofing);
+			treinarClassificador("spoofing", modeloDeReferenciaSpoofing);
+			treinarClassificador("naoSpoofing", modeloDeReferenciaNaoSpoofing);
+			
+			for(sinal : testesSpoofing)	preencherTabelaDeConfusao(sinal, "spoofing");
+			for(sinal : testesNaoSpoofing) preencherTabelaDeConfusao(sinal, "naoSpoofing");
+			
+			acuracia=calculaAcuracia();
+			
+			listaDeAcuracias[porcentagem].adicionar(acuracia);
+			
+			if(ehAMelhorAcuracia(acuracia)) salvaAcuraciaEMatrizDeConfusao();
+			if(ehAPiorAcuracia(acuracia)) salvaAcuraciaEMatrizDeConfusao();
+		}
+		
+		calculaESalvaDesvioPadrao(listaDeAcuracias[porcentagem]);
+	}			
+\end{lstlisting}

@@ -1,6 +1,23 @@
 \begin{frame}
 	\frametitle{Conclusões e Trabalhos Futuros}
-	\begin{itemize}
-		\item 
-	\end{itemize}
+	
+	\only<1>{
+		\framesubtitle{Conclusões}
+		\begin{itemize}
+			\item A engenharia paraconsistente de características foi de grande ajuda.
+			\item O tipo de \textit{wavelet} utilizada na decomposição dos sinais influencia na criação dos vetores de características.
+			\item A combinação \textit{wavelet-packet Haar + escala Bark} foi a melhor.
+			\item A combinação \textit{wavelet-packet daubechies 54 + escala Mel} foi a pior.
+			\item A escala \textit{Bark} é superior a \textit{MEL} por promover um espalhamento horizontal maior dos valores para os vetores de características.
+		\end{itemize}
+	}
+
+	\only<2>{
+		\framesubtitle{Trabalhos futuros}
+		\begin{itemize}
+			\item Explorar os resultados das transformadas \textit{wavelets} até um certo nível somente, em oposição a transformações sucessivas.
+			\item Separar os componentes de alta e baixa frequência do sinal aparenta ser uma boa base para verificação de \textit{voice spoofing} devido a natureza ruidosa do sinal deste ataque.
+			\item Focar a análise em bandas de frequência superiores.
+		\end{itemize}
+	}
 \end{frame}

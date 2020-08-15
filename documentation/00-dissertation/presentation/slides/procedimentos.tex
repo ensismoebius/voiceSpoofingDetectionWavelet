@@ -1,6 +1,93 @@
 \begin{frame}
-	\frametitle{Procedimentos}
-	\begin{itemize}
-		\item 
-	\end{itemize}
+	\frametitle{Procedimento 01}
+		
+		\only<1>{
+			\framesubtitle{Características}
+				\begin{itemize}
+					\item MEL: 13 coeficientes.
+					\item BARK: 24 coeficientes.
+					\item Redimensionar o sinal.
+					\item Determinar o máximo de transformações.
+					\item Transformadas wavelet-packet até o máximo.
+					\item Selecionar a melhor combinação \textit{wavelet}/escala.
+				\end{itemize}
+		}
+
+		\only<2>{
+			\framesubtitle{Comprimento e máximo de transformações do sinal}
+			\par Determinação do tamanho ótimo para as transformações
+			\begin{equation}
+				tamanhoOtimo=2^{proxInt(\log_{2}tamanho)}
+				\label{eq:optimalSize}
+			\end{equation} 
+			
+			\par Quantidade máxima de transformações
+			\begin{equation}
+				maxTrans=\log_{2}(tamanho) \qquad.
+				\label{eq:maxWaveletTransf}
+			\end{equation}
+		}
+
+		\only<3>{
+			\framesubtitle{Algoritmo}
+			\input{codeListings/experiment01Algo.tex}
+		}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Procedimento 02}
+	
+	\only<1>{
+		\framesubtitle{Características}
+		\begin{itemize}
+			\item Escala BARK.
+			\item Wavelet Haar.
+			\item Modelos de 10\% 20\% 30\% 40\% e 50\%.
+			\item Sorteio aleatório de vetores de características.
+			\item Verifica a acurácia e o EER de classificadores \textit{pattern-matching} por distâncias Euclidiana e Manhattan.
+		\end{itemize}
+	}
+	
+	\only<2>{
+		\framesubtitle{Algoritmo}
+		\input{codeListings/experiment02Algo.tex}
+	}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Procedimento 03}
+	
+	\only<1>{
+		\framesubtitle{Características}
+		\begin{itemize}
+			\item Escala BARK.
+			\item Wavelet Haar.
+			\item Modelos de 10\% 20\% 30\% 40\% e 50\%.
+			\item Sorteio aleatório de vetores de características.
+			\item Verifica a acurácia e o EER de uma \textit{Support Vector Machine (SVM)}.
+		\end{itemize}
+	}
+	
+	\only<2>{
+		\framesubtitle{Características da SVM}
+		\input{images/3layersSVM.tex}
+	}
+
+	\only<3>{
+		\framesubtitle{Características da SVM}
+		\begin{itemize}
+			\item Três camadas: Entrada, segunda com elementos ativos não-lineares de núcleos Gaussianos e saída; 
+			\item Inexistem pesos entre a camada de entrada e a camada intermediária;
+			\item A saída de cada elemento da camada intermediária conecta-se com o único elemento da camada de saída por meio dos pesos $p_0, p_1, .... p_{X-1}$;
+			\item O valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída;
+			\item Solução direta de um sistema linear quadrado, isto é, possível e determinado.
+		\end{itemize}
+		
+		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes, são idênticos àqueles do procedimento 02.
+	}
+	
+	\only<4>{
+		\framesubtitle{Algoritmo}
+		\input{codeListings/experiment03Algo.tex}
+	}
 \end{frame}
