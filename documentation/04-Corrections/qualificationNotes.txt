@@ -1,0 +1,55 @@
+Corrigir crase e letras maiusculas
+Feature vectors e vetor de características
+- - - -
+Vantagens da biometria voz versus impressão digital
+Iris é caro
+- - - - 
+paraconsistente + referências
+- - - -
++ citações de wavelets packet na intro
+- - - -
+azul mais claro
+---
+pitch alto, -> freq de pitch alto (estudar mais pitch)
+
+jitter, shimmer diferenciar 
+---
+f4 -> F4
+- - - -
+Citar daubechies
+
+PI = substituir por simbolo
+
+- - - - -
+
+colocar fonte do plano paraconsistente
+e colocar core unifoirmes.
+
+- - - - - -
+
+Definir o máximo de características dos dispositivos usados (hardware, software, etc)
+
+- - - - - 
+Nos pseudo algoritmos: Fluxogramas (prioridade)
+- - - - -
+Definir euclidiano e manhattan para parâmteros
+
+
+Legendas no gráfico EER mais explicadas. Explicando as linhas laranja e azul.
+
+- - - - -
+
+Justificar o tamanho dessa quantidade amostra de dados.
+
+Descrição dos módulos para descrever melhor os códigos (fluxogramas etc)
+- - - - - 
+
+Conclusões e trabalhos futuros:
+	Tirar a parte 
+
+	Etapas a serem cumpridas (cronograma para conclusão)
+		Ainda falta artigo científico.
+
+	Colocar um quarto parágrafo 
+
+

@@ -3,12 +3,12 @@
 	    \subsection{Coleta dos Sinais}
 		\par Para a realização desta pesquisa, coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas da UNESP em São José do Rio Preto, no estado de São Paulo. Foram coletadas amostras de 21 indivíduos, das quais 20 foram usadas já que, em um dos casos, não foi possível coletar todos os dados necessários. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua Inglesa quanto na Portuguesa. Os locutores foram escolhidos de acordo com seu sexo e idade de forma que a amostra estudada tenha uma abrangência que cubra desde crianças em época pré-escolar até adultos entre 50 e 60 anos dos sexos masculino e feminino.
 					
-		\par As gravações foram realizadas em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wav} sem compressão. A taxa de amostragem escolhida foi de 44100Hz, que permite, segundo o teorema de Nyquist, que seja realizada a quantização de frequências de até 22050Hz, com quantização de 16 bits.
+		\par As gravações foram realizadas usando-se um \textit{smartphone} Asus modelo \textit{Ze550kl} em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wave} sem compressão com quantização de 16 bits e taxa de amostragem de 44100Hz, permitindo, segundo o teorema de Nyquist, que seja registradas frequências de até 22050Hz.
 		
-		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 410 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravado por um segundo dispositivo de gravação diferente do original, caracterizando os 410 sinais rotulados como ``regravados''.
+		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 410 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravado por um segundo dispositivo, um \textit{notebook} Acer modelo  \textit{Travelmate B}, caracterizando os 410 sinais rotulados como ``regravados''.
 
 	    \subsection{Organização da Base de Sinais}
-		\par A organização da base de dados se deu por tipo, isto é, genuíno ou regravado, idioma, dígito ditado e interlocutor considerado. Foi criada uma estrutura hierárquica de diretórios de forma a permitir acesso fácil e intuitivo a cada um dos arquivos \textit{wav}, seja por vias automatizadas ou não. Os arquivos regravados residem no diretório ``playback'', enquanto que os genuínos se encontram no diretório ``live ''.	Essa organização está ilustrada nas Figuras \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} e \ref{fig:directorystructlevel03}.
+		\par A organização da base de dados se deu por tipo, isto é, genuíno ou regravado, idioma, dígito ditado e interlocutor considerado. Foi criada uma estrutura hierárquica de diretórios de forma a permitir acesso fácil e intuitivo a cada um dos arquivos \textit{wav}, seja por vias automatizadas ou não. Os arquivos regravados residem no diretório ``playback'', enquanto que os genuínos se encontram no diretório ``live''.	Essa organização está ilustrada nas Figuras \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} e \ref{fig:directorystructlevel03}.
 		
 		\par Para facilitar a automatização do processamento, foram criados três arquivos de texto:
 		\begin{itemize}
@@ -17,20 +17,20 @@
 			\item \textit{\textbf{inputListSpoofing.txt}}: apresenta uma listagem dos caminhos para todos os arquivos regravados.
 		\end{itemize}
 	
-		\par Apenas para ilustrar, o conteúdo do diretório \textbf{``separated \textfractionsolidus live \textfractionsolidus en\_US \textfractionsolidus 0''} se constitui de vários arquivos do tipo \textit{wav}, cada um identificando o locutor ao qual pertence como exibido na Figura \ref{fig:directorystructlevel03}.
+		\par Apenas para ilustrar, o conteúdo do diretório \textbf{``separated \textfractionsolidus live \textfractionsolidus en\_US \textfractionsolidus 0''} se constitui de vários arquivos do tipo \textit{wave}, cada um identificando o locutor ao qual pertence como exibido na Figura \ref{fig:directorystructlevel03}.
 
 		\begin{figure}[ht]
 			\centering
-			\subfloat[0.3\textwidth][Base em nível 1]{
-				\includegraphics{images/directoryStructLevel01}
+			\subfloat[0.33\textwidth][Base em nível 1]{
+				\includegraphics{images/directoryStructLevel01.pdf}
 				\label{fig:directorystructlevel01}
 			}
-			\subfloat[0.3\textwidth][Base em nível 2]{
-				\includegraphics{images/directoryStructLevel02}
+			\subfloat[0.33\textwidth][Base em nível 2]{
+				\includegraphics{images/directoryStructLevel02.pdf}
 				\label{fig:directorystructlevel02}
 			}
-			\subfloat[0.3\textwidth][Base em nível 3]{
-				\includegraphics{images/directoryStructLevel03}
+			\subfloat[0.33\textwidth][Base em nível 3]{
+				\includegraphics{images/directoryStructLevel03.pdf}
 				\label{fig:directorystructlevel03}
 			}
 			\caption{Organização da base de dados}
