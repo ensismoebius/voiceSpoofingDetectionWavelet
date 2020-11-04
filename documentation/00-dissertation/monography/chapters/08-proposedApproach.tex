@@ -84,9 +84,16 @@
 		
 		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico juntamente com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.
 		
-		\par O efetivo valor de \textbf{ERR se encontra na intersecção da reta $x=y$} com a curva definida por FAR e FRR, por isso o cálculo de um valor único como demonstrado no algoritmo \ref{lst:EERAlgo} pois se $x=ERR$ então também $y=ERR$.
+		\par O efetivo valor de \textbf{ERR se encontra na intersecção da reta $x=y$} com a curva definida por FAR e FRR, por isso o cálculo de um valor único como demonstrado no Algoritmo \ref{lst:EERAlgo} e na Figura \ref{fig:eeralgo} pois se $x=ERR$ então também $y=ERR$.\\
 	
 		\input{codeListings/EERAlgo.tex}
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.9\linewidth]{images/EERAlgo.pdf}
+			\caption{Algoritmo para o cálculo do EER}
+			\label{fig:eeralgo}
+		\end{figure}
 	
 		\subsection{Procedimento 01: filtros \textit{wavelet}, escalas Bark e Mel}
 		\label{chap:propApproach:sec:Experimento01}
