@@ -1,0 +1,960 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="AlgoProcedure01.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="215.83845"
+     inkscape:cy="608.31953"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1438"
+     inkscape:window-height="858"
+     inkscape:window-x="0"
+     inkscape:window-y="41"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="Segundo plano"
+       transform="matrix(0.29327,0,0,0.29327,-74.786731,-252.60016)">
+      <g
+         id="g825">
+        <polygon
+           id="polygon815"
+           points="754.194,936.398 921.44,988.309 754.194,1040.22 586.949,988.309 "
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text823"
+           y="976.19098"
+           x="754.19397"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan817"
+             y="976.19098"
+             x="754.19397">Existe um</tspan>
+          <tspan
+             id="tspan819"
+             y="992.19098"
+             x="754.19397">próximo conjunto</tspan>
+          <tspan
+             id="tspan821"
+             y="1008.19"
+             x="754.19397">de sinais?</tspan>
+        </text>
+      </g>
+      <g
+         id="g835">
+        <polygon
+           id="polygon827"
+           points="486.891,1126.83 628.902,1171.14 486.891,1215.45 344.881,1171.14 "
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text833"
+           y="1167.02"
+           x="486.89099"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan829"
+             y="1167.02"
+             x="486.89099">Existe uma</tspan>
+          <tspan
+             id="tspan831"
+             y="1183.02"
+             x="486.89099">próxima wavelet?</tspan>
+        </text>
+      </g>
+      <g
+         id="g845">
+        <polygon
+           id="polygon837"
+           points="485.777,1322.84 664.304,1367.54 485.777,1412.24 307.251,1367.54 "
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text843"
+           y="1363.42"
+           x="485.77701"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan839"
+             y="1363.42"
+             x="485.77701">Existe um próximo</tspan>
+          <tspan
+             id="tspan841"
+             y="1379.42"
+             x="485.77701">intervalo spectral?</tspan>
+        </text>
+      </g>
+      <g
+         id="g851">
+        <line
+           id="line847"
+           y2="1240.21"
+           x2="485.077"
+           y1="1216.0699"
+           x1="485.711"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon849"
+           points="484.88,1247.71 480.144,1237.58 485.077,1240.21 490.141,1237.84 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text855"
+         y="1233.01"
+         x="485.26599"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan853"
+           y="1233.01"
+           x="485.26599">Sim</tspan>
+      </text>
+      <g
+         id="g861">
+        <line
+           id="line857"
+           y2="1448.4"
+           x2="486.87201"
+           y1="1413.09"
+           x1="486.39401"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon859"
+           points="486.973,1455.9 481.839,1445.97 486.872,1448.4 491.838,1445.84 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text865"
+         y="1435.61"
+         x="486.69901"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan863"
+           y="1435.61"
+           x="486.69901">Sim</tspan>
+      </text>
+      <g
+         id="g875">
+        <polygon
+           id="polygon867"
+           points="486.333,1544.31 608.665,1587.64 486.333,1630.97 364,1587.64 "
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text873"
+           y="1583.52"
+           x="486.33301"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan869"
+             y="1583.52"
+             x="486.33301">Existe um</tspan>
+          <tspan
+             id="tspan871"
+             y="1599.52"
+             x="486.33301">próximo sinal?</tspan>
+        </text>
+      </g>
+      <g
+         id="g885">
+        <rect
+           id="rect877"
+           ry="0"
+           rx="0"
+           height="54"
+           width="164.2"
+           y="961.16199"
+           x="353.384"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text883"
+           y="984.04303"
+           x="435.48401"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan879"
+             y="984.04303"
+             x="435.48401">Mostar resultados no</tspan>
+          <tspan
+             id="tspan881"
+             y="1000.04"
+             x="435.48401">plano paraconsistente</tspan>
+        </text>
+      </g>
+      <g
+         id="g891">
+        <line
+           id="line887"
+           y2="1663.66"
+           x2="429.55099"
+           y1="1630.97"
+           x1="486.33301"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon889"
+           points="423.052,1667.41 429.223,1658.08 429.551,1663.66 434.213,1666.75 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g899">
+        <rect
+           id="rect893"
+           ry="0"
+           rx="0"
+           height="38"
+           width="237.14999"
+           y="1676.27"
+           x="486.69501"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text897"
+           y="1699.15"
+           x="605.27002"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan895"
+             y="1699.15"
+             x="605.27002">Calcular tamanho ótimo do sinal</tspan>
+        </text>
+      </g>
+      <g
+         id="g907">
+        <rect
+           id="rect901"
+           ry="0"
+           rx="0"
+           height="38"
+           width="152.64999"
+           y="1675.35"
+           x="770.28302"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text905"
+           y="1698.23"
+           x="846.60797"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan903"
+             y="1698.23"
+             x="846.60797">Redimensionar sinal</tspan>
+        </text>
+      </g>
+      <g
+         id="g913">
+        <line
+           id="line909"
+           y2="1694.6801"
+           x2="759.55402"
+           y1="1694.8101"
+           x1="724.83398"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon911"
+           points="767.054,1694.65 757.073,1699.69 759.554,1694.68 757.035,1689.69 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g923">
+        <rect
+           id="rect915"
+           ry="0"
+           rx="0"
+           height="54"
+           width="156.64999"
+           y="1738.03"
+           x="765.008"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text921"
+           y="1760.91"
+           x="843.33301"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan917"
+             y="1760.91"
+             x="843.33301">Aplicar transformada</tspan>
+          <tspan
+             id="tspan919"
+             y="1776.91"
+             x="843.33301">wavelet</tspan>
+        </text>
+      </g>
+      <g
+         id="g929">
+        <line
+           id="line925"
+           y2="1727.3"
+           x2="845.08099"
+           y1="1714.3"
+           x1="845.68402"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon927"
+           points="844.734,1734.8 840.202,1724.58 845.081,1727.3 850.191,1725.04 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g939">
+        <rect
+           id="rect931"
+           ry="0"
+           rx="0"
+           height="54"
+           width="202.45"
+           y="1736.96"
+           x="518.14697"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text937"
+           y="1759.84"
+           x="619.37201"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan933"
+             y="1759.84"
+             x="619.37201">Calcular as energias usando</tspan>
+          <tspan
+             id="tspan935"
+             y="1775.84"
+             x="619.37201">o intervalo spectral atual</tspan>
+        </text>
+      </g>
+      <g
+         id="g945">
+        <line
+           id="line941"
+           y2="1764.49"
+           x2="731.33502"
+           y1="1764.65"
+           x1="764.02197"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon943"
+           points="723.835,1764.46 733.859,1759.5 731.335,1764.49 733.811,1769.5 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g953">
+        <rect
+           id="rect947"
+           ry="0"
+           rx="0"
+           height="38"
+           width="149.25"
+           y="1744.67"
+           x="319.20599"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text951"
+           y="1767.55"
+           x="393.83099"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan949"
+             y="1767.55"
+             x="393.83099">normalizar energias</tspan>
+        </text>
+      </g>
+      <g
+         id="g959">
+        <line
+           id="line955"
+           y2="1763.78"
+           x2="479.18301"
+           y1="1763.8199"
+           x1="517.15997"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon957"
+           points="471.683,1763.77 481.69,1758.78 479.183,1763.78 481.677,1768.78 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g967">
+        <rect
+           id="rect961"
+           ry="0"
+           rx="0"
+           height="38"
+           width="155.85001"
+           y="1809.14"
+           x="318.435"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text965"
+           y="1832.02"
+           x="396.35999"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan963"
+             y="1832.02"
+             x="396.35999">Armazenar resultado</tspan>
+        </text>
+      </g>
+      <g
+         id="g973">
+        <line
+           id="line969"
+           y2="1798.41"
+           x2="395.194"
+           y1="1783.66"
+           x1="394.61499"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon971"
+           points="395.488,1805.9 390.1,1796.11 395.194,1798.41 400.092,1795.72 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g979">
+        <polyline
+           id="polyline975"
+           points="318.435,1828.14 318.435,1827.69 307.953,1827.69 307.953,1587.64 354.264,1587.64 "
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon977"
+           points="361.764,1587.64 351.764,1592.64 354.264,1587.64 351.764,1582.64 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text983"
+         y="1649.75"
+         x="453.72299"
+         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998">
+        <tspan
+           id="tspan981"
+           y="1649.75"
+           x="453.72299">Sim</tspan>
+      </text>
+      <g
+         id="g993">
+        <rect
+           id="rect985"
+           ry="0"
+           rx="0"
+           height="54"
+           width="134.25"
+           y="1560.74"
+           x="787.22498"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text991"
+           y="1583.62"
+           x="854.34998"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan987"
+             y="1583.62"
+             x="854.34998">zerar ponteiro</tspan>
+          <tspan
+             id="tspan989"
+             y="1599.62"
+             x="854.34998">da lista de sinais</tspan>
+        </text>
+      </g>
+      <g
+         id="g999">
+        <line
+           id="line995"
+           y2="1587.71"
+           x2="776.95502"
+           y1="1587.64"
+           x1="608.66498"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon997"
+           points="784.455,1587.71 774.453,1592.71 776.955,1587.71 774.457,1582.71 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text1003"
+         y="1587.6801"
+         x="697.67798"
+         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998">
+        <tspan
+           id="tspan1001"
+           y="1587.6801"
+           x="697.67798">Não</tspan>
+      </text>
+      <g
+         id="g1009">
+        <line
+           id="line1005"
+           y2="1404.74"
+           x2="548.047"
+           y1="1559.76"
+           x1="807.51398"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1007"
+           points="541.608,1400.9 552.757,1401.73 548.047,1404.74 547.629,1410.32 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1015">
+        <line
+           id="line1011"
+           y2="1367.35"
+           x2="755.03497"
+           y1="1367.54"
+           x1="664.30402"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1013"
+           points="762.535,1367.34 752.545,1372.36 755.035,1367.35 752.525,1362.36 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text1019"
+         y="1367.4399"
+         x="714.53699"
+         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998">
+        <tspan
+           id="tspan1017"
+           y="1367.4399"
+           x="714.53699">Não</tspan>
+      </text>
+      <g
+         id="g1025">
+        <line
+           id="line1021"
+           y2="1198.35"
+           x2="566.21399"
+           y1="1331.16"
+           x1="784.513"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1023"
+           points="559.807,1194.46 570.949,1195.38 566.214,1198.35 565.751,1203.93 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1031">
+        <line
+           id="line1027"
+           y2="1171.84"
+           x2="798.99902"
+           y1="1171.14"
+           x1="628.90198"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1029"
+           points="806.499,1171.87 796.479,1176.83 798.999,1171.84 796.52,1166.83 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text1035"
+         y="1171.51"
+         x="718.81897"
+         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998">
+        <tspan
+           id="tspan1033"
+           y="1171.51"
+           x="718.81897">Não</tspan>
+      </text>
+      <g
+         id="g1041">
+        <line
+           id="line1037"
+           y2="1023.85"
+           x2="839.51398"
+           y1="1136.11"
+           x1="859.37903"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1039"
+           points="838.207,1016.47 844.873,1025.44 839.514,1023.85 835.026,1027.19 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1051">
+        <rect
+           id="rect1043"
+           ry="0"
+           rx="0"
+           height="54"
+           width="156.89999"
+           y="1459.02"
+           x="408.931"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text1049"
+           y="1481.9"
+           x="487.38101"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1045"
+             y="1481.9"
+             x="487.38101">Selecionar o próximo</tspan>
+          <tspan
+             id="tspan1047"
+             y="1497.9"
+             x="487.38101">intervalo spectral</tspan>
+        </text>
+      </g>
+      <g
+         id="g1057">
+        <line
+           id="line1053"
+           y2="926.68799"
+           x2="753.48499"
+           y1="921.15698"
+           x1="753.08002"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1055"
+           points="754.031,934.168 748.316,924.559 753.485,926.688 758.289,923.83 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1065">
+        <rect
+           id="rect1059"
+           ry="0"
+           rx="0"
+           height="38"
+           width="251.7"
+           y="1060.76"
+           x="360.55301"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text1063"
+           y="1083.64"
+           x="486.40302"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1061"
+             y="1083.64"
+             x="486.40302">Selecione o próximo conjunto sinais</tspan>
+        </text>
+      </g>
+      <g
+         id="g1071">
+        <line
+           id="line1067"
+           y2="1117.1"
+           x2="486.79001"
+           y1="1099.76"
+           x1="486.60999"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1069"
+           points="486.868,1124.6 481.765,1114.65 486.79,1117.1 491.764,1114.55 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1079">
+        <rect
+           id="rect1073"
+           ry="0"
+           rx="0"
+           height="38"
+           width="205.8"
+           y="1250.95"
+           x="381.396"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text1077"
+           y="1273.83"
+           x="484.29599"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1075"
+             y="1273.83"
+             x="484.29599">Selecione a próxima wavelet</tspan>
+        </text>
+      </g>
+      <g
+         id="g1085">
+        <line
+           id="line1081"
+           y2="1313.11"
+           x2="485.505"
+           y1="1289.95"
+           x1="484.85599"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1083"
+           points="485.715,1320.6 480.437,1310.75 485.505,1313.11 490.433,1310.47 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1091">
+        <line
+           id="line1087"
+           y2="1534.58"
+           x2="486.508"
+           y1="1513.92"
+           x1="486.879"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1089"
+           points="486.373,1542.08 481.553,1531.99 486.508,1534.58 491.552,1532.17 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1101">
+        <rect
+           id="rect1093"
+           ry="0"
+           rx="0"
+           height="54"
+           width="107.7"
+           y="1669.48"
+           x="318.711"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text1099"
+           y="1692.36"
+           x="372.561"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1095"
+             y="1692.36"
+             x="372.561">Selecionar o</tspan>
+          <tspan
+             id="tspan1097"
+             y="1708.36"
+             x="372.561">próximo sinal</tspan>
+        </text>
+      </g>
+      <g
+         id="g1107">
+        <line
+           id="line1103"
+           y2="1695.9399"
+           x2="475.96899"
+           y1="1696.1899"
+           x1="427.39999"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1105"
+           points="483.469,1695.9 473.496,1700.95 475.969,1695.94 473.443,1690.95 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1119">
+        <rect
+           id="rect1109"
+           ry="0"
+           rx="0"
+           height="70"
+           width="155.85001"
+           y="1332.17"
+           x="765.776"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text1117"
+           y="1355.05"
+           x="843.70099"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1111"
+             y="1355.05"
+             x="843.70099">zerar ponteiro</tspan>
+          <tspan
+             id="tspan1113"
+             y="1371.05"
+             x="843.70099">da lista de intervalos</tspan>
+          <tspan
+             id="tspan1115"
+             y="1387.05"
+             x="843.70099">spectrais</tspan>
+        </text>
+      </g>
+      <g
+         id="g1131">
+        <rect
+           id="rect1121"
+           ry="0"
+           rx="0"
+           height="70"
+           width="112.25"
+           y="1137.12"
+           x="809.625"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text1129"
+           y="1160"
+           x="865.75"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1123"
+             y="1160"
+             x="865.75">zerar ponteiro</tspan>
+          <tspan
+             id="tspan1125"
+             y="1176"
+             x="865.75">da lista de</tspan>
+          <tspan
+             id="tspan1127"
+             y="1192"
+             x="865.75">wavelets</tspan>
+        </text>
+      </g>
+      <g
+         id="g1139">
+        <path
+           id="path1133"
+           d="m 403.929,882.289 h 67.486 c 9.318,0 16.872,8.954 16.872,20 0,11.046 -7.554,20 -16.872,20 h -67.486 c -9.318,0 -16.871,-8.954 -16.871,-20 0,-11.046 7.553,-20 16.871,-20 z"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           id="text1137"
+           y="906.16998"
+           x="437.672"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1135"
+             y="906.16998"
+             x="437.672">Fim</tspan>
+        </text>
+      </g>
+      <g
+         id="g1149">
+        <path
+           id="path1141"
+           d="m 679.623,880.187 h 143.85 c 19.862,0 35.963,8.955 35.963,20 0,11.046 -16.101,20 -35.963,20 h -143.85 c -19.861,0 -35.962,-8.954 -35.962,-20 0,-11.045 16.101,-20 35.962,-20 z"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           id="text1147"
+           y="896.06799"
+           x="751.54797"
+           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998">
+          <tspan
+             id="tspan1143"
+             y="896.06799"
+             x="751.54797">Calcular energias dos</tspan>
+          <tspan
+             id="tspan1145"
+             y="912.06799"
+             x="751.54797">sinais transformados</tspan>
+        </text>
+      </g>
+      <g
+         id="g1155">
+        <line
+           id="line1151"
+           y2="933.008"
+           x2="436.88901"
+           y1="960.237"
+           x1="436.19501"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1153"
+           points="437.08,925.511 441.824,935.635 436.889,933.008 431.827,935.38 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g1161">
+        <line
+           id="line1157"
+           y2="988.20502"
+           x2="528.16498"
+           y1="988.23199"
+           x1="585.94897"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1159"
+           points="520.665,988.202 530.668,983.206 528.165,988.205 530.663,993.206 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text1165"
+         y="988.216"
+         x="552.18903"
+         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998">
+        <tspan
+           id="tspan1163"
+           y="988.216"
+           x="552.18903">Não</tspan>
+      </text>
+      <g
+         id="g1171">
+        <polyline
+           id="polyline1167"
+           points="754.194,1040.22 754.194,1079.76 621.989,1079.76 "
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon1169"
+           points="614.489,1079.76 624.489,1074.76 621.989,1079.76 624.489,1084.76 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text1175"
+         y="1079.76"
+         x="683.224"
+         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998">
+        <tspan
+           id="tspan1173"
+           y="1079.76"
+           x="683.224">Sim</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

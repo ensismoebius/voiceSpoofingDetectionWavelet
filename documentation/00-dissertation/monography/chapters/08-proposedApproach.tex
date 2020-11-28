@@ -90,7 +90,7 @@
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.9\linewidth]{images/EERAlgo.pdf}
+			\includegraphics[width=1\linewidth]{images/EERAlgo.pdf}
 			\caption{Algoritmo para o cálculo do EER}
 			\label{fig:eeralgo}
 		\end{figure}
@@ -99,10 +99,17 @@
 		\label{chap:propApproach:sec:Experimento01}
 		\par O objetivo deste procedimento é o de verificar, segundo a Engenharia Paraconsistente, qual das combinações entre as escalas BARK ou MEL e as várias \textit{wavelets} consideradas geram os vetores de características mais propícios, ou seja, que atraem o ponto $(G_1,G_2)$ para uma posição mais próxima do vértice $(1,0)$ do plano paraconsistente, conforme mencionado no Capítulo anterior. 
 				
-		\par As transformações \textit{wavelet-packet} foram realizadas, com os diversos filtros mencionados, até  o máximo nível possível, implicando máxima resolução em frequência, para que, após isso, as amostras dos sinais transformados fossem agrupadas visando corresponder aos intervalos espectrais definidos nas escalas BARK e MEL. Naquela escala, os vetores de características foram constituídos de 24 coeficientes. Diferentemente, nesta escala, os vetores de características foram formados com 13 coeficientes devido a derivação do sinal ao final do processo de geração. O algoritmo \ref{lst:experiment01Algo} contém a descrição de tais procedimentos.
-			
-		\input{codeListings/experiment01Algo.tex}
+		\par As transformações \textit{wavelet-packet} foram realizadas, com os diversos filtros mencionados, até  o máximo nível possível, implicando máxima resolução em frequência para que, após isso, as amostras dos sinais transformados fossem agrupadas visando corresponder aos intervalos espectrais definidos nas escalas BARK e MEL. Naquela escala, os vetores de características foram constituídos de 24 coeficientes, diferentemente, nesta escala, os vetores de características foram formados com 13 coeficientes devido a derivação do sinal ao final do processo de geração. O Algoritmo \ref{lst:experiment01Algo} e Figura \ref{fig:experiment01Algo} contém a descrição de tais procedimentos.
 
+		\input{codeListings/experiment01Algo.tex}
+			
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\linewidth]{images/AlgoProcedure01.pdf}
+			\caption{Algoritmo que caracteriza o procedimento 01}
+			\label{fig:experiment01Algo}
+		\end{figure}
+		
 		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação pois a transformada \textit{wavelet} realiza o \textit{downsampling} por 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
 				
 		\par Para ajustar o tamanho do sinal de voz sob análise, foi usada a Equação \ref{eq:optimalSize}, na qual \textit{\textbf{proxInt}} é uma função que retorna o próximo número inteiro do argumento real. Por exemplo, $proxInt(1,5) = 2$.
@@ -125,10 +132,17 @@
 				
 		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados para modelagem, até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores. Em cada uma dessas execuções, a ordem dos vetores dentro das amostras, regravados e genuínos, foi permutada aleatoriamente.
 				
-		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão e assim calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No algoritmo \ref{lst:experiment02Algo}, os passos estão detalhados.
+		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão e assim calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No Algoritmo \ref{lst:experiment02Algo} e na Figura \ref{fig:experiment02Algo}, os passos estão detalhados.
 		
 		\par Essencialmente, este procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente à uma das classes dos vetores de modelagem selecionados.   
-								
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.9\linewidth]{images/AlgoProcedure02}
+			\caption{Algoritmo que caracteriza o procedimento 02}
+			\label{fig:experiment02Algo}
+		\end{figure}
+		
 		\input{codeListings/experiment02Algo.tex}
 
 		\subsection{Procedimento 03 - classificações baseadas na SVM}
@@ -142,15 +156,22 @@
 		\item{}a saída de cada elemento da camada intermediária conecta-se com o único elemento da camada de saída por meio dos pesos $p_0, p_1, .... p_{X-1}$;
 		\item{}o valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída, isto é, os valores de saída da camada intermediária.
 		\end{itemize}
-		
+
 		\input{images/3layersSVM.tex}
 
 		\par Foram utilizados, na camada de entrada, um número de elementos igual a dimensão do vetor de características sendo considerado. Na camada intermediária, o número de elementos ativos não-lineares foi igual ao número de casos de treinamento, visando facilitar o procedimento que, em tal caso, implica na solução direta de um sistema linear quadrado, isto é, possível e determinado \cite{poole2014linear}. 
 		
 		\par O treinamento da SVM consiste em, numa primeira etapa não-supervisionada, ajustar os parâmetros das funções Gaussianas da camada intermediária. Posteriormente, com base no sistema linear mencionado, os pesos foram encontrados com base em uma abordagem supervisionada, utilizando-se os rótulos -1 e 1 para os sinais regravados e genuínos, respectivamente.    
 		
-		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes,   são idênticos àqueles do procedimento 02 e encontram-se listados no algoritmo \ref{lst:experiment03Algo}. 
+		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes,   são idênticos àqueles do procedimento 02 e encontram-se listados no Algoritmo \ref{lst:experiment03Algo} e na Figura \ref{fig:experiment03Algo}. 
 		
 		\input{codeListings/experiment03Algo.tex}
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.9\linewidth]{images/AlgoProcedure03}
+			\caption{Algoritmo que caracteriza o procedimento 03}
+			\label{fig:experiment03Algo}
+		\end{figure}
 
         \par Os testes e resultados dos experimentos descritos neste Capítulo encontram-se no Capítulo seguinte.
