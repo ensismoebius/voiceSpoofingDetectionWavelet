@@ -82,7 +82,7 @@
 
 			\par No contexto dos filtros digitais baseados em \textit{wavelets}, o tamanho da janela recebe o nome de \textbf{suporte}. Janelas definem o tamanho do filtro que será aplicado ao sinal. Quando esse é pequeno, se diz que a janela tem \textbf{um suporte compacto} \cite{robi2003}.
 		
-			\par Se diz que uma \textit{wavelet} tem boa \textbf{resposta em frequência} quando, na aplicação da mesma para filtragem, não são causadas muitas pertubações indesejadas ao sinal, no domínio da frequência. Os filtros \textit{wavelet} de Daubechies se destacam nesse quesito por serem \textit{maximamente planos} (\textit{maximally-flat}) \cite{butterworth1930} \cite{bianchi2007electronic} nos platôs de resposta em frequência como indicado na Figura \ref{fig:daubechies} ao contrário do que ocorre na Figura \ref{fig:nomaximallyflat}.
+			\par Se diz que uma \textit{wavelet} tem boa \textbf{resposta em frequência} quando, na aplicação da mesma para filtragem, não são causadas muitas pertubações indesejadas ao sinal, no domínio da frequência. Os filtros \textit{wavelet} de Daubechies \cite{daubechies1992ten} se destacam nesse quesito por serem \textit{maximamente planos} (\textit{maximally-flat}) \cite{butterworth1930} \cite{bianchi2007electronic} nos platôs de resposta em frequência como indicado na Figura \ref{fig:daubechies} ao contrário do que ocorre na Figura \ref{fig:nomaximallyflat}.
 
 			\begin{figure}[h]
 				\centering
@@ -117,7 +117,7 @@
 			
 			\par Determinar a ortogonal de um vetor significa construir um vetor, tal que, o produto escalar do vetor original com sua respectiva ortogonal seja nulo.
 			
-			\par Considerando $h[\cdot]$ como sendo o vetor do filtro passa-baixas e $g[\cdot]$ seu correspondente ortogonal, tem-se que $h[\cdot] \cdot g[\cdot] = 0$.
+			\par Considerando $h[\cdot]$ como sendo o vetor do filtro passa-baixas e $g[\cdot]$ seu correspondente ortogonal, tem-se que $h[\cdot] \cdot g[\cdot] = 0 \qquad .$
 			\par Portanto, se $h[\cdot]=[a, b, c, d]$ então seu ortogonal será $g[\cdot]=[d, -c, b, -a]$ pois:
 			$$
 				h[\cdot] \cdot g[\cdot]  =  [a, b, c, d] \cdot [d, -c, b, -a] = (a \cdot d) + (b \cdot (-c)) + (c \cdot b) + (d \cdot (-a)) = ad - ad + bc - bc = 0 \qquad.
@@ -125,9 +125,9 @@
 
 			\par A título de exemplo, considera-se:
 			\begin{itemize}
-				\item o filtro passa baixa baseado na \textit{wavelet} Haar: $h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]\qquad;$
-				\item o seu respectivo vetor ortogonal: $g[\cdot] = [\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}]\qquad;$
-				\item e também o seguinte sinal-exemplo de entrada: $s = \{1,2,3,4\}\qquad.$
+				\item o filtro passa baixa baseado na \textit{wavelet} Haar: $h[\cdot] = [\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}]$
+				\item o seu respectivo vetor ortogonal: $g[\cdot] = [\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}}]$
+				\item e também o seguinte sinal-exemplo de entrada: $s = \{1,2,3,4\}$
 			\end{itemize}
 
 			\par Se o tamanho do sinal a ser tratado é quatro e se pretende-se aplicar o filtro Haar, a seguinte matriz de coeficientes é construída:
@@ -253,7 +253,7 @@
 					\label{fig:betacalculation}
 				\end{figure}
 			
-			\par Uma vez que $\alpha$ e $\beta$ estejam definidos, é necessário obter os coeficientes $G_1$ e $G_2$ considerando-se o plano paraconsistente \cite{8588433}, isto é: 
+				\par Considerando-se o plano paraconsistente \cite{8588433}, temos: 
 				
 				\begin{itemize}
 					\item Verdade $\rightarrow$ fé total ($\alpha = 1$) e nenhum descrédito ($\beta = 0$)
@@ -262,7 +262,7 @@
 					\item Indefinição $\rightarrow$ fé nula ($\alpha = 0$) e descrédito total ($\beta = 0$) \qquad.
 				\end{itemize}
 				
-				\par No entanto, raramente $\alpha$ e $\beta$ terão tais valores: na maioria das ocasiões, $0 \leqslant \alpha \leqslant 1$ e $0 \leqslant \beta \leqslant 1$. Por isso, se torna necessário o cálculo do \textbf{grau de certeza}, isto é, $G_1$, e do \textbf{grau de contradição}, isto é, $G_2$, conforme segue:
+				\par Uma vez que $\alpha$ e $\beta$ estejam definidos, é necessário obter os coeficientes $G_1$ e $G_2$. No entanto, raramente $\alpha$ e $\beta$ terão tais valores: Na maioria das ocasiões, $0 \leqslant \alpha \leqslant 1$ e $0 \leqslant \beta \leqslant 1$. Por isso, se torna necessário o cálculo do \textbf{grau de certeza}, isto é, $G_1$, e do \textbf{grau de contradição}, isto é, $G_2$, conforme segue:
 				\begin{equation}
 					G_1=\alpha-\beta  \qquad,
 				\end{equation}
@@ -282,7 +282,7 @@
 			\end{itemize}
 			\par Ainda na Figura \ref{fig:paraconsistentplane}, é possivel ver um pequeno círculo indicando os graus dos quatro casos listados.
 	
-			\par Para se ter ideia em que área exatamente se encontram as classes avaliadas, as distâncias $(D)$ do ponto $P=(G_1,G_2)$ até o limites supracitados podem ser computadas. Tais cálculos pode ser feito da seguinte forma:
+			\par Para se ter ideia em que área exatamente se encontram as classes avaliadas, as distâncias $(D)$ do ponto $P=(G_1,G_2)$ até o limites supracitados podem ser computadas. Tais cálculos podem ser feitos da seguinte forma:
 
 			\begin{equation}
 				D_{-1,0}=\sqrt{(G_1+1)^2+(G_2)^2}\qquad,
@@ -300,7 +300,7 @@
 			\begin{figure}[h]
 				\centering
 				\includegraphics[angle=-90, width=0.69\linewidth]{images/paraconsistentPlane.pdf}
-				\caption{O plano paraconsistente.}
+				\caption{O plano paraconsistente: O pequeno círculo indica os graus de falsidade(-1,0), verdade(1,0), indefinição(0,-1) e ambiguidade(0,1)}
 				\label{fig:paraconsistentplane}
 			\end{figure}
 		
