@@ -1,0 +1,88 @@
+\begin{figure}[H]
+	\centering
+	\scalebox{2}{
+		\begin{tikzpicture}
+			%input layer
+			\node (input1) at (0.65,2.0) {};
+			\draw[->,in=180,out=0] (1.0,2.0) to (1.35,2.0);
+			\node (input2) at (0.65,1.5) {};
+			\draw[->,in=180,out=0] (1.0,1.5) to (1.35,1.5);
+			\node (input3) at (0.65,1.0) {};
+			\draw[->,in=180,out=0] (1.0,1.0) to (1.35,1.0);
+			\node (input3) at (0.65,0.0) {};
+			\draw[->,in=180,out=0] (1.0,0.0) to (1.35,0.0);
+			\node (IL_N1) at (1.5,2.0) {}; \filldraw[fill=gray!30] (1.5,2.0) circle (0.15cm);
+			\node (IL_N2) at (1.5,1.5) {}; \filldraw[fill=gray!30] (1.5,1.5) circle (0.15cm);
+			\node (IL_N3) at (1.5,1.0) {}; \filldraw[fill=gray!30] (1.5,1.0) circle (0.15cm);
+			\node at (1.5,0.625) {$\vdots$};
+			\node (IL_Nn) at (1.5,0.0) {}; \filldraw[fill=gray!30] (1.5,0.0) circle (0.15cm);
+			
+			%hidden layer 
+			\node (HL_N1) at (3.5,2.5) {}; \filldraw[fill=blue!20] (3.55,2.5) circle (0.15cm);
+			\node (HL_N2) at (3.5,2.0) {}; \filldraw[fill=blue!20] (3.55,2.0) circle (0.15cm);
+			\node (HL_N3) at (3.5,1.5) {}; \filldraw[fill=blue!20] (3.55,1.5) circle (0.15cm);
+			\node (HL_N4) at (3.5,1.0) {}; \filldraw[fill=blue!20] (3.55,1.0) circle (0.15cm);
+			\node at (3.55,0.625) {$\vdots$};
+			\node (HL_Nn-1) at (3.5,0.0) {}; \filldraw[fill=blue!20] (3.55,0.0) circle (0.15cm);	
+			\node (HL_Nn) at (3.5,-0.5) {}; \filldraw[fill=blue!20] (3.55,-0.5) circle (0.15cm);	
+			\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N1);
+			\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N2);
+			\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N3);
+			\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_N4);
+			\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_Nn-1);
+			\draw[->,in=180,out=0] (IL_N1)+(1.5mm,0) to (HL_Nn);
+			
+			\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N1);
+			\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N2);
+			\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N3);
+			\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_N4);
+			\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_Nn-1);
+			\draw[->,in=180,out=0] (IL_N2)+(1.5mm,0) to (HL_Nn);
+			
+			\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N1);
+			\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N2);
+			\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N3);
+			\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_N4);
+			\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_Nn-1);
+			\draw[->,in=180,out=0] (IL_N3)+(1.5mm,0) to (HL_Nn);
+			
+			\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N1);
+			\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N2);
+			\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N3);
+			\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_N4);
+			\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_Nn-1);
+			\draw[->,in=180,out=0] (IL_Nn)+(1.5mm,0) to (HL_Nn);
+			
+			%output layer
+			\node (OL_N1) at (5.5,1.0) {}; \filldraw[fill=red!40] (5.55,1.0) circle (0.15cm);
+			
+			\draw[->,in=180,out=0] (HL_N1)+(2mm,0) to (OL_N1);
+			\draw[->,in=180,out=0] (HL_N2)+(2mm,0) to (OL_N1);
+			\draw[->,in=180,out=0] (HL_N3)+(2mm,0) to (OL_N1);
+			\draw[->,in=180,out=0] (HL_N4)+(2mm,0) to (OL_N1);
+			\draw[->,in=180,out=0] (HL_Nn-1)+(2mm,0) to (OL_N1);
+			\draw[->,in=180,out=0] (HL_Nn)+(2mm,0) to (OL_N1);
+			%
+			\draw[snake=brace,mirror snake,raise snake=45pt,brown] (1.25,1.25) -- (1.75,1.25) node[black,midway,yshift=-50pt,below]{\tiny input layer} node[black,midway,yshift=-58pt,below]{\tiny with R passive} node[black,midway,yshift=-66pt,below]{\tiny elements}
+
+			node[black,midway,yshift=-74pt,below]{\tiny };
+
+			\draw[snake=brace,mirror snake,raise snake=45pt,brown] (3.25,0.75) -- (3.75,0.75) node[black,midway,yshift=-50pt,below]{\tiny inner layer} node[black,midway,yshift=-58pt,below]{\tiny  with $X$ non-linerar} node[black,midway,yshift=-66pt,below]{\tiny active neurons}
+			node[black,midway,yshift=-74pt,below]{\tiny};
+			\draw[snake=brace,mirror snake,raise snake=45pt,brown] (5.25,1.75) -- (5.75,1.75) node[black,midway,yshift=-50pt,below]{\tiny output} node[black,midway,yshift=-58pt,below]{\tiny layer with} node[black,midway,yshift=-66pt,below]{\tiny one active element}
+			node[black,midway,yshift=-74pt,below]{\tiny};
+			%
+			\node (OUT) at (6.5,1.0) {\tiny result}; 
+			\draw[->,in=180,out=0] (OL_N1)+(2mm,0) to (OUT);	
+			
+			\node at (4,2.6) {\tiny $p_0$}; 
+			\node at (4,2.1) {\tiny $p_1$}; 
+			\node at (4,1.65) {\tiny $p_2$}; 
+			\node at (4,1.2) {\tiny $p_3$}; 
+			\node at (4,0.2) {\tiny $p_{X-2}$}; 
+			\node at (4,-0.3) {\tiny $p_{X-1}$}; 
+		\end{tikzpicture}
+		}
+	\caption{SVM structure for procedure 03 with $R$ neurons in input layer, being $R$ the feature vectors length, and $X$ neurons in inner layer. $X$ is the number of trainning cases.}
+	\label{fig:3layersSVM}
+\end{figure}

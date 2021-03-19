@@ -1,0 +1,67 @@
+\documentclass[3p,times]{elsarticle}
+\usepackage{ecrc}
+\usepackage{amsthm}
+\usepackage[figuresright]{rotating}
+\usepackage{graphics}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{picinpar}
+\usepackage{colortbl}
+\usepackage{wasysym}
+\usepackage{txfonts}
+\usepackage{pb-diagram}
+\usepackage{relsize}
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{positioning}
+	\usetikzlibrary{mindmap}
+	\usetikzlibrary{decorations}
+	\usetikzlibrary{shapes}
+	\usetikzlibrary{decorations.pathreplacing}
+	\usetikzlibrary{spy}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{snakes}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+	\pgfplotsset{compat=newest}
+	\usepgfplotslibrary{units}
+%\usepackage{subfigure}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{calc}
+
+	% Allow more floats whatever it is
+	\usepackage{morefloats}
+	\usepackage{subfig}
+	\usepackage{float}
+	
+		% Enables code listing
+	\usepackage{listings}
+
+
+\newcommand{\boxplot}[7]{
+	\draw[line width=0.3mm,color=#7] let \n{boxxl}={#1-0.1}, \n{boxxr}={#1+0.1} in (axis cs:\n{boxxl},#3) rectangle (axis cs:\n{boxxr},#4); % draw the box
+	
+	\draw[line width=0.3mm, color=#7] let \n{boxxl}={#1-0.1}, \n{boxxr}={#1+0.1} in (axis cs:\n{boxxl},#2) -- (axis cs:\n{boxxr},#2); % median
+	
+	\draw[line width=0.3mm, color=#7] (axis cs:#1,#4) -- (axis cs:#1,#6); % bar up
+	
+	\draw[line width=0.3mm,color=#7] let \n{whiskerl}={#1-0.025}, \n{whiskerr}={#1+0.025} in (axis cs:\n{whiskerl},#6) -- (axis cs:\n{whiskerr},#6); % upper quartile
+	
+	\draw[line width=0.3mm,color=#7] (axis cs:#1,#3) -- (axis cs:#1,#5); % bar down
+	
+	\draw[line width=0.3mm,color=#7] let \n{whiskerl}={#1-0.025}, \n{whiskerr}={#1+0.025} in (axis cs:\n{whiskerl},#5) -- (axis cs:\n{whiskerr},#5); % lower quartile
+}
+
+\volume{-}
+\firstpage{1}
+\journalname{ELS}
+\runauth{}
+\jid{ELS}
+\jnltitlelogo{Elsevier}

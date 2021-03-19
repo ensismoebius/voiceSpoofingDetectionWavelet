@@ -1,0 +1,21 @@
+\begin{lstlisting}[language=C++, caption={Algoritmo que caracteriza o procedimento 04}, label={lst:experiment04Algo}]
+sinal = { 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23, 24, 28, 34, 32, 10, 20, 38, 37, 28, 38, 34, 18, 24, 24, 9, 23,...};
+
+listaDeWavelets = { "haar", "daub42", "daub54" };
+
+resultados = {};
+
+for(wavelet : listaDeWavelets){
+	sinalTransformado = wavelet(sinal, wavelet);
+	
+	// Eliminado os dois primeiros sinais 
+	// para evitar os picos iniciais que
+	// prejudicam a visualizacao do grafico
+	sinalTransformado[0] = 0;
+	sinalTransformado[1] = 0;
+	
+	resultados.adicionar(sinalTransformado)
+}
+
+gerarGrafico(resultados);
+\end{lstlisting}

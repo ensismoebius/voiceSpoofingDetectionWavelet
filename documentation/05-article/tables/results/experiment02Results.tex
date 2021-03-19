@@ -1,0 +1,60 @@
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\begin{center}
+		\begin{tabular}{|p{0.15\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			\centering\textbf{Model size} & \centering\textbf{Minimum accuracy} & \centering\textbf{Maximum accuracy} & \centering\textbf{Mean of accuracies} & \centering\textbf{Standard deviation of accuracies} & \textbf{\space \space \space \space EER}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,681572} & \mc{1}{c|}{0,879404} & \mc{1}{c|}{0,780488} & \mc{1}{c|}{0,023899} & \mc{1}{c|}{0,168022}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,740854} & \mc{1}{c|}{0,893293} & \mc{1}{c|}{0,8170735} & \mc{1}{c|}{0,017426} & \mc{1}{c|}{0,152439}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,750871} & \mc{1}{c|}{0,909408} & \mc{1}{c|}{0,8301395} & \mc{1}{c|}{0,015134} & \mc{1}{c|}{0,139373}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,770325} & \mc{1}{c|}{0,900407} & \mc{1}{c|}{0,835366} & \mc{1}{c|}{0,014444} & \mc{1}{c|}{0,140244}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,778049} & \mc{1}{c|}{0,904878} & \mc{1}{c|}{0,8414635} & \mc{1}{c|}{0,015132} & \mc{1}{c|}{0,136585}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Procedure 02 results - Euclidean distance}
+	\label{tab:experiment02ResultsEuclidian}
+\end{table}
+
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\begin{center}
+		\begin{tabular}{|p{0.15\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			\centering\textbf{Model size} & \centering\textbf{Minimum accuracy} & \centering\textbf{Maximum accuracy} & \centering\textbf{Mean of accuracies} & \centering\textbf{Standard deviation of accuracies} & \textbf{\space \space \space \space EER}\\\hline
+			
+			\rowcolor{tcB}
+			\mc{1}{|c|}{10\%} & \mc{1}{c|}{0,669397} & \mc{1}{c|}{0,898374} & \mc{1}{c|}{0,7838855} & \mc{1}{c|}{0,024650} & \mc{1}{c|}{0,159892}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{20\%} & \mc{1}{c|}{0,754573} & \mc{1}{c|}{0,902439} & \mc{1}{c|}{0,828506} & \mc{1}{c|}{0,018194} & \mc{1}{c|}{0,140244}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{30\%} & \mc{1}{c|}{0,778746} & \mc{1}{c|}{0,904181} & \mc{1}{c|}{0,8414635} & \mc{1}{c|}{0,015747} & \mc{1}{c|}{0,132404}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{40\%} & \mc{1}{c|}{0,776423} & \mc{1}{c|}{0,902439} & \mc{1}{c|}{0,839431} & \mc{1}{c|}{0,014994} & \mc{1}{c|}{0,138211}\\\hline
+
+			\rowcolor{tcB}
+			\mc{1}{|c|}{50\%} & \mc{1}{c|}{0,782927} & \mc{1}{c|}{0,909756} & \mc{1}{c|}{0,8463415} & \mc{1}{c|}{0,015371} & \mc{1}{c|}{0,129268}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Procedure 02 results - Manhattan distance }
+	\label{tab:experiment02ResultsManhattan}
+\end{table}
+

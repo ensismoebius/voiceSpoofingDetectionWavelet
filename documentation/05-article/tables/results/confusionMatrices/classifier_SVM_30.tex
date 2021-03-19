@@ -1,0 +1,39 @@
+\begin{table}[h]
+\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+\definecolor{tcC}{rgb}{0,0,0}
+\definecolor{tcD}{rgb}{0,0.5,1}
+\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+\begin{center}
+	\begin{tabular}{ccc}
+		% use packages: color,colortbl
+		\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
+
+		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{268}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{14}}\\
+
+		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{19}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{273}}
+	\end{tabular}
+	\caption{Melhor tabela de confusão para classificador SVM 30\%}
+	\label{tab:classifier_SVM_30_best}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcC}{rgb}{0,0,0}
+	\definecolor{tcD}{rgb}{0,0.5,1}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\begin{center}
+		\begin{tabular}{ccc}
+			% use packages: color,colortbl
+			\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
+			
+			\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{249}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{43}}\\
+			
+			\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{38}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{244}}
+		\end{tabular}
+		\caption{Pior tabela de confusão para classificador SVM 30\%}
+		\label{tab:classifier_SVM_30_worse}
+	\end{center}
+\end{table}

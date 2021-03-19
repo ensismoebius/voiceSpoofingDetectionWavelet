@@ -1,0 +1,25 @@
+\begin{lstlisting}[language=C++, caption={Procedure 1 algorithm}, label={lst:experiment01Algo}]
+
+// Loads the samples sets to the memory
+for (samplesList : {voiceSpoofingSamplesList, genuineSamplesList}) {
+	// Selects next wavelet type
+	for (wavelet : wavelets) {
+		// Select the BARK or MEL scale
+		for (selectedScale : {BARK, MEL}) {
+			// Selects the next signal inside the sampleList
+			for (signal : samplesList) {
+				optimalLength=calculateOptimalLength(signal);
+				resizeSignal(signal, optimalLength);
+				transformedSignal=wavelet(signal, wavelet);
+				energies=calculateEnergies(transformedSignal, selectedScale);
+				energies=normalize(energies);
+				
+				// Store the results
+				results[wavelet.name()][selectedScale][samplesList.name()].add(energies);
+			}
+		}
+	}
+}
+// Places the results in the paraconsistent plane
+placeResultsInTheParaconsistentPlane(results);
+\end{lstlisting}

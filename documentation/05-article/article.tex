@@ -1,129 +1,19 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Article
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Elsevier
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[3p,times]{elsarticle}
-\usepackage{ecrc}
-\usepackage{amsthm}
-\usepackage[figuresright]{rotating}
-\usepackage{graphics}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{fancybox}
-\usepackage{amsmath}
-\usepackage{picinpar}
-\usepackage{colortbl}
-\usepackage{wasysym}
-\usepackage{txfonts}
-\usepackage{pb-diagram}
-\usepackage{relsize}
-\usepackage{tikz}
-	\usetikzlibrary{calc}
-	\usetikzlibrary{datavisualization}
-	\usetikzlibrary{positioning}
-	\usetikzlibrary{mindmap}
-	\usetikzlibrary{snakes}
-	\usetikzlibrary{shapes}
-	\usetikzlibrary{decorations.pathreplacing}
-	\usetikzlibrary{spy}
-	\usetikzlibrary{backgrounds}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
-	\pgfplotsset{compat=newest}
-	\usepgfplotslibrary{units}
-\usepackage{subfigure}
-%\usepackage{algorithm}
-%\usepackage{algorithmic}
-\usepackage{verbatim}
-\usepackage{wrapfig}
-\usepackage{array}
-\usepackage{calc}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\boxplot}[7]
-{
-%#1: center, #2: median, #3: 1/4 quartile, #4: 3/4 quartile, #5: min, #6: max
-\draw[line width=0.3mm,color=#7] let \n{boxxl}={#1-0.1}, \n{boxxr}={#1+0.1} in (axis cs:\n{boxxl},#3) rectangle (axis cs:\n{boxxr},#4);   % draw the box
-\draw[line width=0.3mm, color=#7] let \n{boxxl}={#1-0.1}, \n{boxxr}={#1+0.1} in (axis cs:\n{boxxl},#2) -- (axis cs:\n{boxxr},#2);             % median
-\draw[line width=0.3mm, color=#7] (axis cs:#1,#4) -- (axis cs:#1,#6);                                                                           % bar up
-\draw[line width=0.3mm,color=#7] let \n{whiskerl}={#1-0.025}, \n{whiskerr}={#1+0.025} in (axis cs:\n{whiskerl},#6) -- (axis cs:\n{whiskerr},#6);        % upper quartile
-\draw[line width=0.3mm,color=#7] (axis cs:#1,#3) -- (axis cs:#1,#5);                                                                           % bar down
-\draw[line width=0.3mm,color=#7] let \n{whiskerl}={#1-0.025}, \n{whiskerr}={#1+0.025} in (axis cs:\n{whiskerl},#5) -- (axis cs:\n{whiskerr},#5);        % lower quartile
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\volume{-}
-\firstpage{1}
-\journalname{ELS}
-\runauth{}
-\jid{ELS}
-\jnltitlelogo{Elsevier}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{data/preamble.tex}
+
 \begin{document}
-\begin{frontmatter}
-\vspace*{-40pt}
-\title{Article Title goes here}
-\author[a1,a2]{Andr\'{e} Furlan\footnote{corresponding author}}
-\author[a1]{Rodrigo Capobianco Guido}
-\address[a1]{Instituto de Bioci\^{e}ncias, Letras e Ci\^{e}ncias Exatas, Unesp - Univ Estadual Paulista (S\~{a}o Paulo State University), Rua Crist\'{o}v\~{a}o Colombo 2265, Jd Nazareth, 15054-000, S\~{a}o Jos\'{e} do Rio Preto - SP, Brazil.}
-\address[a2]{Centro Paula Souza, São Paulo, SP, Brazil.}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{abstract}
-This paper presents....   
-\end{abstract}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{keyword}
-speaker verification \sep spoof detection \sep replay attacks \sep wavelets
-\end{keyword}
-\end{frontmatter}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace*{+5pt}
-\section{Introduction}
-\par ....
-\\
-\par ....
-\\
-\par This article is organized as follows. ....
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Brief Review and Motivation}
-\label{review}
-\par ....
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Proposed Approach}
-\label{pa}
-\par ...
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tests and Results}
-\label{ea}
-\par texto, tabelas, graficos, etc...
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions}
-\label{co}
-\par In this work, .... 1 paragrafo longo
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\\
-\\
-\textbf{Acknowledgements:} We gratefully acknowledge the grants provided by ....
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{thebibliography}{00}
-\bibitem{dwt}Guido, R.C. Practical and Useful Tips on Discrete Wavelet Transforms. \textit{IEEE Signal Processing Magazine} 32 - 3 (2015) 162-166. 
-\end{thebibliography}
+	
+	\input{sections/00-frontamatter.tex}
+
+	\input{sections/01-introduction.tex}
+
+	\input{sections/02-viewAndMotivation.tex}
+
+	\input{sections/03-proposedApproach.tex}
+
+	\input{sections/04-testsAndResults.tex}
+
+	\input{sections/05-conclusions.tex}
+
+	\input{sections/06-references.tex}
+
 \end{document}

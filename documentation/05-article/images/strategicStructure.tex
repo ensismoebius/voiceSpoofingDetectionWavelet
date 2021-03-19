@@ -1,0 +1,60 @@
+\begin{figure}[h]
+	\scalebox{0.75}	{
+		\centering
+		\begin{tikzpicture} 
+			\node (z1)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=red!50] 
+			at (0,2){
+				\textbf{Input} \textbf{signal}
+			}; 
+				
+			\node (z2)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
+			at (5.5,2){
+				Pre-processing \\
+				and extraction of \\
+				features in the \\
+				\textit{wavelet} domain 
+			}; 	
+			
+			\node (z3)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
+			at (11,2){
+				Energy clustering \\
+				in the Bark / Mel bands 
+			}; 	
+			
+			\node (z4)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
+			at (16.5,2){
+				Paraconsistent analysis \\ 
+				of characteristics
+			}; 
+			
+			\node (z5)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
+			at (16.5,0.25){
+				Selection of the best combination \\
+				energy cluster + wavelet 
+			}; 
+					
+			\node (z6)[shape=circle, draw, align=center, top color=white, bottom color=blue!10] 
+			at (7,0.25) {};
+			
+			\node (z7)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
+			at (7,-1.25) {
+				Distance classifier \\ or SVM
+			};
+			
+			\node (z8)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=green!80] 
+			at (12,-1.25) {
+				\textbf{Results}
+			};
+			
+			\path[->] (z1) edge (z2);
+			\path[->] (z2) edge (z3);
+			\path[->] (z3) edge (z4);
+			\path[->] (z4) edge (z5);
+			\path[->] (z5) edge (z6);
+			\path[->] (z6) edge (z7);	
+			\path[->] (z7) edge (z8);
+		\end{tikzpicture}
+	}
+	\caption{Proposed approach structure}
+	\label{fig_arq}
+\end{figure}
