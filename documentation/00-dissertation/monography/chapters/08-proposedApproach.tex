@@ -38,7 +38,7 @@
 		\end{figure}
 
 	\section{Estrutura da Estratégia Proposta}
-		\par A estratégia proposta para diferenciar sinais de voz genuínos daqueles regravados deu-se conforme ilustrado na Figura \ref{fig_arq}. Particularmente, a metodologia consiste na obtenção dos dados brutos de todos os 410 + 410 = 820 sinais de voz genuínos e regravados, seguida da conversão de cada um deles para um vetor de características correspondente, conforme explicado adiante. Na sequência, os melhores sub-conjuntos de características foram escolhidos com base na Engenharia Paraconsistente. Prosseguindo, separações aleatórias entre os vetores, com proporções diversas, foram realizadas para isolar aqueles destinados ao treinamento ou modelagem do classificador utilizado dos que foram destinados aos testes de classificação. Por fim, testes e resultados foram realizados, conforme descrito no Capítulo seguinte.
+		\par A estratégia proposta para diferenciar sinais de voz genuínos daqueles regravados deu-se conforme ilustrado na Figura \ref{fig_arq}. Particularmente, a metodologia consiste na obtenção dos dados brutos de todos os 410 + 410 = 820 sinais de voz genuínos e regravados, seguida da conversão de cada um deles para um vetor de características correspondente, conforme explicado adiante. Na sequência, os melhores sub-conjuntos de características foram escolhidos com base na Engenharia Paraconsistente. Prosseguindo, separações aleatórias entre os vetores, com proporções diversas, foram realizadas para isolar aqueles destinados ao treinamento ou modelagem do classificador utilizado dos que foram destinados aos testes de classificação. Por fim, os testes realizados e seus resultados são mostrados no Capítulo seguinte.
 		
 		\input{images/strategicStructure.tex}
 		
@@ -80,7 +80,7 @@
 			\label{eq:FRR}
 		\end{equation}
 				
-		\par São calculadas tabelas de confusão por um número suficiente de vezes até que \textbf{\textit{FAR} seja igual \textit{FRR}}, a cada ciclo os vetores de características são comutados de forma aleatória para que se consiga valores diferentes, neste trabalho alguns casos precisaram de mais que 12000 iterações.
+		\par São calculadas tabelas de confusão por um número suficiente de vezes até que \textbf{\textit{FAR} seja igual \textit{FRR}}, a cada ciclo os vetores de características são comutados de forma aleatória para que se consiga valores diferentes, neste trabalho alguns casos precisaram de mais que 12000 iterações para que se encontrasse uma configuração em que FAR=FRR.
 		
 		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico juntamente com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.
 		
@@ -110,7 +110,7 @@
 			\label{fig:experiment01Algo}
 		\end{figure}
 		
-		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação pois a transformada \textit{wavelet} realiza o \textit{downsampling} por 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
+		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação pois a transformada \textit{wavelet} realiza um \textit{downsampling} de ordem 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
 				
 		\par Para ajustar o tamanho do sinal de voz sob análise, foi usada a Equação \ref{eq:optimalSize}, na qual \textit{\textbf{proxInt}} é uma função que retorna o próximo número inteiro do argumento real. Por exemplo, $proxInt(1,5) = 2$.
 
@@ -136,6 +136,8 @@
 		
 		\par Essencialmente, este procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente à uma das classes dos vetores de modelagem selecionados.   
 		
+		
+		% TODO Corrigir o diagrama! Tem um erro tosco na parte debaixo
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=.9\linewidth]{images/AlgoProcedure02}
@@ -151,7 +153,7 @@
 		
 		\par Particularmente, a estrutura da SVM utilizada foi definida da seguinte forma e de acordo com a Figura \ref{fig:3layersSVM}: 
 		\begin{itemize}
-		\item{}três camadas, sendo a primeira, isto é, de entrada, com elementos passivos, a segunda com elementos ativos não-lineares de núcleos Gaussianos e a terceira, isto é, a de saída, com um elemento ativo linear; 
+		\item{}três camadas, sendo a primeira de entrada, com elementos passivos, a segunda com elementos ativos não-lineares de núcleos Gaussianos e a terceira, isto é, a de saída, com um elemento ativo linear; 
 		\item{}inexistem pesos entre a camada de entrada e a camada intermediária, implicando que a saída de cada elemento da camada de entrada conecta-se com todas as entradas de cada elemento da camada intermediária, mantendo incólumes os valores propagados;
 		\item{}a saída de cada elemento da camada intermediária conecta-se com o único elemento da camada de saída por meio dos pesos $p_0, p_1, .... p_{X-1}$;
 		\item{}o valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída, isto é, os valores de saída da camada intermediária.

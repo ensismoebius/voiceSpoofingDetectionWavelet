@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="228.8232mm"
+   height="158.00545mm"
+   viewBox="0 0 228.82319 158.00545"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
@@ -26,16 +26,20 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="215.83845"
-     inkscape:cy="608.31953"
+     inkscape:cx="256.30753"
+     inkscape:cy="190.34536"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1438"
-     inkscape:window-height="858"
+     inkscape:window-height="851"
      inkscape:window-x="0"
-     inkscape:window-y="41"
-     inkscape:window-maximized="0" />
+     inkscape:window-y="48"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -51,910 +55,910 @@
   <g
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(10.733325,-28.414579)">
     <g
        id="Segundo plano"
-       transform="matrix(0.29327,0,0,0.29327,-74.786731,-252.60016)">
+       transform="matrix(0.26458333,0,0,0.26458333,-27.306401,-129.14586)">
       <g
-         id="g825">
+         id="g2138">
         <polygon
-           id="polygon815"
-           points="754.194,936.398 921.44,988.309 754.194,1040.22 586.949,988.309 "
+           id="polygon2130"
+           points="405.251,752.153 291.532,799.37 177.813,752.153 291.532,704.935 "
            style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text823"
-           y="976.19098"
-           x="754.19397"
+           id="text2136"
+           y="748.034"
+           x="291.53201"
            style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
            font-size="12.8">
           <tspan
-             id="tspan817"
-             y="976.19098"
-             x="754.19397">Existe um</tspan>
+             id="tspan2132"
+             y="748.034"
+             x="291.53201">is there a next</tspan>
           <tspan
-             id="tspan819"
-             y="992.19098"
-             x="754.19397">próximo conjunto</tspan>
-          <tspan
-             id="tspan821"
-             y="1008.19"
-             x="754.19397">de sinais?</tspan>
+             id="tspan2134"
+             y="764.034"
+             x="291.53201">set of signals?</tspan>
         </text>
       </g>
       <g
-         id="g835">
+         id="g2148">
         <polygon
-           id="polygon827"
-           points="486.891,1126.83 628.902,1171.14 486.891,1215.45 344.881,1171.14 "
+           id="polygon2140"
+           points="898.443,803.578 795.282,854.526 692.122,803.578 795.282,752.629 "
            style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text833"
-           y="1167.02"
-           x="486.89099"
+           id="text2146"
+           y="799.45898"
+           x="795.28198"
            style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
            font-size="12.8">
           <tspan
-             id="tspan829"
-             y="1167.02"
-             x="486.89099">Existe uma</tspan>
+             id="tspan2142"
+             y="799.45898"
+             x="795.28198">Is there a next</tspan>
           <tspan
-             id="tspan831"
-             y="1183.02"
-             x="486.89099">próxima wavelet?</tspan>
+             id="tspan2144"
+             y="815.45898"
+             x="795.28198">wavelet?</tspan>
         </text>
       </g>
       <g
-         id="g845">
+         id="g2158">
         <polygon
-           id="polygon837"
-           points="485.777,1322.84 664.304,1367.54 485.777,1412.24 307.251,1367.54 "
+           id="polygon2150"
+           points="563.628,908.093 461.586,971.981 359.544,908.093 461.586,844.204 "
            style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text843"
-           y="1363.42"
-           x="485.77701"
+           id="text2156"
+           y="903.974"
+           x="461.586"
            style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
            font-size="12.8">
           <tspan
-             id="tspan839"
-             y="1363.42"
-             x="485.77701">Existe um próximo</tspan>
+             id="tspan2152"
+             y="903.974"
+             x="461.586">Is there a next</tspan>
           <tspan
-             id="tspan841"
-             y="1379.42"
-             x="485.77701">intervalo spectral?</tspan>
+             id="tspan2154"
+             y="919.974"
+             x="461.586">spectral interval?</tspan>
         </text>
       </g>
       <g
-         id="g851">
+         id="g2164">
         <line
-           id="line847"
-           y2="1240.21"
-           x2="485.077"
-           y1="1216.0699"
-           x1="485.711"
+           id="line2160"
+           y2="876.74799"
+           x2="798.35901"
+           y1="854.46802"
+           x1="797.422"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon849"
-           points="484.88,1247.71 480.144,1237.58 485.077,1240.21 490.141,1237.84 "
+           id="polygon2162"
+           points="793.259,874.461 798.359,876.748 803.25,874.04 798.674,884.242 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <text
-         id="text855"
-         y="1233.01"
-         x="485.26599"
+         id="text2168"
+         y="870.47198"
+         x="798.09497"
          style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
          font-size="12.8">
         <tspan
-           id="tspan853"
-           y="1233.01"
-           x="485.26599">Sim</tspan>
+           id="tspan2166"
+           y="870.47198"
+           x="798.09497">Yes</tspan>
       </text>
       <g
-         id="g861">
+         id="g2174">
         <line
-           id="line857"
-           y2="1448.4"
-           x2="486.87201"
-           y1="1413.09"
-           x1="486.39401"
+           id="line2170"
+           y2="908.026"
+           x2="275.98901"
+           y1="908.05499"
+           x1="358.54401"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon859"
-           points="486.973,1455.9 481.839,1445.97 486.872,1448.4 491.838,1445.84 "
+           id="polygon2172"
+           points="278.491,903.027 275.989,908.026 278.488,913.027 268.489,908.023 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <text
-         id="text865"
-         y="1435.61"
-         x="486.69901"
+         id="text2178"
+         y="908.039"
+         x="312.39899"
          style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
          font-size="12.8">
         <tspan
-           id="tspan863"
-           y="1435.61"
-           x="486.69901">Sim</tspan>
+           id="tspan2176"
+           y="908.039"
+           x="312.39899">Yes</tspan>
       </text>
       <g
-         id="g875">
+         id="g2188">
         <polygon
-           id="polygon867"
-           points="486.333,1544.31 608.665,1587.64 486.333,1630.97 364,1587.64 "
+           id="polygon2180"
+           points="277.78,1020.52 185.781,1079.45 93.7822,1020.52 185.781,961.586 "
            style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text873"
-           y="1583.52"
-           x="486.33301"
+           id="text2186"
+           y="1016.4"
+           x="185.78101"
            style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
            font-size="12.8">
           <tspan
-             id="tspan869"
-             y="1583.52"
-             x="486.33301">Existe um</tspan>
+             id="tspan2182"
+             y="1016.4"
+             x="185.78101">Is there a next</tspan>
           <tspan
-             id="tspan871"
-             y="1599.52"
-             x="486.33301">próximo sinal?</tspan>
+             id="tspan2184"
+             y="1032.4"
+             x="185.78101">signal?</tspan>
         </text>
       </g>
       <g
-         id="g885">
+         id="g2198">
         <rect
-           id="rect877"
+           id="rect2190"
            ry="0"
            rx="0"
-           height="54"
-           width="164.2"
-           y="961.16199"
-           x="353.384"
+           height="70"
+           width="156.55"
+           y="596.50403"
+           x="212.069"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text883"
-           y="984.04303"
-           x="435.48401"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2196"
+           y="627.38599"
+           x="290.34399"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan879"
-             y="984.04303"
-             x="435.48401">Mostar resultados no</tspan>
+             id="tspan2192"
+             y="627.38599"
+             x="290.34399">Show results in the</tspan>
           <tspan
-             id="tspan881"
-             y="1000.04"
-             x="435.48401">plano paraconsistente</tspan>
+             id="tspan2194"
+             y="643.38599"
+             x="290.34399">paraconsistent plane</tspan>
         </text>
       </g>
       <g
-         id="g891">
+         id="g2204">
         <line
-           id="line887"
-           y2="1663.66"
-           x2="429.55099"
-           y1="1630.97"
-           x1="486.33301"
+           id="line2200"
+           y2="1102.52"
+           x2="185.174"
+           y1="1079.45"
+           x1="185.78101"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon889"
-           points="423.052,1667.41 429.223,1658.08 429.551,1663.66 434.213,1666.75 "
+           id="polygon2202"
+           points="180.241,1099.89 185.174,1102.52 190.238,1100.15 184.976,1110.02 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g899">
+         id="g2212">
         <rect
-           id="rect893"
+           id="rect2206"
            ry="0"
            rx="0"
            height="38"
            width="237.14999"
-           y="1676.27"
-           x="486.69501"
+           y="1066.61"
+           x="266.689"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text897"
-           y="1699.15"
-           x="605.27002"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2210"
+           y="1089.49"
+           x="385.26401"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan895"
-             y="1699.15"
-             x="605.27002">Calcular tamanho ótimo do sinal</tspan>
+             id="tspan2208"
+             y="1089.49"
+             x="385.26401">Calculate signal optimal length</tspan>
         </text>
       </g>
       <g
-         id="g907">
+         id="g2220">
         <rect
-           id="rect901"
+           id="rect2214"
            ry="0"
            rx="0"
            height="38"
            width="152.64999"
-           y="1675.35"
-           x="770.28302"
+           y="1065.6899"
+           x="561.185"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text905"
-           y="1698.23"
-           x="846.60797"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2218"
+           y="1088.58"
+           x="637.51001"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan903"
-             y="1698.23"
-             x="846.60797">Redimensionar sinal</tspan>
+             id="tspan2216"
+             y="1088.58"
+             x="637.51001">Resize signal</tspan>
         </text>
       </g>
       <g
-         id="g913">
+         id="g2226">
         <line
-           id="line909"
-           y2="1694.6801"
-           x2="759.55402"
-           y1="1694.8101"
-           x1="724.83398"
+           id="line2222"
+           y2="1085.01"
+           x2="550.448"
+           y1="1085.1801"
+           x1="504.798"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon911"
-           points="767.054,1694.65 757.073,1699.69 759.554,1694.68 757.035,1689.69 "
+           id="polygon2224"
+           points="547.966,1090.02 550.448,1085.01 547.93,1080.02 557.948,1084.98 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g923">
+         id="g2236">
         <rect
-           id="rect915"
+           id="rect2228"
            ry="0"
            rx="0"
            height="54"
-           width="156.64999"
-           y="1738.03"
-           x="765.008"
+           width="156.75"
+           y="1058.58"
+           x="761.96399"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text921"
-           y="1760.91"
-           x="843.33301"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2234"
+           y="1081.46"
+           x="840.33899"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan917"
-             y="1760.91"
-             x="843.33301">Aplicar transformada</tspan>
+             id="tspan2230"
+             y="1081.46"
+             x="840.33899">Apply wavelet</tspan>
           <tspan
-             id="tspan919"
-             y="1776.91"
-             x="843.33301">wavelet</tspan>
+             id="tspan2232"
+             y="1097.46"
+             x="840.33899">transformation</tspan>
         </text>
       </g>
       <g
-         id="g929">
+         id="g2242">
         <line
-           id="line925"
-           y2="1727.3"
-           x2="845.08099"
-           y1="1714.3"
-           x1="845.68402"
+           id="line2238"
+           y2="1085.1899"
+           x2="751.24902"
+           y1="1085.03"
+           x1="714.84003"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon927"
-           points="844.734,1734.8 840.202,1724.58 845.081,1727.3 850.191,1725.04 "
+           id="polygon2240"
+           points="748.727,1090.18 751.249,1085.19 748.771,1080.18 758.749,1085.22 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g939">
+         id="g2252">
         <rect
-           id="rect931"
+           id="rect2244"
            ry="0"
            rx="0"
            height="54"
-           width="202.45"
-           y="1736.96"
-           x="518.14697"
+           width="204.7"
+           y="1128.39"
+           x="716.59302"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text937"
-           y="1759.84"
-           x="619.37201"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2250"
+           y="1151.27"
+           x="818.94299"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan933"
-             y="1759.84"
-             x="619.37201">Calcular as energias usando</tspan>
+             id="tspan2246"
+             y="1151.27"
+             x="818.94299">Calculate the energies using</tspan>
           <tspan
-             id="tspan935"
-             y="1775.84"
-             x="619.37201">o intervalo spectral atual</tspan>
+             id="tspan2248"
+             y="1167.27"
+             x="818.94299">the current spectral interval</tspan>
         </text>
       </g>
       <g
-         id="g945">
+         id="g2258">
         <line
-           id="line941"
-           y2="1764.49"
-           x2="731.33502"
-           y1="1764.65"
-           x1="764.02197"
+           id="line2254"
+           y2="1118.71"
+           x2="837.27399"
+           y1="1112.58"
+           x1="840.33899"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon943"
-           points="723.835,1764.46 733.859,1759.5 731.335,1764.49 733.811,1769.5 "
+           id="polygon2256"
+           points="833.919,1114.24 837.274,1118.71 842.864,1118.71 833.921,1125.42 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g953">
+         id="g2266">
         <rect
-           id="rect947"
+           id="rect2260"
            ry="0"
            rx="0"
            height="38"
-           width="149.25"
-           y="1744.67"
-           x="319.20599"
+           width="149.39999"
+           y="1136.1"
+           x="511.33899"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text951"
-           y="1767.55"
-           x="393.83099"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2264"
+           y="1158.98"
+           x="586.039"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan949"
-             y="1767.55"
-             x="393.83099">normalizar energias</tspan>
+             id="tspan2262"
+             y="1158.98"
+             x="586.039">Normalize energies</tspan>
         </text>
       </g>
       <g
-         id="g959">
+         id="g2272">
         <line
-           id="line955"
-           y2="1763.78"
-           x2="479.18301"
-           y1="1763.8199"
-           x1="517.15997"
+           id="line2268"
+           y2="1155.21"
+           x2="671.47198"
+           y1="1155.26"
+           x1="715.59003"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon957"
-           points="471.683,1763.77 481.69,1758.78 479.183,1763.78 481.677,1768.78 "
+           id="polygon2270"
+           points="673.978,1150.21 671.472,1155.21 673.965,1160.21 663.972,1155.2 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g967">
+         id="g2280">
         <rect
-           id="rect961"
+           id="rect2274"
            ry="0"
            rx="0"
            height="38"
-           width="155.85001"
-           y="1809.14"
-           x="318.435"
+           width="156"
+           y="1135.14"
+           x="281.55899"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text965"
-           y="1832.02"
-           x="396.35999"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2278"
+           y="1158.02"
+           x="359.55899"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan963"
-             y="1832.02"
-             x="396.35999">Armazenar resultado</tspan>
+             id="tspan2276"
+             y="1158.02"
+             x="359.55899">Store the results</tspan>
         </text>
       </g>
       <g
-         id="g973">
+         id="g2286">
         <line
-           id="line969"
-           y2="1798.41"
-           x2="395.194"
-           y1="1783.66"
-           x1="394.61499"
+           id="line2282"
+           y2="1154.52"
+           x2="448.28101"
+           y1="1154.78"
+           x1="510.336"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon971"
-           points="395.488,1805.9 390.1,1796.11 395.194,1798.41 400.092,1795.72 "
+           id="polygon2284"
+           points="450.802,1149.53 448.281,1154.52 450.759,1159.53 440.781,1154.49 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g979">
+         id="g2292">
         <polyline
-           id="polyline975"
-           points="318.435,1828.14 318.435,1827.69 307.953,1827.69 307.953,1587.64 354.264,1587.64 "
+           id="polyline2288"
+           points="359.559,1173.14 359.559,1191.69 74.0629,1191.69 74.0629,1020.52 84.0461,1020.52 "
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon977"
-           points="361.764,1587.64 351.764,1592.64 354.264,1587.64 351.764,1582.64 "
+           id="polygon2290"
+           points="81.5461,1025.52 84.0461,1020.52 81.5461,1015.52 91.5461,1020.52 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <text
-         id="text983"
-         y="1649.75"
-         x="453.72299"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
+         id="text2296"
+         y="1095.85"
+         x="185.349"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
         <tspan
-           id="tspan981"
-           y="1649.75"
-           x="453.72299">Sim</tspan>
+           id="tspan2294"
+           y="1095.85"
+           x="185.349">Yes</tspan>
       </text>
       <g
-         id="g993">
+         id="g2306">
         <rect
-           id="rect985"
+           id="rect2298"
            ry="0"
            rx="0"
            height="54"
-           width="134.25"
-           y="1560.74"
-           x="787.22498"
+           width="161.60001"
+           y="994.70898"
+           x="355.07501"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text991"
-           y="1583.62"
-           x="854.34998"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2304"
+           y="1017.59"
+           x="435.875"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan987"
-             y="1583.62"
-             x="854.34998">zerar ponteiro</tspan>
+             id="tspan2300"
+             y="1017.59"
+             x="435.875">reset signals</tspan>
           <tspan
-             id="tspan989"
-             y="1599.62"
-             x="854.34998">da lista de sinais</tspan>
+             id="tspan2302"
+             y="1033.59"
+             x="435.875">list pointer</tspan>
         </text>
       </g>
       <g
-         id="g999">
+         id="g2312">
         <line
-           id="line995"
-           y2="1587.71"
-           x2="776.95502"
-           y1="1587.64"
-           x1="608.66498"
+           id="line2308"
+           y2="1021.27"
+           x2="344.444"
+           y1="1020.96"
+           x1="278.62"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon997"
-           points="784.455,1587.71 774.453,1592.71 776.955,1587.71 774.457,1582.71 "
+           id="polygon2310"
+           points="341.92,1026.26 344.444,1021.27 341.968,1016.26 351.944,1021.31 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <text
-         id="text1003"
-         y="1587.6801"
-         x="697.67798"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
+         id="text2316"
+         y="1021.14"
+         x="316.39999"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
         <tspan
-           id="tspan1001"
-           y="1587.6801"
-           x="697.67798">Não</tspan>
+           id="tspan2314"
+           y="1021.14"
+           x="316.39999">No</tspan>
       </text>
       <g
-         id="g1009">
+         id="g2322">
         <line
-           id="line1005"
-           y2="1404.74"
-           x2="548.047"
-           y1="1559.76"
-           x1="807.51398"
+           id="line2318"
+           y2="965.745"
+           x2="436.04599"
+           y1="993.71899"
+           x1="435.961"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1007"
-           points="541.608,1400.9 552.757,1401.73 548.047,1404.74 547.629,1410.32 "
+           id="polygon2320"
+           points="441.038,968.26 436.046,965.745 431.038,968.23 436.069,958.245 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1015">
+         id="g2328">
         <line
-           id="line1011"
-           y2="1367.35"
-           x2="755.03497"
-           y1="1367.54"
-           x1="664.30402"
+           id="line2324"
+           y2="972.362"
+           x2="805.84302"
+           y1="971.98102"
+           x1="461.586"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1013"
-           points="762.535,1367.34 752.545,1372.36 755.035,1367.35 752.525,1362.36 "
+           id="polygon2326"
+           points="803.337,977.36 805.843,972.362 803.348,967.36 813.343,972.371 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <text
-         id="text1019"
-         y="1367.4399"
-         x="714.53699"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
+         id="text2332"
+         y="972.177"
+         x="638.58197"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
         <tspan
-           id="tspan1017"
-           y="1367.4399"
-           x="714.53699">Não</tspan>
+           id="tspan2330"
+           y="972.177"
+           x="638.58197">No</tspan>
       </text>
       <g
-         id="g1025">
+         id="g2338">
         <line
-           id="line1021"
-           y2="1198.35"
-           x2="566.21399"
-           y1="1331.16"
-           x1="784.513"
+           id="line2334"
+           y2="813.31403"
+           x2="898.48401"
+           y1="937.435"
+           x1="899.00702"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1023"
-           points="559.807,1194.46 570.949,1195.38 566.214,1198.35 565.751,1203.93 "
+           id="polygon2336"
+           points="903.494,815.793 898.484,813.314 893.494,815.835 898.452,805.814 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1031">
+         id="g2344">
         <line
-           id="line1027"
-           y2="1171.84"
-           x2="798.99902"
-           y1="1171.14"
-           x1="628.90198"
+           id="line2340"
+           y2="804.388"
+           x2="580.52899"
+           y1="803.97101"
+           x1="691.12201"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1029"
-           points="806.499,1171.87 796.479,1176.83 798.999,1171.84 796.52,1166.83 "
+           id="polygon2342"
+           points="583.01,799.378 580.529,804.388 583.048,809.378 573.029,804.416 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <text
-         id="text1035"
-         y="1171.51"
-         x="718.81897"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
+         id="text2348"
+         y="804.19702"
+         x="630.95801"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
         <tspan
-           id="tspan1033"
-           y="1171.51"
-           x="718.81897">Não</tspan>
+           id="tspan2346"
+           y="804.19702"
+           x="630.95801">No</tspan>
       </text>
       <g
-         id="g1041">
+         id="g2354">
         <line
-           id="line1037"
-           y2="1023.85"
-           x2="839.51398"
-           y1="1136.11"
-           x1="859.37903"
+           id="line2350"
+           y2="771.97101"
+           x2="374.79901"
+           y1="790.67401"
+           x1="453.379"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1039"
-           points="838.207,1016.47 844.873,1025.44 839.514,1023.85 835.026,1027.19 "
+           id="polygon2352"
+           points="378.389,767.686 374.799,771.971 376.073,777.414 367.503,770.235 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1051">
+         id="g2364">
         <rect
-           id="rect1043"
+           id="rect2356"
            ry="0"
            rx="0"
            height="54"
-           width="156.89999"
-           y="1459.02"
-           x="408.931"
+           width="157.14999"
+           y="880.99402"
+           x="108.104"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text1049"
-           y="1481.9"
-           x="487.38101"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2362"
+           y="903.875"
+           x="186.679"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1045"
-             y="1481.9"
-             x="487.38101">Selecionar o próximo</tspan>
+             id="tspan2358"
+             y="903.875"
+             x="186.679">Select the next</tspan>
           <tspan
-             id="tspan1047"
-             y="1497.9"
-             x="487.38101">intervalo spectral</tspan>
+             id="tspan2360"
+             y="919.875"
+             x="186.679">spectral interval</tspan>
         </text>
       </g>
       <g
-         id="g1057">
-        <line
-           id="line1053"
-           y2="926.68799"
-           x2="753.48499"
-           y1="921.15698"
-           x1="753.08002"
-           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
-        <polygon
-           id="polygon1055"
-           points="754.031,934.168 748.316,924.559 753.485,926.688 758.289,923.83 "
-           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
-      </g>
-      <g
-         id="g1065">
+         id="g2372">
         <rect
-           id="rect1059"
+           id="rect2366"
            ry="0"
            rx="0"
            height="38"
-           width="251.7"
-           y="1060.76"
-           x="360.55301"
+           width="257"
+           y="733.54199"
+           x="451.96301"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text1063"
-           y="1083.64"
-           x="486.40302"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2370"
+           y="756.42297"
+           x="580.46301"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1061"
-             y="1083.64"
-             x="486.40302">Selecione o próximo conjunto sinais</tspan>
+             id="tspan2368"
+             y="756.42297"
+             x="580.46301">Select the next signals set</tspan>
         </text>
       </g>
       <g
-         id="g1071">
+         id="g2378">
         <line
-           id="line1067"
-           y2="1117.1"
-           x2="486.79001"
-           y1="1099.76"
-           x1="486.60999"
+           id="line2374"
+           y2="752.625"
+           x2="785.54602"
+           y1="752.59497"
+           x1="709.966"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1069"
-           points="486.868,1124.6 481.765,1114.65 486.79,1117.1 491.764,1114.55 "
+           id="polygon2376"
+           points="783.044,757.624 785.546,752.625 783.048,747.624 793.046,752.628 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1079">
+         id="g2386">
         <rect
-           id="rect1073"
+           id="rect2380"
            ry="0"
            rx="0"
            height="38"
-           width="205.8"
-           y="1250.95"
-           x="381.396"
+           width="206.25"
+           y="886.47601"
+           x="644.08099"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text1077"
-           y="1273.83"
-           x="484.29599"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2384"
+           y="909.35699"
+           x="747.20599"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1075"
-             y="1273.83"
-             x="484.29599">Selecione a próxima wavelet</tspan>
+             id="tspan2382"
+             y="909.35699"
+             x="747.20599">Select the next wavelet</tspan>
         </text>
       </g>
       <g
-         id="g1085">
+         id="g2392">
         <line
-           id="line1081"
-           y2="1313.11"
-           x2="485.505"
-           y1="1289.95"
-           x1="484.85599"
+           id="line2388"
+           y2="907.06799"
+           x2="573.44299"
+           y1="906.42999"
+           x1="643.07898"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1083"
-           points="485.715,1320.6 480.437,1310.75 485.505,1313.11 490.433,1310.47 "
+           id="polygon2390"
+           points="575.897,902.045 573.443,907.068 575.989,912.045 565.944,907.136 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1091">
+         id="g2398">
         <line
-           id="line1087"
-           y2="1534.58"
-           x2="486.508"
-           y1="1513.92"
-           x1="486.879"
+           id="line2394"
+           y2="951.15399"
+           x2="186.33501"
+           y1="935.99402"
+           x1="186.45599"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1089"
-           points="486.373,1542.08 481.553,1531.99 486.508,1534.58 491.552,1532.17 "
+           id="polygon2396"
+           points="181.355,948.614 186.335,951.154 191.354,948.694 186.275,958.654 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1101">
+         id="g2408">
         <rect
-           id="rect1093"
+           id="rect2400"
            ry="0"
            rx="0"
            height="54"
-           width="107.7"
-           y="1669.48"
-           x="318.711"
+           width="107.8"
+           y="1113.26"
+           x="130.28"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text1099"
-           y="1692.36"
-           x="372.561"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2406"
+           y="1136.14"
+           x="184.17999"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1095"
-             y="1692.36"
-             x="372.561">Selecionar o</tspan>
+             id="tspan2402"
+             y="1136.14"
+             x="184.17999">Select the</tspan>
           <tspan
-             id="tspan1097"
-             y="1708.36"
-             x="372.561">próximo sinal</tspan>
+             id="tspan2404"
+             y="1152.14"
+             x="184.17999">next signal</tspan>
         </text>
       </g>
       <g
-         id="g1107">
+         id="g2414">
         <line
-           id="line1103"
-           y2="1695.9399"
-           x2="475.96899"
-           y1="1696.1899"
-           x1="427.39999"
+           id="line2410"
+           y2="1090.99"
+           x2="258.57199"
+           y1="1112.27"
+           x1="226.442"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1105"
-           points="483.469,1695.9 473.496,1700.95 475.969,1695.94 473.443,1690.95 "
+           id="polygon2412"
+           points="259.249,1096.54 258.572,1090.99 253.727,1088.2 264.825,1086.85 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1119">
+         id="g2426">
         <rect
-           id="rect1109"
+           id="rect2416"
            ry="0"
            rx="0"
            height="70"
-           width="155.85001"
-           y="1332.17"
-           x="765.776"
+           width="109.9"
+           y="937.435"
+           x="816.58197"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text1117"
-           y="1355.05"
-           x="843.70099"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2424"
+           y="960.31598"
+           x="871.53198"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1111"
-             y="1355.05"
-             x="843.70099">zerar ponteiro</tspan>
+             id="tspan2418"
+             y="960.31598"
+             x="871.53198">reset spectral</tspan>
           <tspan
-             id="tspan1113"
-             y="1371.05"
-             x="843.70099">da lista de intervalos</tspan>
+             id="tspan2420"
+             y="976.31598"
+             x="871.53198">intervals list</tspan>
           <tspan
-             id="tspan1115"
-             y="1387.05"
-             x="843.70099">spectrais</tspan>
+             id="tspan2422"
+             y="992.31598"
+             x="871.53198">pointer</tspan>
         </text>
       </g>
       <g
-         id="g1131">
+         id="g2436">
         <rect
-           id="rect1121"
+           id="rect2428"
            ry="0"
            rx="0"
-           height="70"
-           width="112.25"
-           y="1137.12"
-           x="809.625"
+           height="54"
+           width="115.4"
+           y="777.646"
+           x="454.38501"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text1129"
-           y="1160"
-           x="865.75"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2434"
+           y="800.52698"
+           x="512.08502"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1123"
-             y="1160"
-             x="865.75">zerar ponteiro</tspan>
+             id="tspan2430"
+             y="800.52698"
+             x="512.08502">reset wavelets</tspan>
           <tspan
-             id="tspan1125"
-             y="1176"
-             x="865.75">da lista de</tspan>
-          <tspan
-             id="tspan1127"
-             y="1192"
-             x="865.75">wavelets</tspan>
+             id="tspan2432"
+             y="816.52698"
+             x="512.08502">list pointer</tspan>
         </text>
       </g>
       <g
-         id="g1139">
+         id="g2444">
         <path
-           id="path1133"
-           d="m 403.929,882.289 h 67.486 c 9.318,0 16.872,8.954 16.872,20 0,11.046 -7.554,20 -16.872,20 h -67.486 c -9.318,0 -16.871,-8.954 -16.871,-20 0,-11.046 7.553,-20 16.871,-20 z"
+           id="path2438"
+           d="m 439.103,609.601 h 67.486 c 9.318,0 16.872,8.955 16.872,20 0,11.046 -7.554,20 -16.872,20 h -67.486 c -9.317,0 -16.871,-8.954 -16.871,-20 0,-11.045 7.554,-20 16.871,-20 z"
            style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1"
            inkscape:connector-curvature="0" />
         <text
-           id="text1137"
-           y="906.16998"
-           x="437.672"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2442"
+           y="633.48297"
+           x="472.84601"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1135"
-             y="906.16998"
-             x="437.672">Fim</tspan>
+             id="tspan2440"
+             y="633.48297"
+             x="472.84601">End</tspan>
         </text>
       </g>
       <g
-         id="g1149">
+         id="g2452">
         <path
-           id="path1141"
-           d="m 679.623,880.187 h 143.85 c 19.862,0 35.963,8.955 35.963,20 0,11.046 -16.101,20 -35.963,20 h -143.85 c -19.861,0 -35.962,-8.954 -35.962,-20 0,-11.045 16.101,-20 35.962,-20 z"
+           id="path2446"
+           d="m 86.3384,608.59 h 90.7996 c 12.537,0 22.7,8.954 22.7,20 0,11.046 -10.163,20 -22.7,20 H 86.3384 c -12.5369,0 -22.7,-8.954 -22.7,-20 0,-11.046 10.1631,-20 22.7,-20 z"
            style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1"
            inkscape:connector-curvature="0" />
         <text
-           id="text1147"
-           y="896.06799"
-           x="751.54797"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
+           id="text2450"
+           y="632.47101"
+           x="131.73801"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
           <tspan
-             id="tspan1143"
-             y="896.06799"
-             x="751.54797">Calcular energias dos</tspan>
-          <tspan
-             id="tspan1145"
-             y="912.06799"
-             x="751.54797">sinais transformados</tspan>
+             id="tspan2448"
+             y="632.47101"
+             x="131.73801">Procedure 02</tspan>
         </text>
       </g>
       <g
-         id="g1155">
+         id="g2458">
         <line
-           id="line1151"
-           y2="933.008"
-           x2="436.88901"
-           y1="960.237"
-           x1="436.19501"
+           id="line2454"
+           y2="630.23999"
+           x2="411.55899"
+           y1="630.67798"
+           x1="369.621"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1153"
-           points="437.08,925.511 441.824,935.635 436.889,933.008 431.827,935.38 "
+           id="polygon2456"
+           points="409.112,635.266 411.559,630.24 409.007,625.267 419.059,630.162 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <g
-         id="g1161">
+         id="g2464">
         <line
-           id="line1157"
-           y2="988.20502"
-           x2="528.16498"
-           y1="988.23199"
-           x1="585.94897"
+           id="line2460"
+           y2="677.242"
+           x2="290.79401"
+           y1="704.13397"
+           x1="291.05899"
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1159"
-           points="520.665,988.202 530.668,983.206 528.165,988.205 530.663,993.206 "
+           id="polygon2462"
+           points="295.819,679.692 290.794,677.242 285.819,679.791 290.721,669.742 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
       <text
-         id="text1165"
-         y="988.216"
-         x="552.18903"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
+         id="text2468"
+         y="697.70099"
+         x="290.879"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
         <tspan
-           id="tspan1163"
-           y="988.216"
-           x="552.18903">Não</tspan>
+           id="tspan2466"
+           y="697.70099"
+           x="290.879">No</tspan>
+      </text>
+      <text
+         id="text2472"
+         y="1086.54"
+         x="610.552"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan2470"
+           y="1086.54"
+           x="610.552" />
       </text>
       <g
-         id="g1171">
+         id="g2478">
+        <line
+           id="line2474"
+           y2="752.35498"
+           x2="441.35699"
+           y1="752.30701"
+           x1="406.25101"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon2476"
+           points="438.85,757.351 441.357,752.355 438.864,747.351 448.857,752.365 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text2482"
+         y="752.33801"
+         x="428.672"
+         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998">
+        <tspan
+           id="tspan2480"
+           y="752.33801"
+           x="428.672">Yes</tspan>
+      </text>
+      <g
+         id="g2488">
         <polyline
-           id="polyline1167"
-           points="754.194,1040.22 754.194,1079.76 621.989,1079.76 "
+           id="polyline2484"
+           points="131.738,648.59 132.95,648.59 132.95,752.153 168.077,752.153 "
            style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <polygon
-           id="polygon1169"
-           points="614.489,1079.76 624.489,1074.76 621.989,1079.76 624.489,1084.76 "
+           id="polygon2486"
+           points="165.577,757.153 168.077,752.153 165.577,747.153 175.577,752.153 "
            style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
       </g>
-      <text
-         id="text1175"
-         y="1079.76"
-         x="683.224"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
-        <tspan
-           id="tspan1173"
-           y="1079.76"
-           x="683.224">Sim</tspan>
-      </text>
     </g>
   </g>
 </svg>

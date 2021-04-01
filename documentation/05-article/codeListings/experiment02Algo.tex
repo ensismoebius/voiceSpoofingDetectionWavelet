@@ -1,10 +1,6 @@
 \begin{lstlisting}[language=C++, caption={Procedure 02 algorithm}, label={lst:experiment02Algo}]
 modelProportion={0.1, 0,2, 0,4, 0,5};
-genuineModel={};
-spoofingModel={};
-genuineTest={};
-spoofingTest={};
-accuracyList={};
+genuineModel = spoofingModel= genuineTest = spoofingTest = accuracyList = {};
 for (distance : {Euclidian, Manhattan}) {
 	for(percentage : modelProportion){
 		for(testCounter = 0; testCounter < 300; testCounter++){

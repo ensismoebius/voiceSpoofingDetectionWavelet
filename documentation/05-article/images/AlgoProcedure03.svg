@@ -1,0 +1,1064 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="53cm"
+   height="36cm"
+   viewBox="29 43 1050 716"
+   version="1.1"
+   id="svg9807"
+   sodipodi:docname="AlgoProcedure03.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata9813">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs9811" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1438"
+     inkscape:window-height="851"
+     id="namedview9809"
+     showgrid="false"
+     inkscape:zoom="0.17344907"
+     inkscape:cx="1001.5748"
+     inkscape:cy="680.31496"
+     inkscape:window-x="0"
+     inkscape:window-y="48"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg9807" />
+  <g
+     id="Segundo plano">
+    <g
+       id="g9410">
+      <path
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         d="M 52.6551 100.6 L 135.305,100.6 C 146.717,100.6 155.968,109.554 155.968,120.6 C 155.968,131.646 146.717,140.6 135.305,140.6 L 52.6551,140.6 C 41.2435,140.6 31.9926,131.646 31.9926,120.6 C 31.9926,109.554 41.2435,100.6 52.6551,100.6z"
+         id="path9404" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="93.9801"
+         y="124.481"
+         id="text9408">
+        <tspan
+           x="93.9801"
+           y="124.481"
+           id="tspan9406">Procedure 3</tspan>
+      </text>
+    </g>
+    <g
+       id="g9422">
+      <polygon
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="344.314,44.2202 513.339,123.208 344.314,202.195 175.289,123.208 "
+         id="polygon9412" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="344.314"
+         y="111.089"
+         id="text9420">
+        <tspan
+           x="344.314"
+           y="111.089"
+           id="tspan9414">Is there a next model ratio?</tspan>
+        <tspan
+           x="344.314"
+           y="127.089"
+           id="tspan9416">(10%, 20%, 30%, 40%, 50%)</tspan>
+        <tspan
+           x="344.314"
+           y="143.089"
+           id="tspan9418" />
+      </text>
+    </g>
+    <g
+       id="g9430">
+      <polygon
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="345.066,242.462 487.077,286.768 345.066,331.075 203.056,286.768 "
+         id="polygon9424" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="345.066"
+         y="290.65"
+         id="text9428">
+        <tspan
+           x="345.066"
+           y="290.65"
+           id="tspan9426">Is the 300° test?</tspan>
+      </text>
+    </g>
+    <g
+       id="g9436">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="156.798"
+         y1="122.615"
+         x2="165.558"
+         y2="122.896"
+         id="line9432" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="173.054,123.136 162.899,127.813 165.558,122.896 163.22,117.818 "
+         id="polygon9434" />
+    </g>
+    <g
+       id="g9442">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="344.681"
+         y1="203.011"
+         x2="344.814"
+         y2="231.81"
+         id="line9438" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="344.848,239.31 339.802,229.333 344.814,231.81 349.802,229.287 "
+         id="polygon9440" />
+    </g>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="344.77"
+       y="222.278"
+       id="text9446">
+      <tspan
+         x="344.77"
+         y="222.278"
+         id="tspan9444">Yes</tspan>
+    </text>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="522.434"
+       y="380.568"
+       id="text9450">
+      <tspan
+         x="522.434"
+         y="380.568"
+         id="tspan9448" />
+    </text>
+    <g
+       id="g9456">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="513.338"
+         y1="123.208"
+         x2="611.296"
+         y2="124.584"
+         id="line9452" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="618.795,124.69 608.726,129.549 611.296,124.584 608.866,119.55 "
+         id="polygon9454" />
+    </g>
+    <g
+       id="g9466">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="553.686"
+         y="260.378"
+         width="118.162"
+         height="54"
+         rx="0"
+         ry="0"
+         id="rect9458" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="612.767"
+         y="283.259"
+         id="text9464">
+        <tspan
+           x="612.767"
+           y="283.259"
+           id="tspan9460">Reset test</tspan>
+        <tspan
+           x="612.767"
+           y="299.259"
+           id="tspan9462">counter</tspan>
+      </text>
+    </g>
+    <g
+       id="g9472">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="487.076"
+         y1="286.768"
+         x2="542.978"
+         y2="287.039"
+         id="line9468" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="550.478,287.076 540.454,292.027 542.978,287.039 540.502,282.027 "
+         id="polygon9470" />
+    </g>
+    <g
+       id="g9478">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="672.839"
+         y1="287.87"
+         x2="703.753"
+         y2="288.123"
+         id="line9474" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="711.252,288.185 701.212,293.103 703.753,288.123 701.294,283.103 "
+         id="polygon9476" />
+    </g>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="567.186"
+       y="123.964"
+       id="text9482">
+      <tspan
+         x="567.186"
+         y="123.964"
+         id="tspan9480">No</tspan>
+    </text>
+    <g
+       id="g9490">
+      <path
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         d="M 965.837 106.029 L 1027,106.029 C 1035.45,106.029 1042.29,114.983 1042.29,126.029 C 1042.29,137.074 1035.45,146.029 1027,146.029 L 965.837,146.029 C 957.392,146.029 950.546,137.074 950.546,126.029 C 950.546,114.983 957.392,106.029 965.837,106.029z"
+         id="path9484" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="996.42"
+         y="129.91"
+         id="text9488">
+        <tspan
+           x="996.42"
+           y="129.91"
+           id="tspan9486">End</tspan>
+      </text>
+    </g>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="519.896"
+       y="286.928"
+       id="text9494">
+      <tspan
+         x="519.896"
+         y="286.928"
+         id="tspan9492">Yes</tspan>
+    </text>
+    <g
+       id="g9508">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="249.274"
+         y="374.39"
+         width="195.3"
+         height="86"
+         rx="0"
+         ry="0"
+         id="rect9496" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="346.924"
+         y="397.271"
+         id="text9506">
+        <tspan
+           x="346.924"
+           y="397.271"
+           id="tspan9498">Choose vectors at random </tspan>
+        <tspan
+           x="346.924"
+           y="413.271"
+           id="tspan9500">to compose the spoofing </tspan>
+        <tspan
+           x="346.924"
+           y="429.271"
+           id="tspan9502">models using one of the </tspan>
+        <tspan
+           x="346.924"
+           y="445.271"
+           id="tspan9504">chosen proportions</tspan>
+      </text>
+    </g>
+    <g
+       id="g9514">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="345.066"
+         y1="331.074"
+         x2="345.769"
+         y2="363.74"
+         id="line9510" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="345.931,371.238 340.717,361.348 345.769,363.74 350.714,361.133 "
+         id="polygon9512" />
+    </g>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="345.522"
+       y="352.274"
+       id="text9518">
+      <tspan
+         x="345.522"
+         y="352.274"
+         id="tspan9516">No</tspan>
+    </text>
+    <g
+       id="g9532">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="468.152"
+         y="374.942"
+         width="189.55"
+         height="86"
+         rx="0"
+         ry="0"
+         id="rect9520" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="562.927"
+         y="397.823"
+         id="text9530">
+        <tspan
+           x="562.927"
+           y="397.823"
+           id="tspan9522">Choose vectors randomly </tspan>
+        <tspan
+           x="562.927"
+           y="413.823"
+           id="tspan9524">to compose the spoofing </tspan>
+        <tspan
+           x="562.927"
+           y="429.823"
+           id="tspan9526">tests using one of </tspan>
+        <tspan
+           x="562.927"
+           y="445.823"
+           id="tspan9528">chosen proportions</tspan>
+      </text>
+    </g>
+    <g
+       id="g9538">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="445.565"
+         y1="417.642"
+         x2="457.411"
+         y2="417.672"
+         id="line9534" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="464.911,417.692 454.898,422.666 457.411,417.672 454.924,412.666 "
+         id="polygon9536" />
+    </g>
+    <g
+       id="g9552">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="678.738"
+         y="374.644"
+         width="189.55"
+         height="86"
+         rx="0"
+         ry="0"
+         id="rect9540" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="773.513"
+         y="397.525"
+         id="text9550">
+        <tspan
+           x="773.513"
+           y="397.525"
+           id="tspan9542">Choose vectors randomly </tspan>
+        <tspan
+           x="773.513"
+           y="413.525"
+           id="tspan9544">to compose the models </tspan>
+        <tspan
+           x="773.513"
+           y="429.525"
+           id="tspan9546">of genuine using </tspan>
+        <tspan
+           x="773.513"
+           y="445.525"
+           id="tspan9548">one of chosen proportions</tspan>
+      </text>
+    </g>
+    <g
+       id="g9566">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="889.372"
+         y="373.356"
+         width="189.55"
+         height="86"
+         rx="0"
+         ry="0"
+         id="rect9554" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="984.147"
+         y="396.237"
+         id="text9564">
+        <tspan
+           x="984.147"
+           y="396.237"
+           id="tspan9556">Choose vectors randomly </tspan>
+        <tspan
+           x="984.147"
+           y="412.237"
+           id="tspan9558">to compose the </tspan>
+        <tspan
+           x="984.147"
+           y="428.237"
+           id="tspan9560">genuine tests using </tspan>
+        <tspan
+           x="984.147"
+           y="444.237"
+           id="tspan9562">one of chosen proportions</tspan>
+      </text>
+    </g>
+    <g
+       id="g9572">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="869.278"
+         y1="417.058"
+         x2="878.646"
+         y2="417.001"
+         id="line9568" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="886.146,416.955 876.177,422.016 878.646,417.001 876.116,412.017 "
+         id="polygon9570" />
+    </g>
+    <g
+       id="g9578">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="658.683"
+         y1="417.806"
+         x2="668.021"
+         y2="417.793"
+         id="line9574" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="675.521,417.783 665.528,422.797 668.021,417.793 665.514,412.797 "
+         id="polygon9576" />
+    </g>
+    <g
+       id="g9588">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="912.368"
+         y="492.15"
+         width="149.163"
+         height="54"
+         rx="0"
+         ry="0"
+         id="rect9580" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="986.949"
+         y="515.031"
+         id="text9586">
+        <tspan
+           x="986.949"
+           y="515.031"
+           id="tspan9582">Train classifier</tspan>
+        <tspan
+           x="986.949"
+           y="531.031"
+           id="tspan9584">for spoofing</tspan>
+      </text>
+    </g>
+    <g
+       id="g9598">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="734.542"
+         y="490.956"
+         width="149.163"
+         height="54"
+         rx="0"
+         ry="0"
+         id="rect9590" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="809.123"
+         y="513.837"
+         id="text9596">
+        <tspan
+           x="809.123"
+           y="513.837"
+           id="tspan9592">Train classifier </tspan>
+        <tspan
+           x="809.123"
+           y="529.837"
+           id="tspan9594">for genuine</tspan>
+      </text>
+    </g>
+    <g
+       id="g9604">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="985.346"
+         y1="460.35"
+         x2="985.922"
+         y2="481.46"
+         id="line9600" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="986.126,488.958 980.856,479.098 985.922,481.46 990.852,478.825 "
+         id="polygon9602" />
+    </g>
+    <g
+       id="g9610">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="911.386"
+         y1="518.643"
+         x2="894.422"
+         y2="518.529"
+         id="line9606" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="886.922,518.478 896.956,513.546 894.422,518.529 896.888,523.545 "
+         id="polygon9608" />
+    </g>
+    <g
+       id="g9622">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="515.098"
+         y="480.962"
+         width="191.45"
+         height="70"
+         rx="0"
+         ry="0"
+         id="rect9612" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="610.823"
+         y="503.843"
+         id="text9620">
+        <tspan
+           x="610.823"
+           y="503.843"
+           id="tspan9614">Classification for the </tspan>
+        <tspan
+           x="610.823"
+           y="519.843"
+           id="tspan9616">spoofed set of tests and</tspan>
+        <tspan
+           x="610.823"
+           y="535.843"
+           id="tspan9618">confusion table filling</tspan>
+      </text>
+    </g>
+    <g
+       id="g9634">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="292.532"
+         y="479.442"
+         width="191.45"
+         height="70"
+         rx="0"
+         ry="0"
+         id="rect9624" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="388.257"
+         y="502.323"
+         id="text9632">
+        <tspan
+           x="388.257"
+           y="502.323"
+           id="tspan9626">Classification for the </tspan>
+        <tspan
+           x="388.257"
+           y="518.323"
+           id="tspan9628">genuine set of tests and</tspan>
+        <tspan
+           x="388.257"
+           y="534.323"
+           id="tspan9630">confusion table filling </tspan>
+      </text>
+    </g>
+    <g
+       id="g9640">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="733.538"
+         y1="517.196"
+         x2="717.24"
+         y2="517.032"
+         id="line9636" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="709.74,516.957 719.79,512.057 717.24,517.032 719.689,522.057 "
+         id="polygon9638" />
+    </g>
+    <g
+       id="g9646">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="514.096"
+         y1="515.301"
+         x2="494.72"
+         y2="515.169"
+         id="line9642" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="487.22,515.118 497.254,510.186 494.72,515.169 497.186,520.186 "
+         id="polygon9644" />
+    </g>
+    <g
+       id="g9658">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="112.529"
+         y="476.71"
+         width="151.05"
+         height="70"
+         rx="0"
+         ry="0"
+         id="rect9648" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="188.054"
+         y="499.591"
+         id="text9656">
+        <tspan
+           x="188.054"
+           y="499.591"
+           id="tspan9650">Calculate accuracy </tspan>
+        <tspan
+           x="188.054"
+           y="515.591"
+           id="tspan9652">based on confusion</tspan>
+        <tspan
+           x="188.054"
+           y="531.591"
+           id="tspan9654">tables</tspan>
+      </text>
+    </g>
+    <g
+       id="g9664">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="291.553"
+         y1="513.122"
+         x2="274.283"
+         y2="512.887"
+         id="line9660" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="266.784,512.784 276.851,507.921 274.283,512.887 276.715,517.92 "
+         id="polygon9662" />
+    </g>
+    <g
+       id="g9672">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="111.812"
+         y="573.5"
+         width="150.5"
+         height="38"
+         rx="0"
+         ry="0"
+         id="rect9666" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="187.062"
+         y="596.381"
+         id="text9670">
+        <tspan
+           x="187.062"
+           y="596.381"
+           id="tspan9668">Store accuracy</tspan>
+      </text>
+    </g>
+    <g
+       id="g9678">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="187.612"
+         y1="547.707"
+         x2="187.427"
+         y2="562.784"
+         id="line9674" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="187.335,570.284 182.458,560.223 187.427,562.784 192.457,560.346 "
+         id="polygon9676" />
+    </g>
+    <g
+       id="g9688">
+      <polygon
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="434.758,592.704 565.187,659.351 434.758,725.997 304.33,659.351 "
+         id="polygon9680" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="434.758"
+         y="655.232"
+         id="text9686">
+        <tspan
+           x="434.758"
+           y="655.232"
+           id="tspan9682">Is calculated accuracy  </tspan>
+        <tspan
+           x="434.758"
+           y="671.232"
+           id="tspan9684">the best so far?</tspan>
+      </text>
+    </g>
+    <g
+       id="g9694">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="263.288"
+         y1="592.563"
+         x2="425.024"
+         y2="592.696"
+         id="line9690" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="432.524,592.702 422.52,597.694 425.024,592.696 422.528,587.694 "
+         id="polygon9692" />
+    </g>
+    <g
+       id="g9706">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="87.62"
+         y="623.63"
+         width="174.55"
+         height="70"
+         rx="0"
+         ry="0"
+         id="rect9696" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="174.895"
+         y="646.511"
+         id="text9704">
+        <tspan
+           x="174.895"
+           y="646.511"
+           id="tspan9698">Store the best accuracy</tspan>
+        <tspan
+           x="174.895"
+           y="662.511"
+           id="tspan9700">and its respective</tspan>
+        <tspan
+           x="174.895"
+           y="678.511"
+           id="tspan9702">confusion table</tspan>
+      </text>
+    </g>
+    <g
+       id="g9712">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="304.33"
+         y1="659.35"
+         x2="272.891"
+         y2="659.175"
+         id="line9708" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="265.391,659.133 275.418,654.189 272.891,659.175 275.363,664.189 "
+         id="polygon9710" />
+    </g>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="283.744"
+       y="659.236"
+       id="text9716">
+      <tspan
+         x="283.744"
+         y="659.236"
+         id="tspan9714">Yes</tspan>
+    </text>
+    <g
+       id="g9726">
+      <polygon
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="748.097,600.594 887.819,658.158 748.097,715.722 608.374,658.158 "
+         id="polygon9718" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="748.097"
+         y="654.039"
+         id="text9724">
+        <tspan
+           x="748.097"
+           y="654.039"
+           id="tspan9720">Is calculated accuracy </tspan>
+        <tspan
+           x="748.097"
+           y="670.039"
+           id="tspan9722">the worst so far?</tspan>
+      </text>
+    </g>
+    <g
+       id="g9732">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="565.188"
+         y1="659.35"
+         x2="598.642"
+         y2="658.427"
+         id="line9728" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="606.139,658.22 596.281,663.494 598.642,658.427 596.005,653.498 "
+         id="polygon9730" />
+    </g>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="586.782"
+       y="658.754"
+       id="text9736">
+      <tspan
+         x="586.782"
+         y="658.754"
+         id="tspan9734">No</tspan>
+    </text>
+    <g
+       id="g9750">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="943.852"
+         y="616.54"
+         width="133"
+         height="86"
+         rx="0"
+         ry="0"
+         id="rect9738" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="1010.35"
+         y="639.421"
+         id="text9748">
+        <tspan
+           x="1010.35"
+           y="639.421"
+           id="tspan9740">Store the worst</tspan>
+        <tspan
+           x="1010.35"
+           y="655.421"
+           id="tspan9742">accuracy and </tspan>
+        <tspan
+           x="1010.35"
+           y="671.421"
+           id="tspan9744">its respective </tspan>
+        <tspan
+           x="1010.35"
+           y="687.421"
+           id="tspan9746">confusion table </tspan>
+      </text>
+    </g>
+    <g
+       id="g9756">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="887.82"
+         y1="658.158"
+         x2="933.113"
+         y2="658.669"
+         id="line9752" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="940.613,658.753 930.557,663.64 933.113,658.669 930.67,653.641 "
+         id="polygon9754" />
+    </g>
+    <text
+       font-size="12.8"
+       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:end;font-family:sans-serif;font-style:normal;font-weight:normal"
+       x="915.334"
+       y="658.468"
+       id="text9760">
+      <tspan
+         x="915.334"
+         y="658.468"
+         id="tspan9758">Yes</tspan>
+    </text>
+    <g
+       id="g9766">
+      <polyline
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         points="748.096,715.722 748.096,757.5 67,757.5 67,286.768 193.32,286.768 "
+         id="polyline9762" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="200.82,286.768 190.82,291.768 193.32,286.768 190.82,281.768 "
+         id="polygon9764" />
+    </g>
+    <g
+       id="g9778">
+      <rect
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x="714.446"
+         y="253.952"
+         width="180.95"
+         height="70"
+         rx="0"
+         ry="0"
+         id="rect9768" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="804.921"
+         y="276.833"
+         id="text9776">
+        <tspan
+           x="804.921"
+           y="276.833"
+           id="tspan9770">Calculate and save the</tspan>
+        <tspan
+           x="804.921"
+           y="292.833"
+           id="tspan9772">standard deviation for</tspan>
+        <tspan
+           x="804.921"
+           y="308.833"
+           id="tspan9774">the current proportion</tspan>
+      </text>
+    </g>
+    <g
+       id="g9784">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="713.469"
+         y1="256.044"
+         x2="449.96"
+         y2="161.223"
+         id="line9780" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="442.903,158.684 454.005,157.365 449.96,161.223 450.619,166.774 "
+         id="polygon9782" />
+    </g>
+    <g
+       id="g9798">
+      <polygon
+         style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="636.523,83.8218 935.718,83.8218 904.416,169.822 605.222,169.822 "
+         id="polygon9786" />
+      <text
+         font-size="12.8"
+         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         x="770.47"
+         y="106.703"
+         id="text9796">
+        <tspan
+           x="770.47"
+           y="106.703"
+           id="tspan9788">-Standard deviation for each proportion</tspan>
+        <tspan
+           x="770.47"
+           y="122.703"
+           id="tspan9790">-Better and worse accuracy for each </tspan>
+        <tspan
+           x="770.47"
+           y="138.703"
+           id="tspan9792">proportion with their respective</tspan>
+        <tspan
+           x="770.47"
+           y="154.703"
+           id="tspan9794">confusion tables.</tspan>
+      </text>
+    </g>
+    <g
+       id="g9804">
+      <line
+         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         x1="920.873"
+         y1="126.294"
+         x2="939.816"
+         y2="126.227"
+         id="line9800" />
+      <polygon
+         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
+         fill-rule="evenodd"
+         points="947.316,126.201 937.333,131.236 939.816,126.227 937.298,121.236 "
+         id="polygon9802" />
+    </g>
+  </g>
+</svg>

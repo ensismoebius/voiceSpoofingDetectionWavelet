@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300.73865mm"
+   height="217.58911mm"
+   viewBox="0 0 300.73865 217.58911"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="EERAlgo.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="665.46786"
+     inkscape:cy="368.33487"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1438"
+     inkscape:window-height="851"
+     inkscape:window-x="0"
+     inkscape:window-y="48"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(70.238372,-28.699494)">
+    <g
+       id="Segundo plano"
+       transform="matrix(0.26458333,0,0,0.26458333,-69.774075,-13.904506)">
+      <rect
+         id="rect12"
+         ry="0"
+         rx="0"
+         height="253.395"
+         width="1134.65"
+         y="729.01202"
+         x="-0.75482202"
+         style="fill:#00ff9e;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      <g
+         id="g20">
+        <path
+           id="path14"
+           d="m 62.3635,172.346 h 88.9495 c 12.282,0 22.238,8.955 22.238,20 0,11.046 -9.956,20 -22.238,20 H 62.3635 c -12.2814,0 -22.2375,-8.954 -22.2375,-20 0,-11.045 9.9561,-20 22.2375,-20 z"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           id="text18"
+           y="196.228"
+           x="106.838"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan16"
+             y="196.228"
+             x="106.838">EER Calculus</tspan>
+        </text>
+      </g>
+      <g
+         id="g28">
+        <rect
+           id="rect22"
+           ry="0"
+           rx="0"
+           height="38"
+           width="155.2"
+           y="168.82401"
+           x="642.02802"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text26"
+           y="191.705"
+           x="719.62799"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan24"
+             y="191.705"
+             x="719.62799">Sort FRR descending</tspan>
+        </text>
+      </g>
+      <g
+         id="g38">
+        <polygon
+           id="polygon30"
+           points="720.734,313.107 844.41,366.121 720.734,419.135 597.058,366.121 "
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text36"
+           y="362.00201"
+           x="720.73401"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan32"
+             y="362.00201"
+             x="720.73401">A next item at FAR</tspan>
+          <tspan
+             id="tspan34"
+             y="378.00201"
+             x="720.73401">vector existis?</tspan>
+        </text>
+      </g>
+      <text
+         id="text42"
+         y="206.084"
+         x="575.91803"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan40"
+           y="206.084"
+           x="575.91803" />
+      </text>
+      <g
+         id="g50">
+        <rect
+           id="rect44"
+           ry="0"
+           rx="0"
+           height="38"
+           width="148.39999"
+           y="472.45801"
+           x="646.45099"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text48"
+           y="495.33899"
+           x="720.651"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan46"
+             y="495.33899"
+             x="720.651">Select this item</tspan>
+        </text>
+      </g>
+      <g
+         id="g56">
+        <line
+           id="line52"
+           y2="461.73999"
+           x2="720.66998"
+           y1="420.11401"
+           x1="720.698"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon54"
+           points="720.665,469.24 715.672,459.237 720.67,461.74 725.672,459.244 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text60"
+         y="445.79501"
+         x="720.68103"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan58"
+           y="445.79501"
+           x="720.68103">Yes</tspan>
+      </text>
+      <g
+         id="g76">
+        <rect
+           id="rect62"
+           ry="0"
+           rx="0"
+           height="102"
+           width="241"
+           y="436.884"
+           x="356.879"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text74"
+           y="459.76501"
+           x="477.379"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan64"
+             y="459.76501"
+             x="477.379">Calculate the distance beetween</tspan>
+          <tspan
+             id="tspan66"
+             y="475.76501"
+             x="477.379">the selected FAR item and a FRR</tspan>
+          <tspan
+             id="tspan68"
+             y="491.76501"
+             x="477.379">item at the same vector position</tspan>
+          <tspan
+             id="tspan70"
+             y="507.76501"
+             x="477.379">and divide it by the square</tspan>
+          <tspan
+             id="tspan72"
+             y="523.76501"
+             x="477.379">root of 2</tspan>
+        </text>
+      </g>
+      <g
+         id="g82">
+        <line
+           id="line78"
+           y2="489.811"
+           x2="608.57202"
+           y1="490.353"
+           x1="645.45203"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon80"
+           points="601.072,489.701 611.145,484.849 608.572,489.811 610.998,494.848 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g92">
+        <polygon
+           id="polygon84"
+           points="198.688,486.931 340.098,563.356 198.688,639.782 57.2791,563.356 "
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text90"
+           y="559.23798"
+           x="198.688"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan86"
+             y="559.23798"
+             x="198.688">Is this the shortest distance</tspan>
+          <tspan
+             id="tspan88"
+             y="575.23798"
+             x="198.688">until now?</tspan>
+        </text>
+      </g>
+      <g
+         id="g98">
+        <line
+           id="line94"
+           y2="486.96399"
+           x2="208.424"
+           y1="487.46799"
+           x1="355.92801"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon96"
+           points="200.924,486.938 210.942,481.972 208.424,486.964 210.907,491.972 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g106">
+        <ellipse
+           id="ellipse100"
+           ry="21.480801"
+           rx="20.567301"
+           cy="265.55499"
+           cx="719.10999"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text104"
+           y="269.436"
+           x="719.10999"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan102"
+             y="269.436"
+             x="719.10999" />
+        </text>
+      </g>
+      <g
+         id="g112">
+        <line
+           id="line108"
+           y2="234.338"
+           x2="719.20001"
+           y1="207.826"
+           x1="719.44397"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon110"
+           points="719.131,241.838 714.223,231.792 719.2,234.338 724.222,231.884 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g120">
+        <rect
+           id="rect114"
+           ry="0"
+           rx="0"
+           height="38"
+           width="198"
+           y="544.49402"
+           x="857.49103"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text118"
+           y="567.375"
+           x="956.49103"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan116"
+             y="567.375"
+             x="956.49103">Store this shortest distance</tspan>
+        </text>
+      </g>
+      <g
+         id="g126">
+        <line
+           id="line122"
+           y2="563.46997"
+           x2="846.74701"
+           y1="563.35602"
+           x1="340.09799"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon124"
+           points="854.247,563.471 844.246,568.469 846.747,563.47 844.248,558.469 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text130"
+         y="563.414"
+         x="598.28998"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan128"
+           y="563.414"
+           x="598.28998">Yes</tspan>
+      </text>
+      <g
+         id="g136">
+        <line
+           id="line132"
+           y2="640.40802"
+           x2="359.935"
+           y1="639.78198"
+           x1="198.688"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon134"
+           points="367.435,640.437 357.415,645.398 359.935,640.408 357.454,635.398 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text140"
+         y="640.11401"
+         x="284.17999"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan138"
+           y="640.11401"
+           x="284.17999">No</tspan>
+      </text>
+      <g
+         id="g148">
+        <rect
+           id="rect142"
+           ry="0"
+           rx="0"
+           height="38"
+           width="148.14999"
+           y="925.03198"
+           x="109.509"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text146"
+           y="947.91302"
+           x="183.584"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan144"
+             y="947.91302"
+             x="183.584">EER = -(c / (x + y))</tspan>
+        </text>
+      </g>
+      <g
+         id="g156">
+        <path
+           id="path150"
+           d="m 313.283,923.755 h 31.1 c 4.665,8 6.22,12 6.22,20 0,8 -1.555,12 -6.22,20 h -31.1 l -6.22,-20 z"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           id="text154"
+           y="947.63599"
+           x="328.83301"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan152"
+             y="947.63599"
+             x="328.83301">EER</tspan>
+        </text>
+      </g>
+      <g
+         id="g162">
+        <line
+           id="line158"
+           y2="943.82397"
+           x2="297.16101"
+           y1="943.89398"
+           x1="258.66199"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon160"
+           points="304.661,943.81 294.67,948.829 297.161,943.824 294.652,938.829 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g172">
+        <rect
+           id="rect164"
+           ry="0"
+           rx="0"
+           height="54"
+           width="149.85001"
+           y="162.02299"
+           x="222.79201"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text170"
+           y="184.90401"
+           x="297.71701"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan166"
+             y="184.90401"
+             x="297.71701">Create FAR and</tspan>
+          <tspan
+             id="tspan168"
+             y="200.90401"
+             x="297.71701">FRR vectors</tspan>
+        </text>
+      </g>
+      <g
+         id="g178">
+        <line
+           id="line174"
+           y2="190.51401"
+           x2="212.05701"
+           y1="191.16901"
+           x1="174.433"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon176"
+           points="219.556,190.384 209.645,195.557 212.057,190.514 209.471,185.559 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g184">
+        <line
+           id="line180"
+           y2="188.27"
+           x2="400.34799"
+           y1="188.466"
+           x1="373.64499"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon182"
+           points="407.848,188.215 397.885,193.288 400.348,188.27 397.812,183.288 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text188"
+         y="206.084"
+         x="575.91803"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan186"
+           y="206.084"
+           x="575.91803" />
+      </text>
+      <g
+         id="g210">
+        <rect
+           id="rect190"
+           ry="0"
+           rx="0"
+           height="150"
+           width="353.60001"
+           y="741.57001"
+           x="7.6214199"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text208"
+           y="764.45099"
+           x="184.42101"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan192"
+             y="764.45099"
+             x="184.42101">c =</tspan>
+          <tspan
+             id="tspan194"
+             y="780.45099"
+             x="184.42101">(position one of the coordinateAboveDiagonalLine)</tspan>
+          <tspan
+             id="tspan196"
+             y="796.45099"
+             x="184.42101">*</tspan>
+          <tspan
+             id="tspan198"
+             y="812.45099"
+             x="184.42101">(position zero of the coordinateBellowDiagonalLine)</tspan>
+          <tspan
+             id="tspan200"
+             y="828.45099"
+             x="184.42101">-</tspan>
+          <tspan
+             id="tspan202"
+             y="844.45099"
+             x="184.42101">(position zero of the coordinateAboveDiagonalLine)</tspan>
+          <tspan
+             id="tspan204"
+             y="860.45099"
+             x="184.42101">*</tspan>
+          <tspan
+             id="tspan206"
+             y="876.45099"
+             x="184.42101">(position one of the coordinateBellowDiagonalLine)</tspan>
+        </text>
+      </g>
+      <g
+         id="g226">
+        <rect
+           id="rect212"
+           ry="0"
+           rx="0"
+           height="102"
+           width="350"
+           y="759.31799"
+           x="750.84802"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text224"
+           y="782.19897"
+           x="925.84802"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan214"
+             y="782.19897"
+             x="925.84802">x =</tspan>
+          <tspan
+             id="tspan216"
+             y="798.19897"
+             x="925.84802">(position one of the coordinateBellowDiagonalLine)</tspan>
+          <tspan
+             id="tspan218"
+             y="814.19897"
+             x="925.84802"
+             xml:space="preserve"> - </tspan>          <tspan
+             id="tspan220"
+             y="830.19897"
+             x="925.84802">(position one of the coordinateAboveDiagonalLine)</tspan>
+          <tspan
+             id="tspan222"
+             y="846.19897"
+             x="925.84802">+1</tspan>
+        </text>
+      </g>
+      <g
+         id="g232">
+        <line
+           id="line228"
+           y2="749.58197"
+           x2="1013.39"
+           y1="673.78101"
+           x1="1013.74"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon230"
+           points="1013.36,757.082 1008.4,747.059 1013.39,749.582 1018.4,747.105 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g238">
+        <line
+           id="line234"
+           y2="810.80798"
+           x2="743.88098"
+           y1="810.78802"
+           x1="751.27698"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon236"
+           points="736.381,810.828 746.367,805.801 743.881,810.808 746.394,815.801 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g244">
+        <line
+           id="line240"
+           y2="813.91998"
+           x2="371.96201"
+           y1="813.82501"
+           x1="378.703"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon242"
+           points="364.463,814.026 374.391,808.885 371.962,813.92 374.532,818.884 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g250">
+        <line
+           id="line246"
+           y2="914.302"
+           x2="183.77901"
+           y1="892.57001"
+           x1="183.922"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon248"
+           points="183.73,921.802 178.796,911.77 183.779,914.302 188.796,911.835 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g256">
+        <polyline
+           id="polyline252"
+           points="945.675,674.783 945.675,694.968 37.878,694.968 37.878,265.555 688.807,265.555 "
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon254"
+           points="696.307,265.555 686.307,270.555 688.807,265.555 686.307,260.555 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g262">
+        <polyline
+           id="polyline258"
+           points="845.41,366.121 1119.75,366.121 1119.75,810.318 1111.55,810.318 "
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon260"
+           points="1104.05,810.318 1114.05,805.318 1111.55,810.318 1114.05,815.318 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <text
+         id="text266"
+         y="366.121"
+         x="982.58099"
+         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8">
+        <tspan
+           id="tspan264"
+           y="366.121"
+           x="982.58099">No</tspan>
+      </text>
+      <g
+         id="g274">
+        <rect
+           id="rect268"
+           ry="0"
+           rx="0"
+           height="38"
+           width="190.412"
+           y="168.492"
+           x="411.07901"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text272"
+           y="191.373"
+           x="506.285"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan270"
+             y="191.373"
+             x="506.285">Sort FAR vector ascending</tspan>
+        </text>
+      </g>
+      <g
+         id="g280">
+        <line
+           id="line276"
+           y2="187.686"
+           x2="631.28802"
+           y1="187.642"
+           x1="602.49298"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon278"
+           points="638.788,187.698 628.78,192.682 631.288,187.686 628.796,182.682 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g286">
+        <line
+           id="line282"
+           y2="302.75201"
+           x2="719.711"
+           y1="287.996"
+           x1="719.47198"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon284"
+           points="719.832,310.251 714.671,300.333 719.711,302.752 724.67,300.171 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g298">
+        <rect
+           id="rect288"
+           ry="0"
+           rx="0"
+           height="70"
+           width="254.8"
+           y="234.228"
+           x="828.99902"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text296"
+           y="257.10901"
+           x="956.39899"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan290"
+             y="257.10901"
+             x="956.39899">Stores the FRR item value</tspan>
+          <tspan
+             id="tspan292"
+             y="273.10901"
+             x="956.39899">in the coordinateAboveDiagonalLine</tspan>
+          <tspan
+             id="tspan294"
+             y="289.10901"
+             x="956.39899">at position one</tspan>
+        </text>
+      </g>
+      <g
+         id="g310">
+        <rect
+           id="rect300"
+           ry="0"
+           rx="0"
+           height="70"
+           width="254.8"
+           y="444.14801"
+           x="828.53101"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text308"
+           y="467.02899"
+           x="955.93103"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan302"
+             y="467.02899"
+             x="955.93103">Stores the FAR item value</tspan>
+          <tspan
+             id="tspan304"
+             y="483.02899"
+             x="955.93103">in the coordinateAboveDiagonalLine</tspan>
+          <tspan
+             id="tspan306"
+             y="499.02899"
+             x="955.93103">at position zero</tspan>
+        </text>
+      </g>
+      <g
+         id="g316">
+        <line
+           id="line312"
+           y2="524.88898"
+           x2="956.23401"
+           y1="543.52002"
+           x1="956.35797"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon314"
+           points="956.185,517.39 961.251,527.356 956.234,524.889 951.251,527.423 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g322">
+        <line
+           id="line318"
+           y2="314.95401"
+           x2="956.297"
+           y1="443.15799"
+           x1="956.01099"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon320"
+           points="956.314,307.454 961.291,317.465 956.297,314.954 951.291,317.443 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g328">
+        <line
+           id="line324"
+           y2="266.039"
+           x2="750.40997"
+           y1="267.241"
+           x1="828.00702"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon326"
+           points="742.911,265.923 752.987,261.079 750.41,266.039 752.832,271.077 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g340">
+        <rect
+           id="rect330"
+           ry="0"
+           rx="0"
+           height="70"
+           width="272.25"
+           y="603.78101"
+           x="809.54999"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text338"
+           y="626.66199"
+           x="945.67499"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan332"
+             y="626.66199"
+             x="945.67499">Stores the FRR item value</tspan>
+          <tspan
+             id="tspan334"
+             y="642.66199"
+             x="945.67499">in the coordinateBellowDiagonalLine</tspan>
+          <tspan
+             id="tspan336"
+             y="658.66199"
+             x="945.67499">at position one</tspan>
+        </text>
+      </g>
+      <g
+         id="g352">
+        <rect
+           id="rect342"
+           ry="0"
+           rx="0"
+           height="70"
+           width="269.04999"
+           y="605.97101"
+           x="370.67599"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text350"
+           y="628.85199"
+           x="505.20099"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan344"
+             y="628.85199"
+             x="505.20099">Stores the FAR item value</tspan>
+          <tspan
+             id="tspan346"
+             y="644.85199"
+             x="505.20099">in the coordinateBellowDiagonalLine</tspan>
+          <tspan
+             id="tspan348"
+             y="660.85199"
+             x="505.20099">at position zero</tspan>
+        </text>
+      </g>
+      <g
+         id="g358">
+        <line
+           id="line354"
+           y2="639.51099"
+           x2="798.815"
+           y1="640.297"
+           x1="640.73199"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon356"
+           points="806.315,639.474 796.34,644.524 798.815,639.511 796.29,634.524 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+      <g
+         id="g374">
+        <rect
+           id="rect360"
+           ry="0"
+           rx="0"
+           height="102"
+           width="353.60001"
+           y="760.31201"
+           x="379.70801"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <text
+           id="text372"
+           y="783.19299"
+           x="556.508"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan362"
+             y="783.19299"
+             x="556.508">y =</tspan>
+          <tspan
+             id="tspan364"
+             y="799.19299"
+             x="556.508">(position zero of the coordinateAboveDiagonalLine)</tspan>
+          <tspan
+             id="tspan366"
+             y="815.19299"
+             x="556.508"
+             xml:space="preserve"> - </tspan>          <tspan
+             id="tspan368"
+             y="831.19299"
+             x="556.508">(position zero of the coordinateBellowDiagonalLine)</tspan>
+          <tspan
+             id="tspan370"
+             y="847.19299"
+             x="556.508">-1</tspan>
+        </text>
+      </g>
+      <text
+         id="text382"
+         y="909.737"
+         x="745.508"
+         style="font-style:normal;font-weight:normal;font-size:16.93330002px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="16.9333">
+        <tspan
+           id="tspan376"
+           y="909.737"
+           x="745.508">Calculates the intersection point</tspan>
+        <tspan
+           id="tspan378"
+           y="930.90302"
+           x="745.508">of the curve defined by the FAR and</tspan>
+        <tspan
+           id="tspan380"
+           y="952.07001"
+           x="745.508">FRR points and the x=y line</tspan>
+      </text>
+      <g
+         id="g390">
+        <path
+           id="path384"
+           d="m 422.219,923.677 h 69.344 c 9.575,0 17.336,8.954 17.336,20 0,11.045 -7.761,20 -17.336,20 h -69.344 c -9.574,0 -17.336,-8.955 -17.336,-20 0,-11.046 7.762,-20 17.336,-20 z"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <text
+           id="text388"
+           y="947.55798"
+           x="456.89099"
+           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8">
+          <tspan
+             id="tspan386"
+             y="947.55798"
+             x="456.89099">End</tspan>
+        </text>
+      </g>
+      <g
+         id="g396">
+        <line
+           id="line392"
+           y2="943.716"
+           x2="394.66699"
+           y1="943.74402"
+           x1="351.09"
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+        <polygon
+           id="polygon394"
+           points="402.167,943.712 392.17,948.718 394.667,943.716 392.163,938.718 "
+           style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-opacity:1" />
+      </g>
+    </g>
+  </g>
+</svg>

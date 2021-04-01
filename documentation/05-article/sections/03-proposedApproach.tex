@@ -1,49 +1,47 @@
 \section{The Proposed Approach}
-	\label{pa}
+	\label{sec:propApproach}
 	\subsection{Signals database}
-		\par o conduct this research, a series of voices were collected in the vicinity of the Institute of Biosciences, Languages and Exact Sciences (IBILCE) at UNESP in São José do Rio Preto, in the state of São Paulo. Samples were collected from 21 individuals, of which 20 were used since, in one case, it was not possible to collect all the necessary data. Such recordings consist of digits in a range of 0 to 9 spoken both in English and in Portuguese. The announcers were chosen according to their sex and age so that the studied sample has coverage that includes people from pre-school children to adults between 50 and 60 years of age, males and females.
+		\par To conduct this research, a series of voices were collected in the vicinity of the Institute of Biosciences, Languages and Exact Sciences (IBILCE) at UNESP in São José do Rio Preto, in the state of São Paulo. Samples were collected from 21 individuals, of which 20 were used since, in one case, it was not possible to collect all the necessary data. Such recordings consist of digits in a range of 0 to 9 spoken both in English and in Portuguese. The announcers were chosen according to their sex and age so that the studied sample has coverage that includes people from pre-school children to adults between 50 and 60 years of age, males and females.
 		
-		\par The recordings were made using an Asus smartphone model \textit {Ze550kl} running the operating system \textit {Android 6.0.1} in different environments with different noise levels in the background, ensuring a good variability of common interferences, characterizing real cases. Files were used in the format \textit{wave} without compression with quantization of 16 bits and a sampling rate of 44100Hz, allowing, according to the Nyquist theorem, frequencies up to 22050Hz to be recorded.
+		\par The recordings were made using an Asus smartphone model \textit{Ze550kl} running the operating system \textit{Android 6.0.1} in different environments with various noise levels in the background, ensuring a good variability of common interferences, characterizing real cases. Files were used in the format \textit{wave} without compression with quantization of 16 bits and a sampling rate of 44100Hz, allowing, according to the Nyquist theorem, frequencies up to 22050Hz to be recorded.
 		
-		\par Once the signals were collected, the digits pronounced in them were separated one by one using a tool developed for this purpose, resulting in a total of 410 voice signals of different time durations that were labeled ``genuine''. For each of them, a ``mirror'' signal was created, re-recorded by a second device, an \ textit {notebook} Acer model \ textit {Travelmate B} with the operating system \ textit {Arch GNU / Linux}, featuring the 410 signals labeled ``rewritten''.
+		\par Once the signals were collected, the digits pronounced in them were separated one by one using a tool developed for this purpose, resulting in a total of 410 voice signals of different time durations that were labeled ``genuine''. For each of them, a ``mirror'' signal was created, re-recorded by a second device, an notebook \textit{Acer} model \textit{Travelmate B} with the operating system \textit{Arch GNU/Linux}, featuring the 410 signals labeled as  ``spoofed''.
 		
-	\subsection{Organization of the signal database}
-		\par The database organization took place by type, that is, genuine or rewritten, language, digit dictated, and interlocutor considered. A hierarchical directory structure was created to allow easy and intuitive access to each of the \textit {wav} files, whether by automated means or not. The re-recorded files reside in the ``playback'' directory, while the genuine ones are in the ``live'' directory. This organization is illustrated in Figures \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} and \ref{fig:directorystructlevel03}.
-		
-		\par To facilitate automation of processing, it was created three text files:
-		\begin{itemize}
-			\item \textit{\textbf{dataSurvey.txt}}: Contains age and sex data together with file name generated for each interviewee;
-			\item \textit{\textbf{inputListLive.txt}}: A list of paths for all genuine files;
-			\item \textit{\textbf{inputListSpoofing.txt}}: Shows a list of paths for all re-recorded files.
-		\end{itemize}
-	
-		\par Just to illustrate, the contents of the directory \textbf{``separated \textfractionsolidus live \textfractionsolidus en\_US \textfractionsolidus 0''} consists of several files of type \ textit {wave}, each identifying the speaker to which it belongs as shown in Figure  \ref{fig:directorystructlevel03}.
-	
+	\subsection{Organization of the signals database}
+		\par The database organization took place by type, that is, genuine or spoofed, language, digit dictated, and interlocutor considered. A hierarchical directory structure was created to allow easy and intuitive access to each of the \textit{wav} files, whether by automated means or not. The spoofed files reside in the ``playback'' directory, while the genuine ones are in the ``live'' directory. This organization is illustrated in Figures \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} and \ref{fig:directorystructlevel03}.		
 		\begin{figure}[ht]
 			\centering
 			\subfloat[0.33\textwidth][Database level 1]{
-				\includegraphics{../00-dissertation/monography/images/directoryStructLevel01.pdf}
+				\includegraphics[height=132px]{../00-dissertation/monography/images/directoryStructLevel01.pdf}
 				\label{fig:directorystructlevel01}
 			}
 			\subfloat[0.33\textwidth][Database level 2]{
-				\includegraphics{../00-dissertation/monography/images/directoryStructLevel02.pdf}
+				\includegraphics[height=83px]{../00-dissertation/monography/images/directoryStructLevel02.pdf}
 				\label{fig:directorystructlevel02}
 			}
 			\subfloat[0.33\textwidth][Database level 3]{
-				\includegraphics{../00-dissertation/monography/images/directoryStructLevel03.pdf}
+				\includegraphics[height=100px]{../00-dissertation/monography/images/directoryStructLevel03.pdf}
 				\label{fig:directorystructlevel03}
 			}
 			\caption{Database organization}
 			\label{fig:directorystructlevel010203}
 		\end{figure}
-
-	\subsection{Proposed approach structure}
+		
+		\par To facilitate automation of processing, it was created three text files:
+		\begin{itemize}
+			\item \textit{\textbf{dataSurvey.txt}}: Contains age, sex data along with a file name generated for each interviewee;
+			\item \textit{\textbf{inputListLive.txt}}: A list of paths for all genuine files;
+			\item \textit{\textbf{inputListSpoofing.txt}}: A list of paths for all spoofed files.
+		\end{itemize}
 	
-		\par The proposed strategy to differentiate genuine voice signals from re-recorded ones occurred as illustrated in Figure \ref{fig_arq}. In particular, the methodology consists in obtaining the raw data of all 410 + 410 = 820 genuine and re-recorded voice signals, followed by the conversion of each of them to a corresponding characteristic vector, as explained below. Subsequently, the best subsets of characteristics were chosen based on Paraconsistent Engineering. Continuing, random separations between the vectors, with different proportions, were performed to isolate those destined for training or model the classifier used from those destined for classification tests. Finally, tests and results were performed, as described in the next Chapter.
+		\par Just to illustrate, the directory contents of the \textbf{``separated \textfractionsolidus live \textfractionsolidus en\_US \textfractionsolidus 0''} consists of several \textit{wave} files, each identifying the speaker to which it belongs as shown in Figure \ref{fig:directorystructlevel03}.
+	
+	\subsection{Proposed approach structure}
+		\par The proposed strategy to differentiate genuine voice signals from the spoofed ones occurred as illustrated in Figure \ref{fig:propApproachStruct}. In particular, the methodology consists in obtaining the raw data of all 410 + 410 = 820 genuine and spoofed voice signals, followed by the conversion of each of them to a corresponding feature vector, as explained below. Subsequently, the best subsets of characteristics were chosen based on Paraconsistent Engineering. Continuing, random separations between the feature vectors, with different proportions, were performed to isolate those destined for classifier training/modeling from those destined for classification tests. Finally, the tests performed and the results are shown in the next Section.
 		
 		\input{./images/strategicStructure.tex}
 		
-		\par As mentioned in the previous chapters, the characteristic vectors of this approach were obtained based on the \textit{Wavelet} Transform, converting the voice signals from the time domain to the time-frequency domain. In particular, in the experiments detailed below, the following \textit{wavelet} filters were tested: Haar, Daubechies of supports 4 to 76, Symmlets with supports 8, 16 and 32, Coiflets with supports 6, 12, 18, 24 and 30, Beylkin with support 18 and, still, support Vaidyanathan 24.
+		\par As mentioned in the previous sections, the feature vectors of this approach were obtained based on the \textit{Wavelet} Transform, converting the voice signals from the time domain to the time-frequency domain. In particular, in the experiments detailed below, the following \textit{wavelet} filters were tested: Haar, Daubechies with support from 4 up to 76, Symmlets with supports 8, 16 and 32, Coiflets with supports 6, 12, 18, 24 and 30, Beylkin with support 18 and Vaidyanathan with support 24.
 
 	\subsection{Procedures}
 	
@@ -55,7 +53,7 @@
 			\item EER (Equal Error Rate).
 		\end{itemize}
 	
-		\par In the confusion table example  \ref{tab:confusionMatrixSample}, the \textbf{lines} represent the \textbf{estimated classes} and the \textbf{columns} the \textbf{true classes}, where:
+		\par In the confusion table example \ref{tab:confusionMatrixSample}, the \textbf{lines} represent the \textbf{estimated classes} and the \textbf{columns} the \textbf{true classes}, where:
 
 		\begin{itemize}
 			\item \textbf{TP}: Quantity of true items classified as such (\textit{True Positive}).
@@ -63,17 +61,18 @@
 			\item \textbf{FN}: Quantity of true items classified as false (\textit{False Negative}).
 			\item \textbf{FP}: Quantity of false items classified as true (\textit{False Positive}).
 		\end{itemize}
-
-		\input{tables/results/confusionMatrices/confusionMatrixSample.tex}
 		
-		\par Tobe calculated the accuracy uses the values of \textit{TP}, \textit{TN} and the number of elements (\textit{N}) as shown in Equation \ref{eq:calculoDaAcuracia}.
+		\clearpage
+		\input{tables/results/confusionMatrices/confusionMatrixSample.tex}
+
+		\par To be calculated the accuracy uses the values of \textit{TP}, \textit{TN} and the number of elements (\textit{N}) as shown in Equation \ref{eq:calculoDaAcuracia}.
 		
 		\begin{equation}
 			accuracy = \dfrac{TP + TN}{N} \qquad.
 			\label{eq:calculoDaAcuracia}
 		\end{equation}
 
-		\par In order to calculate the EER, the values of \textit{FP} and \textit{FN} \cite{ghazali2018recent} are taken into account, from these values the \textit{False Acceptance Rate (\textbf{FAR})} is calculated like in the equation \ref{eq:FAR} and \textit{False Rejection Rate (\textbf{FRR})} like in equation \ref{eq:FRR}.
+		\par In order to calculate the EER, the values of \textit{FP} and \textit{FN}  are taken into account \cite{ghazali2018recent}, from these values the \textit{False Acceptance Rate (\textbf{FAR})} is calculated as shown in the Equation \ref{eq:FAR} and \textit{False Rejection Rate (\textbf{FRR})} as shown in Equation \ref{eq:FRR}.
 
 		\begin{equation}
 			FAR=\dfrac{FP}{TN+FP} \qquad.
@@ -85,37 +84,37 @@
 			\label{eq:FRR}
 		\end{equation}
 
-		\par Confusion tables are calculated for a sufficient number of times until \textbf{\textit{FAR} is equal \textit{FRR}}, at each cycle the characteristic vectors are switched randomly so that different values are obtained, in this work some cases needed more than 12,000 iterations.
+		\par Confusion tables are calculated for a sufficient number of times until \textbf{\textit{FAR} is equal to \textit{FRR}}, at each cycle the feature vectors are switched randomly so that different values are obtained, in this work some cases needed more than 12,000 iterations in order to find the configuration that made \textit{FAR=FRR}.
 
-		\par In each iteration the values of FAR and FRR are stored in two vectors, one for each, so the vector belonging to FAR is sorted in ascending order and the other in decreasing order. These points drawn on the graph together with a line that divides the plane of the graph in half such that $x=y$ constitute what is conventionally called a \textit{Detection Error Trade off (DET)} graph.
+		\par At each iteration the values of FAR and FRR are stored in two vectors, one for each, so the vector belonging to FAR is sorted in ascending order and the other in decreasing order. These points drawn on the graph together with a line that divides the plane of the graph in half such that $x=y$ constitute what is conventionally called a \textit{Detection Error Trade off (DET)} graph.
 		
-		\par The effective value of \textbf{ERR is at the intersection of the line $x=y$} with the curve defined by FAR and FRR, so the calculation of a single value as shown in Algorithm \ref{lst:EERAlgo} and Figure \ref{fig:eeralgo} because if $x=ERR$ then also $y=ERR$. \\
+		\par The effective value of \textbf{ERR is at the intersection of the line defined by x=y} with the curve defined by FAR and FRR, that is why the calculation of a single value as shown in Algorithm \ref{lst:EERAlgo} and Figure \ref{fig:eeralgo} because if $x=ERR$ then also $y=ERR$.
 		
 		\input{codeListings/EERAlgo.tex}
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.9\linewidth]{images/EERAlgo.pdf}
-			\caption{Algoritmo para o cálculo do EER}
+			\includegraphics[angle=-90, width=1\linewidth]{images/EERAlgo.pdf}
+			\caption{EER calculus algorithm}
 			\label{fig:eeralgo}
 		\end{figure}
 
 		\subsection{Procedure 01: Bark and mel scales and \textit{wavelets} filters}
-			\label{chap:propApproach:sec:Experimento01}
-			\par The objective of this procedure is to investigate, according to Paraconsistent Engineering, which of the combinations between BARK or MEL scales and the various \textit {wavelets} considered generate the most propitious characteristic vectors, that is, which attract the $point(G_1, G_2)$ to a position closer to the vertex $(1,0)$ of the paraconsistent plane, as mentioned in the previous chapter.
+			\label{sec:propApproach:subsec:Experiment1}
+			\par The objective of this procedure is to investigate, according to Paraconsistent Engineering, which of the combinations between BARK or MEL scales and the various \textit{wavelets} considered generate the most propitious feature vectors, that is, which attract the $point(G_1, G_2)$ to a position closer to the vertex $(1,0)$ of the paraconsistent plane.
 			
-			\par The \textit{packet-wavelet} transformations  were performed, with the already mentioned filters, up to the maximum possible level, implying maximum resolution in frequency so that, after that, the samples of the transformed signals were grouped to correspond to the spectral intervals defined in the scales BARK and MEL. On that scale, the feature vectors were made up of 24 coefficients, differently, on this scale, the feature vectors were formed with 13 coefficients due to the derivation of the signal at the end of the generation process. The Algorithm \ref{lst:experiment01Algo} and Figure \ref{fig:experiment01Algo} contains the description of such procedures.
+			\par The \textit{packet-wavelet} transformations were performed, with the already mentioned filters (Haar, Daubechies, etc.), up to the maximum possible level, implying maximum resolution in frequency so that, after that, the samples of the transformed signals were grouped to correspond to the \textbf{spectral intervals} defined in the BARK and MEL scales. On that scale, the feature vectors were made up of 24 coefficients, differently, on this scale, the feature vectors were formed with 13 coefficients due to the derivation of the signal at the end of the generation process. The Algorithm \ref{lst:experiment01Algo} and the Figure \ref{fig:experiment01Algo} contains a description of such processes.
 			
 			\input{codeListings/experiment01Algo.tex}
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=.83\linewidth]{images/AlgoProcedure01.pdf}
-				\caption{Procedure 01 algorithm}
+				\includegraphics[angle=-90,width=1\linewidth]{images/AlgoProcedure01.pdf}
+				\caption{Procedure 1 algorithm}
 				\label{fig:experiment01Algo}
 			\end{figure}
 			
-			\par It should be noted that, before applying the \textit{packet-wavelet} transformation, it was necessary to resize the signals so that the length fits in a power of 2 size, as indicated in the equation \ref{eq:optimalSize}. This is necessary to avoid loss of voice passages at the end of the transformation because the \textit{wavelet} transform performs \textit{downsampling} by 2, that is, at each level of decomposition the size of the signal vector is reduced in half. If there is a length other than that mentioned, in some part of the process the division will not be complete, causing some signals samples to be lost.
+			\par It should be noted that, before applying the \textit{packet-wavelet} transformation, it was necessary to resize the signals so that the length fits in a power of 2 size, as indicated in the equation \ref{eq:optimalSize}. This is necessary to avoid loss of voice passages at the end of the transformed signal because the \textit{wavelet} transform performs an order 2 \textit{downsampling}, that is, at each level of decomposition the size of the signal vector is reduced in half. If the length is other than that mentioned, in some part of the process the division will not be integer, causing some signals samples to be lost.
 			
 			\par To adjust the voice signal size under analysis, the equation \ref{eq:optimalSize} was used, in which \textit{\textbf{proxInt}} is a function that returns the next integer of the real argument. For example, $proxInt(1.5)=2$.
 
@@ -131,56 +130,56 @@
 				\label{eq:maxWaveletTransf}
 			\end{equation}
 			
-			\subsection{Procedure 02 - distance based classification}
-			\label{chap:propApproach:sec:Experimento02}
-			\par The purpose of this procedure is to verify, considering the best combinations discovered by the previous procedure, the accuracy of \textit{pattern-matching} classifier by Euclidean and Manhattan distances. At this stage, the feature vectors generated by procedure 01 are provided to the classifier for the appropriate measurements.
+		\subsection{Procedure 02 - distance based classification}
+			\label{sec:propApproach:subsec:Experiment2}
+			\par The purpose of this procedure is to verify, considering the best combinations discovered by the previous procedure, the accuracy of \textit{pattern-matching} classifier by Euclidean and Manhattan distances. At this stage, the feature vectors generated by procedure 1 are provided to the classifier for the appropriate measurements.
 			
-			\par In order to evaluate the behavior of classifier with multiple database proportions of 10\% up to 50\% for modeling, and the remainder for tests, it was defined that, for each proportion, the random draw for choosing the characteristic vectors, would be executed $n=t\cdot\frac{t+1}{2}$ times, with $t$ being the maximum number of tests that can be performed with a certain percentage of the vectors. In each of these runs, the vectors order within the samples, rewritten and genuine, was randomly switched.
+			\par In order to evaluate the behavior of classifier with multiple database proportions of 10\% up to 50\% for modeling, and the remainder for tests, it was defined that, for each proportion, the random draw for choosing the feature vectors, would be executed $n=t\cdot\frac{t+1}{2}$ times, with $t$ being the maximum number of tests that can be performed with a certain percentage of the vectors. In each of these runs, the vectors order within the samples, rewritten and genuine, was randomly switched.
 			
-			\par For each percentage, the best and worst accuracy were collected, as well as their respective confusion matrices and thus calculated their \textit{EERs} as shown in the next Chapter. The steps are detailed in Algorithm \ref{lst:experiment02Algo} and in Figure \ref{fig:experiment02Algo}.
+			\par For each percentage, the best and worst accuracy were collected, as well as their respective confusion matrices and thus calculated their \textit{EERs}. The steps are detailed in Algorithm \ref{lst:experiment02Algo} and in Figure \ref{fig:experiment02Algo}.
 	
-			\par Essentially, this procedure 02 consists of measuring the distances between each isolated feature vector for testing in relation to each of the feature vectors isolated for modeling, selecting the smallest of them. Then, the feature vector that belongs to the tests under analysis is classified, as belonging to one of the classes of the selected modeling vectors.   
+			\par Essentially, this procedure 2 consists of measuring the distances between each isolated feature vector for testing in relation to each of the feature vectors isolated for modeling, selecting the smallest of them. Then, the feature vector that belongs to the tests under analysis is classified, as belonging to one of the classes of the selected modeling vectors.
+
+			\input{codeListings/experiment02Algo.tex}
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=.83\linewidth]{images/AlgoProcedure02}
-				\caption{Prcedure 02 algorithm}
+				\includegraphics[angle=-90,width=1\linewidth]{images/AlgoProcedure02.pdf}
+				\caption{Procedure 2 algorithm}
 				\label{fig:experiment02Algo}
 			\end{figure}
 			
-			\input{codeListings/experiment02Algo.tex}
-			
-			\subsection{Procedure 03 - SVM classification}
-			\label{chap:propApproach:sec:Experimento03}
+		\subsection{Procedure 03 - SVM classification}
+			\label{sec:propApproach:subsec:Experiment3}
 
-			\par Considering the best combinations discovered during procedure 01, this step aims to measure the accuracy of an SVM in classes separation. This classifier was chosen because previous studies prove its effectiveness for binary classification \cite{bennett2000support}. 
+			\par Considering the best combinations discovered during procedure 1, this step aims to measure the accuracy of an SVM in classes separation. This classifier was chosen because previous studies prove its effectiveness for binary classification \cite{bennett2000support}. 
 			
 			\par In particular, the structure of the SVM used was defined as follows and according to Figure \ref{fig:3layersSVM}: 
 			\begin{itemize}
-				\item three layers, the first being, that is, the entrance, with passive elements, the second, with non-linear active elements of Gaussian nuclei and the third, that is, the exit, with a linear active element;
+				\item three layers, the first being the entrance, with passive elements, the second, with non-linear active elements of Gaussian nuclei and the third, that is, the exit, with a linear active element;
 
 				\item there are no weights between the input layer and the intermediate layer, implying that the output of each input layer element connects with all the intermediate layer inputs, keeping the propagated values intact;
 				
-				\item the output of each element of the intermediate layer connects with the output layer single element through the weights $p_0, p_1, .... p_{X-1}$;
+				\item the output of each intermediate layer element connects with the single element output layer through the weights $p_0, p_1, .... p_{X-1}$;
 
 				\item the output value consists of the linear combination of the weights with the values received as input from the output layer, that is, the output values from the intermediate layer.
 			\end{itemize}
 			
 			\input{images/3layersSVM.tex}
 			
-			\par In the input layer the number of elements is equal to the feature vector dimension. In the intermediate layer, the number of active non-linear elements was equal to the number of training cases, aiming to facilitate the procedure that, in such a case, implies in the direct solution of a square linear system, that is, possible and determined \cite{poole2014linear}. 
+			\par The number of elements in the input layer was equal to the feature vector dimension. In the intermediate layer, the number of active non-linear elements was equal to the number of training cases, aiming to facilitate the procedure that, in such a case, implies in the direct solution of a square linear system, that is, possible and determined \cite{poole2014linear}. 
 			
-			\par SVM training consists of, in an unsupervised first stage, adjusting the parameters of the Gaussian functions of the intermediate layer. Subsequently, based on the aforementioned linear system, the weights were found based on a supervised approach, using the labels -1 and 1 for the spoofed and genuine signs, respectively.   
+			\par SVM training consists of, in an unsupervised first stage, adjusting the parameters of the Gaussian functions of the intermediate layer. Subsequently, based on the aforementioned linear system, the weights were found based on a supervised approach, using the labels -1 and 1 for the spoofed and genuine signals respectively.   
 			
-			\par All arrangements for the selection of training and testing vectors, as well as other details, are identical to those of procedure 02 and are listed in the Algorithm \ref{lst:experiment03Algo} and shown in Figure \ref{fig:experiment03Algo}. 
+			\par All arrangements for the selection of training and testing vectors, as well as other details, are identical to those of procedure 2 and are listed in the Algorithm \ref{lst:experiment03Algo} and shown in Figure \ref{fig:experiment03Algo}. 
 			
 			\input{codeListings/experiment03Algo.tex}
 			
-			\begin{figure}[h]
+			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.9\linewidth]{images/AlgoProcedure03}
-				\caption{Algoritmo que caracteriza o procedimento 03}
+				\includegraphics[angle=-90,width=1\linewidth]{images/AlgoProcedure03.pdf}
+				\caption{Procedure 2 algorithm}
 				\label{fig:experiment03Algo}
 			\end{figure}
 			
-			\par The experiments tests and the results described in this Chapter are found in the next Chapter.
+			\par The experiments tests and the results described in this Section are found in the next one.

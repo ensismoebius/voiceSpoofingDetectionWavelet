@@ -1,51 +1,33 @@
 \begin{lstlisting}[language=C++, caption={Procedure 3 algorithm}, label={lst:experiment03Algo}]
 modelProportion={0.1, 0,2, 0,4, 0,5};
-genuineModel={};
-spoofingModel={};
-genuineTest={};
-spoofingTest={};
-accuracyList={};
+genuineModel = spoofingModel = genuineTest = spoofingTest = accuracyList = {};
 
 for(percentage : modelProportion){
 	for(testCounter = 0; testCounter < 300; testCounter++){
 		// Choose feature vectors randomly from spoofing set
 		// to build the model according to the proportions chosen.
 		chooseRamdomly(voiceSpoofingSet, percentage, spoofingModel, spoofingTest);
-		
 		// Choose feature vectors randomly from genuine set
 		// to build the model according to the proportions
 		chooseRamdomly(genuineSet, percentage, genuineModel, genuineTest);
 		trainClassificator("spoofing", spoofingModel);
 		trainClassificator("genuine", genuineModel);
-		
 		// Classify the spoofing tests against the 
 		// spoofing model and fill the confusion tables
-		for(signal : spoofingTest){
-			fillConfusionTable(signal, "spoofing");
-		} 
-		
+		for(signal : spoofingTest) fillConfusionTable(signal, "spoofing"); 
 		// Classify the genuine tests against the
 		// genuine model and fill the confusion tables
-		for(signal : genuineTest){
-			fillConfusionTable(signal, "genuine");
-		}
-		
+		for(signal : genuineTest) fillConfusionTable(signal, "genuine");
+
 		accuracy=calculateAccuracy();
-		
+
 		// Store the accuracies for each percentage
 		accuracyList[percentage].add(accuracy);
-		
 		// Store the best accuracy and its respective confusion table
-		if(isBestAccuracy(accuracy)){
-			saveAccuracyAndItsConfusionMatrix();
-		}
-		
+		if(isBestAccuracy(accuracy)) saveAccuracyAndItsConfusionMatrix();
 		// Store the worst accuracy and its respective confusion table
-		if(isWorstAccuracy(accuracy)){
-			saveAccuracyAndItsConfusionMatrix();
-		}
+		if(isWorstAccuracy(accuracy)) saveAccuracyAndItsConfusionMatrix();
 	}
-	
 	// Calculate and save the standard deviation for current proportion
 	calculateAndSaveTheStandardDeviation(accuracyList[percentage]);
 }			
