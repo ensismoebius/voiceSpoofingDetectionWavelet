@@ -1,13 +1,10 @@
 \begin{lstlisting}[language=C++, caption={EER algorithm}, label={lst:EERAlgo}]
 double shortestDistance = highestValue();
 double currentDistance = -highestValue();
-
 double coordinateAboveDiagonalLine = { 0, 0 };
 double coordinateBellowDiagonalLine = { 0, 0 };
-
 sortAscending(FARVector);
 sortDescending(FRRVector);
-
 for (i = 0; i < FARVector.size(); i++) {
 	// Calculate the distance between the coordinates defined
 	// by the FAR and FRR vectors and the line defined by x=y
@@ -20,19 +17,16 @@ for (i = 0; i < FARVector.size(); i++) {
 		coordinateAboveDiagonalLine[1] = FRRVector[i];
 		jumpToNextIteration();
 	}
-
 	// Stores just the shortest distance bellow the x=y line
 	coordinateBellowDiagonalLine[0] = FARVector[i];
 	coordinateBellowDiagonalLine[1] = FRRVector[i];
 	
 	breakLoop();
 }
-
 // Calculates the intersection point of the curve defined by the FAR and FRR points and the x=y line
 y = coordinateAboveDiagonalLine[0] - coordinateBellowDiagonalLine[0] - 1;
 x = coordinateBellowDiagonalLine[1] - coordinateAboveDiagonalLine[1] + 1;
 c = coordinateAboveDiagonalLine[1] * coordinateBellowDiagonalLine[0] - coordinateAboveDiagonalLine[0] * coordinateBellowDiagonalLine[1];
-
 // Calculates the equal error rate
 EER = -(c / (x + y));
 \end{lstlisting}

@@ -1,39 +1,33 @@
-\begin{table}[h]
-\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-\definecolor{tcC}{rgb}{0,0,0}
-\definecolor{tcD}{rgb}{0,0.5,1}
-\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-\begin{center}
-	\begin{tabular}{ccc}
-		% use packages: color,colortbl
-		\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{regravado}}\\
-
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{273}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{38}}\\
-
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{regravado}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{14}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{249}}
-	\end{tabular}
-	\caption{Melhor matriz de confusão para o classificador por distâncias Euclidianas com o uso de 30\% da base para modelagem}
-	\label{tab:classifier_Euclidian_30_best}
-\end{center}
-\end{table}
-
-\begin{table}[h]
+\begin{table}[H]
 	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
 	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
 	\definecolor{tcC}{rgb}{0,0,0}
 	\definecolor{tcD}{rgb}{0,0.5,1}
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\begin{center}
-		\begin{tabular}{ccc}
-			% use packages: color,colortbl
-			\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{regravado}}\\
-			
-			\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuíno}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{272}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{128}}\\
-			
-			\mc{1}{>{\columncolor{tcA}}r}{\textbf{regravado}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{15}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{159}}
-		\end{tabular}
-		\caption{Pior matriz de confusão para o classificador por distâncias Euclidianas com o uso de 30\% da base para modelagem}
-		\label{tab:classifier_Euclidian_30_worse}
+		\subfloat[Best matrix]{
+			\begin{tabular}{ccc}
+				% use packages: color,colortbl
+				\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{spoofed}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{273}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{38}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{spoofed}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{14}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{249}}
+			\end{tabular}
+			\label{tab:classifier_Euclidian_30_best}
+		}
+		\qquad
+		\subfloat[Worst matrix]{
+			\begin{tabular}{ccc}
+				% use packages: color,colortbl
+				\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{spoofed}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{272}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{128}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{spoofed}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{15}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{159}}
+			\end{tabular}
+			\label{tab:classifier_Euclidian_30_worse}
+		}
 	\end{center}
+	\caption{Confusion matrices for Euclidian distance classifier at 30\% model}
 \end{table}

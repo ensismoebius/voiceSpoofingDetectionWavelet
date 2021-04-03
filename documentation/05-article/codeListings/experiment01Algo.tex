@@ -12,13 +12,12 @@ for (samplesList : {voiceSpoofingSamplesList, genuineSamplesList}) {
 				transformedSignal=wavelet(signal, wavelet);
 				energies=calculateEnergies(transformedSignal, selectedScale);
 				energies=normalize(energies);
-				
 				// Store the results
 				results[wavelet.name()][selectedScale][samplesList.name()].add(energies);
 			}
 		}
 	}
 }
-// Places the results in the paraconsistent plane
+// Places the results in the paraconsistent pelane
 placeResultsInTheParaconsistentPlane(results);
 \end{lstlisting}

@@ -1,39 +1,36 @@
 \begin{table}[h]
-\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-\definecolor{tcC}{rgb}{0,0,0}
-\definecolor{tcD}{rgb}{0,0.5,1}
-\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-\begin{center}
-	\begin{tabular}{ccc}
-		% use packages: color,colortbl
-		\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
-
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{196}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{10}}\\
-
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{9}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{195}}
-	\end{tabular}
-	\caption{Melhor tabela de confusão para classificador SVM 50\%}
-	\label{tab:classifier_SVM_50_best}
-\end{center}
-\end{table}
-
-\begin{table}[h]
 	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
 	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
 	\definecolor{tcC}{rgb}{0,0,0}
 	\definecolor{tcD}{rgb}{0,0.5,1}
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\begin{center}
-		\begin{tabular}{ccc}
-			% use packages: color,colortbl
-			\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
-			
-			\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{175}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{30}}\\
-			
-			\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{30}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{175}}
-		\end{tabular}
-		\caption{Pior tabela de confusão para classificador SVM 50\%}
-		\label{tab:classifier_SVM_50_worse}
+		\subfloat[Best matrix]{
+			\begin{tabular}{ccc}
+				% use packages: color,colortbl
+				\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{spoofed}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{196}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{10}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{spoofed}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{9}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{195}}
+			\end{tabular}
+			\label{tab:classifier_SVM_50_best}
+		}
+		\qquad
+		\subfloat[Worst matrix]{
+			\begin{tabular}{ccc}
+				% use packages: color,colortbl
+				\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{spoofed}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{genuine}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{175}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{30}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{spoofed}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{30}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{175}}
+			\end{tabular}
+			\label{tab:classifier_SVM_50_worse}
+		}
 	\end{center}
+	\caption{Confusion matrices for SVM classifier at 50\% model}
 \end{table}
+
+
+

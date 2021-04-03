@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 \chapter{Testes e Resultados} \label{chap:testsResults}
 	\section{Procedimento 01}
 	\label{chap:testsResults:sec:Experimento01}
@@ -17,6 +18,15 @@
 	\end{figure}
 
 	\par Analisando o comportamento das melhores e piores \textit{wavelets} encontradas, é interessante indagar o motivo pelo qual os filtros de \textbf{Haar} tenham proporcionado os melhores resultados. Particularmente interessante é o fato de que os filtros \textit{wavelet} de \textbf{Haar} e \textbf{Daubechies 42} proporcionaram, respectivamente, os melhores e os piores resultados associados com a escala Bark. Diferentemente, com a escala \textit{Mel}, \textbf{Haar} foi o melhor filtro e \textbf{Daubechies 54} o pior. \\
+	
+	\par Na Figura \ref{fig:haardaub42comparison} é possível ver um sinal periódico decomposto em suas componentes usando o melhor e os piores filtros já citados: Nota-se que a wavelet \textbf{Haar} introduz menos ruídos na decomposição, facilitando portanto o treinamento do classificador.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=.6]{images/results/haarDaubComparison/haarDaub42Comparison}
+		\caption{Comparação das decomposições de um sinal de tamanho 512 usando o melhor e os piores filtros wavelet}
+		\label{fig:haardaub42comparison}
+	\end{figure}
 		
 	\par Refletindo acerca das características de resposta em fase e em frequência dos filtros \textit{wavelet}, pode-se constatar o seguinte: Haar apresenta a curva de resposta em frequência mais distante da ideal, pois constitui um filtro de resposta ao impulso finita (FIR) de ordem 1, isto é, com dois coeficientes \cite{WaveletPropertiesBrowser}. Assim sendo, sub-bandas específicas de frequências estão, sem dúvidas, contaminadas com conteúdo espectral das sub-bandas adjacentes. Adicionalmente, Haar é a única família de filtros \textit{wavelet} que possui resposta em fase perfeitamente linear. Portanto, do ponto de vista dos filtros, o que foi constatado experimentalmente é que uma resposta em frequência não-rigorosa associada à uma resposta em fase perfeitamente linear é a melhor alternativa. \\
 	
