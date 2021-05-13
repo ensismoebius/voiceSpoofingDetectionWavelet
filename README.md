@@ -27,6 +27,7 @@ Todos esses materiais estão sob licença de código aberto (GPLv3) e são livre
 
 ## Abstract
 Voice spoofing is a generic strategy designed to circumvent biometric systems based on voice identification. Among a diversity of specific possibilities, playback speech attacks have received considerable attention from the scientific community. Thus, based on speech signals decomposition with wavelets for subsequent BARK and MEL scales spectral analysis, this dissertation aims at determining the best filters and scales to optimally separate between two classes: Genuine and spoofed speech. Once the best combination of descriptors is obtained, based on Paraconsistent Engineering, the feature vectors are subjected to classification, varying the randomly chosen training and test sets in size. Euclidean and Manhattan distances, as well as Support Vector Machine (SVM), were used as classifiers, where the highest value of accuracy was 95,3659\% for a dataset with 820 signals. This is a promising result, considering the state-of-the-art in the field.
+
 Key-words: paraconsistent analysis, voice spoofing, playback speech, wavelets.
 
 ## Code manual
