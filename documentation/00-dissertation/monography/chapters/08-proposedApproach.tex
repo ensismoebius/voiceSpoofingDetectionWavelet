@@ -1,20 +1,20 @@
-\chapter{Abordagem Proposta} \label{chap:propApproach}
-	\section{A Base de Sinais de Voz}
-	    \subsection{Coleta dos Sinais}
-		\par Para a realização desta pesquisa, coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas da UNESP em São José do Rio Preto, no estado de São Paulo. Foram coletadas amostras de 21 indivíduos, das quais 20 foram usadas já que, em um dos casos, não foi possível coletar todos os dados necessários. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua Inglesa quanto na Portuguesa. Os locutores foram escolhidos de acordo com seu sexo e idade de forma que a amostra estudada tenha uma abrangência que cubra desde crianças em época pré-escolar até adultos entre 50 e 60 anos dos sexos masculino e feminino.
+\chapter{Abordagem proposta} \label{chap:propApproach}
+	\section{A Base de sinais de soz}
+	    \subsection{Coleta dos sinais}
+		\par Para a realização desta pesquisa, coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas da UNESP em São José do Rio Preto, no estado de São Paulo. Foram coletadas amostras de 21 indivíduos, das quais 20 foram usadas já que, em um dos casos, não foi possível coletar todos os dados necessários. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua Inglesa quanto na Portuguesa. Os locutores foram escolhidos de acordo com seu sexo e idade de forma que a amostra estudada tenha uma abrangência que cubra desde crianças em época pré-escolar até adultos com idades até os 67 anos dos sexos masculino e feminino.
 					
 		\par As gravações foram realizadas usando-se um \textit{smartphone} Asus modelo \textit{Ze550kl} rodando o sistema operacional \textit{Android 6.0.1} em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wave} sem compressão com quantização de 16 bits e taxa de amostragem de 44100Hz, permitindo, segundo o teorema de Nyquist, que seja registradas frequências de até 22050Hz.
 		
-		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 410 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravado por um segundo dispositivo, um \textit{notebook} Acer modelo  \textit{Travelmate B} com o sistema operacional \textit{Arch GNU/Linux}, caracterizando os 410 sinais rotulados como ``regravados''.
+		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 410 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravado por um segundo dispositivo, um \textit{notebook} Acer modelo  \textit{Travelmate B} com o sistema operacional \textit{Arch GNU/Linux}, caracterizando os 410 sinais rotulados como ``falseados''.
 
-	    \subsection{Organização da Base de Sinais}
-		\par A organização da base de dados se deu por tipo, isto é, genuíno ou regravado, idioma, dígito ditado e interlocutor considerado. Foi criada uma estrutura hierárquica de diretórios de forma a permitir acesso fácil e intuitivo a cada um dos arquivos \textit{wav}, seja por vias automatizadas ou não. Os arquivos regravados residem no diretório ``playback'', enquanto que os genuínos se encontram no diretório ``live''.	Essa organização está ilustrada nas Figuras \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} e \ref{fig:directorystructlevel03}.
+	    \subsection{Organização da base de sinais}
+		\par A organização da base de dados se deu por tipo, isto é, genuíno ou falseado, idioma, dígito ditado e interlocutor considerado. Foi criada uma estrutura hierárquica de diretórios de forma a permitir acesso fácil e intuitivo a cada um dos arquivos \textit{wav}, seja por vias automatizadas ou não. Os arquivos falseados residem no diretório ``playback'', enquanto que os genuínos se encontram no diretório ``live''.	Essa organização está ilustrada nas Figuras \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} e \ref{fig:directorystructlevel03}.
 		
 		\par Para facilitar a automatização do processamento, foram criados três arquivos de texto:
 		\begin{itemize}
-			\item \textit{\textbf{dataSurvey.txt}}: contêm os dados de idade e sexo e nome do arquivo gerado para cada entrevistado;
-			\item \textit{\textbf{inputListLive.txt}}: uma lista de caminhos para todos os arquivo não regravados;
-			\item \textit{\textbf{inputListSpoofing.txt}}: apresenta uma listagem dos caminhos para todos os arquivos regravados.
+			\item \textit{\textbf{dataSurvey.txt}}: Contêm os dados de idade e sexo e nome do arquivo gerado para cada entrevistado;
+			\item \textit{\textbf{inputListLive.txt}}: Uma lista de caminhos para todos os arquivos genuínos;
+			\item \textit{\textbf{inputListSpoofing.txt}}: Apresenta uma listagem dos caminhos para todos os arquivos falseados.
 		\end{itemize}
 	
 		\par Apenas para ilustrar, o conteúdo do diretório \textbf{``separated \textfractionsolidus live \textfractionsolidus en\_US \textfractionsolidus 0''} se constitui de vários arquivos do tipo \textit{wave}, cada um identificando o locutor ao qual pertence como exibido na Figura \ref{fig:directorystructlevel03}.
@@ -37,8 +37,8 @@
 			\label{fig:directorystructlevel010203}
 		\end{figure}
 
-	\section{Estrutura da Estratégia Proposta}
-		\par A estratégia proposta para diferenciar sinais de voz genuínos daqueles regravados deu-se conforme ilustrado na Figura \ref{fig_arq}. Particularmente, a metodologia consiste na obtenção dos dados brutos de todos os 410 + 410 = 820 sinais de voz genuínos e regravados, seguida da conversão de cada um deles para um vetor de características correspondente, conforme explicado adiante. Na sequência, os melhores sub-conjuntos de características foram escolhidos com base na Engenharia Paraconsistente. Prosseguindo, separações aleatórias entre os vetores, com proporções diversas, foram realizadas para isolar aqueles destinados ao treinamento ou modelagem do classificador utilizado dos que foram destinados aos testes de classificação. Por fim, os testes realizados e seus resultados são mostrados no Capítulo seguinte.
+	\section{Estrutura da estratégia proposta}
+		\par A estratégia proposta para diferenciar sinais de voz genuínos daqueles falseados deu-se conforme ilustrado na Figura \ref{fig_arq}. Particularmente, a metodologia consiste na obtenção dos dados brutos de todos os 410 + 410 = 820 sinais de voz genuínos e falseados, seguida da conversão de cada um deles para um vetor de características correspondente, conforme explicado adiante. Na sequência, os melhores sub-conjuntos de características foram escolhidos com base na Engenharia Paraconsistente. Prosseguindo, separações aleatórias entre os vetores, com proporções diversas, foram realizadas para isolar aqueles destinados ao treinamento ou modelagem do classificador utilizado dos que foram destinados aos testes de classificação. Por fim, os testes realizados e seus resultados são mostrados no Capítulo seguinte.
 		
 		\input{images/strategicStructure.tex}
 		
@@ -95,7 +95,7 @@
 			\label{fig:eeralgo}
 		\end{figure}
 	
-		\subsection{Procedimento 01: filtros \textit{wavelet}, escalas Bark e Mel}
+		\subsection{Procedimento 01: Filtros \textit{wavelet}, escalas Bark e Mel}
 		\label{chap:propApproach:sec:Experimento01}
 		\par O objetivo deste procedimento é o de verificar, segundo a Engenharia Paraconsistente, qual das combinações entre as escalas BARK ou MEL e as várias \textit{wavelets} consideradas geram os vetores de características mais propícios, ou seja, que atraem o ponto $(G_1,G_2)$ para uma posição mais próxima do vértice $(1,0)$ do plano paraconsistente, conforme mencionado no Capítulo anterior. 
 				
@@ -106,7 +106,7 @@
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=1\linewidth]{images/AlgoProcedure01.pdf}
-			\caption{Algoritmo que caracteriza o procedimento 01}
+			\caption{Algoritmo que caracteriza o Procedimento 01}
 			\label{fig:experiment01Algo}
 		\end{figure}
 		
@@ -122,26 +122,26 @@
 		\par Após o redimensionamento do tamanho do sinal, o nível máximo de transformações é dado pela Equação \ref{eq:maxWaveletTransf}. 
 				
 		\begin{equation}
-					maxTrans=\log_{2}(tamanho) \qquad.
+					maxTrans=\log_{2}(tamanhoOtimo) \qquad.
 					\label{eq:maxWaveletTransf}
 		\end{equation}
 		
-		\subsection{Procedimento 02 - classificações baseadas em distâncias}
+		\subsection{Procedimento 02 - Classificações baseadas em distâncias}
 		\label{chap:propApproach:sec:Experimento02}
-		\par O objetivo deste procedimento é verificar, considerando as melhores combinações descobertas pelo procedimento anterior, a acurácia de classificadores \textit{pattern-matching} por distâncias Euclidiana e Manhattan. Nesta fase, os vetores de características gerados pelo procedimento 01 são fornecidos aos classificadores para as mensurações devidas.
+		\par O objetivo deste procedimento é verificar, considerando as melhores combinações descobertas pelo procedimento anterior, a acurácia de classificadores \textit{pattern-matching} por distâncias Euclidiana e Manhattan. Nesta fase, os vetores de características gerados pelo Procedimento 01 são fornecidos aos classificadores para as mensurações devidas.
 				
-		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados para modelagem, até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores. Em cada uma dessas execuções, a ordem dos vetores dentro das amostras, regravados e genuínos, foi permutada aleatoriamente.
+		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados para modelagem, até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores. Em cada uma dessas execuções, a ordem dos vetores dentro das amostras, falseados e genuínos, foi permutada aleatoriamente.
 				
 		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão e assim calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No Algoritmo \ref{lst:experiment02Algo} e na Figura \ref{fig:experiment02Algo}, os passos estão detalhados.
 		
-		\par Essencialmente, este procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente à uma das classes dos vetores de modelagem selecionados.   
+		\par Essencialmente, este Procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente à uma das classes dos vetores de modelagem selecionados.   
 		
 		
 		% TODO Corrigir o diagrama! Tem um erro tosco na parte debaixo
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=.9\linewidth]{images/AlgoProcedure02}
-			\caption{Algoritmo que caracteriza o procedimento 02}
+			\caption{Algoritmo que caracteriza o Procedimento 02}
 			\label{fig:experiment02Algo}
 		\end{figure}
 		
@@ -149,21 +149,24 @@
 
 		\subsection{Procedimento 03 - classificações baseadas na SVM}
 		\label{chap:propApproach:sec:Experimento03}
-		\par Considerando as melhores combinações descobertas durante o procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido pois estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. 
+		\par Considerando as melhores combinações descobertas durante o Procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido pois estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. 
 		
 		\par Particularmente, a estrutura da SVM utilizada foi definida da seguinte forma e de acordo com a Figura \ref{fig:3layersSVM}: 
 		\begin{itemize}
-		\item{}três camadas, sendo a primeira de entrada, com elementos passivos, a segunda com elementos ativos não-lineares de núcleos Gaussianos e a terceira, isto é, a de saída, com um elemento ativo linear; 
-		\item{}inexistem pesos entre a camada de entrada e a camada intermediária, implicando que a saída de cada elemento da camada de entrada conecta-se com todas as entradas de cada elemento da camada intermediária, mantendo incólumes os valores propagados;
-		\item{}a saída de cada elemento da camada intermediária conecta-se com o único elemento da camada de saída por meio dos pesos $p_0, p_1, .... p_{X-1}$;
-		\item{}o valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída, isto é, os valores de saída da camada intermediária.
+			\item Três camadas, sendo a primeira de entrada, com elementos passivos, a segunda com elementos ativos não-lineares de núcleos Gaussianos e a terceira, isto é, a de saída, com um elemento ativo linear; 
+			
+			\item Inexistem pesos entre a camada de entrada e a camada intermediária, implicando que a saída de cada elemento da camada de entrada conecta-se com todas as entradas de cada elemento da camada intermediária, mantendo incólumes os valores propagados;
+
+			\item A saída de cada elemento da camada intermediária conecta-se com o único elemento da camada de saída por meio dos pesos $p_0, p_1, .... p_{X-1}$;
+
+			\item O valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída, isto é, os valores de saída da camada intermediária.
 		\end{itemize}
 
 		\input{images/3layersSVM.tex}
 
 		\par Foram utilizados, na camada de entrada, um número de elementos igual a dimensão do vetor de características sendo considerado. Na camada intermediária, o número de elementos ativos não-lineares foi igual ao número de casos de treinamento, visando facilitar o procedimento que, em tal caso, implica na solução direta de um sistema linear quadrado, isto é, possível e determinado \cite{poole2014linear}. 
 		
-		\par O treinamento da SVM consiste em, numa primeira etapa não-supervisionada, ajustar os parâmetros das funções Gaussianas da camada intermediária. Posteriormente, com base no sistema linear mencionado, os pesos foram encontrados com base em uma abordagem supervisionada, utilizando-se os rótulos -1 e 1 para os sinais regravados e genuínos, respectivamente.    
+		\par O treinamento da SVM consiste em, numa primeira etapa não-supervisionada, ajustar os parâmetros das funções Gaussianas da camada intermediária. Posteriormente, com base no sistema linear mencionado, os pesos foram encontrados com base em uma abordagem supervisionada, utilizando-se os rótulos -1 e 1 para os sinais falseados e genuínos, respectivamente.    
 		
 		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes,   são idênticos àqueles do procedimento 02 e encontram-se listados no Algoritmo \ref{lst:experiment03Algo} e na Figura \ref{fig:experiment03Algo}. 
 		
@@ -172,7 +175,7 @@
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.9\linewidth]{images/AlgoProcedure03}
-			\caption{Algoritmo que caracteriza o procedimento 03}
+			\caption{Algoritmo que caracteriza o Procedimento 03}
 			\label{fig:experiment03Algo}
 		\end{figure}
 

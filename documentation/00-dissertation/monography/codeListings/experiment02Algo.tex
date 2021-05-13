@@ -1,35 +1,35 @@
 \begin{lstlisting}[language=C++, caption={Algoritmo que caracteriza o procedimento 02}, label={lst:experiment02Algo}]
 tamanhosDoModelo={0.1, 0,2, 0,4, 0,5};
-modeloDeReferenciaNaoSpoofing={};
-modeloDeReferenciaSpoofing={};
-testesNaoSpoofing={};
-testesSpoofing={};
+modeloDeReferenciaGenuino={};
+modeloDeReferenciaFalseado={};
+testesGenuino={};
+testesFalseado={};
 
 listaDeAcuracias={};
 
 for (distancia : {Euclidiana, Manhattan}) {
 	for(porcentagem : tamanhosDoModelo){
 		for(teste = 0; teste < 300; teste++){
-			// Escolhe aleatoriamente os sinais para o modelo com spoofing 
-			// e os grava em 'modeloDeReferenciaSpoofing' o restante vai 
-			// para 'testesSpoofing'
-			escolherAleatoriamente(listaComVoiceSpoofing, porcentagem, modeloDeReferenciaSpoofing, testesSpoofing);
+			// Escolhe aleatoriamente os sinais para o modelo com falseamento 
+			// e os grava em 'modeloDeReferenciaFalseado' o restante vai 
+			// para 'testesFalseado'
+			escolherAleatoriamente(listaComFalseamento, porcentagem, modeloDeReferenciaFalseado, testesFalseado);
 			
 			// Escolhe aleatoriamente os sinais para o modelo sem spoofing
-			// e os grava em 'modeloDeReferenciaNaoSpoofing' o restante vai 
-			// para 'testesNaoSpoofing'
-			escolherAleatoriamente(listaSemVoiceSpoofing, porcentagem, modeloDeReferenciaNaoSpoofing, testesNaoSpoofing);
-			treinarClassificador("spoofing", modeloDeReferenciaSpoofing);
-			treinarClassificador("naoSpoofing", modeloDeReferenciaNaoSpoofing);
+			// e os grava em 'modeloDeReferenciaGenuino' o restante vai 
+			// para 'testesGenuino'
+			escolherAleatoriamente(listaGenuino, porcentagem, modeloDeReferenciaGenuino, testesGenuino);
+			treinarClassificador("falseado", modeloDeReferenciaFalseado);
+			treinarClassificador("genuino", modeloDeReferenciaGenuino);
 
 			// Classifica os testes e preenche a tabela de confusao
-			for(sinal : testesSpoofing){
-				preencherTabelaDeConfusao(sinal, "spoofing");
+			for(sinal : testesFalseado){
+				preencherTabelaDeConfusao(sinal, "falseado");
 			} 
 
 			// Classifica os testes e preenche a tabela de confusao
-			for(sinal : testesNaoSpoofing){
-				preencherTabelaDeConfusao(sinal, "naoSpoofing");
+			for(sinal : testesGenuino){
+				preencherTabelaDeConfusao(sinal, "genuino");
 			}
 
 			acuracia=calculaAcuracia();

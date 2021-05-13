@@ -23,12 +23,12 @@ namespace wavelets {
 		if (maxItens == 0) {
 			maxItens = signal.size();
 		} else {
-			// The number of itens must be equal or less than the signal length
+			// The number of items must be equal or less than the signal length
 			if (maxItens > signal.size()) {
 				throw std::runtime_error("The number of itens must be equal or less than the signal length");
 			}
 
-			// The number of itens must be equal or less than the half of signal length
+			// The number of items must be equal or less than the half of signal length
 			// when in the high pass branch of the signal (used in the wavelet packet
 			// starting in the second transformation level)
 			if (highPassBranch && (maxItens > signal.size() / 2)) {
@@ -38,7 +38,7 @@ namespace wavelets {
 
 		/*
 		 * There is a limit of transformations that can be done, depending
-		 * on the length of the signal, until we get coeficients with only
+		 * on the length of the signal, until we get coefficients with only
 		 * one number. The transformation levels shall not pass this limit
 		 * (log2(maxItens))
 		 */
@@ -71,7 +71,7 @@ namespace wavelets {
 				// Make the sums for lowpass and highpass (i.e. apply the filters)
 				for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex) {
 
-					// This part cooresponds to the "wrap around" part of Mallat's algorithm
+					// This part corresponds to the "wrap around" part of Mallat's algorithm
 					signalIndex = (translation + filterIndex) % maxItens;
 
 					/*
@@ -104,7 +104,7 @@ namespace wavelets {
 				// Make the sums for lowpass and highpass (i.e. apply the filters)
 				for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex) {
 
-					// This part cooresponds to the "wrap around" part of Mallat's algorithm
+					// This part corresponds to the "wrap around" part of Mallat's algorithm
 					signalIndex = (translation + filterIndex) % maxItens;
 
 					/* When in lowpass branch of the signal we just want the
@@ -130,7 +130,7 @@ namespace wavelets {
 			/*
 			 * The lowpass signal decomposition is made in both modes: PACKET_WAVELET
 			 * and REGULAR_WAVELET.
-			 * The next level uses only half of the resulting transfomed signal
+			 * The next level uses only half of the resulting transformed signal
 			 * that why the "maxItens / 2"
 			 */
 			WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, false);
@@ -138,7 +138,7 @@ namespace wavelets {
 			// Used only when in wavelet packet transform
 			if (mode == PACKET_WAVELET) {
 
-				// The next level uses only half of the resulting transfomed signal
+				// The next level uses only half of the resulting transformed signal
 				// that why the "maxItens / 2"
 				WaveletTransformResults highPassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, true);
 
@@ -158,7 +158,7 @@ namespace wavelets {
 			results.levelsOfTransformation += lowpassBranchFiltered.levelsOfTransformation;
 		}
 
-		// Increase the levels of trasformation
+		// Increase the levels of transformation
 		results.levelsOfTransformation++;
 
 		// Mark or not as a packet wavelet transform

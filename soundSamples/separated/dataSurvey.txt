@@ -1,6 +1,6 @@
 Sex	Age	file name	performed?	status
 m	3	voz1.wav	yes	accepted
-f	3	voz2.wav	parcial	discarded
+f	3	voz2.wav	partial	discarded
 f	4	voz3.wav	yes	accepted
 m	4	voz4.wav	yes	accepted
 f	35	voz5.wav	yes	accepted

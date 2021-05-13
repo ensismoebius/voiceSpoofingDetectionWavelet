@@ -73,6 +73,7 @@ class Wav {
 				case 162:
 					(*callbackFunction)(this->dataLeft, amountOfData, this->headers.samplingrate, this->path);
 					(*callbackFunction)(this->dataRight, amountOfData, this->headers.samplingrate, this->path);
+					break;
 				case 81:
 				case 161:
 					(*callbackFunction)(this->data, amountOfData, this->headers.samplingrate, this->path);
@@ -130,6 +131,7 @@ class Wav {
 					break;
 				case 162:
 					write16Res2Channel(ofs);
+					break;
 				default:
 					ofs.close();
 					throw std::runtime_error("Invalid number of channels and/or resolution");
@@ -186,6 +188,7 @@ class Wav {
 					break;
 				case 162:
 					read16Res2Channel(ifs);
+					break;
 				default:
 					ifs.close();
 					throw std::runtime_error("Invalid number of channels and/or resolution");

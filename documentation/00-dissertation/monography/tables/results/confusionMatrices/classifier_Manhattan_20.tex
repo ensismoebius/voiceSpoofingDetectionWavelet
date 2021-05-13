@@ -1,39 +1,33 @@
 \begin{table}[h]
-\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-\definecolor{tcC}{rgb}{0,0,0}
-\definecolor{tcD}{rgb}{0,0.5,1}
-\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-\begin{center}
-	\begin{tabular}{ccc}
-		% use packages: color,colortbl
-		\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
-
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{308}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{44}}\\
-
-		\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{20}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{284}}
-	\end{tabular}
-	\caption{Matriz de confusão para o classificador por distâncias Manhattan com o uso de 20\% da base para modelagem}
-	\label{tab:classifier_Manhattan_20_best}
-\end{center}
-\end{table}
-
-\begin{table}[h]
 	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
 	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
 	\definecolor{tcC}{rgb}{0,0,0}
 	\definecolor{tcD}{rgb}{0,0.5,1}
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\begin{center}
-		\begin{tabular}{ccc}
-			% use packages: color,colortbl
-			\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
-			
-			\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{316}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{149}}\\
-			
-			\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{12}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{179}}
-		\end{tabular}
-		\caption{Pior matriz de confusão para o classificador por distâncias Manhattan com o uso de 20\% da base para modelagem}
-		\label{tab:classifier_Manhattan_20_worst}
+		\subfloat[Melhor matriz]{
+			\begin{tabular}{ccc}
+				% use packages: color,colortbl
+				\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{308}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{44}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{20}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{284}}
+			\end{tabular}
+			\label{tab:classifier_Manhattan_20_best}
+		}
+		\qquad
+		\subfloat[Pior matriz]{
+			\begin{tabular}{ccc}
+				% use packages: color,colortbl
+				\mc{1}{l}{} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcA}}c}{\textbf{Falso}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{Verdadeiro}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{316}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{149}}\\
+				
+				\mc{1}{>{\columncolor{tcA}}r}{\textbf{Falso}} & \mc{1}{>{\columncolor{tcD}}c}{\textcolor{tcC}{12}} & \mc{1}{>{\columncolor{tcB}}c}{\textcolor{tcC}{179}}
+			\end{tabular}
+			\label{tab:classifier_Manhattan_20_worst}
+		}
 	\end{center}
+	\caption{Matrizes de confusão para o classificador por distâncias Manhattan com o uso de 20\% da base para modelagem}
 \end{table}

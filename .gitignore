@@ -75,4 +75,11 @@ src/lib/matplotlib-cpp
 /documentation/00-dissertation/monography/monografia2.loq
 /documentation/00-dissertation/monography/monografia2.tex
 /build
+.codelite/
+Makefile
+documentation/00-dissertation/monography/images/AlgoProcedure03.svg
+mestrado.mk
+mestrado.project
+mestrado.txt
+mestrado.workspace
 

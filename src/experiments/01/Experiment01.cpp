@@ -233,7 +233,7 @@ namespace waveletExperiments {
 					}
 				}
 
-				plt::hbar(posVect, distancesFrom1_0);
+				plt::barh(posVect, distancesFrom1_0);
 				plt::yticks(posVect, annotations);
 				plt::show();
 			}

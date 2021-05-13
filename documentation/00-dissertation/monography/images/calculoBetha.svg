@@ -15,8 +15,8 @@
    viewBox="0 0 296.47275 446.26474"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="calculoAlpha.svg">
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="calculoBetha.svg">
   <defs
      id="defs2">
     <marker
@@ -1473,16 +1473,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.24748737"
-     inkscape:cx="-269.23689"
-     inkscape:cy="497.35851"
+     inkscape:zoom="0.69999999"
+     inkscape:cx="16.056314"
+     inkscape:cy="1052.4437"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1438"
-     inkscape:window-height="857"
+     inkscape:window-height="854"
      inkscape:window-x="0"
-     inkscape:window-y="42"
+     inkscape:window-y="45"
      inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -3514,14 +3514,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.75024605px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.14375615"
-       x="-3.0900121"
+       x="-4.1483455"
        y="21.899872"
        id="text993-3-9"><tspan
          sodipodi:role="line"
          id="tspan991-6-1"
-         x="-3.0900121"
+         x="-4.1483455"
          y="21.899872"
-         style="stroke-width:0.14375615">10</tspan></text>
+         style="stroke-width:0.14375615">-10</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.75024605px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.14375615"

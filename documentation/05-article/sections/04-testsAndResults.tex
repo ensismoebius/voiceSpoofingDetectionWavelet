@@ -2,15 +2,15 @@
 \label{sec:testsResults}
 	\subsection{Procedure 1}
 		\label{sec:testsResults:subsec:Experimento01}
-		\par The tests, and corresponding results, for already described procedure 1   are found in this section. As explained in that opportunity, this procedure aims, based on Paraconsistent Engineering, to find which \textit{wavelet} filter provides, together with the Bark or Mel scale, the shortest distance from the point $(G_1,G_2)$ to the vertex $(1,0)$ of the paraconsistent plane.\\
+		\par The tests, and corresponding results, for already described Procedure 1   are found in this section. As explained previously, this procedure aims, based on Paraconsistent Engineering, to find which \textit{wavelet} filter provides, together with the Bark or Mel scale, the shortest distance from the point $(G_1,G_2)$ to the vertex $(1,0)$ of the paraconsistent plane.\\
 		
 		\par Particularly, in Figure \ref{fig:paraconsistentfull}, which combines the results of the filters with the scales, the shorter the horizontal length of the bars in blue, the better the separability between the classes. As can be seen, from the tested combinations, \textbf{Haar + Bark} provided the shortest distance. In addition, the tables \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1} and \ref{tab:distParacomFrom10Mel_2} contains the specific values displayed graphically in that Figure.\\
 		
-		\par The \textbf{\textit{wavelet} + Bark} combination consistently presented \textbf{better} viability than the respective combinations of \textbf{\textit{wavelet+Mel}}.\\
+		\par The \textbf{\textit{wavelet}+Bark} combination consistently presented \textbf{better} viability than the respective combinations of \textbf{\textit{wavelet+Mel}}.\\
 		
 		\par Analyzing the behavior of the best and worst \textit{wavelets} found, it is interesting to ask why the \textbf{Haar} filters have provided the best results. Particularly interesting is the fact that the \textbf{Haar} and \textbf{Daubechies 42} \textit{wavelet} filters provided, respectively, the best and worst results associated with the Bark scale. In contrast, with the \textit{Mel} scale, \textbf{Haar} was the best filter and \textbf{Daubechies 54} the worst.).\\
 		
-		\par For illustration purposes, in Figure \ref{fig:haardaub42comparison} it is possible to see a periodic signal decomposed in its components using the best and the worse filters already cited: Note that \textbf{Haar} wavelet introduces less noises to the decomposition, therefore facilitating the classifiers training.
+		\par For illustration purposes, in Figure \ref{fig:haardaub42comparison} it is possible to see a periodic signal decomposed in its components using the best and the worse filters already cited: Note that with the \textbf{Haar} wavelet the decomposition has less fluctuations, therefore facilitating the classifier's training.
 		
 		\begin{figure}[H]
 			\centering
@@ -25,16 +25,17 @@
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.65]{images/results/paraconsistentPlane/ParaconsistentFull.png}
+			\includegraphics[scale=.62]{images/results/paraconsistentPlane/ParaconsistentFull.png}
 			\caption{Complete graph of the distance from point (1,0) in the paraconsistent plane.}
 			\label{fig:paraconsistentfull}
 		\end{figure}
 	
 		\par From the point of view of the Bark and Mel bands, Bark is the one that was more broadly defined to reflect the behavior of human hearing for acoustic signals in general. Unlike Mel band, which was optimized for voice but, according to the experiments, it did not provide the best results.\\
 		\par That said, it is clear that the \textbf{noisy characteristic} of the spoofed signals, containing, unlike the original voices, notorious components of high frequencies, is better detected with a scale more appropriate to the treatment of audio in general and not only voice.)
+
 	\subsection{Procedure 2} 
 		\label{sec:testsResults:subsec:Experimento02}
-		\par According to procedure 1 the best result was the combination \textbf{Haar + Bark}, therefore, the objective of this procedure is \textbf{to verify the maximum accuracy and the minimum EER} that can be achieved with the use of a classifier based on Euclidean and Manhattan distances, according to the details defined previously.\\
+		\par According to procedure 1 the best result was the combination \textbf{Haar+Bark}, therefore, the objective of this procedure is \textbf{to verify the maximum accuracy and the minimum EER} that can be achieved with the use of a classifier based on Euclidean and Manhattan distances, according to the details defined previously.\\
 		
 		\par For the amounts of 10\%, 20\%, 30\%, 40\% and 50\% of the signals in database reserved for training/modeling, with the limit of 300 random tests in each case, the results obtained are shown in Tables \ref{tab:experiment02ResultsEuclidian} and \ref{tab:experiment02ResultsManhattan}. Particularly interesting in them, is the measure of the equal error rate (EER), which balances the rates of false positives and false negatives.\\
 		
@@ -232,13 +233,13 @@
 		
 			\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
 		
-	\subsection{Synthesis}
-		\par Looking at the Tables, it is noted that the \textbf{best accuracy/EERs} values are \textbf{0.904878/0.135858} and \textbf{0.909756/0.129268} for the Euclidean and Manhattan distances respectively. Thus, there is no practical difference in the \textit{pattern-matching} metric criteria used and, in addition, a relatively high level of accuracy considering the classifier algorithm simplicity.
+		\subsubsection{Synthesis}
+			\par Looking at the Tables, it is noted that the \textbf{best accuracy/EERs} values are \textbf{0.904878/0.135858} and \textbf{0.909756/0.129268} for the Euclidean and Manhattan distances respectively. Thus, there is no practical difference in the \textit{pattern-matching} metric criteria used and, in addition, a relatively high level of accuracy considering the classifier algorithm simplicity.
 		
 	\subsection{Procedure 3}
-		\label{chap:testsResults:sec:Experimento03}
+		\label{sec:testsResults:subsec:Experimento03}
 		
-		\par Again, considering that procedure 1 presented, as best result, the combination \textbf{Haar + Bark}, the objective of this procedure is to verify the \textbf{maximum accuracy and minimum EER} that can be achieved with an SVM. The results, following the same pattern as the previous procedure, are shown in the Table \ref{tab:experiment03Results}.
+		\par Again, considering that Procedure 1 presented, as best result, the combination \textbf{Haar+Bark}, the objective of this procedure is to verify the \textbf{maximum accuracy and minimum EER} that can be achieved with an SVM. The results, following the same pattern as the previous procedure, are shown in the Table \ref{tab:experiment03Results}.
 				
 		\par More levels of detail can be found in the Tables \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best} e \ref{tab:classifier_SVM_50_worse}, in addition to their respective graphs are in Figures \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40} e \ref{fig:classifiersvm50}.
 		
@@ -333,13 +334,13 @@
 
 			\input{tables/results/confusionMatrices/classifier_SVM_50.tex}
 		
-	\subsection{Synthesis}
-		\par In short, it is clear that the \textbf{best accuracy/EER} obtained was \textbf{0.953659/0.087805} with the use of SVM and 50\% of the signal database to train it, consistent with the expectations. In such a case, the respective confusion matrix reveals a minimum amount of false-genuine and false-spoofed, consistent with the related works.
-		
+		\subsubsection{Synthesis}
+			\par In short, it is clear that the \textbf{best accuracy/EER} obtained was \textbf{0.953659/0.087805} with the use of SVM and 50\% of the signal database to train it, consistent with the expectations. In such a case, the respective confusion matrix reveals a minimum amount of false-genuine and false-spoofed, consistent with the related works.
+
 	\subsection{Complementary Tests}
-		\label{chap:testsResults:sec:Experimento05}
+		\label{sec:testsResults:subsec:Experimento05}
 		
-		\par The Figures \ref{fig:livehaarbark} and \ref{fig:spoofinghaarbark} contains, as a complement, the spreading of the feature vectors values in the \textit{wavelet-packet} Haar + Bark scale. Notably, compared to Figures \ref{fig:livehaarmel} and \ref{fig:spoofinghaarmel}, the \textbf{spread of the values is much greater on the Mel} scale. This difference in data distribution also occurs in the \textit{wavelet-packet} daubechies 42 + Bark combinations, as shown in Figures \ref{fig:livedaub42bark} and \ref{fig:spoofingdaub42bark}, in addition to \textit{wavelet-packet} daubechies 54 + Mel scale, as per Figures \ref{fig:livedaub54mel} and \ref{fig:spoofingdaub54mel}.
+		\par The Figures \ref{fig:livehaarbark} and \ref{fig:spoofinghaarbark} contains, as a complement, the spreading of the feature vectors values generated by the \textbf{\textit{wavelet-packet} Haar+Bark \textit{scale}}. Notably, compared to Figures \ref{fig:livehaarmel} and \ref{fig:spoofinghaarmel}, the \textbf{spread of the values is greater on the Mel} scale. This difference in data distribution also occurs in the \textit{wavelet-packet} daubechies 42 + Bark combinations, as shown in Figures \ref{fig:livedaub42bark} and \ref{fig:spoofingdaub42bark}, in addition to \textit{wavelet-packet} daubechies 54 + Mel scale, as per Figures \ref{fig:livedaub54mel} and \ref{fig:spoofingdaub54mel}.
 		
 		\par For comparison purposes, the graphs were built on same scale for the amplitude axis (vertical axis).
 		

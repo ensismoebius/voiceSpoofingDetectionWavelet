@@ -74,7 +74,7 @@ namespace waveletExperiments {
 			}
 
 			/**
-			 * Analityc function which performs an wavelet transform
+			 * Analytic function which performs an wavelet transform
 			 * of the value and calculate the energies based on BARK intervals
 			 * @param signal
 			 * @param signalLength
@@ -92,7 +92,7 @@ namespace waveletExperiments {
 				signal.resize(signalLength, 0);
 
 				// Calculate the max levels of decompositions
-				// i.e. until the coeficients are formed by
+				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
 				// transformation we will perform a BARK composition

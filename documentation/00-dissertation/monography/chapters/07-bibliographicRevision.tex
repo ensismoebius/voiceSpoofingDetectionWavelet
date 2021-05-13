@@ -1,5 +1,5 @@
 \chapter{Revisão bibliográfica} \label{chap:revBibli}
-	\section{Breve Revisão dos Conceitos Utilizados Neste Trabalho}
+	\section{Breve revisão dos conceitos utilizados neste trabalho}
 
 		\subsection{O Formato de arquivos digitais  \textit{wave}}
 			\par Os arquivos no formato digital \textit{wave}, popularmente utilizados para armazenar áudio e voz digital \cite{WAVE2019}, assim como ocorre neste trabalho, se estruturam como ilustrado na Figura \ref{fig:wavePcmStructure}.
@@ -13,7 +13,7 @@
 			
 			\par A estrutura de interesse se localiza na última parte do arquivo, mais especificamente no bloco ``data'' ilustrado em azul na Figura. Nele, os dados são organizados como um grande vetor de números, em formato \textit{little endian} \cite{adiga2007writing}, sendo que cada um deles indica a intensidade do sinal naquele ponto. A descrição pormenorizada do bloco ``data'', consultada em \cite{microsoftIbmWaveSpec}, foi utilizada neste trabalho para possibilitar a extração dos dados brutos dos sinais utilizados. 
 
-		\subsection{Sinais Digitais e Sub-amostragem  (\textit{Downsampling})}
+		\subsection{Sinais digitais e sub-amostragem (\textit{downsampling})}
 			\par Os sinais de voz digitais, isto é, aqueles que estão amostrados e quantizados \cite{haykin2011sistemas}, constituem a base deste trabalho. Além do processo de digitalização, inerente ao ato de armazenar locuções em computadores, os sinais podem sofrer, a depender da necessidade ou possibilidade, sub-amostragens ou \textit{downsamplings} \cite{robi2003}. Isso implica a estratégia de redução de dimensão e, comumente, ocorre após a conversão de domínio dos sinais com base em filtros digitais do tipo \textit{wavelet}, a serem apresentados adiante. Um exemplo consta na Figura \ref{fig:downsampling}, na qual as partes pretas contêm dados e as brancas representam os elementos removidos. Tendo em vista que este trabalho está baseado em sinais digitais de voz filtrados com base em \textit{wavelets}, o processo de sub-amostragem é essencial. 
 			\begin{figure}[h]
 				\centering
@@ -23,7 +23,7 @@
 			\end{figure}
 			
 		\subsection{Caracterização dos processos de produção da voz humana}
-			\par A fala possui três grandes áreas de estudo: a fisiológica, também conhecida como fonética articulatória, a acústica, referida como fonética acústica, e, ainda, a perceptual, que cuida da percepção  da  fala \cite{kremer2014eficiencia}. Neste trabalho, o foco será apenas na questão acústica, pois não serão analisados aspectos da fisiologia relacionada à voz, mas sim os sinais sonoros propriamente ditos.
+			\par A fala possui três grandes áreas de estudo: A fisiológica, também conhecida como fonética articulatória, a acústica, referida como fonética acústica, e ainda, a perceptual, que cuida da percepção  da  fala \cite{kremer2014eficiencia}. Neste trabalho, o foco será apenas na questão acústica, pois não serão analisados aspectos da fisiologia relacionada à voz, mas sim os sinais sonoros propriamente ditos.
 			
 			\subsubsection{Sinais vozeados \textit{versus} não-vozeados}
 
@@ -179,7 +179,7 @@
 				\label{eq:haarResult}
 			\end{equation}
 			
-			\par Percebe-se que, nas transformações descritas nas Equações \ref{eq:haarFilters}, \ref{eq:haarMultiplic} e \ref{eq:haarResult}, a \textbf{aplicação dos filtros sobre o vetor de entrada ocorreu apenas uma vez}. Sendo assim, se diz que o sinal recebeu uma \textbf{transformação de nível 1}. A cada transformação, há uma separação do sinal em dois componentes: o de baixa e o de alta frequência.
+			\par Percebe-se que, na transformação descrita nas Equações \ref{eq:haarFilters}, \ref{eq:haarMultiplic} e \ref{eq:haarResult}, a \textbf{aplicação dos filtros sobre o vetor de entrada ocorreu apenas uma vez}. Sendo assim, se diz que o sinal recebeu uma \textbf{transformação de nível 1}. A cada transformação, há uma separação do sinal em dois componentes: o de baixa e o de alta frequência.
 			
 			\par Embora haja um limite, que será mencionado adiante, é possível aplicar mais de um nível de decomposição ao sinal. Para que se possa fazer isso, a Transformada \textit{Wavelet} nível 2 deve considerar apenas a parte de baixas frequências da primeira transformada; a transformada de nível 3 deve considerar apenas a parte de baixas frequências da transformada nível 2, e assim consecutivamente.
 			
@@ -192,7 +192,7 @@
 		\subsubsection{O algoritmo de Mallat e a Transformada \textit{Wavelet-Packet}}
 			\par Na Transformada \textit{Wavelet-Packet}, os filtros aplicados são os mesmos da Transformada \textit{Wavelet} e o procedimento recursivo de cálculo também é o mesmo, no entanto, realizada a transformação de nível 1, a transformada de nível 2 deve ser aplicada aos componentes de baixa e de alta frequência. Sendo assim a Transformada \textit{Wavelet-Packet} obtém um nível de detalhes em todo o espectro de frequência, maior do que uma transformação regular. 
 			
-			\par Os exemplos mostrados nas Tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} permitem perceber como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequências, respectivamente, após a transformação \textit{wavelet-packet} de nível 1.
+			\par Os exemplos mostrados nas Tabelas \ref{tab:packetWaveletExampleLF} e \ref{tab:packetWaveletExampleHF} permitem perceber como se dão as transformações na porção de \textbf{baixa} e de \textbf{alta} frequências, respectivamente, após a transformação \textit{wavelet-packet} de nível 1, 2, 3 e 4.
 
 			\par Devido ao \textit{downsampling} aplicado às porções de alta frequência, essas partes acabam por ficar ``espelhadas'' no espectro \cite{Jensen_2001}, ou seja, suas sequências ficam invertidas. Para resolver esse problema e preservar a ordem das sub-bandas no sinal transformado, os filtros são aplicados em ordem inversa nas porções de alta frequência. Isso altera como o algoritmo de Mallat deve ser implementado para a Transformada \textit{Wavelet-Packet}, já que dessa vez é preciso se atentar a ordem da aplicação dos filtros passa-alta e passa-baixa.
 
@@ -200,7 +200,7 @@
 			
 			\par Para uma visualização mais completa, a Figura \ref{fig:haarWaveletExamples} pode ser consultada no apêndice deste documento.
 			
-			\subsection{Engenharia Paraconsistente de Características}
+			\subsection{Engenharia Paraconsistente de características}
 				\par Nos processos de classificação, frequentemente surge a questão: ``Os vetores de características criados proporcionam uma boa separação de classes?''. A Engenharia Paraconsistente de Características \cite{8588433}, recém publicada, que usa a paraconsistência \cite{da1998elementos},  \cite{COSTA2000} é, em meio a outras técnicas, uma ferramenta que pode ser usada para responder essa questão.
 				
 				\par O processo inicia-se após a aquisição dos vetores de características para cada classe $C_n$. Se o número de classes presentes for, por exemplo, quatro então estas poderão ser representadas por $C_1, C_2, C_3, C_4$.
@@ -215,7 +215,7 @@
 				
 				\par Particularmente, para calcular $\alpha$ e $\beta$, é necessária a normalização dos vetores de características de forma que todos os seus componentes estejam no intervalo entre $0$ e $1$. Em seguida, a obtenção de $\alpha$ se dá selecionando-se os maiores e os menores valores de cada uma das posições de todos os vetores de características para cada classe, gerando assim um vetor para os valores maiores e outro para os menores.
 				
-				\par O \textbf{vetor de similaridade}$(svC_n)$ é obtido fazendo-se a diferença item-a-item dos maiores em relação aos menores. Finalmente, e para cada classe, é obtida a média dos valores para cada vetor de similaridade, sendo que $\alpha$ é o menor valor dentre essas médias. A Figura \ref{fig:calculoalpha} contém uma ilustração do processo.
+				\par O \textbf{vetor de similaridade da classe}$(svC_n)$ é obtido fazendo-se a diferença item-a-item dos maiores em relação aos menores. Finalmente, e para cada classe, é obtida a média dos valores para cada vetor de similaridade, sendo que $\alpha$ é o menor valor dentre essas médias. A Figura \ref{fig:calculoalpha} contém uma ilustração do processo.
 				
 				\begin{figure}
 					\centering
@@ -259,10 +259,10 @@
 					\item Verdade $\rightarrow$ fé total ($\alpha = 1$) e nenhum descrédito ($\beta = 0$)
 					\item Ambiguidade $\rightarrow$ fé total ($\alpha = 1$) e descrédito total ($\beta = 1$)
 					\item Falsidade $\rightarrow$ fé nula ($\alpha = 0$) e descrédito total ($\beta = 1$)
-					\item Indefinição $\rightarrow$ fé nula ($\alpha = 0$) e descrédito total ($\beta = 0$) \qquad.
+					\item Indefinição $\rightarrow$ fé nula ($\alpha = 0$) e nenhum descrédito ($\beta = 0$) \qquad.
 				\end{itemize}
 				
-				\par Uma vez que $\alpha$ e $\beta$ estejam definidos, é necessário obter os coeficientes $G_1$ e $G_2$. No entanto, raramente $\alpha$ e $\beta$ terão tais valores: Na maioria das ocasiões, $0 \leqslant \alpha \leqslant 1$ e $0 \leqslant \beta \leqslant 1$. Por isso, se torna necessário o cálculo do \textbf{grau de certeza}, isto é, $G_1$, e do \textbf{grau de contradição}, isto é, $G_2$, conforme segue:
+				\par No entanto, raramente $\alpha$ e $\beta$ terão os valores mostrados na listagem acima: Na maioria das ocasiões, $0 \leqslant \alpha \leqslant 1$ e $0 \leqslant \beta \leqslant 1$. Por isso, se torna necessário o cálculo do \textbf{grau de certeza}, isto é, $G_1$, e do \textbf{grau de contradição}, isto é, $G_2$, conforme segue:
 				\begin{equation}
 					G_1=\alpha-\beta  \qquad,
 				\end{equation}
@@ -271,7 +271,7 @@
 				\end{equation}
 			onde: $-1 \leqslant G_1$ e  $1 \geqslant G_2$.
 
-			\par Os valores de $G_1$ e $G_2$, em conjunto, definem os graus entre verdade e falsidade, ou seja, $G_1=-1$ e $G_1=1$, respectivamente, e também os graus entre indefinição e ambiguidade, ou seja, $G_2=-1$ e $G_2=1$, respectivamente.
+			\par Os valores de $G_1$ e $G_2$, em conjunto, definem os graus entre verdade ($G_1=1$) e falsidade ($G_1=-1$) e também os graus entre indefinição ($G_2=-1$) e ambiguidade ($G_2=1$).
 		
 			\par O Plano Paraconsistente, para fins de visualização e maior rapidez na avaliação dos resultados, encontra-se ilustrado na Figura \ref{fig:paraconsistentplane} e tem quatro arestas precisamente definidas:
 			\begin{itemize}
@@ -280,7 +280,7 @@
 				\item (0,-1) $\rightarrow$ indefinição;
 				\item (0,1) $\rightarrow$ ambiguidade.
 			\end{itemize}
-			\par Ainda na Figura \ref{fig:paraconsistentplane}, é possivel ver um pequeno círculo indicando os graus dos quatro casos listados.
+			\par A propósito de ilustração na Figura \ref{fig:paraconsistentplane}, é possível ver um pequeno círculo indicando os graus dos quatro casos listados.
 	
 			\par Para se ter ideia em que área exatamente se encontram as classes avaliadas, as distâncias $(D)$ do ponto $P=(G_1,G_2)$ até o limites supracitados podem ser computadas. Tais cálculos podem ser feitos da seguinte forma:
 
@@ -323,17 +323,17 @@
 		
 		\par Uma abordagem que combina análise de sinal de fala usando a \textit{Transformada Constante Q} (CQT) com o processamento cepstral foi mostrada no artigo \cite{TODISCO2017516}. Essa técnica resulta no que se chama \textit{Coeficientes Cepstrais de Constante Q}(CQCCs). Segundo o artigo, a vantagem desses coeficientes é a resolução de espectro temporal variável. As bases de dados usadas foram a RedDots \cite{redDots}, SAS 2015 e AVSpoof 2015 \cite{AVSpoof2015}. Em se tratando de classificadores foram usados dois GMMs, cada um treinado usando os dados genuínos e \textit{spoofing} respectivamente. Os testes realizados para cada uma das bases chegou aos seguintes resultados: SAS 2015 $\rightarrow$ EER geral de 0.026; AVspoof 2015 $\rightarrow$ EER geral de 0; RedDots $\rightarrow$ EER geral de 0,185.
 
-		\par No artigo \cite{Patel2015} é usada a \textit{Transformação Auditiva (TU)} que tem como base a transformada \textit{wavelet}, a \textit{Cochlear Filter Cepstral Coefficients (CFCC)} é a junção dos métodos citados mais uma média dos valores em um intervalo de janela definido. Além disso, se define a \textit{estimação da frequência instantânea (IF)} que tem por base a Transformada de Hilbert\cite{johansson1999hilbert} e \cite{kschischang2006hilbert}. O processo todo tem como objetivo emular mecanismos naturais ocorridos dentro do ouvido e usa, além da \textit{TU}, o cálculo de coeficientes cepstrais e transformada cosseno. Para a composição dos vetores de características foram combinadas as técnicas \textit{MFCC}, \textit{CFCC}, \textit{CFCC+IF}. A base de dados usada foi a ASVspoof 2015. O classificador utilizado foi um GMM, as classificações chegaram uma EER de 0.083.
+		\par No artigo \cite{Patel2015} é usada a \textit{Transformação Auditiva (TU)}, que tem como base a transformada \textit{wavelet}, e a \textit{Cochlear Filter Cepstral Coefficients (CFCC)} que é a junção dos métodos citados mais uma média dos valores em um intervalo de janela definido. Além disso, se define a \textit{estimação da frequência instantânea (IF)} que tem por base a Transformada de Hilbert \cite{johansson1999hilbert} e \cite{kschischang2006hilbert}. O processo todo tem como objetivo emular mecanismos naturais ocorridos dentro do ouvido e usa, além da \textit{TU}, o cálculo de coeficientes cepstrais e transformada cosseno. Para a composição dos vetores de características foram combinadas as técnicas \textit{MFCC}, \textit{CFCC}, \textit{CFCC+IF}. A base de dados usada foi a ASVspoof 2015. O classificador utilizado foi um GMM, as classificações chegaram uma EER de 0.083.
 
-		\par O artigo \cite{ISI:000490497200068} propõe uma solução para distinguir sinais de voz genuínos daqueles regravados usando reverberação e as partes não vozeadas da fala. Três GMMs foram definidos para a classificação, nesta estratégia os mesmos votam se uma ocorrência é ou não verdadeira, ganhado sempre a classificação que obtiver mais votos. A base de dados utilizada foi a ASVSpoof 2017. O sistema de avaliação de desempenho escolhido, novamente, foi a ERR e esta alcançou um valor de 2,99.
+		\par O artigo \cite{ISI:000490497200068} propõe uma solução para distinguir sinais de voz genuínos daqueles falseados usando reverberação e as partes não vozeadas da fala. Três GMMs foram definidos para a classificação, nesta estratégia os mesmos votam se uma ocorrência é ou não verdadeira, ganhado sempre a classificação que obtiver mais votos. A base de dados utilizada foi a ASVSpoof 2017. O sistema de avaliação de desempenho escolhido, novamente, foi a ERR e esta alcançou um valor de 2,99.
 		
-		\par A principal ideia do artigo \cite{ISI:000465363900136} foi a de capturar a amplitude instantânea vinda de flutuações de energia para distinguir entre sinais de voz genuínos daqueles regravados. Segundo os autores, as modulações de amplitude são mais suscetíveis ao ruído inserido no sinal original por uma fonte reprodutora. O estudo usa a base de dados ASVSpoof 2017 e GMM como classificador. Os resultados apresentados chegaram a uma EER de 0.0019.
+		\par A principal ideia do artigo \cite{ISI:000465363900136} foi a de capturar a amplitude instantânea vinda de flutuações de energia para distinguir entre sinais de voz genuínos daqueles falseados. Segundo os autores, as modulações de amplitude são mais suscetíveis ao ruído inserido no sinal original por uma fonte reprodutora. O estudo usa a base de dados ASVSpoof 2017 e GMM como classificador. Os resultados apresentados chegaram a uma EER de 0.0019.
 
 		\par No trabalho \cite{ISI:000465363900139}, foram usadas as diferenças entre bandas de frequências específicas para diferenciar um sinal legítimo de um usado em ataques de falsificação. Particularmente, foi proposta a \textit{predição linear em domínio de frequência}(FDLP) juntamente com GMMs para classificação dos dados presentes na base ASVspoof  2017. Os resultados apresentados implicam a EER de 0.0803.
 		
 		\par No artigo \cite{Suthokumar2018}, os autores propuseram duas novas características que visam interpretar as componentes estáticas e dinâmicas do sinal, complementando as características de tempo restrito no espectro, para distinguir entre locuções genuínas e regravadas. São elas a \textit{Modulation  Spectral Centroid Frequency} e \textit{Long Term Spectral Average}. O sistema usa como classificador um GMM juntamente com a base dados ASVSpoof 2017. Os resultados implicam o valor de EER de 0,0654.
 		
-		\par Considerando o envelopamento das amplitudes e  frequências instantâneas em cada banda estreita filtrada, os autores do artigo \cite{ISI:000458728700054} discutiram como diferenciar um sinal de voz legítimo de um regravado. A base de dados usada foi a  ASVSpoof 2015 e o GMM foi o classificador escolhido. A proposta alcançou a EER de 0,045.
+		\par Considerando o envelopamento das amplitudes e  frequências instantâneas em cada banda estreita filtrada, os autores do artigo \cite{ISI:000458728700054} discutiram como diferenciar um sinal de voz legítimo de um falseado. A base de dados usada foi a  ASVSpoof 2015 e o GMM foi o classificador escolhido. A proposta alcançou a EER de 0,045.
 
 		\par No artigo científico \cite{ISI:000392503100008}, foi proposto o uso do \textit{gammatone frequency cepstral coefficients}(MGFCC). O gammatone é o produto de uma distribuição gamma com um sinal senoidal e é usado na construção de filtros auditivos que, neste caso, são usados para extrair características do sinal de voz. A base de dados usada foi a ASVspoof 2015 e o classificador usado foi um GMM. Na distinção entre vozes genuínas e regravadas, o EER chegou a 0,02556.
 		
