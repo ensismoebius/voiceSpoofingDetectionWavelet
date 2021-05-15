@@ -69,7 +69,7 @@ namespace waveletExperiments
 		public:
 
 			/**
-			 * Initialises the experiment
+			 * Initializes the experiment
 			 */
 			static void init()
 			{
@@ -79,7 +79,7 @@ namespace waveletExperiments
 			}
 
 			/**
-			 * Analityc function which performs an wavelet transform
+			 * Analytic function which performs an wavelet transform
 			 * of the value and calculate the energies based on MEL
 			 * or BARK intervals
 			 * @param signal
@@ -99,7 +99,7 @@ namespace waveletExperiments
 				signal.resize(signalLength, 0);
 
 				// Calculate the max levels of decompositions
-				// i.e. until the coeficients are formed by
+				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
 				// transformation we will perform a BARK composition
@@ -270,7 +270,7 @@ namespace waveletExperiments
 
 			/**
 			 * Perform the experiment
-			 * @param args - A list of wavefiles of the same class (ignore the first one)
+			 * @param args - A list of wave files of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
 			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel)
@@ -286,7 +286,7 @@ namespace waveletExperiments
 				std::string line;
 
 				/**
-				 * A data estructure witch will hold the wavelet transformed signals
+				 * A data structure witch will hold the wavelet transformed signals
 				 * haar
 				 * 	BARK
 				 * 		Class1
@@ -309,7 +309,7 @@ namespace waveletExperiments
 				double cycles = 0;
 				double totalCycles = 0;
 
-				// Computes the cicles needed to compute all signals
+				// Computes the cycles needed to compute all signals
 				for (unsigned int i = 0; i < classFilesList.size(); i++)
 				{
 					std::ifstream fileListStream;

@@ -88,7 +88,7 @@ namespace waveletExperiments
 		public:
 
 			/**
-			 * Initialises the experiment
+			 * Initializes the experiment
 			 * @param wavelet
 			 * @param mode
 			 * @param barkOrMel
@@ -103,7 +103,7 @@ namespace waveletExperiments
 			}
 
 			/**
-			 * Analityc function which performs an wavelet transform
+			 * Analytic function which performs an wavelet transform
 			 * of the value and calculate the energies based on MEL
 			 * or BARK intervals
 			 * @param signal
@@ -123,7 +123,7 @@ namespace waveletExperiments
 				signal.resize(signalLength, 0);
 
 				// Calculate the max levels of decompositions
-				// i.e. until the coeficients are formed by
+				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
 				// transformation we will perform a MEL and
@@ -318,7 +318,7 @@ namespace waveletExperiments
 			/**
 			 * Perform the experiment
 			 * 
-			 * @param classFileList - A list of wavefiles of the same class (ignore the first one)
+			 * @param classFileList - A list of wave files of the same class (ignore the first one)
 			 * @param resultsDestiny
 			 */
 			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny)
@@ -337,7 +337,7 @@ namespace waveletExperiments
 				std::string line;
 
 				/**
-				 * A data estructure witch will hold the wavelet transformed signals
+				 * A data structure witch will hold the wavelet transformed signals
 				 * wavelet1
 				 * 	BARK
 				 * 		Class1
@@ -376,7 +376,7 @@ namespace waveletExperiments
 				// For this experiment we wil use just three wavelets
 				wavelets::init( { "haar", "daub42", "daub54" });
 
-				// Computes the cicles needed to compute all signals
+				// Computes the cycles needed to compute all signals
 				for (unsigned int i = 0; i < classFileList.size(); i++)
 				{
 					std::ifstream fileListStream;
