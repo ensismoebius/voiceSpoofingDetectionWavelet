@@ -57,8 +57,8 @@ namespace waveletExperiments {
 				namespace plt = matplotlibcpp;
 
 				// Calculates the limits of the graphic
-				double ylimMax = -std::numeric_limits<double>().max();
-				double ylimMin = +std::numeric_limits<double>().max();
+				double ylimMax = -std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
+				double ylimMin = +std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
 				for (auto v : results) {
 					for (auto number : v.second) {
 						ylimMax = ylimMax < number ? number : ylimMax;

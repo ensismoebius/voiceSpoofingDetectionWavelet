@@ -24,7 +24,7 @@
 #include <iomanip>
 #include <iostream>
 
-#include "../../lib/wave/Wav.cpp"
+#include "../../lib/wave/Wav.h"
 #include "../../lib/wavelet/Types.h"
 #include "../../lib/vector/vectorUtils.h"
 #include "../../lib/gnuplot/gnuplotCalls.h"
@@ -411,8 +411,8 @@ namespace waveletExperiments {
 					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
 
 						// Initializing the accuracies
-						percentageBestAccuracy = -std::numeric_limits<double>().max();
-						percentageWorstAccuracy = std::numeric_limits<double>().max();
+						percentageBestAccuracy = -std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
+						percentageWorstAccuracy = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
 
 						// Changes the amount of tests done against the dataset
 						for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {

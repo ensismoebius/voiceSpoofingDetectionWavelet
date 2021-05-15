@@ -21,7 +21,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include "../../lib/wave/Wav.cpp"
+#include "../../lib/wave/Wav.h"
 #include "../../lib/wavelet/Types.h"
 #include "../../lib/vector/vectorUtils.h"
 #include "../../lib/gnuplot/gnuplotCalls.h"
