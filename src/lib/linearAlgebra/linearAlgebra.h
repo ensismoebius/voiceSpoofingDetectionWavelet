@@ -11,7 +11,8 @@
 #define SRC_LIB_LINEARALGEBRA_LINEARALGEBRA_H_
 #include <vector>
 
-namespace linearAlgebra {
+namespace linearAlgebra
+{
 
 	/**
 	 * Calculates the derivative of a vector

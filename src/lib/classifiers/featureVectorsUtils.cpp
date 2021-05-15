@@ -2,12 +2,15 @@
 #include <algorithm>
 #include <stdexcept>
 
-namespace classifiers {
+namespace classifiers
+{
 
-	void raflleFeaturesVectors(std::vector<std::vector<double>> &source, std::vector<std::vector<double>> &model, std::vector<std::vector<double>> &test, float modelSize) {
+	void raflleFeaturesVectors(std::vector<std::vector<double>> &source, std::vector<std::vector<double>> &model, std::vector<std::vector<double>> &test, float modelSize)
+	{
 
 		// Validates modelsize
-		if (modelSize > 1 || !(modelSize > 0)) {
+		if (modelSize > 1 || !(modelSize > 0))
+		{
 			throw std::runtime_error("Model size must be between 0 and 1 (Zero not included)");
 		}
 
@@ -15,7 +18,8 @@ namespace classifiers {
 		// to shuffle the indexes than the given vectors
 		// itself
 		std::vector<unsigned int> indexes(source.size());
-		for (unsigned int counter = 0; counter < source.size(); counter++) {
+		for (unsigned int counter = 0; counter < source.size(); counter++)
+		{
 			indexes[counter] = counter;
 		}
 
@@ -32,12 +36,14 @@ namespace classifiers {
 		test.resize(source.size() - amountOfModelSamples);
 
 		// fills the model
-		for (unsigned int i = 0; i < amountOfModelSamples; i++) {
+		for (unsigned int i = 0; i < amountOfModelSamples; i++)
+		{
 			model[i] = source[indexes[i]];
 		}
 
 		// fills the test
-		for (unsigned int i = amountOfModelSamples; i < source.size(); i++) {
+		for (unsigned int i = amountOfModelSamples; i < source.size(); i++)
+		{
 			test[i - amountOfModelSamples] = source[indexes[i]];
 		}
 	}

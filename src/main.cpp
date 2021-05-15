@@ -12,7 +12,8 @@
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
 
-int main(int argc, char *args[]) {
+int main(int argc, char *args[])
+{
 
 	int experiment = -1;
 
@@ -23,13 +24,13 @@ int main(int argc, char *args[]) {
 	unsigned int numberOfTests;
 	std::string spoofingFileList;
 
-	//Ensuring the random numbers
-	// are going to honor its names
+	// Ensuring the random numbers are going to honor its names
 	std::srand(std::time(nullptr));
 
 	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel, experiment);
 
-	switch (res) {
+	switch (res)
+	{
 		case 1:
 			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			return 0;
@@ -84,59 +85,71 @@ int main(int argc, char *args[]) {
  * @param experiment
  * @return the experiment choosen
  */
-int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment) {
-
-	for (int j = 1; j < argc; ++j) {
+int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment)
+{
+	for (int j = 1; j < argc; ++j)
+	{
 		std::string argument(args[j]);
 
-		if (argument.compare("--experiment") == 0) {
+		if (argument.compare("--experiment") == 0)
+		{
 			experiment = std::stoi(args[j + 1]);
 			++j;
 			continue;
 		}
 
-		if (argument.compare("--live") == 0) {
-			if (fileExistis(args[j + 1])) {
+		if (argument.compare("--live") == 0)
+		{
+			if (fileExistis(args[j + 1]))
+			{
 				liveFileList = args[j + 1];
 				++j;
 				continue;
 			}
 			std::cout << "The file: " << args[j + 1] << " do not existis\n" << std::endl;
 		}
-		if (argument.compare("--spoofing") == 0) {
-			if (fileExistis(args[j + 1])) {
+		if (argument.compare("--spoofing") == 0)
+		{
+			if (fileExistis(args[j + 1]))
+			{
 				spoofingFileList = args[j + 1];
 				++j;
 				continue;
 			}
 			std::cout << "The file: " << args[j + 1] << " do not existis\n" << std::endl;
 		}
-		if (argument.compare("--out") == 0) {
-			if (fileExistis(args[j + 1])) {
+		if (argument.compare("--out") == 0)
+		{
+			if (fileExistis(args[j + 1]))
+			{
 				resultsDestiny = args[j + 1];
 				++j;
 				continue;
 			}
 			std::cout << "The directory: " << args[j + 1] << " do not existis\n" << std::endl;
 		}
-		if (argument.compare("--tests") == 0) {
+		if (argument.compare("--tests") == 0)
+		{
 			numberOfTests = std::stoi(args[j + 1]);
 			++j;
 			continue;
 		}
-		if (argument.compare("--minModel") == 0) {
+		if (argument.compare("--minModel") == 0)
+		{
 			minModel = std::stod(args[j + 1]);
 			++j;
 			continue;
 		}
-		if (argument.compare("--maxModel") == 0) {
+		if (argument.compare("--maxModel") == 0)
+		{
 			maxModel = std::stod(args[j + 1]);
 			++j;
 			continue;
 		}
 	}
 
-	if (experiment == -1) {
+	if (experiment == -1)
+	{
 		std::cout << "Usage: mestrado --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>\n" << std::endl;
 		std::cout << "You must choose an experiment:\n";
 		std::cout << "\t1-Wavelet feature vectors over BARK or MEL comparation\n";
@@ -146,8 +159,10 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 		return -1;
 	}
 
-	if (experiment == 1 || experiment == 5) {
-		if (argc != 9) {
+	if (experiment == 1 || experiment == 5)
+	{
+		if (argc != 9)
+		{
 			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl << std::endl;
 			return -1;
 		}
@@ -164,8 +179,10 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 
 	}
 
-	if (experiment == 2 || experiment == 3 || experiment == 0 || experiment == 6 || experiment == 7 || experiment == 8) {
-		if (argc != 15) {
+	if (experiment == 2 || experiment == 3 || experiment == 0 || experiment == 6 || experiment == 7 || experiment == 8)
+	{
+		if (argc != 15)
+		{
 			std::cout << "Usage: mestrado --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
 			return -1;
 		}
@@ -184,7 +201,8 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 		return -1;
 	}
 
-	if (experiment == 4) {
+	if (experiment == 4)
+	{
 		return experiment;
 	}
 

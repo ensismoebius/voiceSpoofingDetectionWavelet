@@ -13,13 +13,15 @@
 
 #include "WaveletTransformResults.cpp"
 
-namespace wavelets {
+namespace wavelets
+{
 
 	/**
 	 * Indicates what a kind of wavelet
 	 * transformation that must be done
 	 */
-	enum TransformMode {
+	enum TransformMode
+	{
 		PACKET_WAVELET, REGULAR_WAVELET
 	};
 

@@ -15,23 +15,29 @@
 #include "WaveletTransformResults.cpp"
 #include "../linearAlgebra/linearAlgebra.h"
 
-namespace wavelets {
+namespace wavelets
+{
 
-	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> &lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch) {
+	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> &lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch)
+	{
 
 		//If maxitens is not informed then get the full signal size
-		if (maxItens == 0) {
+		if (maxItens == 0)
+		{
 			maxItens = signal.size();
-		} else {
+		} else
+		{
 			// The number of items must be equal or less than the signal length
-			if (maxItens > signal.size()) {
+			if (maxItens > signal.size())
+			{
 				throw std::runtime_error("The number of itens must be equal or less than the signal length");
 			}
 
 			// The number of items must be equal or less than the half of signal length
 			// when in the high pass branch of the signal (used in the wavelet packet
 			// starting in the second transformation level)
-			if (highPassBranch && (maxItens > signal.size() / 2)) {
+			if (highPassBranch && (maxItens > signal.size() / 2))
+			{
 				throw std::runtime_error("The number of itens must be equal or less than the half of signal length when in the high pass branch of the signal");
 			}
 		}
@@ -42,7 +48,8 @@ namespace wavelets {
 		 * one number. The transformation levels shall not pass this limit
 		 * (log2(maxItens))
 		 */
-		if (level > std::log2(maxItens)) {
+		if (level > std::log2(maxItens))
+		{
 			throw std::runtime_error(std::string("This signal only supports a maximum of ") + std::to_string((int) std::log2(maxItens)) + " levels.");
 		}
 
@@ -60,16 +67,19 @@ namespace wavelets {
 		 * The way we apply the filters and store the results for the
 		 * highpass and lowpass portions of the signal is different
 		 */
-		if (highPassBranch) {
+		if (highPassBranch)
+		{
 
 			//Translate the filters over the signal
-			for (unsigned int translation = 0; translation < maxItens; translation += 2) {
+			for (unsigned int translation = 0; translation < maxItens; translation += 2)
+			{
 
 				lowPassSum = 0;
 				highPassSum = 0;
 
 				// Make the sums for lowpass and highpass (i.e. apply the filters)
-				for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex) {
+				for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex)
+				{
 
 					// This part corresponds to the "wrap around" part of Mallat's algorithm
 					signalIndex = (translation + filterIndex) % maxItens;
@@ -93,16 +103,19 @@ namespace wavelets {
 				results.transformedSignal.at(translation / 2) = highPassSum;
 				results.transformedSignal.at((translation / 2) + (maxItens / 2)) = lowPassSum;
 			}
-		} else {
+		} else
+		{
 
 			//Translate the filters over the signal
-			for (unsigned int translation = 0; translation < maxItens; translation += 2) {
+			for (unsigned int translation = 0; translation < maxItens; translation += 2)
+			{
 
 				lowPassSum = 0;
 				highPassSum = 0;
 
 				// Make the sums for lowpass and highpass (i.e. apply the filters)
-				for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex) {
+				for (unsigned int filterIndex = 0; filterIndex < lowpassfilter.size(); ++filterIndex)
+				{
 
 					// This part corresponds to the "wrap around" part of Mallat's algorithm
 					signalIndex = (translation + filterIndex) % maxItens;
@@ -125,7 +138,8 @@ namespace wavelets {
 		}
 
 		// If there is more levels to made the transform do it!
-		if (maxItens > 2 && level > 1) {
+		if (maxItens > 2 && level > 1)
+		{
 
 			/*
 			 * The lowpass signal decomposition is made in both modes: PACKET_WAVELET
@@ -136,20 +150,23 @@ namespace wavelets {
 			WaveletTransformResults lowpassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, false);
 
 			// Used only when in wavelet packet transform
-			if (mode == PACKET_WAVELET) {
+			if (mode == PACKET_WAVELET)
+			{
 
 				// The next level uses only half of the resulting transformed signal
 				// that why the "maxItens / 2"
 				WaveletTransformResults highPassBranchFiltered = malat(results.transformedSignal, lowpassfilter, mode, level - 1, maxItens / 2, true);
 
 				// Write the result
-				for (unsigned int i = 0; i < highPassBranchFiltered.transformedSignal.size(); ++i) {
+				for (unsigned int i = 0; i < highPassBranchFiltered.transformedSignal.size(); ++i)
+				{
 					results.transformedSignal.at(i + results.transformedSignal.size() / 2) = highPassBranchFiltered.transformedSignal.at(i);
 				}
 			}
 
 			// Write the result
-			for (unsigned int i = 0; i < lowpassBranchFiltered.transformedSignal.size(); ++i) {
+			for (unsigned int i = 0; i < lowpassBranchFiltered.transformedSignal.size(); ++i)
+			{
 				results.transformedSignal.at(i) = lowpassBranchFiltered.transformedSignal.at(i);
 			}
 
@@ -168,7 +185,8 @@ namespace wavelets {
 		return results;
 	}
 
-	int getNextPowerOfTwo(double number) {
+	int getNextPowerOfTwo(double number)
+	{
 		return std::pow(2, std::ceil(std::log2(number)));
 	}
 

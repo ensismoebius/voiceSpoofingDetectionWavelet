@@ -38,18 +38,21 @@
 #include "../../lib/classifiers/DistanceClassifier.cpp"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 
-namespace waveletExperiments {
+namespace waveletExperiments
+{
 
 	/**
 	 * Contains the code for experiment 02.
 	 */
-	class Experiment02 {
+	class Experiment02
+	{
 		private:
 
 			/**
 			 * Used to define when MEL or BARK is used
 			 */
-			enum BARK_MEL {
+			enum BARK_MEL
+			{
 				BARK, MEL
 			};
 
@@ -68,7 +71,8 @@ namespace waveletExperiments {
 			/**
 			 * Initialises the experiment
 			 */
-			static void init() {
+			static void init()
+			{
 				wavelets::init( { "haar" });
 				Experiment02::wavelet = wavelets::get("haar");
 				Experiment02::barkRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
@@ -83,7 +87,8 @@ namespace waveletExperiments {
 			 * @param samplingRate
 			 * @param path
 			 */
-			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path) {
+			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
+			{
 
 				///////////////////////
 				/// Wavelet section ///
@@ -127,7 +132,8 @@ namespace waveletExperiments {
 				double rangeScaleStart = 0;
 
 				// Loop over all the ranges and calculate the energies inside it
-				for (unsigned int i = 0; i < barkRanges.size() - 1; i++) {
+				for (unsigned int i = 0; i < barkRanges.size() - 1; i++)
+				{
 
 					// Retrieve the interval for the sums
 					rangeScaleStart = barkRanges.at(i);
@@ -138,14 +144,16 @@ namespace waveletExperiments {
 					int endIndex = rangeScaleEnd / frequencyChunckSize;
 
 					// Sum the values from selected range
-					for (int j = startIndex; j < endIndex; ++j) {
+					for (int j = startIndex; j < endIndex; ++j)
+					{
 
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
 						// Sum them all!! (i.e. calculaate the energies)
 						featureVector.at(i) = 0;
-						for (double v : sig1) {
+						for (double v : sig1)
+						{
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
@@ -173,7 +181,8 @@ namespace waveletExperiments {
 			 * @param resultsDestiny
 			 * @param yrange
 			 */
-			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double stdDeviation, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny, double yrange[2]) {
+			static void savePlotResults(std::vector<double> &numberOfTests, std::vector<double> &bestTestAccuracy, std::vector<double> &worseTestAccuracy, double stdDeviation, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny, double yrange[2])
+			{
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -203,21 +212,26 @@ namespace waveletExperiments {
 			 * Save the results to file on /tmp/results.csv
 			 * @param data
 			 */
-			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> data) {
+			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> data)
+			{
 
 				// Open the file
 				std::string filePath = "/tmp/results.csv";
 				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open()) {
+				if (!ofs.is_open())
+				{
 					std::cout << "Cannot open file: " << filePath;
 					throw std::runtime_error("Impossible to open the file!");
 					return;
 				}
 
-				for (auto clazz : data["haar"][BARK]) {
-					for (std::vector<double> featureVector : clazz.second) {
+				for (auto clazz : data["haar"][BARK])
+				{
+					for (std::vector<double> featureVector : clazz.second)
+					{
 						ofs << clazz.first << '\t';
-						for (double value : featureVector) {
+						for (double value : featureVector)
+						{
 							ofs << value << '\t';
 						}
 						ofs << std::endl;
@@ -234,14 +248,16 @@ namespace waveletExperiments {
 			 * @param distanceType
 			 * @param resultsDestiny
 			 */
-			static void saveConfusionMatrices(statistics::ConfusionMatrix &bestMatrix, statistics::ConfusionMatrix &worstMatrix, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny) {
+			static void saveConfusionMatrices(statistics::ConfusionMatrix &bestMatrix, statistics::ConfusionMatrix &worstMatrix, double pencentageSizeOfModel, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string &resultsDestiny)
+			{
 
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
 				// Open the file
 				std::string filePath = resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
 				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open()) {
+				if (!ofs.is_open())
+				{
 					std::cout << "Cannot open file: " << filePath;
 					throw std::runtime_error("Impossible to open the file!");
 					return;
@@ -257,7 +273,8 @@ namespace waveletExperiments {
 			 * @param args - A list of wavefiles of the same class (ignore the first one)
 			 * @param argCount - The amount of these files
 			 */
-			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
+			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel)
+			{
 				std::cout << std::fixed;
 				std::cout << std::setprecision(4);
 
@@ -293,7 +310,8 @@ namespace waveletExperiments {
 				double totalCycles = 0;
 
 				// Computes the cicles needed to compute all signals
-				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++)
+				{
 					std::ifstream fileListStream;
 					fileListStream.open(classFilesList[i], std::ios::out);
 
@@ -311,14 +329,16 @@ namespace waveletExperiments {
 
 				// Iterates over all files, this files
 				// have to represent our data classes
-				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++)
+				{
 
 					// file reader
 					std::ifstream fileListStream;
 					fileListStream.open(classFilesList[i], std::ios::in);
 
 					// gets the file path to process
-					while (std::getline(fileListStream, line)) {
+					while (std::getline(fileListStream, line))
+					{
 
 						// Status
 						cycles++;
@@ -398,7 +418,8 @@ namespace waveletExperiments {
 				classifiers::DistanceClassifier c;
 
 				// Changes the type of distance classifier used
-				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++) {
+				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++)
+				{
 
 					// Clearing the results for the next iteration
 					numberOfTestForEachPercentage.clear();
@@ -408,17 +429,20 @@ namespace waveletExperiments {
 					worseConfusionMatrixForEachPercentage.clear();
 
 					// Changes the percentage of the feature vectors used as models for the classifier
-					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
+					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1)
+					{
 
 						// Initializing the accuracies
 						percentageBestAccuracy = -std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
 						percentageWorstAccuracy = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
 
 						// Changes the amount of tests done against the dataset
-						for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++) {
+						for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++)
+						{
 
 							// Do the classification and populate the confusion matrix
-							for (unsigned int k = 0; k < amountOfTests; k++) {
+							for (unsigned int k = 0; k < amountOfTests; k++)
+							{
 
 								// Sampling the live signals
 								classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
@@ -437,18 +461,24 @@ namespace waveletExperiments {
 								confusionMatrix.falseNegative = 0;
 
 								// Test it out!!
-								for (auto test : testLive) {
-									if (c.classify(test).compare("live") == 0) {
+								for (auto test : testLive)
+								{
+									if (c.classify(test).compare("live") == 0)
+									{
 										confusionMatrix.truePositive += 1;
-									} else {
+									} else
+									{
 										confusionMatrix.falseNegative += 1;
 									}
 								}
 
-								for (auto test : testSpoofing) {
-									if (c.classify(test).compare("spoofing") == 0) {
+								for (auto test : testSpoofing)
+								{
+									if (c.classify(test).compare("spoofing") == 0)
+									{
 										confusionMatrix.trueNegative += 1;
-									} else {
+									} else
+									{
 										confusionMatrix.falsePositive += 1;
 									}
 								}
@@ -460,14 +490,16 @@ namespace waveletExperiments {
 								// calculate the best accuracy
 								temp = double(confusionMatrix.truePositive + confusionMatrix.trueNegative) / double(testLive.size() + testSpoofing.size());
 
-								if (temp > percentageBestAccuracy) {
+								if (temp > percentageBestAccuracy)
+								{
 									percentageBestAccuracy = temp;
 									percentageBestConfusionMatrix = confusionMatrix;
 									partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix.truePositive) + "\t" + std::to_string(confusionMatrix.falsePositive) + "\t";
 									partialReport += std::to_string(confusionMatrix.falseNegative) + "\t" + std::to_string(confusionMatrix.trueNegative);
 								}
 
-								if (temp < percentageWorstAccuracy) {
+								if (temp < percentageWorstAccuracy)
+								{
 									percentageWorstAccuracy = temp;
 									percentageWorseConfusionMatrix = confusionMatrix;
 									partialReport = std::to_string(percentageBestAccuracy) + "\t" + std::to_string(confusionMatrix.truePositive) + "\t" + std::to_string(confusionMatrix.falsePositive) + "\t";
@@ -491,19 +523,23 @@ namespace waveletExperiments {
 					}
 
 					//Calculates the standard deviation for each percentage
-					for (auto test : numberOfTestForEachPercentage) {
+					for (auto test : numberOfTestForEachPercentage)
+					{
 						stdDeviationForEachPercentage[test.first] = statistics::standardDeviation(allAccuracies[test.first]);
 					}
 
 					// Calculates the range of y axis
 					// for a more regular ploting
 					double yrange[2] = { 1, 0 };
-					for (auto test : numberOfTestForEachPercentage) {
+					for (auto test : numberOfTestForEachPercentage)
+					{
 
-						for (double v : worseTestAccuracyForEachPercentage[test.first]) {
+						for (double v : worseTestAccuracyForEachPercentage[test.first])
+						{
 							yrange[0] = v < yrange[0] ? v : yrange[0];
 						}
-						for (double v : bestTestAccuracyForEachPercentage[test.first]) {
+						for (double v : bestTestAccuracyForEachPercentage[test.first])
+						{
 							yrange[1] = v > yrange[1] ? v : yrange[1];
 						}
 
@@ -514,7 +550,8 @@ namespace waveletExperiments {
 					}
 
 					// Plot everything
-					for (auto test : numberOfTestForEachPercentage) {
+					for (auto test : numberOfTestForEachPercentage)
+					{
 						saveConfusionMatrices(bestConfusionMatrixForEachPercentage[test.first], worseConfusionMatrixForEachPercentage[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
 						savePlotResults(test.second, bestTestAccuracyForEachPercentage[test.first], worseTestAccuracyForEachPercentage[test.first], stdDeviationForEachPercentage[test.first], test.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny, yrange);
 					}

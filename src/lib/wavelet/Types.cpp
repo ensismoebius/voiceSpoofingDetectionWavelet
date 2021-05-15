@@ -13,13 +13,15 @@
 #include <map>
 #include <vector>
 #include <string>
-namespace wavelets {
+namespace wavelets
+{
 
 	static bool initialized = false;
 
 	std::map<std::string, std::vector<double>> types;
 
-	void init(std::vector<std::string> choosenWavelets = { }) {
+	void init(std::vector<std::string> choosenWavelets = { })
+	{
 		std::map<std::string, std::vector<double>> candidates;
 		candidates["altHaar"] = { 0.5, 0.5 };
 		candidates["haar"] = { 0.7071067, 0.7071067 };
@@ -74,13 +76,15 @@ namespace wavelets {
 		// If some specific wavelets are specified
 		// get then and store in the accessible
 		// variable "types"
-		if (choosenWavelets.size() > 0) {
+		if (choosenWavelets.size() > 0)
+		{
 
 			// Clear previously selected wavelets
 			types.clear();
 
 			// Store the new ones
-			for (std::string key : choosenWavelets) {
+			for (std::string key : choosenWavelets)
+			{
 				types[key] = candidates[key];
 			}
 
@@ -94,17 +98,20 @@ namespace wavelets {
 		types = candidates;
 	}
 
-	void resetInitialization() {
+	void resetInitialization()
+	{
 		types.clear();
 		initialized = false;
 	}
 
-	std::vector<double> get(std::string waveletName) {
+	std::vector<double> get(std::string waveletName)
+	{
 		if (!initialized) init();
 		return types[waveletName];
 	}
 
-	std::map<std::string, std::vector<double>> all() {
+	std::map<std::string, std::vector<double>> all()
+	{
 		if (!initialized) init();
 		return types;
 	}

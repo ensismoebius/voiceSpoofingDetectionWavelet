@@ -15,18 +15,21 @@
 #include "../vector/vectorUtils.h"
 #include "../linearAlgebra/linearAlgebra.h"
 
-namespace classifiers {
+namespace classifiers
+{
 
 	/**
 	 * A support vector machine implementation
 	 */
-	class SupportVectorMachine {
+	class SupportVectorMachine
+	{
 		public:
 
 			/**
 			 * Labels for data
 			 */
-			enum LABEL {
+			enum LABEL
+			{
 				POSITIVE = 1, NEGATIVE = -1
 			};
 		private:
@@ -59,7 +62,8 @@ namespace classifiers {
 			 * @param v2
 			 * @return distance
 			 */
-			inline double radialDistance(std::vector<double> currentInputVector, std::vector<double> v2) {
+			inline double radialDistance(std::vector<double> currentInputVector, std::vector<double> v2)
+			{
 				return std::exp(-euclidianDistance(currentInputVector, v2));
 			}
 
@@ -70,7 +74,8 @@ namespace classifiers {
 			 * @param matrix - A matrix (2d vector) with trainning cases
 			 * @param label - Label indicating if it is positive or negative sample
 			 */
-			void addTrainningCases(std::vector<std::vector<double>> matrix, LABEL label) {
+			void addTrainningCases(std::vector<std::vector<double>> matrix, LABEL label)
+			{
 				this->trainningLabels.resize(this->trainningLabels.size() + matrix.size(), label);
 				this->trainningModels.insert(this->trainningModels.end(), matrix.begin(), matrix.end());
 			}
@@ -80,13 +85,15 @@ namespace classifiers {
 			 * @param input - The vector to be tested
 			 * @return POSITIVE or NEGATIVE
 			 */
-			LABEL evaluate(std::vector<double> input) {
+			LABEL evaluate(std::vector<double> input)
+			{
 
 				// Reset Weighted distance for next classification
 				wDistance = 0;
 
 				// creating the layer values
-				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++) {
+				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++)
+				{
 					wDistance += this->outputWeights[fi] * this->radialDistance(input, this->trainningModels[fi]);
 				}
 
@@ -98,15 +105,18 @@ namespace classifiers {
 			 * @see addTrainningCases method
 			 * @see addTrainningCases
 			 */
-			void train() {
+			void train()
+			{
 				// Used to determine the weights for the connections to the output
 				std::vector<std::vector<double>> distancesMatrix;
 				distancesMatrix.resize(this->trainningModels.size(), std::vector<double>(this->trainningModels.size()));
 
 				// creating the distances matrix values
 				// i.e. the distances between the vectors
-				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++) {
-					for (unsigned int ii = 0; ii < this->trainningModels.size(); ii++) {
+				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++)
+				{
+					for (unsigned int ii = 0; ii < this->trainningModels.size(); ii++)
+					{
 						distancesMatrix[fi][ii] = this->radialDistance(this->trainningModels[fi], this->trainningModels[ii]);
 					}
 
@@ -127,7 +137,8 @@ namespace classifiers {
 				this->outputWeights = linearAlgebra::solveMatrix(distancesMatrix);
 			}
 
-			void clearTrain() {
+			void clearTrain()
+			{
 				this->outputWeights.clear();
 				this->trainningLabels.clear();
 				this->trainningModels.clear();

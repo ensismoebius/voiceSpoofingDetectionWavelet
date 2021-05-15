@@ -36,18 +36,21 @@
 #include "../../lib/paraconsistent/paraconsistent.h"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 
-namespace waveletExperiments {
+namespace waveletExperiments
+{
 
 	/**
 	 * Contains the code for experiment 01.
 	 */
-	class Experiment01 {
+	class Experiment01
+	{
 		private:
 
 			/**
 			 * Used to define when MEL or BARK is used
 			 */
-			enum BARK_MEL {
+			enum BARK_MEL
+			{
 				BARK, MEL
 			};
 
@@ -88,7 +91,8 @@ namespace waveletExperiments {
 			 * @param mode
 			 * @param barkOrMel
 			 */
-			static void init(std::vector<double> wavelet, wavelets::TransformMode mode, BARK_MEL barkOrMel) {
+			static void init(std::vector<double> wavelet, wavelets::TransformMode mode, BARK_MEL barkOrMel)
+			{
 				Experiment01::mode = mode;
 				Experiment01::wavelet = wavelet;
 				Experiment01::barkOrMel = barkOrMel;
@@ -106,7 +110,8 @@ namespace waveletExperiments {
 			 * @param samplingRate
 			 * @param path
 			 */
-			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path) {
+			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
+			{
 
 				///////////////////////
 				/// Wavelet section ///
@@ -134,10 +139,12 @@ namespace waveletExperiments {
 				// Contains the values of the MEL or BARK ranges
 				std::vector<double> scaleRanges;
 
-				if (Experiment01::barkOrMel == MEL) {
+				if (Experiment01::barkOrMel == MEL)
+				{
 					// Ranges for MEL scale
 					scaleRanges = MELRanges;
-				} else {
+				} else
+				{
 					// Ranges for BARK scale
 					scaleRanges = BARKRanges;
 				}
@@ -162,7 +169,8 @@ namespace waveletExperiments {
 				double rangeScaleStart = 0;
 
 				// Loop over all the ranges and calculate the energies inside it
-				for (unsigned int i = 0; i < scaleRanges.size() - 1; i++) {
+				for (unsigned int i = 0; i < scaleRanges.size() - 1; i++)
+				{
 
 					// Retrieve the interval for the sums
 					rangeScaleStart = scaleRanges.at(i);
@@ -173,14 +181,16 @@ namespace waveletExperiments {
 					int endIndex = rangeScaleEnd / frequencyChunckSize;
 
 					// Sum the values from selected range
-					for (int j = startIndex; j < endIndex; ++j) {
+					for (int j = startIndex; j < endIndex; ++j)
+					{
 
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
 						// Sum them all!! (i.e. calculaate the energies)
 						featureVector.at(i) = 0;
-						for (double v : sig1) {
+						for (double v : sig1)
+						{
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
@@ -193,7 +203,8 @@ namespace waveletExperiments {
 				linearAlgebra::normalizeVector(featureVector);
 
 				// Just for MEL
-				if (Experiment01::barkOrMel == MEL) {
+				if (Experiment01::barkOrMel == MEL)
+				{
 					// Apply a DCT (Discrete Cosine Transform)
 					linearAlgebra::discreteCosineTransform(featureVector);
 
@@ -209,7 +220,8 @@ namespace waveletExperiments {
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> results) {
+			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> results)
+			{
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -222,10 +234,12 @@ namespace waveletExperiments {
 				plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
 
 				// Iterates over all wavelets
-				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results) {
+				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results)
+				{
 
 					// Iterates over BARK and MEL (yes, just two values)
-					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second) {
+					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second)
+					{
 
 						posVect.push_back(pos++);
 						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
@@ -244,12 +258,14 @@ namespace waveletExperiments {
 			 * @param data
 			 * @param resultsDestiny
 			 */
-			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> data, std::string resultsDestiny) {
+			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> data, std::string resultsDestiny)
+			{
 
 				// Open the file
 				std::string filePath = resultsDestiny + "/results.csv";
 				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open()) {
+				if (!ofs.is_open())
+				{
 					std::cout << "Cannot open file: " << filePath;
 					throw std::runtime_error("Impossible to open the file!");
 					return;
@@ -259,8 +275,10 @@ namespace waveletExperiments {
 				// from the point 1,0 at the paraconsistent plane
 				double distanceTo1_0 = 0;
 
-				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : data) {
-					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> barkOrMelSAndData : wavelet.second) {
+				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : data)
+				{
+					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> barkOrMelSAndData : wavelet.second)
+					{
 
 						// Calculating the distance
 						distanceTo1_0 = std::sqrt(std::pow(barkOrMelSAndData.second[0][0] - 1, 2) + std::pow(barkOrMelSAndData.second[0][1], 2));
@@ -280,7 +298,8 @@ namespace waveletExperiments {
 			 * @param classFileList - A list of wavefiles of the same class (ignore the first one)
 			 * @param resultsDestiny
 			 */
-			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny) {
+			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny)
+			{
 				std::cout << std::fixed;
 				std::cout << std::setprecision(20);
 
@@ -329,11 +348,13 @@ namespace waveletExperiments {
 				double totalCycles = 0;
 
 				// Computes the cicles needed to compute all signals
-				for (unsigned int i = 0; i < classFileList.size(); i++) {
+				for (unsigned int i = 0; i < classFileList.size(); i++)
+				{
 					std::ifstream fileListStream;
 					fileListStream.open(classFileList[i], std::ios::out);
 
-					while (std::getline(fileListStream, line)) {
+					while (std::getline(fileListStream, line))
+					{
 						// lines that begins with # are going to be ignored
 						if (line.find("#") == 0) continue;
 						totalCycles++;
@@ -346,17 +367,20 @@ namespace waveletExperiments {
 
 				// Iterates over all files, this files
 				// have to represent our data classes
-				for (unsigned int i = 0; i < classFileList.size(); i++) {
+				for (unsigned int i = 0; i < classFileList.size(); i++)
+				{
 
 					// file reader
 					std::ifstream fileListStream;
 					fileListStream.open(classFileList[i], std::ios::in);
 
 					// iterates over all wavelets types
-					for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
+					for (std::pair<std::string, std::vector<double>> v : wavelets::all())
+					{
 
 						// Iterates over all barkOrMel
-						for (int bm = BARK; bm <= MEL; bm++) {
+						for (int bm = BARK; bm <= MEL; bm++)
+						{
 
 							// clear fail and eof bits
 							fileListStream.clear();
@@ -364,7 +388,8 @@ namespace waveletExperiments {
 							fileListStream.seekg(0, std::ios::beg);
 
 							// gets the file path to process
-							while (std::getline(fileListStream, line)) {
+							while (std::getline(fileListStream, line))
+							{
 
 								// lines that begins with # are going to be ignored
 								if (line.find("#") == 0) continue;
@@ -392,9 +417,11 @@ namespace waveletExperiments {
 				//////////////////////////////
 
 				// iterates over all wavelets types
-				for (std::pair<std::string, std::vector<double>> v : wavelets::all()) {
+				for (std::pair<std::string, std::vector<double>> v : wavelets::all())
+				{
 					// Iterates over all barkOrMel
-					for (int bm = BARK; bm <= MEL; bm++) {
+					for (int bm = BARK; bm <= MEL; bm++)
+					{
 						unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).size();
 						unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).at(0).size();
 

@@ -34,18 +34,21 @@
 #include "../../lib/classifiers/DistanceClassifier.cpp"
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 
-namespace waveletExperiments {
+namespace waveletExperiments
+{
 
 	/**
 	 * Contains the code for experiment 07.
 	 */
-	class Experiment07 {
+	class Experiment07
+	{
 		private:
 
 			/**
 			 * Used to define when MEL or BARK is used
 			 */
-			enum BARK_MEL {
+			enum BARK_MEL
+			{
 				BARK, MEL
 			};
 
@@ -64,7 +67,8 @@ namespace waveletExperiments {
 			/**
 			 * Initialises the experiment
 			 */
-			static void init() {
+			static void init()
+			{
 				wavelets::init( { "haar" });
 				Experiment07::wavelet = wavelets::get("haar");
 				Experiment07::barkRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
@@ -78,7 +82,8 @@ namespace waveletExperiments {
 			 * @param samplingRate
 			 * @param path
 			 */
-			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path) {
+			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
+			{
 
 				///////////////////////
 				/// Wavelet section ///
@@ -122,7 +127,8 @@ namespace waveletExperiments {
 				double rangeScaleStart = 0;
 
 				// Loop over all the ranges and calculate the energies inside it
-				for (unsigned int i = 0; i < barkRanges.size() - 1; i++) {
+				for (unsigned int i = 0; i < barkRanges.size() - 1; i++)
+				{
 
 					// Retrieve the interval for the sums
 					rangeScaleStart = barkRanges.at(i);
@@ -133,14 +139,16 @@ namespace waveletExperiments {
 					int endIndex = rangeScaleEnd / frequencyChunckSize;
 
 					// Sum the values from selected range
-					for (int j = startIndex; j < endIndex; ++j) {
+					for (int j = startIndex; j < endIndex; ++j)
+					{
 
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
 						// Sum them all!! (i.e. calculaate the energies)
 						featureVector.at(i) = 0;
-						for (double v : sig1) {
+						for (double v : sig1)
+						{
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
@@ -156,7 +164,8 @@ namespace waveletExperiments {
 				signal = featureVector;
 			}
 
-			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string destiny) {
+			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, classifiers::DistanceClassifier::DISTANCE_TYPE distanceType, std::string destiny)
+			{
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -202,7 +211,8 @@ namespace waveletExperiments {
 			 * @param minModel
 			 * @param maxModel
 			 */
-			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
+			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel)
+			{
 				std::cout << std::fixed;
 				std::cout << std::setprecision(4);
 
@@ -238,7 +248,8 @@ namespace waveletExperiments {
 				double totalCycles = 0;
 
 				// Computes the cicles needed to compute all signals
-				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++)
+				{
 					std::ifstream fileListStream;
 					fileListStream.open(classFilesList[i], std::ios::out);
 
@@ -256,14 +267,16 @@ namespace waveletExperiments {
 
 				// Iterates over all files, this files
 				// have to represent our data classes
-				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++)
+				{
 
 					// file reader
 					std::ifstream fileListStream;
 					fileListStream.open(classFilesList[i], std::ios::in);
 
 					// gets the file path to process
-					while (std::getline(fileListStream, line)) {
+					while (std::getline(fileListStream, line))
+					{
 
 						// Status
 						cycles++;
@@ -316,14 +329,17 @@ namespace waveletExperiments {
 				classifiers::DistanceClassifier c;
 
 				// Changes the type of distance classifier used
-				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++) {
+				for (int distClassifierType = classifiers::DistanceClassifier::EUCLICIDIAN; distClassifierType <= classifiers::DistanceClassifier::MANHATTAN; distClassifierType++)
+				{
 
 					// Changes the percentage of the feature vectors used as models for the classifier
-					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
+					for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1)
+					{
 
 						// Changes the amount of tests done against the dataset
 						confusionMatricesForEachPercentage[modelPercentage].resize(amountOfTestsToPerfom);
-						for (unsigned int testIndex = 0; testIndex < amountOfTestsToPerfom; testIndex++) {
+						for (unsigned int testIndex = 0; testIndex < amountOfTestsToPerfom; testIndex++)
+						{
 
 							// Sampling the live signals
 							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
@@ -345,18 +361,24 @@ namespace waveletExperiments {
 							/// Populating the confusion matrices ///
 							/////////////////////////////////////////
 
-							for (auto test : testLive) {
-								if (c.classify(test).compare("live") == 0) {
+							for (auto test : testLive)
+							{
+								if (c.classify(test).compare("live") == 0)
+								{
 									confusionMatrix.truePositive += 1;
-								} else {
+								} else
+								{
 									confusionMatrix.falseNegative += 1;
 								}
 							}
 
-							for (auto test : testSpoofing) {
-								if (c.classify(test).compare("spoofing") == 0) {
+							for (auto test : testSpoofing)
+							{
+								if (c.classify(test).compare("spoofing") == 0)
+								{
 									confusionMatrix.trueNegative += 1;
-								} else {
+								} else
+								{
 									confusionMatrix.falsePositive += 1;
 								}
 							}
@@ -370,7 +392,8 @@ namespace waveletExperiments {
 					}
 
 					// Plot everything
-					for (auto confusionMatrices : confusionMatricesForEachPercentage) {
+					for (auto confusionMatrices : confusionMatricesForEachPercentage)
+					{
 						savePlotResults(confusionMatrices.second, confusionMatrices.first, static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType), resultsDestiny);
 					}
 				}

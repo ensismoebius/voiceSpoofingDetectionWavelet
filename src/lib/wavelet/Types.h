@@ -16,7 +16,8 @@
 #include <map>
 #include <vector>
 #include <string>
-namespace wavelets {
+namespace wavelets
+{
 
 	void init(std::vector<std::string> choosenWavelets = { });
 	void resetInitialization();

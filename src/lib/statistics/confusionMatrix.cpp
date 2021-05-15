@@ -15,7 +15,8 @@
 
 #include "confusionMatrix.h"
 
-namespace statistics {
+namespace statistics
+{
 
 	/**
 	 * False positive rate
@@ -23,7 +24,8 @@ namespace statistics {
 	 * @param tn
 	 * @return
 	 */
-	double falsePositiveRate(double fp, double tn) {
+	double falsePositiveRate(double fp, double tn)
+	{
 		return fp / (tn + fp);
 	}
 
@@ -32,7 +34,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falsePositiveRate(ConfusionMatrix &matrix) {
+	double falsePositiveRate(ConfusionMatrix &matrix)
+	{
 		return falsePositiveRate(matrix.falsePositive, matrix.trueNegative);
 	}
 
@@ -42,7 +45,8 @@ namespace statistics {
 	 * @param tn
 	 * @return
 	 */
-	double falseNegativeRate(double tp, double fn) {
+	double falseNegativeRate(double tp, double fn)
+	{
 		return fn / (fn + tp);
 	}
 
@@ -51,7 +55,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double falseNegativeRate(ConfusionMatrix &matrix) {
+	double falseNegativeRate(ConfusionMatrix &matrix)
+	{
 		return falseNegativeRate(matrix.truePositive, matrix.falseNegative);
 	}
 
@@ -61,7 +66,8 @@ namespace statistics {
 	 * @param fn
 	 * @return
 	 */
-	double truePositiveRate(double tp, double fn) {
+	double truePositiveRate(double tp, double fn)
+	{
 		return tp / (fn + tp);
 	}
 
@@ -70,7 +76,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double truePositiveRate(ConfusionMatrix &matrix) {
+	double truePositiveRate(ConfusionMatrix &matrix)
+	{
 		return truePositiveRate(matrix.falseNegative, matrix.truePositive);
 	}
 
@@ -82,7 +89,8 @@ namespace statistics {
 	 * @param fn
 	 * @return
 	 */
-	double accuracyRate(double tp, double tn, double fp, double fn) {
+	double accuracyRate(double tp, double tn, double fp, double fn)
+	{
 		return (tp + tn) / (tn + fp + fn + tp);
 	}
 
@@ -91,7 +99,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double accuracyRate(ConfusionMatrix &matrix) {
+	double accuracyRate(ConfusionMatrix &matrix)
+	{
 		return accuracyRate(matrix.truePositive, matrix.trueNegative, matrix.falsePositive, matrix.falseNegative);
 	}
 
@@ -101,7 +110,8 @@ namespace statistics {
 	 * @param fp
 	 * @return
 	 */
-	double precision(double tp, double fp) {
+	double precision(double tp, double fp)
+	{
 		return tp / (tp + fp);
 	}
 
@@ -110,7 +120,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double precision(ConfusionMatrix &matrix) {
+	double precision(ConfusionMatrix &matrix)
+	{
 		return precision(matrix.truePositive, matrix.falsePositive);
 	}
 
@@ -120,7 +131,8 @@ namespace statistics {
 	 * @param fn
 	 * @return
 	 */
-	double recall(double tp, double fn) {
+	double recall(double tp, double fn)
+	{
 		return tp / (tp + fn);
 	}
 
@@ -129,7 +141,8 @@ namespace statistics {
 	 * @param matrix
 	 * @return
 	 */
-	double recall(ConfusionMatrix &matrix) {
+	double recall(ConfusionMatrix &matrix)
+	{
 		return recall(matrix.truePositive, matrix.falseNegative);
 	}
 
@@ -139,7 +152,8 @@ namespace statistics {
 	 * @param falsePositiveRates
 	 * @param falseNegativeRates
 	 */
-	void calculateEER(double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates) {
+	void calculateEER(double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates)
+	{
 		double minorDistance = std::numeric_limits<double>::max();
 		double tempDistance = -std::numeric_limits<double>::max();
 
@@ -149,13 +163,15 @@ namespace statistics {
 		std::sort(falsePositiveRates.begin(), falsePositiveRates.end());
 		std::sort(falseNegativeRates.rbegin(), falseNegativeRates.rend());
 
-		for (unsigned int i = 0; i < falsePositiveRates.size(); i++) {
+		for (unsigned int i = 0; i < falsePositiveRates.size(); i++)
+		{
 
 			// Calculate the distance between the coordinates and the x=y line in the graph
 			tempDistance = std::abs((falsePositiveRates[i] - falseNegativeRates[i]) / std::sqrt(2));
 
 			// Store the first nearest point ABOVE x=y line
-			if (tempDistance <= minorDistance && falseNegativeRates[i] >= falsePositiveRates[i]) {
+			if (tempDistance <= minorDistance && falseNegativeRates[i] >= falsePositiveRates[i])
+			{
 				minorDistance = tempDistance;
 				pointAbove[0] = falsePositiveRates[i];
 				pointAbove[1] = falseNegativeRates[i];
@@ -185,10 +201,12 @@ namespace statistics {
 	 * @param falsePositiveRates
 	 * @param falseNegativeRates
 	 */
-	void calculateEER(std::vector<ConfusionMatrix> &confusionMatrices, double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates) {
+	void calculateEER(std::vector<ConfusionMatrix> &confusionMatrices, double &eer, std::vector<double> &falsePositiveRates, std::vector<double> &falseNegativeRates)
+	{
 
 		// Calculate all false positive and false negative rates
-		for (auto confusionMatrix : confusionMatrices) {
+		for (auto confusionMatrix : confusionMatrices)
+		{
 			falsePositiveRates.push_back(falsePositiveRate(confusionMatrix));
 			falseNegativeRates.push_back(falseNegativeRate(confusionMatrix));
 		}

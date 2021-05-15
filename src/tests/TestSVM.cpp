@@ -1,7 +1,8 @@
 #include <iostream>
 #include "../lib/classifiers/SupportVectorMachine.cpp"
 
-void test(int argc, char *args[]) {
+void test(int argc, char *args[])
+{
 
 	classifiers::SupportVectorMachine s;
 
@@ -12,21 +13,27 @@ void test(int argc, char *args[]) {
 	s.addTrainningCases(trainningInputB, classifiers::SupportVectorMachine::NEGATIVE);
 	s.train();
 
-	if (s.evaluate( { -4, -5, -6 }) == classifiers::SupportVectorMachine::POSITIVE) {
+	if (s.evaluate( { -4, -5, -6 }) == classifiers::SupportVectorMachine::POSITIVE)
+	{
 		std::cout << "Positivo" << std::endl;
-	} else {
+	} else
+	{
 		std::cout << "Negativo" << std::endl;
 	}
 
-	if (s.evaluate( { 4, 5, 6 }) == classifiers::SupportVectorMachine::POSITIVE) {
+	if (s.evaluate( { 4, 5, 6 }) == classifiers::SupportVectorMachine::POSITIVE)
+	{
 		std::cout << "Positivo" << std::endl;
-	} else {
+	} else
+	{
 		std::cout << "Negativo" << std::endl;
 	}
 
-	if (s.evaluate( { 4, -5, -1 }) == classifiers::SupportVectorMachine::POSITIVE) {
+	if (s.evaluate( { 4, -5, -1 }) == classifiers::SupportVectorMachine::POSITIVE)
+	{
 		std::cout << "Positivo" << std::endl;
-	} else {
+	} else
+	{
 		std::cout << "Negativo" << std::endl;
 	}
 }

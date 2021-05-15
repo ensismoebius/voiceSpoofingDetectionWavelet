@@ -14,8 +14,10 @@
 #include <vector>
 #include <stdexcept>
 
-namespace wavelets {
-	class WaveletTransformResults {
+namespace wavelets
+{
+	class WaveletTransformResults
+	{
 
 		public:
 			/**
@@ -35,7 +37,8 @@ namespace wavelets {
 			 */
 			std::vector<double> transformedSignal;
 
-			WaveletTransformResults(unsigned int maxItens = 0) {
+			WaveletTransformResults(unsigned int maxItens = 0)
+			{
 				this->transformedSignal.resize(maxItens);
 			}
 
@@ -46,10 +49,12 @@ namespace wavelets {
 			 * @param detailIndex 1 or more: Extracts the corresponding detail
 			 * @return Whole transformed signal, aproximation or details
 			 */
-			std::vector<double> getWaveletTransforms(int detailIndex = -1) {
+			std::vector<double> getWaveletTransforms(int detailIndex = -1)
+			{
 
 				// User is requesting more details then we had produced
-				if (detailIndex > (int) this->levelsOfTransformation) {
+				if (detailIndex > (int) this->levelsOfTransformation)
+				{
 					throw std::runtime_error("There is not a transformations at this level");
 				}
 
@@ -68,20 +73,23 @@ namespace wavelets {
 				int log = (int) std::log2(this->transformedSignal.size());
 
 				// User is requesting just the aproximation
-				if (detailIndex == 0) {
+				if (detailIndex == 0)
+				{
 					// Aproximations always starts at index 0
 					sstart = 0;
 					// The size of aproximation depends on size of original
 					// signal and the levels of transformations made
 					send = std::pow(2, log - this->levelsOfTransformation);
-				} else {
+				} else
+				{
 					// If the executions reaches this part the user are interested in details
 					sstart = std::pow(2, log - detailIndex);
 					send = std::pow(2, log - detailIndex + 1);
 				}
 
 				// Assembling the response
-				for (unsigned int indexRange = sstart; indexRange < send; indexRange++) {
+				for (unsigned int indexRange = sstart; indexRange < send; indexRange++)
+				{
 					levelTransformedSignal.push_back(this->transformedSignal.at(indexRange));
 				}
 
@@ -96,15 +104,18 @@ namespace wavelets {
 			 * @param partIndex : A value from 0 up to @getWaveletPacketAmountOfParts
 			 * @return the requested chunk
 			 */
-			std::vector<double> getWaveletPacketTransforms(unsigned int partIndex) {
+			std::vector<double> getWaveletPacketTransforms(unsigned int partIndex)
+			{
 
 				// Checks if this is a wavelet transform
-				if (!this->packet) {
+				if (!this->packet)
+				{
 					throw std::runtime_error("This is not a wavelet packet transfomed signal");
 				}
 
 				// The partIndex must not access non existent parts of the transformation
-				if (this->getWaveletPacketAmountOfParts() - 1 < partIndex) {
+				if (this->getWaveletPacketAmountOfParts() - 1 < partIndex)
+				{
 					throw std::runtime_error("You are trying to access a non existent part of transformation");
 				}
 
@@ -124,10 +135,12 @@ namespace wavelets {
 			 * parts in a packet wavelet transform
 			 * @return maximum number of generated parts
 			 */
-			unsigned int getWaveletPacketAmountOfParts() {
+			unsigned int getWaveletPacketAmountOfParts()
+			{
 
 				// Checks if this is a wavelet transform
-				if (!this->packet) {
+				if (!this->packet)
+				{
 					throw std::runtime_error("This is not a wavelet packet transfomed signal");
 				}
 
@@ -146,10 +159,12 @@ namespace wavelets {
 			 * @param levelsOfTransformation : levels of transformation of the signal
 			 * @return the requested chunk
 			 */
-			static std::vector<double> getWaveletPacketTransforms(std::vector<double> transformedSignal, unsigned int partIndex, unsigned int levelsOfTransformation) {
+			static std::vector<double> getWaveletPacketTransforms(std::vector<double> transformedSignal, unsigned int partIndex, unsigned int levelsOfTransformation)
+			{
 
 				// The partIndex must not access non existent parts of the transformation
-				if (WaveletTransformResults::getWaveletPacketAmountOfParts(levelsOfTransformation) - 1 < partIndex) {
+				if (WaveletTransformResults::getWaveletPacketAmountOfParts(levelsOfTransformation) - 1 < partIndex)
+				{
 					throw std::runtime_error("You are trying to access a non existent part of transformation");
 				}
 
@@ -173,7 +188,8 @@ namespace wavelets {
 			 * @param levelsOfTransformation
 			 * @return maximum number of generated parts
 			 */
-			static unsigned int getWaveletPacketAmountOfParts(unsigned int levelsOfTransformation) {
+			static unsigned int getWaveletPacketAmountOfParts(unsigned int levelsOfTransformation)
+			{
 				return std::pow(2, levelsOfTransformation);
 			}
 	};

@@ -12,7 +12,8 @@
 
 #include <vector>
 
-namespace statistics {
+namespace statistics
+{
 	double variance(std::vector<double> data);
 	double variance(double *data, unsigned int length);
 

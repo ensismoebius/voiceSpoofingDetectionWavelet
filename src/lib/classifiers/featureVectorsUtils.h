@@ -12,7 +12,8 @@
 
 #include <vector>
 
-namespace classifiers {
+namespace classifiers
+{
 	/**
 	 * Randomly chooses a certain amount of samples
 	 * from @source and puts them in @output

@@ -21,30 +21,40 @@ double pow(double __x, double __y);
 void showInParaconsistentPlane(char textMode, double certaintyDegree_G1, double contradictionDegree_G2);
 double sqrt(double __x);
 
-static void randomlyPopulateClassFeatureVectors(double **&featureVectors, unsigned int samplesPerClass, unsigned int featureVectorSize) {
-	for (unsigned int ci = 0; ci < samplesPerClass; ci++) {
-		for (unsigned int fi = 0; fi < featureVectorSize; fi++) {
+static void randomlyPopulateClassFeatureVectors(double **&featureVectors, unsigned int samplesPerClass, unsigned int featureVectorSize)
+{
+	for (unsigned int ci = 0; ci < samplesPerClass; ci++)
+	{
+		for (unsigned int fi = 0; fi < featureVectorSize; fi++)
+		{
 			featureVectors[ci][fi] = (random() / (double) RAND_MAX);
 		}
 	}
 }
 
-static void clearClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
+static void clearClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize)
+{
 
-	for (unsigned int ci = 0; ci < amountOfClasses; ci++) {
-		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++) {
+	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
+	{
+		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
+		{
 			delete[] arrClasses[ci][fvi];
 		}
 		delete[] arrClasses[ci];
 	}
 }
 
-static void show(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
+static void show(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize)
+{
 
-	for (unsigned int ci = 0; ci < amountOfClasses; ci++) {
+	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
+	{
 		std::cout << "Class: " << ci << std::endl;
-		for (unsigned int fvc = 0; fvc < featureVectorsPerClass; fvc++) {
-			for (unsigned int fvi = 0; fvi < featureVectorSize; fvi++) {
+		for (unsigned int fvc = 0; fvc < featureVectorsPerClass; fvc++)
+		{
+			for (unsigned int fvi = 0; fvi < featureVectorSize; fvi++)
+			{
 				std::cout << arrClasses[ci][fvc][fvi] << ",";
 			}
 			std::cout << std::endl;
@@ -53,22 +63,28 @@ static void show(double ***&arrClasses, unsigned int amountOfClasses, unsigned i
 	}
 }
 
-void initializeClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize) {
+void initializeClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize)
+{
 
-	for (unsigned int ci = 0; ci < amountOfClasses; ci++) {
+	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
+	{
 
 		arrClasses[ci] = new double*[featureVectorsPerClass];
-		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++) {
+		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
+		{
 			arrClasses[ci][fvi] = new double[featureVectorSize];
 		}
 	}
 }
 
-void populateClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int samplesPerClass, unsigned int featureVectorSize, char genRandom = 0) {
+void populateClasses(double ***&arrClasses, unsigned int amountOfClasses, unsigned int samplesPerClass, unsigned int featureVectorSize, char genRandom = 0)
+{
 
 	// random values for test
-	if (genRandom) {
-		while (amountOfClasses--) {
+	if (genRandom)
+	{
+		while (amountOfClasses--)
+		{
 			randomlyPopulateClassFeatureVectors(arrClasses[amountOfClasses], samplesPerClass, featureVectorSize);
 		}
 		return;
@@ -116,7 +132,8 @@ void populateClasses(double ***&arrClasses, unsigned int amountOfClasses, unsign
 
 //////////////////////////////////////////////////////////////////
 
-void example() {
+void example()
+{
 	unsigned int amountOfClasses = 3; //5
 	unsigned int featureVectorSize = 2; //20
 	unsigned int featureVectorsPerClass = 4; //10

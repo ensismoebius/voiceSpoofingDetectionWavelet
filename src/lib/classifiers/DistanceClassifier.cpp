@@ -15,12 +15,15 @@
 #include <limits>
 #include "../vector/vectorUtils.h"
 
-namespace classifiers {
+namespace classifiers
+{
 
-	class DistanceClassifier {
+	class DistanceClassifier
+	{
 
 		public:
-			enum DISTANCE_TYPE {
+			enum DISTANCE_TYPE
+			{
 				EUCLICIDIAN, MANHATTAN
 			};
 
@@ -30,32 +33,40 @@ namespace classifiers {
 
 		public:
 
-			void clearRefenceModels() {
+			void clearRefenceModels()
+			{
 				this->referenceModels.clear();
 			}
 
-			void addReferenceModels(std::string label, std::vector<std::vector<double>> models) {
+			void addReferenceModels(std::string label, std::vector<std::vector<double>> models)
+			{
 				this->referenceModels[label] = models;
 			}
 
-			void setDistanceType(DISTANCE_TYPE type) {
+			void setDistanceType(DISTANCE_TYPE type)
+			{
 				this->distanceType = type;
 			}
 
-			std::string classify(std::vector<double> featureVector) {
+			std::string classify(std::vector<double> featureVector)
+			{
 
 				double distance;
 
 				std::string nearestLabel;
-				double nearestDistance = std::numeric_limits<double>().max();
+				double nearestDistance = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
 
-				if (this->distanceType == EUCLICIDIAN) {
-					for (auto model : this->referenceModels) {
-						for (auto modelFeatureVector : model.second) {
+				if (this->distanceType == EUCLICIDIAN)
+				{
+					for (auto model : this->referenceModels)
+					{
+						for (auto modelFeatureVector : model.second)
+						{
 
 							distance = euclidianDistance(modelFeatureVector, featureVector);
 
-							if (distance < nearestDistance) {
+							if (distance < nearestDistance)
+							{
 								nearestDistance = distance;
 								nearestLabel = model.first;
 							}
@@ -65,13 +76,17 @@ namespace classifiers {
 					return nearestLabel;
 				}
 
-				if (this->distanceType == MANHATTAN) {
-					for (auto model : this->referenceModels) {
-						for (auto modelFeatureVector : model.second) {
+				if (this->distanceType == MANHATTAN)
+				{
+					for (auto model : this->referenceModels)
+					{
+						for (auto modelFeatureVector : model.second)
+						{
 
 							distance = manhattanDistance(modelFeatureVector, featureVector);
 
-							if (distance < nearestDistance) {
+							if (distance < nearestDistance)
+							{
 								nearestDistance = distance;
 								nearestLabel = model.first;
 							}

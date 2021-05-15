@@ -14,7 +14,8 @@
 #include "../lib/wave/filtersOperations.h"
 #include "../lib/linearAlgebra/linearAlgebra.h"
 
-double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false) {
+double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false)
+{
 
 	// size of the range
 	int rangesSize = 14;
@@ -29,7 +30,8 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 	double *featureVector = new double[rangesSize - 1];
 
 	// Initializing the vector
-	for (int i = 0; i < rangesSize - 1; i++) {
+	for (int i = 0; i < rangesSize - 1; i++)
+	{
 		featureVector[i] = 0;
 	}
 
@@ -40,7 +42,8 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 	// for every pair of ranges we need to copy the original signal
 	double *copiedSignal = new double[signalLength];
 
-	for (int i = 0; i < rangesSize - 1; i++) {
+	for (int i = 0; i < rangesSize - 1; i++)
+	{
 
 		// Select start and end ranges
 		rangeStart = ranges[i];
@@ -66,12 +69,14 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 
 		// Calculating the energies
 		double energy = 0;
-		for (int j = 0; j < signalLength; j++) {
+		for (int j = 0; j < signalLength; j++)
+		{
 
 			// Calculate the energies for each energy interval
 			energy = std::pow(copiedSignal[j], 2);
 
-			if (logSmooth) {
+			if (logSmooth)
+			{
 				// apply log to it.
 				energy = energy == 0 ? 0 : log(energy);
 			}
@@ -96,7 +101,8 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 unsigned int resultIndex = 0;
 std::string **results = 0;
 
-void analiticFunction(double *signal, int signalLength, unsigned int samplingRate, std::string path) {
+void analiticFunction(double *signal, int signalLength, unsigned int samplingRate, std::string path)
+{
 
 	unsigned int filterOrder = 27;
 
@@ -109,7 +115,8 @@ void analiticFunction(double *signal, int signalLength, unsigned int samplingRat
 	results[resultIndex][0] = dataColumn.str();
 
 	double *fv = createFeatureVector(signal, signalLength, samplingRate, filterOrder, path);
-	for (int i = 0; i < 13; i++) {
+	for (int i = 0; i < 13; i++)
+	{
 		results[resultIndex][i + 1] = std::to_string(fv[i]);
 	}
 	delete[] fv;

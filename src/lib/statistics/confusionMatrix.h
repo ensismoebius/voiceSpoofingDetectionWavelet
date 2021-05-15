@@ -16,13 +16,16 @@
 #include <vector>
 #include <algorithm>
 
-namespace statistics {
+namespace statistics
+{
 
-	enum CONFUSION_POS {
+	enum CONFUSION_POS
+	{
 		TruePositive, FalsePositive, FalseNegative, TrueNegative
 	};
 
-	struct ConfusionMatrix {
+	struct ConfusionMatrix
+	{
 			int truePositive;
 			int falsePositive;
 			int falseNegative;

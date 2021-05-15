@@ -33,18 +33,21 @@
 #include "../../lib/wavelet/WaveletTransformResults.cpp"
 #include "../../lib/classifiers/SupportVectorMachine.cpp"
 
-namespace waveletExperiments {
+namespace waveletExperiments
+{
 
 	/**
 	 * Contains the code for experiment 08.
 	 */
-	class Experiment08 {
+	class Experiment08
+	{
 		private:
 
 			/**
 			 * Used to define when MEL or BARK is used
 			 */
-			enum BARK_MEL {
+			enum BARK_MEL
+			{
 				BARK, MEL
 			};
 
@@ -63,7 +66,8 @@ namespace waveletExperiments {
 			/**
 			 * Initialises the experiment
 			 */
-			static void init() {
+			static void init()
+			{
 				wavelets::init( { "haar" });
 				Experiment08::wavelet = wavelets::get("haar");
 				Experiment08::barkRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
@@ -77,7 +81,8 @@ namespace waveletExperiments {
 			 * @param samplingRate
 			 * @param path
 			 */
-			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path) {
+			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
+			{
 
 				///////////////////////
 				/// Wavelet section ///
@@ -121,7 +126,8 @@ namespace waveletExperiments {
 				double rangeScaleStart = 0;
 
 				// Loop over all the ranges and calculate the energies inside it
-				for (unsigned int i = 0; i < barkRanges.size() - 1; i++) {
+				for (unsigned int i = 0; i < barkRanges.size() - 1; i++)
+				{
 
 					// Retrieve the interval for the sums
 					rangeScaleStart = barkRanges.at(i);
@@ -132,14 +138,16 @@ namespace waveletExperiments {
 					int endIndex = rangeScaleEnd / frequencyChunckSize;
 
 					// Sum the values from selected range
-					for (int j = startIndex; j < endIndex; ++j) {
+					for (int j = startIndex; j < endIndex; ++j)
+					{
 
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
 						// Sum them all!! (i.e. calculaate the energies)
 						featureVector.at(i) = 0;
-						for (double v : sig1) {
+						for (double v : sig1)
+						{
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
@@ -161,7 +169,8 @@ namespace waveletExperiments {
 			 * @param percentage
 			 * @param destiny
 			 */
-			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, std::string destiny) {
+			static void savePlotResults(std::vector<statistics::ConfusionMatrix> confusionMatrices, double percentage, std::string destiny)
+			{
 
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
@@ -199,7 +208,8 @@ namespace waveletExperiments {
 			 * @param minModel
 			 * @param maxModel
 			 */
-			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel) {
+			static void perform(std::vector<std::string> classFilesList, std::string resultsDestiny, unsigned int amountOfTestsToPerfom, double minModel, double maxModel)
+			{
 				std::cout << std::fixed;
 				std::cout << std::setprecision(4);
 
@@ -235,7 +245,8 @@ namespace waveletExperiments {
 				double totalCycles = 0;
 
 				// Computes the cicles needed to compute all signals
-				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++)
+				{
 					std::ifstream fileListStream;
 					fileListStream.open(classFilesList[i], std::ios::out);
 
@@ -253,14 +264,16 @@ namespace waveletExperiments {
 
 				// Iterates over all files, this files
 				// have to represent our data classes
-				for (unsigned int i = 0; i < classFilesList.size(); i++) {
+				for (unsigned int i = 0; i < classFilesList.size(); i++)
+				{
 
 					// file reader
 					std::ifstream fileListStream;
 					fileListStream.open(classFilesList[i], std::ios::in);
 
 					// gets the file path to process
-					while (std::getline(fileListStream, line)) {
+					while (std::getline(fileListStream, line))
+					{
 
 						// Status
 						cycles++;
@@ -313,11 +326,13 @@ namespace waveletExperiments {
 				classifiers::SupportVectorMachine c;
 
 				// Changes the percentage of the feature vectors used as models for the classifier
-				for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1) {
+				for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1)
+				{
 
 					// Changes the amount of tests done against the dataset
 					confusionMatricesForEachPercentage[modelPercentage].resize(amountOfTestsToPerfom);
-					for (unsigned int testIndex = 1; testIndex < amountOfTestsToPerfom + 1; testIndex++) {
+					for (unsigned int testIndex = 1; testIndex < amountOfTestsToPerfom + 1; testIndex++)
+					{
 
 						// Sampling the live signals
 						classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
@@ -340,18 +355,24 @@ namespace waveletExperiments {
 						/// Populating the confusion matrices ///
 						/////////////////////////////////////////
 
-						for (auto test : testLive) {
-							if (c.evaluate(test) == classifiers::SupportVectorMachine::POSITIVE) {
+						for (auto test : testLive)
+						{
+							if (c.evaluate(test) == classifiers::SupportVectorMachine::POSITIVE)
+							{
 								confusionMatrix.truePositive += 1;
-							} else {
+							} else
+							{
 								confusionMatrix.falseNegative += 1;
 							}
 						}
 
-						for (auto test : testSpoofing) {
-							if (c.evaluate(test) == classifiers::SupportVectorMachine::NEGATIVE) {
+						for (auto test : testSpoofing)
+						{
+							if (c.evaluate(test) == classifiers::SupportVectorMachine::NEGATIVE)
+							{
 								confusionMatrix.trueNegative += 1;
-							} else {
+							} else
+							{
 								confusionMatrix.falsePositive += 1;
 							}
 						}
@@ -366,7 +387,8 @@ namespace waveletExperiments {
 				}
 
 				// Plot everything
-				for (auto confusionMatrices : confusionMatricesForEachPercentage) {
+				for (auto confusionMatrices : confusionMatricesForEachPercentage)
+				{
 					savePlotResults(confusionMatrices.second, confusionMatrices.first, resultsDestiny);
 				}
 			}
