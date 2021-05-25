@@ -1,10 +1,11 @@
-\vspace*{+5pt}
 \section{Introduction}
 \label{introduction}
-		\par Automatic voice verification, or voice biometry, has been attracting more and more attention from nationals and internationals organizations because it is an alternative to the current user verification systems, or, an additional security layer to  traditional systems.
-		
-		\par At times of sanitary emergency on which the implementation costs of iris imaging recognition are prohibitive and the validation using digital fingerprints incurs risks for health by the need of physical contact, the voice recognition appears like a viable authentication alternative.
-				
-		\par So, with the greater interest and use, consequently, greater also are the fraud trying against this systems. Therefore, it is important to distinguish a real authentication request from a fraudulent one. Considering this context, the \textit{voice spoofing attacks} of \textit{playback speech} type constitute the study subject of this work.
-		
- 		\par For more information and the code on witch this work relies on access \href{https://github.com/ensismoebius/mestrado}{https://github.com/ensismoebius/mestrado}.
+\par As an alternative to the current user verification systems, or, an additional security layer to the traditional ones, voice biometrics has been attracting an expressive attention from national and international organizations \cite{vs1}. Furthermore, during sanitary emergency times, for instance, in which the implementation costs of iris imaging recognition are prohibitive and the validation using digital fingerprints incurs risks for health due to the need of physical contact, speaker verification appears as a viable authentication alternative.
+\\				
+\par The greater the interest for voice biometrics becomes evident, the greater the number of attacks to those systems. Consequently, it is of paramount importance to distinguish a real authentication request from a fraudulent one. Among many strategies for voice spoofing, the \textit{playback speech attack} (PSA) consists of replaying the genuine speech by using a playback device, deceiving the authentication mechanism \cite{vs2}. This poses considerable security challenges to speaker verification systems, being thus the focus of this paper. 
+\\
+\par In view of the considerations, the objective of this paper is to find a set of optimal features that proves to be the most disjunctive for separating between two classes, i.e., genuine and spoofed speech signals. The features we examined, which are based on the normalized energies of Discrete-Time Wavelet-Packet Transform (DTWPT) \cite{dwt1} sub-bands, were assessed with Paraconsistent Feature Engineering (PFE) \cite{8588433}. Once isolated, the best descriptors served as input to two classification strategies: Euclidean / Manhattan metrics, playing the role of a pattern-matching approach, and Support Vector Machine (SVM), playing the role of a knowledge-based algorithm \cite{bishop:2006:PRML}.
+\\
+\par The experiments and results described hereafter, relevantly complemented with tables and graphics, combine PFE and wavelets in an innovative manner and allow for detailed discussions. They lead to a set of interesting conclusions from the point of view of digital signal processing and intelligent systems. Thus, this piece of work provides a relevant contribution, supporting future investigations. 
+\\
+\par The remaining of this document is organized as follows. Section \ref{sec:revBibli} presents a short literature review, Section \ref{sec:propApproach} describes the proposed approach, Section \ref{sec:testsResults} details the tests and the results and, lastly, Section \ref{sec:conclusions} is dedicated to the conclusions that are followed by the references. 

@@ -45,7 +45,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
  * @param finalFrequency
  * @return bandpass filter
  */
-double* createBandPassFilter(int order, double samplingRate, double startFrequency, double finalFrequency);
+double* createStopBandFilter(int order, double samplingRate, double startFrequency, double finalFrequency);
 
 /**
  * Create bandstop filter

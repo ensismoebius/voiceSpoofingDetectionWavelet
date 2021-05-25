@@ -50,7 +50,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 		rangeEnd = ranges[i + 1];
 
 		// Create the signal filter
-		double *filter = createBandPassFilter(filterOrder, samplingRate, rangeStart, rangeEnd);
+		double *filter = createStopBandFilter(filterOrder, samplingRate, rangeStart, rangeEnd);
 
 		// Apply window
 		applyWindow(filter, window, filterOrder);

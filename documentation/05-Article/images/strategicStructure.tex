@@ -9,36 +9,33 @@
 				
 			\node (z2)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
 			at (5.5,2){
-				Pre-processing \\
-				and extraction of \\
-				features in the \\
-				\textit{wavelet} domain 
+				\textbf{STEP $S_1$}: Pre-processing \\
+				and feature extraction \\
+				in the \textit{wavelet} domain 
 			}; 	
 			
 			\node (z3)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
-			at (11,2){
-				Energy clustering \\
-				in the Bark / Mel bands 
+			at (10.75,2){
+				\textbf{STEP $S_2$}: Energy clustering \\
+				using Bark / Mel bands 
 			}; 	
 			
 			\node (z4)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
 			at (16.5,2){
-				Paraconsistent analysis \\ 
-				of characteristics
+				\textbf{STEP $S_3$}: Paraconsistent 
+				analysis: \\ election of the best 
+				``energy \\ cluster + wavelet'' combination 
 			}; 
 			
-			\node (z5)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
-			at (16.5,0.25){
-				Selection of the best combination \\
-				energy cluster + wavelet 
-			}; 
+			\node (z5)[shape=circle, draw, align=center, top color=white, bottom color=blue!10] 
+			at (16.5,0.25){}; 
 					
 			\node (z6)[shape=circle, draw, align=center, top color=white, bottom color=blue!10] 
 			at (7,0.25) {};
 			
 			\node (z7)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=yellow!50] 
 			at (7,-1.25) {
-				Distance classifier \\ or SVM
+				\textbf{STEP $S_4$}: Distance \\ classifier or SVM
 			};
 			
 			\node (z8)[shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=green!80] 

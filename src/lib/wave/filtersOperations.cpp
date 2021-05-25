@@ -85,7 +85,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
 	return linearAlgebra::calcOrthogonalVector(filter, order + 1);
 }
 
-double* createBandPassFilter(int order, double samplingRate, double startFrequency, double finalFrequency)
+double* createStopBandFilter(int order, double samplingRate, double startFrequency, double finalFrequency)
 {
 
 	// Order MUST be odd

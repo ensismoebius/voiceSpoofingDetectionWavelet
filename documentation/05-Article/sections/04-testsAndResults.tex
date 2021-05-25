@@ -1,401 +1,315 @@
 \section{Tests and Results}
 \label{sec:testsResults}
-	\subsection{Procedure 1}
-		\label{sec:testsResults:subsec:Experimento01}
-		\par The tests, and corresponding results, for already described Procedure 1   are found in this section. As explained previously, this procedure aims, based on Paraconsistent Engineering, to find which \textit{wavelet} filter provides, together with the Bark or Mel scale, the shortest distance from the point $(G_1,G_2)$ to the vertex $(1,0)$ of the paraconsistent plane.\\
-		
-		\par Particularly, in Figure \ref{fig:paraconsistentfull}, which combines the results of the filters with the scales, the shorter the horizontal length of the bars in blue, the better the separability between the classes. As can be seen, from the tested combinations, \textbf{Haar + Bark} provided the shortest distance. In addition, the tables \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1} and \ref{tab:distParacomFrom10Mel_2} contains the specific values displayed graphically in that Figure.\\
-		
-		\par The \textbf{\textit{wavelet}+Bark} combination consistently presented \textbf{better} viability than the respective combinations of \textbf{\textit{wavelet+Mel}}.\\
-		
-		\par Analyzing the behavior of the best and worst \textit{wavelets} found, it is interesting to ask why the \textbf{Haar} filters have provided the best results. Particularly interesting is the fact that the \textbf{Haar} and \textbf{Daubechies 42} \textit{wavelet} filters provided, respectively, the best and worst results associated with the Bark scale. In contrast, with the \textit{Mel} scale, \textbf{Haar} was the best filter and \textbf{Daubechies 54} the worst.).\\
-		
-		\par For illustration purposes, in Figure \ref{fig:haardaub42comparison} it is possible to see a periodic signal decomposed in its components using the best and the worse filters already cited: Note that with the \textbf{Haar} wavelet the decomposition has less fluctuations, therefore facilitating the classifier's training.
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/haarDaubComparison/haarDaub42Comparison}
-			\caption{Decomposition comparison of a 512 length signal using the best and the worse wavelet filters}
-			\label{fig:haardaub42comparison}
-		\end{figure}
-
-		\par Dicussing about the phase and frequency response characteristics of the \textit{wavelet} filters, we can see the following: Haar presents the frequency response curve that is the most distant from the ideal, as it constitutes a finite impulse response filter (FIR) of order 1, that is, with two coefficients \cite{WaveletPropertiesBrowser}. Therefore, specific frequency sub-bands are undoubtedly contaminated with spectral content from adjacent sub-bands. Additionally, Haar is the only family of \textit{wavelet} filters that has a perfectly linear phase response. So, from the filters point of view, what has been verified experimentally is that a non-rigorous frequency response associated with a perfectly linear phase response is the best alternative.). 
-
-		\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
-
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.62]{images/results/paraconsistentPlane/ParaconsistentFull.png}
-			\caption{Complete graph of the distance from point (1,0) in the paraconsistent plane.}
-			\label{fig:paraconsistentfull}
-		\end{figure}
-	
-		\par From the point of view of the Bark and Mel bands, Bark is the one that was more broadly defined to reflect the behavior of human hearing for acoustic signals in general. Unlike Mel band, which was optimized for voice but, according to the experiments, it did not provide the best results.\\
-		\par That said, it is clear that the \textbf{noisy characteristic} of the spoofed signals, containing, unlike the original voices, notorious components of high frequencies, is better detected with a scale more appropriate to the treatment of audio in general and not only voice.)
-
-	\subsection{Procedure 2} 
-		\label{sec:testsResults:subsec:Experimento02}
-		\par According to procedure 1 the best result was the combination \textbf{Haar+Bark}, therefore, the objective of this procedure is \textbf{to verify the maximum accuracy and the minimum EER} that can be achieved with the use of a classifier based on Euclidean and Manhattan distances, according to the details defined previously.\\
-		
-		\par For the amounts of 10\%, 20\%, 30\%, 40\% and 50\% of the signals in database reserved for training/modeling, with the limit of 300 random tests in each case, the results obtained are shown in Tables \ref{tab:experiment02ResultsEuclidian} and \ref{tab:experiment02ResultsManhattan}. Particularly interesting in them, is the measure of the equal error rate (EER), which balances the rates of false positives and false negatives.\\
-		
-		\par Further details for the Euclidean distance can be obtained by consulting the Tables \ref{tab:classifier_Euclidian_10_best}, \ref{tab:classifier_Euclidian_10_worse},
+\subsection{Metrics}
+\par The corresponding results for each experimental configuration were registered in the following formats:
+		\begin{itemize}
+			\item{} confusion matrices.
+			\item{} values of accuracy and their respective standard deviations.
+			\item{} EER curves.
+		\end{itemize}
+\par In the confusion matrix example, shown as being the Table \ref{tab:confusionMatrixSample}, the \textbf{lines} represent the \textbf{predicted classes} and the \textbf{columns} the \textbf{actual classes}, where:
+\begin{itemize}
+			\item{}\textbf{TP} is the number of true items classified as such, i.e., the \textit{True Positives}.
+			\item{}\textbf{TN} is the number of false items classified as such, i.e., the \textit{True Negatives}.
+			\item{}\textbf{FN} is the number of of true items classified as false, i.e., \textit{False Negatives}.
+			\item{}\textbf{FP} is the number of false items classified as true, i.e., \textit{False Positives}.
+		\end{itemize}
+\input{tables/results/confusionMatrices/confusionMatrixSample.tex}
+To be calculated, the value of accuracy in a classification task is based on the values of \textit{TP}, \textit{TN}, and the number of elements (\textit{N}) as shown in Equation \ref{eq:calculoDaAcuracia}.
+\begin{equation}
+\text{value of accuracy} = \dfrac{TP + TN}{N} \qquad.
+\label{eq:calculoDaAcuracia}
+\end{equation}
+\par In order to calculate the EER, the values of \textit{FP} and \textit{FN} are taken into account \cite{ghazali2018recent}. From them, the \textit{False Acceptance Rate (\textbf{FAR})}, as shown in the Equation \ref{eq:FAR}, and \textit{False Rejection Rate (\textbf{FRR})}, as shown in Equation \ref{eq:FRR}, are obtained.
+\begin{equation}
+\text{FAR}=\dfrac{FP}{TN+FP} \qquad.
+\label{eq:FAR}
+\end{equation}
+\begin{equation}
+\text{FRR}=\dfrac{FN}{TP+FN} \qquad.
+\label{eq:FRR}
+\end{equation}
+\par Confusion matrices are calculated for a sufficient number of times until \textbf{\textit{FAR} is equal to, or close to, \textit{FRR}}. At each cycle, the feature vectors are switched randomly so that different values are obtained. For some cases, over 12000 iterations were required in order to find the configuration that made \textit{FAR=FRR}.
+\\
+\par At each iteration, the values of FAR and FRR are stored in two vectors, being one for each parameter, so that the vector belonging to FAR is sorted in ascending order and the other in decreasing order. These points are depicted on the EER curve, together with a diagonal straight line, creating a \textit{Detection Error Trade off (DET)} plot. The effective value of ERR matches the intersection of the diagonal line with the curve defined by FAR and FRR.
+\subsection{Experiments}
+\par Figure \ref{fig:paraconsistentfull} combines the results obtained with various wavelet filters and the auditory Bark and Mel scales. Since the bars lengths in blue represent the distances from $P=(G_1,G_2)$ to the corner $(1,0)$ of the paraconsistent plane, according to the wavelet filter and the auditory scale used, we can state that the shorter the horizontal length of that bars, the better the separability between the classes. As can be seen from those combinations, \textbf{Haar wavelets + Bark scale} provide the shortest distance. To complement the information reported graphically, Tables \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1}, and \ref{tab:distParacomFrom10Mel_2} contain the specific values displayed in that Figure.
+\\
+\par Overall, the \textbf{wavelet + Bark} combination consistently presented \textbf{better} results in comparison with the respective \textbf{wavelet + Mel} combinations. Based on the behavior of the best and worst wavelets, a natural question is why \textbf{Haar} filters have provided the best results. Particularly interesting is the fact that \textbf{Haar} and \textbf{Daubechies 42} \textit{wavelet} filters provided, respectively, the best and worst results associated with the Bark scale. In contrast, adopting the \textit{Mel} scale, \textbf{Haar} was the best filter and \textbf{Daubechies 54} the worst.
+\\
+\par In regard to the filter's phase and frequency responses, we know that Haar presents a frequency response curve that is mostly far from the ideal, as it is just a first-order finite impulse response (FIR) filter \cite{WaveletPropertiesBrowser}. Therefore, specific frequency sub-bands are undoubtedly contaminated with spectral content from adjacent sub-bands. Additionally, Haar is the only family of orthogonal \textit{wavelet} filters exhibiting linear phase response. Hence, we can note that a non-rigorous frequency response associated with a linear phase response is the best alternative to solve our problem. Notably, the same behavior has been observed with experiments in different sub-fields of signal processing \cite{guido2}\cite{guido3}\cite{guido4}. 
+\\
+\par From the point of view of the auditory Bark and Mel scales, it is relevant to note that the former, not the latter, presents the best results. Nevertheless, the latter is the one optimized for voice and speech signals. Thus, the \textbf{noisy profile} of the spoofed signals, containing, unlike the genuine voices, notorious random components of high frequencies, was better detected with an auditory scale adequate to handle audio signals in general, not speech and voice. This is another relevant point to address. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.55]{images/results/paraconsistentPlane/ParaconsistentFull.png}
+	\caption{Distances from $P=(G_1,G_2)$ to the corner $(1,0)$ in the paraconsistent plane.}
+	\label{fig:paraconsistentfull}
+\end{figure}
+\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
+\par Since the combination \textbf{Haar+Bark} was the best one, we now search for the \textbf{maximum accuracy and minimum EER} that can be achieved. To do so, two classifiers were adopted to receive those features as input: a modest pattern-matching approach, based on Euclidean and Manhattan distances, and a knowledge-based one, based on an SVM. 
+\\
+\par To perform the classifications, we randomly selected $M\%$ of our feature vectors, i.e., $\frac{410 \cdot M}{100} + \frac{410 \cdot M}{100} = 8.2 \cdot M$ to play the role of template models, and the corresponding remaining fraction, i.e., $(100-M)\%$ for testing, where $M=10, 20, 30, 40, 50$. For each value of $M$, 300 random selections were performed. In the distance-based classification strategy, the distance from each feature vector reserved for testing the proposed approach to all the template models was registered and, then, the smallest one was used to label the feature vector being classified. Essentially, this corresponds to the traditional K-Nearest Neighbors (K-NN) classifier with $K=1$.     
+\\
+\par The corresponding results are shown in Tables \ref{tab:experiment02ResultsEuclidian} and \ref{tab:experiment02ResultsManhattan}. Particularly notable are the EER values, which balance the rates of false positives and false negatives. Specific details for the Euclidean distance classifier are shown in Tables \ref{tab:classifier_Euclidian_10_best}, \ref{tab:classifier_Euclidian_10_worse},
 		\ref{tab:classifier_Euclidian_20_best}, \ref{tab:classifier_Euclidian_20_worse}, 
 		\ref{tab:classifier_Euclidian_30_best}, \ref{tab:classifier_Euclidian_30_worse}, 
 		\ref{tab:classifier_Euclidian_40_best}, \ref{tab:classifier_Euclidian_40_worse}, 
-		\ref{tab:classifier_Euclidian_50_best}, \ref{tab:classifier_Euclidian_50_worse}
-		and its respective graphs in the Figures \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40} e \ref{fig:classifiereuclidian50}. For Manhattan distances, the tables \ref{tab:classifier_Manhattan_10_best}, \ref{tab:classifier_Manhattan_10_worst}, 
+		\ref{tab:classifier_Euclidian_50_best},  and \ref{tab:classifier_Euclidian_50_worse}. The corresponding plots are depicted in Figures \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40}, and \ref{fig:classifiereuclidian50}. For Manhattan distances,  Tables \ref{tab:classifier_Manhattan_10_best}, \ref{tab:classifier_Manhattan_10_worst}, 
 		\ref{tab:classifier_Manhattan_20_best}, \ref{tab:classifier_Manhattan_20_worst}, 
 		\ref{tab:classifier_Manhattan_30_best}, \ref{tab:classifier_Manhattan_30_worse}, 
 		\ref{tab:classifier_Manhattan_40_best}, \ref{tab:classifier_Manhattan_40_worse}, 
-		\ref{tab:classifier_Manhattan_50_best}, \ref{tab:classifier_Manhattan_50_worse} 
-		can be consulted toguether with its respective graphs \ref{fig:classifiermanhattan10}, \ref{fig:classifiermanhattan20}, \ref{fig:classifiermanhattan30}, \ref{fig:classifiermanhattan40}, \ref{fig:classifiermanhattan50}.\\
-		
-		\input{tables/results/experiment02Results.tex}
-
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Euclidean distance classifier at 10\% model}
-				
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_10}
-				\caption{Accuracy \textit{x} number of tests - Euclidean distance, model at 10\%}
-				\label{fig:classifiereuclidian10}
-			\end{figure}
-
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_10}
-				\caption{DET curve of Euclidean distance results, model at 10\% }
-				\label{fig:detforclassifiereuclidian10}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_Euclidian_10.tex}
-
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Euclidean distance classifier at 20\% model}
-		
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_20}
-				\caption{Accuracy \textit {x} number of tests - Euclidean distance, model at 20\%}
-				\label{fig:classifiereuclidian20}
-			\end{figure}
-				
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_20}
-				\caption{DET curve of Euclidean distance results, model at 20\%}
-				\label{fig:detforclassifiereuclidian20}
-			\end{figure}
-
-			\input{tables/results/confusionMatrices/classifier_Euclidian_20.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Euclidean distance classifier at 30\% model}
-				
-			\begin{figure}[ht]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_30}
-				\caption{Accuracy \textit{x} number of tests - Euclidean distance, model at 30\%}
-				\label{fig:classifiereuclidian30}
-			\end{figure}
-			
-			\begin{figure}[ht]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_30}
-				\caption{DET curve of Euclidean distance results, model at 30\%}
-				\label{fig:detforclassifiereuclidian30}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_Euclidian_30.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Euclidean distance classifier at 40\% model}
-		
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_40}
-				\caption{Accuracy \textit{X} number of tests - Euclidean distance, model at 40\%}
-				\label{fig:classifiereuclidian40}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_40}
-				\caption{DET curve of Euclidean distance results, model at 40\%}
-				\label{fig:detforclassifiereuclidian40}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_Euclidian_40.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Euclidean distance classifier at 50\% model}
-		
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_50}
-				\caption{Accuracy \textit{x} number of tests - Euclidean distance, model at 50\%}
-				\label{fig:classifiereuclidian50}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_50}
-				\caption{DET curve of Euclidean distance results, model at 50\%}
-				\label{fig:detforclassifiereuclidian50}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_Euclidian_50.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Manhattan distance classifier at 10\% model}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_10.png}
-				\caption{Accuracy \textit{x} number of tests - Manhattan distance, model at 10\%}
-				\label{fig:classifiermanhattan10}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_10}
-				\caption{DET curve of Manhattan distance results, model at 10\%}
-				\label{fig:detforclassifiermanhattan10}
-			\end{figure}
-
-			\input{tables/results/confusionMatrices/classifier_Manhattan_10.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Manhattan distance classifier at 20\% model}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_20.png}
-				\caption{Accuracy \textit{x} number of tests - Manhattan distance, model at 20\%}
-				\label{fig:classifiermanhattan20}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_20}
-				\caption{DET curve of Manhattan distance results, model at 20\%}
-				\label{fig:detforclassifiermanhattan20}
-			\end{figure}
-
-			\input{tables/results/confusionMatrices/classifier_Manhattan_20.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Manhattan distance classifier at 30\% model}
-		
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_30.png}
-				\caption{Accuracy \textit{x} number of tests - Manhattan distance, model at 30\%}
-				\label{fig:classifiermanhattan30}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_30}
-				\caption{DET curve of Manhattan distance results, model at 30\%}
-				\label{fig:detforclassifiermanhattan30}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_Manhattan_30.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Manhattan distance classifier at 40\% model}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_40.png}
-				\caption{Accuracy \textit{x} number of tests - Manhattan distance, model at 40\%}
-				\label{fig:classifiermanhattan40}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_40}
-				\caption{DET curve of Manhattan distance results, model at 40\%}
-				\label{fig:detforclassifiermanhattan40}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using an Manhattan distance classifier at 50\% model}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_50.png}
-				\caption{Accuracy \textit{x} number of tests - Manhattan distance, model at 50\%}
-				\label{fig:classifiermanhattan50}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_50}
-				\caption{DET curve of Manhattan distance results, model at 50\%}
-				\label{fig:detforclassifiermanhattan50}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
-		
-		\subsubsection{Synthesis}
-			\par Looking at the Tables, it is noted that the \textbf{best accuracy/EERs} values are \textbf{0.904878/0.135858} and \textbf{0.909756/0.129268} for the Euclidean and Manhattan distances respectively. Thus, there is no practical difference in the \textit{pattern-matching} metric criteria used and, in addition, a relatively high level of accuracy considering the classifier algorithm simplicity.
-		
-	\subsection{Procedure 3}
-		\label{sec:testsResults:subsec:Experimento03}
-		
-		\par Again, considering that Procedure 1 presented, as best result, the combination \textbf{Haar+Bark}, the objective of this procedure is to verify the \textbf{maximum accuracy and minimum EER} that can be achieved with an SVM. The results, following the same pattern as the previous procedure, are shown in the Table \ref{tab:experiment03Results}.
-				
-		\par More levels of detail can be found in the Tables \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best} e \ref{tab:classifier_SVM_50_worse}, in addition to their respective graphs are in Figures \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40} e \ref{fig:classifiersvm50}.
-		
-		\input{tables/results/experiment03Results.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using a SVM classifier at 10\% model}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_10.png}
-				\caption{Accuracy \textit{x} number of tests - SVM, model at 10\%}
-				\label{fig:classifiersvm10}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_SVM_10}
-				\caption{DET curve of SVM results, model at 10\%}
-				\label{fig:detsvm10}
-			\end{figure}
-
-			\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using a SVM classifier at 20\% model}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_20.png}
-				\caption{Accuracy \textit{x} number of tests - SVM, model at 20\%}
-				\label{fig:classifiersvm20}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_SVM_20}
-				\caption{DET curve of SVM results, model at 20\%}
-				\label{fig:detsvm20}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using a SVM classifier at 30\% model}			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_30.png}
-				\caption{Accuracy \textit{x} number of tests - SVM, model at 30\%}
-				\label{fig:classifiersvm30}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_SVM_30}
-				\caption{DET curve of SVM results, model at 30\%}
-				\label{fig:detsvm30}
-			\end{figure}
-
-			\input{tables/results/confusionMatrices/classifier_SVM_30.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using a SVM classifier at 40\% model}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_40.png}
-				\caption{Accuracy \textit{x} number of tests - SVM, model at 40\%}
-				\label{fig:classifiersvm40}
-			\end{figure}
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_SVM_40}
-				\caption{DET curve of SVM results, model at 40\%}
-				\label{fig:detsvm40}
-			\end{figure}
-		
-			\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
-		
-		\subsubsection{BARK scale with Haar \textit{wavelet} using a SVM classifier at 50\% model}
-			
-			\begin{figure}[!h]
-				\centering
-				\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_50.png}
-				\caption{Accuracy \textit{x} number of tests - SVM, model at 50\%}
-				\label{fig:classifiersvm50}
-			\end{figure}
-			
-			\begin{figure}[!h]
-				\centering
-				\includegraphics[scale=.6]{images/results/det/DET_SVM_50}
-				\caption{DET curve of SVM results, model at 50\%}
-				\label{fig:detsvm50}
-			\end{figure}
-
-			\input{tables/results/confusionMatrices/classifier_SVM_50.tex}
-		
-		\subsubsection{Synthesis}
-			\par In short, it is clear that the \textbf{best accuracy/EER} obtained was \textbf{0.953659/0.087805} with the use of SVM and 50\% of the signal database to train it, consistent with the expectations. In such a case, the respective confusion matrix reveals a minimum amount of false-genuine and false-spoofed, consistent with the related works.
-
-	\subsection{Complementary Tests}
-		\label{sec:testsResults:subsec:Experimento05}
-		
-		\par The Figures \ref{fig:livehaarbark} and \ref{fig:spoofinghaarbark} contains, as a complement, the spreading of the feature vectors values generated by the \textbf{\textit{wavelet-packet} Haar+Bark \textit{scale}}. Notably, compared to Figures \ref{fig:livehaarmel} and \ref{fig:spoofinghaarmel}, the \textbf{spread of the values is greater on the Mel} scale. This difference in data distribution also occurs in the \textit{wavelet-packet} daubechies 42 + Bark combinations, as shown in Figures \ref{fig:livedaub42bark} and \ref{fig:spoofingdaub42bark}, in addition to \textit{wavelet-packet} daubechies 54 + Mel scale, as per Figures \ref{fig:livedaub54mel} and \ref{fig:spoofingdaub54mel}.
-		
-		\par For comparison purposes, the graphs were built on same scale for the amplitude axis (vertical axis).
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/liveHaarBark}
-			\caption{Scattering of feature vectors without \textit{voice spoofing} with \textit{wavelet haar} scale \textit {BARK}}
-			\label{fig:livehaarbark}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingHaarBark}
-			\caption{Scattering of feature vectors for \textit{voice spoofing} with \textit{wavelet haar} scale \textit{BARK}}
-			\label{fig:spoofinghaarbark}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/liveDaub42Bark}
-			\caption{Scattering of feature vectors without \textit{voice spoofing} with \textit{wavelet daubechies 42} scale \textit{BARK}}
-			\label{fig:livedaub42bark}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingDaub42Bark}
-			\caption{Scattering of feature vectors for \textit{voice spoofing} with \textit{wavelet daubechies 42} scale \textit{BARK}}
-			\label{fig:spoofingdaub42bark}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/liveHaarMel}
-			\caption{Scattering of feature vectors without \textit{voice spoofing} with \textit{wavelet haar} scale \textit{MEL}}
-			\label{fig:livehaarmel}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingHaarMel}
-			\caption{Scattering of feature vectors for \textit{voice spoofing} with \textit{wavelet haar} scale \textit{MEL}}
-			\label{fig:spoofinghaarmel}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/liveDaub54Mel}
-			\caption{Scattering of feature vectors without \textit{voice spoofing} with \textit{wavelet daubechies 54} scale \textit{MEL}}
-			\label{fig:livedaub54mel}
-		\end{figure}
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingDaub54Mel}
-			\caption{Scattering of feature vectors for \textit{voice spoofing} with \textit{wavelet daubechies 54} scale \textit{MEL}}
-			\label{fig:spoofingdaub54mel}
-		\end{figure}
+		\ref{tab:classifier_Manhattan_50_best},
+		\ref{tab:classifier_Manhattan_50_worse} 
+		can be consulted together with the respective plots in Figures \ref{fig:classifiermanhattan10}, \ref{fig:classifiermanhattan20}, \ref{fig:classifiermanhattan30}, \ref{fig:classifiermanhattan40}, and \ref{fig:classifiermanhattan50}.
+\input{tables/results/experiment02Results.tex}
+\input{tables/results/confusionMatrices/classifier_Euclidian_10.tex}
+\input{tables/results/confusionMatrices/classifier_Euclidian_20.tex}
+\input{tables/results/confusionMatrices/classifier_Euclidian_30.tex}
+\input{tables/results/confusionMatrices/classifier_Euclidian_40.tex}
+\input{tables/results/confusionMatrices/classifier_Euclidian_50.tex}
+\input{tables/results/confusionMatrices/classifier_Manhattan_10.tex}
+\input{tables/results/confusionMatrices/classifier_Manhattan_20.tex}
+\input{tables/results/confusionMatrices/classifier_Manhattan_30.tex}
+\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
+\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_10}
+\caption{Accuracy \textit{x} number of tests - Euclidean distance with $M=10\%$}
+\label{fig:classifiereuclidian10}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_10}
+\caption{DET curve of Euclidean distance results with $M=10\%$}
+\label{fig:detforclassifiereuclidian10}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_20}
+\caption{Accuracy \textit {x} number of tests - Euclidean distance with $M=20\%$}
+\label{fig:classifiereuclidian20}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_20}
+\caption{DET curve of Euclidean distance results with $M=20\%$}
+\label{fig:detforclassifiereuclidian20}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_30}
+\caption{Accuracy \textit{x} number of tests - Euclidean distance with $M=30\%$}
+\label{fig:classifiereuclidian30}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_30}
+\caption{DET curve of Euclidean distance results with $M=30\%$}
+\label{fig:detforclassifiereuclidian30}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_40}
+\caption{Accuracy \textit{X} number of tests - Euclidean distance with $M=40\%$}
+\label{fig:classifiereuclidian40}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_40}
+\caption{DET curve of Euclidean distance results with $M=40\%$}
+\label{fig:detforclassifiereuclidian40}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Euclidian_50}
+\caption{Accuracy \textit{x} number of tests - Euclidean distance with $M=50\%$}
+\label{fig:classifiereuclidian50}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Euclidian_50}
+\caption{DET curve of Euclidean distance results with $M=50\%$}
+\label{fig:detforclassifiereuclidian50}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_10.png}
+\caption{Accuracy \textit{x} number of tests - Manhattan distance with $M=10\%$}
+\label{fig:classifiermanhattan10}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_10}
+\caption{DET curve of Manhattan distance results with $M=10\%$}
+\label{fig:detforclassifiermanhattan10}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_20.png}
+\caption{Accuracy \textit{x} number of tests - Manhattan distance with $M=20\%$}
+\label{fig:classifiermanhattan20}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_20}
+\caption{DET curve of Manhattan distance with $M=20\%$}
+\label{fig:detforclassifiermanhattan20}
+\end{figure}
+ \begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_30.png}
+\caption{Accuracy \textit{x} number of tests - Manhattan distance with $M=30\%$}
+\label{fig:classifiermanhattan30}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_30}
+\caption{DET curve of Manhattan distance with $M=30\%$}
+\label{fig:detforclassifiermanhattan30}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_40.png}
+\caption{Accuracy \textit{x} number of tests - Manhattan distance with $M=40\%$}
+\label{fig:classifiermanhattan40}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_40}
+\caption{DET curve of Manhattan distance results with $M=40\%$}
+\label{fig:detforclassifiermanhattan40}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_Manhattan_50.png}
+\caption{Accuracy \textit{x} number of tests - Manhattan distance with $M=50\%$}
+\label{fig:classifiermanhattan50}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_for_classifier_Manhattan_50}
+\caption{DET curve of Manhattan distance results with $M=50\%$}
+\label{fig:detforclassifiermanhattan50}
+\end{figure}
+\par Looking at the Tables from \ref{tab:experiment02ResultsEuclidian} to \ref{tab:classifier_Manhattan_50_worse}, we can observe the \textbf{best value} of accuracy and EER: \textbf{0.904878 and 0.135858} for the Euclidean distance classifier, and \textbf{0.909756 and 0.129268} for the Manhattan distance classifier. Thus, there is no practical difference when comparing the \textit{pattern-matching} metric criteria used. In addition, we can state that a relatively high level of accuracy was obtained, assuming the classifier modesty.
+\\
+\par Once again, considering the combination \textbf{Haar+Bark}, we explore hereafter the \textbf{maximum value of accuracy and minimum EER} that can be achieved with an SVM. The corresponding results are shown in Table \ref{tab:experiment03Results} and, additional details can be found in Tables \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best}, and \ref{tab:classifier_SVM_50_worse}. As a complement, Figures \ref{fig:classifiersvm10}, \ref{fig:detsvm10}, \ref{fig:classifiersvm20}, \ref{fig:detsvm20}, \ref{fig:classifiersvm30}, \ref{fig:detsvm30}, \ref{fig:classifiersvm40}, \ref{fig:detsvm40}, \ref{fig:classifiersvm50}, and \ref{fig:detsvm50} show the corresponding plots.
+\input{tables/results/experiment03Results.tex}
+\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
+\input{tables/results/confusionMatrices/classifier_SVM_20.tex}
+\input{tables/results/confusionMatrices/classifier_SVM_30.tex}
+\input{tables/results/confusionMatrices/classifier_SVM_40.tex}
+\input{tables/results/confusionMatrices/classifier_SVM_50.tex}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_10.png}
+\caption{Accuracy \textit{x} number of tests - SVM with $M=10\%$}
+\label{fig:classifiersvm10}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_SVM_10}
+\caption{DET curve of SVM results with $M=10\%$}
+\label{fig:detsvm10}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_20.png}
+\caption{Accuracy \textit{x} number of tests - SVM with $M=20\%$}
+\label{fig:classifiersvm20}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_SVM_20}
+\caption{DET curve of SVM results with $M=20\%$}
+\label{fig:detsvm20}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_30.png}
+\caption{Accuracy \textit{x} number of tests - SVM with $M=30\%$}
+\label{fig:classifiersvm30}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_SVM_30}
+\caption{DET curve of SVM results with $M=30\%$}
+\label{fig:detsvm30}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_40.png}
+\caption{Accuracy \textit{x} number of tests - SVM with $M=40\%$}
+\label{fig:classifiersvm40}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_SVM_40}
+\caption{DET curve of SVM results with $M=40\%$}
+\label{fig:detsvm40}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/confusionMatrices/classifier_SVM_50.png}
+\caption{Accuracy \textit{x} number of tests - SVM with $M=50\%$}
+\label{fig:classifiersvm50}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.6]{images/results/det/DET_SVM_50}
+\caption{DET curve of SVM results with $M=50\%$}
+\label{fig:detsvm50}
+\end{figure}
+\par In short, the \textbf{best values of accuracy and EER} obtained were \textbf{0.953659 and 0.087805}, respectively, when the SVM classifier was adopted with $M=50\%$, matching the expectations. In such a case, the respective confusion matrix reveals a minimum amount of false-genuine and false-spoofed, consistent with the related works.
+\subsection{Complementary Tests}
+\par Figures \ref{fig:livehaarbark} and \ref{fig:spoofinghaarbark} contains, as a complement, a scatter plot of the feature vectors values generated by the \textbf{Haar+Bark} pair. Notably, in comparison with Figures \ref{fig:livehaarmel} and \ref{fig:spoofinghaarmel}, the \textbf{spread of values is greater on the Mel scale}. This difference in data distribution also occurs with the pair \textbf{daubechies 42 + Bark}, as shown in Figures \ref{fig:livedaub42bark} and \ref{fig:spoofingdaub42bark}, in addition to \textbf{daubechies 54 + Mel}, as per Figures \ref{fig:livedaub54mel} and \ref{fig:spoofingdaub54mel}. 
+\begin{figure}
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/liveHaarBark}
+\caption{Scattering of feature vectors without \textit{voice spoofing} with \textit{wavelet haar} scale \textit {BARK}}
+\label{fig:livehaarbark}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingHaarBark}
+\caption{Scattering of feature vectors for \textit{voice spoofing} with \textit{wavelet haar} scale \textit{BARK}}
+\label{fig:spoofinghaarbark}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/liveDaub42Bark}
+\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{daubechies 42 + BARK}}
+\label{fig:livedaub42bark}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingDaub42Bark}
+\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{daubechies 42 + BARK}}
+\label{fig:spoofingdaub42bark}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/liveHaarMel}
+\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Haar + MEL}}
+\label{fig:livehaarmel}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingHaarMel}
+\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Haar + MEL}}
+\label{fig:spoofinghaarmel}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/liveDaub54Mel}
+\caption{Scatter plot for \textit{genuine} feature vectors  based on the pair \textit{daubechies 54 + MEL}}
+\label{fig:livedaub54mel}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=.55]{images/results/barkVersusMel/spoofingDaub54Mel}
+\caption{Scatter plot for \textit{spoofed} feature vectors  based on the pair \textit{daubechies 54 + MEL}}
+\label{fig:spoofingdaub54mel}
+\end{figure}
