@@ -138,7 +138,7 @@
 //						// Retrieve the values
 //						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 //
-//						// Sum them all!! (i.e. calculaate the energies)
+//						// Sum them all!! (i.e. calculate the energies)
 //						featureVector.at(i) = 0;
 //						for (double v : sig1) {
 //							featureVector.at(i) += std::pow(v, 2);

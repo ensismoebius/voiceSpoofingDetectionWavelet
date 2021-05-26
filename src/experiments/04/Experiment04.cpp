@@ -7,7 +7,7 @@
  * 04 de mai de 2020
  *
  * This experiment visually demonstrates the wavelet packet
- * transformation give a reapeated dummy signal. This was
+ * transformation given a repeated dummy signal. This was
  * made in order to justify why the wavelet haar is better
  * for create feature vectors for classifications
  */

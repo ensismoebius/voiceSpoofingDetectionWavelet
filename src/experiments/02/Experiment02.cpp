@@ -9,7 +9,7 @@
  * Based on the results of experiment 01, which has selected
  * wavelet Haar and BARK scale as the best feature vector
  * generators, this experiment do some classifications using
- * Euclidian and Manhattan distance classificators generating
+ * Euclidian and Manhattan distance classifiers generating
  * the respectives confusion matrices, standard deviations and
  * accuracy measurements.
  *
@@ -150,14 +150,15 @@ namespace waveletExperiments
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
-						// Sum them all!! (i.e. calculaate the energies)
+						// Sum them all!! (i.e. calculate the energies)
 						featureVector.at(i) = 0;
 						for (double v : sig1)
 						{
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
-						featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
+						// TODO this is used only in MEL so i have to remove this line
+						//featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
 					}
 
 				}

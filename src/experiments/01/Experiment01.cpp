@@ -7,11 +7,11 @@
  * 24 de abr de 2020
  *
  * The experiment 01 consists in take the Wavelet transforms
- * of the given sinal until each coeficient is just a number,
+ * of the given signal until each coefficient is just a number,
  * after this, a sum of the transformed signal squares is taken
  * for each range defined in MEL or BARK scales and following
  * the respectives rules for BARK or MEL scales to build a
- * feature vector witch will be analised by a paraconsistent
+ * feature vector witch will be analyzed by a paraconsistent
  * algorithm. The results will be plotted and saved.
  * It will be done for all files and wavelets.
  */
@@ -187,20 +187,25 @@ namespace waveletExperiments
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
-						// Sum them all!! (i.e. calculaate the energies)
+						// Sum them all!! (i.e. calculate the energies)
 						featureVector.at(i) = 0;
 						for (double v : sig1)
 						{
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
-						featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
+						// Just for MEL
+						if (Experiment01::barkOrMel == MEL)
+						{
+							featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
+						}
 					}
 
 				}
 
+				// TODO I may have to restore this
 				// Normalize the resulting feature vector
-				linearAlgebra::normalizeVector(featureVector);
+				//linearAlgebra::normalizeVector(featureVector);
 
 				// Just for MEL
 				if (Experiment01::barkOrMel == MEL)
@@ -211,6 +216,10 @@ namespace waveletExperiments
 					// Takes the double derivative of the features vector
 					linearAlgebra::derivative(featureVector, 2);
 				}
+
+				// Normalize the resulting feature vector
+				linearAlgebra::normalizeVector(featureVector);
+
 
 				// Replaces the original signal
 				signal = featureVector;

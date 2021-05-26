@@ -195,13 +195,19 @@ namespace waveletExperiments
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
-						featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
+						// Just for MEL
+						if (Experiment05::barkOrMel == MEL)
+						{
+							featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
+						}
+
 					}
 
 				}
 
+				// TODO I may have to restore this
 				// Normalize the resulting feature vector
-				linearAlgebra::normalizeVector(featureVector);
+				//linearAlgebra::normalizeVector(featureVector);
 
 				// Just for MEL
 				if (Experiment05::barkOrMel == MEL)
@@ -209,10 +215,15 @@ namespace waveletExperiments
 					// Apply a DCT (Discrete Cosine Transform)
 					linearAlgebra::discreteCosineTransform(featureVector);
 
-					// For the sake of this experiment we need to known MEL values without derivation
-					// Takes the double derivative of the features vector
+					/*
+					 * For the sake of this experiment we need to known MEL values
+					 * without derivation. That why the derivative is commented out
+					 */
 					// linearAlgebra::derivative(featureVector, 2);
 				}
+
+				// Normalize the resulting feature vector
+				linearAlgebra::normalizeVector(featureVector);
 
 				// Replaces the original signal
 				signal = featureVector;
@@ -252,8 +263,8 @@ namespace waveletExperiments
 				parans["rotation_mode"] = "anchor";
 				parans["horizontalalignment"] = "right";
 
-				std::map<std::string, std::string> parans2;
-				parans2["color"] = "red";
+				std::map<std::string, std::string> params2;
+				params2["color"] = "red";
 
 				for (auto wavelets : results)
 				{
@@ -293,7 +304,7 @@ namespace waveletExperiments
 								plt::xlim(0, int(MELRanges.size()));
 							}
 							// This range was figured out empirically
-							plt::ylim(-0.11, 0.16);
+							plt::ylim(0, 1);
 
 							// Plotting the values
 							plt::title(title);
@@ -301,10 +312,10 @@ namespace waveletExperiments
 							{
 								if (static_cast<BARK_MEL>(barkMel.first) == BARK)
 								{
-									plt::scatter(barkTicks, vector, 8, parans2);
+									plt::scatter(barkTicks, vector, 8, params2);
 								} else
 								{
-									plt::scatter(melTicks, vector, 8, parans2);
+									plt::scatter(melTicks, vector, 8, params2);
 								}
 							}
 							plt::tight_layout();
