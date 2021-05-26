@@ -304,7 +304,7 @@ namespace waveletExperiments
 								plt::xlim(0, int(MELRanges.size()));
 							}
 							// This range was figured out empirically
-							plt::ylim(0, 1);
+							plt::ylim(-1, 1);
 
 							// Plotting the values
 							plt::title(title);
