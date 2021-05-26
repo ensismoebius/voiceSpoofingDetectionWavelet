@@ -43,7 +43,7 @@ namespace wavelets
 			}
 
 			/**
-			 * Extracts the aproximation and details from the wavelet transformation
+			 * Extracts the approximation and details from the wavelet transformation
 			 * @param detailIndex -1: Return the whole transformed signal
 			 * @param detailIndex 0: Extracts the aproximation
 			 * @param detailIndex 1 or more: Extracts the corresponding detail
@@ -66,18 +66,18 @@ namespace wavelets
 				unsigned send = 0;
 				unsigned sstart = 0;
 
-				// The conteiner of our response
+				// The container of our response
 				std::vector<double> levelTransformedSignal;
 
 				// This value is used in the calculations of indexers
 				int log = (int) std::log2(this->transformedSignal.size());
 
-				// User is requesting just the aproximation
+				// User is requesting just the approximation
 				if (detailIndex == 0)
 				{
-					// Aproximations always starts at index 0
+					// Approximations always starts at index 0
 					sstart = 0;
-					// The size of aproximation depends on size of original
+					// The size of approximation depends on size of original
 					// signal and the levels of transformations made
 					send = std::pow(2, log - this->levelsOfTransformation);
 				} else
@@ -110,7 +110,7 @@ namespace wavelets
 				// Checks if this is a wavelet transform
 				if (!this->packet)
 				{
-					throw std::runtime_error("This is not a wavelet packet transfomed signal");
+					throw std::runtime_error("This is not a wavelet packet transformed signal");
 				}
 
 				// The partIndex must not access non existent parts of the transformation
@@ -119,7 +119,7 @@ namespace wavelets
 					throw std::runtime_error("You are trying to access a non existent part of transformation");
 				}
 
-				// Calculate de size of the chuncks
+				// Calculate de size of the chunks
 				int chunkSize = this->transformedSignal.size() / this->getWaveletPacketAmountOfParts();
 
 				// Get the ranges that must be returned
@@ -141,7 +141,7 @@ namespace wavelets
 				// Checks if this is a wavelet transform
 				if (!this->packet)
 				{
-					throw std::runtime_error("This is not a wavelet packet transfomed signal");
+					throw std::runtime_error("This is not a wavelet packet transformed signal");
 				}
 
 				return std::pow(2, this->levelsOfTransformation);
@@ -183,7 +183,7 @@ namespace wavelets
 			 * Static version of @getWaveletPacketAmountOfParts()
 			 * Calculate the maximum number of generated
 			 * parts in a packet wavelet transform given
-			 * the levels of transformations perfomed
+			 * the levels of transformations performed
 			 * USE ONLY WITH PACKET WAVELETS!!
 			 * @param levelsOfTransformation
 			 * @return maximum number of generated parts

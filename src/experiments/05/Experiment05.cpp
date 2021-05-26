@@ -188,7 +188,7 @@ namespace waveletExperiments
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
-						// Sum them all!! (i.e. calculaate the energies)
+						// Sum them all!! (i.e. Calculate the energies)
 						featureVector.at(i) = 0;
 						for (double v : sig1)
 						{
@@ -373,7 +373,7 @@ namespace waveletExperiments
 				double cycles = 0;
 				double totalCycles = 0;
 
-				// For this experiment we wil use just three wavelets
+				// For this experiment we will use just three wavelets
 				wavelets::init( { "haar", "daub42", "daub54" });
 
 				// Computes the cycles needed to compute all signals
@@ -398,7 +398,6 @@ namespace waveletExperiments
 				// have to represent our data classes
 				for (unsigned int i = 0; i < classFileList.size(); i++)
 				{
-
 					// file reader
 					std::ifstream fileListStream;
 					fileListStream.open(classFileList[i], std::ios::in);
