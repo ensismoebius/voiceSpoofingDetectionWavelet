@@ -205,7 +205,7 @@ namespace waveletExperiments
 
 				plt::grid(true);
 				plt::legend();
-				plt::save(resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
+				plt::save(resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".svg");
 				plt::clf();
 			}
 
