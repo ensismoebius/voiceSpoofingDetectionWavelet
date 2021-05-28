@@ -83,6 +83,7 @@ namespace waveletExperiments
 			 * Wavelet type
 			 */
 			static inline wavelets::TransformMode mode;
+
 		public:
 
 			/**
@@ -220,7 +221,6 @@ namespace waveletExperiments
 				// Normalize the resulting feature vector
 				linearAlgebra::normalizeVector(featureVector);
 
-
 				// Replaces the original signal
 				signal = featureVector;
 			}
@@ -235,6 +235,7 @@ namespace waveletExperiments
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
 
+				double dist;
 				int pos = 1;
 				std::vector<double> posVect;
 				std::vector<double> distancesFrom1_0;
@@ -252,12 +253,19 @@ namespace waveletExperiments
 
 						posVect.push_back(pos++);
 						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
-						distancesFrom1_0.push_back(std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2)));
+
+						// Calculate the distance from point 1,0 (true) of the paraconsistent plane
+						dist = std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2));
+
+						// Represents the values in a log of 10 base
+						distancesFrom1_0.push_back(std::log10(dist));
 					}
 				}
 
+				plt::xlabel("Values in Log10(x) - The least the better");
 				plt::barh(posVect, distancesFrom1_0);
 				plt::yticks(posVect, annotations);
+				plt::tight_layout();
 				plt::show();
 			}
 
@@ -272,7 +280,8 @@ namespace waveletExperiments
 
 				// Open the file
 				std::string filePath = resultsDestiny + "/results.csv";
-				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
+				std::ofstream ofs(filePath, std::ios::trunc | std::ios::out);
+
 				if (!ofs.is_open())
 				{
 					std::cout << "Cannot open file: " << filePath;
@@ -280,22 +289,35 @@ namespace waveletExperiments
 					return;
 				}
 
-				// A misplaced variable used to store the distance
-				// from the point 1,0 at the paraconsistent plane
-				double distanceTo1_0 = 0;
-
 				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : data)
 				{
 					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> barkOrMelSAndData : wavelet.second)
 					{
 
-						// Calculating the distance
-						distanceTo1_0 = std::sqrt(std::pow(barkOrMelSAndData.second[0][0] - 1, 2) + std::pow(barkOrMelSAndData.second[0][1], 2));
-
 						// Writing in to the file
-						ofs << (barkOrMelSAndData.first == BARK ? "BARK" : "MEL") << '\t' << wavelet.first << '\t';
-						ofs << barkOrMelSAndData.second[0][0] << '\t' << barkOrMelSAndData.second[0][1] << '\t' << distanceTo1_0 << '\t';
-						ofs << std::endl;
+						ofs << std::boolalpha
+							<< std::fixed
+							<< std::setprecision(10)
+							<< (barkOrMelSAndData.first == BARK ? "BARK" : "MEL") << '\t'
+							<< wavelet.first << '\t'
+							<< std::noboolalpha
+							<< std::defaultfloat
+							<< std::dec
+							<< barkOrMelSAndData.second[0][0]
+							<< std::boolalpha
+							<< '\t'
+							<< std::noboolalpha
+							<< std::defaultfloat
+							<< std::dec
+							<< barkOrMelSAndData.second[1][0]
+							<< std::boolalpha
+							<< '\t'
+							<< std::noboolalpha
+							<< std::defaultfloat
+							<< std::dec
+							<< barkOrMelSAndData.second[2][0]
+							<< std::boolalpha
+							<< std::endl;
 					}
 				}
 				ofs.close();
@@ -309,8 +331,8 @@ namespace waveletExperiments
 			 */
 			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny)
 			{
-				std::cout << std::fixed;
-				std::cout << std::setprecision(20);
+//				std::cout << std::fixed;
+//				std::cout << std::setprecision(10);
 
 				// set the callback function in the Experiment01 class
 				Wav w;
@@ -425,6 +447,8 @@ namespace waveletExperiments
 				/// Paraconsistent section ///
 				//////////////////////////////
 
+				std::cout << std::endl << "----------------------" << std::endl;
+
 				// iterates over all wavelets types
 				for (std::pair<std::string, std::vector<double>> v : wavelets::all())
 				{
@@ -441,20 +465,24 @@ namespace waveletExperiments
 
 						double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
 						double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
+						double distanceTo1_0 = std::sqrt(std::pow(contradictionDegree_G2 - 1, 2) + std::pow(certaintyDegree_G1, 2));
 
 						// Calculating the position at the paraconsistent plane
 						std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
 						std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
+						std::cout << "Dist from point(0,1) :" << distanceTo1_0 << std::endl;
+						std::cout << "----------------------" << std::endl;
 
 						// Storing the final results
-						finalResults[v.first][static_cast<BARK_MEL>(bm)].resize(2);
+						finalResults[v.first][static_cast<BARK_MEL>(bm)].resize(3);
 						finalResults[v.first][static_cast<BARK_MEL>(bm)].at(0) = { certaintyDegree_G1 };
 						finalResults[v.first][static_cast<BARK_MEL>(bm)].at(1) = { contradictionDegree_G2 };
+						finalResults[v.first][static_cast<BARK_MEL>(bm)].at(2) = { distanceTo1_0 };
 					}
 				}
 
 				saveDataToFile(finalResults, resultsDestiny);
-				plotResults(finalResults);
+				//plotResults(finalResults);
 			}
 	};
 }

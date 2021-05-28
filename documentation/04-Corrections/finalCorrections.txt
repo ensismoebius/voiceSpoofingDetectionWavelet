@@ -1,0 +1,4 @@
+Calcula as wavelet packet transformations depois soma as energias depois tira o log, para depois fazer o DCT e as derivadas e daí normalizar?
+alpha e betha dao resultados diferentes de acordo com a normali
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjZg8eGpenwAhUKHLkGHa8nA04QFjAJegQIBRAD&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F46160717%2Ftwo-methods-to-normalise-array-to-sum-total-to-1-0&usg=AOvVaw3RLsZvM_pqwRFmnmGP3DYf
+

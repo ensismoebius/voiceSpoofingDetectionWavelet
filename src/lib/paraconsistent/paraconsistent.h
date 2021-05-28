@@ -8,6 +8,10 @@
 #ifndef LIB_PARACONSISTENT_H_
 #define LIB_PARACONSISTENT_H_
 
+#include <map>
+#include <limits>
+#include <vector>
+
 double calcCertaintyDegree_G1(double alpha, double betha);
 double calcContradictionDegree_G2(double alpha, double betha);
 

@@ -119,7 +119,7 @@ namespace wavelets
 					throw std::runtime_error("You are trying to access a non existent part of transformation");
 				}
 
-				// Calculate de size of the chunks
+				// Calculate the size of the chunks
 				int chunkSize = this->transformedSignal.size() / this->getWaveletPacketAmountOfParts();
 
 				// Get the ranges that must be returned

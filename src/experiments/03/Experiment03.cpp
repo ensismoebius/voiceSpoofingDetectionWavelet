@@ -200,7 +200,7 @@ namespace waveletExperiments
 
 				plt::grid(true);
 				plt::legend();
-				plt::save(resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".svg");
+				plt::save(resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
 				plt::clf();
 			}
 

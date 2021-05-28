@@ -197,7 +197,7 @@ namespace waveletExperiments
 
 				plt::grid(true);
 
-				std::string file = destiny + "/DET_for_classifier_" + distType + "_" + std::to_string(int(percentage * 100)) + ".svg";
+				std::string file = destiny + "/DET_for_classifier_" + distType + "_" + std::to_string(int(percentage * 100)) + ".png";
 				plt::save(file);
 
 				plt::clf();

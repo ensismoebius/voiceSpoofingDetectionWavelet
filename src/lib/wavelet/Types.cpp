@@ -23,7 +23,7 @@ namespace wavelets
 	void init(std::vector<std::string> choosenWavelets = { })
 	{
 		std::map<std::string, std::vector<double>> candidates;
-		candidates["altHaar"] = { 0.5, 0.5 };
+		//candidates["altHaar"] = { 0.5, 0.5 };
 		candidates["haar"] = { 0.7071067, 0.7071067 };
 		candidates["daub4"] = { 4.82962913144e-01, 8.36516303737e-01, 2.24143868042e-01, -1.29409522551e-01 };
 		candidates["daub6"] = { 3.32670552950e-01, 8.06891509311e-01, 4.59877502118e-01, -1.35011020010e-01, -8.54412738820e-02, 3.52262918857e-02 };

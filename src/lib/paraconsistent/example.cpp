@@ -11,15 +11,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include  <cmath>
-
-double calcCertaintyDegree_G1(double alpha, double betha);
-double calcContradictionDegree_G2(double alpha, double betha);
-double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double ***&arrClasses);
-double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double ***&arrClasses);
-void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, double ***arrClasses);
-double pow(double __x, double __y);
-void showInParaconsistentPlane(char textMode, double certaintyDegree_G1, double contradictionDegree_G2);
-double sqrt(double __x);
+#include <vector>
+#include "paraconsistent.h"
 
 static void randomlyPopulateClassFeatureVectors(double **&featureVectors, unsigned int samplesPerClass, unsigned int featureVectorSize)
 {
@@ -128,11 +121,61 @@ void populateClasses(double ***&arrClasses, unsigned int amountOfClasses, unsign
 
 	arrClasses[2][3][0] = 0.11;
 	arrClasses[2][3][1] = 0.88;
+
+
+//	//c1
+//	arrClasses[0][0][0] = -4;
+//	arrClasses[0][0][1] = -9;
+//	arrClasses[0][0][2] = -7;
+//	arrClasses[0][0][3] = -2;
+//
+//	arrClasses[0][1][0] = 2;
+//	arrClasses[0][1][1] = -4;
+//	arrClasses[0][1][2] = 9;
+//	arrClasses[0][1][3] = -1;
+//
+//	arrClasses[0][2][0] = -10;
+//	arrClasses[0][2][1] = -3;
+//	arrClasses[0][2][2] = 5;
+//	arrClasses[0][2][3] = 1;
+//
+//	//c2
+//	arrClasses[1][0][0] = -5;
+//	arrClasses[1][0][1] = 0;
+//	arrClasses[1][0][2] = 7;
+//	arrClasses[1][0][3] = 10;
+//
+//	arrClasses[1][1][0] = -3;
+//	arrClasses[1][1][1] = 0;
+//	arrClasses[1][1][2] = 6;
+//	arrClasses[1][1][3] = 3;
+//
+//	arrClasses[1][2][0] = 2;
+//	arrClasses[1][2][1] = 8;
+//	arrClasses[1][2][2] = 3;
+//	arrClasses[1][2][3] = 4;
+//
+//	//c3
+//	arrClasses[2][0][0] = 5;
+//	arrClasses[2][0][1] = 6;
+//	arrClasses[2][0][2] = -2;
+//	arrClasses[2][0][3] = 4;
+//
+//	arrClasses[2][1][0] = 9;
+//	arrClasses[2][1][1] = -8;
+//	arrClasses[2][1][2] = -3;
+//	arrClasses[2][1][3] = 5;
+//
+//	arrClasses[2][2][0] = -7;
+//	arrClasses[2][2][1] = 5;
+//	arrClasses[2][2][2] = 3;
+//	arrClasses[2][2][3] = -2;
+
 }
 
 //////////////////////////////////////////////////////////////////
 
-void example()
+int example()
 {
 	unsigned int amountOfClasses = 3; //5
 	unsigned int featureVectorSize = 2; //20
@@ -158,7 +201,7 @@ void example()
 	std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
 
 	// calculating the position at the paraconsistent plane
-	showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
+	//showInParaconsistentPlane(0, certaintyDegree_G1, contradictionDegree_G2);
 
 	////////////////////////////////////////
 	/// Here ends the real functionality ///
@@ -177,4 +220,6 @@ void example()
 	//memset(classZeroSimilaritiesVector, 0, 0.0);
 	clearClasses(arrClasses, amountOfClasses, featureVectorsPerClass, featureVectorSize);
 	delete[] arrClasses;
+
+	return 0;
 }

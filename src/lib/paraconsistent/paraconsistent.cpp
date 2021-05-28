@@ -27,9 +27,9 @@ static void normalize(double *&featureVector, unsigned int size)
 		sum += featureVector[i];
 	}
 
-	while (size--)
+	for (unsigned int i = 0; i < size; i++)
 	{
-		featureVector[size] /= sum;
+		featureVector[i] /= sum;
 	}
 }
 static void normalize(std::vector<double> &featureVector, unsigned int size)
@@ -41,21 +41,30 @@ static void normalize(std::vector<double> &featureVector, unsigned int size)
 		sum += featureVector[i];
 	}
 
-	while (size--)
+	for (unsigned int i = 0; i < size; i++)
 	{
-		featureVector[size] /= sum;
+		featureVector[i] /= sum;
 	}
+//	double max = -std::numeric_limits<double>::max();
+//	double min = std::numeric_limits<double>::max();
+//
+//	for (unsigned int i = 0; i < size; i++)
+//	{
+//		max = max < featureVector[i] ? featureVector[i] : max;
+//		min = min > featureVector[i] ? featureVector[i] : min;
+//	}
+//
+//	for (unsigned int i = 0; i < size; i++)
+//	{
+//		featureVector[i] = (featureVector[i] - min) / (max - min);
+//	}
 }
 
 static void normalizeFeatureVectors(double **&featureVectors, unsigned int vectorSize, unsigned int subVectorsSize)
 {
-
-	while (vectorSize--)
+	for (unsigned int vi = 0; vi < vectorSize; vi++)
 	{
-		for (unsigned int i = 0; i < subVectorsSize; i++)
-		{
-			normalize(featureVectors[vectorSize], subVectorsSize);
-		}
+		normalize(featureVectors[vi], subVectorsSize);
 	}
 }
 static void normalizeFeatureVectors(std::vector<std::vector<double>> &featureVectors, unsigned int vectorSize, unsigned int subVectorsSize)
@@ -154,10 +163,13 @@ double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsP
 		for (unsigned int ii = 0; ii < featureVectorSize; ii++)
 		{
 			// cleans undesirable values
-			arrLargestRange[ci][ii] = std::numeric_limits<double>::min();
+			arrLargestRange[ci][ii] = -std::numeric_limits<double>::max();
 			arrSmallestRange[ci][ii] = std::numeric_limits<double>::max();
 		}
 	}
+	// ci = class index
+	// ii = item index
+	// fvi = featureVectorIndex
 
 	// Calculating the range vectors
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
@@ -167,20 +179,20 @@ double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsP
 			for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
 			{
 				double item = arrClasses[ci][fvi][ii];
-				arrLargestRange[ci][ii] = arrLargestRange[ci][ii] < item ? item : arrLargestRange[ci][ii];
-				arrSmallestRange[ci][ii] = arrSmallestRange[ci][ii] > item ? item : arrSmallestRange[ci][ii];
+				arrLargestRange[ci][ii] = item > arrLargestRange[ci][ii] ? item : arrLargestRange[ci][ii];
+				arrSmallestRange[ci][ii] = item < arrSmallestRange[ci][ii] ? item : arrSmallestRange[ci][ii];
 			}
 		}
 
 		// Finding alpha
-		for (unsigned int si = 0; si < featureVectorSize; ++si)
+		temp = 0;
+		for (unsigned int ii = 0; ii < featureVectorSize; ++ii)
 		{
-			temp += 1 - (arrLargestRange[ci][si] - arrSmallestRange[ci][si]);
+			temp += 1 - (arrLargestRange[ci][ii] - arrSmallestRange[ci][ii]);
 		}
 
 		temp /= featureVectorSize;
 		alpha = alpha > temp ? temp : alpha;
-		temp = 0;
 	}
 
 	// clear the range vectors
@@ -201,11 +213,11 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 	std::map<std::string, std::vector<double>> arrLargestItens;
 	std::map<std::string, std::vector<double>> arrSmallestItems;
 
-	// ci = class index
-	// ii = item index
-	// fvi = featureVectorIndex
+// ci = class index
+// ii = item index
+// fvi = featureVectorIndex
 
-	// initializes the range vectors
+// initializes the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
 		// creates sub vector
@@ -213,7 +225,7 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 		arrSmallestItems[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::max());
 	}
 
-	// Calculating the range vectors
+// Calculating the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
 		for (unsigned int ii = 0; ii < featureVectorSize; ii++)
@@ -227,12 +239,12 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 		}
 	}
 
-	// Calculating the R factor (amount of times that a feature
-	// vector item overlaps an range vector item
+// Calculating the R factor (amount of times that a feature
+// vector item overlaps an range vector item
 	unsigned long int R = 0;
 
-	// comparing all featureVector elements from a class
-	// with all range vectors from another classes
+// comparing all featureVector elements from a class
+// with all range vectors from another classes
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
 		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
@@ -255,7 +267,7 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 		}
 	}
 
-	// Return betha
+// Return betha
 	return R / (double) (amountOfClasses * (amountOfClasses - 1.0) * featureVectorsPerClass * featureVectorSize);
 }
 
@@ -264,11 +276,11 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 	double **arrLargestItens = new double*[amountOfClasses];
 	double **arrSmallestItems = new double*[amountOfClasses];
 
-	// ci = class index
-	// ii = item index
-	// fvi = featureVectorIndex
+// ci = class index
+// ii = item index
+// fvi = featureVectorIndex
 
-	// initializes the range vectors
+// initializes the range vectors
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
 	{
 		// creates sub vector
@@ -282,7 +294,7 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 		}
 	}
 
-	// Calculating the range vectors
+// Calculating the range vectors
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
 	{
 		for (unsigned int ii = 0; ii < featureVectorSize; ii++)
@@ -296,12 +308,12 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 		}
 	}
 
-	// Calculating the R factor (amount of times that a feature
-	// vector item overlaps an range vector item
+// Calculating the R factor (amount of times that a feature
+// vector item overlaps an range vector item
 	unsigned long int R = 0;
 
-	// comparing all featureVector elements from a class
-	// with all range vectors from another classes
+// comparing all featureVector elements from a class
+// with all range vectors from another classes
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
 	{
 		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
@@ -317,17 +329,19 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 
 				for (unsigned int ii = 0; ii < featureVectorSize; ii++)
 				{
-					R += arrLargestItens[ci2][ii] == arrClasses[ci][fvi][ii] ? 1 : 0;
-					R += arrSmallestItems[ci2][ii] == arrClasses[ci][fvi][ii] ? 1 : 0;
+					if (arrClasses[ci][fvi][ii] <= arrLargestItens[ci2][ii] && arrClasses[ci][fvi][ii] >= arrSmallestItems[ci2][ii])
+					{
+						R++;
+					}
 				}
 			}
 		}
 	}
 
-	// The betha
+// The betha
 	double betha = R / (double) (amountOfClasses * (amountOfClasses - 1.0) * featureVectorsPerClass * featureVectorSize);
 
-	// cleans the range vectors
+// cleans the range vectors
 	for (unsigned int ci = 0; ci < amountOfClasses; ci++)
 	{
 		delete[] arrLargestItens[ci];
