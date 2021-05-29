@@ -24,14 +24,14 @@ static void normalizeFeatureVectors(double **&featureVectors, unsigned int vecto
 {
 	for (unsigned int vi = 0; vi < vectorSize; vi++)
 	{
-		linearAlgebra::normalizeVectorToRange(featureVectors[vi], subVectorsSize, 0, 1);
+		linearAlgebra::normalizeVectorToSum1(featureVectors[vi], subVectorsSize);
 	}
 }
 static void normalizeFeatureVectors(std::vector<std::vector<double>> &featureVectors, unsigned int vectorSize)
 {
 	for (unsigned int i = 0; i < vectorSize; i++)
 	{
-		linearAlgebra::normalizeVectorToRange(featureVectors[i], 0, 1);
+		linearAlgebra::normalizeVectorToSum1(featureVectors[i]);
 	}
 }
 

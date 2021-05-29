@@ -46,7 +46,6 @@ namespace linearAlgebra
 	 */
 	std::vector<double> calcOrthogonalVector(std::vector<double> &vector);
 
-
 	/**
 	 * Normalize the vector
 	 * @param signal
@@ -63,6 +62,19 @@ namespace linearAlgebra
 	 * @param upperLimit
 	 */
 	void normalizeVectorToRange(std::vector<double> &signal, double lowerLimit, double upperLimit);
+
+	/**
+	 * Normalize the vector to sum 1
+	 * @param signal
+	 * @param signalLength
+	 */
+	void normalizeVectorToSum1(double *signal, int signalLength);
+
+	/**
+	 * Normalize the vector to sum 1
+	 * @param signal
+	 */
+	void normalizeVectorToSum1(std::vector<double> &signal);
 
 	/**
 	 * Convolute a signal with a filter (kernel)

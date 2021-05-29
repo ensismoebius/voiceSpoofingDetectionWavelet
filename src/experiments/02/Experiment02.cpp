@@ -162,7 +162,7 @@ namespace waveletExperiments
 				}
 
 				// Normalize the resulting feature vector
-				linearAlgebra::normalizeVectorToRange(featureVector, 0, 1);
+				linearAlgebra::normalizeVectorToSum1(featureVector);
 
 				// Replaces the original signal
 				signal = featureVector;

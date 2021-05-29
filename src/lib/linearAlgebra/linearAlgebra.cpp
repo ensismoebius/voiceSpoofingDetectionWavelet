@@ -87,6 +87,28 @@ namespace linearAlgebra
 		return result;
 	}
 
+	void normalizeVectorToSum1(double *signal, int signalLength)
+	{
+		double sum = 0;
+
+		for (int i = 0; i < signalLength; ++i)
+			sum += signal[i];
+
+		for (int i = 0; i < signalLength; ++i)
+			signal[i] /= sum;
+	}
+
+	void normalizeVectorToSum1(std::vector<double> &signal)
+	{
+		double sum = 0;
+
+		for (double &v : signal)
+			sum += v;
+
+		for (double &v : signal)
+			v /= sum;
+	}
+
 	void normalizeVectorToRange(double *signal, int signalLength, double lowerLimit, double upperLimit)
 	{
 
