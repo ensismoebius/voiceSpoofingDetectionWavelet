@@ -65,7 +65,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 		delete[] filter;
 
 		// normalize signal
-		linearAlgebra::normalizeVector(copiedSignal, signalLength);
+		linearAlgebra::normalizeVectorToRange(copiedSignal, signalLength, 0, 1);
 
 		// Calculating the energies
 		double energy = 0;
@@ -88,7 +88,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 	}
 
 	// Normalize the resulting feature vector
-	linearAlgebra::normalizeVector(featureVector, rangesSize - 1);
+	linearAlgebra::normalizeVectorToRange(featureVector, rangesSize - 1, 0, 1);
 
 	// Apply a DCT (Discrete Cosine Transform)
 	//linearAlgebra::discreteCosineTransform(featureVector, rangesSize - 1);

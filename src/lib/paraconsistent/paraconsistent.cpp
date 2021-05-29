@@ -9,6 +9,8 @@
 #include <limits>
 #include <vector>
 
+#include "../linearAlgebra/linearAlgebra.h"
+
 double calcCertaintyDegree_G1(double alpha, double betha)
 {
 	return alpha - betha;
@@ -18,64 +20,18 @@ double calcContradictionDegree_G2(double alpha, double betha)
 	return alpha + betha - 1;
 }
 
-static void normalize(double *&featureVector, unsigned int size)
-{
-	float sum = 0;
-
-	for (unsigned int i = 0; i < size; i++)
-	{
-		sum += featureVector[i];
-	}
-
-	for (unsigned int i = 0; i < size; i++)
-	{
-		featureVector[i] /= sum;
-	}
-}
-static void normalize(std::vector<double> &featureVector, unsigned int size)
-{
-	float sum = 0;
-
-	for (unsigned int i = 0; i < size; i++)
-	{
-		sum += featureVector[i];
-	}
-
-	for (unsigned int i = 0; i < size; i++)
-	{
-		featureVector[i] /= sum;
-	}
-//	double max = -std::numeric_limits<double>::max();
-//	double min = std::numeric_limits<double>::max();
-//
-//	for (unsigned int i = 0; i < size; i++)
-//	{
-//		max = max < featureVector[i] ? featureVector[i] : max;
-//		min = min > featureVector[i] ? featureVector[i] : min;
-//	}
-//
-//	for (unsigned int i = 0; i < size; i++)
-//	{
-//		featureVector[i] = (featureVector[i] - min) / (max - min);
-//	}
-}
-
 static void normalizeFeatureVectors(double **&featureVectors, unsigned int vectorSize, unsigned int subVectorsSize)
 {
 	for (unsigned int vi = 0; vi < vectorSize; vi++)
 	{
-		normalize(featureVectors[vi], subVectorsSize);
+		linearAlgebra::normalizeVectorToRange(featureVectors[vi], subVectorsSize, 0, 1);
 	}
 }
-static void normalizeFeatureVectors(std::vector<std::vector<double>> &featureVectors, unsigned int vectorSize, unsigned int subVectorsSize)
+static void normalizeFeatureVectors(std::vector<std::vector<double>> &featureVectors, unsigned int vectorSize)
 {
-
-	while (vectorSize--)
+	for (unsigned int i = 0; i < vectorSize; i++)
 	{
-		for (unsigned int i = 0; i < subVectorsSize; i++)
-		{
-			normalize(featureVectors[vectorSize], subVectorsSize);
-		}
+		linearAlgebra::normalizeVectorToRange(featureVectors[i], 0, 1);
 	}
 }
 
@@ -91,7 +47,7 @@ void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int f
 {
 	for (unsigned int i = 0; i < amountOfClasses; i++)
 	{
-		normalizeFeatureVectors(arrClasses[i], featureVectorsPerClass, featureVectorSize);
+		normalizeFeatureVectors(arrClasses[i], featureVectorsPerClass);
 	}
 }
 

@@ -87,38 +87,104 @@ namespace linearAlgebra
 		return result;
 	}
 
-	void normalizeVector(double *signal, int signalLength)
+	void normalizeVectorToRange(double *signal, int signalLength, double lowerLimit, double upperLimit)
 	{
 
-		double sum = 0;
+		if (lowerLimit >= upperLimit)
+		{
+			throw std::runtime_error("lowerLimit MUST be bigger than upperLimit");
+		}
+
+		/*
+		 * Keep this comment!
+		 *
+		 *	double min, max;
+		 *	min = max = signal[0];
+		 *
+		 *	for (auto &v : signal)
+		 *	{
+		 *		// Minimum
+		 *		if (v < min) min = v;
+		 *		// Maximum
+		 *		if (v > max) max = v;
+		 *	}
+		 *
+		 *	// Normalize between 0 and 1
+		 *	double rangeVal = max - min;
+		 *	for (auto &v : signal)
+		 *		v = (v - min) / rangeVal;
+		 *
+		 *	// Then scale to [lowerLimit,upperLimit]:
+		 *	double rangeLim = upperLimit - lowerLimit;
+		 *	for (auto &v : signal)
+		 *		v = (v * rangeLim) + lowerLimit;
+		 */
+
+		// The code bellow is the same as the commented code above
+		double min, max;
+		min = max = signal[0];
 
 		for (int i = 0; i < signalLength; ++i)
 		{
-			sum += signal[i];
+			// Minimum
+			if (signal[i] < min) min = signal[i];
+			// Maximum
+			if (signal[i] > max) max = signal[i];
 		}
 
+		double rangeVal = max - min;
+		double rangeLim = upperLimit - lowerLimit;
 		for (int i = 0; i < signalLength; ++i)
-		{
-			signal[i] /= sum;
-		}
-
+			signal[i] = (((signal[i] - min) / rangeVal) * rangeLim) + lowerLimit;
 	}
 
-	void normalizeVector(std::vector<double> &signal)
+	void normalizeVectorToRange(std::vector<double> &signal, double lowerLimit, double upperLimit)
 	{
-
-		double sum = 0;
-
-		for (unsigned int i = 0; i < signal.size(); ++i)
+		if (lowerLimit >= upperLimit)
 		{
-			sum += signal[i];
+			throw std::runtime_error("lowerLimit MUST be bigger than upperLimit");
+		}
+		/*
+		 * Keep this comment!
+		 *
+		 *	double min, max;
+		 *	min = max = signal[0];
+		 *
+		 *	for (auto &v : signal)
+		 *	{
+		 *		// Minimum
+		 *		if (v < min) min = v;
+		 *		// Maximum
+		 *		if (v > max) max = v;
+		 *	}
+		 *
+		 *	// Normalize between 0 and 1
+		 *	double rangeVal = max - min;
+		 *	for (auto &v : signal)
+		 *		v = (v - min) / rangeVal;
+		 *
+		 *	// Then scale to [lowerLimit,upperLimit]:
+		 *	double rangeLim = upperLimit - lowerLimit;
+		 *	for (auto &v : signal)
+		 *		v = (v * rangeLim) + lowerLimit;
+		 */
+
+		// The code bellow is the same as the commented code above
+		double min, max;
+		min = max = signal[0];
+
+		for (auto &v : signal)
+		{
+			// Minimum
+			if (v < min) min = v;
+			// Maximum
+			if (v > max) max = v;
 		}
 
-		for (unsigned int i = 0; i < signal.size(); ++i)
-		{
-			signal[i] /= sum;
-		}
-
+		double rangeVal = max - min;
+		double rangeLim = upperLimit - lowerLimit;
+		for (auto &v : signal)
+			v = (((v - min) / rangeVal) * rangeLim) + lowerLimit;
 	}
 
 	bool convolution(double *data, int dataLength, double *kernel, int kernelSize)

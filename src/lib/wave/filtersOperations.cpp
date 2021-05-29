@@ -48,7 +48,7 @@ double* createLowPassFilter(int order, double samplingRate, double filterMaxFreq
 		filter[n] = sin(alpha * (n - halfOrderSize)) / (M_PI * (n - halfOrderSize));
 	}
 
-	linearAlgebra::normalizeVector(filter, order + 1);
+	linearAlgebra::normalizeVectorToRange(filter, order + 1, 0, 1);
 
 	return filter;
 }
@@ -78,7 +78,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
 	}
 
 	// normalizing data
-	linearAlgebra::normalizeVector(filter, order + 1);
+	linearAlgebra::normalizeVectorToRange(filter, order + 1, 0, 1);
 
 	// Builds the orthogonal vector
 	// and return the final result (high pass filter)
@@ -97,9 +97,6 @@ double* createStopBandFilter(int order, double samplingRate, double startFrequen
 
 	double *lowPassMax = createLowPassFilter(order, samplingRate, finalFrequency);
 	double *lowPassMin = createLowPassFilter(order, samplingRate, startFrequency);
-
-	linearAlgebra::normalizeVector(lowPassMax, order + 1);
-	linearAlgebra::normalizeVector(lowPassMin, order + 1);
 
 	for (int i = 0; i < order + 1; i++)
 	{
@@ -123,9 +120,6 @@ double* bandStopFilter(int order, double samplingRate, double startFrequency, do
 
 	double *highPass = createHighPassFilter(order, samplingRate, startFrequency);
 	double *lowPass = createLowPassFilter(order, samplingRate, finalFrequency);
-
-	linearAlgebra::normalizeVector(highPass, order + 1);
-	linearAlgebra::normalizeVector(lowPass, order + 1);
 
 	for (int i = 0; i < order + 1; i++)
 	{
