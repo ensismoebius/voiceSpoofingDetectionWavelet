@@ -150,7 +150,7 @@ namespace waveletExperiments
 					scaleRanges = BARKRanges;
 				}
 
-				// feature vector has the amount of values minus 1 than ranges
+				// feature vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
 				std::vector<double> featureVector(scaleRanges.size() - 1);
 
@@ -188,7 +188,7 @@ namespace waveletExperiments
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
-						// Sum them all!! (i.e. calculate the energies)
+						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
 						featureVector.at(i) = 0;
 						for (double v : sig1)
 						{
@@ -203,10 +203,6 @@ namespace waveletExperiments
 					}
 
 				}
-
-				// TODO I may have to restore this
-				// Normalize the resulting feature vector
-				//linearAlgebra::normalizeVector(featureVector);
 
 				// Just for MEL
 				if (Experiment01::barkOrMel == MEL)
@@ -301,19 +297,19 @@ namespace waveletExperiments
 							<< (barkOrMelSAndData.first == BARK ? "BARK" : "MEL") << '\t'
 							<< wavelet.first << '\t'
 							<< std::noboolalpha
-							<< std::defaultfloat
+							<< std::scientific
 							<< std::dec
 							<< barkOrMelSAndData.second[0][0]
 							<< std::boolalpha
 							<< '\t'
 							<< std::noboolalpha
-							<< std::defaultfloat
+							<< std::scientific
 							<< std::dec
 							<< barkOrMelSAndData.second[1][0]
 							<< std::boolalpha
 							<< '\t'
 							<< std::noboolalpha
-							<< std::defaultfloat
+							<< std::scientific
 							<< std::dec
 							<< barkOrMelSAndData.second[2][0]
 							<< std::boolalpha
@@ -331,8 +327,8 @@ namespace waveletExperiments
 			 */
 			static void perform(std::vector<std::string> classFileList, std::string resultsDestiny)
 			{
-//				std::cout << std::fixed;
-//				std::cout << std::setprecision(10);
+				std::cout << std::fixed;
+				std::cout << std::setprecision(10);
 
 				// set the callback function in the Experiment01 class
 				Wav w;
@@ -400,7 +396,6 @@ namespace waveletExperiments
 				// have to represent our data classes
 				for (unsigned int i = 0; i < classFileList.size(); i++)
 				{
-
 					// file reader
 					std::ifstream fileListStream;
 					fileListStream.open(classFileList[i], std::ios::in);
@@ -465,12 +460,12 @@ namespace waveletExperiments
 
 						double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
 						double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
-						double distanceTo1_0 = std::sqrt(std::pow(contradictionDegree_G2 - 1, 2) + std::pow(certaintyDegree_G1, 2));
+						double distanceTo1_0 = std::sqrt(std::pow(certaintyDegree_G1 - 1, 2) + std::pow(contradictionDegree_G2, 2));
 
 						// Calculating the position at the paraconsistent plane
 						std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
 						std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
-						std::cout << "Dist from point(0,1) :" << distanceTo1_0 << std::endl;
+						std::cout << "Dist from point(1,0) :" << distanceTo1_0 << std::endl;
 						std::cout << "----------------------" << std::endl;
 
 						// Storing the final results
@@ -482,7 +477,7 @@ namespace waveletExperiments
 				}
 
 				saveDataToFile(finalResults, resultsDestiny);
-				//plotResults(finalResults);
+				plotResults(finalResults);
 			}
 	};
 }

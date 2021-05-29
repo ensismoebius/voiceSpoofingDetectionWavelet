@@ -25,7 +25,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 
 	double *window = createTriangularWindow(filterOrder);
 
-	// feature vector has the amount of values minus 1 than ranges
+	// feature vector has the amount of values equals to amount of the ranges minus 1 
 	// because we are summing up intervals
 	double *featureVector = new double[rangesSize - 1];
 

@@ -150,7 +150,7 @@ namespace waveletExperiments
 					scaleRanges = BARKRanges;
 				}
 
-				// feature vector has the amount of values minus 1 than ranges
+				// feature vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
 				std::vector<double> featureVector(scaleRanges.size() - 1);
 
@@ -204,10 +204,6 @@ namespace waveletExperiments
 					}
 
 				}
-
-				// TODO I may have to restore this
-				// Normalize the resulting feature vector
-				//linearAlgebra::normalizeVector(featureVector);
 
 				// Just for MEL
 				if (Experiment05::barkOrMel == MEL)

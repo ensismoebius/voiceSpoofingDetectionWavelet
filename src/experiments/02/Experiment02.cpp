@@ -112,7 +112,7 @@ namespace waveletExperiments
 				/// BARK section ///
 				////////////////////
 
-				// feature vector has the amount of values minus 1 than ranges
+				// feature vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
 				std::vector<double> featureVector(barkRanges.size() - 1);
 
@@ -150,15 +150,13 @@ namespace waveletExperiments
 						// Retrieve the values
 						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
-						// Sum them all!! (i.e. calculate the energies)
+						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
 						featureVector.at(i) = 0;
 						for (double v : sig1)
 						{
 							featureVector.at(i) += std::pow(v, 2);
 						}
 
-						// TODO this is used only in MEL so i have to remove this line
-						//featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
 					}
 
 				}
