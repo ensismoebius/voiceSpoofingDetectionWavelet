@@ -87,17 +87,17 @@ namespace linearAlgebra
 	bool convolution(double *data, int dataLength, double *kernel, int kernelSize);
 
 	/**
-	 * Perform a DCT on vector
+	 * Performs a DCT on vector
 	 * @param vector
 	 * @param vectorLength
 	 */
 	void discreteCosineTransform(double *vector, long vectorLength);
 
 	/**
-	 * Perform a DCT on vector
+	 * Performs a DCT on vector
 	 * @param vector
 	 */
-	void discreteCosineTransform(std::vector<double> vector);
+	void discreteCosineTransform(std::vector<double> &vector);
 
 	/**
 	 * Scales a given matrix

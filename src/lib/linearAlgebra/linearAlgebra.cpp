@@ -248,49 +248,53 @@ namespace linearAlgebra
 		return true;
 	}
 
-	void discreteCosineTransform(std::vector<double> vector)
+	inline double getAlphaK(unsigned int k, unsigned int N)
 	{
+		return k == 0 ? std::sqrt(1.0 / N) : std::sqrt(2.0 / N);
+	}
 
-		double sum;
-		double multi;
-		long N = vector.size();
-		std::vector<double> F(vector.size());
+	void discreteCosineTransform(std::vector<double> &signal)
+	{
+		std::vector<double> res(signal.size());
+		unsigned int N = signal.size();
+		double sum = 0;
 
-		for (int u = 0; u < N; u++)
+		for (unsigned int k = 0; k < N; ++k)
 		{
 
-			sum = 0.0;
-			multi = u == 0 ? 1.0 / std::sqrt(2.0) : 1.0;
-
-			for (int i = 0; i < N; i++)
+			sum = 0;
+			for (unsigned int n = 0; n < N; ++n)
 			{
-				sum += multi * std::cos(((M_PI * u) / (2.0 * N)) * (2.0 * i + 1)) * vector.at(u);
+				sum += signal[n] * std::cos(((2.0 * n + 1.0) * M_PIl * k) / (2.0 * N));
 			}
-			F.at(u) = sum;
+
+			res[k] = getAlphaK(k, N) * sum;
 		}
 
-		double maior = 0;
-		maior = F.at(1);
+		signal = res;
+	}
 
-		for (int i = 2; i < N; i++)
+	void discreteCosineTransform(double *signal, long signalLength)
+	{
+		double *res = new double[signalLength];
+		unsigned int N = signalLength;
+		double sum = 0;
+
+		for (unsigned int k = 0; k < N; ++k)
 		{
-
-			if (F.at(i) > maior)
+			sum = 0;
+			for (unsigned int n = 0; n < N; ++n)
 			{
-				maior = F.at(i);
+				sum += signal[n] * std::cos(((2.0 * n + 1.0) * M_PIl * k) / (2.0 * N));
 			}
+
+			res[k] = getAlphaK(k, N) * sum;
 		}
 
-		for (int i = 1; i < N; i++)
-		{
-			F.at(i) /= maior;
-		}
+		for (unsigned int k = 0; k < N; ++k)
+			signal[k] = res[k];
 
-		for (int i = 0; i < N; i++)
-		{
-			vector.at(i) = F.at(i);
-		}
-
+		delete[] res;
 	}
 
 	void scaleMatrix(std::vector<std::vector<double>> &matrix)
@@ -299,11 +303,11 @@ namespace linearAlgebra
 		// Points to the best line that can nullify our values
 		unsigned int bestLineForSubtration = 0;
 
-		// Selecting the line on which we have the value to nullyfy
+		// Selecting the line on which we have the value to nullify
 		for (unsigned int lineIndex = 1; lineIndex < matrix.size(); lineIndex++)
 		{
 
-			// Selecting the column on which we have the value to nullyfy
+			// Selecting the column on which we have the value to nullify
 			for (unsigned columnIndex = 0; columnIndex < lineIndex; columnIndex++)
 			{
 
@@ -315,7 +319,7 @@ namespace linearAlgebra
 				for (; bestLineForSubtration < matrix.size(); bestLineForSubtration++)
 				{
 
-					// The line must have an value diferent of
+					// The line must have an value different of
 					// zero at the position we want nullify
 					if (matrix[bestLineForSubtration][columnIndex] == 0) continue;
 
@@ -364,7 +368,7 @@ namespace linearAlgebra
 		// The amount of the matrix columns
 		unsigned int colums = matrix[0].size();
 
-		// loop over all matrix lines from botton to up
+		// loop over all matrix lines from bottom to up
 		for (int li = matrix.size() - 1; li >= 0; li--)
 		{
 
@@ -378,9 +382,9 @@ namespace linearAlgebra
 			}
 
 			// The result is computed as follows:
-			//	-Take the rigth side of the equation (the number) -> matrix[li][colums - 1]
-			//	-Take the value multipling the incognito variable -> matrix[li][li]
-			//	-Make a substituition with previous result (the loop above)
+			//	-Take the right side of the equation (the number) -> matrix[li][colums - 1]
+			//	-Take the value multiplying the incognito variable -> matrix[li][li]
+			//	-Make a substitution with previous result (the loop above)
 			//	-Then sum the substitutions with the right side of equation and divide by incognito
 			result[li] = (matrix[li][colums - 1] + temp) / matrix[li][li];
 		}

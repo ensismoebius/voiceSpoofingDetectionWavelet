@@ -201,7 +201,7 @@ namespace waveletExperiments
 						// Just for MEL
 						if (Experiment01::barkOrMel == MEL)
 						{
-							featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log(featureVector.at(i));
+							featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log10(featureVector.at(i));
 						}
 					}
 
@@ -213,7 +213,7 @@ namespace waveletExperiments
 					// Apply a DCT (Discrete Cosine Transform)
 					linearAlgebra::discreteCosineTransform(featureVector);
 
-					// Takes the double derivative of the features vector
+					// Takes the double derivative of the feature vector
 					linearAlgebra::derivative(featureVector, 2);
 				}
 
