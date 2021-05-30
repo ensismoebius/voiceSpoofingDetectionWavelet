@@ -10,9 +10,8 @@
  * wavelet Haar and BARK scale as the best features vector
  * generators, this experiment do some classifications using
  * Euclidian and Manhattan distance classifiers generating
- * the respectives confusion matrices, standard deviations and
- * accuracy measurements.
- *
+ * their respectives confusion matrices, standard deviations
+ * and accuracy measurements.
  */
 
 #ifndef SRC_WAVELETEXPERIMENTS_02_EXPERIMENT02_CPP_
@@ -206,7 +205,7 @@ namespace waveletExperiments
 
 				plt::grid(true);
 				plt::legend();
-				plt::save(resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".png");
+				plt::save(resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".pdf");
 				plt::clf();
 			}
 
@@ -256,7 +255,7 @@ namespace waveletExperiments
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
 				// Open the file
-				std::string filePath = resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".csv";
+				std::string filePath = resultsDestiny + "/classifier_" + distType + "_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".tex";
 				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
 				if (!ofs.is_open())
 				{
@@ -265,8 +264,35 @@ namespace waveletExperiments
 					return;
 				}
 
-				ofs << "Best confusion matrix" << "\n" << std::to_string(bestMatrix.truePositive) << "\t" << std::to_string(bestMatrix.falsePositive) << "\n" << std::to_string(bestMatrix.falseNegative) << "\t" << std::to_string(bestMatrix.trueNegative) << std::endl;
-				ofs << "Worst confusion matrix" << "\n" << std::to_string(worstMatrix.truePositive) << "\t" << std::to_string(worstMatrix.falsePositive) << "\n" << std::to_string(worstMatrix.falseNegative) << "\t" << std::to_string(worstMatrix.trueNegative) << std::endl;
+				// Generate the latex code for confusion matrices
+				ofs << "\\begin{table}[h] \
+					\\newcommand{\\mc}[3]{\\multicolumn{#1}{#2}{#3}} \
+					\\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667} \
+					\\definecolor{tcC}{rgb}{0,0,0} \
+					\\definecolor{tcD}{rgb}{0,0.5,1} \
+					\\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098} \
+					\\begin{center} \
+						\\subfloat[Best confusion matrix]{ \
+							\\begin{tabular}{ccc} \
+								\\mc{1}{l}{} & \\mc{1}{>{\\columncolor{tcA}}c}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcA}}c}{\\textbf{spoofed}}\\\\ \
+								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.truePositive) << "}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.falsePositive) << "}}\\\\ \
+								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{spoofed}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.falseNegative) << "}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.trueNegative) << "}} \
+							\\end{tabular} \
+							\\label{tab:classifier_Euclidian_10_best} \
+						} \
+						\\qquad \
+						\\subfloat[Worst confusion matrix]{ \
+							\\begin{tabular}{ccc} \
+								\\mc{1}{l}{} & \\mc{1}{>{\\columncolor{tcA}}c}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcA}}c}{\\textbf{spoofed}}\\\\ \
+								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.truePositive) << "}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.falsePositive) << "}}\\\\ \
+								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{spoofed}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.falseNegative) << "}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.trueNegative) << "}} \
+							\\end{tabular} \
+							\\label{tab:classifier_Euclidian_10_worse} \
+						} \
+					\\end{center} \
+					\\caption{Confusion matrices for "<< distType <<" distance classifier at "<< std::to_string(int(pencentageSizeOfModel * 100)) << "\\% model} \
+				\\end{table}";
+
 				ofs.close();
 			}
 
