@@ -11,7 +11,7 @@
  * after this, a sum of the transformed signal squares is taken
  * for each range defined in MEL or BARK scales and following
  * the respectives rules for BARK or MEL scales to build a
- * feature vector witch will be analyzed by a paraconsistent
+ * features vector witch will be analyzed by a paraconsistent
  * algorithm. The results will be plotted and saved.
  * It will be done for all files and wavelets.
  */
@@ -118,14 +118,14 @@ namespace waveletExperiments
 				/// Wavelet section ///
 				///////////////////////
 
-				// Normalize the signal between -1 and 1
+				// Normalizes the signal between -1 and 1
 				linearAlgebra::normalizeVectorToRange(signal, -1, 1);
 
 				// Expands the signal length to optimize the wavelet transform
 				signalLength = wavelets::getNextPowerOfTwo(signal.size());
 				signal.resize(signalLength, 0);
 
-				// Calculate the max levels of decompositions
+				// Calculates the maximum levels of decompositions
 				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
@@ -153,7 +153,7 @@ namespace waveletExperiments
 					scaleRanges = BARKRanges;
 				}
 
-				// feature vector has the amount of values equals to amount of the ranges minus 1 
+				// Features vector has the amount of values equals to amount of the ranges minus 1
 				// because we are summing up intervals
 				std::vector<double> featureVector(scaleRanges.size() - 1);
 
@@ -163,7 +163,7 @@ namespace waveletExperiments
 				// will be performed
 				double maxFrequency = samplingRate / 2;
 
-				// Calculate the minimum frequency range which
+				// Calculates the minimum frequency range which
 				// will enable the correct interval sums to
 				// be performed
 				double frequencyChunckSize = maxFrequency / transformedSignal.getWaveletPacketAmountOfParts();
@@ -176,15 +176,15 @@ namespace waveletExperiments
 				for (unsigned int i = 0; i < scaleRanges.size() - 1; i++)
 				{
 
-					// Retrieve the interval for the sums
+					// Retrieves the interval for the sums
 					rangeScaleStart = scaleRanges.at(i);
 					rangeScaleEnd = scaleRanges.at(i + 1);
 
-					// Calculate the interval indexes inside the transformed signal
+					// Calculates the interval indexes inside the transformed signal
 					int startIndex = rangeScaleStart / frequencyChunckSize;
 					int endIndex = rangeScaleEnd / frequencyChunckSize;
 
-					// Sum the values from selected range
+					// Sums the values from selected range
 					for (int j = startIndex; j < endIndex; ++j)
 					{
 
@@ -210,14 +210,14 @@ namespace waveletExperiments
 				// Just for MEL
 				if (Experiment01::barkOrMel == MEL)
 				{
-					// Apply a DCT (Discrete Cosine Transform)
+					// Applies a DCT (Discrete Cosine Transform)
 					linearAlgebra::discreteCosineTransform(featureVector);
 
-					// Takes the double derivative of the feature vector
+					// Applies the double derivative of the features vector
 					linearAlgebra::derivative(featureVector, 2);
 				}
 
-				// Normalize the resulting feature vector
+				// Normalizes the resulting features vector
 				linearAlgebra::normalizeVectorToSum1(featureVector);
 
 				// Replaces the original signal
@@ -225,7 +225,7 @@ namespace waveletExperiments
 			}
 
 			/**
-			 * Plot the results on a paraconsistent plane
+			 * Plots the results
 			 * @param results
 			 */
 			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> results)
@@ -269,8 +269,7 @@ namespace waveletExperiments
 			}
 
 			/**
-			 *
-			 * Save the results to @resultsDestiny
+			 * Saves the results to @resultsDestiny
 			 * @param data
 			 * @param resultsDestiny
 			 */

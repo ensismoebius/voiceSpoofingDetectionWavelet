@@ -25,7 +25,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 
 	double *window = createTriangularWindow(filterOrder);
 
-	// feature vector has the amount of values equals to amount of the ranges minus 1 
+	// features vector has the amount of values equals to amount of the ranges minus 1 
 	// because we are summing up intervals
 	double *featureVector = new double[rangesSize - 1];
 
@@ -87,7 +87,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 
 	}
 
-	// Normalize the resulting feature vector
+	// Normalizes the resulting features vector
 	linearAlgebra::normalizeVectorToRange(featureVector, rangesSize - 1, 0, 1);
 
 	// Apply a DCT (Discrete Cosine Transform)

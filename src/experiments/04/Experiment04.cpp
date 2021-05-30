@@ -9,7 +9,7 @@
  * This experiment visually demonstrates the wavelet packet
  * transformation given a repeated dummy signal. This was
  * made in order to justify why the wavelet haar is better
- * for create feature vectors for classifications
+ * for create features vectors for classifications
  */
 
 #ifndef SRC_WAVELETEXPERIMENTS_04_EXPERIMENT04_CPP_

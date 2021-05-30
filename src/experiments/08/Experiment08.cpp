@@ -92,7 +92,7 @@ namespace waveletExperiments
 				signalLength = wavelets::getNextPowerOfTwo(signal.size());
 				signal.resize(signalLength, 0);
 
-				// Calculate the max levels of decompositions
+				// Calculates the maximum levels of decompositions
 				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
@@ -106,7 +106,7 @@ namespace waveletExperiments
 				/// BARK section ///
 				////////////////////
 
-				// feature vector has the amount of values equals to amount of the ranges minus 1 
+				// features vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
 				std::vector<double> featureVector(barkRanges.size() - 1);
 
@@ -116,7 +116,7 @@ namespace waveletExperiments
 				// performed
 				double maxFrequency = samplingRate / 2;
 
-				// Calculate the minimum frequency range which
+				// Calculates the minimum frequency range which
 				// will enable the correct interval sums to
 				// be performed
 				double frequencyChunckSize = maxFrequency / transformedSignal.getWaveletPacketAmountOfParts();
@@ -129,15 +129,15 @@ namespace waveletExperiments
 				for (unsigned int i = 0; i < barkRanges.size() - 1; i++)
 				{
 
-					// Retrieve the interval for the sums
+					// Retrieves the interval for the sums
 					rangeScaleStart = barkRanges.at(i);
 					rangeScaleEnd = barkRanges.at(i + 1);
 
-					// Calculate the interval indexes inside the transformed signal
+					// Calculates the interval indexes inside the transformed signal
 					int startIndex = rangeScaleStart / frequencyChunckSize;
 					int endIndex = rangeScaleEnd / frequencyChunckSize;
 
-					// Sum the values from selected range
+					// Sums the values from selected range
 					for (int j = startIndex; j < endIndex; ++j)
 					{
 
@@ -155,7 +155,7 @@ namespace waveletExperiments
 
 				}
 
-				// Normalize the resulting feature vector
+				// Normalizes the resulting features vector
 				linearAlgebra::normalizeVectorToSum1(featureVector);
 
 				// Replaces the original signal
@@ -276,7 +276,7 @@ namespace waveletExperiments
 
 						// Status
 						cycles++;
-						std::cout << "\rPreparing feature vectors... " << (cycles / totalCycles) * 100 << "%" << std::flush;
+						std::cout << "\rPreparing features vectors... " << (cycles / totalCycles) * 100 << "%" << std::flush;
 
 						// Initializes the experiment
 						Experiment08::init();
@@ -324,7 +324,7 @@ namespace waveletExperiments
 				// Creating the classifier
 				classifiers::SupportVectorMachine c;
 
-				// Changes the percentage of the feature vectors used as models for the classifier
+				// Changes the percentage of the features vectors used as models for the classifier
 				for (double modelPercentage = maxModel; modelPercentage >= minModel; modelPercentage -= .1)
 				{
 

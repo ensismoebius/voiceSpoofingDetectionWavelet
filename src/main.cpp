@@ -151,9 +151,9 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 	{
 		std::cout << "Usage: mestrado --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>\n" << std::endl;
 		std::cout << "You must choose an experiment:\n";
-		std::cout << "\t1-Wavelet feature vectors over BARK or MEL comparation\n";
-		std::cout << "\t2-Wavelet feature vector over BARK using distance classifiers\n";
-		std::cout << "\t3-Wavelet feature vector over BARK using SVM classifier\n";
+		std::cout << "\t1-Wavelet features vectors over BARK or MEL comparation\n";
+		std::cout << "\t2-Wavelet features vector over BARK using distance classifiers\n";
+		std::cout << "\t3-Wavelet features vector over BARK using SVM classifier\n";
 		std::cout << "\t0-All experiments" << std::endl << std::endl;
 		return -1;
 	}
