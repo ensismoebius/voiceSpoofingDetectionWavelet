@@ -4,7 +4,7 @@
 	\label{chap:testsResults:sec:Experimento01}
 	Os testes, e correspondentes resultados, para o procedimento 01 descrito no Capítulo anterior encontram-se nesta seção. Conforme explicado naquela oportunidade, este procedimento visa, com base na Engenharia Paraconsistente, encontrar qual filtro \textit{wavelet} proporciona, em conjunto com a escala Bark ou Mel, a menor distância do ponto $(G_1,G_2)$ até o vértice $(1,0)$ do plano paraconsistente.
 
-	\par Particularmente, na Figura \ref{fig:paraconsistentfull}, que combina os resultados dos filtros com as escalas, quanto menor o comprimento horizontal das barras na cor azul, melhor a separabilidade entre as classes. Como se pode constatar, das combinações testadas, \textbf{Haar + Bark} proporcionou a menor distância. Complementarmente, as Tabelas \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} contém os valores específicos visualizados graficamente naquela Figura.
+	\par Particularmente, na Figura \ref{fig:paraconsistentfull}, que combina os resultados dos filtros com as escalas, quanto mais à esquerda o comprimento horizontal das barras na cor azul, melhor a separabilidade entre as classes. Como se pode constatar, das combinações testadas, \textbf{Haar + Bark} proporcionou a menor distância. Complementarmente, as Tabelas \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1} e \ref{tab:distParacomFrom10Mel_2} contém os valores específicos visualizados graficamente naquela Figura.
 	
 	\par A combinação \textbf{\textit{wavelet} + Bark} apresentou, consistentemente, \textbf{melhor} viabilidade do que as respectivas combinações \textbf{\textit{wavelet + Mel}}.\\
 
@@ -12,12 +12,14 @@
 	
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=0.7\linewidth]{images/results/paraconsistentPlane/ParaconsistentFull.pdf}
+		\includegraphics[width=0.94\linewidth]{images/results/paraconsistentPlane/ParaconsistentFull.pdf}
 		\caption{Gráfico completo da distância ao ponto (1,0) no plano paraconsistente.}
 		\label{fig:paraconsistentfull}
 	\end{figure}
 
-	\par Analisando o comportamento das melhores e piores \textit{wavelets} encontradas, é interessante indagar o motivo pelo qual os filtros de \textbf{Haar} tenham proporcionado os melhores resultados. Particularmente interessante é o fato de que os filtros \textit{wavelet} de \textbf{Haar} e \textbf{Daubechies 42} proporcionaram, respectivamente, os melhores e os piores resultados associados com a escala Bark. Diferentemente, com a escala \textit{Mel}, \textbf{Haar} foi o melhor filtro e \textbf{Daubechies 54} o pior. \\
+	\FloatBarrier
+
+	\par Analisando o comportamento dos melhores e piores resultados encontrados relacionados as \textit{wavelets}, é interessante indagar o motivo pelo qual o filtro de \textbf{Haar} tenha proporcionado o melhor resultado. Particularmente interessante é o fato de que os filtros \textit{wavelet} de \textbf{Haar} e \textbf{Daubechies 18} proporcionaram, respectivamente, os melhores e os piores resultados associados com a escala Bark. Diferentemente, com a escala \textit{Mel}, \textbf{Daubechies 58} foi o melhor filtro e \textbf{Coiflets 18} o pior. \\
 	
 	\par Na Figura \ref{fig:haardaub42comparison} é possível ver um sinal periódico decomposto em suas componentes usando o melhor e os piores filtros já citados: Nota-se que com a wavelet \textbf{Haar} a decomposição tem menos flutuações, facilitando portanto o treinamento do classificador.
 

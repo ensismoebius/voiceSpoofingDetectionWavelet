@@ -79,11 +79,10 @@ namespace waveletExperiments
 					plt::subplot(results.size(), 1, plot++);
 					plt::ylim(ylimMin, ylimMax);
 					plt::named_plot(v.first, v.second);
-					plt::title("name: " + v.first + " lvl:" + std::to_string(level) + " size:" + std::to_string(size));
+					plt::title("Wavelet: " + v.first + " - Decomposition level: " + std::to_string(level));
+					plt::grid(true);
 				}
 
-				plt::grid(true);
-				plt::legend();
 				plt::show();
 			}
 
@@ -102,7 +101,7 @@ namespace waveletExperiments
 				finalResults["Original"] = signal;
 
 				// Select the wavelets are going to be used
-				wavelets::init( { "haar", "daub42", "daub54" });
+				wavelets::init( { "haar", "daub18", "daub58", "coif18" });
 
 				// Calculate the maximum levels of decomposition
 				int level = std::log2(signal.size());

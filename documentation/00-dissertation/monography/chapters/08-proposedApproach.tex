@@ -1,14 +1,14 @@
 \chapter{Abordagem proposta} \label{chap:propApproach}
 	\section{A Base de sinais de soz}
 	    \subsection{Coleta dos sinais}
-		\par Para a realização desta pesquisa, coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas da UNESP em São José do Rio Preto, no estado de São Paulo. Foram coletadas amostras de 21 indivíduos, das quais 20 foram usadas já que, em um dos casos, não foi possível coletar todos os dados necessários. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua Inglesa quanto na Portuguesa. Os locutores foram escolhidos de acordo com seu sexo e idade de forma que a amostra estudada tenha uma abrangência que cubra desde crianças em época pré-escolar até adultos com idades até os 67 anos dos sexos masculino e feminino.
+		\par Para a realização desta pesquisa, coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas da UNESP em São José do Rio Preto, no estado de São Paulo. Foram coletadas amostras de 21 indivíduos, das quais 20 foram usadas já que, em um dos casos, não foi possível coletar todos os dados necessários. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua Inglesa quanto na Portuguesa. Os locutores foram escolhidos de acordo com seu sexo e idade de forma que a amostra estudada tenha uma abrangência que cubra desde crianças em época pré-escolar até adultos com idades até os 67 anos dos sexos masculino e feminino.\\
 					
-		\par As gravações foram realizadas usando-se um \textit{smartphone} Asus modelo \textit{Ze550kl} rodando o sistema operacional \textit{Android 6.0.1} em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wave} sem compressão com quantização de 16 bits e taxa de amostragem de 44100Hz, permitindo, segundo o teorema de Nyquist, que seja registradas frequências de até 22050Hz.
+		\par As gravações foram realizadas usando-se um \textit{smartphone} Asus modelo \textit{Ze550kl} rodando o sistema operacional \textit{Android 6.0.1} em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wave} sem compressão com quantização de 16 bits e taxa de amostragem de 44100Hz, permitindo, segundo o teorema de Nyquist, que seja registradas frequências de até 22050Hz.\\
 		
 		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 410 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravado por um segundo dispositivo, um \textit{notebook} Acer modelo  \textit{Travelmate B} com o sistema operacional \textit{Arch GNU/Linux}, caracterizando os 410 sinais rotulados como ``falseados''.
 
 	    \subsection{Organização da base de sinais}
-		\par A organização da base de dados se deu por tipo, isto é, genuíno ou falseado, idioma, dígito ditado e interlocutor considerado. Foi criada uma estrutura hierárquica de diretórios de forma a permitir acesso fácil e intuitivo a cada um dos arquivos \textit{wav}, seja por vias automatizadas ou não. Os arquivos falseados residem no diretório ``playback'', enquanto que os genuínos se encontram no diretório ``live''.	Essa organização está ilustrada nas Figuras \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} e \ref{fig:directorystructlevel03}.
+		\par A organização da base de dados se deu por tipo, isto é, genuíno ou falseado, idioma, dígito ditado e interlocutor considerado. Foi criada uma estrutura hierárquica de diretórios de forma a permitir acesso fácil e intuitivo a cada um dos arquivos \textit{wav}, seja por vias automatizadas ou não. Os arquivos falseados residem no diretório ``playback'', enquanto que os genuínos se encontram no diretório ``live''.	Essa organização está ilustrada nas Figuras \ref{fig:directorystructlevel01}, \ref{fig:directorystructlevel02} e \ref{fig:directorystructlevel03}.\\
 		
 		\par Para facilitar a automatização do processamento, foram criados três arquivos de texto:
 		\begin{itemize}
@@ -45,7 +45,7 @@
 		\par Conforme mencionado nos Capítulos anteriores, os vetores de características desta abordagem foram obtidos com base na Transformada \textit{Wavelet}, convertendo os sinais de voz do domínio do tempo para o domínio tempo-frequência. Particularmente, nos experimentos detalhados adiante, foram testados os seguintes filtros \textit{wavelet}: Haar, Daubechies de suportes 4 até 76, Symmlets com suportes 8, 16 e 32, Coiflets com suportes 6, 12, 18, 24 e 30, Beylkin com suporte 18 e, ainda, Vaidyanathan de suporte 24.
 
 	\section{Procedimentos}
-		\par Afim de garantir a comparação com outros trabalhos se fez necessário adotar várias formas de representar os resultados correspondentes para cada configuração experimental:
+		\par Afim de garantir a comparação com outros trabalhos se fez necessário adotar várias formas de representar os resultados correspondentes para cada configuração experimental:\\
 		\begin{itemize}
 			\item Tabela de confusão.
 			\item Acurácia e seu respectivo desvio padrão.
@@ -61,14 +61,14 @@
 		\end{itemize} 
 		\input{tables/results/confusionMatrices/confusionMatrixSample.tex}
 		
-		\par A acurácia usa os valores de \textit{TP}, \textit{TN} e a quantidade de elementos(\textit{N}) para ser calculada como mostrado na Equação \ref{eq:calculoDaAcuracia}.
+		\par A acurácia usa os valores de \textit{TP}, \textit{TN} e a quantidade de elementos(\textit{N}) para ser calculada como mostrado na Equação \ref{eq:calculoDaAcuracia}.\\
 		
 		\begin{equation}
 			acuracia = \dfrac{TP + TN}{N} \qquad.
 			\label{eq:calculoDaAcuracia}
 		\end{equation}
 
-		\par Para se calcular o EER se leva em consideração os valores de \textit{FP} e \textit{FN} \cite{ghazali2018recent}, a partir desse valores são calculadas as \textit{False Acceptance Rate (\textbf{FAR})} representada na equação \ref{eq:FAR} e \textit{False Rejection Rate (\textbf{FRR})} representada por \ref{eq:FRR} ou \textbf{Taxa de falsos positivos} e \textbf{Taxa de falsos negativos} respectivamente.
+		\par Para se calcular o EER se leva em consideração os valores de \textit{FP} e \textit{FN} \cite{ghazali2018recent}, a partir desse valores são calculadas as \textit{False Acceptance Rate (\textbf{FAR})} representada na equação \ref{eq:FAR} e \textit{False Rejection Rate (\textbf{FRR})} representada por \ref{eq:FRR} ou \textbf{Taxa de falsos positivos} e \textbf{Taxa de falsos negativos} respectivamente.\\
 		
 		\begin{equation}
 			FAR=\dfrac{FP}{TN+FP} \qquad.
@@ -80,9 +80,9 @@
 			\label{eq:FRR}
 		\end{equation}
 				
-		\par São calculadas tabelas de confusão por um número suficiente de vezes até que \textbf{\textit{FAR} seja igual \textit{FRR}}, a cada ciclo os vetores de características são comutados de forma aleatória para que se consiga valores diferentes, neste trabalho alguns casos precisaram de mais que 12000 iterações para que se encontrasse uma configuração em que FAR=FRR.
+		\par São calculadas tabelas de confusão por um número suficiente de vezes até que \textbf{\textit{FAR} seja igual \textit{FRR}}, a cada ciclo os vetores de características são comutados de forma aleatória para que se consiga valores diferentes, neste trabalho alguns casos precisaram de mais que 12000 iterações para que se encontrasse uma configuração em que FAR=FRR.\\
 		
-		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico juntamente com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.
+		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico juntamente com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.\\
 		
 		\par O efetivo valor de \textbf{ERR se encontra na intersecção da reta $x=y$} com a curva definida por FAR e FRR, por isso o cálculo de um valor único como demonstrado no Algoritmo \ref{lst:EERAlgo} e na Figura \ref{fig:eeralgo} pois se $x=ERR$ então também $y=ERR$.\\
 	
@@ -135,12 +135,10 @@
 		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão e assim calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No Algoritmo \ref{lst:experiment02Algo} e na Figura \ref{fig:experiment02Algo}, os passos estão detalhados.
 		
 		\par Essencialmente, este Procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente à uma das classes dos vetores de modelagem selecionados.   
-		
-		
-		% TODO Corrigir o diagrama! Tem um erro tosco na parte debaixo
+
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.9\linewidth]{images/AlgoProcedure02}
+			\includegraphics[width=.85\linewidth]{images/AlgoProcedure02}
 			\caption{Algoritmo que caracteriza o Procedimento 02}
 			\label{fig:experiment02Algo}
 		\end{figure}
