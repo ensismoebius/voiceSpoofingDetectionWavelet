@@ -118,6 +118,9 @@ namespace waveletExperiments
 				/// Wavelet section ///
 				///////////////////////
 
+				// Normalizes the signal between -1 and 1
+				linearAlgebra::normalizeVectorToRange(signal, -1, 1);
+
 				// Expands the signal length to optimize the wavelet transform
 				signalLength = wavelets::getNextPowerOfTwo(signal.size());
 				signal.resize(signalLength, 0);

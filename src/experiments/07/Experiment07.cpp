@@ -89,11 +89,14 @@ namespace waveletExperiments
 				/// Wavelet section ///
 				///////////////////////
 
+				// Normalizes the signal between -1 and 1
+				linearAlgebra::normalizeVectorToRange(signal, -1, 1);
+
 				// Expands the signal length to optimize the wavelet transform
 				signalLength = wavelets::getNextPowerOfTwo(signal.size());
 				signal.resize(signalLength, 0);
 
-				// Calculates the maximum levels of decomposi				std::sort(far);tions
+				// Calculates the maximum levels of decompositions
 				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
@@ -171,7 +174,7 @@ namespace waveletExperiments
 
 				std::string distType = distanceType == classifiers::DistanceClassifier::MANHATTAN ? "Manhattan" : "Euclidian";
 
-				// Preparing data for ploting
+				// Preparing data for plotting
 				std::vector<double> falsePositiveRate;
 				std::vector<double> falseNegativeRate;
 				double equalErrorRate;

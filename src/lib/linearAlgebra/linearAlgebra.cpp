@@ -142,7 +142,7 @@ namespace linearAlgebra
 		 *		v = (v * rangeLim) + lowerLimit;
 		 */
 
-		// The code bellow is the same as the commented code above
+		// The code bellow do the same as the commented code above
 		double min, max;
 		min = max = signal[0];
 
@@ -191,7 +191,7 @@ namespace linearAlgebra
 		 *		v = (v * rangeLim) + lowerLimit;
 		 */
 
-		// The code bellow is the same as the commented code above
+		// The code bellow do the same as the commented code above
 		double min, max;
 		min = max = signal[0];
 
@@ -291,8 +291,8 @@ namespace linearAlgebra
 			res[k] = getAlphaK(k, N) * sum;
 		}
 
-		for (unsigned int k = 0; k < N; ++k)
-			signal[k] = res[k];
+		for (unsigned int i = 0; i < N; ++i)
+			signal[i] = res[i];
 
 		delete[] res;
 	}

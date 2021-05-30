@@ -477,7 +477,7 @@
 //				}
 //
 //				// Calculates the range of y axis
-//				// for a more regular ploting
+//				// for a more regular plotting
 //				double yrange[2] = { 1, 0 };
 //				for (auto test : numberOfTests) {
 //
