@@ -193,8 +193,8 @@ namespace waveletExperiments
 
 				// False Rejection Rate = False Negative Rate
 				plt::ylabel("False Rejection Rate");
-				plt::xlim(0.0, 1.1);
-				plt::ylim(0.0, 1.0);
+				plt::xlim(0.0, .5);
+				plt::ylim(0.0, .5);
 
 				plt::grid(true);
 

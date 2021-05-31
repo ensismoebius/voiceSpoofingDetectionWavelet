@@ -192,11 +192,10 @@ namespace waveletExperiments
 				plt::title("Detection Error Tradeoff curve and EER using SVM classifier.\n Model size: " + std::to_string(int(percentage * 100)) + "%");
 				plt::xlabel("False Acceptance Rate");
 				plt::ylabel("False Rejection Rate");
-				plt::xlim(0.0, 1.1);
-				plt::ylim(0.0, 1.0);
+				plt::xlim(0.0, .5);
+				plt::ylim(0.0, .5);
 
 				plt::grid(true);
-				plt::show();
 				plt::save(destiny + "/DET_for_classifier_SVM_" + std::to_string(int(percentage * 100)) + ".pdf");
 				plt::clf();
 			}
@@ -333,7 +332,7 @@ namespace waveletExperiments
 
 					// Changes the amount of tests done against the dataset
 					confusionMatricesForEachPercentage[modelPercentage].resize(amountOfTestsToPerfom);
-					for (unsigned int testIndex = 1; testIndex < amountOfTestsToPerfom + 1; testIndex++)
+					for (unsigned int testIndex = 0; testIndex < amountOfTestsToPerfom; testIndex++)
 					{
 
 						// Sampling the live signals
