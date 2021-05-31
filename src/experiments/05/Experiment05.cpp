@@ -31,7 +31,7 @@
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
-#include "../../lib/wavelet/WaveletTransformResults.cpp"
+#include "../../lib/wavelet/WaveletTransformResults.h"
 
 namespace waveletExperiments
 {

@@ -6,98 +6,79 @@
  *
  * 6 de mai de 2020
  */
-#ifndef SRC_LIB_CLASSIFIERS_DISTANCECLASSIFIER_CPP_
-#define SRC_LIB_CLASSIFIERS_DISTANCECLASSIFIER_CPP_
 
 #include <map>
 #include <vector>
 #include <string>
 #include <limits>
+#include "DistanceClassifier.h"
 #include "../vector/vectorUtils.h"
 
 namespace classifiers
 {
+	void DistanceClassifier::clearRefenceModels()
+	{
+		this->referenceModels.clear();
+	}
 
-	class DistanceClassifier
+	void DistanceClassifier::addReferenceModels(std::string label, std::vector<std::vector<double>> models)
+	{
+		this->referenceModels[label] = models;
+	}
+
+	void DistanceClassifier::setDistanceType(DISTANCE_TYPE type)
+	{
+		this->distanceType = type;
+	}
+
+	std::string DistanceClassifier::classify(std::vector<double> featureVector)
 	{
 
-		public:
-			enum DISTANCE_TYPE
+		double distance;
+
+		std::string nearestLabel;
+		double nearestDistance = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
+
+		if (this->distanceType == EUCLICIDIAN)
+		{
+			for (auto model : this->referenceModels)
 			{
-				EUCLICIDIAN, MANHATTAN
-			};
-
-		private:
-			std::map<std::string, std::vector<std::vector<double>>> referenceModels;
-			DISTANCE_TYPE distanceType;
-
-		public:
-
-			void clearRefenceModels()
-			{
-				this->referenceModels.clear();
-			}
-
-			void addReferenceModels(std::string label, std::vector<std::vector<double>> models)
-			{
-				this->referenceModels[label] = models;
-			}
-
-			void setDistanceType(DISTANCE_TYPE type)
-			{
-				this->distanceType = type;
-			}
-
-			std::string classify(std::vector<double> featureVector)
-			{
-
-				double distance;
-
-				std::string nearestLabel;
-				double nearestDistance = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
-
-				if (this->distanceType == EUCLICIDIAN)
+				for (auto modelFeatureVector : model.second)
 				{
-					for (auto model : this->referenceModels)
+
+					distance = euclidianDistance(modelFeatureVector, featureVector);
+
+					if (distance < nearestDistance)
 					{
-						for (auto modelFeatureVector : model.second)
-						{
-
-							distance = euclidianDistance(modelFeatureVector, featureVector);
-
-							if (distance < nearestDistance)
-							{
-								nearestDistance = distance;
-								nearestLabel = model.first;
-							}
-						}
+						nearestDistance = distance;
+						nearestLabel = model.first;
 					}
-
-					return nearestLabel;
 				}
-
-				if (this->distanceType == MANHATTAN)
-				{
-					for (auto model : this->referenceModels)
-					{
-						for (auto modelFeatureVector : model.second)
-						{
-
-							distance = manhattanDistance(modelFeatureVector, featureVector);
-
-							if (distance < nearestDistance)
-							{
-								nearestDistance = distance;
-								nearestLabel = model.first;
-							}
-						}
-					}
-
-					return nearestLabel;
-				}
-
-				return "";
 			}
-	};
+
+			return nearestLabel;
+		}
+
+		if (this->distanceType == MANHATTAN)
+		{
+			for (auto model : this->referenceModels)
+			{
+				for (auto modelFeatureVector : model.second)
+				{
+
+					distance = manhattanDistance(modelFeatureVector, featureVector);
+
+					if (distance < nearestDistance)
+					{
+						nearestDistance = distance;
+						nearestLabel = model.first;
+					}
+				}
+			}
+
+			return nearestLabel;
+		}
+
+		return "";
+	}
 }
-#endif /* SRC_LIB_CLASSIFIERS_DISTANCECLASSIFIER_CPP_ */

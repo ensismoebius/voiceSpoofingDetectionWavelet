@@ -1,16 +1,16 @@
 #include <iostream>
-#include "../lib/classifiers/SupportVectorMachine.cpp"
+#include "../lib/classifiers/SupportVectorMachine.h"
 
 void test(int argc, char *args[])
 {
 
 	classifiers::SupportVectorMachine s;
 
-	std::vector<std::vector<double>> trainningInputA = { { 1, 2, 3 }, { 7, 8, 9 }, { 13, 14, 15 } };
-	std::vector<std::vector<double>> trainningInputB = { { -1, -2, -3 }, { -7, -8, -9 }, { -13, -14, -15 } };
+	std::vector<std::vector<double>> trainingInputA = { { 1, 2, 3 }, { 7, 8, 9 }, { 13, 14, 15 } };
+	std::vector<std::vector<double>> trainingInputB = { { -1, -2, -3 }, { -7, -8, -9 }, { -13, -14, -15 } };
 
-	s.addTrainningCases(trainningInputA, classifiers::SupportVectorMachine::POSITIVE);
-	s.addTrainningCases(trainningInputB, classifiers::SupportVectorMachine::NEGATIVE);
+	s.addTrainningCases(trainingInputA, classifiers::SupportVectorMachine::POSITIVE);
+	s.addTrainningCases(trainingInputB, classifiers::SupportVectorMachine::NEGATIVE);
 	s.train();
 
 	if (s.evaluate( { -4, -5, -6 }) == classifiers::SupportVectorMachine::POSITIVE)

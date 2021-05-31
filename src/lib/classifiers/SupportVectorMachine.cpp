@@ -5,13 +5,11 @@
  * more information read the license file
  *
  * 12 de mai de 2020
- *
  */
 
-#ifndef SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_
-#define SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_
 #include <cmath>
 #include <vector>
+#include "SupportVectorMachine.h"
 #include "../vector/vectorUtils.h"
 #include "../linearAlgebra/linearAlgebra.h"
 
@@ -19,130 +17,88 @@ namespace classifiers
 {
 
 	/**
-	 * A support vector machine implementation
+	 * Used to calculate the radial distances between two vectors
+	 * @param currentInputVector
+	 * @param v2
+	 * @return distance
 	 */
-	class SupportVectorMachine
+	inline double SupportVectorMachine::radialDistance(std::vector<double> currentInputVector, std::vector<double> v2)
 	{
-		public:
+		return std::exp(-euclidianDistance(currentInputVector, v2));
+	}
 
-			/**
-			 * Labels for data
-			 */
-			enum LABEL
+	/**
+	 * Add training matrices to SVM
+	 * @param matrix - A matrix (2d vector) with training cases
+	 * @param label - Label indicating if it is positive or negative sample
+	 */
+	void SupportVectorMachine::addTrainningCases(std::vector<std::vector<double>> matrix, SupportVectorMachine::LABEL label)
+	{
+		this->trainingLabels.resize(this->trainingLabels.size() + matrix.size(), label);
+		this->trainingModels.insert(this->trainingModels.end(), matrix.begin(), matrix.end());
+	}
+
+	/**
+	 * Do the classification!!!
+	 * @param input - The vector to be tested
+	 * @return POSITIVE or NEGATIVE
+	 */
+	SupportVectorMachine::LABEL SupportVectorMachine::evaluate(std::vector<double> input)
+	{
+
+		// Reset Weighted distance for next classification
+		wDistance = 0;
+
+		// creating the layer values
+		for (unsigned int fi = 0; fi < this->trainingModels.size(); fi++)
+		{
+			wDistance += this->outputWeights[fi] * this->radialDistance(input, this->trainingModels[fi]);
+		}
+
+		return (wDistance / this->trainingModels.size() < 0) ? NEGATIVE : POSITIVE;
+	}
+
+	/**
+	 * Trainning method, use this after use
+	 * @see addTrainningCases method
+	 * @see addTrainningCases
+	 */
+	void SupportVectorMachine::train()
+	{
+		// Used to determine the weights for the connections to the output
+		std::vector<std::vector<double>> distancesMatrix;
+		distancesMatrix.resize(this->trainingModels.size(), std::vector<double>(this->trainingModels.size()));
+
+		// creating the distances matrix values
+		// i.e. the distances between the vectors
+		for (unsigned int fi = 0; fi < this->trainingModels.size(); fi++)
+		{
+			for (unsigned int ii = 0; ii < this->trainingModels.size(); ii++)
 			{
-				POSITIVE = 1, NEGATIVE = -1
-			};
-		private:
-
-			/**
-			 * Labels to the trainning models
-			 */
-			std::vector<LABEL> trainningLabels;
-
-			/**
-			 * This is the reference for trainning
-			 * and classification of further data
-			 */
-			std::vector<std::vector<double>> trainningModels;
-
-			/**
-			 * Holds the weights used for classification
-			 */
-			std::vector<double> outputWeights;
-
-			/**
-			 * Weighted distance from input and trainning models
-			 * Used on @see evaluate method
-			 */
-			double wDistance = 0;
-
-			/**
-			 * Used to calculate the radial distances between two vectors
-			 * @param currentInputVector
-			 * @param v2
-			 * @return distance
-			 */
-			inline double radialDistance(std::vector<double> currentInputVector, std::vector<double> v2)
-			{
-				return std::exp(-euclidianDistance(currentInputVector, v2));
+				distancesMatrix[fi][ii] = this->radialDistance(this->trainingModels[fi], this->trainingModels[ii]);
 			}
 
-		public:
+			// Adding labels to the data
+			distancesMatrix[fi].push_back(this->trainingLabels[fi]);
+		}
 
-			/**
-			 * Add trainning matrices to SVM
-			 * @param matrix - A matrix (2d vector) with trainning cases
-			 * @param label - Label indicating if it is positive or negative sample
-			 */
-			void addTrainningCases(std::vector<std::vector<double>> matrix, LABEL label)
-			{
-				this->trainningLabels.resize(this->trainningLabels.size() + matrix.size(), label);
-				this->trainningModels.insert(this->trainningModels.end(), matrix.begin(), matrix.end());
-			}
+		// Tests:
+		//	distancesMatrix = { { 1, 1, 1, 7 }, { 2, 1, -1, 9 }, { 1, -2, 2, 2 } };
+		//		results 4,2,1
+		//	distancesMatrix = { { 4, 2, 1, -2, 3 }, { 3, -3, -1, -1, 2 }, { 3, 5, 1, 1, 0 }, { 1, -1, -1, 4, -2 } };
+		//		results 0.461538, -0.384615, 1, -0.461538
 
-			/**
-			 * Do the classification!!!
-			 * @param input - The vector to be tested
-			 * @return POSITIVE or NEGATIVE
-			 */
-			LABEL evaluate(std::vector<double> input)
-			{
+		// Matrix scaling for linear system solving
+		linearAlgebra::scaleMatrix(distancesMatrix);
 
-				// Reset Weighted distance for next classification
-				wDistance = 0;
+		// system solved!!! Return the coeficcients
+		this->outputWeights = linearAlgebra::solveMatrix(distancesMatrix);
+	}
 
-				// creating the layer values
-				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++)
-				{
-					wDistance += this->outputWeights[fi] * this->radialDistance(input, this->trainningModels[fi]);
-				}
-
-				return (wDistance / this->trainningModels.size() < 0) ? NEGATIVE : POSITIVE;
-			}
-
-			/**
-			 * Trainning method, use this after use
-			 * @see addTrainningCases method
-			 * @see addTrainningCases
-			 */
-			void train()
-			{
-				// Used to determine the weights for the connections to the output
-				std::vector<std::vector<double>> distancesMatrix;
-				distancesMatrix.resize(this->trainningModels.size(), std::vector<double>(this->trainningModels.size()));
-
-				// creating the distances matrix values
-				// i.e. the distances between the vectors
-				for (unsigned int fi = 0; fi < this->trainningModels.size(); fi++)
-				{
-					for (unsigned int ii = 0; ii < this->trainningModels.size(); ii++)
-					{
-						distancesMatrix[fi][ii] = this->radialDistance(this->trainningModels[fi], this->trainningModels[ii]);
-					}
-
-					// Adding labels to the data
-					distancesMatrix[fi].push_back(this->trainningLabels[fi]);
-				}
-
-				// Tests:
-				//	distancesMatrix = { { 1, 1, 1, 7 }, { 2, 1, -1, 9 }, { 1, -2, 2, 2 } };
-				//		results 4,2,1
-				//	distancesMatrix = { { 4, 2, 1, -2, 3 }, { 3, -3, -1, -1, 2 }, { 3, 5, 1, 1, 0 }, { 1, -1, -1, 4, -2 } };
-				//		results 0.461538, -0.384615, 1, -0.461538
-
-				// Matrix scaling for linear system solving
-				linearAlgebra::scaleMatrix(distancesMatrix);
-
-				// system solved!!! Return the coeficcients
-				this->outputWeights = linearAlgebra::solveMatrix(distancesMatrix);
-			}
-
-			void clearTrain()
-			{
-				this->outputWeights.clear();
-				this->trainningLabels.clear();
-				this->trainningModels.clear();
-			}
-	};
+	void SupportVectorMachine::clearTrain()
+	{
+		this->outputWeights.clear();
+		this->trainingLabels.clear();
+		this->trainingModels.clear();
+	}
 }
-#endif /* SRC_LIB_CLASSIFIERS_SUPPORTVECTORMACHINE_CPP_ */

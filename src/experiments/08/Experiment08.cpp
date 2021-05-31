@@ -30,8 +30,8 @@
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
 #include "../../lib/paraconsistent/paraconsistent.h"
 #include "../../lib/classifiers/featureVectorsUtils.h"
-#include "../../lib/wavelet/WaveletTransformResults.cpp"
-#include "../../lib/classifiers/SupportVectorMachine.cpp"
+#include "../../lib/wavelet/WaveletTransformResults.h"
+#include "../../lib/classifiers/SupportVectorMachine.h"
 
 namespace waveletExperiments
 {

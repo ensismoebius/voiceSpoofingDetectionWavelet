@@ -11,7 +11,7 @@
 
 #include <vector>
 
-#include "WaveletTransformResults.cpp"
+#include "WaveletTransformResults.h"
 
 namespace wavelets
 {

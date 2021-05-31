@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "waveletOperations.h"
-#include "WaveletTransformResults.cpp"
+#include "WaveletTransformResults.h"
 #include "../linearAlgebra/linearAlgebra.h"
 
 namespace wavelets
