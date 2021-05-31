@@ -217,8 +217,10 @@ namespace waveletExperiments
 					/*
 					 * For the sake of this experiment we need to known MEL values
 					 * without derivation. That why the derivative is commented out
+					 *
+					 * Lets try, for now, leave it active
 					 */
-					// linearAlgebra::derivative(featureVector, 2);
+					linearAlgebra::derivative(featureVector, 2);
 				}
 
 				// Normalizes the resulting features vector
@@ -384,7 +386,7 @@ namespace waveletExperiments
 				double totalCycles = 0;
 
 				// For this experiment we will use just three wavelets
-				wavelets::init( { "haar", "daub42", "daub54" });
+				wavelets::init( { "haar", "daub18", "daub58", "coif18" });
 
 				// Computes the cycles needed to compute all signals
 				for (unsigned int i = 0; i < classFileList.size(); i++)
