@@ -4,9 +4,9 @@
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\definecolor{tcC}{rgb}{1,0.94902,0}
 	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
+		\begin{tabular}{|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|}\hline
 			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
+			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distance to (1,0)}\\\hline
 			\mc{1}{|>{\columncolor{tcB}}c|}{haar}&\mc{1}{|>{\columncolor{tcB}}c|}{4.1848066450e-01}&\mc{1}{|>{\columncolor{tcB}}c|}{-5.8151933550e-01}&\mc{1}{|>{\columncolor{tcB}}c|}{8.2239253104e-01}\\\hline	
 			\mc{1}{|>{\columncolor{tcC}}c|}{coif18}&\mc{1}{>{\columncolor{tcC}}c|}{3.5204055918e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.4795944082e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.1635302907e-01}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{sym8}&\mc{1}{>{\columncolor{tcC}}c|}{3.4603021846e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.5396978154e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.2485293444e-01}\\\hline
@@ -40,6 +40,21 @@
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub50}&\mc{1}{>{\columncolor{tcC}}c|}{3.0823766186e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9176233814e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7829968054e-01}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub62}&\mc{1}{>{\columncolor{tcC}}c|}{3.0770438198e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9229561802e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7905385218e-01}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{vaidyanathan24}&\mc{1}{>{\columncolor{tcC}}c|}{3.0760411338e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9239588662e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7919565339e-01}\\\hline
+		\end{tabular}
+	\end{center}
+	\caption{Wavelet \textit{x} BARK combination in the paraconsistent plane (Part 1)}
+	\label{tab:distParacomFrom10Bark_1}
+\end{table}
+
+\begin{table}[H]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcC}{rgb}{1,0.94902,0}
+	\begin{center}
+		\begin{tabular}{|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|}\hline
+			% use packages: color,colortbl
+			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distance to (1,0)}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub24}&\mc{1}{>{\columncolor{tcC}}c|}{3.0612296189e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9387703811e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8129031791e-01}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub76}&\mc{1}{>{\columncolor{tcC}}c|}{3.0544640534e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9455359466e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8224711336e-01}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub56}&\mc{1}{>{\columncolor{tcC}}c|}{3.0487151225e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9512848775e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8306013497e-01}\\\hline
@@ -53,26 +68,11 @@
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub6}&\mc{1}{>{\columncolor{tcC}}c|}{2.8936618301e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1063381699e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0049879819e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub36}&\mc{1}{>{\columncolor{tcC}}c|}{2.8798608604e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1201391396e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0069397337e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{sym32}&\mc{1}{>{\columncolor{tcC}}c|}{2.8780015676e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1219984324e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0072026774e+00}\\\hline
-		\end{tabular}
-	\end{center}
-	\caption{Combinação wavelet\textit{X}BARK no plano paraconsistente (Parte 01)}
-	\label{tab:distParacomFrom10Bark_1}
-\end{table}
-
-\begin{table}[H]
-	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-	\definecolor{tcC}{rgb}{1,0.94902,0}
-	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
-			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub14}&\mc{1}{>{\columncolor{tcC}}c|}{2.8287156364e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1712843636e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0141727607e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub18}&\mc{1}{>{\columncolor{tcC}}c|}{2.7692367779e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.2307632221e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0225843415e+00}\\\hline
 		\end{tabular}
 	\end{center}
-	\caption{Combinação wavelet\textit{X}BARK no plano paraconsistente (Parte 02)}
+	\caption{Wavelet \textit{x} BARK combination in the paraconsistent plane (Part 1)}
 	\label{tab:distParacomFrom10Bark_2}
 \end{table}
 
@@ -84,9 +84,9 @@
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
 	\definecolor{tcC}{rgb}{1,0.94902,0}
 	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
+		\begin{tabular}{|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|}\hline
 			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
+			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distance to (1,0)}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub58}&\mc{1}{>{\columncolor{tcC}}c|}{-5.9450214774e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.5945021477e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.2549665626e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{beylkin18}&\mc{1}{>{\columncolor{tcC}}c|}{-6.0355592897e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6035559290e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.2677705428e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub66}&\mc{1}{>{\columncolor{tcC}}c|}{-6.2576321449e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6257632145e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.2991763871e+00}\\\hline
@@ -113,6 +113,23 @@
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub76}&\mc{1}{>{\columncolor{tcC}}c|}{-8.0445838205e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8044583820e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.5518895166e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{coif30}&\mc{1}{>{\columncolor{tcC}}c|}{-8.3948999182e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8394899918e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6014316943e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub8}&\mc{1}{>{\columncolor{tcC}}c|}{-8.4179244089e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8417924409e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6046878490e+00}\\\hline
+
+		\end{tabular}
+	\end{center}
+	\caption{Wavelet \textit{x} MEL combination in the paraconsistent plane (Part 1)}
+	\label{tab:distParacomFrom10Mel_1}
+\end{table}
+
+\begin{table}[!h]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcC}{rgb}{1,0.94902,0}
+	\begin{center}
+		\begin{tabular}{|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|}\hline
+			% use packages: color,colortbl
+			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distance to (1,0)}\\\hline
+
 			\mc{1}{|>{\columncolor{tcC}}c|}{sym16}&\mc{1}{>{\columncolor{tcC}}c|}{-8.4317849781e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8431784978e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6066480295e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub74}&\mc{1}{>{\columncolor{tcC}}c|}{-8.4881627902e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8488162790e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6146210561e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub4}&\mc{1}{>{\columncolor{tcC}}c|}{-8.5445068719e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8544506872e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6225893126e+00}\\\hline
@@ -125,22 +142,7 @@
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub14}&\mc{1}{>{\columncolor{tcC}}c|}{-8.9354903427e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8935490343e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6778827253e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{sym32}&\mc{1}{>{\columncolor{tcC}}c|}{-8.9748903294e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8974890329e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6834547248e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub42}&\mc{1}{>{\columncolor{tcC}}c|}{-9.0032993085e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9003299308e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6874723612e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif6}&\mc{1}{>{\columncolor{tcC}}c|}{-9.4195186392e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9419518639e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7463346634e+00}\\\hline
-		\end{tabular}
-	\end{center}
-	\caption{Combinação wavelet\textit{X}MEL no plano paraconsistente (Parte 01)}
-	\label{tab:distParacomFrom10Mel_1}
-\end{table}
-
-\begin{table}[!h]
-	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-	\definecolor{tcC}{rgb}{1,0.94902,0}
-	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
-			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
+			\mc{1}{|>{\columncolor{tcC}}c|}{coif6}&\mc{1}{>{\columncolor{tcC}}c|}{-9.4195186392e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9419518639e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7463346634e+00}\\\hline			
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub26}&\mc{1}{>{\columncolor{tcC}}c|}{-9.6233734610e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9623373461e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7751640888e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub10}&\mc{1}{>{\columncolor{tcC}}c|}{-9.7084514548e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9708451455e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7871959341e+00}\\\hline
 			\mc{1}{|>{\columncolor{tcC}}c|}{daub48}&\mc{1}{>{\columncolor{tcC}}c|}{-9.7107738335e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9710773833e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7875243680e+00}\\\hline
@@ -152,7 +154,7 @@
 			\mc{1}{|>{\columncolor{tcC}}c|}{coif18}&\mc{1}{>{\columncolor{tcC}}c|}{-1.2118978354e+00}&\mc{1}{>{\columncolor{tcC}}c|}{-2.2118978354e+00}&\mc{1}{>{\columncolor{tcC}}c|}{3.1280959175e+00}\\\hline
 		\end{tabular}
 	\end{center}
-	\caption{Combinação wavelet\textit{X}MEL no plano paraconsistente (Parte 02)}
+	\caption{Wavelet \textit{x} MEL combination in the paraconsistent plane (Part 2)}
 	\label{tab:distParacomFrom10Mel_2}
 \end{table}
 

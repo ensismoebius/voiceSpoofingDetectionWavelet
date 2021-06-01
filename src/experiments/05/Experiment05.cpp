@@ -217,10 +217,8 @@ namespace waveletExperiments
 					/*
 					 * For the sake of this experiment we need to known MEL values
 					 * without derivation. That why the derivative is commented out
-					 *
-					 * Lets try, for now, leave it active
 					 */
-					linearAlgebra::derivative(featureVector, 2);
+					//linearAlgebra::derivative(featureVector, 2);
 				}
 
 				// Normalizes the resulting features vector
@@ -243,7 +241,7 @@ namespace waveletExperiments
 				// Prepare the labels for MEL scale
 				std::vector<double> melTicks(MELRanges.size() - 1);
 				std::vector<std::string> melLabels(MELRanges.size() - 1);
-				for (unsigned int i = 0; i < MELRanges.size() - 1; i++)
+				for (unsigned int i = 0; i < melTicks.size(); i++)
 				{
 					melLabels[i] = std::to_string(int(MELRanges[i])) + "-" + std::to_string(int(MELRanges[i + 1]));
 					melTicks[i] = i;
@@ -259,10 +257,10 @@ namespace waveletExperiments
 				}
 
 				// Labels configurations
-				std::map<std::string, std::string> parans;
-				parans["rotation"] = "40";
-				parans["rotation_mode"] = "anchor";
-				parans["horizontalalignment"] = "right";
+				std::map<std::string, std::string> params;
+				params["rotation"] = "40";
+				params["rotation_mode"] = "anchor";
+				params["horizontalalignment"] = "right";
 
 				std::map<std::string, std::string> params2;
 				params2["color"] = "red";
@@ -280,23 +278,23 @@ namespace waveletExperiments
 							std::string title;
 							if (clazz.first.compare(Experiment05::classFileList[0]) == 0)
 							{
-								title = "Non spoofing ";
+								title = "Genuine_";
 							} else
 							{
-								title = "Spoofing ";
+								title = "Spoofing_";
 							}
-							title += wavelets.first + "-" + (barkMel.first == BARK ? "Bark" : "Mel");
+							title += wavelets.first + "_" + (barkMel.first == BARK ? "Bark" : "Mel");
 
 							// Setting up ticks and labels
 							if (static_cast<BARK_MEL>(barkMel.first) == BARK)
 							{
-								plt::xticks(barkTicks, barkLabels, parans);
+								plt::xticks(barkTicks, barkLabels, params);
 							} else
 							{
-								plt::xticks(melTicks, melLabels, parans);
+								plt::xticks(melTicks, melLabels, params);
 							}
 
-							// Setting up the width and heigth of plot
+							// Setting up the width and height of plot
 							if (static_cast<BARK_MEL>(barkMel.first) == BARK)
 							{
 								plt::xlim(0, int(BARKRanges.size()));
@@ -321,7 +319,11 @@ namespace waveletExperiments
 							}
 							plt::tight_layout();
 							plt::grid(true);
-							plt::show();
+
+							std::string file = resultsDestiny + "/" + title + ".pdf";
+							plt::save(file);
+							plt::clf();
+							plt::close();
 						}
 					}
 				}
