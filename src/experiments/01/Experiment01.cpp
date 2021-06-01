@@ -218,7 +218,7 @@ namespace waveletExperiments
 				}
 
 				// Normalizes the resulting features vector
-				linearAlgebra::normalizeVectorToSum1(featureVector);
+				linearAlgebra::normalizeVectorToRange(featureVector, 0 , 1);
 
 				// Replaces the original signal
 				signal = featureVector;
@@ -257,11 +257,11 @@ namespace waveletExperiments
 						dist = std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2));
 
 						// Represents the values in a log of 10 base
-						distancesFrom1_0.push_back(std::log10(dist));
+						distancesFrom1_0.push_back(dist);
 					}
 				}
 
-				plt::xlabel("Values in Log10(x) - The least the better");
+				plt::xlabel("Distance from point (1,0)");
 				plt::barh(posVect, distancesFrom1_0);
 				plt::yticks(posVect, annotations);
 				plt::tight_layout();
@@ -485,4 +485,3 @@ namespace waveletExperiments
 }
 
 #endif /* SRC_WAVELETEXPERIMENTS_01_EXPERIMENT01_CPP_ */
-

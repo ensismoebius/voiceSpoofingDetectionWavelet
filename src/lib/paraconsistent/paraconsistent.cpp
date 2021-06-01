@@ -103,11 +103,11 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 	std::map<std::string, std::vector<double>> arrLargestItens;
 	std::map<std::string, std::vector<double>> arrSmallestItems;
 
-// ci = class index
-// ii = item index
-// fvi = featureVectorIndex
+	// ci = class index
+	// ii = item index
+	// fvi = featureVectorIndex
 
-// initializes the range vectors
+	// initializes the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
 		// creates sub vector
@@ -115,7 +115,7 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 		arrSmallestItems[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::max());
 	}
 
-// Calculating the range vectors
+	// Calculating the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
 		for (unsigned int ii = 0; ii < featureVectorSize; ii++)
@@ -150,8 +150,8 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 
 				for (unsigned int ii = 0; ii < featureVectorSize; ii++)
 				{
-					R += arrLargestItens[clazz2.first][ii] == arrClasses[clazz.first][fvi][ii] ? 1 : 0;
-					R += arrSmallestItems[clazz2.first][ii] == arrClasses[clazz.first][fvi][ii] ? 1 : 0;
+					R += arrLargestItens[clazz2.first][ii] <= arrClasses[clazz.first][fvi][ii] ? 1 : 0;
+					R += arrSmallestItems[clazz2.first][ii] >= arrClasses[clazz.first][fvi][ii] ? 1 : 0;
 				}
 			}
 		}

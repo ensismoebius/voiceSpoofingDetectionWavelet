@@ -14,7 +14,6 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 
 int main(int argc, char *args[])
 {
-
 	int experiment = -1;
 
 	double minModel;
