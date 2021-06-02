@@ -54,41 +54,39 @@ void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int f
 
 double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<double>>> &arrClasses)
 {
-	std::map<std::string, std::vector<double>> arrLargestRange;
-	std::map<std::string, std::vector<double>> arrSmallestRange;
+	std::map<std::string, std::vector<double>> arrLargestItems;
+	std::map<std::string, std::vector<double>> arrSmallestItems;
 
 	double alpha = std::numeric_limits<double>::max();
 	double temp = 0;
-
-	// ci = class index
-	// ii = item index
-	// fvi = featureVectorIndex
+	double item;
 
 	// initializes the vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
 		// creates sub vector
-		arrLargestRange[clazz.first].resize(featureVectorSize, -std::numeric_limits<double>::max());
-		arrSmallestRange[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::max());
+		arrLargestItems[clazz.first].resize(featureVectorSize, -std::numeric_limits<double>::max());
+		arrSmallestItems[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::max());
 	}
 
 	// Calculating the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
-		for (unsigned int ii = 0; ii < featureVectorSize; ii++)
+		for (unsigned int itemIndex = 0; itemIndex < featureVectorSize; itemIndex++)
 		{
-			for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
+			for (unsigned int featureVectorIndex = 0; featureVectorIndex < featureVectorsPerClass; featureVectorIndex++)
 			{
-				double item = clazz.second[fvi][ii];
-				arrLargestRange[clazz.first][ii] = arrLargestRange[clazz.first][ii] < item ? item : arrLargestRange[clazz.first][ii];
-				arrSmallestRange[clazz.first][ii] = arrSmallestRange[clazz.first][ii] > item ? item : arrSmallestRange[clazz.first][ii];
+				item = clazz.second[featureVectorIndex][itemIndex];
+
+				if (item > arrLargestItems[clazz.first][itemIndex]) arrLargestItems[clazz.first][itemIndex] = item;
+				if (item < arrSmallestItems[clazz.first][itemIndex]) arrSmallestItems[clazz.first][itemIndex] = item;
 			}
 		}
 
 		// Finding alpha
 		for (unsigned int si = 0; si < featureVectorSize; ++si)
 		{
-			temp += 1 - (arrLargestRange[clazz.first][si] - arrSmallestRange[clazz.first][si]);
+			temp += 1 - (arrLargestItems[clazz.first][si] - arrSmallestItems[clazz.first][si]);
 		}
 
 		temp /= featureVectorSize;
@@ -101,12 +99,9 @@ double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsP
 
 double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<double>>> &arrClasses)
 {
+	double item;
 	std::map<std::string, std::vector<double>> arrLargestItems;
 	std::map<std::string, std::vector<double>> arrSmallestItems;
-
-	// ci = class index
-	// ii = item index
-	// fvi = featureVectorIndex
 
 	// initializes the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
@@ -119,13 +114,14 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 	// Calculating the range vectors
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
-		for (unsigned int ii = 0; ii < featureVectorSize; ii++)
+		for (unsigned int itemIndex = 0; itemIndex < featureVectorSize; itemIndex++)
 		{
-			for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
+			for (unsigned int featureVectorIndex = 0; featureVectorIndex < featureVectorsPerClass; featureVectorIndex++)
 			{
-				double item = arrClasses[clazz.first][fvi][ii];
-				arrLargestItems[clazz.first][ii] = arrLargestItems[clazz.first][ii] < item ? item : arrLargestItems[clazz.first][ii];
-				arrSmallestItems[clazz.first][ii] = arrSmallestItems[clazz.first][ii] > item ? item : arrSmallestItems[clazz.first][ii];
+				item = clazz.second[featureVectorIndex][itemIndex];
+
+				if (item > arrLargestItems[clazz.first][itemIndex]) arrLargestItems[clazz.first][itemIndex] = item;
+				if (item < arrSmallestItems[clazz.first][itemIndex]) arrSmallestItems[clazz.first][itemIndex] = item;
 			}
 		}
 	}
