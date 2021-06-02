@@ -9,6 +9,7 @@
 #include <limits>
 #include <vector>
 
+#include "../utility/comparison.h"
 #include "../linearAlgebra/linearAlgebra.h"
 
 double calcCertaintyDegree_G1(double alpha, double betha)
@@ -100,7 +101,7 @@ double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsP
 
 double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<double>>> &arrClasses)
 {
-	std::map<std::string, std::vector<double>> arrLargestItens;
+	std::map<std::string, std::vector<double>> arrLargestItems;
 	std::map<std::string, std::vector<double>> arrSmallestItems;
 
 	// ci = class index
@@ -111,7 +112,7 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 	for (std::pair<std::string, std::vector<std::vector<double>>> clazz : arrClasses)
 	{
 		// creates sub vector
-		arrLargestItens[clazz.first].resize(featureVectorSize, -std::numeric_limits<double>::max());
+		arrLargestItems[clazz.first].resize(featureVectorSize, -std::numeric_limits<double>::max());
 		arrSmallestItems[clazz.first].resize(featureVectorSize, std::numeric_limits<double>::max());
 	}
 
@@ -123,7 +124,7 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 			for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
 			{
 				double item = arrClasses[clazz.first][fvi][ii];
-				arrLargestItens[clazz.first][ii] = arrLargestItens[clazz.first][ii] < item ? item : arrLargestItens[clazz.first][ii];
+				arrLargestItems[clazz.first][ii] = arrLargestItems[clazz.first][ii] < item ? item : arrLargestItems[clazz.first][ii];
 				arrSmallestItems[clazz.first][ii] = arrSmallestItems[clazz.first][ii] > item ? item : arrSmallestItems[clazz.first][ii];
 			}
 		}
@@ -139,19 +140,21 @@ double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPe
 	{
 		for (unsigned int fvi = 0; fvi < featureVectorsPerClass; fvi++)
 		{
-
-			// We got in to a class (ci index), now we have to compare
-			// it with all the range vectors form another classes (ci2 index)
 			for (std::pair<std::string, std::vector<std::vector<double>>> clazz2 : arrClasses)
 			{
-
 				// do not compare with the range vector from the same class
 				if (clazz2.first.compare(clazz.first) == 0) continue;
 
 				for (unsigned int ii = 0; ii < featureVectorSize; ii++)
 				{
-					R += arrLargestItens[clazz2.first][ii] <= arrClasses[clazz.first][fvi][ii] ? 1 : 0;
-					R += arrSmallestItems[clazz2.first][ii] >= arrClasses[clazz.first][fvi][ii] ? 1 : 0;
+
+					if (inRange(arrClasses[clazz.first][fvi][ii], // value
+					        arrSmallestItems[clazz2.first][ii], // lowerLimit
+					        arrLargestItems[clazz2.first][ii]) // upperLimit
+					        )
+					{
+						R++;
+					}
 				}
 			}
 		}
