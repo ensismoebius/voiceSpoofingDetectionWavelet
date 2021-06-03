@@ -350,7 +350,7 @@ namespace waveletExperiments
 						w.read(line.data());
 						w.process();
 
-						// Store the parcial results
+						// Store the partial results
 						results["daub68"][MEL][classFilesList[i]].push_back(w.getData());
 					}
 
@@ -382,7 +382,7 @@ namespace waveletExperiments
 				std::map<double, statistics::ConfusionMatrix> bestConfusionMatrixForEachPercentage;
 				std::map<double, statistics::ConfusionMatrix> worseConfusionMatrixForEachPercentage;
 
-				// Holds the parcial user friendly reports
+				// Holds the partial user friendly reports
 				std::string partialReport;
 
 				// Used to calculate the accuracies

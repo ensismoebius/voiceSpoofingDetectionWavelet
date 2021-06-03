@@ -290,7 +290,7 @@ namespace waveletExperiments
 						w.read(line.data());
 						w.process();
 
-						// Store the parcial results
+						// Store the partial results
 						results["haar"][BARK][classFilesList[i]].push_back(w.getData());
 					}
 

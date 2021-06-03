@@ -7,7 +7,7 @@
  * 14 de mai de 2020
  *
  * Based on the results of experiment 01, which has selected
- * wavelet Haar and BARK scale as the best features vector
+ * wavelet Daub68 and MEL scale as the best features vector
  * generators, this experiment do some classifications using
  * SVM classifier generating the respectives confusion
  * matrices, standard deviations and accuracy measurements.
@@ -50,15 +50,15 @@ namespace waveletExperiments
 			/**
 			 * Used to define when MEL or BARK is used
 			 */
-			enum BARK_MEL
+			enum MEL_BARK
 			{
-				BARK, MEL
+				MEL, BARK
 			};
 
 			/**
-			 * Contains the BARK ranges values
+			 * Contains the MEL ranges values
 			 */
-			static inline std::vector<double> barkRanges;
+			static inline std::vector<double> MELRanges;
 
 			/**
 			 * Wavelet waveform function
@@ -72,14 +72,14 @@ namespace waveletExperiments
 			 */
 			static void init()
 			{
-				wavelets::init( { "haar" });
-				Experiment03::wavelet = wavelets::get("haar");
-				Experiment03::barkRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
+				wavelets::init( { "daub68" });
+				Experiment03::wavelet = wavelets::get("daub68");
+				Experiment03::MELRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 			}
 
 			/**
 			 * Analytic function which performs an wavelet transform
-			 * of the value and calculate the energies based on BARK intervals
+			 * of the value and calculate the energies based on MEL intervals
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -103,23 +103,23 @@ namespace waveletExperiments
 				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
-				// transformation we will perform a BARK composition
+				// transformation we will perform a MEL composition
 				int level = std::log2(signal.size());
 
 				// Does the transformations
 				wavelets::WaveletTransformResults transformedSignal = wavelets::malat(signal, Experiment03::wavelet, wavelets::PACKET_WAVELET, level);
 
 				////////////////////
-				/// BARK section ///
+				/// MEL section ///
 				////////////////////
 
 				// features vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
-				std::vector<double> featureVector(barkRanges.size() - 1);
+				std::vector<double> featureVector(MELRanges.size() - 1);
 
 				// We need to known the max frequency supported
 				// by the signal in order to find the values in
-				// which the sums of the BARK scale will be
+				// which the sums of the MEL scale will be
 				// performed
 				double maxFrequency = samplingRate / 2;
 
@@ -133,12 +133,12 @@ namespace waveletExperiments
 				double rangeScaleStart = 0;
 
 				// Loop over all the ranges and calculate the energies inside it
-				for (unsigned int i = 0; i < barkRanges.size() - 1; i++)
+				for (unsigned int i = 0; i < MELRanges.size() - 1; i++)
 				{
 
 					// Retrieves the interval for the sums
-					rangeScaleStart = barkRanges.at(i);
-					rangeScaleEnd = barkRanges.at(i + 1);
+					rangeScaleStart = MELRanges.at(i);
+					rangeScaleEnd = MELRanges.at(i + 1);
 
 					// Calculates the interval indexes inside the transformed signal
 					int startIndex = rangeScaleStart / frequencyChunckSize;
@@ -191,7 +191,7 @@ namespace waveletExperiments
 
 				plt::ylim(yrange[0], yrange[1]);
 
-				plt::title("Accuracy of BARK over Haar wavelet using SVM classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
+				plt::title("Accuracy of MEL over Daub68 wavelet using SVM classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
 
 				plt::named_plot("Best accuracy", numberOfTests, bestTestAccuracy, "-");
 				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
@@ -203,38 +203,6 @@ namespace waveletExperiments
 				plt::legend();
 				plt::save(resultsDestiny + "/classifier_SVM_" + std::to_string(int(pencentageSizeOfModel * 100)) + ".pdf");
 				plt::clf();
-			}
-
-			/**
-			 * Save the results to file on /tmp/results.csv
-			 * @param data
-			 */
-			static void saveDataToFile(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> data)
-			{
-
-				// Open the file
-				std::string filePath = "/tmp/results.csv";
-				std::ofstream ofs(filePath, std::ios::app | std::ios::out);
-				if (!ofs.is_open())
-				{
-					std::cout << "Cannot open file: " << filePath;
-					throw std::runtime_error("Impossible to open the file!");
-					return;
-				}
-
-				for (auto clazz : data["haar"][BARK])
-				{
-					for (std::vector<double> featureVector : clazz.second)
-					{
-						ofs << clazz.first << '\t';
-						for (double value : featureVector)
-						{
-							ofs << value << '\t';
-						}
-						ofs << std::endl;
-					}
-				}
-				ofs.close();
 			}
 
 			/**
@@ -271,7 +239,7 @@ namespace waveletExperiments
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.truePositive) << "}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.falsePositive) << "}}\\\\ \
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{spoofed}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.falseNegative) << "}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.trueNegative) << "}} \
 							\\end{tabular} \
-							\\label{tab:classifier_Euclidian_10_best} \
+							\\label{tab:classifier_SVM_"<< std::to_string(int(pencentageSizeOfModel * 100)) <<"_best} \
 						} \
 						\\qquad \
 						\\subfloat[Worst confusion matrix]{ \
@@ -280,10 +248,10 @@ namespace waveletExperiments
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.truePositive) << "}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.falsePositive) << "}}\\\\ \
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{spoofed}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.falseNegative) << "}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.trueNegative) << "}} \
 							\\end{tabular} \
-							\\label{tab:classifier_Euclidian_10_worse} \
+							\\label{tab:classifier_SVM_"<< std::to_string(int(pencentageSizeOfModel * 100)) <<"_worse} \
 						} \
 					\\end{center} \
-					\\caption{Confusion matrices for SVM classifier at "<< std::to_string(int(pencentageSizeOfModel * 100)) << "\\% model} \
+					\\caption{Confusion matrices for SVM distance classifier at "<< std::to_string(int(pencentageSizeOfModel * 100)) << "\\% model} \
 				\\end{table}";
 
 				ofs.close();
@@ -312,8 +280,8 @@ namespace waveletExperiments
 
 				/**
 				 * A data structure witch will hold the wavelet transformed signals
-				 * haar
-				 * 	BARK
+				 * daub68
+				 * 	MEL
 				 * 		Class1
 				 * 			featureVector01
 				 * 			featureVector02
@@ -326,7 +294,7 @@ namespace waveletExperiments
 				 * 			etc.
 				 * 		Etc.
 				 */
-				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results;
+				std::map<std::string, std::map<MEL_BARK, std::map<std::string, std::vector<std::vector<double>>>>> results;
 
 				////////////////////////////////////////
 				/// Preparing to compute the progress //
@@ -349,7 +317,7 @@ namespace waveletExperiments
 				totalCycles = (classFilesList.size() - 1) * totalCycles;
 
 				//////////////////////////////////////////////////
-				/// Processing data with wavelet haar and BARK ///
+				/// Processing data with wavelet daub68 and MEL ///
 				//////////////////////////////////////////////////
 
 				// Iterates over all files, this files
@@ -379,8 +347,8 @@ namespace waveletExperiments
 						w.read(line.data());
 						w.process();
 
-						// Store the parcial results
-						results["haar"][BARK][classFilesList[i]].push_back(w.getData());
+						// Store the partial results
+						results["daub68"][MEL][classFilesList[i]].push_back(w.getData());
 					}
 
 					fileListStream.clear();
@@ -411,7 +379,7 @@ namespace waveletExperiments
 				std::map<double, statistics::ConfusionMatrix> bestConfusionMatrixForEachPercentage;
 				std::map<double, statistics::ConfusionMatrix> worseConfusionMatrixForEachPercentage;
 
-				// Holds the parcial user friendly reports
+				// Holds the partial user friendly reports
 				std::string partialReport;
 
 				// Used to calculate the accuracies
@@ -459,9 +427,9 @@ namespace waveletExperiments
 						{
 
 							// Sampling the live signals
-							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
+							classifiers::raflleFeaturesVectors(results["daub68"][MEL][classFilesList[0]], modelLive, testLive, modelPercentage);
 							// Sampling the spoofing signals
-							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+							classifiers::raflleFeaturesVectors(results["daub68"][MEL][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
 							// Setting up the classifier
 							c.clearTrain();
