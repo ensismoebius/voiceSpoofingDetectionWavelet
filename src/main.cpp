@@ -149,7 +149,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 
 	if (experiment == -1)
 	{
-		std::cout << "Usage:  --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>\n" << std::endl;
+		std::cout << "Usage: --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>\n" << std::endl;
 		std::cout << "You must choose an experiment:\n";
 		std::cout << "\t1-Wavelet features vectors over BARK or MEL comparation\n";
 		std::cout << "\t2-Wavelet features vector over BARK using distance classifiers\n";
@@ -162,7 +162,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 	{
 		if (argc != 9)
 		{
-			std::cout << "Usage:  --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl << std::endl;
+			std::cout << "Usage: --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl << std::endl;
 			return -1;
 		}
 
@@ -173,7 +173,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 
 		if (ok) return experiment;
 
-		std::cout << "Usage:  --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl << std::endl;
+		std::cout << "Usage: --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path>" << std::endl << std::endl;
 		return -1;
 
 	}
@@ -182,7 +182,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 	{
 		if (argc != 15)
 		{
-			std::cout << "Usage:  --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
+			std::cout << "Usage: --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
 			return -1;
 		}
 
@@ -196,7 +196,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 
 		if (ok) return experiment;
 
-		std::cout << "Usage:  --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
+		std::cout << "Usage: --experiment " << experiment << " --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
 		return -1;
 	}
 
@@ -205,6 +205,6 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 		return experiment;
 	}
 
-	std::cout << "Usage:  --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
+	std::cout << "Usage: --experiment <experiment number> --live <path list of wave files> --spoofing <path list of wave files> --out <results directory path> --tests <number of tests> --minModel <min size of model> --maxModel <max size of model>" << std::endl << std::endl;
 	return -1;
 }
