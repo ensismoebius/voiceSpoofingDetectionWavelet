@@ -19,7 +19,7 @@
 namespace wavelets
 {
 
-	void init(std::vector<std::string> choosenWavelets = { });
+	void init(std::vector<std::string> chosenWavelets = { });
 	void resetInitialization();
 	std::vector<double> get(std::string waveletName);
 	std::map<std::string, std::vector<double>> all();

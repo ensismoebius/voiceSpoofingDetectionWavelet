@@ -4,7 +4,7 @@ dialog --title "Welcome guys" --msgbox "This is the auto split script" 5 50
 randomNumber=$(printf '%s\n' $(echo "scale=8; $RANDOM/32768" | bc ) | sed  's/\.//g')
 historyFile="/tmp/waveSplitHistory"
 
-# This dialog shows the more recent destiny choosen
+# This dialog shows the more recent destiny chosen
 content=$(cat -n $historyFile | tac)
 t="dialog --title 'Shortcuts' --menu 'Choose a recent destiny directory - Press esc to skip' 0 0 0
 ${content}
@@ -13,7 +13,7 @@ ${content}
 # Execute the dialog and retrieve the option
 option=$(eval $t)
 
-# If no option was choosen the show the file browser 
+# If no option was chosen the show the file browser 
 if [ "$option" == "" ]
 then
 	# Selection dialog on which user must choose where to save the files
@@ -62,7 +62,7 @@ sox $sourceFile res$randomNumber.wav silence -l 1 ${speechVel} ${noiseTorelance}
 mkdir dir$randomNumber
 mv res$randomNumber* dir$randomNumber
 
-# Interactive stores the files in choosen by user places
+# Interactive stores the files in chosen by user places
 dialog --infobox "Separation has begun!" 5 40
 for file in dir$randomNumber/*;
 do

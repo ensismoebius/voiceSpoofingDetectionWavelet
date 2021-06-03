@@ -15,5 +15,5 @@ why:
 Because WPT decompose not only the aproximantion part of the signal but also de details.
 
 conclusion
-Looks like that the eficiency of the feature vector creation has much more correlation with the scales choosen than with the wavlets
+Looks like that the eficiency of the feature vector creation has much more correlation with the scales chosen than with the wavlets
 
