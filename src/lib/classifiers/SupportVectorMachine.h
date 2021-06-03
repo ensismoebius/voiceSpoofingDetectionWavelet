@@ -71,7 +71,7 @@ namespace classifiers
 			 * @param matrix - A matrix (2d vector) with training cases
 			 * @param label - Label indicating if it is positive or negative sample
 			 */
-			void addTrainningCases(std::vector<std::vector<double>> matrix, LABEL label);
+			void addTrainingCases(std::vector<std::vector<double>> matrix, LABEL label);
 
 			/**
 			 * Do the classification!!!
@@ -81,9 +81,9 @@ namespace classifiers
 			LABEL evaluate(std::vector<double> input);
 
 			/**
-			 * Trainning method, use this after use
-			 * @see addTrainningCases method
-			 * @see addTrainningCases
+			 * Training method, use this after use
+			 * @see addTrainingCases method
+			 * @see addTrainingCases
 			 */
 			void train();
 

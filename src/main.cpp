@@ -18,9 +18,10 @@ int main(int argc, char *args[])
 
 	double minModel;
 	double maxModel;
+	unsigned int numberOfTests;
+
 	std::string liveFileList;
 	std::string resultsDestiny;
-	unsigned int numberOfTests;
 	std::string spoofingFileList;
 
 	// Ensuring that the random numbers are going to honor its names

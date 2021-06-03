@@ -9,8 +9,8 @@ void test(int argc, char *args[])
 	std::vector<std::vector<double>> trainingInputA = { { 1, 2, 3 }, { 7, 8, 9 }, { 13, 14, 15 } };
 	std::vector<std::vector<double>> trainingInputB = { { -1, -2, -3 }, { -7, -8, -9 }, { -13, -14, -15 } };
 
-	s.addTrainningCases(trainingInputA, classifiers::SupportVectorMachine::POSITIVE);
-	s.addTrainningCases(trainingInputB, classifiers::SupportVectorMachine::NEGATIVE);
+	s.addTrainingCases(trainingInputA, classifiers::SupportVectorMachine::POSITIVE);
+	s.addTrainingCases(trainingInputB, classifiers::SupportVectorMachine::NEGATIVE);
 	s.train();
 
 	if (s.evaluate( { -4, -5, -6 }) == classifiers::SupportVectorMachine::POSITIVE)

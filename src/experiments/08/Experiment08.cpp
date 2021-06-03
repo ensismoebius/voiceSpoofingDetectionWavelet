@@ -317,10 +317,10 @@ namespace waveletExperiments
 				// Holds the models features vectors for live signals
 				std::vector<std::vector<double>> modelLive;
 
-				// Holds the tests features vectors for spoofing signals
+				// Holds the tests features vectors for spoofed signals
 				std::vector<std::vector<double>> testSpoofing;
 
-				// Holds the models features vectors for spoofing signals
+				// Holds the models features vectors for spoofed signals
 				std::vector<std::vector<double>> modelSpoofing;
 
 				// Creating the classifier
@@ -337,13 +337,13 @@ namespace waveletExperiments
 
 						// Sampling the live signals
 						classifiers::raflleFeaturesVectors(results["daub68"][MEL][classFilesList[0]], modelLive, testLive, modelPercentage);
-						// Sampling the spoofing signals
+						// Sampling the spoofed signals
 						classifiers::raflleFeaturesVectors(results["daub68"][MEL][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
 						// Setting up the classifier
 						c.clearTrain();
-						c.addTrainningCases(modelLive, classifiers::SupportVectorMachine::POSITIVE);
-						c.addTrainningCases(modelSpoofing, classifiers::SupportVectorMachine::NEGATIVE);
+						c.addTrainingCases(modelLive, classifiers::SupportVectorMachine::POSITIVE);
+						c.addTrainingCases(modelSpoofing, classifiers::SupportVectorMachine::NEGATIVE);
 						c.train();
 
 						// Preparing confusion matrix

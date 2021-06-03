@@ -32,7 +32,7 @@ namespace classifiers
 	 * @param matrix - A matrix (2d vector) with training cases
 	 * @param label - Label indicating if it is positive or negative sample
 	 */
-	void SupportVectorMachine::addTrainningCases(std::vector<std::vector<double>> matrix, SupportVectorMachine::LABEL label)
+	void SupportVectorMachine::addTrainingCases(std::vector<std::vector<double>> matrix, SupportVectorMachine::LABEL label)
 	{
 		this->trainingLabels.resize(this->trainingLabels.size() + matrix.size(), label);
 		this->trainingModels.insert(this->trainingModels.end(), matrix.begin(), matrix.end());
@@ -59,9 +59,9 @@ namespace classifiers
 	}
 
 	/**
-	 * Trainning method, use this after use
-	 * @see addTrainningCases method
-	 * @see addTrainningCases
+	 * Training method, use this after use
+	 * @see addTrainingCases method
+	 * @see addTrainingCases
 	 */
 	void SupportVectorMachine::train()
 	{
