@@ -1,4 +1,3 @@
-% !TeX spellcheck = en_US
 \chapter{Testes e Resultados} \label{chap:testsResults}
 	\section{Procedimento 01}
 	\label{chap:testsResults:sec:Experimento01}
@@ -10,12 +9,15 @@
 
 	\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
 	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.94\linewidth]{images/results/paraconsistentPlane/ParaconsistentFull.pdf}
-		\caption{Gráfico completo da distância ao ponto (1,0) no plano paraconsistente.}
-		\label{fig:paraconsistentfull}
-	\end{figure}
+	\newpage
+	\begin{landscape}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.65\linewidth,angle=-90]{images/results/paraconsistentPlane/ParaconsistentFull.pdf}
+			\caption{Gráfico completo da distância ao ponto (1,0) no plano paraconsistente.}
+			\label{fig:paraconsistentfull}
+		\end{figure}
+	\end{landscape}
 
 	\FloatBarrier
 
@@ -25,7 +27,7 @@
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=.6]{images/results/haarDaubComparison/haarDaub42Comparison}
+		\includegraphics[width=.75\linewidth,angle=-90]{images/results/haarDaubComparison/haarDaub42Comparison}
 		\caption{Comparação das decomposições de um sinal de tamanho 512 usando os filtros wavelet de melhor e piores desempenhos }
 		\label{fig:haardaub42comparison}
 	\end{figure}

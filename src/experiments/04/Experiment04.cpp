@@ -8,7 +8,7 @@
  *
  * This experiment visually demonstrates the wavelet packet
  * transformation given a repeated dummy signal. This was
- * made in order to justify why the wavelet haar is better
+ * made in order to justify why the wavelet daub68 is better
  * for create features vectors for classifications
  */
 
@@ -80,6 +80,7 @@ namespace waveletExperiments
 					plt::ylim(ylimMin, ylimMax);
 					plt::named_plot(v.first, v.second);
 					plt::title("Wavelet: " + v.first + " - Decomposition level: " + std::to_string(level));
+					plt::xticks(std::vector<double>(), std::vector<std::string>());
 					plt::grid(true);
 				}
 
@@ -101,7 +102,7 @@ namespace waveletExperiments
 				finalResults["Original"] = signal;
 
 				// Select the wavelets are going to be used
-				wavelets::init( { "daub68", "daub72", "daub34", "sym8" });
+				wavelets::init( { "sym8", "daub34", "daub72", "daub68" });
 
 				// Calculate the maximum levels of decomposition
 				int level = std::log2(signal.size());
