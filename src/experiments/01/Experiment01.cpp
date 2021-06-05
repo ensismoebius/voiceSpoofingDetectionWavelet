@@ -256,6 +256,9 @@ namespace waveletExperiments
 						// Calculate the distance from point 1,0 (true) of the paraconsistent plane
 						dist = std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2));
 
+						// Highlights the differences
+						dist = std::log10(dist);
+
 						// Represents the values in a log of 10 base
 						distancesFrom1_0.push_back(dist);
 					}
