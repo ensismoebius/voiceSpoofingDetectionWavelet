@@ -16,53 +16,68 @@
 		\end{itemize}
 \input{tables/results/confusionMatrices/confusionMatrixSample.tex}
 To be calculated, the value of accuracy in a classification task is based on \textit{TP}, \textit{TN}, and the number of elements (\textit{N}), as shown in Equation \ref{eq:calculoDaAcuracia}.
+\\
 \begin{equation}
 \text{value of accuracy} = \dfrac{TP + TN}{N} \qquad.
 \label{eq:calculoDaAcuracia}
 \end{equation}
+\\
 \par In order to calculate the EER, the values of \textit{FP} and \textit{FN} are taken into account \cite{ghazali2018recent}. From them, the \textit{False Acceptance Rate (\textbf{FAR})}, as shown in the Equation \ref{eq:FAR}, and \textit{False Rejection Rate (\textbf{FRR})}, as shown in Equation \ref{eq:FRR}, are obtained.
+\\
 \begin{equation}
 \text{FAR}=\dfrac{FP}{TN+FP} \qquad.
 \label{eq:FAR}
 \end{equation}
+\\
 \begin{equation}
 \text{FRR}=\dfrac{FN}{TP+FN} \qquad.
 \label{eq:FRR}
 \end{equation}
-\par Confusion matrices are calculated for a sufficient number of times until \textbf{\textit{FAR} is equal to, or close to, \textit{FRR}}. At each cycle, the feature vectors are switched randomly so that different values are obtained. For some cases, over 12000 iterations were required in order to find the configuration that made \textit{FAR=FRR}.
+\\
+\par Confusion matrices are calculated for a sufficient number of times until \textbf{\textit{FAR} is equal to, or close to, \textit{FRR}}. At each cycle, the feature vectors are switched randomly so that different values are obtained. For some cases, over 12000 iterations were required in order to find the configuration that made \textit{FAR=FRR}. 
 \\
 \par At each iteration, the values of FAR and FRR are stored in two vectors, being one for each parameter, so that the vector belonging to FAR is sorted in ascending order and the other in decreasing order. These points are depicted on the EER curve, together with a diagonal straight line, creating a \textit{Detection Error Trade off (DET)} plot. The effective value of ERR matches the intersection of the diagonal line with the curve defined by FAR and FRR.
 \subsection{Experiments}
-	\par Figure \ref{fig:paraconsistentfull} combines the results obtained with various wavelet filters and the auditory Bark and Mel scales. Since the bars lengths in blue represent the logarithmic distances from $P=(G_1,G_2)$ to the corner $(1,0)$ of the paraconsistent plane, according to the wavelet filter and the auditory scale used, we can state that the leftest the horizontal bars go, the better the separability between the classes. As can be seen from those combinations, \textbf{Haar wavelets + Bark scale} provide the shortest distance. To complement the information reported graphically, Tables \ref{tab:distParacomFrom10Bark_1}, \ref{tab:distParacomFrom10Bark_2}, \ref{tab:distParacomFrom10Mel_1}, and \ref{tab:distParacomFrom10Mel_2} contain the specific values displayed in that Figure.
+	\par Figure \ref{fig:paraconsistentfull} combines the results obtained with various wavelet filters and the auditory Bark and Mel scales. Since the bars lengths in blue represent the logarithmic distances from $P=(G_1,G_2)$ to the corner $(1,0)$ of the paraconsistent plane, according to the wavelet filter and the auditory scale used, we can state that the leftest the horizontal bars go, the better the separability between the classes. As can be seen from those combinations, \textbf{Daubechies 68 wavelets + Mel scale} (highlighted in green) provide the shortest distance. To complement the information reported graphically, The Table \ref{tab:distParacomFrom10BarkAndMel} contains the specific values displayed in that Figure.
 	\\
 	\begin{figure}[H]
 		\centering
-		\includegraphics[angle=-90,scale=.62]{images/results/paraconsistentPlane/ParaconsistentFull.pdf}
-		\caption{Distances from $P=(G_1,G_2)$ to the corner $(1,0)$ in the paraconsistent plane.}
+		\includegraphics[angle=-90,scale=.6]{images/results/paraconsistentPlane/ParaconsistentFull.pdf}
+		\caption{Distances from $P=(G_1,G_2)$ to the corner $(1,0)$ in the paraconsistent plane. M = Mel; B = Bark; Sym = Symlet; Daub = Daubechies; Coif = Coiflet. For a better visualization, the unit was added to each distance and, then, $\text{log}_{10}$ was taken from the corresponding result.}
 		\label{fig:paraconsistentfull}
 	\end{figure}
-	\par Overall, the \textbf{wavelet + Bark} combination consistently presented \textbf{better} results in comparison with the respective \textbf{wavelet + Mel} combinations. Based on the behavior of the best and worst wavelets, a natural question is why \textbf{Haar} filters have provided the best results. Particularly interesting is the fact that \textbf{Haar} and \textbf{Daubechies 18} \textit{wavelet} filters provided, respectively, the best and worst results associated with the Bark scale. In contrast, adopting the \textit{Mel} scale, \textbf{Daubechies 58} was the best filter and \textbf{Coiflets 18} the worst.
+	\par Overall, the \textbf{wavelet + Mel} combination  presented \textbf{better} results in comparison with the respective \textbf{wavelet + Bark} combinations. Based on the behavior of the best and worst wavelets, a natural question is why \textbf{Daubechies 68} filters have provided the best results. Particularly interesting is the fact that \textbf{Daubechies 68} and \textbf{Daubechies 34} \textit{wavelet} filters provided, respectively, the best and worst results associated with the Mel scale. In contrast, adopting the \textit{Bark} scale, \textbf{Daubechies 72} was the best filter and \textbf{Symlet 8} the worst.
 	\\
-	\par In regard to the filter's phase and frequency responses, we know that Haar presents a frequency response curve that is mostly far from the ideal, as it is just a first-order finite impulse response (FIR) filter \cite{WaveletPropertiesBrowser}. Therefore, specific frequency sub-bands are undoubtedly contaminated with spectral content from adjacent sub-bands. Additionally, Haar is the only family of orthogonal \textit{wavelet} filters exhibiting linear phase response. Hence, we can note that a non-rigorous frequency response associated with a linear phase response is the best alternative to solve our problem. Notably, the same behavior has been observed with experiments in different sub-fields of signal processing \cite{guido2}\cite{guido3}\cite{guido4}. 
+	
+	%%% Comentei esta parte para colocar uma nova versão logo depois
+	%\par In regard to the filter's phase and frequency responses, we know that Haar presents a frequency response curve that is mostly far from the ideal, as it is just a first-order finite impulse response (FIR) filter \cite{WaveletPropertiesBrowser}. Therefore, specific frequency sub-bands are undoubtedly contaminated with spectral content from adjacent sub-bands. Additionally, Haar is the only family of orthogonal \textit{wavelet} filters exhibiting linear phase response. Hence, we can note that a non-rigorous frequency response associated with a linear phase response is the best alternative to solve our problem. Notably, the same behavior has been observed with experiments in different sub-fields of signal processing \cite{guido2}\cite{guido3}\cite{guido4}. 
+	
+	\par In regard to the filter's phase and frequency responses, we know that Daubechies 68 presents a frequency response curve that is most near from the ideal despite of the non-linerar phase response \cite{WaveletPropertiesBrowser}. Therefore, specific frequency sub-bands are well separated. Hence, we can note that a linear frequency response associated with a non-linear phase response is the best alternative to solve our problem. 
 	\\
-	\par From the point of view of the auditory Bark and Mel scales, it is relevant to note that the former, not the latter, presents the best results. Nevertheless, the latter is the one optimized for voice and speech signals. Thus, the \textbf{noisy profile} of the spoofed signals, containing, unlike the genuine voices, notorious random components of high frequencies, was better detected with an auditory scale adequate to handle audio signals in general, not speech and voice. This is another relevant point to address. 
+	
+	%%% Esta parte ainda é válida?
+	%Notably, the same behavior has been observed with experiments in different sub-fields of signal processing \cite{guido2}\cite{guido3}\cite{guido4}.
+	
+	%%% Comentei esta parte para colocar uma nova versão logo depois
+	%\par From the point of view of the auditory Bark and Mel scales, it is relevant to note that the former, not the latter, presents the best results. Nevertheless, the latter is the one optimized for voice and speech signals. Thus, the \textbf{noisy profile} of the spoofed signals, containing, unlike the genuine voices, notorious random components of high frequencies, was better detected with an auditory scale adequate to handle audio signals in general, not speech and voice. This is another relevant point to address. 
+	
+	\par From the point of view of the auditory Bark and Mel scales, it is relevant to note that the latter, not the former, presented most of the best results. The latter is the one optimized for voice and speech signals. Despite the \textbf{noisy profile} of the spoofed signals, containing, unlike the genuine voices, notorious random components of high frequencies, was the Mel scale that presented the best results. This is another relevant point to address. 
 	
 	\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
 	
-	\par Since the combination \textbf{Haar+Bark} was the best one, we now search for the \textbf{maximum accuracy and minimum EER} that can be achieved. To do so, two classifiers were adopted to receive those features as input: a modest pattern-matching approach, based on Euclidean and Manhattan distances, and a knowledge-based one, based on an SVM. 
+	\par Since the combination \textbf{Daubechies 68 + Mel} was the best one, we now search for the \textbf{maximum accuracy and minimum EER} that can be achieved. To do so, two classifiers were adopted to receive those features as input: A modest pattern-matching approach, based on Euclidean and Manhattan distances, and a knowledge-based one, based on an SVM. 
 	\\
 	\par To perform the classifications, we randomly selected $M\%$ of our feature vectors, i.e., $\frac{410 \cdot M}{100} + \frac{410 \cdot M}{100} = 8.2 \cdot M$ to play the role of template models, and the corresponding remaining fraction, i.e., $(100-M)\%$ for testing, where $M=10, 20, 30, 40, 50$. For each value of $M$, 300 random selections were performed. In the distance-based classification strategy, the distance from each feature vector reserved for testing the proposed approach to all the template models was registered and, then, the smallest one was used to label the feature vector being classified. Essentially, this corresponds to the traditional K-Nearest Neighbors (K-NN) classifier with $K=1$.     
 
 		\input{tables/results/experiment02Results.tex}
 		
-		\FloatBarrier
 		
 		\par The corresponding results are shown in Tables \ref{tab:experiment02ResultsEuclidian} and \ref{tab:experiment02ResultsManhattan}. Particularly notable are the EER values, which balance the rates of false positives and false negatives. Specific details for the Euclidean distance classifier are shown in Tables \ref{tab:classifier_Euclidian_10_best}, \ref{tab:classifier_Euclidian_10_worse},
 		\ref{tab:classifier_Euclidian_20_best}, \ref{tab:classifier_Euclidian_20_worse}, 
 		\ref{tab:classifier_Euclidian_30_best}, \ref{tab:classifier_Euclidian_30_worse}, 
 		\ref{tab:classifier_Euclidian_40_best}, \ref{tab:classifier_Euclidian_40_worse}, 
-		\ref{tab:classifier_Euclidian_50_best},  and \ref{tab:classifier_Euclidian_50_worse}. The corresponding plots are depicted in Figures \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40}, and \ref{fig:classifiereuclidian50}. For Manhattan distances,  Tables \ref{tab:classifier_Manhattan_10_best}, \ref{tab:classifier_Manhattan_10_worst}, 
-		\ref{tab:classifier_Manhattan_20_best}, \ref{tab:classifier_Manhattan_20_worst}, 
+		\ref{tab:classifier_Euclidian_50_best},  and \ref{tab:classifier_Euclidian_50_worse}. The corresponding plots are depicted in Figures \ref{fig:classifiereuclidian10}, \ref{fig:classifiereuclidian20}, \ref{fig:classifiereuclidian30}, \ref{fig:classifiereuclidian40}, and \ref{fig:classifiereuclidian50}. For Manhattan distances,  Tables \ref{tab:classifier_Manhattan_10_best}, \ref{tab:classifier_Manhattan_10_worse}, 
+		\ref{tab:classifier_Manhattan_20_best}, \ref{tab:classifier_Manhattan_20_worse}, 
 		\ref{tab:classifier_Manhattan_30_best}, \ref{tab:classifier_Manhattan_30_worse}, 
 		\ref{tab:classifier_Manhattan_40_best}, \ref{tab:classifier_Manhattan_40_worse}, 
 		\ref{tab:classifier_Manhattan_50_best},
@@ -79,6 +94,8 @@ To be calculated, the value of accuracy in a classification task is based on \te
 		\input{tables/results/confusionMatrices/classifier_Manhattan_30.tex}
 		\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
 		\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
+
+		\FloatBarrier
 
 		\begin{figure}[H]
 			\centering
@@ -219,9 +236,9 @@ To be calculated, the value of accuracy in a classification task is based on \te
 		\end{figure}
 	
 
-\par Looking at the Tables from \ref{tab:experiment02ResultsEuclidian} to \ref{tab:classifier_Manhattan_50_worse}, we can observe the \textbf{best value} of accuracy and EER: \textbf{0.885366 and 0.165854} for the Euclidean distance classifier, and \textbf{0.897561 and 0.156098} for the Manhattan distance classifier. Thus, there is no practical difference when comparing the \textit{pattern-matching} metric criteria used. In addition, we can state that a relatively high level of accuracy was obtained, assuming the classifier modesty.
+\par Looking at the Tables from \ref{tab:experiment02ResultsEuclidian} to \ref{tab:classifier_Manhattan_50_worse}, we can observe the \textbf{best value} of accuracy and EER: \textbf{0.831707 and 0.234146} for the Euclidean distance classifier, and \textbf{0.846341 and 0.219512} for the Manhattan distance classifier. Thus, there is no practical difference when comparing the \textit{pattern-matching} metric criteria used. In addition, we can state that a relatively high level of accuracy was obtained, assuming the classifier modesty.
 \\
-\par Once again, considering the combination \textbf{Haar+Bark}, we explore hereafter the \textbf{maximum value of accuracy and minimum EER} that can be achieved with an SVM. The corresponding results are shown in Table \ref{tab:experiment03Results} and, additional details can be found in Tables \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best}, and \ref{tab:classifier_SVM_50_worse}. As a complement, Figures \ref{fig:classifiersvm10}, \ref{fig:detsvm10}, \ref{fig:classifiersvm20}, \ref{fig:detsvm20}, \ref{fig:classifiersvm30}, \ref{fig:detsvm30}, \ref{fig:classifiersvm40}, \ref{fig:detsvm40}, \ref{fig:classifiersvm50}, and \ref{fig:detsvm50} show the corresponding plots.\\
+\par Once again, considering the combination \textbf{Daubechies 68 + Mel}, we explore hereafter the \textbf{maximum value of accuracy and minimum EER} that can be achieved with an SVM. The corresponding results are shown in Table \ref{tab:experiment03Results} and, additional details can be found in Tables \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best}, and \ref{tab:classifier_SVM_50_worse}. As a complement, Figures \ref{fig:classifiersvm10}, \ref{fig:detsvm10}, \ref{fig:classifiersvm20}, \ref{fig:detsvm20}, \ref{fig:classifiersvm30}, \ref{fig:detsvm30}, \ref{fig:classifiersvm40}, \ref{fig:detsvm40}, \ref{fig:classifiersvm50}, and \ref{fig:detsvm50} show the corresponding plots.\\
 \input{tables/results/experiment03Results.tex}
 
 \input{tables/results/confusionMatrices/classifier_SVM_10.tex}
@@ -290,83 +307,109 @@ To be calculated, the value of accuracy in a classification task is based on \te
 		\label{fig:detsvm50}
 	\end{figure}
 
-	\par In short, the \textbf{best values of accuracy and EER} obtained were \textbf{0.95122 and 0.102439}, respectively, when the SVM classifier was adopted with $M=50\%$, matching the expectations. In such a case, the respective confusion matrix reveals a minimum amount of false-genuine and false-spoofed, consistent with the related works.
+	\par In short, the \textbf{best values of accuracy and EER} obtained were \textbf{0.939024 and 0.170732}, respectively, when the SVM classifier was adopted with $M=50\%$, matching the expectations. In such a case, the respective confusion matrix reveals a minimum amount of false-genuine and false-spoofed, consistent with the related works.
 	\\
-	
-	\FloatBarrier
 	
 	\subsection{Complementary Tests}
 		\par Figures \ref{fig:livehaarbark} and \ref{fig:spoofinghaarbark} show, as a complement, scatter plots of the feature vectors values generated by the \textbf{Haar+Bark} pair. Notably, in comparison with Figures \ref{fig:livehaarmel} and \ref{fig:spoofinghaarmel}, the \textbf{spread of values is greater on the Mel scale}. This difference in data distribution also occurs with the pair \textbf{Daubechies 58 + Bark}, as shown in Figures \ref{fig:livedaub58bark} and \ref{fig:spoofingdaub58bark}, in addition to \textbf{Daubechies 58 + Mel}, as per Figures \ref{fig:livedaub58mel} and \ref{fig:spoofingdaub58mel} as well as in \textbf{Coiflets 18 + Bark} and \textbf{Coiflets 18 + Mel} like in Figures \ref{fig:livecoif18bark} and \ref{fig:livecoif18mel}. In this subsection, for the sake of visualization the double derivative of the MEL scale \textbf{was not} taken.
 		\\
-		\begin{figure}
+		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_haar_Bark.pdf}
-			\caption{Scatter plot for the \textit{genuine} feature vectors obtained with \textit{Haar + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:livehaarbark}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub34_Bark.pdf}
+			\caption{Scatter plot for the \textit{genuine} feature vectors obtained with \textit{Daubechies 34 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livedaub34bark}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_haar_Bark.pdf}
-			\caption{Scatter plot for the \textit{spoofed} feature vectors obtained with \textit{Haar + BARK}. Horizontal and vertical axes: frequency band, and amplitude, respectively. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:spoofinghaarbark}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub34_Bark.pdf}
+			\caption{Scatter plot for the \textit{spoofed} feature vectors obtained with \textit{Daubechies 34 + BARK}. Horizontal and vertical axes: frequency band, and amplitude, respectively. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingdaub34bark}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub58_Bark.pdf}
-			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{daubechies 58 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:livedaub58bark}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub68_Bark.pdf}
+			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Daubechies 68 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livedaub68bark}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub58_Bark.pdf}
-			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{daubechies 58 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:spoofingdaub58bark}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub68_Bark.pdf}
+			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Daubechies 68 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingdaub68bark}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_coif18_Bark.pdf}
-			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{coiflet 18 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:livecoif18bark}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub72_Bark.pdf}
+			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Daubechies 72 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livedaub72bark}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_coif18_Bark.pdf}
-			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{coiflet 18 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:spoofingcoif18bark}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub72_Bark.pdf}
+			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Daubechies 72 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingdaub72bark}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_haar_Mel.pdf}
-			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Haar + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:livehaarmel}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_sym8_Bark.pdf}
+			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Symlet 8 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livesym8bark}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_haar_Mel.pdf}
-			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Haar + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:spoofinghaarmel}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_sym8_Bark.pdf}
+			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Symlet 8 + BARK}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingsym8bark}
+		\end{figure}
+	
+
+
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub34_Mel.pdf}
+			\caption{Scatter plot for the \textit{genuine} feature vectors obtained with \textit{Daubechies 34 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livedaub34mel}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub58_Mel.pdf}
-			\caption{Scatter plot for \textit{genuine} feature vectors  based on the pair \textit{daubechies 58 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:livedaub58mel}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub34_Mel.pdf}
+			\caption{Scatter plot for the \textit{spoofed} feature vectors obtained with \textit{Daubechies 34 + MEL}. Horizontal and vertical axes: frequency band, and amplitude, respectively. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingdaub34mel}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub58_Mel.pdf}
-			\caption{Scatter plot for \textit{spoofed} feature vectors  based on the pair \textit{daubechies 58 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:spoofingdaub58mel}
-		\end{figure}	
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_coif18_Mel.pdf}
-			\caption{Scatter plot for \textit{genuine} feature vectors  based on the pair \textit{coiflet 18 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:livecoif18mel}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub68_Mel.pdf}
+			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Daubechies 68 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livedaub68mel}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_coif18_Mel.pdf}
-			\caption{Scatter plot for \textit{spoofed} feature vectors  based on the pair \textit{coiflet 18 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
-			\label{fig:spoofingcoif18mel}
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub68_Mel.pdf}
+			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Daubechies 68 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingdaub68mel}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_daub72_Mel.pdf}
+			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Daubechies 72 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livedaub72mel}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_daub72_Mel.pdf}
+			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Daubechies 72 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingdaub72mel}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Genuine_sym8_Mel.pdf}
+			\caption{Scatter plot for \textit{genuine} feature vectors based on the pair \textit{Symlet 8 + Mel}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:livesym8mel}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=.7]{images/results/barkVersusMel/Spoofing_sym8_Mel.pdf}
+			\caption{Scatter plot for \textit{spoofed} feature vectors based on the pair \textit{Symlet 8 + MEL}. Horizontal and vertical axes: frequency bands in Hertz (Hz), and amplitudes, respectively.}
+			\label{fig:spoofingsym8mel}
 		\end{figure}
