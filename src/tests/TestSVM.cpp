@@ -6,8 +6,8 @@ void test(int argc, char *args[])
 
 	classifiers::SupportVectorMachine s;
 
-	std::vector<std::vector<double>> trainingInputA = { { 1, 2, 3 }, { 7, 8, 9 }, { 13, 14, 15 } };
-	std::vector<std::vector<double>> trainingInputB = { { -1, -2, -3 }, { -7, -8, -9 }, { -13, -14, -15 } };
+	std::vector<std::vector<long double>> trainingInputA = { { 1, 2, 3 }, { 7, 8, 9 }, { 13, 14, 15 } };
+	std::vector<std::vector<long double>> trainingInputB = { { -1, -2, -3 }, { -7, -8, -9 }, { -13, -14, -15 } };
 
 	s.addTrainingCases(trainingInputA, classifiers::SupportVectorMachine::POSITIVE);
 	s.addTrainingCases(trainingInputB, classifiers::SupportVectorMachine::NEGATIVE);

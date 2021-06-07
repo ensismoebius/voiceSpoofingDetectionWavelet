@@ -36,7 +36,7 @@ namespace wavelets
 	 * @param mode - PACKET_WAVELET: wavelet packet, REGULAR_WAVELET: regular wavelet
 	 * @return transformed signal
 	 */
-	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> &lowpassfilter, TransformMode mode = REGULAR_WAVELET, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false);
+	WaveletTransformResults malat(std::vector<long double> &signal, std::vector<long double> &lowpassfilter, TransformMode mode = REGULAR_WAVELET, unsigned int level = 1, unsigned int maxItens = 0, bool highPassBranch = false);
 
 	/**
 	 * Return the next power of two based number

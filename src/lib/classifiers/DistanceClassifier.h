@@ -26,14 +26,14 @@ namespace classifiers
 			};
 
 		private:
-			std::map<std::string, std::vector<std::vector<double>>> referenceModels;
+			std::map<std::string, std::vector<std::vector<long double>>> referenceModels;
 			DISTANCE_TYPE distanceType;
 
 		public:
 			void clearRefenceModels();
-			void addReferenceModels(std::string label, std::vector<std::vector<double>> models);
+			void addReferenceModels(std::string label, std::vector<std::vector<long double>> models);
 			void setDistanceType(DISTANCE_TYPE type);
-			std::string classify(std::vector<double> featureVector);
+			std::string classify(std::vector<long double> featureVector);
 	};
 }
 #endif /* SRC_LIB_CLASSIFIERS_DISTANCECLASSIFIER_H_ */

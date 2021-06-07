@@ -22,7 +22,7 @@ namespace classifiers
 	 * @param v2
 	 * @return distance
 	 */
-	inline double SupportVectorMachine::radialDistance(std::vector<double> currentInputVector, std::vector<double> v2)
+	inline double SupportVectorMachine::radialDistance(std::vector<long double> currentInputVector, std::vector<long double> v2)
 	{
 		return std::exp(-euclidianDistance(currentInputVector, v2));
 	}
@@ -32,7 +32,7 @@ namespace classifiers
 	 * @param matrix - A matrix (2d vector) with training cases
 	 * @param label - Label indicating if it is positive or negative sample
 	 */
-	void SupportVectorMachine::addTrainingCases(std::vector<std::vector<double>> matrix, SupportVectorMachine::LABEL label)
+	void SupportVectorMachine::addTrainingCases(std::vector<std::vector<long double>> matrix, SupportVectorMachine::LABEL label)
 	{
 		this->trainingLabels.resize(this->trainingLabels.size() + matrix.size(), label);
 		this->trainingModels.insert(this->trainingModels.end(), matrix.begin(), matrix.end());
@@ -43,7 +43,7 @@ namespace classifiers
 	 * @param input - The vector to be tested
 	 * @return POSITIVE or NEGATIVE
 	 */
-	SupportVectorMachine::LABEL SupportVectorMachine::evaluate(std::vector<double> input)
+	SupportVectorMachine::LABEL SupportVectorMachine::evaluate(std::vector<long double> input)
 	{
 
 		// Reset Weighted distance for next classification
@@ -66,8 +66,8 @@ namespace classifiers
 	void SupportVectorMachine::train()
 	{
 		// Used to determine the weights for the connections to the output
-		std::vector<std::vector<double>> distancesMatrix;
-		distancesMatrix.resize(this->trainingModels.size(), std::vector<double>(this->trainingModels.size()));
+		std::vector<std::vector<long double>> distancesMatrix;
+		distancesMatrix.resize(this->trainingModels.size(), std::vector<long double>(this->trainingModels.size()));
 
 		// creating the distances matrix values
 		// i.e. the distances between the vectors

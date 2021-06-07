@@ -14,7 +14,7 @@
 #include "../lib/wave/filtersOperations.h"
 #include "../lib/linearAlgebra/linearAlgebra.h"
 
-double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false)
+long double* createFeatureVector(double *signal, int signalLength, unsigned int samplingRate, int filterOrder, std::string path, bool logSmooth = false)
 {
 
 	// size of the range
@@ -23,11 +23,11 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 	// Ranges for MEL scale
 	double ranges[14] = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 
-	double *window = createTriangularWindow(filterOrder);
+	long double *window = createTriangularWindow(filterOrder);
 
 	// features vector has the amount of values equals to amount of the ranges minus 1 
 	// because we are summing up intervals
-	double *featureVector = new double[rangesSize - 1];
+	long double *featureVector = new long double[rangesSize - 1];
 
 	// Initializing the vector
 	for (int i = 0; i < rangesSize - 1; i++)
@@ -40,7 +40,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 	double rangeStart = 0;
 
 	// for every pair of ranges we need to copy the original signal
-	double *copiedSignal = new double[signalLength];
+	long double *copiedSignal = new long double[signalLength];
 
 	for (int i = 0; i < rangesSize - 1; i++)
 	{
@@ -50,7 +50,7 @@ double* createFeatureVector(double *signal, int signalLength, unsigned int sampl
 		rangeEnd = ranges[i + 1];
 
 		// Create the signal filter
-		double *filter = createStopBandFilter(filterOrder, samplingRate, rangeStart, rangeEnd);
+		long double *filter = createStopBandFilter(filterOrder, samplingRate, rangeStart, rangeEnd);
 
 		// Apply window
 		applyWindow(filter, window, filterOrder);
@@ -114,7 +114,7 @@ void analiticFunction(double *signal, int signalLength, unsigned int samplingRat
 	results[resultIndex] = new std::string[14];
 	results[resultIndex][0] = dataColumn.str();
 
-	double *fv = createFeatureVector(signal, signalLength, samplingRate, filterOrder, path);
+	long double *fv = createFeatureVector(signal, signalLength, samplingRate, filterOrder, path);
 	for (int i = 0; i < 13; i++)
 	{
 		results[resultIndex][i + 1] = std::to_string(fv[i]);

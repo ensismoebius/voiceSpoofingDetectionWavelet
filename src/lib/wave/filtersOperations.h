@@ -17,7 +17,7 @@
  * @param highPass
  * @return alpha
  */
-double createAlpha(double samplingRate, double filterMaxFrequency, bool highPass = false);
+long double createAlpha(double samplingRate, double filterMaxFrequency, bool highPass = false);
 
 /**
  * Create lowpass filter
@@ -26,7 +26,7 @@ double createAlpha(double samplingRate, double filterMaxFrequency, bool highPass
  * @param filterMaxFrequency
  * @return lowpass filter
  */
-double* createLowPassFilter(int order, double samplingRate, double filterMaxFrequency);
+long double* createLowPassFilter(int order, double samplingRate, double filterMaxFrequency);
 
 /**
  * Create highpass filter
@@ -35,7 +35,7 @@ double* createLowPassFilter(int order, double samplingRate, double filterMaxFreq
  * @param filterStartFrequency
  * @return highpass filter
  */
-double* createHighPassFilter(int order, double samplingRate, double filterStartFrequency);
+long double* createHighPassFilter(int order, double samplingRate, double filterStartFrequency);
 
 /**
  * Create bandpass filter
@@ -45,7 +45,7 @@ double* createHighPassFilter(int order, double samplingRate, double filterStartF
  * @param finalFrequency
  * @return bandpass filter
  */
-double* createStopBandFilter(int order, double samplingRate, double startFrequency, double finalFrequency);
+long double* createStopBandFilter(int order, double samplingRate, double startFrequency, double finalFrequency);
 
 /**
  * Create bandstop filter
@@ -55,14 +55,14 @@ double* createStopBandFilter(int order, double samplingRate, double startFrequen
  * @param finalFrequency
  * @return bandstop filter
  */
-double* bandStopFilter(int order, double samplingRate, double startFrequency, double finalFrequency);
+long double* bandStopFilter(int order, double samplingRate, double startFrequency, double finalFrequency);
 
 /**
  * Create a window for signals
  * @param order
  * @return window
  */
-double* createTriangularWindow(int order);
+long double* createTriangularWindow(int order);
 
 /**
  * Apply window
@@ -70,6 +70,6 @@ double* createTriangularWindow(int order);
  * @param window
  * @param order
  */
-void applyWindow(double *filter, double *window, int order);
+void applyWindow(long double *filter, long double *window, int order);
 
 #endif

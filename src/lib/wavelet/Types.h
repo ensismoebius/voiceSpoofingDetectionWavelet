@@ -21,8 +21,8 @@ namespace wavelets
 
 	void init(std::vector<std::string> chosenWavelets = { });
 	void resetInitialization();
-	std::vector<double> get(std::string waveletName);
-	std::map<std::string, std::vector<double>> all();
+	std::vector<long double> get(std::string waveletName);
+	std::map<std::string, std::vector<long double>> all();
 }
 
 #endif /* SRC_LIB_WAVELET_TYPES_H_ */

@@ -10,7 +10,7 @@
  */
 
 #include <vector>
-
+#include <stdexcept>
 #include "waveletOperations.h"
 #include "WaveletTransformResults.h"
 #include "../linearAlgebra/linearAlgebra.h"
@@ -18,7 +18,7 @@
 namespace wavelets
 {
 
-	WaveletTransformResults malat(std::vector<double> &signal, std::vector<double> &lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch)
+	WaveletTransformResults malat(std::vector<long double> &signal, std::vector<long double> &lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch)
 	{
 
 		//If maxitens is not informed then get the full signal size
@@ -54,7 +54,7 @@ namespace wavelets
 		}
 
 		// Get the highpass filter based on lowpass filter
-		std::vector<double> highpassfilter = linearAlgebra::calcOrthogonalVector(lowpassfilter);
+		std::vector<long double> highpassfilter = linearAlgebra::calcOrthogonalVector(lowpassfilter);
 
 		// Create the storage for the final results
 		WaveletTransformResults results(maxItens);

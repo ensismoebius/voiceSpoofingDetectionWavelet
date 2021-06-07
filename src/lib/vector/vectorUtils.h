@@ -28,7 +28,7 @@ std::vector<std::string> explode(std::string str, std::string delimiter);
  * @param point2
  * @return
  */
-double euclidianDistance(std::vector<double> &point1, std::vector<double> &point2);
+long double euclidianDistance(std::vector<long double> &point1, std::vector<long double> &point2);
 
 /**
  * Given point1 and point2 returns its manhattan distance
@@ -36,6 +36,6 @@ double euclidianDistance(std::vector<double> &point1, std::vector<double> &point
  * @param point2
  * @return
  */
-double manhattanDistance(std::vector<double> &point1, std::vector<double> &point2);
+long double manhattanDistance(std::vector<long double> &point1, std::vector<long double> &point2);
 
 #endif /* SRC_LIB_VECTOR_VECTORUTILS_H_ */

@@ -21,7 +21,7 @@ namespace classifiers
 		this->referenceModels.clear();
 	}
 
-	void DistanceClassifier::addReferenceModels(std::string label, std::vector<std::vector<double>> models)
+	void DistanceClassifier::addReferenceModels(std::string label, std::vector<std::vector<long double>> models)
 	{
 		this->referenceModels[label] = models;
 	}
@@ -31,13 +31,13 @@ namespace classifiers
 		this->distanceType = type;
 	}
 
-	std::string DistanceClassifier::classify(std::vector<double> featureVector)
+	std::string DistanceClassifier::classify(std::vector<long double> featureVector)
 	{
 
-		double distance;
+		long double distance;
 
 		std::string nearestLabel;
-		double nearestDistance = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
+		long double nearestDistance = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
 
 		if (this->distanceType == EUCLICIDIAN)
 		{

@@ -6,22 +6,7 @@
 #include "paraconsistent.h"
 #include "../linearAlgebra/linearAlgebra.h"
 
-void norm(std::vector<double> &sig)
-{
-	double energy = 0;
-
-	for (double v : sig)
-	{
-		energy += std::pow(v, 2);
-	}
-
-	for (double &v : sig)
-	{
-		v = v / energy;
-	}
-}
-
-void initializeClasses(std::map<std::string, std::vector<std::vector<double>>> &arrClasses, unsigned int &amountOfClasses, unsigned int &featureVectorsPerClass, unsigned int &featureVectorSize)
+void initializeClasses(std::map<std::string, std::vector<std::vector<long double>>> &arrClasses, unsigned int &amountOfClasses, unsigned int &featureVectorsPerClass, unsigned int &featureVectorSize)
 {
 	// Setting up the quantities
 	amountOfClasses = 3;
@@ -32,11 +17,11 @@ void initializeClasses(std::map<std::string, std::vector<std::vector<double>>> &
 	// Initializing the "lists"
 	for (unsigned int classIndex = 0; classIndex < amountOfClasses; ++classIndex)
 	{
-		std::vector<std::vector<double>> featureVectorSet(featureVectorsPerClass);
+		std::vector<std::vector<long double>> featureVectorSet(featureVectorsPerClass);
 
 		for (unsigned int featureVectorIndex = 0; featureVectorIndex < featureVectorsPerClass; ++featureVectorIndex)
 		{
-			std::vector<double> featureVector(featureVectorSize);
+			std::vector<long double> featureVector(featureVectorSize);
 
 			featureVectorSet.push_back(featureVector);
 		}
@@ -81,27 +66,27 @@ void initializeClasses(std::map<std::string, std::vector<std::vector<double>>> &
  * @param argv
  * @return 0
  */
-int main(int argc, char **argv)
+int uga(int argc, char **argv)
 {
 	unsigned int amountOfClasses;
 	unsigned int featureVectorSize;
 	unsigned int featureVectorsPerClass;
-	std::map<std::string, std::vector<std::vector<double>>> arrClasses;
+	std::map<std::string, std::vector<std::vector<long double>>> arrClasses;
 
 	initializeClasses(arrClasses, amountOfClasses, featureVectorsPerClass, featureVectorSize);
 
-	double alpha = calculateAlpha(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
-	double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	long double alpha = calculateAlpha(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	long double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
 
 	double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
 	double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
 	double distanceTo1_0 = std::sqrt(std::pow(certaintyDegree_G1 - 1, 2) + std::pow(contradictionDegree_G2, 2));
 
 	assert(betha == 0);
-	assert(alpha == 0.97499999999999998);
-	assert(distanceTo1_0 == 0.035355339059327411);
-	assert(certaintyDegree_G1 == 0.97499999999999998);
-	assert(contradictionDegree_G2 == -0.025000000000000022);
+	assert(alpha == 0.97274509803921572);
+	assert(distanceTo1_0 == 0.038544251994090221);
+	assert(certaintyDegree_G1 == 0.97274509803921572);
+	assert(contradictionDegree_G2 == -0.027254901960784325);
 
 	// Calculating the position at the paraconsistent plane
 	std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;

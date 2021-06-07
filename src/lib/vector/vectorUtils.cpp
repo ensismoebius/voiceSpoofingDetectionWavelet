@@ -26,14 +26,14 @@ std::vector<std::string> explode(std::string str, std::string delimiter)
 	return res;
 }
 
-double euclidianDistance(std::vector<double> &point1, std::vector<double> &point2)
+long double euclidianDistance(std::vector<long double> &point1, std::vector<long double> &point2)
 {
 	if (point1.size() != point2.size())
 	{
 		throw std::runtime_error("Vectors must have the same size");
 	}
 
-	double temp = 0;
+	long double temp = 0;
 
 	for (unsigned int i = 0; i < point1.size(); ++i)
 	{
@@ -44,14 +44,14 @@ double euclidianDistance(std::vector<double> &point1, std::vector<double> &point
 
 }
 
-double manhattanDistance(std::vector<double> &point1, std::vector<double> &point2)
+long double manhattanDistance(std::vector<long double> &point1, std::vector<long double> &point2)
 {
 	if (point1.size() != point2.size())
 	{
 		throw std::runtime_error("Vectors must have the same size");
 	}
 
-	double temp = 0;
+	long double temp = 0;
 
 	for (unsigned int i = 0; i < point1.size(); ++i)
 	{

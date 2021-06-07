@@ -63,7 +63,7 @@ namespace waveletExperiments
 			/**
 			 * Wavelet waveform function
 			 */
-			static inline std::vector<double> wavelet;
+			static inline std::vector<long double> wavelet;
 
 		public:
 
@@ -85,7 +85,7 @@ namespace waveletExperiments
 			 * @param samplingRate
 			 * @param path
 			 */
-			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
+			static void waveletAnaliticFunction(std::vector<long double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
 			{
 
 				///////////////////////
@@ -115,7 +115,7 @@ namespace waveletExperiments
 
 				// features vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
-				std::vector<double> featureVector(MELRanges.size() - 1);
+				std::vector<long double> featureVector(MELRanges.size() - 1);
 
 				// We need to known the max frequency supported
 				// by the signal in order to find the values in
@@ -149,7 +149,7 @@ namespace waveletExperiments
 					{
 
 						// Retrieve the values
-						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
+						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
 						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
 						featureVector.at(i) = 0;
@@ -294,7 +294,7 @@ namespace waveletExperiments
 				 * 			etc.
 				 * 		Etc.
 				 */
-				std::map<std::string, std::map<MEL_BARK, std::map<std::string, std::vector<std::vector<double>>>>> results;
+				std::map<std::string, std::map<MEL_BARK, std::map<std::string, std::vector<std::vector<long double>>>>> results;
 
 				////////////////////////////////////////
 				/// Preparing to compute the progress //
@@ -396,16 +396,16 @@ namespace waveletExperiments
 				statistics::ConfusionMatrix percentageWorseConfusionMatrix;
 
 				// Holds the tests features vectors for live signals
-				std::vector<std::vector<double>> testLive;
+				std::vector<std::vector<long double>> testLive;
 
 				// Holds the models features vectors for live signals
-				std::vector<std::vector<double>> modelLive;
+				std::vector<std::vector<long double>> modelLive;
 
 				// Holds the tests features vectors for spoofed signals
-				std::vector<std::vector<double>> testSpoofing;
+				std::vector<std::vector<long double>> testSpoofing;
 
 				// Holds the models features vectors for spoofed signals
-				std::vector<std::vector<double>> modelSpoofing;
+				std::vector<std::vector<long double>> modelSpoofing;
 
 				// Creating the classifier
 				classifiers::SupportVectorMachine c;
@@ -415,8 +415,8 @@ namespace waveletExperiments
 				{
 
 					// Initializing the accuracies
-					percentageBestAccuracy = -std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
-					percentageWorstAccuracy = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
+					percentageBestAccuracy = -std::numeric_limits<long double>().max(); // @suppress("Ambiguous problem")
+					percentageWorstAccuracy = std::numeric_limits<long double>().max(); // @suppress("Ambiguous problem")
 
 					// Changes the amount of tests done against the dataset
 					for (unsigned int amountOfTests = 1; amountOfTests < amountOfTestsToPerfom + 1; amountOfTests++)

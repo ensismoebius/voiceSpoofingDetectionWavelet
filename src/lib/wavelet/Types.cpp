@@ -18,11 +18,11 @@ namespace wavelets
 
 	static bool initialized = false;
 
-	std::map<std::string, std::vector<double>> types;
+	std::map<std::string, std::vector<long double>> types;
 
 	void init(std::vector<std::string> chosenWavelets = { })
 	{
-		std::map<std::string, std::vector<double>> candidates;
+		std::map<std::string, std::vector<long double>> candidates;
 		//candidates["altHaar"] = { 0.5, 0.5 };
 		candidates["haar"] = { 0.7071067, 0.7071067 };
 		candidates["daub4"] = { 4.82962913144e-01, 8.36516303737e-01, 2.24143868042e-01, -1.29409522551e-01 };
@@ -104,13 +104,13 @@ namespace wavelets
 		initialized = false;
 	}
 
-	std::vector<double> get(std::string waveletName)
+	std::vector<long double> get(std::string waveletName)
 	{
 		if (!initialized) init();
 		return types[waveletName];
 	}
 
-	std::map<std::string, std::vector<double>> all()
+	std::map<std::string, std::vector<long double>> all()
 	{
 		if (!initialized) init();
 		return types;

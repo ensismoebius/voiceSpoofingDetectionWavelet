@@ -5,7 +5,7 @@
 namespace classifiers
 {
 
-	void raflleFeaturesVectors(std::vector<std::vector<double>> &source, std::vector<std::vector<double>> &model, std::vector<std::vector<double>> &test, float modelSize)
+	void raflleFeaturesVectors(std::vector<std::vector<long double>> &source, std::vector<std::vector<long double>> &model, std::vector<std::vector<long double>> &test, float modelSize)
 	{
 
 		// Validates modelsize

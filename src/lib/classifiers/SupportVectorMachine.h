@@ -43,12 +43,12 @@ namespace classifiers
 			 * This is the reference for training
 			 * and classification of further data
 			 */
-			std::vector<std::vector<double>> trainingModels;
+			std::vector<std::vector<long double>> trainingModels;
 
 			/**
 			 * Holds the weights used for classification
 			 */
-			std::vector<double> outputWeights;
+			std::vector<long double> outputWeights;
 
 			/**
 			 * Weighted distance from input and training models
@@ -62,7 +62,7 @@ namespace classifiers
 			 * @param v2
 			 * @return distance
 			 */
-			inline double radialDistance(std::vector<double> currentInputVector, std::vector<double> v2);
+			inline double radialDistance(std::vector<long double> currentInputVector, std::vector<long double> v2);
 
 		public:
 
@@ -71,14 +71,14 @@ namespace classifiers
 			 * @param matrix - A matrix (2d vector) with training cases
 			 * @param label - Label indicating if it is positive or negative sample
 			 */
-			void addTrainingCases(std::vector<std::vector<double>> matrix, LABEL label);
+			void addTrainingCases(std::vector<std::vector<long double>> matrix, LABEL label);
 
 			/**
 			 * Do the classification!!!
 			 * @param input - The vector to be tested
 			 * @return POSITIVE or NEGATIVE
 			 */
-			LABEL evaluate(std::vector<double> input);
+			LABEL evaluate(std::vector<long double> input);
 
 			/**
 			 * Training method, use this after use

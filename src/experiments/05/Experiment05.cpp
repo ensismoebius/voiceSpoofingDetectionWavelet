@@ -79,7 +79,7 @@ namespace waveletExperiments
 			/**
 			 * Wavelet waveform function
 			 */
-			static inline std::vector<double> wavelet;
+			static inline std::vector<long double> wavelet;
 
 			/**
 			 * Wavelet type
@@ -93,7 +93,7 @@ namespace waveletExperiments
 			 * @param mode
 			 * @param barkOrMel
 			 */
-			static void init(std::vector<double> wavelet, wavelets::TransformMode mode, BARK_MEL barkOrMel)
+			static void init(std::vector<long double> wavelet, wavelets::TransformMode mode, BARK_MEL barkOrMel)
 			{
 				Experiment05::mode = mode;
 				Experiment05::wavelet = wavelet;
@@ -111,7 +111,7 @@ namespace waveletExperiments
 			 * @param samplingRate
 			 * @param path
 			 */
-			static void waveletAnaliticFunction(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
+			static void waveletAnaliticFunction(std::vector<long double> &signal, int &signalLength, unsigned int samplingRate, std::string path)
 			{
 
 				///////////////////////
@@ -155,7 +155,7 @@ namespace waveletExperiments
 
 				// features vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
-				std::vector<double> featureVector(scaleRanges.size() - 1);
+				std::vector<long double> featureVector(scaleRanges.size() - 1);
 
 				// We need to known the max frequency supported
 				// by the signal in order to find the values in
@@ -189,7 +189,7 @@ namespace waveletExperiments
 					{
 
 						// Retrieve the values
-						std::vector<double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
+						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
 
 						// Sum them all!! (i.e. Calculate the energies)
 						featureVector.at(i) = 0;
@@ -232,7 +232,7 @@ namespace waveletExperiments
 			 * Plot the results on a paraconsistent plane
 			 * @param results
 			 */
-			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results, std::string resultsDestiny)
+			static void plotResults(std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<long double>>>>> results, std::string resultsDestiny)
 			{
 
 				// Alias for a easier use of matplotlib
@@ -381,7 +381,7 @@ namespace waveletExperiments
 				 * wavelet2
 				 * 	...
 				 */
-				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<double>>>>> results;
+				std::map<std::string, std::map<BARK_MEL, std::map<std::string, std::vector<std::vector<long double>>>>> results;
 
 				// Used to compute the progress
 				double cycles = 0;
@@ -417,7 +417,7 @@ namespace waveletExperiments
 					fileListStream.open(classFileList[i], std::ios::in);
 
 					// iterates over all wavelets types
-					for (std::pair<std::string, std::vector<double>> v : wavelets::all())
+					for (std::pair<std::string, std::vector<long double>> v : wavelets::all())
 					{
 
 						// Iterates over all barkOrMel

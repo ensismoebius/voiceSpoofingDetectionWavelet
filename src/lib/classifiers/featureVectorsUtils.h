@@ -22,7 +22,7 @@ namespace classifiers
 	 * @param teste - A scrambled list of the features vectors for tests
 	 * @param modelSize - The percentage of features vectors we want, model size must be between 0 and 1 (Zero not included)
 	 */
-	void raflleFeaturesVectors(std::vector<std::vector<double>> &source, std::vector<std::vector<double>> &model, std::vector<std::vector<double>> &test, float modelSize);
+	void raflleFeaturesVectors(std::vector<std::vector<long double>> &source, std::vector<std::vector<long double>> &model, std::vector<std::vector<long double>> &test, float modelSize);
 }
 
 #endif /* SRC_LIB_CLASSIFIERS_FEATUREVECTORSUTILS_H_ */

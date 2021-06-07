@@ -35,7 +35,7 @@ namespace wavelets
 			/**
 			 * The transformed signal
 			 */
-			std::vector<double> transformedSignal;
+			std::vector<long double> transformedSignal;
 
 			WaveletTransformResults(unsigned int maxItens = 0);
 
@@ -46,7 +46,7 @@ namespace wavelets
 			 * @param detailIndex 1 or more: Extracts the corresponding detail
 			 * @return Whole transformed signal, aproximation or details
 			 */
-			std::vector<double> getWaveletTransforms(int detailIndex = -1);
+			std::vector<long double> getWaveletTransforms(int detailIndex = -1);
 
 			/**
 			 * Extracts the values of a wavelet packet transformation
@@ -56,7 +56,7 @@ namespace wavelets
 			 * @param partIndex : A value from 0 up to @getWaveletPacketAmountOfParts
 			 * @return the requested chunk
 			 */
-			std::vector<double> getWaveletPacketTransforms(unsigned int partIndex);
+			std::vector<long double> getWaveletPacketTransforms(unsigned int partIndex);
 
 			/**
 			 * Calculate the maximum number of generated
@@ -77,7 +77,7 @@ namespace wavelets
 			 * @param levelsOfTransformation : levels of transformation of the signal
 			 * @return the requested chunk
 			 */
-			static std::vector<double> getWaveletPacketTransforms(std::vector<double> transformedSignal, unsigned int partIndex, unsigned int levelsOfTransformation);
+			static std::vector<long double> getWaveletPacketTransforms(std::vector<long double> transformedSignal, unsigned int partIndex, unsigned int levelsOfTransformation);
 
 			/**
 			 * Static version of @getWaveletPacketAmountOfParts()

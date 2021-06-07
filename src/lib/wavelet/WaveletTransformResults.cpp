@@ -27,7 +27,7 @@ namespace wavelets
 	 * @param detailIndex 1 or more: Extracts the corresponding detail
 	 * @return Whole transformed signal, aproximation or details
 	 */
-	std::vector<double> WaveletTransformResults::getWaveletTransforms(int detailIndex)
+	std::vector<long double> WaveletTransformResults::getWaveletTransforms(int detailIndex)
 	{
 
 		// User is requesting more details then we had produced
@@ -45,7 +45,7 @@ namespace wavelets
 		unsigned sstart = 0;
 
 		// The container of our response
-		std::vector<double> levelTransformedSignal;
+		std::vector<long double> levelTransformedSignal;
 
 		// This value is used in the calculations of indexers
 		int log = (int) std::log2(this->transformedSignal.size());
@@ -82,7 +82,7 @@ namespace wavelets
 	 * @param partIndex : A value from 0 up to @getWaveletPacketAmountOfParts
 	 * @return the requested chunk
 	 */
-	std::vector<double> WaveletTransformResults::getWaveletPacketTransforms(unsigned int partIndex)
+	std::vector<long double> WaveletTransformResults::getWaveletPacketTransforms(unsigned int partIndex)
 	{
 
 		// Checks if this is a wavelet transform
@@ -105,7 +105,7 @@ namespace wavelets
 		int send = sstart + chunkSize;
 
 		// Returns the data
-		return std::vector<double>(this->transformedSignal.begin() + sstart, this->transformedSignal.begin() + send);
+		return std::vector<long double>(this->transformedSignal.begin() + sstart, this->transformedSignal.begin() + send);
 	}
 
 	/**
@@ -137,7 +137,7 @@ namespace wavelets
 	 * @param levelsOfTransformation : levels of transformation of the signal
 	 * @return the requested chunk
 	 */
-	std::vector<double> WaveletTransformResults::getWaveletPacketTransforms(std::vector<double> transformedSignal, unsigned int partIndex, unsigned int levelsOfTransformation)
+	std::vector<long double> WaveletTransformResults::getWaveletPacketTransforms(std::vector<long double> transformedSignal, unsigned int partIndex, unsigned int levelsOfTransformation)
 	{
 
 		// The partIndex must not access non existent parts of the transformation
@@ -154,7 +154,7 @@ namespace wavelets
 		int send = sstart + chunkSize;
 
 		// Returns the data
-		return std::vector<double>(transformedSignal.begin() + sstart, transformedSignal.begin() + send);
+		return std::vector<long double>(transformedSignal.begin() + sstart, transformedSignal.begin() + send);
 	}
 
 	/**

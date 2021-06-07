@@ -12,11 +12,11 @@
 #include <limits>
 #include <vector>
 
-double calcCertaintyDegree_G1(double alpha, double betha);
-double calcContradictionDegree_G2(double alpha, double betha);
+long double calcCertaintyDegree_G1(long double alpha, long double betha);
+long double calcContradictionDegree_G2(long double alpha, long double betha);
 
-double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<double>>> &arrClasses);
-double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<double>>> &arrClasses);
-void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<double>>> &arrClasses);
+long double calculateAlpha(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<long double>>> &arrClasses);
+long double calculateBeta(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<long double>>> &arrClasses);
+void normalizeClassesFeatureVectors(unsigned int amountOfClasses, unsigned int featureVectorsPerClass, unsigned int featureVectorSize, std::map<std::string, std::vector<std::vector<long double>>> &arrClasses);
 
 #endif /* LIB_PARACONSISTENT_H_ */

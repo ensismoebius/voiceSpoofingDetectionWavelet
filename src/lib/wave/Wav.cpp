@@ -100,17 +100,17 @@ void Wav::write(std::string path)
 	ofs.close();
 }
 
-std::vector<double> Wav::getData() const
+std::vector<long double> Wav::getData() const
 {
 	return data;
 }
 
-std::vector<double> Wav::getDataLeft() const
+std::vector<long double> Wav::getDataLeft() const
 {
 	return dataLeft;
 }
 
-std::vector<double> Wav::getDataRight() const
+std::vector<long double> Wav::getDataRight() const
 {
 	return dataRight;
 }
@@ -120,7 +120,7 @@ std::string Wav::getPath() const
 	return path;
 }
 
-void Wav::setCallbackFunction(void (*callbackFunction)(std::vector<double> &signal, int &signalLength, unsigned int samplingRate, std::string path))
+void Wav::setCallbackFunction(void (*callbackFunction)(std::vector<long double> &signal, int &signalLength, unsigned int samplingRate, std::string path))
 {
 	this->callbackFunction = callbackFunction;
 }

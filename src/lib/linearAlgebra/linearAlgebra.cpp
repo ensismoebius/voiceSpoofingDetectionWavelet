@@ -10,18 +10,18 @@
 
 #include "linearAlgebra.h"
 
-#include <algorithm>
 #include <cmath>
+#include <algorithm>
 
 namespace linearAlgebra
 {
 
-	std::vector<double> derivative(std::vector<double> &vector, unsigned int level)
+	std::vector<long double> derivative(std::vector<long double> &vector, unsigned int level)
 	{
 
 		if (vector.size() < 2)
 		{
-			return std::vector<double>( { vector.at(0) });
+			return std::vector<long double>( { vector.at(0) });
 		}
 
 		for (unsigned int i = 0; i < vector.size() - 1; ++i)
@@ -40,7 +40,7 @@ namespace linearAlgebra
 		return vector;
 	}
 
-	long double dotProduct(std::vector<double> a, std::vector<double> b)
+	long double dotProduct(std::vector<long double> a, std::vector<long double> b)
 	{
 
 		long double product = 0;
@@ -53,14 +53,14 @@ namespace linearAlgebra
 		return product;
 	}
 
-	double* calcOrthogonalVector(double *originalVector, int vectorSize)
+	long double* calcOrthogonalVector(long double *originalVector, int vectorSize)
 	{
 
-		double *finalResult = new double[vectorSize];
+		long double *finalResult = new long double[vectorSize];
 
 		int middleSignalIndex = vectorSize / 2;
-		double tempVar;
-		double inverter = 1.0;
+		long double tempVar;
+		long double inverter = 1.0;
 
 		for (int i = middleSignalIndex; i < vectorSize; ++i)
 		{
@@ -74,10 +74,10 @@ namespace linearAlgebra
 		return finalResult;
 	}
 
-	std::vector<double> calcOrthogonalVector(std::vector<double> &vector)
+	std::vector<long double> calcOrthogonalVector(std::vector<long double> &vector)
 	{
-		std::vector<double> result(vector.size());
-		double multiplier = 1;
+		std::vector<long double> result(vector.size());
+		long double multiplier = 1;
 
 		for (int index = vector.size() - 1; index >= 0; index--)
 		{
@@ -87,9 +87,9 @@ namespace linearAlgebra
 		return result;
 	}
 
-	void normalizeVectorToSum1(double *signal, int signalLength)
+	void normalizeVectorToSum1(long double *signal, int signalLength)
 	{
-		double sum = 0;
+		long double sum = 0;
 
 		for (int i = 0; i < signalLength; ++i)
 			sum += signal[i];
@@ -98,24 +98,24 @@ namespace linearAlgebra
 			signal[i] /= sum;
 	}
 
-	void normalizeVectorToSum1(std::vector<double> &signal)
+	void normalizeVectorToSum1(std::vector<long double> &signal)
 	{
-		double sum = 0;
+		long double sum = 0;
 
-		for (double &v : signal)
+		for (long double &v : signal)
 			sum += v;
 
-		for (double &v : signal)
+		for (long double &v : signal)
 			v /= sum;
 	}
 
-	void normalizeVectorToSum1AllPositive(std::vector<double> &signal)
+	void normalizeVectorToSum1AllPositive(std::vector<long double> &signal)
 	{
 		long double min = signal[0];
 		long double max = min;
 		long double sum = 0;
 
-		for (double &v : signal)
+		for (long double &v : signal)
 		{
 			if (v < min) min = v;
 			if (v > max) max = v;
@@ -125,15 +125,15 @@ namespace linearAlgebra
 		if (min < 0)
 		{
 			sum = 0;
-			for (double &v : signal)
-				sum += v += std::abs(min) + (long double) 1;
+			for (long double &v : signal)
+				sum += v += std::abs(min) + (long double) 1; // @suppress("Ambiguous problem")
 		}
 
-		for (double &v : signal)
+		for (long double &v : signal)
 			v /= sum;
 	}
 
-	void normalizeVectorToSum1AllPositive(double *signal, int signalLength)
+	void normalizeVectorToSum1AllPositive(long double *signal, int signalLength)
 	{
 		long double min = signal[0];
 		long double max = min;
@@ -150,14 +150,14 @@ namespace linearAlgebra
 		{
 			sum = 0;
 			for (int i = 0; i < signalLength; ++i)
-				sum += signal[i] += std::abs(min) + (long double) 1;
+				sum += signal[i] += std::abs(min) + (long double) 1; // @suppress("Ambiguous problem")
 		}
 
 		for (int i = 0; i < signalLength; ++i)
 			signal[i] /= sum;
 	}
 
-	void normalizeVectorToRange(double *signal, int signalLength, double lowerLimit, double upperLimit)
+	void normalizeVectorToRange(long double *signal, int signalLength, long double lowerLimit, long double upperLimit)
 	{
 
 		if (lowerLimit >= upperLimit)
@@ -168,7 +168,7 @@ namespace linearAlgebra
 		/*
 		 * Keep this comment!
 		 *
-		 *	double min, max;
+		 *	long double min, max;
 		 *	min = max = signal[0];
 		 *
 		 *	for (auto &v : signal)
@@ -180,18 +180,18 @@ namespace linearAlgebra
 		 *	}
 		 *
 		 *	// Normalize between 0 and 1
-		 *	double rangeVal = max - min;
+		 *	long double rangeVal = max - min;
 		 *	for (auto &v : signal)
 		 *		v = (v - min) / rangeVal;
 		 *
 		 *	// Then scale to [lowerLimit,upperLimit]:
-		 *	double rangeLim = upperLimit - lowerLimit;
+		 *	long double rangeLim = upperLimit - lowerLimit;
 		 *	for (auto &v : signal)
 		 *		v = (v * rangeLim) + lowerLimit;
 		 */
 
 		// The code bellow do the same as the commented code above
-		double min, max;
+		long double min, max;
 		min = max = signal[0];
 
 		for (int i = 0; i < signalLength; ++i)
@@ -202,13 +202,13 @@ namespace linearAlgebra
 			if (signal[i] > max) max = signal[i];
 		}
 
-		double rangeVal = max - min;
-		double rangeLim = upperLimit - lowerLimit;
+		long double rangeVal = max - min;
+		long double rangeLim = upperLimit - lowerLimit;
 		for (int i = 0; i < signalLength; ++i)
 			signal[i] = (((signal[i] - min) / rangeVal) * rangeLim) + lowerLimit;
 	}
 
-	void normalizeVectorToRange(std::vector<double> &signal, double lowerLimit, double upperLimit)
+	void normalizeVectorToRange(std::vector<long double> &signal, long double lowerLimit, long double upperLimit)
 	{
 		if (lowerLimit >= upperLimit)
 		{
@@ -217,7 +217,7 @@ namespace linearAlgebra
 		/*
 		 * Keep this comment!
 		 *
-		 *	double min, max;
+		 *	long double min, max;
 		 *	min = max = signal[0];
 		 *
 		 *	for (auto &v : signal)
@@ -229,18 +229,18 @@ namespace linearAlgebra
 		 *	}
 		 *
 		 *	// Normalize between 0 and 1
-		 *	double rangeVal = max == min ? 1 : max - min;
+		 *	long double rangeVal = max == min ? 1 : max - min;
 		 *	for (auto &v : signal)
 		 *		v = (v - min) / rangeVal;
 		 *
 		 *	// Then scale to [lowerLimit,upperLimit]:
-		 *	double rangeLim = upperLimit - lowerLimit;
+		 *	long double rangeLim = upperLimit - lowerLimit;
 		 *	for (auto &v : signal)
 		 *		v = (v * rangeLim) + lowerLimit;
 		 */
 
 		// The code bellow do the same as the commented code above
-		double min, max;
+		long double min, max;
 		min = max = signal[0];
 
 		for (auto &v : signal)
@@ -251,17 +251,17 @@ namespace linearAlgebra
 			if (v > max) max = v;
 		}
 
-		double rangeVal = max == min ? 1 : max - min;
-		double rangeLim = upperLimit - lowerLimit;
+		long double rangeVal = max == min ? 1 : max - min;
+		long double rangeLim = upperLimit - lowerLimit;
 		for (auto &v : signal)
 			v = (((v - min) / rangeVal) * rangeLim) + lowerLimit;
 	}
 
-	bool convolution(double *data, int dataLength, double *kernel, int kernelSize)
+	bool convolution(long double *data, int dataLength, long double *kernel, int kernelSize)
 	{
 		int i, j, k;
 
-		double *convolutedSignal = new double[dataLength];
+		long double *convolutedSignal = new long double[dataLength];
 
 		// check validity of params
 		if (!data || !convolutedSignal || !kernel) return false;
@@ -296,16 +296,16 @@ namespace linearAlgebra
 		return true;
 	}
 
-	inline double getAlphaK(unsigned int k, unsigned int N)
+	inline long double getAlphaK(unsigned int k, unsigned int N)
 	{
 		return k == 0 ? std::sqrt(1.0 / N) : std::sqrt(2.0 / N);
 	}
 
-	void discreteCosineTransform(std::vector<double> &signal)
+	void discreteCosineTransform(std::vector<long double> &signal)
 	{
-		std::vector<double> res(signal.size());
+		std::vector<long double> res(signal.size());
 		unsigned int N = signal.size();
-		double sum = 0;
+		long double sum = 0;
 
 		for (unsigned int k = 0; k < N; ++k)
 		{
@@ -322,11 +322,11 @@ namespace linearAlgebra
 		signal = res;
 	}
 
-	void discreteCosineTransform(double *signal, long signalLength)
+	void discreteCosineTransform(long double *signal, long signalLength)
 	{
-		double *res = new double[signalLength];
+		long double *res = new long double[signalLength];
 		unsigned int N = signalLength;
-		double sum = 0;
+		long double sum = 0;
 
 		for (unsigned int k = 0; k < N; ++k)
 		{
@@ -345,7 +345,7 @@ namespace linearAlgebra
 		delete[] res;
 	}
 
-	void scaleMatrix(std::vector<std::vector<double>> &matrix)
+	void scaleMatrix(std::vector<std::vector<long double>> &matrix)
 	{
 
 		// Points to the best line that can nullify our values
@@ -389,7 +389,7 @@ namespace linearAlgebra
 				}
 
 				// Ready to calculate the coefficient
-				double coef = matrix[lineIndex][columnIndex] / matrix[bestLineForSubtration][columnIndex];
+				long double coef = matrix[lineIndex][columnIndex] / matrix[bestLineForSubtration][columnIndex];
 
 				unsigned int ci = columnIndex;
 				matrix[lineIndex][ci] = 0;
@@ -405,13 +405,13 @@ namespace linearAlgebra
 
 	}
 
-	std::vector<double> solveMatrix(std::vector<std::vector<double>> &matrix)
+	std::vector<long double> solveMatrix(std::vector<std::vector<long double>> &matrix)
 	{
 		// Used to make the substitutions
-		double temp;
+		long double temp;
 
 		// final result
-		std::vector<double> result(matrix.size());
+		std::vector<long double> result(matrix.size());
 
 		// The amount of the matrix columns
 		unsigned int colums = matrix[0].size();
