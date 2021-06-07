@@ -234,7 +234,6 @@ namespace waveletExperiments
 				// Alias for a easier use of matplotlib
 				namespace plt = matplotlibcpp;
 
-				double dist;
 				int pos = 1;
 				std::vector<double> posVect;
 				std::vector<double> distancesFrom1_0;
@@ -245,22 +244,12 @@ namespace waveletExperiments
 				// Iterates over all wavelets
 				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results)
 				{
-
 					// Iterates over BARK and MEL (yes, just two values)
 					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second)
 					{
-
 						posVect.push_back(pos++);
 						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
-
-						// Calculate the distance from point 1,0 (true) of the paraconsistent plane
-						dist = std::sqrt(std::pow(data.second[0][0] - 1, 2) + std::pow(data.second[0][1], 2));
-
-						// Highlights the differences
-						dist = std::log10(dist);
-
-						// Represents the values in a log of 10 base
-						distancesFrom1_0.push_back(dist);
+						distancesFrom1_0.push_back(data.second[2][0]);
 					}
 				}
 
@@ -296,29 +285,7 @@ namespace waveletExperiments
 					{
 
 						// Writing in to the file
-						ofs << std::boolalpha
-							<< std::fixed
-							<< std::setprecision(10)
-							<< (barkOrMelSAndData.first == BARK ? "BARK" : "MEL") << '\t'
-							<< wavelet.first << '\t'
-							<< std::noboolalpha
-							<< std::scientific
-							<< std::dec
-							<< barkOrMelSAndData.second[0][0]
-							<< std::boolalpha
-							<< '\t'
-							<< std::noboolalpha
-							<< std::scientific
-							<< std::dec
-							<< barkOrMelSAndData.second[1][0]
-							<< std::boolalpha
-							<< '\t'
-							<< std::noboolalpha
-							<< std::scientific
-							<< std::dec
-							<< barkOrMelSAndData.second[2][0]
-							<< std::boolalpha
-							<< std::endl;
+						ofs << std::boolalpha << std::fixed << std::setprecision(10) << (barkOrMelSAndData.first == BARK ? "BARK" : "MEL") << '\t' << wavelet.first << '\t' << std::noboolalpha << std::scientific << std::dec << barkOrMelSAndData.second[0][0] << std::boolalpha << '\t' << std::noboolalpha << std::scientific << std::dec << barkOrMelSAndData.second[1][0] << std::boolalpha << '\t' << std::noboolalpha << std::scientific << std::dec << barkOrMelSAndData.second[2][0] << std::boolalpha << std::endl;
 					}
 				}
 				ofs.close();
@@ -449,23 +416,35 @@ namespace waveletExperiments
 
 				std::cout << std::endl << "----------------------" << std::endl;
 
+				unsigned int featureVectorsPerClass;
+				unsigned int featureVectorSize;
+
+				long double alpha;
+				long double betha;
+
+				double distanceTo1_0;
+				double certaintyDegree_G1;
+				double contradictionDegree_G2;
+
+				std::map<std::string, std::vector<std::vector<long double>>> arrClasses;
+
 				// iterates over all wavelets types
 				for (std::pair<std::string, std::vector<long double>> v : wavelets::all())
 				{
 					// Iterates over all barkOrMel
 					for (int bm = BARK; bm <= MEL; bm++)
 					{
-						unsigned int featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).size();
-						unsigned int featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).at(0).size();
+						featureVectorsPerClass = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).size();
+						featureVectorSize = results.at(v.first).at(static_cast<BARK_MEL>(bm)).at(classFileList[0]).at(0).size();
 
-						std::map<std::string, std::vector<std::vector<long double>>> arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
+						arrClasses = results.at(v.first).at(static_cast<BARK_MEL>(bm));
 
-						long double alpha = calculateAlpha(classFileList.size(), featureVectorsPerClass, featureVectorSize, arrClasses);
-						long double betha = calculateBeta(classFileList.size(), featureVectorsPerClass, featureVectorSize, arrClasses);
+						alpha = calculateAlpha(classFileList.size(), featureVectorsPerClass, featureVectorSize, arrClasses);
+						betha = calculateBeta(classFileList.size(), featureVectorsPerClass, featureVectorSize, arrClasses);
 
-						double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
-						double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
-						double distanceTo1_0 = std::sqrt(std::pow(certaintyDegree_G1 - 1, 2) + std::pow(contradictionDegree_G2, 2));
+						certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
+						contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
+						distanceTo1_0 = std::sqrt(std::pow(certaintyDegree_G1 - 1, 2) + std::pow(contradictionDegree_G2, 2));
 
 						// Calculating the position at the paraconsistent plane
 						std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
