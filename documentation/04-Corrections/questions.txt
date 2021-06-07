@@ -1,0 +1,5 @@
+Tem algum problema em usar o algoritmo min-max ?
+Não consigo achar o problema com EPC parece que o algoritmo está correto, mas a normalização para o intervalo 0,1 parece prejudicar ele pois cria um desvio em valores que já estão dentro do intervalo 0, 1, usando os dados do artigo obtive valores totalmente diferentes usando o min-max.
+Será que não estou fazendo algo de errado fazendo a DCT e a dupla derivada na escala Mel? Isso é obrigatório ou temos que levar em consideração apenas os intevalos?
+Vou arregar e pedir o código da EPC
+

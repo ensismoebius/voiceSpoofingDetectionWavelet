@@ -109,6 +109,54 @@ namespace linearAlgebra
 			v /= sum;
 	}
 
+	void normalizeVectorToSum1AllPositive(std::vector<double> &signal)
+	{
+		long double min = signal[0];
+		long double max = min;
+		long double sum = 0;
+
+		for (double &v : signal)
+		{
+			if (v < min) min = v;
+			if (v > max) max = v;
+			sum += v;
+		}
+
+		if (min < 0)
+		{
+			sum = 0;
+			for (double &v : signal)
+				sum += v += std::abs(min) + (long double) 1;
+		}
+
+		for (double &v : signal)
+			v /= sum;
+	}
+
+	void normalizeVectorToSum1AllPositive(double *signal, int signalLength)
+	{
+		long double min = signal[0];
+		long double max = min;
+		long double sum = 0;
+
+		for (int i = 0; i < signalLength; ++i)
+		{
+			if (signal[i] < min) min = signal[i];
+			if (signal[i] > max) max = signal[i];
+			sum += signal[i];
+		}
+
+		if (min < 0)
+		{
+			sum = 0;
+			for (int i = 0; i < signalLength; ++i)
+				sum += signal[i] += std::abs(min) + (long double) 1;
+		}
+
+		for (int i = 0; i < signalLength; ++i)
+			signal[i] /= sum;
+	}
+
 	void normalizeVectorToRange(double *signal, int signalLength, double lowerLimit, double upperLimit)
 	{
 
@@ -181,7 +229,7 @@ namespace linearAlgebra
 		 *	}
 		 *
 		 *	// Normalize between 0 and 1
-		 *	double rangeVal = max - min;
+		 *	double rangeVal = max == min ? 1 : max - min;
 		 *	for (auto &v : signal)
 		 *		v = (v - min) / rangeVal;
 		 *
@@ -203,7 +251,7 @@ namespace linearAlgebra
 			if (v > max) max = v;
 		}
 
-		double rangeVal = max - min;
+		double rangeVal = max == min ? 1 : max - min;
 		double rangeLim = upperLimit - lowerLimit;
 		for (auto &v : signal)
 			v = (((v - min) / rangeVal) * rangeLim) + lowerLimit;

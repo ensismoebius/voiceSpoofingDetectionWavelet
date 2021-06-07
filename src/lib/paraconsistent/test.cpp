@@ -4,6 +4,22 @@
 #include <cassert>
 #include <iostream>
 #include "paraconsistent.h"
+#include "../linearAlgebra/linearAlgebra.h"
+
+void norm(std::vector<double> &sig)
+{
+	double energy = 0;
+
+	for (double v : sig)
+	{
+		energy += std::pow(v, 2);
+	}
+
+	for (double &v : sig)
+	{
+		v = v / energy;
+	}
+}
 
 void initializeClasses(std::map<std::string, std::vector<std::vector<double>>> &arrClasses, unsigned int &amountOfClasses, unsigned int &featureVectorsPerClass, unsigned int &featureVectorSize)
 {
@@ -43,6 +59,19 @@ void initializeClasses(std::map<std::string, std::vector<std::vector<double>>> &
 	arrClasses[classNames[2]][1] = { 0.11, 0.86 };
 	arrClasses[classNames[2]][2] = { 0.12, 0.87 };
 	arrClasses[classNames[2]][3] = { 0.11, 0.88 };
+
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][0]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][1]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][2]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][3]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][0]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][1]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][2]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][3]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][0]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][1]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][2]);
+	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][3]);
 }
 
 /**
@@ -52,7 +81,7 @@ void initializeClasses(std::map<std::string, std::vector<std::vector<double>>> &
  * @param argv
  * @return 0
  */
-int paraconsistentTest(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	unsigned int amountOfClasses;
 	unsigned int featureVectorSize;

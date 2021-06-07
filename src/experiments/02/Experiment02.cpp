@@ -246,7 +246,7 @@ namespace waveletExperiments
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.truePositive) << "}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.falsePositive) << "}}\\\\ \
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{spoofed}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.falseNegative) << "}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(bestMatrix.trueNegative) << "}} \
 							\\end{tabular} \
-							\\label{tab:classifier_"<< distType <<"_"<< std::to_string(int(pencentageSizeOfModel * 100)) <<"_best} \
+							\\label{tab:classifier_" << distType << "_" << std::to_string(int(pencentageSizeOfModel * 100)) << "_best} \
 						} \
 						\\qquad \
 						\\subfloat[Worst confusion matrix]{ \
@@ -255,10 +255,10 @@ namespace waveletExperiments
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{genuine}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.truePositive) << "}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.falsePositive) << "}}\\\\ \
 								\\mc{1}{>{\\columncolor{tcA}}r}{\\textbf{spoofed}} & \\mc{1}{>{\\columncolor{tcD}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.falseNegative) << "}} & \\mc{1}{>{\\columncolor{tcB}}c}{\\textcolor{tcC}{" << std::to_string(worstMatrix.trueNegative) << "}} \
 							\\end{tabular} \
-							\\label{tab:classifier_"<< distType <<"_"<< std::to_string(int(pencentageSizeOfModel * 100)) <<"_worse} \
+							\\label{tab:classifier_" << distType << "_" << std::to_string(int(pencentageSizeOfModel * 100)) << "_worse} \
 						} \
 					\\end{center} \
-					\\caption{Confusion matrices for "<< distType <<" distance classifier at "<< std::to_string(int(pencentageSizeOfModel * 100)) << "\\% model} \
+					\\caption{Confusion matrices for " << distType << " distance classifier at " << std::to_string(int(pencentageSizeOfModel * 100)) << "\\% model} \
 				\\end{table}";
 
 				ofs.close();
@@ -363,7 +363,7 @@ namespace waveletExperiments
 				////////////////////////////
 
 				// Start a new line to give space
-				// to the next resports
+				// to the next outputs
 				std::cout << std::endl;
 
 				// Creating the confusion matrix structure

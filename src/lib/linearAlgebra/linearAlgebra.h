@@ -114,5 +114,20 @@ namespace linearAlgebra
 	 * @return a vetor with results
 	 */
 	std::vector<double> solveMatrix(std::vector<std::vector<double>> &matrix);
+
+	/**
+	 * Normalize the vector to sum 1 and guarantees
+	 * that all values are positives
+	 * @param signal
+	 */
+	void normalizeVectorToSum1AllPositive(std::vector<double> &signal);
+
+	/**
+	 * Normalize the vector to sum 1 and guarantees
+	 * that all values are positives
+	 * @param signal
+	 * @param signalLength
+	 */
+	void normalizeVectorToSum1AllPositive(double *signal, int signalLength);
 }
 #endif /* SRC_LIB_LINEARALGEBRA_LINEARALGEBRA_H_ */
