@@ -21,7 +21,7 @@ namespace wavelets
 	WaveletTransformResults malat(std::vector<long double> &signal, std::vector<long double> &lowpassfilter, TransformMode mode, unsigned int level, unsigned int maxItens, bool highPassBranch)
 	{
 
-		//If maxitens is not informed then get the full signal size
+		//If maxitems is not informed then get the full signal size
 		if (maxItens == 0)
 		{
 			maxItens = signal.size();
@@ -30,7 +30,7 @@ namespace wavelets
 			// The number of items must be equal or less than the signal length
 			if (maxItens > signal.size())
 			{
-				throw std::runtime_error("The number of itens must be equal or less than the signal length");
+				throw std::runtime_error("The number of items must be equal or less than the signal length");
 			}
 
 			// The number of items must be equal or less than the half of signal length
@@ -38,7 +38,7 @@ namespace wavelets
 			// starting in the second transformation level)
 			if (highPassBranch && (maxItens > signal.size() / 2))
 			{
-				throw std::runtime_error("The number of itens must be equal or less than the half of signal length when in the high pass branch of the signal");
+				throw std::runtime_error("The number of items must be equal or less than the half of signal length when in the high pass branch of the signal");
 			}
 		}
 

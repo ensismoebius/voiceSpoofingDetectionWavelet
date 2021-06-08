@@ -249,7 +249,7 @@ namespace waveletExperiments
 					{
 						posVect.push_back(pos++);
 						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
-						distancesFrom1_0.push_back(data.second[2][0]);
+						distancesFrom1_0.push_back(std::log10(data.second[2][0]));
 					}
 				}
 
