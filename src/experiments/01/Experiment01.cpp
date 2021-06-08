@@ -189,7 +189,9 @@ namespace waveletExperiments
 					{
 
 						// Retrieve the values
-						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
+						// TODO Parece que algo grave ocorreu aqui: em vez de startIndex não deveria ser j?
+						//  std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
+						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(j);
 
 						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
 						featureVector.at(i) = 0;
