@@ -44,7 +44,7 @@ namespace waveletExperiments
 
 				// Expands the signal length to optimize the wavelet transform
 				signalLength = wavelets::getNextPowerOfTwo(signal.size());
-				signal.resize(signalLength, 0);
+				linearAlgebra::resizeCentered(signal, signalLength);
 
 				// Does the transformations
 				wavelets::WaveletTransformResults transformedSignal = wavelets::malat(signal, wavelet, wavelets::PACKET_WAVELET, level);

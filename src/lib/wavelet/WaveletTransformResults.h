@@ -42,9 +42,9 @@ namespace wavelets
 			/**
 			 * Extracts the approximation and details from the wavelet transformation
 			 * @param detailIndex -1: Return the whole transformed signal
-			 * @param detailIndex 0: Extracts the aproximation
+			 * @param detailIndex 0: Extracts the approximation
 			 * @param detailIndex 1 or more: Extracts the corresponding detail
-			 * @return Whole transformed signal, aproximation or details
+			 * @return Whole transformed signal, approximation or details
 			 */
 			std::vector<long double> getWaveletTransforms(int detailIndex = -1);
 

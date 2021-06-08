@@ -129,5 +129,17 @@ namespace linearAlgebra
 	 * @param signalLength
 	 */
 	void normalizeVectorToSum1AllPositive(long double *signal, int signalLength);
+
+	/**
+	 * Resizes a vector in a centered way
+	 * @example std::vector<long double> vec{ 1, 2, 3, 4, 5 };
+	 * resizeCentered(vec, 9);
+	 * we get: { 0, 0, 1, 2, 3, 4, 5, 0, 0 }
+	 * resizeCentered(vec, 3);
+	 * we get: { 2, 3, 4 }
+	 * @param vector
+	 * @param newSize
+	 */
+	void resizeCentered(std::vector<long double> &vector, int newSize, long double defaultValue = 0);
 }
 #endif /* SRC_LIB_LINEARALGEBRA_LINEARALGEBRA_H_ */

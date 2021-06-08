@@ -438,4 +438,27 @@ namespace linearAlgebra
 		return result;
 	}
 
+	void resizeCentered(std::vector<long double> &vector, int newSize, long double defaultValue)
+	{
+
+		if (newSize == vector.size()) return;
+
+		int diff = newSize - vector.size();
+		int leftPadding = diff / 2;
+		int rightPadding = diff - leftPadding;
+
+		if (newSize < vector.size())
+		{
+			vector.erase(vector.begin(), vector.begin() + leftPadding * -1);
+			vector.erase(vector.end() + rightPadding, vector.end());
+			return;
+		}
+
+		std::vector<long double> left(leftPadding, defaultValue);
+		std::vector<long double> right(rightPadding, defaultValue);
+
+		vector.insert(vector.begin(), left.begin(), left.end());
+		vector.insert(vector.end(), right.begin(), right.end());
+	}
+
 }

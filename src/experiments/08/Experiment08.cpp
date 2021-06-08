@@ -93,7 +93,7 @@ namespace waveletExperiments
 
 				// Expands the signal length to optimize the wavelet transform
 				signalLength = wavelets::getNextPowerOfTwo(signal.size());
-				signal.resize(signalLength, 0);
+				linearAlgebra::resizeCentered(signal, signalLength);
 
 				// Calculates the maximum levels of decompositions
 				// i.e. until the coefficients are formed by
@@ -145,7 +145,7 @@ namespace waveletExperiments
 					{
 
 						// Retrieve the values
-						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(startIndex);
+						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(j);
 
 						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
 						featureVector.at(i) = 0;
