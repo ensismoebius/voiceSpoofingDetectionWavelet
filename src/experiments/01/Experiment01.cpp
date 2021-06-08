@@ -184,7 +184,7 @@ namespace waveletExperiments
 					int startIndex = rangeScaleStart / frequencyChunckSize;
 					int endIndex = rangeScaleEnd / frequencyChunckSize;
 
-					// Sums the values from selected range
+					// Calculates energies from selected range
 					for (int j = startIndex; j < endIndex; ++j)
 					{
 

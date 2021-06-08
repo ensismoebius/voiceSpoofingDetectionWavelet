@@ -112,13 +112,11 @@ namespace linearAlgebra
 	void normalizeVectorToSum1AllPositive(std::vector<long double> &signal)
 	{
 		long double min = signal[0];
-		long double max = min;
 		long double sum = 0;
 
 		for (long double &v : signal)
 		{
 			if (v < min) min = v;
-			if (v > max) max = v;
 			sum += v;
 		}
 
