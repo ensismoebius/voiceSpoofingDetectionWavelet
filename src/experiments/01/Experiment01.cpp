@@ -189,6 +189,7 @@ namespace waveletExperiments
 					{
 
 						// Retrieve the values
+						// FIXME the function bellow is not doing what it is supposed to do!!
 						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(j);
 
 						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
