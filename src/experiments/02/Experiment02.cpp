@@ -7,7 +7,7 @@
  * 5 de mai de 2020
  *
  * Based on the results of experiment 01, which has selected
- * wavelet daub68 and MEL scale as the best features vector
+ * wavelet haar and MEL scale as the best features vector
  * generators, this experiment do some classifications using
  * Euclidian and Manhattan distance classifiers generating
  * their respectives confusion matrices, standard deviations
@@ -72,15 +72,14 @@ namespace waveletExperiments
 			 */
 			static void init()
 			{
-				wavelets::init( { "daub68" });
-				Experiment02::wavelet = wavelets::get("daub68");
+				wavelets::init( { "haar" });
+				Experiment02::wavelet = wavelets::get("haar");
 				Experiment02::MELRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
 			}
 
 			/**
 			 * Analytic function which performs an wavelet transform
-			 * of the value and calculate the energies based on MEL
-			 * or MEL intervals
+			 * of the value and calculate the energies based on MEL intervals
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -124,11 +123,6 @@ namespace waveletExperiments
 				// performed
 				double maxFrequency = samplingRate / 2;
 
-				// Calculates the minimum frequency range which
-				// will enable the correct interval sums to
-				// be performed
-				double frequencyChunckSize = maxFrequency / transformedSignal.getWaveletPacketAmountOfParts();
-
 				// Used to retrieve the interval for the sums
 				double rangeScaleEnd = 0;
 				double rangeScaleStart = 0;
@@ -141,27 +135,25 @@ namespace waveletExperiments
 					rangeScaleStart = MELRanges.at(i);
 					rangeScaleEnd = MELRanges.at(i + 1);
 
-					// Calculates the interval indexes inside the transformed signal
-					int startIndex = rangeScaleStart / frequencyChunckSize;
-					int endIndex = rangeScaleEnd / frequencyChunckSize;
+					// Retrieve the values to be summed
+					std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(rangeScaleStart, rangeScaleEnd, maxFrequency);
 
-					// Sums the values from selected range
-					for (int j = startIndex; j < endIndex; ++j)
+					// Sum the power of 2 of them all!!! (i.e. calculate the energies)
+					featureVector.at(i) = 0;
+					for (double v : sig1)
 					{
-
-						// Retrieve the values
-						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(j);
-
-						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
-						featureVector.at(i) = 0;
-						for (double v : sig1)
-						{
-							featureVector.at(i) += std::pow(v, 2);
-						}
-
+						featureVector.at(i) += std::pow(v, 2);
 					}
 
+					featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log10(featureVector.at(i));
+
 				}
+
+				// Applies a DCT (Discrete Cosine Transform)
+				linearAlgebra::discreteCosineTransform(featureVector);
+
+				// Applies the double derivative of the features vector
+				linearAlgebra::derivative(featureVector, 2);
 
 				// Normalizes the resulting features vector
 				linearAlgebra::normalizeVectorToSum1(featureVector);
@@ -195,7 +187,7 @@ namespace waveletExperiments
 
 				plt::ylim(yrange[0], yrange[1]);
 
-				plt::title("Accuracy of MEL over daub68 wavelet using " + distType + " distance classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
+				plt::title("Accuracy of MEL over haar wavelet using " + distType + " distance classifier.\n Model size: " + std::to_string(int(pencentageSizeOfModel * 100)) + "% of total data. Standard deviation: " + std::to_string(stdDeviation));
 
 				plt::named_plot("Best accuracy", numberOfTests, bestTestAccuracy, "-");
 				plt::named_plot("Worst accuracy", numberOfTests, worseTestAccuracy, "--");
@@ -283,7 +275,7 @@ namespace waveletExperiments
 
 				/**
 				 * A data structure witch will hold the wavelet transformed signals
-				 * daub68
+				 * haar
 				 * 	MEL
 				 * 		Class1
 				 * 			featureVector01
@@ -320,7 +312,7 @@ namespace waveletExperiments
 				totalCycles = (classFilesList.size() - 1) * totalCycles;
 
 				//////////////////////////////////////////////////
-				/// Processing data with wavelet daub68 and MEL ///
+				/// Processing data with wavelet haar and MEL ///
 				//////////////////////////////////////////////////
 
 				// Iterates over all files, this files
@@ -351,7 +343,7 @@ namespace waveletExperiments
 						w.process();
 
 						// Store the partial results
-						results["daub68"][MEL][classFilesList[i]].push_back(w.getData());
+						results["haar"][MEL][classFilesList[i]].push_back(w.getData());
 					}
 
 					fileListStream.clear();
@@ -441,9 +433,9 @@ namespace waveletExperiments
 							{
 
 								// Sampling the live signals
-								classifiers::raflleFeaturesVectors(results["daub68"][MEL][classFilesList[0]], modelLive, testLive, modelPercentage);
+								classifiers::raflleFeaturesVectors(results["haar"][MEL][classFilesList[0]], modelLive, testLive, modelPercentage);
 								// Sampling the spoofed signals
-								classifiers::raflleFeaturesVectors(results["daub68"][MEL][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+								classifiers::raflleFeaturesVectors(results["haar"][MEL][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
 								// Setting up the classifier
 								c.setDistanceType(static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType));

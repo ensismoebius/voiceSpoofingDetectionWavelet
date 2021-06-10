@@ -163,11 +163,6 @@ namespace waveletExperiments
 				// will be performed
 				double maxFrequency = samplingRate / 2;
 
-				// Calculates the minimum frequency range which
-				// will enable the correct interval sums to
-				// be performed
-				double frequencyChunckSize = maxFrequency / transformedSignal.getWaveletPacketAmountOfParts();
-
 				// Used to retrieve the interval for the sums
 				double rangeScaleEnd = 0;
 				double rangeScaleStart = 0;
@@ -180,32 +175,21 @@ namespace waveletExperiments
 					rangeScaleStart = scaleRanges.at(i);
 					rangeScaleEnd = scaleRanges.at(i + 1);
 
-					// Calculates the interval indexes inside the transformed signal
-					int startIndex = rangeScaleStart / frequencyChunckSize;
-					int endIndex = rangeScaleEnd / frequencyChunckSize;
+					// Retrieve the values to be summed
+					std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(rangeScaleStart, rangeScaleEnd, maxFrequency);
 
-					// Calculates energies from selected range
-					for (int j = startIndex; j < endIndex; ++j)
+					// Sum the power of 2 of them all!!! (i.e. calculate the energies)
+					featureVector.at(i) = 0;
+					for (double v : sig1)
 					{
-
-						// Retrieve the values
-						// FIXME the function bellow is not doing what it is supposed to do!!
-						std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(j);
-
-						// Sum the power of 2 of them all!!! (i.e. calculate the energies)
-						featureVector.at(i) = 0;
-						for (double v : sig1)
-						{
-							featureVector.at(i) += std::pow(v, 2);
-						}
-
-						// Just for MEL
-						if (Experiment01::barkOrMel == MEL)
-						{
-							featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log10(featureVector.at(i));
-						}
+						featureVector.at(i) += std::pow(v, 2);
 					}
 
+					// Just for MEL
+					if (Experiment01::barkOrMel == MEL)
+					{
+						featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log10(featureVector.at(i));
+					}
 				}
 
 				// Just for MEL

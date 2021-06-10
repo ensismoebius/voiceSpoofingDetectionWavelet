@@ -134,13 +134,11 @@ namespace linearAlgebra
 	void normalizeVectorToSum1AllPositive(long double *signal, int signalLength)
 	{
 		long double min = signal[0];
-		long double max = min;
 		long double sum = 0;
 
 		for (int i = 0; i < signalLength; ++i)
 		{
 			if (signal[i] < min) min = signal[i];
-			if (signal[i] > max) max = signal[i];
 			sum += signal[i];
 		}
 
@@ -438,7 +436,7 @@ namespace linearAlgebra
 		return result;
 	}
 
-	void resizeCentered(std::vector<long double> &vector, int newSize, long double defaultValue)
+	void resizeCentered(std::vector<long double> &vector, unsigned int newSize, long double defaultValue)
 	{
 
 		if (newSize == vector.size()) return;

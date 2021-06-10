@@ -54,9 +54,10 @@ namespace wavelets
 			 * the details of transformation, otherwise, returns the
 			 * generated chunks of the transformed signal
 			 * @param partIndex : A value from 0 up to @getWaveletPacketAmountOfParts
+			 * @param maxFrequecy
 			 * @return the requested chunk
 			 */
-			std::vector<long double> getWaveletPacketTransforms(unsigned int partIndex);
+			std::vector<long double> getWaveletPacketTransforms(unsigned int startIndex, unsigned int endIndex, unsigned int maxFrequecy);
 
 			/**
 			 * Calculate the maximum number of generated

@@ -80,10 +80,17 @@ namespace wavelets
 	 * the details of transformation, otherwise, returns the
 	 * generated chunks of the transformed signal
 	 * @param partIndex : A value from 0 up to @getWaveletPacketAmountOfParts
+	 * @param maxFrequecy
 	 * @return the requested chunk
 	 */
-	std::vector<long double> WaveletTransformResults::getWaveletPacketTransforms(unsigned int partIndex)
+	std::vector<long double> WaveletTransformResults::getWaveletPacketTransforms(unsigned int startIndex, unsigned int endIndex, unsigned int maxFrequecy)
 	{
+
+		// Checks if endIndex < startIndex
+		if (endIndex < startIndex)
+		{
+			throw std::runtime_error("EndIndex < startIndex this is WRONG!!!");
+		}
 
 		// Checks if this is a wavelet transform
 		if (!this->packet)
@@ -92,17 +99,17 @@ namespace wavelets
 		}
 
 		// The partIndex must not access non existent parts of the transformation
-		if (this->getWaveletPacketAmountOfParts() - 1 < partIndex)
-		{
-			throw std::runtime_error("You are trying to access a non existent part of transformation");
-		}
+//		if (this->getWaveletPacketAmountOfParts() - 1 < endIndex)
+//		{
+//			throw std::runtime_error("You are trying to access a non existent part of transformation");
+//		}
 
 		// Calculate the size of the chunks
-		int chunkSize = this->transformedSignal.size() / this->getWaveletPacketAmountOfParts();
+		double chunkSize = maxFrequecy / (double) this->getWaveletPacketAmountOfParts();
 
 		// Get the ranges that must be returned
-		int sstart = partIndex * chunkSize;
-		int send = sstart + chunkSize;
+		int sstart = startIndex * chunkSize;
+		int send = endIndex * chunkSize;
 
 		// Returns the data
 		return std::vector<long double>(this->transformedSignal.begin() + sstart, this->transformedSignal.begin() + send);

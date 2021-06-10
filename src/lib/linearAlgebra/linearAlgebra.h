@@ -140,6 +140,6 @@ namespace linearAlgebra
 	 * @param vector
 	 * @param newSize
 	 */
-	void resizeCentered(std::vector<long double> &vector, int newSize, long double defaultValue = 0);
+	void resizeCentered(std::vector<long double> &vector, unsigned int newSize, long double defaultValue = 0);
 }
 #endif /* SRC_LIB_LINEARALGEBRA_LINEARALGEBRA_H_ */
