@@ -129,6 +129,7 @@ namespace linearAlgebra
 
 		for (long double &v : signal)
 			v /= sum;
+
 	}
 
 	void normalizeVectorToSum1AllPositive(long double *signal, int signalLength)

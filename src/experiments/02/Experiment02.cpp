@@ -156,7 +156,7 @@ namespace waveletExperiments
 				linearAlgebra::derivative(featureVector, 2);
 
 				// Normalizes the resulting features vector
-				linearAlgebra::normalizeVectorToSum1(featureVector);
+				linearAlgebra::normalizeVectorToSum1AllPositive(featureVector);
 
 				// Replaces the original signal
 				signal = featureVector;

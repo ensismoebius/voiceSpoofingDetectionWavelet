@@ -98,14 +98,8 @@ namespace wavelets
 			throw std::runtime_error("This is not a wavelet packet transformed signal");
 		}
 
-		// The partIndex must not access non existent parts of the transformation
-//		if (this->getWaveletPacketAmountOfParts() - 1 < endIndex)
-//		{
-//			throw std::runtime_error("You are trying to access a non existent part of transformation");
-//		}
-
 		// Calculate the size of the chunks
-		double chunkSize = maxFrequecy / (double) this->getWaveletPacketAmountOfParts();
+		double chunkSize = this->getWaveletPacketAmountOfParts() / (double) maxFrequecy;
 
 		// Get the ranges that must be returned
 		int sstart = startIndex * chunkSize;
