@@ -141,18 +141,7 @@ namespace waveletExperiments
 					{
 						featureVector.at(i) += std::pow(v, 2);
 					}
-					featureVector.at(i) = featureVector.at(i) == 0 ? 0 : std::log10(featureVector.at(i));
-
 				}
-
-				// Applies a DCT (Discrete Cosine Transform)
-				linearAlgebra::discreteCosineTransform(featureVector);
-
-				// Applies the double derivative of the features vector
-				linearAlgebra::derivative(featureVector, 2);
-
-				// Normalizes the resulting features vector
-				linearAlgebra::normalizeVectorToSum1(featureVector);
 
 				// Replaces the original signal
 				signal = featureVector;
