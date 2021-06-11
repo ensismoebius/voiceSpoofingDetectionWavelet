@@ -142,6 +142,9 @@ namespace waveletExperiments
 					}
 				}
 
+				// Normalizes the resulting features vector
+				linearAlgebra::normalizeVectorToSum1AllPositive(featureVector);
+
 				// Replaces the original signal
 				signal = featureVector;
 			}

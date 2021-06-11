@@ -102,7 +102,7 @@ namespace waveletExperiments
 				finalResults["Original"] = signal;
 
 				// Select the wavelets are going to be used
-				wavelets::init( { "daub74", "daub4", "daub76", "haar" });
+				wavelets::init( { "daub8", "daub4", "daub76", "haar" });
 
 				// Calculate the maximum levels of decomposition
 				int level = std::log2(signal.size());

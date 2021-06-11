@@ -53,9 +53,9 @@ namespace waveletExperiments
 			};
 
 			/**
-			 * Contains the MEL ranges values
+			 * Contains the BARK ranges values
 			 */
-			static inline std::vector<double> melRanges;
+			static inline std::vector<double> barkRanges;
 
 			/**
 			 * Wavelet waveform function
@@ -71,12 +71,12 @@ namespace waveletExperiments
 			{
 				wavelets::init( { "haar" });
 				Experiment07::wavelet = wavelets::get("haar");
-				Experiment07::melRanges = { 20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000 };
+				Experiment07::barkRanges = { 20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500 };
 			}
 
 			/**
 			 * Analytic function which performs an wavelet transform
-			 * of signal and calculate the energies based on MEL intervals
+			 * of signal and calculate the energies based on BARK intervals
 			 * @param signal
 			 * @param signalLength
 			 * @param samplingRate
@@ -100,23 +100,23 @@ namespace waveletExperiments
 				// i.e. until the coefficients are formed by
 				// just single numbers.
 				// This is needed because at the end of the
-				// transformation we will perform a MEL composition
+				// transformation we will perform a BARK composition
 				int level = std::log2(signal.size());
 
 				// Does the transformations
 				wavelets::WaveletTransformResults transformedSignal = wavelets::malat(signal, Experiment07::wavelet, wavelets::PACKET_WAVELET, level);
 
 				////////////////////
-				/// MEL section ///
+				/// BARK section ///
 				////////////////////
 
 				// features vector has the amount of values equals to amount of the ranges minus 1 
 				// because we are summing up intervals
-				std::vector<long double> featureVector(melRanges.size() - 1);
+				std::vector<long double> featureVector(barkRanges.size() - 1);
 
 				// We need to known the max frequency supported
 				// by the signal in order to find the values in
-				// which the sums of the MEL scale will be
+				// which the sums of the BARK scale will be
 				// performed
 				double maxFrequency = samplingRate / 2;
 
@@ -125,12 +125,12 @@ namespace waveletExperiments
 				double rangeScaleStart = 0;
 
 				// Loop over all the ranges and calculate the energies inside it
-				for (unsigned int i = 0; i < melRanges.size() - 1; i++)
+				for (unsigned int i = 0; i < barkRanges.size() - 1; i++)
 				{
 
 					// Retrieves the interval for the sums
-					rangeScaleStart = melRanges.at(i);
-					rangeScaleEnd = melRanges.at(i + 1);
+					rangeScaleStart = barkRanges.at(i);
+					rangeScaleEnd = barkRanges.at(i + 1);
 
 					// Retrieve the values
 					std::vector<long double> sig1 = transformedSignal.getWaveletPacketTransforms(rangeScaleStart, rangeScaleEnd, maxFrequency);
@@ -142,6 +142,9 @@ namespace waveletExperiments
 						featureVector.at(i) += std::pow(v, 2);
 					}
 				}
+
+				// Normalizes the resulting features vector
+				linearAlgebra::normalizeVectorToSum1AllPositive(featureVector);
 
 				// Replaces the original signal
 				signal = featureVector;
@@ -209,7 +212,7 @@ namespace waveletExperiments
 				/**
 				 * A data structure witch will hold the wavelet transformed signals
 				 * haar
-				 * 	MEL
+				 * 	BARK
 				 * 		Class1
 				 * 			featureVector01
 				 * 			featureVector02
@@ -245,7 +248,7 @@ namespace waveletExperiments
 				totalCycles = (classFilesList.size() - 1) * totalCycles;
 
 				//////////////////////////////////////////////////
-				/// Processing data with wavelet haar and MEL ///
+				/// Processing data with wavelet haar and BARK ///
 				//////////////////////////////////////////////////
 
 				// Iterates over all files, this files
@@ -276,7 +279,7 @@ namespace waveletExperiments
 						w.process();
 
 						// Store the partial results
-						results["haar"][MEL][classFilesList[i]].push_back(w.getData());
+						results["haar"][BARK][classFilesList[i]].push_back(w.getData());
 					}
 
 					fileListStream.clear();
@@ -325,9 +328,9 @@ namespace waveletExperiments
 						{
 
 							// Sampling the live signals
-							classifiers::raflleFeaturesVectors(results["haar"][MEL][classFilesList[0]], modelLive, testLive, modelPercentage);
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[0]], modelLive, testLive, modelPercentage);
 							// Sampling the spoofed signals
-							classifiers::raflleFeaturesVectors(results["haar"][MEL][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
+							classifiers::raflleFeaturesVectors(results["haar"][BARK][classFilesList[1]], modelSpoofing, testSpoofing, modelPercentage);
 
 							// Setting up the classifier
 							c.setDistanceType(static_cast<classifiers::DistanceClassifier::DISTANCE_TYPE>(distClassifierType));
