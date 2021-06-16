@@ -1,3 +1,60 @@
+@article{dsp4,
+title = {Optimization of data-driven filterbank for automatic speaker verification},
+journal = {Digital Signal Processing},
+volume = {104},
+pages = {102795},
+year = {2020},
+issn = {1051-2004},
+doi = {https://doi.org/10.1016/j.dsp.2020.102795},
+url = {https://www.sciencedirect.com/science/article/pii/S1051200420301408},
+author = {Susanta Sarangi and Md Sahidullah and Goutam Saha},
+keywords = {Mel scale, Frequency warping function, Speech-signal-based scale, Principal component analysis (PCA), NIST speaker recognition evaluation (SRE), VoxCeleb1},
+abstract = {Most of the speech processing applications use triangular filters spaced in mel-scale for feature extraction. In this paper, we propose a new data-driven filter design method which optimizes filter parameters from a given speech data. First, we introduce a frame-selection based approach for developing speech-signal-based frequency warping scale. Then, we propose a new method for computing the filter frequency responses by using principal component analysis (PCA). The main advantage of the proposed method over the recently introduced deep learning based methods is that it requires very limited amount of unlabeled speech-data. We demonstrate that the proposed filterbank has more speaker discriminative power than commonly used mel filterbank as well as existing data-driven filterbank. We conduct automatic speaker verification (ASV) experiments with different corpora using various classifier back-ends. We show that the acoustic features created with proposed filterbank are better than existing mel-frequency cepstral coefficients (MFCCs) and speech-signal-based frequency cepstral coefficients (SFCCs) in most cases. In the experiments with VoxCeleb1 and popular i-vector back-end, we observe 9.75\% relative improvement in equal error rate (EER) over MFCCs. Similarly, the relative improvement is 4.43\% with recently introduced x-vector system. We obtain further improvement using fusion of the proposed method with standard MFCC-based approach.}
+}
+
+@article{dsp3,
+title = {Low frequency frame-wise normalization over constant-Q transform for playback speech detection},
+journal = {Digital Signal Processing},
+volume = {89},
+pages = {30-39},
+year = {2019},
+issn = {1051-2004},
+doi = {https://doi.org/10.1016/j.dsp.2019.02.018},
+url = {https://www.sciencedirect.com/science/article/pii/S105120041830736X},
+author = {Jichen Yang and Rohan Kumar Das},
+keywords = {Low frequency frame-wise normalization, CQT, Playback speech detection, Octave spectrum, Linear power spectrum},
+abstract = {The playback speech contains information from the environment, playback and recorder used. This work focuses on proposal of a novel normalization scheme, namely, low frequency frame-wise normalization (LFFN) as one of the modules in feature extraction process that is hypothesized to help in capturing the artifacts from the playback speech. It is based on low frequency bin processing that is performed frame-wise and hence its name. The constant-Q transform (CQT) based features are found to provide the benchmark results for detection of spoofing attacks. In this work, LFFN is combined with CQT to extract two new features from octave and linear power spectra, respectively. The first one is obtained by CQT, LFFN and octave segmentation that is referred to as constant-Q normalization segmentation coefficients (CQNSC). The latter uses conventional constant-Q cepstral coefficient (CQCC) and LFFN to obtain constant-Q normalization cepstral coefficients (CQNCC). The studies are performed on ASVspoof 2017 version 2.0 corpus that is designed for studying playback speech detection. The experimental results show the effectiveness of proposed LFFN with CQT based features. We obtain equal error rate of 10.63\% and 10.31\% for CQNSC and CQNCC features on the evaluation set of ASVspoof 2017 version 2.0 corpus, respectively.}
+}
+
+
+@article{dsp2,
+title = {Quality measures for speaker verification with short utterances},
+journal = {Digital Signal Processing},
+volume = {88},
+pages = {66-79},
+year = {2019},
+issn = {1051-2004},
+doi = {https://doi.org/10.1016/j.dsp.2019.01.023},
+url = {https://www.sciencedirect.com/science/article/pii/S1051200418304287},
+author = {Arnab Poddar and Md Sahidullah and Goutam Saha},
+keywords = {Gaussian mixture model (GMM), Identity vector (i-vector), Short utterances, Speaker verification, Total variability, Universal background model (UBM)},
+abstract = {The performances of the automatic speaker verification (ASV) systems degrade due to the reduction in the amount of speech used for enrollment and verification. Combining multiple systems based on different features and classifiers considerably reduces speaker verification error rate with short utterances. This work attempts to incorporate supplementary information during the system combination process. We use quality of the estimated model parameters as supplementary information. We introduce a class of novel quality measures formulated using the zero-order sufficient statistics used during the i-vector extraction process. We have used the proposed quality measures as side information for combining ASV systems based on Gaussian mixture model–universal background model (GMM–UBM) and i-vector. The proposed methods demonstrate considerable improvement in speaker recognition performance on NIST SRE corpora, especially in short duration conditions. We have also observed improvement over existing systems based on different duration-based quality measures.}
+}
+
+@article{dsp1,
+title = {Data selection for i-vector based automatic speaker verification anti-spoofing},
+journal = {Digital Signal Processing},
+volume = {72},
+pages = {171-180},
+year = {2018},
+issn = {1051-2004},
+doi = {https://doi.org/10.1016/j.dsp.2017.10.010},
+url = {https://www.sciencedirect.com/science/article/pii/S1051200417302373},
+author = {Cemal Hanilçi},
+keywords = {Speaker verification, i-vector, Anti-spoofing, Countermeasure},
+abstract = {State-of-the-art i-vector based automatic speaker verification (ASV) systems lead to considerably high performance and thus voice becomes one of the most important biometric modality for person authentication. However, similar to other biometrics, ASV systems are highly vulnerable to spoofing attacks. Therefore, developing countermeasures for detecting spoofing attacks plays an important role against the concerns regarding the reliability of ASV systems. Recent studies have shown that simple Gaussian mixture model (GMM) classifier outperforms i-vector countermeasures. In this study, we focus on improving the spoofing detection performance of i-vector system using cosine and probabilistic linear discriminant analysis (PLDA) scoring. Experimental results conducted on ASVspoof 2015 database reveals that the data used to train the two key elements of i-vector system, universal background model (UBM) and the i-vector extractor (T-matrix), play an important role on spoofing detection performance. In this paper, we study the effect of using different type of data (genuine/human or spoofed) to train these two elements and their performance on spoofing detection. In particular, extracting i-vectors using UBM trained with genuine (human) speech utterances and T-matrix trained from both genuine and spoofed utterances leads to 50\% performance improvement on spoofing detection. With the proposed scheme, unlike the previous results, i-vector countermeasure outperforms GMM classifier. Finally, experimental results shows that recently proposed constant Q cepstral coefficients (CQCC) shows superior performance in comparison to standard Mel-frequency cepstral coefficients (MFCC).}
+}
+
 @Book{bishop:2006:PRML,
   author = 	 "Christopher M. Bishop",
   title = 	 "Pattern Recognition and Machine Learning",
