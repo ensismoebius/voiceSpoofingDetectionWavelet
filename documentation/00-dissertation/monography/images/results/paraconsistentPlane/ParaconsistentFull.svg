@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -42,9 +42,9 @@
      inkscape:window-height="854"
      id="namedview3096"
      showgrid="false"
-     inkscape:zoom="0.6520778"
-     inkscape:cx="494.92997"
-     inkscape:cy="251.92792"
+     inkscape:zoom="0.92217727"
+     inkscape:cx="563.65129"
+     inkscape:cy="363.97492"
      inkscape:window-x="0"
      inkscape:window-y="45"
      inkscape:window-maximized="0"
@@ -5104,16 +5104,16 @@
            x="164.15822"
            style="font-style:normal;font-weight:normal;font-size:11.93994427px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2984986;stroke-linecap:butt;stroke-linejoin:round"
            xml:space="preserve"><tspan
-             id="tspan8972"
              y="105.64104"
-             x="164.15822"
+             x="166.05591"
              style="text-align:center;text-anchor:middle;stroke-width:0.2984986;stroke-linecap:butt;stroke-linejoin:round"
-             sodipodi:role="line">Wavelets on MEL(M) and BARK(B)</tspan><tspan
+             sodipodi:role="line"
+             id="tspan2047">Medidas no plano paraconsistente de wavelets aplicadas </tspan><tspan
              y="120.56596"
              x="164.15822"
              style="text-align:center;text-anchor:middle;stroke-width:0.2984986;stroke-linecap:butt;stroke-linejoin:round"
              sodipodi:role="line"
-             id="tspan33551">on paraconsistent measures</tspan></text>
+             id="tspan2051">nos intervalos MEL(M) e BARK(B)</tspan></text>
       </g>
     </g>
   </g>
@@ -9699,14 +9699,14 @@
               <text
                  xml:space="preserve"
                  style="font-style:normal;font-weight:normal;font-size:10.82265377px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.27056634;stroke-linecap:butt;stroke-linejoin:round"
-                 x="153.33675"
+                 x="123.33675"
                  y="1062.0148"
                  id="text4258-8"><tspan
                    sodipodi:role="line"
                    id="tspan4256-8"
                    style="stroke-width:0.27056634;stroke-linecap:butt;stroke-linejoin:round"
-                   x="153.33675"
-                   y="1062.0148">log10 of the distance from point (1,0)</tspan></text>
+                   x="123.33675"
+                   y="1062.0148">log10 da distância em relação ao ponto (1,0) </tspan></text>
             </g>
           </g>
         </g>
@@ -14382,14 +14382,14 @@
           <text
              xml:space="preserve"
              style="font-style:normal;font-weight:normal;font-size:10.82265377px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.27056634;stroke-linecap:butt;stroke-linejoin:round"
-             x="153.33675"
+             x="129.33675"
              y="1062.0148"
              id="text4258"><tspan
                sodipodi:role="line"
                id="tspan4256"
                style="stroke-width:0.27056634;stroke-linecap:butt;stroke-linejoin:round"
-               x="153.33675"
-               y="1062.0148">log10 of the distance from point (1,0)</tspan></text>
+               x="129.33675"
+               y="1062.0148">log10 da distância em relação ao ponto (1,0) </tspan></text>
         </g>
       </g>
       <path

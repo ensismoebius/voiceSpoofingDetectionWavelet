@@ -1,167 +1,37 @@
-\begin{table}[!b]
+\begin{center}
 	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
 	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
 	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-	\definecolor{tcC}{rgb}{1,0.94902,0}
-	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
-			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
-			\mc{1}{|>{\columncolor{tcB}}c|}{haar}&\mc{1}{|>{\columncolor{tcB}}c|}{4.1848066450e-01}&\mc{1}{|>{\columncolor{tcB}}c|}{-5.8151933550e-01}&\mc{1}{|>{\columncolor{tcB}}c|}{8.2239253104e-01}\\\hline	
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif18}&\mc{1}{>{\columncolor{tcC}}c|}{3.5204055918e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.4795944082e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.1635302907e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{sym8}&\mc{1}{>{\columncolor{tcC}}c|}{3.4603021846e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.5396978154e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.2485293444e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif6}&\mc{1}{>{\columncolor{tcC}}c|}{3.4433202994e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.5566797006e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.2725453567e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub34}&\mc{1}{>{\columncolor{tcC}}c|}{3.4073754266e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.5926245734e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.3233790833e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub4}&\mc{1}{>{\columncolor{tcC}}c|}{3.4067217390e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.5932782610e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.3243035372e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub16}&\mc{1}{>{\columncolor{tcC}}c|}{3.3866800817e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.6133199183e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.3526467207e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub66}&\mc{1}{>{\columncolor{tcC}}c|}{3.3466613896e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.6533386104e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.4092416979e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub12}&\mc{1}{>{\columncolor{tcC}}c|}{3.3261630461e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.6738369539e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.4382307332e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub8}&\mc{1}{>{\columncolor{tcC}}c|}{3.2794970744e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7205029256e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5042263833e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub38}&\mc{1}{>{\columncolor{tcC}}c|}{3.2790088199e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7209911801e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5049168794e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub60}&\mc{1}{>{\columncolor{tcC}}c|}{3.2682106664e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7317893336e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5201877746e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub72}&\mc{1}{>{\columncolor{tcC}}c|}{3.2501939685e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7498060315e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5456672332e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub30}&\mc{1}{>{\columncolor{tcC}}c|}{3.2466914068e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7533085932e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5506206034e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub70}&\mc{1}{>{\columncolor{tcC}}c|}{3.2336633149e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7663366851e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5690451076e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub68}&\mc{1}{>{\columncolor{tcC}}c|}{3.2221155931e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7778844069e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5853760524e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub48}&\mc{1}{>{\columncolor{tcC}}c|}{3.2199391770e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7800608230e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5884539697e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub10}&\mc{1}{>{\columncolor{tcC}}c|}{3.2143507453e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7856492547e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5963572056e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub74}&\mc{1}{>{\columncolor{tcC}}c|}{3.2129666008e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7870333992e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.5983146814e-01}\\\hline
-		\end{tabular}
-	\end{center}
-	\caption{Combinação wavelet\textit{X}BARK no plano paraconsistente (Parte 01)}
-	\label{tab:distParacomFrom10Bark_1}
-\end{table}
+	\definecolor{tcC}{rgb}{0,0.8,1}
+	
+	\begin{longtable}{|c|c|c|c|c|}
 
-\begin{table}[!t]
-	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-	\definecolor{tcC}{rgb}{1,0.94902,0}
-	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
-			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif12}&\mc{1}{>{\columncolor{tcC}}c|}{3.1840562557e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8159437443e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.6392000836e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub64}&\mc{1}{>{\columncolor{tcC}}c|}{3.1827369474e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8172630526e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.6410658673e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub32}&\mc{1}{>{\columncolor{tcC}}c|}{3.1808214387e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8191785613e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.6437748056e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub52}&\mc{1}{>{\columncolor{tcC}}c|}{3.1762936046e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8237063954e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.6501781300e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{beylkin18}&\mc{1}{>{\columncolor{tcC}}c|}{3.1565558354e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8434441646e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.6780915509e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{sym16}&\mc{1}{>{\columncolor{tcC}}c|}{3.1532279446e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8467720554e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.6827978992e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub58}&\mc{1}{>{\columncolor{tcC}}c|}{3.1353467452e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8646532548e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7080857339e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub28}&\mc{1}{>{\columncolor{tcC}}c|}{3.1267887229e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8732112771e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7201886051e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub42}&\mc{1}{>{\columncolor{tcC}}c|}{3.1062306274e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8937693726e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7492621427e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub46}&\mc{1}{>{\columncolor{tcC}}c|}{3.1045212317e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8954787683e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7516795932e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub40}&\mc{1}{>{\columncolor{tcC}}c|}{3.0830033452e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9169966548e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7821104801e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub50}&\mc{1}{>{\columncolor{tcC}}c|}{3.0823766186e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9176233814e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7829968054e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub62}&\mc{1}{>{\columncolor{tcC}}c|}{3.0770438198e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9229561802e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7905385218e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{vaidyanathan24}&\mc{1}{>{\columncolor{tcC}}c|}{3.0760411338e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9239588662e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.7919565339e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub24}&\mc{1}{>{\columncolor{tcC}}c|}{3.0612296189e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9387703811e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8129031791e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub76}&\mc{1}{>{\columncolor{tcC}}c|}{3.0544640534e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9455359466e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8224711336e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub56}&\mc{1}{>{\columncolor{tcC}}c|}{3.0487151225e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9512848775e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8306013497e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub20}&\mc{1}{>{\columncolor{tcC}}c|}{3.0272144984e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9727855016e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8610078239e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub44}&\mc{1}{>{\columncolor{tcC}}c|}{3.0053907305e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9946092695e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.8918712925e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif30}&\mc{1}{>{\columncolor{tcC}}c|}{2.9901143690e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.0098856310e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.9134753301e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif24}&\mc{1}{>{\columncolor{tcC}}c|}{2.9753400642e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.0246599358e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.9343693523e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub22}&\mc{1}{>{\columncolor{tcC}}c|}{2.9575802323e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.0424197677e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.9594855475e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub54}&\mc{1}{>{\columncolor{tcC}}c|}{2.9525704109e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.0474295891e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.9665705048e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub26}&\mc{1}{>{\columncolor{tcC}}c|}{2.9363650245e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.0636349755e-01}&\mc{1}{>{\columncolor{tcC}}c|}{9.9894883820e-01}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub6}&\mc{1}{>{\columncolor{tcC}}c|}{2.8936618301e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1063381699e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0049879819e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub36}&\mc{1}{>{\columncolor{tcC}}c|}{2.8798608604e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1201391396e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0069397337e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{sym32}&\mc{1}{>{\columncolor{tcC}}c|}{2.8780015676e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1219984324e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0072026774e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub14}&\mc{1}{>{\columncolor{tcC}}c|}{2.8287156364e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1712843636e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0141727607e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub18}&\mc{1}{>{\columncolor{tcC}}c|}{2.7692367779e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-7.2307632221e-01}&\mc{1}{>{\columncolor{tcC}}c|}{1.0225843415e+00}\\\hline
-		\end{tabular}
-	\end{center}
-	\caption{Combinação wavelet\textit{X}BARK no plano paraconsistente (Parte 02)}
-	\label{tab:distParacomFrom10Bark_2}
-\end{table}
+		% Columns headers
+		\hline
+		\mc{1}{|>{\columncolor{tcA}}c|}{Mel/Bark}&\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância de (1,0)}\\\hline
+		\endfirsthead
+		
+		\mc{3}{c}{{\tablename\ \thetable -- continuação da página anterior}} \\\hline
+		% Columns headers
+		\mc{1}{|>{\columncolor{tcA}}c|}{Mel/Bark}&\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distance to (1,0)}\\\hline
+		\endhead
+		
+		\hline \mc{2}{c}{{Continua na próxima página}} \\
+		\endfoot
+		\endlastfoot
 
-%----------------------------------------------------------------%
-
-\begin{table}[!h]
-	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-	\definecolor{tcC}{rgb}{1,0.94902,0}
-	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
-			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub58}&\mc{1}{>{\columncolor{tcC}}c|}{-5.9450214774e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.5945021477e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.2549665626e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{beylkin18}&\mc{1}{>{\columncolor{tcC}}c|}{-6.0355592897e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6035559290e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.2677705428e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub66}&\mc{1}{>{\columncolor{tcC}}c|}{-6.2576321449e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6257632145e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.2991763871e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub70}&\mc{1}{>{\columncolor{tcC}}c|}{-6.4579052443e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6457905244e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.3274992805e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub44}&\mc{1}{>{\columncolor{tcC}}c|}{-6.5179086154e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6517908615e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.3359850386e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub46}&\mc{1}{>{\columncolor{tcC}}c|}{-6.5229992473e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6522999247e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.3367049627e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub50}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7164633890e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6716463389e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.3640649240e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub32}&\mc{1}{>{\columncolor{tcC}}c|}{-6.7484534196e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6748453420e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.3685889975e+00}\\\hline
-		\end{tabular}
-	\end{center}
-	\caption{Combinação wavelet\textit{X}MEL no plano paraconsistente (Parte 01)}
-	\label{tab:distParacomFrom10Mel_1}
-\end{table}
-
-\begin{table}[!h]
-	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
-	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
-	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
-	\definecolor{tcC}{rgb}{1,0.94902,0}
-	\begin{center}
-		\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|}\hline
-			% use packages: color,colortbl
-			\mc{1}{|>{\columncolor{tcA}}c|}{Wavelet}&\mc{1}{|>{\columncolor{tcA}}c|}{G1}&\mc{1}{|>{\columncolor{tcA}}c|}{G2}&\mc{1}{|>{\columncolor{tcA}}c|}{Distância (1,0)}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub16}&\mc{1}{>{\columncolor{tcC}}c|}{-6.8353125460e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6835312546e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.3808727329e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{vaidyanathan24}&\mc{1}{>{\columncolor{tcC}}c|}{-6.9634026943e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.6963402694e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.3989874154e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub38}&\mc{1}{>{\columncolor{tcC}}c|}{-7.0396563557e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7039656356e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4097713116e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub64}&\mc{1}{>{\columncolor{tcC}}c|}{-7.0839782840e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7083978284e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4160393788e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub36}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1649727188e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7164972719e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4274937217e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub68}&\mc{1}{>{\columncolor{tcC}}c|}{-7.1875853237e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7187585324e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4306916269e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub30}&\mc{1}{>{\columncolor{tcC}}c|}{-7.2009906025e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7200990602e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4325874196e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub52}&\mc{1}{>{\columncolor{tcC}}c|}{-7.6037119512e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7603711951e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4895408190e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif24}&\mc{1}{>{\columncolor{tcC}}c|}{-7.6122031568e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7612203157e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4907416568e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub34}&\mc{1}{>{\columncolor{tcC}}c|}{-7.6667540300e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7666754030e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.4984563152e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub40}&\mc{1}{>{\columncolor{tcC}}c|}{-7.7346206929e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7734620693e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.5080541107e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub20}&\mc{1}{>{\columncolor{tcC}}c|}{-7.8134401220e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7813440122e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.5192008613e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif12}&\mc{1}{>{\columncolor{tcC}}c|}{-7.8890639098e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.7889063910e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.5298956799e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub24}&\mc{1}{>{\columncolor{tcC}}c|}{-8.0151433761e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8015143376e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.5477260091e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub62}&\mc{1}{>{\columncolor{tcC}}c|}{-8.0390696563e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8039069656e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.5511096961e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub76}&\mc{1}{>{\columncolor{tcC}}c|}{-8.0445838205e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8044583820e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.5518895166e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif30}&\mc{1}{>{\columncolor{tcC}}c|}{-8.3948999182e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8394899918e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6014316943e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub8}&\mc{1}{>{\columncolor{tcC}}c|}{-8.4179244089e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8417924409e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6046878490e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{sym16}&\mc{1}{>{\columncolor{tcC}}c|}{-8.4317849781e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8431784978e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6066480295e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub74}&\mc{1}{>{\columncolor{tcC}}c|}{-8.4881627902e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8488162790e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6146210561e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub4}&\mc{1}{>{\columncolor{tcC}}c|}{-8.5445068719e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8544506872e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6225893126e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub22}&\mc{1}{>{\columncolor{tcC}}c|}{-8.5456819547e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8545681955e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6227554944e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub18}&\mc{1}{>{\columncolor{tcC}}c|}{-8.6661560480e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8666156048e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6397931040e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub72}&\mc{1}{>{\columncolor{tcC}}c|}{-8.6716200962e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8671620096e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6405658372e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub60}&\mc{1}{>{\columncolor{tcC}}c|}{-8.7039533923e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8703953392e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6451384557e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub12}&\mc{1}{>{\columncolor{tcC}}c|}{-8.7700570233e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8770057023e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6544869209e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub54}&\mc{1}{>{\columncolor{tcC}}c|}{-8.8830395918e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8883039592e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6704650690e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub14}&\mc{1}{>{\columncolor{tcC}}c|}{-8.9354903427e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8935490343e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6778827253e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{sym32}&\mc{1}{>{\columncolor{tcC}}c|}{-8.9748903294e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.8974890329e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6834547248e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub42}&\mc{1}{>{\columncolor{tcC}}c|}{-9.0032993085e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9003299308e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.6874723612e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif6}&\mc{1}{>{\columncolor{tcC}}c|}{-9.4195186392e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9419518639e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7463346634e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub26}&\mc{1}{>{\columncolor{tcC}}c|}{-9.6233734610e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9623373461e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7751640888e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub10}&\mc{1}{>{\columncolor{tcC}}c|}{-9.7084514548e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9708451455e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7871959341e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub48}&\mc{1}{>{\columncolor{tcC}}c|}{-9.7107738335e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9710773833e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7875243680e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub28}&\mc{1}{>{\columncolor{tcC}}c|}{-9.7326060914e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9732606091e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7906119155e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{haar}&\mc{1}{>{\columncolor{tcC}}c|}{-9.7970436243e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9797043624e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.7997247588e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub56}&\mc{1}{>{\columncolor{tcC}}c|}{-9.9311770752e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9931177075e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.8186940934e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{daub6}&\mc{1}{>{\columncolor{tcC}}c|}{-9.9914418230e-01}&\mc{1}{>{\columncolor{tcC}}c|}{-1.9991441823e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.8272168157e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{sym8}&\mc{1}{>{\columncolor{tcC}}c|}{-1.0076953766e+00}&\mc{1}{>{\columncolor{tcC}}c|}{-2.0076953766e+00}&\mc{1}{>{\columncolor{tcC}}c|}{2.8393100307e+00}\\\hline
-			\mc{1}{|>{\columncolor{tcC}}c|}{coif18}&\mc{1}{>{\columncolor{tcC}}c|}{-1.2118978354e+00}&\mc{1}{>{\columncolor{tcC}}c|}{-2.2118978354e+00}&\mc{1}{>{\columncolor{tcC}}c|}{3.1280959175e+00}\\\hline
-		\end{tabular}
-	\end{center}
-	\caption{Combinação wavelet\textit{X}MEL no plano paraconsistente (Parte 02)}
-	\label{tab:distParacomFrom10Mel_2}
-\end{table}
-
-
-
-
-
-
-
-
-
-
+		% Color of the first line
+		\rowcolor{tcB}
+		
+		% Loads data from tables/results/paraconsistentPlane/distParacomFrom10.csv
+		\csvreader[
+		no head,
+		late after line=\\\hline\rowcolor{tcC},%
+		separator=comma,
+		]{tables/results/paraconsistentPlane/distParacomFrom10.csv}{1=\melBark,2=\wavelet,3=\gOne,4=\gTwo,5=\distance}{\melBark&\wavelet&\gOne&\gTwo&\distance}
+		
+		\rowcolor{white}
+		\caption{Combinações Wavelet \textit{x} Mel/Bark ordenadas pela distância do vértice (1,0) no plano paraconsistente.}
+		\label{tab:distParacomFrom10BarkAndMel}
+	\end{longtable}
+\end{center}
