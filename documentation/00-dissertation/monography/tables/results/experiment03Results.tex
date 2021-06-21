@@ -6,14 +6,14 @@
 		\begin{tabular}{|p{0.15\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|}\hline
 			% use packages: color,colortbl
 			\rowcolor{tcA}
-			\centering\textbf{$M$} & \centering\textbf{Minimum value of accuracy} & \centering\textbf{Maximum value of accuracy} & \centering\textbf{Mean value of accuracy} & \centering\textbf{Standard deviation value of accuracy} & \textbf{\qquad EER}\\\hline
+			\centering\textbf{$M$} & \centering\textbf{Acurácia mínima} & \centering\textbf{Acurácia máxima} & \centering\textbf{Média das acurácias} & \centering\textbf{Desvio padrão da acurácia} & \begin{center}\textbf{EER}\end{center}\\\hline
 			
 			\rowcolor{tcB}
 			% Loads data from tables/results/paraconsistentPlane/distParacomFrom10.csv
 			\csvreader[
 			late after line=\\\hline\rowcolor{tcB},%
 			separator=comma,
-			]{tables/results/experiment02ResultsSVM.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\minAccu & \centering\maxAccu & \centering\meanAccu & \centering\stdDev & \qquad\eer}
+			]{tables/results/experiment02ResultsSVM.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\minAccu & \centering\maxAccu & \centering\meanAccu & \centering\stdDev & \eer}
 			
 		\end{tabular}
 	\end{center}
