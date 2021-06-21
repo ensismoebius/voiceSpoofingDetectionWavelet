@@ -105,7 +105,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 				++j;
 				continue;
 			}
-			std::cout << "The file: " << args[j + 1] << " do not existis\n" << std::endl;
+			std::cout << "The file: " << args[j + 1] << " do not exists\n" << std::endl;
 		}
 		if (argument.compare("--spoofing") == 0)
 		{
@@ -115,7 +115,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 				++j;
 				continue;
 			}
-			std::cout << "The file: " << args[j + 1] << " do not existis\n" << std::endl;
+			std::cout << "The file: " << args[j + 1] << " do not exists\n" << std::endl;
 		}
 		if (argument.compare("--out") == 0)
 		{
@@ -125,7 +125,7 @@ int parseArguments(int argc, char *args[], std::string &liveFileList, std::strin
 				++j;
 				continue;
 			}
-			std::cout << "The directory: " << args[j + 1] << " do not existis\n" << std::endl;
+			std::cout << "The directory: " << args[j + 1] << " do not exists\n" << std::endl;
 		}
 		if (argument.compare("--tests") == 0)
 		{
