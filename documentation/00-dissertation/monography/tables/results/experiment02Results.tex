@@ -13,7 +13,7 @@
 			\csvreader[
 			late after line=\\\hline\rowcolor{tcB},%
 			separator=comma,
-			]{tables/results/experiment02ResultsEuclidian.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\minAccu & \centering\maxAccu & \centering\meanAccu & \centering\stdDev & \eer}
+			]{tables/results/experiment02ResultsEuclidian.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\StrSubstitute[0]{\minAccu}{.}{,} & \centering\StrSubstitute[0]{\maxAccu}{.}{,} & \centering\StrSubstitute[0]{\meanAccu}{.}{,} & \centering\StrSubstitute[0]{\stdDev}{.}{,} & \StrSubstitute[0]{\eer}{.}{,}}
 
 		\end{tabular}
 	\end{center}
@@ -36,7 +36,7 @@
 			\csvreader[
 			late after line=\\\hline\rowcolor{tcB},%
 			separator=comma,
-			]{tables/results/experiment02ResultsManhattan.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\minAccu & \centering\maxAccu & \centering\meanAccu & \centering\stdDev & \eer}
+			]{tables/results/experiment02ResultsManhattan.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\StrSubstitute[0]{\minAccu}{.}{,} & \centering\StrSubstitute[0]{\maxAccu}{.}{,} & \centering\StrSubstitute[0]{\meanAccu}{.}{,} & \centering\StrSubstitute[0]{\stdDev}{.}{,} & \StrSubstitute[0]{\eer}{.}{,}}
 		\end{tabular}
 	\end{center}
 	\caption{Resultados da abordagem de \textit{pattern-matching} com distância Manhattan.}

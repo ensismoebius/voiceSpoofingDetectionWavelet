@@ -373,7 +373,7 @@ namespace waveletExperiments
 				double totalCycles = 0;
 
 				// For this experiment we will use just three wavelets
-				wavelets::init( { "daub8", "daub4", "daub76", "haar" });
+				wavelets::init( { "daub8", "daub76", "haar" });
 
 				// Computes the cycles needed to compute all signals
 				for (unsigned int i = 0; i < classFileList.size(); i++)

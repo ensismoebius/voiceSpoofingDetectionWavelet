@@ -1,13 +1,28 @@
 \chapter{Testes e Resultados} \label{chap:testsResults}
 	\section{Procedimento 01}
 	\label{chap:testsResults:sec:Experimento01}
-	Os testes, e correspondentes resultados, para o procedimento 01 descrito no Capítulo anterior encontram-se nesta seção. Conforme explicado naquela oportunidade, este procedimento visa, com base na Engenharia Paraconsistente, encontrar qual filtro \textit{wavelet} proporciona, em conjunto com a escala Bark ou Mel, a menor distância do ponto $(G_1,G_2)$ até o vértice $(1,0)$ do plano paraconsistente.
+	Os testes, e correspondentes resultados, para o procedimento 01 descrito no Capítulo anterior encontram-se nesta seção. Conforme explicado naquela oportunidade, este procedimento visa, com base na Engenharia Paraconsistente, encontrar qual filtro \textit{wavelet} proporciona, em conjunto com a escala Bark ou Mel, a menor distância do ponto $(G_1,G_2)$ até o vértice $(1,0)$ do plano paraconsistente.\\
 
-	\par Particularmente, na Figura \ref{fig:paraconsistentfull}, que combina os resultados dos filtros com as escalas, quanto menor o comprimento horizontal das barras na cor azul, melhor a separabilidade entre as classes. Como se pode constatar, das combinações testadas, \textbf{Haar + Bark} (destacada em verde) proporcionou a menor distância. Complementarmente, a Tabela \ref{tab:distParacomFrom10BarkAndMel} contém os valores específicos visualizados graficamente naquela Figura.
+	\par Particularmente, na Figura \ref{fig:paraconsistentfull}, que combina os resultados dos filtros com as escalas, quanto menor o comprimento horizontal das barras na cor azul, melhor a separabilidade entre as classes. Como se pode constatar, das combinações testadas, \textbf{Haar + Bark} (destacada em verde) proporcionou a menor distância. Complementarmente, a Tabela \ref{tab:distParacomFrom10BarkAndMel} contém os valores específicos visualizados graficamente naquela Figura.\\
 	
 	\par Em geral a combinação \textbf{\textit{wavelet} + Bark} apresentou \textbf{melhor} viabilidade do que as respectivas combinações \textbf{\textit{wavelet + Mel}}.\\
 
 	\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
+
+	\par Analisando o comportamento dos melhores e piores resultados encontrados relacionados as \textit{wavelets}, é interessante indagar o motivo pelo qual o filtro de \textbf{Haar} tenha proporcionado o melhor resultado. Particularmente interessante é o fato de que os filtros \textit{wavelet-packet} de \textbf{Haar} e \textbf{Daubechies 76} proporcionaram, respectivamente, os melhores e os piores resultados associados com a escala Bark. Diferentemente, com a escala \textit{Mel}, \textbf{Haar} foi o melhor filtro e \textbf{Daubechies 8} o pior. \\
+	
+	\par Na Figura \ref{fig:haardaub42comparison} é possível ver um sinal periódico decomposto em suas componentes usando o melhor e os piores filtros já citados: Nota-se que com a wavelet \textbf{Haar} a decomposição tem menos flutuações, facilitando portanto o treinamento do classificador.\\
+		
+	\par Refletindo acerca das características de resposta em fase e em frequência dos filtros \textit{wavelet}, pode-se constatar o seguinte: Haar apresenta a curva de resposta em frequência mais distante da ideal, pois constitui um filtro de resposta ao impulso finita (FIR) de ordem 1, isto é, com dois coeficientes \cite{WaveletPropertiesBrowser}. Assim sendo, sub-bandas específicas de frequências estão, sem dúvidas, contaminadas com conteúdo espectral das sub-bandas adjacentes. Adicionalmente, Haar é a única família de filtros \textit{wavelet} que possui resposta em fase perfeitamente linear. Portanto, do ponto de vista dos filtros, o que foi constatado experimentalmente é que uma resposta em frequência não rigorosa associada à uma resposta em fase perfeitamente linear é a melhor alternativa.\\
+	
+	\par Do ponto de vista das bandas Bark e Mel, aquela é, de acordo com os comentários constantes no Capítulo 2, a que foi definida de modo mais amplo para refletir o comportamento da audição humana para sinais acústicos em geral, diferentemente, esta banda foi otimizada para voz mas, de acordo com os experimentos, não proporcionou os melhores resultados. Assim sendo, fica claro que a \textbf{característica ruidosa} dos sinais falseados, contendo, ao contrário das vozes originais, notórios componentes de altas frequências, é melhor detectada com uma escala mais apropriada ao tratamento de áudio em geral e não voz somente.\\
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=.93\linewidth,angle=-90]{images/results/haarDaubComparison/haarDaub42Comparison}
+		\caption{Comparação das decomposições de um sinal de tamanho 512 usando os filtros wavelet de melhor e piores desempenhos }
+		\label{fig:haardaub42comparison}
+	\end{figure}
 	
 	\newpage
 	\begin{landscape}
@@ -19,23 +34,9 @@
 		\end{figure}
 	\end{landscape}
 	\newpage
-
+	
 	\FloatBarrier
-
-	\par Analisando o comportamento dos melhores e piores resultados encontrados relacionados as \textit{wavelets}, é interessante indagar o motivo pelo qual o filtro de \textbf{Haar} tenha proporcionado o melhor resultado. Particularmente interessante é o fato de que os filtros \textit{wavelet} de \textbf{Haar} e \textbf{Daubechies 18} proporcionaram, respectivamente, os melhores e os piores resultados associados com a escala Bark. Diferentemente, com a escala \textit{Mel}, \textbf{Daubechies 58} foi o melhor filtro e \textbf{Coiflets 18} o pior. \\
 	
-	\par Na Figura \ref{fig:haardaub42comparison} é possível ver um sinal periódico decomposto em suas componentes usando o melhor e os piores filtros já citados: Nota-se que com a wavelet \textbf{Haar} a decomposição tem menos flutuações, facilitando portanto o treinamento do classificador.
-
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=.93\linewidth,angle=-90]{images/results/haarDaubComparison/haarDaub42Comparison}
-		\caption{Comparação das decomposições de um sinal de tamanho 512 usando os filtros wavelet de melhor e piores desempenhos }
-		\label{fig:haardaub42comparison}
-	\end{figure}
-		
-	\par Refletindo acerca das características de resposta em fase e em frequência dos filtros \textit{wavelet}, pode-se constatar o seguinte: Haar apresenta a curva de resposta em frequência mais distante da ideal, pois constitui um filtro de resposta ao impulso finita (FIR) de ordem 1, isto é, com dois coeficientes \cite{WaveletPropertiesBrowser}. Assim sendo, sub-bandas específicas de frequências estão, sem dúvidas, contaminadas com conteúdo espectral das sub-bandas adjacentes. Adicionalmente, Haar é a única família de filtros \textit{wavelet} que possui resposta em fase perfeitamente linear. Portanto, do ponto de vista dos filtros, o que foi constatado experimentalmente é que uma resposta em frequência não rigorosa associada à uma resposta em fase perfeitamente linear é a melhor alternativa.
-	
-	\par Do ponto de vista das bandas Bark e Mel, aquela é, de acordo com os comentários constantes no Capítulo 2, a que foi definida de modo mais amplo para refletir o comportamento da audição humana para sinais acústicos em geral, diferentemente, esta banda foi otimizada para voz mas, de acordo com os experimentos, não proporcionou os melhores resultados. Assim sendo, fica claro que a \textbf{característica ruidosa} dos sinais falseados, contendo, ao contrário das vozes originais, notórios componentes de altas frequências, é melhor detectada com uma escala mais apropriada ao tratamento de áudio em geral e não voz somente.
 	
 	\disableClearpage
 	
@@ -74,14 +75,14 @@
 			\input{tables/results/confusionMatrices/classifier_Manhattan_40.tex}
 			\input{tables/results/confusionMatrices/classifier_Manhattan_50.tex}
 
-			\begin{figure}[h]
+			\FloatBarrier
+
+			\begin{figure}[H]
 				\centering
 				\includegraphics[width=.9\linewidth]{images/results/confusionMatrices/classifier_Euclidian_10}
 				\caption{Acurácia \textit{x} quantidade de testes - Distância Euclidiana, modelo a 10\%}
 				\label{fig:classifiereuclidian10}
 			\end{figure}
-
-			\FloatBarrier
 
 			\begin{figure}[H]
 				\centering
@@ -217,11 +218,11 @@
 			\end{figure}
 
 		\subsection{Síntese}
-			\par Observando as Tabelas, nota-se que as \textbf{melhores acurácias/EERs} possuem os valores de \textbf{0,904878/0,136585} e \textbf{0,909756/0,129268} para as distâncias Euclidiana e Manhattan respectivamente. Desse modo, constata-se nenhuma diferença prática no critério de métrica \textit{pattern-matching} utilizado e, além disso, um nível de acurácia relativamente alto considerando-se a simplicidade do algoritmo classificador.
+			\par Observando as Tabelas, nota-se que as \textbf{melhores acurácias/EERs} possuem os valores de \textbf{0,987805/0,039024} e \textbf{0,990244/0,039024} para as distâncias Euclidiana e Manhattan respectivamente. Desse modo, constata-se uma pequena diferença prática no critério de métrica \textit{pattern-matching} utilizado e, além disso, um nível de acurácia relativamente alto considerando-se a simplicidade do algoritmo classificador.
 
 	\section{Procedimento 03}
 		\label{chap:testsResults:sec:Experimento03}
-		\par Novamente, considerando que o procedimento 01 apresentou, como melhor resultado, a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a \textbf{máxima acurácia e mínimo EER} que se consegue atingir com uma SVM. Os resultados, obedecendo os mesmo moldes do procedimento anterior, constam na Tabela \ref{tab:experiment03Results}.
+		\par Novamente, considerando que o procedimento 01 apresentou, como melhor resultado, a combinação \textbf{Haar + Bark}, o objetivo deste procedimento é constatar a \textbf{máxima acurácia e mínimo EER} que se consegue atingir com uma SVM. Os resultados, obedecendo os mesmo moldes do procedimento anterior, constam na Tabela \ref{tab:experiment03Results}.\\
 		
 		\par Mais níveis de detalhes podem ser consultados nas Tabelas \ref{tab:classifier_SVM_10_best}, \ref{tab:classifier_SVM_10_worse}, \ref{tab:classifier_SVM_20_best}, \ref{tab:classifier_SVM_20_worse}, \ref{tab:classifier_SVM_30_best}, \ref{tab:classifier_SVM_30_worse}, \ref{tab:classifier_SVM_40_best}, \ref{tab:classifier_SVM_40_worse}, \ref{tab:classifier_SVM_50_best} e \ref{tab:classifier_SVM_50_worse}, além dos seus respectivos gráficos nas Figuras \ref{fig:classifiersvm10}, \ref{fig:classifiersvm20}, \ref{fig:classifiersvm30}, \ref{fig:classifiersvm40} e \ref{fig:classifiersvm50}.
 
@@ -307,11 +308,11 @@
 			\end{figure}
 
 		\subsection{Síntese}
-   			\par Em suma, percebe-se que a \textbf{melhor acurácia/EER} obtida foi de \textbf{0,953659/0,087805} com o uso da SVM e 50\% da base de sinais para treiná-la, condizente com as expectativas. Em tal caso, a respectiva matriz de confusão revela uma quantidade mínima de falsos-genuínos e falsos-falseados, condizentes com os trabalhos correlatos revisados anteriormente.
+   			\par Em suma, percebe-se que a \textbf{melhor acurácia/EER} obtida foi de \textbf{0,997561/0,02439} com o uso da SVM e 50\% da base de sinais para treiná-la, condizente com as expectativas. Em tal caso, a respectiva matriz de confusão revela uma quantidade mínima de falsos-genuínos e falsos-falseados, condizentes com os trabalhos correlatos revisados anteriormente.
 
 	\section{Testes Complementares}
 	\label{chap:testsResults:sec:Experimento05}
-		As figuras \ref{fig:livehaarbark} e \ref{fig:spoofinghaarbark} contém, como complemento, o espalhamento de valores dos vetores de características na \textit{wavelet-packet} Haar + escala Bark. Notavelmente, comparando-se com as Figuras \ref{fig:livehaarmel} e \ref{fig:spoofinghaarmel}, o \textbf{espalhamento dos valores é muito maior na escala \textbf{Mel}}. Essa diferença na distribuição dos dados também ocorre nas combinações \textit{wavelet-packet} daubechies 42 + Bark, conforme as Figuras \ref{fig:livedaub42bark} e \ref{fig:spoofingdaub42bark}, além de \textit{wavelet-packet} daubechies 54 + Mel, conforme as Figuras \ref{fig:livedaub54mel} e \ref{fig:spoofingdaub54mel}.
+		As figuras \ref{fig:livehaarbark} e \ref{fig:spoofinghaarbark} contém, como complemento, o espalhamento de valores dos vetores de características na \textit{wavelet-packet} Haar + escala Bark. Notavelmente, comparando-se com as Figuras \ref{fig:livehaarmel} e \ref{fig:spoofinghaarmel}, nota-se que \textbf{na escala \textit{Mel} os vetores de características para os sinais falseados e genuínos são mais similares entre si do que na escala \textit{Bark}}. Essa diferença na distribuição dos dados também ocorre nas combinações  \textit{wavelet-packet} daubechies 76 + Bark \textit{x} daubechies 76 + Mel conforme as Figuras \ref{fig:livedaub76bark}, \ref{fig:spoofingdaub76bark} e \ref{fig:livedaub76mel}, \ref{fig:spoofingdaub76mel}.
 		
 		\par Para fins de comparação, os gráficos foram colocados em uma mesma escala no eixo das amplitudes (vertical).
 		\begin{figure}[H]
@@ -323,7 +324,7 @@
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_haar_Bark.pdf}
-			\caption{Gráfico de dispersão para os vetores de características \textit{spoofed} obtidos com \textit{Haar + BARK}. Eixos horizontais e verticais: Banda de frequência em Hertz(Hz) e amplitudes, respectivamente.}
+			\caption{Gráfico de dispersão para os vetores de características \textit{falseados} obtidos com \textit{Haar + BARK}. Eixos horizontais e verticais: Banda de frequência em Hertz(Hz) e amplitudes, respectivamente.}
 			\label{fig:spoofinghaarbark}
 		\end{figure}
 		\begin{figure}[H]
@@ -337,30 +338,6 @@
 			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_haar_Mel.pdf}
 			\caption{Gráfico de dispersão para vetores de características \textit{falseados} obtidos com \textit{Haar + MEL}. Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
 			\label{fig:spoofinghaarmel}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Genuine_daub4_Bark.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{genuínos} obtidos com \textit{daubechies 4 + BARK}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:livedaub4bark}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_daub4_Bark.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{falseados} obtidos com \textit{daubechies 4 + BARK}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:spoofingdaub4bark}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Genuine_daub4_Mel.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{genuínos} obtidos com \textit{daubechies 4 + MEL}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:livedaub4mel}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_daub4_Mel.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{falseados} obtidos com \textit{daubechies 4 + MEL}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:spoofingdaub4mel}
 		\end{figure}
 		\begin{figure}[H]
 			\centering

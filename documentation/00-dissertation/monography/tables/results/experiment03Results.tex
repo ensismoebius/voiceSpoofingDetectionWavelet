@@ -13,10 +13,10 @@
 			\csvreader[
 			late after line=\\\hline\rowcolor{tcB},%
 			separator=comma,
-			]{tables/results/experiment02ResultsSVM.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\minAccu & \centering\maxAccu & \centering\meanAccu & \centering\stdDev & \eer}
+			]{tables/results/experiment02ResultsSVM.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\StrSubstitute[0]{\minAccu}{.}{,} & \centering\StrSubstitute[0]{\maxAccu}{.}{,} & \centering\StrSubstitute[0]{\meanAccu}{.}{,} & \centering\StrSubstitute[0]{\stdDev}{.}{,} & \StrSubstitute[0]{\eer}{.}{,}}
 			
 		\end{tabular}
 	\end{center}
-	\caption{Procedure 03 results}
+	\caption{Resultados da abordagem com SVM}
 	\label{tab:experiment03Results}
 \end{table}

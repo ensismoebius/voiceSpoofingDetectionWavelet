@@ -1,5 +1,8 @@
 % Basic packages 
 
+	% Enables text replacing
+	\usepackage{xstring}
+
 	% Enable long tables
 	\usepackage{longtable}
 
@@ -80,6 +83,11 @@
 	\usepgfplotslibrary{units}
 
 % Packages configuration
+
+	% Long tables pre and post spacing
+	\setlength{\LTpre}{0pt}
+	\setlength{\LTpost}{-30pt}
+
 
 	% Backref confis
 	\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
