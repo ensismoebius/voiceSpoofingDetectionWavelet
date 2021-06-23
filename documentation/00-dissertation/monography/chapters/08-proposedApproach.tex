@@ -3,7 +3,7 @@
 	    \subsection{Coleta dos sinais}
 		\par Para a realização desta pesquisa, coletou-se uma série de vozes nos arredores do Instituto de Biociências, Letras e Ciências Exatas da UNESP em São José do Rio Preto, no estado de São Paulo. Foram coletadas amostras de 21 indivíduos, das quais 20 foram usadas já que, em um dos casos, não foi possível coletar todos os dados necessários. Tais gravações se constituem de dígitos em um intervalo de 0 a 9 falados tanto em língua Inglesa quanto na Portuguesa. Os locutores foram escolhidos de acordo com seu sexo e idade de forma que a amostra estudada tenha uma abrangência que cubra desde crianças em época pré-escolar até adultos com idades até os 67 anos dos sexos masculino e feminino.\\
 					
-		\par As gravações foram realizadas usando-se um \textit{smartphone} Asus modelo \textit{Ze550kl} rodando o sistema operacional \textit{Android 6.0.1} em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wave} sem compressão com quantização de 16 bits e taxa de amostragem de 44100Hz, permitindo, segundo o teorema de Nyquist, que seja registradas frequências de até 22050Hz.\\
+		\par As gravações foram realizadas usando-se um \textit{smartfone} Asus modelo \textit{Ze550kl} rodando o sistema operacional \textit{Android 6.0.1} em ambientes distintos com diferentes níveis de ruído ao fundo, garantindo uma boa variabilidade de interferências corriqueiras, caracterizando casos reais. Foram usados arquivos no formato \textit{wave} sem compressão com quantização de 16 bits e taxa de amostragem de 44100Hz, permitindo, segundo o teorema de Nyquist, que sejam registradas frequências de até 22050Hz.\\
 		
 		\par Coletados os sinais, os dígitos pronunciados nos mesmos foram separados um-a-um usando uma ferramenta desenvolvida para esse fim, resultando em um total de 410 sinais de voz de diferentes durações temporais que foram rotulados como ``genuínos''. Para cada um deles, foi criado um sinal ``espelho'',  regravado por um segundo dispositivo, um \textit{notebook} Acer modelo  \textit{Travelmate B} com o sistema operacional \textit{Arch GNU/Linux}, caracterizando os 410 sinais rotulados como ``falseados''.
 
@@ -12,7 +12,7 @@
 		
 		\par Para facilitar a automatização do processamento, foram criados três arquivos de texto:
 		\begin{itemize}
-			\item \textit{\textbf{dataSurvey.txt}}: Contêm os dados de idade e sexo e nome do arquivo gerado para cada entrevistado;
+			\item \textit{\textbf{dataSurvey.txt}}: Contêm os dados de idade, sexo e nome do arquivo gerado para cada entrevistado;
 			\item \textit{\textbf{inputListLive.txt}}: Uma lista de caminhos para todos os arquivos genuínos;
 			\item \textit{\textbf{inputListSpoofing.txt}}: Apresenta uma listagem dos caminhos para todos os arquivos falseados.
 		\end{itemize}
@@ -45,7 +45,7 @@
 		\par Conforme mencionado nos Capítulos anteriores, os vetores de características desta abordagem foram obtidos com base na Transformada \textit{Wavelet}, convertendo os sinais de voz do domínio do tempo para o domínio tempo-frequência. Particularmente, nos experimentos detalhados adiante, foram testados os seguintes filtros \textit{wavelet}: Haar, Daubechies de suportes 4 até 76, Symmlets com suportes 8, 16 e 32, Coiflets com suportes 6, 12, 18, 24 e 30, Beylkin com suporte 18 e, ainda, Vaidyanathan de suporte 24.
 
 	\section{Procedimentos}
-		\par Afim de garantir a comparação com outros trabalhos se fez necessário adotar várias formas de representar os resultados correspondentes para cada configuração experimental:\\
+		\par De modo a garantir a comparação com outros trabalhos se fez necessário adotar várias formas de representar os resultados correspondentes para cada configuração experimental:\\
 		\begin{itemize}
 			\item Tabela de confusão.
 			\item Acurácia e seu respectivo desvio padrão.
@@ -54,10 +54,10 @@
 		
 		\par No exemplo constituído pela tabela de confusão \ref{tab:confusionMatrixSample} as \textbf{linhas} representam as \textbf{classes estimadas} e as \textbf{colunas} as \textbf{classes verdadeiras}, sendo que:
 		\begin{itemize}
-			\item \textbf{TP}: Quantidade de itens verdadeiros classificados como tal (\textit{True Positive}).
-			\item \textbf{TN}: Quantidade de itens falsos classificados como tal (\textit{True Negative}).
-			\item \textbf{FN}: Quantidade de itens verdadeiros classificados como falsos (\textit{False Negative}).
-			\item \textbf{FP}: Quantidade de itens falsos classificados como verdadeiros (\textit{False Positive}).
+			\item \textbf{TP}: quantidade de itens verdadeiros classificados como tal (\textit{True Positive}).
+			\item \textbf{TN}: quantidade de itens falsos classificados como tal (\textit{True Negative}).
+			\item \textbf{FN}: quantidade de itens verdadeiros classificados como falsos (\textit{False Negative}).
+			\item \textbf{FP}: quantidade de itens falsos classificados como verdadeiros (\textit{False Positive}).
 		\end{itemize} 
 		\input{tables/results/confusionMatrices/confusionMatrixSample.tex}
 		
@@ -68,7 +68,7 @@
 			\label{eq:calculoDaAcuracia}
 		\end{equation}
 
-		\par Para se calcular o EER se leva em consideração os valores de \textit{FP} e \textit{FN} \cite{ghazali2018recent}, a partir desse valores são calculadas as \textit{False Acceptance Rate (\textbf{FAR})} representada na equação \ref{eq:FAR} e \textit{False Rejection Rate (\textbf{FRR})} representada por \ref{eq:FRR} ou \textbf{Taxa de falsos positivos} e \textbf{Taxa de falsos negativos} respectivamente.\\
+		\par Para se calcular o EER se considera os valores de \textit{FP} e \textit{FN} \cite{ghazali2018recent}, a partir desses valores são calculadas as \textit{False Acceptance Rate (\textbf{FAR})} representada na equação \ref{eq:FAR} e \textit{False Rejection Rate (\textbf{FRR})} representada por \ref{eq:FRR} ou \textbf{Taxa de falsos positivos} e \textbf{Taxa de falsos negativos} respectivamente.\\
 		
 		\begin{equation}
 			FAR=\dfrac{FP}{TN+FP} \qquad.
@@ -82,7 +82,7 @@
 				
 		\par São calculadas tabelas de confusão por um número suficiente de vezes até que \textbf{\textit{FAR} seja igual \textit{FRR}}, a cada ciclo os vetores de características são comutados de forma aleatória para que se consiga valores diferentes, neste trabalho alguns casos precisaram de mais que 12000 iterações para que se encontrasse uma configuração em que FAR=FRR.\\
 		
-		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico juntamente com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.\\
+		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.\\
 		
 		\par O efetivo valor de \textbf{ERR se encontra na intersecção da reta $x=y$} com a curva definida por FAR e FRR, por isso o cálculo de um valor único como demonstrado no Algoritmo \ref{lst:EERAlgo} e na Figura \ref{fig:eeralgo} pois se $x=ERR$ então também $y=ERR$.\\
 	
@@ -99,7 +99,7 @@
 		\label{chap:propApproach:sec:Experimento01}
 		\par O objetivo deste procedimento é o de verificar, segundo a Engenharia Paraconsistente, qual das combinações entre as escalas BARK ou MEL e as várias \textit{wavelets} consideradas geram os vetores de características mais propícios, ou seja, que atraem o ponto $(G_1,G_2)$ para uma posição mais próxima do vértice $(1,0)$ do plano paraconsistente, conforme mencionado no Capítulo anterior. 
 				
-		\par As transformações \textit{wavelet-packet} foram realizadas, com os diversos filtros mencionados, até  o máximo nível possível, implicando máxima resolução em frequência para que, após isso, as amostras dos sinais transformados fossem agrupadas visando corresponder aos intervalos espectrais definidos nas escalas BARK e MEL. Naquela escala, os vetores de características foram constituídos de 24 coeficientes, diferentemente, nesta escala, os vetores de características foram formados com 13 coeficientes devido a derivação do sinal ao final do processo de geração. O Algoritmo \ref{lst:experiment01Algo} e Figura \ref{fig:experiment01Algo} contém a descrição de tais procedimentos.
+		\par As transformações \textit{wavelet-packet} foram realizadas, com os diversos filtros mencionados, até  o máximo nível possível, implicando máxima resolução em frequência para que, após isso, as amostras dos sinais transformados fossem agrupadas visando corresponder aos intervalos espectrais definidos nas escalas BARK e MEL. Naquela escala, os vetores de características foram constituídos de 24 coeficientes, diferentemente, nesta escala, os vetores de características foram formados com 13 coeficientes devido à derivação do sinal ao final do processo de geração. O Algoritmo \ref{lst:experiment01Algo} e Figura \ref{fig:experiment01Algo} contém a descrição de tais procedimentos.
 
 		\input{codeListings/experiment01Algo.tex}
 			
@@ -110,7 +110,7 @@
 			\label{fig:experiment01Algo}
 		\end{figure}
 		
-		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação pois a transformada \textit{wavelet} realiza um \textit{downsampling} de ordem 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
+		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação, pois a transformada \textit{wavelet} realiza um \textit{downsampling} de ordem 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
 				
 		\par Para ajustar o tamanho do sinal de voz sob análise, foi usada a Equação \ref{eq:optimalSize}, na qual \textit{\textbf{proxInt}} é uma função que retorna o próximo número inteiro do argumento real. Por exemplo, $proxInt(1,5) = 2$.
 
@@ -130,11 +130,11 @@
 		\label{chap:propApproach:sec:Experimento02}
 		\par O objetivo deste procedimento é verificar, considerando as melhores combinações descobertas pelo procedimento anterior, a acurácia de classificadores \textit{pattern-matching} por distâncias Euclidiana e Manhattan. Nesta fase, os vetores de características gerados pelo Procedimento 01 são fornecidos aos classificadores para as mensurações devidas.
 				
-		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados para modelagem, até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores. Em cada uma dessas execuções, a ordem dos vetores dentro das amostras, falseados e genuínos, foi permutada aleatoriamente.
+		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados para modelagem, até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores. Em cada uma dessas execuções, a ordem dos vetores nas amostras, falseados e genuínos, foi permutada aleatoriamente.
 				
 		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão e assim calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No Algoritmo \ref{lst:experiment02Algo} e na Figura \ref{fig:experiment02Algo}, os passos estão detalhados.
 		
-		\par Essencialmente, este Procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente à uma das classes dos vetores de modelagem selecionados.   
+		\par Essencialmente, este Procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente a uma das classes dos vetores de modelagem selecionados.   
 
 		\begin{figure}[H]
 			\centering
@@ -147,7 +147,7 @@
 
 		\subsection{Procedimento 03 - classificações baseadas na SVM}
 		\label{chap:propApproach:sec:Experimento03}
-		\par Considerando as melhores combinações descobertas durante o Procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido pois estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. 
+		\par Considerando as melhores combinações descobertas durante o Procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido, pois, estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. 
 		
 		\par Particularmente, a estrutura da SVM utilizada foi definida da seguinte forma e de acordo com a Figura \ref{fig:3layersSVM}: 
 		\begin{itemize}

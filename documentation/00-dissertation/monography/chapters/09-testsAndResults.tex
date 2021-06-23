@@ -5,7 +5,7 @@
 
 	\par Particularmente, na Figura \ref{fig:paraconsistentfull}, que combina os resultados dos filtros com as escalas, quanto menor o comprimento horizontal das barras na cor azul, melhor a separabilidade entre as classes. Como se pode constatar, das combinações testadas, \textbf{Haar + Bark} (destacada em verde) proporcionou a menor distância. Complementarmente, a Tabela \ref{tab:distParacomFrom10BarkAndMel} contém os valores específicos visualizados graficamente naquela Figura.\\
 	
-	\par Em geral a combinação \textbf{\textit{wavelet} + Bark} apresentou \textbf{melhor} viabilidade do que as respectivas combinações \textbf{\textit{wavelet + Mel}}.\\
+	\par Em geral, a combinação \textbf{\textit{wavelet} + Bark} apresentou \textbf{melhor} viabilidade do que as respectivas combinações \textbf{\textit{wavelet + Mel}}.\\
 
 	\input{tables/results/paraconsistentPlane/distParacomFrom10.tex}
 
@@ -13,9 +13,9 @@
 	
 	\par Na Figura \ref{fig:haardaub42comparison} é possível ver um sinal periódico decomposto em suas componentes usando o melhor e os piores filtros já citados: Nota-se que com a wavelet \textbf{Haar} a decomposição tem menos flutuações, facilitando portanto o treinamento do classificador.\\
 		
-	\par Refletindo acerca das características de resposta em fase e em frequência dos filtros \textit{wavelet}, pode-se constatar o seguinte: Haar apresenta a curva de resposta em frequência mais distante da ideal, pois constitui um filtro de resposta ao impulso finita (FIR) de ordem 1, isto é, com dois coeficientes \cite{WaveletPropertiesBrowser}. Assim sendo, sub-bandas específicas de frequências estão, sem dúvidas, contaminadas com conteúdo espectral das sub-bandas adjacentes. Adicionalmente, Haar é a única família de filtros \textit{wavelet} que possui resposta em fase perfeitamente linear. Portanto, do ponto de vista dos filtros, o que foi constatado experimentalmente é que uma resposta em frequência não rigorosa associada à uma resposta em fase perfeitamente linear é a melhor alternativa.\\
+	\par Refletindo acerca das características de resposta em fase e em frequência dos filtros \textit{wavelet}, pode-se constatar o seguinte: Haar apresenta a curva de resposta em frequência mais distante da ideal, pois constitui um filtro de resposta ao impulso finita (FIR) de ordem 1, isto é, com dois coeficientes \cite{WaveletPropertiesBrowser}. Assim sendo, sub-bandas específicas de frequências estão, sem dúvidas, contaminadas com conteúdo espectral das sub-bandas adjacentes. Adicionalmente, Haar é a única família de filtros \textit{wavelet} que possui resposta em fase perfeitamente linear. Portanto, do ponto de vista dos filtros, o que foi constatado experimentalmente é que uma resposta em frequência não rigorosa associada a uma resposta em fase perfeitamente linear é a melhor alternativa.\\
 	
-	\par Do ponto de vista das bandas Bark e Mel, aquela é, de acordo com os comentários constantes no Capítulo 2, a que foi definida de modo mais amplo para refletir o comportamento da audição humana para sinais acústicos em geral, diferentemente, esta banda foi otimizada para voz mas, de acordo com os experimentos, não proporcionou os melhores resultados. Assim sendo, fica claro que a \textbf{característica ruidosa} dos sinais falseados, contendo, ao contrário das vozes originais, notórios componentes de altas frequências, é melhor detectada com uma escala mais apropriada ao tratamento de áudio em geral e não voz somente.\\
+	\par Do ponto de vista das bandas Bark e Mel, aquela é, de acordo com os comentários constantes no Capítulo 2, a que foi definida de modo mais amplo para refletir o comportamento da audição humana para sinais acústicos em geral, diferentemente, esta banda foi otimizada para voz, mas de acordo com os experimentos, não proporcionou os melhores resultados. Assim sendo, fica claro que a \textbf{característica ruidosa} dos sinais falseados, contendo, ao contrário das vozes originais, notórios componentes de altas frequências, é melhor detectada com uma escala mais apropriada ao tratamento de áudio em geral e não voz somente.\\
 	
 	\begin{figure}[h]
 		\centering
@@ -29,7 +29,7 @@
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.6\linewidth,angle=-90]{images/results/paraconsistentPlane/ParaconsistentFull.pdf}
-			\caption{Distâncias de P=(G1, G2) ao ponto (1, 0) no plano paraconsistente. M=Mel; B=Bark; Sym=Symlet; Daub=Daubechies; Coif=Coiflet. Para uma melhor visualização, Uma unidade foi somada a cada distância e, a seguir, foi retirado o $log_{10}$ do resultado correspondente.}
+			\caption{Distâncias de P=(G1, G2) ao ponto (1, 0) no plano paraconsistente. M=Mel; B=Bark; Sym=Symlet; Daub=Daubechies; Coif=Coiflet. Para uma melhor visualização, Uma unidade foi somada a cada distância e, a seguir, foi aplicado o $log_{10}$ no resultado correspondente.}
 			\label{fig:paraconsistentfull}
 		\end{figure}
 	\end{landscape}
@@ -228,7 +228,7 @@
 
 		\input{tables/results/experiment03Results.tex}
 		
-		\par Os tabelas de confusão juntamente com os respectivos gráficos foram agrupados em uma mesma página afim de melhorar a leitura e o entedimento.
+		\par As tabelas de confusão com os respectivos gráficos foram agrupados em uma mesma página para melhorar a leitura e o entendimento.
 
 		\subsection{Resultados para BARK com \textit{wavelet} Haar usando um classificador SVM}
 			\input{tables/results/confusionMatrices/classifier_SVM_10.tex}
