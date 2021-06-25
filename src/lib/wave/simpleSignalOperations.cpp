@@ -9,6 +9,44 @@
  */
 
 #include <cmath>
+#include <vector>
+
+std::vector<long double> amdf(std::vector<long double> vector)
+{
+	unsigned int resultIndex = -1;
+	unsigned int N = vector.size();
+	std::vector<long double> result(N);
+
+	for (unsigned int k = 0; k < N; k++)
+	{
+		resultIndex++;
+		for (unsigned int n = 0; n < N - k; n++)
+			result[resultIndex] += std::abs(vector[n] - vector[n + k]);
+	}
+	return result;
+}
+
+unsigned int findFZeroPeriodSamples(std::vector<long double> vector)
+{
+
+	long double m = vector[0];
+	unsigned int period = 0;
+	unsigned int index = 0;
+
+	for (unsigned int i = 1; i < vector.size(); i++)
+		if (m > vector[i]) m = vector[i];
+
+	while (vector[index] != m)
+		index++;
+
+	do
+	{
+		period++;
+		index++;
+	} while (vector[index] != m);
+
+	return period;
+}
 
 void doAFineAmplification(double *signal, int signalLength)
 {
