@@ -84,3 +84,9 @@ mestrado.txt
 mestrado.workspace
 
 /core
+.settings/language.settings.xml
+.settings/language.settings.xml
+.settings/language.settings.xml
+.settings/org.eclipse.cdt.core.prefs
+.vscode/launch.json
+.vscode/tasks.json
