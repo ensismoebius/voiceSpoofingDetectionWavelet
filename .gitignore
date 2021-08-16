@@ -90,3 +90,5 @@ mestrado.workspace
 .settings/org.eclipse.cdt.core.prefs
 .vscode/launch.json
 .vscode/tasks.json
+*.brf
+*.code-workspace

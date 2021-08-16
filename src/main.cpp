@@ -12,7 +12,7 @@
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
 
-int main(int argc, char *args[])
+int main(int argc, char** args)
 {
 	int experiment = -1;
 

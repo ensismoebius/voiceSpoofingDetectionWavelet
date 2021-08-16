@@ -1,6 +1,5 @@
 \begin{frame}
 	\frametitle{Procedimento 01}
-		
 		\only<1>{
 			\framesubtitle{Características}
 				\begin{itemize}
@@ -8,11 +7,10 @@
 					\item BARK: 24 coeficientes.
 					\item Redimensionar o sinal.
 					\item Determinar o máximo de transformações.
-					\item Transformadas wavelet-packet até o máximo.
+					\item Transformadas wavelet-packet até o nível máximo.
 					\item Selecionar a melhor combinação \textit{wavelet}/escala.
 				\end{itemize}
 		}
-
 		\only<2>{
 			\framesubtitle{Comprimento e máximo de transformações do sinal}
 			\par Determinação do tamanho ótimo para as transformações
@@ -27,7 +25,6 @@
 				\label{eq:maxWaveletTransf}
 			\end{equation}
 		}
-
 		\only<3>{
 			\framesubtitle{Algoritmo}
 			\input{codeListings/experiment01Algo.tex}
@@ -36,18 +33,16 @@
 
 \begin{frame}
 	\frametitle{Procedimento 02}
-	
 	\only<1>{
 		\framesubtitle{Características}
 		\begin{itemize}
-			\item Escala BARK.
-			\item Wavelet Haar.
+			\item Bandas críticas: BARK.
+			\item Wavelet: Haar.
 			\item Modelos de 10\% 20\% 30\% 40\% e 50\%.
 			\item Sorteio aleatório de vetores de características.
 			\item Verifica a acurácia e o EER de classificadores \textit{pattern-matching} por distâncias Euclidiana e Manhattan.
 		\end{itemize}
 	}
-	
 	\only<2>{
 		\framesubtitle{Algoritmo}
 		\input{codeListings/experiment02Algo.tex}
@@ -56,23 +51,20 @@
 
 \begin{frame}
 	\frametitle{Procedimento 03}
-	
 	\only<1>{
 		\framesubtitle{Características}
 		\begin{itemize}
-			\item Escala BARK.
-			\item Wavelet Haar.
+			\item Bandas críticas: BARK.
+			\item Wavelet: Haar.
 			\item Modelos de 10\% 20\% 30\% 40\% e 50\%.
 			\item Sorteio aleatório de vetores de características.
 			\item Verifica a acurácia e o EER de uma \textit{Support Vector Machine (SVM)}.
 		\end{itemize}
 	}
-	
 	\only<2>{
 		\framesubtitle{Características da SVM}
 		\input{images/3layersSVM.tex}
 	}
-
 	\only<3>{
 		\framesubtitle{Características da SVM}
 		\begin{itemize}
@@ -85,7 +77,6 @@
 		
 		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes, são idênticos àqueles do procedimento 02.
 	}
-	
 	\only<4>{
 		\framesubtitle{Algoritmo}
 		\input{codeListings/experiment03Algo.tex}

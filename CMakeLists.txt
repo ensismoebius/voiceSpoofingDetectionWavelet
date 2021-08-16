@@ -3,7 +3,7 @@ project(voiceSpoofingDetection
         VERSION 1.0
         DESCRIPTION "Voice spoofing detection experiments"
         LANGUAGES CXX)  
-        
+
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_executable(voiceSpoofingDetection
@@ -65,4 +65,4 @@ find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 target_link_libraries(voiceSpoofingDetection ${PYTHON_LIBRARIES})
 
-target_compile_features(voiceSpoofingDetection PRIVATE cxx_std_17)
+target_compile_features(voiceSpoofingDetection PRIVATE cxx_std_20)

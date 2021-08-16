@@ -1,29 +1,95 @@
-\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=169,xcolor=tex,dvipsnames,table]{beamer}
 
-\usepackage{tikz}
-\usepackage{color}
-\usepackage{amsmath}
-\usepackage{ragged2e}
-\usepackage{graphicx}
-\usepackage{colortbl}
-\usepackage{listings}
-\usepackage{textgreek}
-\usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[alf]{abntex2cite}
+% Basic packages 
+
+% Absolute position for text and elements
 \usepackage[absolute,overlay]{textpos}
 
-\usetikzlibrary{spy}
+% Enables text replacing
+\usepackage{xstring}
+
+% Enable long tables
+\usepackage{longtable}
+
+% Enable cvs data load
+\usepackage{csvsimple, booktabs}
+
+% Allow more floats whatever it is
+\usepackage{morefloats}
+
+% Use latim special characters
+\usepackage[utf8]{inputenc}
+
+% Use colors
+\usepackage{color}
+
+% Enables landscape pages
+\usepackage{lscape}
+
+% Enables graphics
+\usepackage{graphicx}
+
+% Better text jstification
+\usepackage{microtype}
+
+% Indent the section first paragraph.
+\usepackage{indentfirst}
+
+% Enables code listing
+\usepackage{listings}
+
+% Enables multicolumn text
+\usepackage{multicol}
+
+% Enables math
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Adds some symbols (like slash on a non mathematical context)
+\usepackage{textcomp}
+
+% Enables the use of subfigures
+\usepackage{subfig}
+
+% Float barriers, prevents figures floats accross
+% an determined \FloatBarrier
+\usepackage[section]{placeins}
+
+% Eanbles the use of landscape pages
+\usepackage{lscape}
+\usepackage{pdflscape}
+
+% Quote packages
+% ABNT standard
+\usepackage[alf]{abntex2cite}
+% Bibliography 
+\usepackage[brazilian,hyperpageref]{backref}
+
+% Drawing and plot packages
+\usepackage{relsize}
+\usepackage{tikz}
 \usetikzlibrary{calc}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{positioning}
+\usetikzlibrary{mindmap}
 \usetikzlibrary{snakes}
 \usetikzlibrary{shapes}
-\usetikzlibrary{mindmap}
-\usetikzlibrary{patterns}
-\usetikzlibrary{positioning}
-\usetikzlibrary{backgrounds}
-\usetikzlibrary{datavisualization}
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{spy}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{patterns}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{units}
+\pgfplotsset{compat=newest}
+
+% Packages configuration
+
+% Long tables pre and post spacing
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{-30pt}
 
 \setbeamercolor{background canvas}{bg=}
 \setbeamercolor{normal text}{bg=black!20}
