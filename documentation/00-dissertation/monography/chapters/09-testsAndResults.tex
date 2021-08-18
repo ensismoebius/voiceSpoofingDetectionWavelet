@@ -315,51 +315,5 @@
 		As figuras \ref{fig:livehaarbark} e \ref{fig:spoofinghaarbark} contém, como complemento, o espalhamento de valores dos vetores de características na \textit{wavelet-packet} Haar + escala Bark. Notavelmente, comparando-se com as Figuras \ref{fig:livehaarmel} e \ref{fig:spoofinghaarmel}, nota-se que \textbf{na escala \textit{Mel} os vetores de características para os sinais falseados e genuínos são mais similares entre si do que na escala \textit{Bark}}. Essa diferença na distribuição dos dados também ocorre nas combinações  \textit{wavelet-packet} daubechies 76 + Bark \textit{x} daubechies 76 + Mel conforme as Figuras \ref{fig:livedaub76bark}, \ref{fig:spoofingdaub76bark} e \ref{fig:livedaub76mel}, \ref{fig:spoofingdaub76mel}.
 		
 		\par Para fins de comparação, os gráficos foram colocados em uma mesma escala no eixo das amplitudes (vertical).
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Genuine_haar_Bark.pdf}
-			\caption{Gráfico de dispersão para os vetores de características \textit{genuínos} obtidos com \textit{Haar + BARK}. Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:livehaarbark}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_haar_Bark.pdf}
-			\caption{Gráfico de dispersão para os vetores de características \textit{falseados} obtidos com \textit{Haar + BARK}. Eixos horizontais e verticais: Banda de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:spoofinghaarbark}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Genuine_haar_Mel.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{genuínos} obtidos com \textit{Haar + MEL}. Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:livehaarmel}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_haar_Mel.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{falseados} obtidos com \textit{Haar + MEL}. Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:spoofinghaarmel}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Genuine_daub76_Bark.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{genuínos} obtidos com \textit{daubechies 76 + BARK}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:livedaub76bark}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_daub76_Bark.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{falseados} obtidos com \textit{daubechies 76 + BARK}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:spoofingdaub76bark}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Genuine_daub76_Mel.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{genuínos} obtidos com \textit{daubechies 76 + MEL}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:livedaub76mel}
-		\end{figure}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=.8]{images/results/barkVersusMel/Spoofing_daub76_Mel.pdf}
-			\caption{Gráfico de dispersão para vetores de características \textit{falseados} obtidos com \textit{daubechies 76 + MEL}.  Eixos horizontais e verticais: Bandas de frequência em Hertz(Hz) e amplitudes, respectivamente.}
-			\label{fig:spoofingdaub76mel}
-		\end{figure}
+		
+		\input{images/results/barkVersusMel/allImages.tex}

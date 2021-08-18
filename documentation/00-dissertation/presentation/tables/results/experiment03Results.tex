@@ -1,0 +1,22 @@
+\begin{table}[H]
+	\newcommand{\mc}[3]{\multicolumn{#1}{#2}{#3}}
+	\definecolor{tcA}{rgb}{0.65098,0.65098,0.65098}
+	\definecolor{tcB}{rgb}{0.447059,0.74902,0.266667}
+	\begin{center}
+		\begin{tabular}{|p{0.15\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.11\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|}\hline
+			% use packages: color,colortbl
+			\rowcolor{tcA}
+			\centering\textbf{$M$} & \centering\textbf{Acurácia mínima} & \centering\textbf{Acurácia máxima} & \centering\textbf{Média das acurácias} & \centering\textbf{Desvio padrão da acurácia} & \begin{center}\textbf{EER}\end{center}\\\hline
+			
+			\rowcolor{tcB}
+			% Loads data from tables/results/paraconsistentPlane/distParacomFrom10.csv
+			\csvreader[
+			late after line=\\\hline\rowcolor{tcB},%
+			separator=comma,
+			]{../monography/tables/results/experiment02ResultsSVM.csv}{1=\eme,2=\minAccu,3=\maxAccu,4=\meanAccu,5=\stdDev,6=\eer}{\centering\eme\% & \centering\StrSubstitute[0]{\minAccu}{.}{,} & \centering\StrSubstitute[0]{\maxAccu}{.}{,} & \centering\StrSubstitute[0]{\meanAccu}{.}{,} & \centering\StrSubstitute[0]{\stdDev}{.}{,} & \StrSubstitute[0]{\eer}{.}{,}}
+			
+		\end{tabular}
+	\end{center}
+	\caption{Resultados da abordagem com SVM}
+	\label{tab:experiment03Results}
+\end{table}

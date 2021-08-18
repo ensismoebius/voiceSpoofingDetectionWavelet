@@ -14,9 +14,24 @@
 \begin{frame}[allowframebreaks]
 	\frametitle{Procedimento 02}
 		\framesubtitle{Tabelas de resultados}
-		\input{../monography/tables/results/experiment02Results.tex}
+		\input{tables/results/experiment02Results.tex}
 \end{frame}
 
+\begin{frame}[allowframebreaks]
+	\frametitle{Procedimento 02}
+		\framesubtitle{Tabelas de confusão}
+		\input{../monography/tables/results/confusionMatrices/classifier_Euclidian_10.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Euclidian_20.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Euclidian_30.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Euclidian_40.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Euclidian_50.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Manhattan_10.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Manhattan_20.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Manhattan_30.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Manhattan_40.tex}
+		\input{../monography/tables/results/confusionMatrices/classifier_Manhattan_50.tex}
+\end{frame}
+	
 \begin{frame}
 	\frametitle{Procedimento 02}
 	\framesubtitle{Acurácias e EER para distância Euclidiana}
@@ -115,7 +130,7 @@
 			\column{0.5\textwidth}
 			\begin{figure}
 				\centering
-				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_10.png}
+				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_10}
 				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 10\%}
 			\end{figure}
 			
@@ -132,7 +147,7 @@
 			\column{0.5\textwidth}
 			\begin{figure}
 				\centering
-				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_20.png}
+				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_20}
 				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 20\%}
 			\end{figure}
 			
@@ -149,7 +164,7 @@
 			\column{0.5\textwidth}
 			\begin{figure}
 				\centering
-				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_30.png}
+				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_30}
 				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 30\%}
 			\end{figure}
 			
@@ -166,7 +181,7 @@
 			\column{0.5\textwidth}
 			\begin{figure}
 				\centering
-				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_40.png}
+				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_40}
 				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 40\%}
 			\end{figure}
 			
@@ -183,7 +198,7 @@
 			\column{0.5\textwidth}
 			\begin{figure}
 				\centering
-				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_50.png}
+				\includegraphics[width=\linewidth]{../monography/images/results/confusionMatrices/classifier_Manhattan_50}
 				\caption{Acurácia \textit{X} quantidade de testes - Distância Manhattan, modelo a 50\%}
 			\end{figure}
 			
@@ -202,7 +217,7 @@
 		\framesubtitle{Síntese}
 		\par Dentre os testes realizados o melhores resultados foram:
 		\begin{itemize}
-			\item Distância Euclidiana $\rightarrow$ Acurácia: 0,904878 - ERR: 0,136585.
-			\item Distância Manhattan $\rightarrow$ Acurácia: 0,909756 - ERR: 0,129268.
+			\item Distância Euclidiana $\rightarrow$ Acurácia: 0,987805 - ERR: 0,039024.
+			\item Distância Manhattan $\rightarrow$ Acurácia: 0,990244 - ERR: 0,039024.
 		\end{itemize}
 \end{frame}
