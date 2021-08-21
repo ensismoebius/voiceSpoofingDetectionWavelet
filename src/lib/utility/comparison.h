@@ -19,6 +19,6 @@
  * @param upperLimit
  * @return
  */
-inline bool inRange(double val, double lowerLimit, double upperLimit);
+bool inRange(double val, double lowerLimit, double upperLimit);
 
 #endif /* SRC_LIB_UTILITY_COMPARISON_H_ */

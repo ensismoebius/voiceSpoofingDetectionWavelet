@@ -8,6 +8,7 @@
 #include <map>
 #include <limits>
 #include <vector>
+#include <string>
 
 #include "../utility/comparison.h"
 #include "../linearAlgebra/linearAlgebra.h"
