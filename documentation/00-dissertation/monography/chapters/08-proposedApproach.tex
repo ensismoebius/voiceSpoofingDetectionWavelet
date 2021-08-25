@@ -17,7 +17,7 @@
 			\item \textit{\textbf{inputListSpoofing.txt}}: Apresenta uma listagem dos caminhos para todos os arquivos falseados.
 		\end{itemize}
 	
-		\par Apenas para ilustrar, o conteúdo do diretório \textbf{``separated \textfractionsolidus live \textfractionsolidus en\_US \textfractionsolidus 0''} se constitui de vários arquivos do tipo \textit{wave}, cada um identificando o locutor ao qual pertence como exibido na Figura \ref{fig:directorystructlevel03}.
+		\par Apenas para ilustrar, o conteúdo do diretório \textbf{``separated\textfractionsolidus live\textfractionsolidus en\_US\textfractionsolidus 0''} se constitui de vários arquivos do tipo \textit{wave}, cada um identificando o locutor ao qual pertence como exibido na Figura \ref{fig:directorystructlevel03}.
 
 		\begin{figure}[ht]
 			\centering
@@ -110,7 +110,7 @@
 			\label{fig:experiment01Algo}
 		\end{figure}
 		
-		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessário redimensionar os sinais para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação, pois a transformada \textit{wavelet} realiza um \textit{downsampling} de ordem 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
+		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessária uma normalização de valores do sinal entre os intervalos -1 e 1 seguida de um redimensionamento para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação, pois a transformada \textit{wavelet} realiza um \textit{downsampling} de ordem 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
 				
 		\par Para ajustar o tamanho do sinal de voz sob análise, foi usada a Equação \ref{eq:optimalSize}, na qual \textit{\textbf{proxInt}} é uma função que retorna o próximo número inteiro do argumento real. Por exemplo, $proxInt(1,5) = 2$.
 

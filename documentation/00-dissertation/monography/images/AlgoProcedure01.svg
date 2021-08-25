@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -14,10 +12,17 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    sodipodi:docname="AlgoProcedure01.svg">
   <defs
-     id="defs2" />
+     id="defs2">
+    <rect
+       x="770.28302"
+       y="1650.0895"
+       width="152.64996"
+       height="63.260498"
+       id="rect1307" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -25,17 +30,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="215.83845"
-     inkscape:cy="608.31953"
+     inkscape:zoom="1.4"
+     inkscape:cx="525.15492"
+     inkscape:cy="936.80634"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g907"
      showgrid="false"
      inkscape:window-width="1438"
-     inkscape:window-height="858"
+     inkscape:window-height="877"
      inkscape:window-x="0"
-     inkscape:window-y="41"
-     inkscape:window-maximized="0" />
+     inkscape:window-y="21"
+     inkscape:window-maximized="0"
+     inkscape:document-rotation="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -44,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -65,21 +71,17 @@
            id="text823"
            y="976.19098"
            x="754.19397"
-           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.8">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.8px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8"><tspan
              id="tspan817"
              y="976.19098"
-             x="754.19397">Existe um</tspan>
-          <tspan
+             x="754.19397">Existe um</tspan><tspan
              id="tspan819"
              y="992.19098"
-             x="754.19397">próximo conjunto</tspan>
-          <tspan
+             x="754.19397">próximo conjunto</tspan><tspan
              id="tspan821"
              y="1008.19"
-             x="754.19397">de sinais?</tspan>
-        </text>
+             x="754.19397">de sinais?</tspan></text>
       </g>
       <g
          id="g835">
@@ -91,17 +93,14 @@
            id="text833"
            y="1167.02"
            x="486.89099"
-           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.8">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.8px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8"><tspan
              id="tspan829"
              y="1167.02"
-             x="486.89099">Existe uma</tspan>
-          <tspan
+             x="486.89099">Existe uma</tspan><tspan
              id="tspan831"
              y="1183.02"
-             x="486.89099">próxima wavelet?</tspan>
-        </text>
+             x="486.89099">próxima wavelet?</tspan></text>
       </g>
       <g
          id="g845">
@@ -113,17 +112,14 @@
            id="text843"
            y="1363.42"
            x="485.77701"
-           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.8">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.8px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8"><tspan
              id="tspan839"
              y="1363.42"
-             x="485.77701">Existe um próximo</tspan>
-          <tspan
+             x="485.77701">Existe um próximo</tspan><tspan
              id="tspan841"
              y="1379.42"
-             x="485.77701">intervalo spectral?</tspan>
-        </text>
+             x="485.77701">intervalo spectral?</tspan></text>
       </g>
       <g
          id="g851">
@@ -143,13 +139,11 @@
          id="text855"
          y="1233.01"
          x="485.26599"
-         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.8">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.8px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8"><tspan
            id="tspan853"
            y="1233.01"
-           x="485.26599">Sim</tspan>
-      </text>
+           x="485.26599">Sim</tspan></text>
       <g
          id="g861">
         <line
@@ -168,13 +162,11 @@
          id="text865"
          y="1435.61"
          x="486.69901"
-         style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.8">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.8px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.8"><tspan
            id="tspan863"
            y="1435.61"
-           x="486.69901">Sim</tspan>
-      </text>
+           x="486.69901">Sim</tspan></text>
       <g
          id="g875">
         <polygon
@@ -185,17 +177,14 @@
            id="text873"
            y="1583.52"
            x="486.33301"
-           style="font-style:normal;font-weight:normal;font-size:12.80000019px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.8">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.8px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.8"><tspan
              id="tspan869"
              y="1583.52"
-             x="486.33301">Existe um</tspan>
-          <tspan
+             x="486.33301">Existe um</tspan><tspan
              id="tspan871"
              y="1599.52"
-             x="486.33301">próximo sinal?</tspan>
-        </text>
+             x="486.33301">próximo sinal?</tspan></text>
       </g>
       <g
          id="g885">
@@ -212,17 +201,14 @@
            id="text883"
            y="984.04303"
            x="435.48401"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan879"
              y="984.04303"
-             x="435.48401">Mostar resultados no</tspan>
-          <tspan
+             x="435.48401">Mostar resultados no</tspan><tspan
              id="tspan881"
              y="1000.04"
-             x="435.48401">plano paraconsistente</tspan>
-        </text>
+             x="435.48401">plano paraconsistente</tspan></text>
       </g>
       <g
          id="g891">
@@ -253,13 +239,11 @@
            id="text897"
            y="1699.15"
            x="605.27002"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan895"
              y="1699.15"
-             x="605.27002">Calcular tamanho ótimo do sinal</tspan>
-        </text>
+             x="605.27002">Calcular tamanho ótimo do sinal</tspan></text>
       </g>
       <g
          id="g907">
@@ -267,22 +251,24 @@
            id="rect901"
            ry="0"
            rx="0"
-           height="38"
-           width="152.64999"
-           y="1675.35"
+           height="63.260544"
+           width="152.64996"
+           y="1650.0895"
            x="770.28302"
            style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1" />
         <text
-           id="text905"
-           y="1698.23"
-           x="846.60797"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
-             id="tspan903"
-             y="1698.23"
-             x="846.60797">Redimensionar sinal</tspan>
-        </text>
+           xml:space="preserve"
+           id="text1305"
+           style="font-style:normal;font-weight:normal;font-size:13.232px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;white-space:pre;shape-inside:url(#rect1307);fill:#000000;fill-opacity:1;stroke:none;"
+           x="74.014107"
+           y="0"
+           transform="translate(0,23.456769)"><tspan
+             x="804.41201"
+             y="1661.7971"><tspan
+               style="font-size:13.232px;text-align:center;text-anchor:middle">Normalizar e </tspan></tspan><tspan
+             x="775.29257"
+             y="1678.3371"><tspan
+               style="font-size:13.232px;text-align:center;text-anchor:middle">redimensionar o sinal</tspan></tspan></text>
       </g>
       <g
          id="g913">
@@ -313,17 +299,14 @@
            id="text921"
            y="1760.91"
            x="843.33301"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan917"
              y="1760.91"
-             x="843.33301">Aplicar transformada</tspan>
-          <tspan
+             x="843.33301">Aplicar transformada</tspan><tspan
              id="tspan919"
              y="1776.91"
-             x="843.33301">wavelet</tspan>
-        </text>
+             x="843.33301">wavelet</tspan></text>
       </g>
       <g
          id="g929">
@@ -354,17 +337,14 @@
            id="text937"
            y="1759.84"
            x="619.37201"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan933"
              y="1759.84"
-             x="619.37201">Calcular as energias usando</tspan>
-          <tspan
+             x="619.37201">Calcular as energias usando</tspan><tspan
              id="tspan935"
              y="1775.84"
-             x="619.37201">o intervalo spectral atual</tspan>
-        </text>
+             x="619.37201">o intervalo spectral atual</tspan></text>
       </g>
       <g
          id="g945">
@@ -395,13 +375,11 @@
            id="text951"
            y="1767.55"
            x="393.83099"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan949"
              y="1767.55"
-             x="393.83099">normalizar energias</tspan>
-        </text>
+             x="393.83099">normalizar energias</tspan></text>
       </g>
       <g
          id="g959">
@@ -432,13 +410,11 @@
            id="text965"
            y="1832.02"
            x="396.35999"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan963"
              y="1832.02"
-             x="396.35999">Armazenar resultado</tspan>
-        </text>
+             x="396.35999">Armazenar resultado</tspan></text>
       </g>
       <g
          id="g973">
@@ -469,13 +445,11 @@
          id="text983"
          y="1649.75"
          x="453.72299"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998"><tspan
            id="tspan981"
            y="1649.75"
-           x="453.72299">Sim</tspan>
-      </text>
+           x="453.72299">Sim</tspan></text>
       <g
          id="g993">
         <rect
@@ -491,17 +465,14 @@
            id="text991"
            y="1583.62"
            x="854.34998"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan987"
              y="1583.62"
-             x="854.34998">zerar ponteiro</tspan>
-          <tspan
+             x="854.34998">zerar ponteiro</tspan><tspan
              id="tspan989"
              y="1599.62"
-             x="854.34998">da lista de sinais</tspan>
-        </text>
+             x="854.34998">da lista de sinais</tspan></text>
       </g>
       <g
          id="g999">
@@ -521,13 +492,11 @@
          id="text1003"
          y="1587.6801"
          x="697.67798"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998"><tspan
            id="tspan1001"
            y="1587.6801"
-           x="697.67798">Não</tspan>
-      </text>
+           x="697.67798">Não</tspan></text>
       <g
          id="g1009">
         <line
@@ -560,13 +529,11 @@
          id="text1019"
          y="1367.4399"
          x="714.53699"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998"><tspan
            id="tspan1017"
            y="1367.4399"
-           x="714.53699">Não</tspan>
-      </text>
+           x="714.53699">Não</tspan></text>
       <g
          id="g1025">
         <line
@@ -599,13 +566,11 @@
          id="text1035"
          y="1171.51"
          x="718.81897"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998"><tspan
            id="tspan1033"
            y="1171.51"
-           x="718.81897">Não</tspan>
-      </text>
+           x="718.81897">Não</tspan></text>
       <g
          id="g1041">
         <line
@@ -635,17 +600,14 @@
            id="text1049"
            y="1481.9"
            x="487.38101"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1045"
              y="1481.9"
-             x="487.38101">Selecionar o próximo</tspan>
-          <tspan
+             x="487.38101">Selecionar o próximo</tspan><tspan
              id="tspan1047"
              y="1497.9"
-             x="487.38101">intervalo spectral</tspan>
-        </text>
+             x="487.38101">intervalo spectral</tspan></text>
       </g>
       <g
          id="g1057">
@@ -676,13 +638,11 @@
            id="text1063"
            y="1083.64"
            x="486.40302"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1061"
              y="1083.64"
-             x="486.40302">Selecione o próximo conjunto sinais</tspan>
-        </text>
+             x="486.40302">Selecione o próximo conjunto sinais</tspan></text>
       </g>
       <g
          id="g1071">
@@ -713,13 +673,11 @@
            id="text1077"
            y="1273.83"
            x="484.29599"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1075"
              y="1273.83"
-             x="484.29599">Selecione a próxima wavelet</tspan>
-        </text>
+             x="484.29599">Selecione a próxima wavelet</tspan></text>
       </g>
       <g
          id="g1085">
@@ -764,17 +722,14 @@
            id="text1099"
            y="1692.36"
            x="372.561"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1095"
              y="1692.36"
-             x="372.561">Selecionar o</tspan>
-          <tspan
+             x="372.561">Selecionar o</tspan><tspan
              id="tspan1097"
              y="1708.36"
-             x="372.561">próximo sinal</tspan>
-        </text>
+             x="372.561">próximo sinal</tspan></text>
       </g>
       <g
          id="g1107">
@@ -805,21 +760,17 @@
            id="text1117"
            y="1355.05"
            x="843.70099"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1111"
              y="1355.05"
-             x="843.70099">zerar ponteiro</tspan>
-          <tspan
+             x="843.70099">zerar ponteiro</tspan><tspan
              id="tspan1113"
              y="1371.05"
-             x="843.70099">da lista de intervalos</tspan>
-          <tspan
+             x="843.70099">da lista de intervalos</tspan><tspan
              id="tspan1115"
              y="1387.05"
-             x="843.70099">spectrais</tspan>
-        </text>
+             x="843.70099">spectrais</tspan></text>
       </g>
       <g
          id="g1131">
@@ -836,21 +787,17 @@
            id="text1129"
            y="1160"
            x="865.75"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1123"
              y="1160"
-             x="865.75">zerar ponteiro</tspan>
-          <tspan
+             x="865.75">zerar ponteiro</tspan><tspan
              id="tspan1125"
              y="1176"
-             x="865.75">da lista de</tspan>
-          <tspan
+             x="865.75">da lista de</tspan><tspan
              id="tspan1127"
              y="1192"
-             x="865.75">wavelets</tspan>
-        </text>
+             x="865.75">wavelets</tspan></text>
       </g>
       <g
          id="g1139">
@@ -863,13 +810,11 @@
            id="text1137"
            y="906.16998"
            x="437.672"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1135"
              y="906.16998"
-             x="437.672">Fim</tspan>
-        </text>
+             x="437.672">Fim</tspan></text>
       </g>
       <g
          id="g1149">
@@ -882,17 +827,14 @@
            id="text1147"
            y="896.06799"
            x="751.54797"
-           style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-           font-size="12.7998">
-          <tspan
+           style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+           font-size="12.7998"><tspan
              id="tspan1143"
              y="896.06799"
-             x="751.54797">Calcular energias dos</tspan>
-          <tspan
+             x="751.54797">Calcular energias dos</tspan><tspan
              id="tspan1145"
              y="912.06799"
-             x="751.54797">sinais transformados</tspan>
-        </text>
+             x="751.54797">sinais transformados</tspan></text>
       </g>
       <g
          id="g1155">
@@ -926,13 +868,11 @@
          id="text1165"
          y="988.216"
          x="552.18903"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998"><tspan
            id="tspan1163"
            y="988.216"
-           x="552.18903">Não</tspan>
-      </text>
+           x="552.18903">Não</tspan></text>
       <g
          id="g1171">
         <polyline
@@ -948,13 +888,11 @@
          id="text1175"
          y="1079.76"
          x="683.224"
-         style="font-style:normal;font-weight:normal;font-size:12.79979992px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
-         font-size="12.7998">
-        <tspan
+         style="font-style:normal;font-weight:normal;font-size:12.7998px;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         font-size="12.7998"><tspan
            id="tspan1173"
            y="1079.76"
-           x="683.224">Sim</tspan>
-      </text>
+           x="683.224">Sim</tspan></text>
     </g>
   </g>
 </svg>

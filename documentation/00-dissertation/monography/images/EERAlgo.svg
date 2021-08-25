@@ -13,7 +13,7 @@
    version="1.1"
    id="svg1473"
    sodipodi:docname="EERAlgo.svg"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
   <metadata
      id="metadata1477">
     <rdf:RDF>
@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -36,16 +36,17 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1438"
-     inkscape:window-height="854"
+     inkscape:window-height="877"
      id="namedview1475"
      showgrid="false"
-     inkscape:zoom="0.20142473"
-     inkscape:cx="1590.0194"
-     inkscape:cy="857.31001"
+     inkscape:zoom="0.40284946"
+     inkscape:cx="1113.557"
+     inkscape:cy="870.83898"
      inkscape:window-x="0"
-     inkscape:window-y="45"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="Segundo plano" />
+     inkscape:window-y="21"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Segundo plano"
+     inkscape:document-rotation="0" />
   <defs
      id="defs1088" />
   <g
@@ -67,16 +68,14 @@
          d="M 345.815 172.346 L 427.865,172.346 C 439.193,172.346 448.377,181.301 448.377,192.346 C 448.377,203.392 439.193,212.346 427.865,212.346 L 345.815,212.346 C 334.486,212.346 325.302,203.392 325.302,192.346 C 325.302,181.301 334.486,172.346 345.815,172.346z"
          id="path1092" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          x="386.84"
          y="196.228"
-         id="text1096">
-        <tspan
+         id="text1096"><tspan
            x="386.84"
            y="196.228"
-           id="tspan1094">Calculo EER</tspan>
-      </text>
+           id="tspan1094">Calculo EER</tspan></text>
     </g>
     <g
        id="g1106">
@@ -90,16 +89,14 @@
          ry="0"
          id="rect1100" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="253.072"
-         y="286.533"
-         id="text1104">
-        <tspan
-           x="253.072"
-           y="286.533"
-           id="tspan1102">Ordenar de forma decrescente o vetor FRR</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="253.07201"
+         y="286.53299"
+         id="text1104"><tspan
+           x="253.07201"
+           y="286.53299"
+           id="tspan1102">Ordenar de forma decrescente o vetor FRR</tspan></text>
     </g>
     <g
        id="g1116">
@@ -109,32 +106,28 @@
          points="251.699,406.674 383.768,457.765 251.699,508.857 119.631,457.765 "
          id="polygon1108" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="251.699"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="251.69901"
          y="453.647"
-         id="text1114">
-        <tspan
+         id="text1114"><tspan
            xml:space="preserve"
-           x="251.699"
+           x="251.69901"
            y="453.647"
-           id="tspan1110"> Existe um próximo</tspan>        <tspan
-           x="251.699"
+           id="tspan1110"> Existe um próximo</tspan><tspan
+           x="251.69901"
            y="469.647"
-           id="tspan1112">item no vetor FAR?</tspan>
-      </text>
+           id="tspan1112">item no vetor FAR?</tspan></text>
     </g>
     <text
-       font-size="12.8"
-       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
-       x="575.918"
+       font-size="12.8px"
+       style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="575.91803"
        y="206.084"
-       id="text1120">
-      <tspan
-         x="575.918"
+       id="text1120"><tspan
+         x="575.91803"
          y="206.084"
-         id="tspan1118" />
-    </text>
+         id="tspan1118" /></text>
     <g
        id="g1128">
       <rect
@@ -147,16 +140,14 @@
          ry="0"
          id="rect1122" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="542.734"
-         y="461.339"
-         id="text1126">
-        <tspan
-           x="542.734"
-           y="461.339"
-           id="tspan1124">Selecione este item</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="542.73401"
+         y="461.33899"
+         id="text1126"><tspan
+           x="542.73401"
+           y="461.33899"
+           id="tspan1124">Selecione este item</tspan></text>
     </g>
     <g
        id="g1134">
@@ -174,16 +165,14 @@
          id="polygon1132" />
     </g>
     <text
-       font-size="12.8"
-       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
-       x="426.154"
+       font-size="12.8px"
+       style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="426.15399"
        y="457.582"
-       id="text1138">
-      <tspan
-         x="426.154"
+       id="text1138"><tspan
+         x="426.15399"
          y="457.582"
-         id="tspan1136">Sim</tspan>
-    </text>
+         id="tspan1136">Sim</tspan></text>
     <g
        id="g1152">
       <rect
@@ -196,28 +185,23 @@
          ry="0"
          id="rect1140" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="397.462"
-         y="535.765"
-         id="text1150">
-        <tspan
-           x="397.462"
-           y="535.765"
-           id="tspan1142">Calcular a distância</tspan>
-        <tspan
-           x="397.462"
-           y="551.765"
-           id="tspan1144">entre o item de FAR e o item na </tspan>
-        <tspan
-           x="397.462"
-           y="567.765"
-           id="tspan1146">mesma posição no vetor FRR</tspan>
-        <tspan
-           x="397.462"
-           y="583.765"
-           id="tspan1148">dividida por raíz quadrada de dois</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="397.46201"
+         y="535.76501"
+         id="text1150"><tspan
+           x="397.46201"
+           y="535.76501"
+           id="tspan1142">Calcular a distância</tspan><tspan
+           x="397.46201"
+           y="551.76501"
+           id="tspan1144">entre o item de FAR e o item na</tspan><tspan
+           x="397.46201"
+           y="567.76501"
+           id="tspan1146">mesma posição no vetor FRR</tspan><tspan
+           x="397.46201"
+           y="583.76501"
+           id="tspan1148">dividida por raíz quadrada de dois</tspan></text>
     </g>
     <g
        id="g1158">
@@ -242,16 +226,14 @@
          points="289.228,630.366 479.387,679.967 289.228,729.567 99.068,679.967 "
          id="polygon1160" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          x="289.228"
-         y="683.848"
-         id="text1164">
-        <tspan
+         y="683.84802"
+         id="text1164"><tspan
            x="289.228"
-           y="683.848"
-           id="tspan1162">Essa é a menor distância até agora?</tspan>
-      </text>
+           y="683.84802"
+           id="tspan1162">Essa é a menor distância até agora?</tspan></text>
     </g>
     <g
        id="g1172">
@@ -278,16 +260,14 @@
          ry="21.4808"
          id="ellipse1174" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="253.193"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="253.19299"
          y="358.436"
-         id="text1178">
-        <tspan
-           x="253.193"
+         id="text1178"><tspan
+           x="253.19299"
            y="358.436"
-           id="tspan1176" />
-      </text>
+           id="tspan1176" /></text>
     </g>
     <g
        id="g1186">
@@ -316,16 +296,14 @@
          ry="0"
          id="rect1188" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="714.574"
-         y="684.571"
-         id="text1192">
-        <tspan
-           x="714.574"
-           y="684.571"
-           id="tspan1190">Guardar a menor distância</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="714.57397"
+         y="684.57098"
+         id="text1192"><tspan
+           x="714.57397"
+           y="684.57098"
+           id="tspan1190">Guardar a menor distância</tspan></text>
     </g>
     <g
        id="g1200">
@@ -343,16 +321,14 @@
          id="polygon1198" />
     </g>
     <text
-       font-size="12.8"
-       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
-       x="547.554"
-       y="680.176"
-       id="text1204">
-      <tspan
-         x="547.554"
-         y="680.176"
-         id="tspan1202">Sim</tspan>
-    </text>
+       font-size="12.8px"
+       style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="547.55402"
+       y="680.17603"
+       id="text1204"><tspan
+         x="547.55402"
+         y="680.17603"
+         id="tspan1202">Sim</tspan></text>
     <g
        id="g1210">
       <line
@@ -369,16 +345,14 @@
          id="polygon1208" />
     </g>
     <text
-       font-size="12.8"
-       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
+       font-size="12.8px"
+       style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
        x="289.008"
        y="751.578"
-       id="text1214">
-      <tspan
+       id="text1214"><tspan
          x="289.008"
          y="751.578"
-         id="tspan1212">Não</tspan>
-    </text>
+         id="tspan1212">Não</tspan></text>
     <g
        id="g1222">
       <rect
@@ -391,16 +365,14 @@
          ry="0"
          id="rect1216" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="283.993"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="283.99301"
          y="1305.71"
-         id="text1220">
-        <tspan
-           x="283.993"
+         id="text1220"><tspan
+           x="283.99301"
            y="1305.71"
-           id="tspan1218">EER = -(c / (x + y))</tspan>
-      </text>
+           id="tspan1218">EER = -(c / (x + y))</tspan></text>
     </g>
     <g
        id="g1230">
@@ -410,16 +382,14 @@
          d="M 412.278 1356.5 L 443.378,1356.5 C 448.043,1364.5 449.598,1368.5 449.598,1376.5 C 449.598,1384.5 448.043,1388.5 443.378,1396.5 L 412.278,1396.5 L 406.058,1376.5 L 412.278,1356.5z"
          id="path1224" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          x="427.828"
          y="1380.39"
-         id="text1228">
-        <tspan
+         id="text1228"><tspan
            x="427.828"
            y="1380.39"
-           id="tspan1226">EER</tspan>
-      </text>
+           id="tspan1226">EER</tspan></text>
     </g>
     <g
        id="g1236">
@@ -448,20 +418,17 @@
          ry="0"
          id="rect1238" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="593.272"
-         y="190.904"
-         id="text1244">
-        <tspan
-           x="593.272"
-           y="190.904"
-           id="tspan1240">Gerar vetores para </tspan>
-        <tspan
-           x="593.272"
-           y="206.904"
-           id="tspan1242">FAR e FRR</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="593.27197"
+         y="190.90401"
+         id="text1244"><tspan
+           x="593.27197"
+           y="190.90401"
+           id="tspan1240">Gerar vetores para</tspan><tspan
+           x="593.27197"
+           y="206.90401"
+           id="tspan1242">FAR e FRR</tspan></text>
     </g>
     <g
        id="g1252">
@@ -494,16 +461,14 @@
          id="polygon1256" />
     </g>
     <text
-       font-size="12.8"
-       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
-       x="575.918"
+       font-size="12.8px"
+       style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="575.91803"
        y="206.084"
-       id="text1262">
-      <tspan
-         x="575.918"
+       id="text1262"><tspan
+         x="575.91803"
          y="206.084"
-         id="tspan1260" />
-    </text>
+         id="tspan1260" /></text>
     <g
        id="g1284">
       <rect
@@ -516,44 +481,35 @@
          ry="0"
          id="rect1264" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          x="287.056"
-         y="1133.56"
-         id="text1282">
-        <tspan
+         y="1133.5601"
+         id="text1282"><tspan
            x="287.056"
-           y="1133.56"
-           id="tspan1266">c = </tspan>
-        <tspan
+           y="1133.5601"
+           id="tspan1266">c =</tspan><tspan
            x="287.056"
-           y="1149.56"
-           id="tspan1268">(posição um da coordenadaAcimaDaRetaDiagonal)</tspan>
-        <tspan
+           y="1149.5601"
+           id="tspan1268">(posição um da coordenadaAcimaDaRetaDiagonal)</tspan><tspan
            x="287.056"
-           y="1165.56"
-           id="tspan1270">*</tspan>
-        <tspan
+           y="1165.5601"
+           id="tspan1270">*</tspan><tspan
            x="287.056"
-           y="1181.56"
-           id="tspan1272">(posição zero da coordenadaAbaixoDaRetaDiagonal)</tspan>
-        <tspan
+           y="1181.5601"
+           id="tspan1272">(posição zero da coordenadaAbaixoDaRetaDiagonal)</tspan><tspan
            x="287.056"
-           y="1197.56"
-           id="tspan1274">-</tspan>
-        <tspan
+           y="1197.5601"
+           id="tspan1274">-</tspan><tspan
            x="287.056"
-           y="1213.56"
-           id="tspan1276">(posição zero da coordenadaAcimaDaRetaDiagonal)</tspan>
-        <tspan
+           y="1213.5601"
+           id="tspan1276">(posição zero da coordenadaAcimaDaRetaDiagonal)</tspan><tspan
            x="287.056"
-           y="1229.56"
-           id="tspan1278">*</tspan>
-        <tspan
+           y="1229.5601"
+           id="tspan1278">*</tspan><tspan
            x="287.056"
-           y="1245.56"
-           id="tspan1280">(posição um da coordenadaAbaixoDaRetaDiagonal)</tspan>
-      </text>
+           y="1245.5601"
+           id="tspan1280">(posição um da coordenadaAbaixoDaRetaDiagonal)</tspan></text>
     </g>
     <g
        id="g1300">
@@ -567,47 +523,27 @@
          ry="0"
          id="rect1286" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="285.195"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="285.19501"
          y="1008.47"
-         id="text1298">
-        <tspan
-           x="285.195"
+         id="text1298"><tspan
+           x="285.19501"
            y="1008.47"
-           id="tspan1288">x = </tspan>
-        <tspan
-           x="285.195"
+           id="tspan1288">x =</tspan><tspan
+           x="285.19501"
            y="1024.47"
-           id="tspan1290">(posição um da coordenadaAbaixoDaRetaDiagonal)</tspan>
-        <tspan
+           id="tspan1290">(posição um da coordenadaAbaixoDaRetaDiagonal)</tspan><tspan
            xml:space="preserve"
-           x="285.195"
+           x="285.19501"
            y="1040.47"
-           id="tspan1292"> - </tspan>        <tspan
-           x="285.195"
+           id="tspan1292"> - </tspan><tspan
+           x="285.19501"
            y="1056.47"
-           id="tspan1294">(posição um coordenadaAcimaDaRetaDiagonal)</tspan>
-        <tspan
-           x="285.195"
+           id="tspan1294">(posição um coordenadaAcimaDaRetaDiagonal)</tspan><tspan
+           x="285.19501"
            y="1072.47"
-           id="tspan1296">+1</tspan>
-      </text>
-    </g>
-    <g
-       id="g1306">
-      <line
-         style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
-         x1="286.556"
-         y1="943.377"
-         x2="286.096"
-         y2="974.859"
-         id="line1302" />
-      <polygon
-         style="fill: #000000; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000"
-         fill-rule="evenodd"
-         points="285.987,982.358 281.133,972.286 286.096,974.859 291.132,972.432 "
-         id="polygon1304" />
+           id="tspan1296">+1</tspan></text>
     </g>
     <g
        id="g1312">
@@ -679,16 +615,14 @@
          id="polygon1334" />
     </g>
     <text
-       font-size="12.8"
-       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal"
-       x="94.6918"
-       y="457.766"
-       id="text1340">
-      <tspan
-         x="94.6918"
-         y="457.766"
-         id="tspan1338">Não</tspan>
-    </text>
+       font-size="12.8px"
+       style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="94.691803"
+       y="457.76599"
+       id="text1340"><tspan
+         x="94.691803"
+         y="457.76599"
+         id="tspan1338">Não</tspan></text>
     <g
        id="g1348">
       <rect
@@ -701,16 +635,14 @@
          ry="0"
          id="rect1342" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="591.884"
-         y="286.959"
-         id="text1346">
-        <tspan
-           x="591.884"
-           y="286.959"
-           id="tspan1344">Ordenar de forma crescente o vetor FAR</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="591.88397"
+         y="286.95901"
+         id="text1346"><tspan
+           x="591.88397"
+           y="286.95901"
+           id="tspan1344">Ordenar de forma crescente o vetor FAR</tspan></text>
     </g>
     <g
        id="g1354">
@@ -754,24 +686,20 @@
          ry="0"
          id="rect1362" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="715.957"
-         y="340.109"
-         id="text1370">
-        <tspan
-           x="715.957"
-           y="340.109"
-           id="tspan1364">Guardar o valor do item de FRR</tspan>
-        <tspan
-           x="715.957"
-           y="356.109"
-           id="tspan1366">em coordenadaAcimaDaRetaDiagonal</tspan>
-        <tspan
-           x="715.957"
-           y="372.109"
-           id="tspan1368">na posição um</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="715.95697"
+         y="340.10901"
+         id="text1370"><tspan
+           x="715.95697"
+           y="340.10901"
+           id="tspan1364">Guardar o valor do item de FRR</tspan><tspan
+           x="715.95697"
+           y="356.10901"
+           id="tspan1366">em coordenadaAcimaDaRetaDiagonal</tspan><tspan
+           x="715.95697"
+           y="372.10901"
+           id="tspan1368">na posição um</tspan></text>
     </g>
     <g
        id="g1384">
@@ -785,24 +713,20 @@
          ry="0"
          id="rect1374" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="716.989"
-         y="544.029"
-         id="text1382">
-        <tspan
-           x="716.989"
-           y="544.029"
-           id="tspan1376">Guardar o valor do item de FAR</tspan>
-        <tspan
-           x="716.989"
-           y="560.029"
-           id="tspan1378">em coordenadaAcimaDaRetaDiagonal</tspan>
-        <tspan
-           x="716.989"
-           y="576.029"
-           id="tspan1380">na posição zero</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="716.98901"
+         y="544.02899"
+         id="text1382"><tspan
+           x="716.98901"
+           y="544.02899"
+           id="tspan1376">Guardar o valor do item de FAR</tspan><tspan
+           x="716.98901"
+           y="560.02899"
+           id="tspan1378">em coordenadaAcimaDaRetaDiagonal</tspan><tspan
+           x="716.98901"
+           y="576.02899"
+           id="tspan1380">na posição zero</tspan></text>
     </g>
     <g
        id="g1390">
@@ -861,24 +785,20 @@
          ry="0"
          id="rect1404" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          x="287.082"
          y="895.255"
-         id="text1412">
-        <tspan
+         id="text1412"><tspan
            x="287.082"
            y="895.255"
-           id="tspan1406">Guardar o valor do item de FRR</tspan>
-        <tspan
+           id="tspan1406">Guardar o valor do item de FRR</tspan><tspan
            x="287.082"
            y="911.255"
-           id="tspan1408">em coordenadaAbaixoDaRetaDiagonal</tspan>
-        <tspan
+           id="tspan1408">em coordenadaAbaixoDaRetaDiagonal</tspan><tspan
            x="287.082"
            y="927.255"
-           id="tspan1410">na posição um</tspan>
-      </text>
+           id="tspan1410">na posição um</tspan></text>
     </g>
     <g
        id="g1426">
@@ -892,24 +812,20 @@
          ry="0"
          id="rect1416" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="288.432"
-         y="797.445"
-         id="text1424">
-        <tspan
-           x="288.432"
-           y="797.445"
-           id="tspan1418">Guardar o valor do item de FAR</tspan>
-        <tspan
-           x="288.432"
-           y="813.445"
-           id="tspan1420">em coordenadaAbaixoDaRetaDiagonal</tspan>
-        <tspan
-           x="288.432"
-           y="829.445"
-           id="tspan1422">na posição zero</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="288.43201"
+         y="797.44501"
+         id="text1424"><tspan
+           x="288.43201"
+           y="797.44501"
+           id="tspan1418">Guardar o valor do item de FAR</tspan><tspan
+           x="288.43201"
+           y="813.44501"
+           id="tspan1420">em coordenadaAbaixoDaRetaDiagonal</tspan><tspan
+           x="288.43201"
+           y="829.44501"
+           id="tspan1422">na posição zero</tspan></text>
     </g>
     <g
        id="g1432">
@@ -938,52 +854,43 @@
          ry="0"
          id="rect1434" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="669.674"
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="669.67401"
          y="1009.47"
-         id="text1446">
-        <tspan
-           x="669.674"
+         id="text1446"><tspan
+           x="669.67401"
            y="1009.47"
-           id="tspan1436">y = </tspan>
-        <tspan
-           x="669.674"
+           id="tspan1436">y =</tspan><tspan
+           x="669.67401"
            y="1025.47"
-           id="tspan1438">(posição zero da coordenadaAcimaDaRetaDiagonal)</tspan>
-        <tspan
+           id="tspan1438">(posição zero da coordenadaAcimaDaRetaDiagonal)</tspan><tspan
            xml:space="preserve"
-           x="669.674"
+           x="669.67401"
            y="1041.47"
-           id="tspan1440"> - </tspan>        <tspan
-           x="669.674"
+           id="tspan1440"> - </tspan><tspan
+           x="669.67401"
            y="1057.47"
-           id="tspan1442">(posição zero coordenadaAbaixoDaRetaDiagonal)</tspan>
-        <tspan
-           x="669.674"
+           id="tspan1442">(posição zero coordenadaAbaixoDaRetaDiagonal)</tspan><tspan
+           x="669.67401"
            y="1073.47"
-           id="tspan1444">-1</tspan>
-      </text>
+           id="tspan1444">-1</tspan></text>
     </g>
     <text
-       font-size="16.9333"
-       style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-       x="677.626"
+       font-size="16.9333px"
+       style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="677.62598"
        y="1179.41"
-       id="text1456">
-      <tspan
-         x="677.626"
+       id="text1456"><tspan
+         x="677.62598"
          y="1179.41"
-         id="tspan1450">Cálculo do valor onde FAR e FRR</tspan>
-      <tspan
-         x="677.626"
-         y="1200.57"
-         id="tspan1452">interseccionam a reta diagonal que corta o </tspan>
-      <tspan
-         x="677.626"
+         id="tspan1450">Cálculo do valor onde FAR e FRR</tspan><tspan
+         x="677.62598"
+         y="1200.5699"
+         id="tspan1452">interseccionam a reta diagonal que corta o</tspan><tspan
+         x="677.62598"
          y="1221.74"
-         id="tspan1454">plano cartesiano ao meio = EER</tspan>
-    </text>
+         id="tspan1454">plano cartesiano ao meio = EER</tspan></text>
     <g
        id="g1464">
       <path
@@ -992,16 +899,14 @@
          d="M 521.214 1356.43 L 590.558,1356.43 C 600.133,1356.43 607.894,1365.38 607.894,1376.43 C 607.894,1387.47 600.133,1396.43 590.558,1396.43 L 521.214,1396.43 C 511.64,1396.43 503.878,1387.47 503.878,1376.43 C 503.878,1365.38 511.64,1356.43 521.214,1356.43z"
          id="path1458" />
       <text
-         font-size="12.8"
-         style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal"
-         x="555.886"
-         y="1380.31"
-         id="text1462">
-        <tspan
-           x="555.886"
-           y="1380.31"
-           id="tspan1460">Fim</tspan>
-      </text>
+         font-size="12.8px"
+         style="font-style:normal;font-weight:normal;font-family:sans-serif;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="555.88599"
+         y="1380.3101"
+         id="text1462"><tspan
+           x="555.88599"
+           y="1380.3101"
+           id="tspan1460">Fim</tspan></text>
     </g>
     <g
        id="g1470">
