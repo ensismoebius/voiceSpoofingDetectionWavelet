@@ -1,18 +1,6 @@
 \chapter{Revisão bibliográfica} \label{chap:revBibli}
 	\section{Breve revisão dos conceitos utilizados neste trabalho}
 
-		\subsection{O Formato de arquivos digitais  \textit{wave}}
-			\par Os arquivos no formato digital \textit{wave}, popularmente utilizados para armazenar áudio e voz digital \cite{WAVE2019}, assim como ocorre neste trabalho, se estruturam como ilustrado na Figura \ref{fig:wavePcmStructure}.
-		
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.6\linewidth, angle=-90]{images/wavePcmStructure.pdf}
-				\caption{Estrutura do arquivo Wave}
-				\label{fig:wavePcmStructure}
-			\end{figure}
-			
-			\par A estrutura de interesse se localiza na última parte do arquivo, mais especificamente no bloco ``data'' ilustrado em azul na Figura. Nele, os dados são organizados como um grande vetor de números, em formato \textit{little endian} \cite{adiga2007writing}, sendo que cada um deles indica a intensidade do sinal naquele ponto. A descrição pormenorizada do bloco ``data'', consultada em \cite{microsoftIbmWaveSpec}, foi utilizada neste trabalho para possibilitar a extração dos dados brutos dos sinais utilizados. 
-
 		\subsection{Sinais digitais e sub-amostragem (\textit{downsampling})}
 			\par Os sinais de voz digitais, isto é, aqueles que estão amostrados e quantizados \cite{haykin2011sistemas}, constituem a base deste trabalho. Além do processo de digitalização, inerente ao ato de armazenar locuções em computadores, os sinais podem sofrer, a depender da necessidade ou possibilidade, sub-amostragens ou \textit{downsamplings} \cite{robi2003}. Isso implica a estratégia de redução de dimensão e, comumente, ocorre após a conversão de domínio dos sinais com base em filtros digitais do tipo \textit{wavelet}, a serem apresentados adiante. Um exemplo consta na Figura \ref{fig:downsampling}, na qual as partes pretas contêm dados e as brancas representam os elementos removidos. Tendo em vista que este trabalho está baseado em sinais digitais de voz filtrados com base em \textit{wavelets}, o processo de sub-amostragem é essencial. 
 			\begin{figure}[h]

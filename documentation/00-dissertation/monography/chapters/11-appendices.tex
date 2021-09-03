@@ -2,13 +2,27 @@
 	% Imprime uma página indicando o início dos apêndices
 	\partapendices
 	\begin{landscape}
-		\chapter{Material de apoio}
+		\chapter{Aplicação de um filtro \textit{Wavelet}}
 		\begin{figure}[h]
 			\includegraphics[width=.93\linewidth]{images/haarWaveletExamples.pdf}
 			\caption{Demostração numérica das transformadas Wavelet e \textit{packet-wavelet}: Por razões didáticas a \textit{Wavelet} Haar foi considerada como tendo os valores $1/2$ e $-1/2$}
 			\label{fig:haarWaveletExamples}
 		\end{figure}
 	\end{landscape}
+
+	\chapter{Arquivos digitais \textit{wave}}
+		\label{chap:waveFile}
+		\par Os arquivos no formato digital \textit{wave}, popularmente utilizados para armazenar áudio e voz digital \cite{WAVE2019}, assim como ocorre neste trabalho, se estruturam como ilustrado na Figura \ref{fig:wavePcmStructure}.
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.6\linewidth, angle=-90]{images/wavePcmStructure.pdf}
+			\caption{Estrutura do arquivo Wave}
+			\label{fig:wavePcmStructure}
+		\end{figure}
+		
+		\par A estrutura de interesse se localiza na última parte do arquivo, mais especificamente no bloco ``data'' ilustrado em azul na Figura. Nele, os dados são organizados como um grande vetor de números, em formato \textit{little endian} \cite{adiga2007writing}, sendo que cada um deles indica a intensidade do sinal naquele ponto. A descrição pormenorizada do bloco ``data'', consultada em \cite{microsoftIbmWaveSpec}, foi utilizada neste trabalho para possibilitar a extração dos dados brutos dos sinais utilizados. 
+
 	\chapter{Recursos na web}
 		\par Para realização deste trabalho foram produzidos variados textos (este incluso) e códigos, é recomendada a consulta dos códigos fontes utilizados nos procedimentos como complemento que, se espera, melhore o entendimento dos assuntos discutidos.
 		
