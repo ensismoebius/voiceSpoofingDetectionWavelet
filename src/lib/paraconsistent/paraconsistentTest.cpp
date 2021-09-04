@@ -50,19 +50,6 @@ void initializeClasses(std::map<std::string, std::vector<std::vector<long double
 	arrClasses[classNames[2]][1] = { 0.11, 0.86 };
 	arrClasses[classNames[2]][2] = { 0.12, 0.87 };
 	arrClasses[classNames[2]][3] = { 0.11, 0.88 };
-
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][0]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][1]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][2]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][3]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][0]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][1]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][2]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][3]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][0]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][1]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][2]);
-	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][3]);
 }
 
 TEST(paraconsistentTest, alpha)

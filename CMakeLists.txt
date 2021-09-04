@@ -4,7 +4,7 @@ project(voiceSpoofingDetection
         DESCRIPTION "Voice spoofing detection experiments"
         LANGUAGES CXX)  
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 ###############################################
 ###############################################
