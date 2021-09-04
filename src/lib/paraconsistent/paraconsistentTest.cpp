@@ -51,24 +51,24 @@ void initializeClasses(std::map<std::string, std::vector<std::vector<long double
 	arrClasses[classNames[2]][2] = { 0.12, 0.87 };
 	arrClasses[classNames[2]][3] = { 0.11, 0.88 };
 
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][0]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][1]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][2]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][3]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][0]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][1]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][2]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][3]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][0]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][1]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][2]);
-	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][3]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][0]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][1]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][2]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[0]][3]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][0]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][1]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][2]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[1]][3]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][0]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][1]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][2]);
+	// linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][3]);
 }
 
 TEST(paraconsistentTest, alpha)
 {
 	long double alpha = calculateAlpha(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
-	ASSERT_NEAR(alpha, 0.972745, 0.000001);
+	ASSERT_NEAR(alpha, 0.9749999, 0.000001);
 }
 
 TEST(paraconsistentTest, betha){
@@ -85,7 +85,7 @@ TEST(paraconsistentTest, distanceTo1_0)
 	double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
 	double distanceTo1_0 = std::sqrt(std::pow(certaintyDegree_G1 - 1, 2) + std::pow(contradictionDegree_G2, 2));
 
-	ASSERT_EQ(distanceTo1_0, 0.038544251994090221);
+	ASSERT_NEAR(distanceTo1_0, 0.035, 0.001);
 }
 
 TEST(paraconsistentTest, certaintyDegree_G1)
@@ -94,7 +94,7 @@ TEST(paraconsistentTest, certaintyDegree_G1)
 	long double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
 	double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
 
-	ASSERT_EQ(certaintyDegree_G1, 0.97274509803921572);
+	ASSERT_NEAR(certaintyDegree_G1, 0.975, 0.0001);
 }
 
 TEST(paraconsistentTest, contradictionDegree_G2)
@@ -103,7 +103,7 @@ TEST(paraconsistentTest, contradictionDegree_G2)
 	long double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
 	double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
 
-	ASSERT_EQ(contradictionDegree_G2, -0.027254901960784325);
+	ASSERT_NEAR(contradictionDegree_G2, -0.025, 0.0001);
 }
 
 int main(int argc, char **argv)
