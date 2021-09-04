@@ -12,6 +12,7 @@
 
 #include <cmath>
 #include <algorithm>
+#include <stdexcept>
 
 namespace linearAlgebra
 {

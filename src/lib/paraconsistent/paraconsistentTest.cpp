@@ -3,8 +3,14 @@
 #include <vector>
 #include <cassert>
 #include <iostream>
+#include <gtest/gtest.h>
 #include "paraconsistent.h"
 #include "../linearAlgebra/linearAlgebra.h"
+
+unsigned int amountOfClasses;
+unsigned int featureVectorSize;
+unsigned int featureVectorsPerClass;
+std::map<std::string, std::vector<std::vector<long double>>> arrClasses;
 
 void initializeClasses(std::map<std::string, std::vector<std::vector<long double>>> &arrClasses, unsigned int &amountOfClasses, unsigned int &featureVectorsPerClass, unsigned int &featureVectorSize)
 {
@@ -59,22 +65,19 @@ void initializeClasses(std::map<std::string, std::vector<std::vector<long double
 	linearAlgebra::normalizeVectorToSum1AllPositive(arrClasses[classNames[2]][3]);
 }
 
-/**
- * To run this test comment out the main function
- * and rename this function to "main"
- * @param argc
- * @param argv
- * @return 0
- */
-int uga(int argc, char **argv)
+TEST(paraconsistentTest, alpha)
 {
-	unsigned int amountOfClasses;
-	unsigned int featureVectorSize;
-	unsigned int featureVectorsPerClass;
-	std::map<std::string, std::vector<std::vector<long double>>> arrClasses;
+	long double alpha = calculateAlpha(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	ASSERT_NEAR(alpha, 0.972745, 0.000001);
+}
 
-	initializeClasses(arrClasses, amountOfClasses, featureVectorsPerClass, featureVectorSize);
+TEST(paraconsistentTest, betha){
+	long double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	ASSERT_EQ(betha, 0);
+}
 
+TEST(paraconsistentTest, distanceTo1_0)
+{
 	long double alpha = calculateAlpha(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
 	long double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
 
@@ -82,17 +85,30 @@ int uga(int argc, char **argv)
 	double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
 	double distanceTo1_0 = std::sqrt(std::pow(certaintyDegree_G1 - 1, 2) + std::pow(contradictionDegree_G2, 2));
 
-	assert(betha == 0);
-	assert(alpha == 0.97274509803921572);
-	assert(distanceTo1_0 == 0.038544251994090221);
-	assert(certaintyDegree_G1 == 0.97274509803921572);
-	assert(contradictionDegree_G2 == -0.027254901960784325);
+	ASSERT_EQ(distanceTo1_0, 0.038544251994090221);
+}
 
-	// Calculating the position at the paraconsistent plane
-	std::cout << "Certainty degree     :" << certaintyDegree_G1 << std::endl;
-	std::cout << "Contradiction degree :" << contradictionDegree_G2 << std::endl;
-	std::cout << "Dist from point(1,0) :" << distanceTo1_0 << std::endl;
-	std::cout << "----------------------" << std::endl;
+TEST(paraconsistentTest, certaintyDegree_G1)
+{
+	long double alpha = calculateAlpha(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	long double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	double certaintyDegree_G1 = calcCertaintyDegree_G1(alpha, betha);
 
-	return 0;
+	ASSERT_EQ(certaintyDegree_G1, 0.97274509803921572);
+}
+
+TEST(paraconsistentTest, contradictionDegree_G2)
+{
+	long double alpha = calculateAlpha(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	long double betha = calculateBeta(amountOfClasses, featureVectorsPerClass, featureVectorSize, arrClasses);
+	double contradictionDegree_G2 = calcContradictionDegree_G2(alpha, betha);
+
+	ASSERT_EQ(contradictionDegree_G2, -0.027254901960784325);
+}
+
+int main(int argc, char **argv)
+{
+	initializeClasses(arrClasses, amountOfClasses, featureVectorsPerClass, featureVectorSize);
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }

@@ -6,6 +6,13 @@ project(voiceSpoofingDetection
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
+###############################################
+###############################################
+### Executable and libraries configuration  ###
+###############################################
+###############################################
+
+# Executables and its objects
 add_executable(voiceSpoofingDetection
 src/main.cpp
 
@@ -47,6 +54,7 @@ src/experiments/07/Experiment07.cpp
 src/experiments/08/Experiment08.cpp
 )
 
+# User libraries
 target_include_directories(voiceSpoofingDetection 
 	PUBLIC src/lib/classifiers
 	PUBLIC src/lib/file
@@ -61,8 +69,31 @@ target_include_directories(voiceSpoofingDetection
 	PUBLIC src/lib/wavelet
 )
 
+# System libraries (python)
 find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 target_link_libraries(voiceSpoofingDetection ${PYTHON_LIBRARIES})
 
+# C++ version
 target_compile_features(voiceSpoofingDetection PRIVATE cxx_std_20)
+
+########################################
+########################################
+### Google Unit Testing suite setup  ###
+########################################
+########################################
+
+# Locate GTest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+# Load paraconsistent tests
+add_executable( paraconsistentTests
+	src/lib/paraconsistent/paraconsistentTest.cpp
+	src/lib/utility/comparison.cpp
+	src/lib/linearAlgebra/linearAlgebra.cpp
+	src/lib/paraconsistent/paraconsistent.cpp
+)
+
+# Link paraconsistentTests with what we want to test and the GTest and pthread library
+target_link_libraries(paraconsistentTests ${GTEST_LIBRARIES} pthread)
