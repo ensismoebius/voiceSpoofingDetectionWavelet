@@ -19,6 +19,20 @@ twocolumn			% Enables two column parts
 	\input{chapters/data/faceAndCover.tex}
 	\input{chapters/data/documentPreamble.tex}
 
+
+\newcommand{\uga}{
+	\usebibmacro{prenote}{
+		\ifciteindex{
+			\indexfield{indextitle}
+		}{}%
+		\printtext[bibhyperref]{
+			\printfield[citetitle]{labeltitle}
+		}
+	}{\multicitedelim}{
+		\usebibmacro{postnote}
+	}
+}
+
 % Code listing settings
 	% Translate Listing -> Algoritmo
 	\renewcommand{\lstlistingname}{Algoritmo}

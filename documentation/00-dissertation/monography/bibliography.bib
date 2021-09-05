@@ -6,10 +6,7 @@ pages = {102795},
 year = {2020},
 issn = {1051-2004},
 doi = {https://doi.org/10.1016/j.dsp.2020.102795},
-url = {https://www.sciencedirect.com/science/article/pii/S1051200420301408},
-author = {Susanta Sarangi and Md Sahidullah and Goutam Saha},
-keywords = {Mel scale, Frequency warping function, Speech-signal-based scale, Principal component analysis (PCA), NIST speaker recognition evaluation (SRE), VoxCeleb1},
-abstract = {Most of the speech processing applications use triangular filters spaced in mel-scale for feature extraction. In this paper, we propose a new data-driven filter design method which optimizes filter parameters from a given speech data. First, we introduce a frame-selection based approach for developing speech-signal-based frequency warping scale. Then, we propose a new method for computing the filter frequency responses by using principal component analysis (PCA). The main advantage of the proposed method over the recently introduced deep learning based methods is that it requires very limited amount of unlabeled speech-data. We demonstrate that the proposed filterbank has more speaker discriminative power than commonly used mel filterbank as well as existing data-driven filterbank. We conduct automatic speaker verification (ASV) experiments with different corpora using various classifier back-ends. We show that the acoustic features created with proposed filterbank are better than existing mel-frequency cepstral coefficients (MFCCs) and speech-signal-based frequency cepstral coefficients (SFCCs) in most cases. In the experiments with VoxCeleb1 and popular i-vector back-end, we observe 9.75\% relative improvement in equal error rate (EER) over MFCCs. Similarly, the relative improvement is 4.43\% with recently introduced x-vector system. We obtain further improvement using fusion of the proposed method with standard MFCC-based approach.}
+author = {Susanta Sarangi and Md Sahidullah and Goutam Saha}
 }
 
 @article{dsp3,
@@ -20,10 +17,8 @@ pages = {30-39},
 year = {2019},
 issn = {1051-2004},
 doi = {https://doi.org/10.1016/j.dsp.2019.02.018},
-url = {https://www.sciencedirect.com/science/article/pii/S105120041830736X},
 author = {Jichen Yang and Rohan Kumar Das},
-keywords = {Low frequency frame-wise normalization, CQT, Playback speech detection, Octave spectrum, Linear power spectrum},
-abstract = {The playback speech contains information from the environment, playback and recorder used. This work focuses on proposal of a novel normalization scheme, namely, low frequency frame-wise normalization (LFFN) as one of the modules in feature extraction process that is hypothesized to help in capturing the artifacts from the playback speech. It is based on low frequency bin processing that is performed frame-wise and hence its name. The constant-Q transform (CQT) based features are found to provide the benchmark results for detection of spoofing attacks. In this work, LFFN is combined with CQT to extract two new features from octave and linear power spectra, respectively. The first one is obtained by CQT, LFFN and octave segmentation that is referred to as constant-Q normalization segmentation coefficients (CQNSC). The latter uses conventional constant-Q cepstral coefficient (CQCC) and LFFN to obtain constant-Q normalization cepstral coefficients (CQNCC). The studies are performed on ASVspoof 2017 version 2.0 corpus that is designed for studying playback speech detection. The experimental results show the effectiveness of proposed LFFN with CQT based features. We obtain equal error rate of 10.63\% and 10.31\% for CQNSC and CQNCC features on the evaluation set of ASVspoof 2017 version 2.0 corpus, respectively.}
+keywords = {Low frequency frame-wise normalization, CQT, Playback speech detection, Octave spectrum, Linear power spectrum}
 }
 
 
@@ -35,10 +30,7 @@ pages = {66-79},
 year = {2019},
 issn = {1051-2004},
 doi = {https://doi.org/10.1016/j.dsp.2019.01.023},
-url = {https://www.sciencedirect.com/science/article/pii/S1051200418304287},
-author = {Arnab Poddar and Md Sahidullah and Goutam Saha},
-keywords = {Gaussian mixture model (GMM), Identity vector (i-vector), Short utterances, Speaker verification, Total variability, Universal background model (UBM)},
-abstract = {The performances of the automatic speaker verification (ASV) systems degrade due to the reduction in the amount of speech used for enrollment and verification. Combining multiple systems based on different features and classifiers considerably reduces speaker verification error rate with short utterances. This work attempts to incorporate supplementary information during the system combination process. We use quality of the estimated model parameters as supplementary information. We introduce a class of novel quality measures formulated using the zero-order sufficient statistics used during the i-vector extraction process. We have used the proposed quality measures as side information for combining ASV systems based on Gaussian mixture model–universal background model (GMM–UBM) and i-vector. The proposed methods demonstrate considerable improvement in speaker recognition performance on NIST SRE corpora, especially in short duration conditions. We have also observed improvement over existing systems based on different duration-based quality measures.}
+author = {Arnab Poddar and Md Sahidullah and Goutam Saha}
 }
 
 @article{dsp1,
@@ -49,17 +41,14 @@ pages = {171-180},
 year = {2018},
 issn = {1051-2004},
 doi = {https://doi.org/10.1016/j.dsp.2017.10.010},
-url = {https://www.sciencedirect.com/science/article/pii/S1051200417302373},
 author = {Cemal Hanilçi},
-keywords = {Speaker verification, i-vector, Anti-spoofing, Countermeasure},
-abstract = {State-of-the-art i-vector based automatic speaker verification (ASV) systems lead to considerably high performance and thus voice becomes one of the most important biometric modality for person authentication. However, similar to other biometrics, ASV systems are highly vulnerable to spoofing attacks. Therefore, developing countermeasures for detecting spoofing attacks plays an important role against the concerns regarding the reliability of ASV systems. Recent studies have shown that simple Gaussian mixture model (GMM) classifier outperforms i-vector countermeasures. In this study, we focus on improving the spoofing detection performance of i-vector system using cosine and probabilistic linear discriminant analysis (PLDA) scoring. Experimental results conducted on ASVspoof 2015 database reveals that the data used to train the two key elements of i-vector system, universal background model (UBM) and the i-vector extractor (T-matrix), play an important role on spoofing detection performance. In this paper, we study the effect of using different type of data (genuine/human or spoofed) to train these two elements and their performance on spoofing detection. In particular, extracting i-vectors using UBM trained with genuine (human) speech utterances and T-matrix trained from both genuine and spoofed utterances leads to 50\% performance improvement on spoofing detection. With the proposed scheme, unlike the previous results, i-vector countermeasure outperforms GMM classifier. Finally, experimental results shows that recently proposed constant Q cepstral coefficients (CQCC) shows superior performance in comparison to standard Mel-frequency cepstral coefficients (MFCC).}
 }
 
 @Book{bishop:2006:PRML,
-  author = 	 "Christopher M. Bishop",
-  title = 	 "Pattern Recognition and Machine Learning",
+  author = "Christopher M. Bishop",
+  title = "Pattern Recognition and Machine Learning",
   publisher = "Springer",
-  year = 	 "2006"
+  year = "2006"
 }
 
 @article{vs1,
@@ -68,7 +57,7 @@ title = {HSBC reports high trust levels in biometric tech as twins spoof its voi
 journal = {Biometric Technology Today},
 number = {6},
 pages = {12},
-year = {2017},
+year = {2017}
 }
 
 @article{vs2,
@@ -187,15 +176,10 @@ author = {J. Ancilin and A. Milton}
 	title = {{Análise da frequência fundamental, jitter, shimmer e intensidade vocal em crianças com transtorno fonológico}},
 	journal = {{Revista Brasileira de Otorrinolaringologia}},
 	author={Haydée F. Wertzner; Solange Schreiber; Luciana Amaro},
-	ISSN = {0034-7299},
-	language = {pt},
-	URL = {http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0034-72992005000500007&nrm=iso},
 	volume = {71},
 	year = {2005},
 	month = {10},
-	pages = {582 - 588},
-	publisher = {scielo},
-	crossref = {10.1590/S0034-72992005000500007},
+	pages = {582 - 588}
 }
 
 @book{da1998elementos,
@@ -203,7 +187,6 @@ author = {J. Ancilin and A. Milton}
 	author={da Costa, N.C.A. and B{\'e}ziau, J.Y. and Bueno, O.},
 	lccn={99887141},
 	series={Cole{\c{c}}{\~a}o CLE},
-	url={https://books.google.com.br/books?id=MGCKGwAACAAJ},
 	year={1998},
 	publisher={Centro de L{\'o}gica, Epistemologia e Hist{\'o}ria da Ci{\^e}ncia, UNICAMP}
 }
@@ -212,15 +195,12 @@ author = {J. Ancilin and A. Milton}
 	title = {Paraconsistência em informática e inteligência artificial},
 	journal = {Estudos Avançados},
 	author={Costa, Newton C.A. da AND Abe, Jair Minoro},
-	ISSN = {0103-4014},
 	language = {pt},
-	URL = {http://www.scielo.br/scielo.php?script=sci_arttext&pid=S0103-40142000000200012&nrm=iso},
 	volume = {14},
 	year = {2000},
 	month = {08},
 	pages = {161 - 174},
-	publisher = {scielo},
-	crossref = {10.1590/S0103-40142000000200012},
+	publisher = {scielo}
 }
 
 @book{bosi2002introduction,
@@ -269,10 +249,7 @@ author = {J. Ancilin and A. Milton}
 	volume={32},
 	number={3},
 	pages={162-166},
-	abstract={The discrete wavelet transform (DWT) [1] is one of the most powerful tools for time-frequency signal analysis. Its applicability is extremely relevant in various areas of science, as exemplified in [2], with digital signal processing (DSP) as the most notable one. After teaching this topic for many years, I have noted that neither young DSP students nor experienced researchers have perceived several interesting aspects of the DWT from a practical point of view. Thus, the objective of this article is to construe such relevant aspects, providing useful tips to calculate the transform in one (1-D) and two (2-D) dimensions. The entire discussion is also valid to the discrete wavelet-packet transform (DWPT), which extends the decomposition carried out by the DWT so that a finer time-frequency analysis takes place, and also to the discrete shapelet transform (DST) [3], which extends the properties of the DWT and DWPT so that a joint time-frequency-shape signal analysis becomes possible.},
-	keywords={Discrete wavelet transforms;Approximation methods;Equations;Matrix decomposition;Digital signal processing;Mathematical model},
 	doi={10.1109/MSP.2014.2368586},
-	ISSN={1558-0792},
 	month={May},
 }
 
@@ -297,14 +274,12 @@ author = {J. Ancilin and A. Milton}
 	year={1949},
 	organization={United States. Navy Dept. Office of Naval Research and United States. Office of Naval Research},
 	lccn={49048299},
-	url={https://archive.org/details/acousticmeasurem00inbera/mode/2up?q=20%2C+160},
 	publisher={J. Wiley}
 }
 
 
 @book{Jensen_2001,
 	doi = {10.1007/978-3-642-56702-5},
-	url = {https://doi.org/10.1007%2F978-3-642-56702-5},
 	year = 2001,
 	publisher = {Springer Berlin Heidelberg},
 	author = {Arne Jensen and Anders la Cour-Harbo},
@@ -320,10 +295,9 @@ year={2019},
 volume={36},
 number={1},
 pages={154-158},
-keywords={feature extraction;formal logic;knowledge representation;learning (artificial intelligence);pattern classification;feature learning;paraconsistent logic;data classification;nonclassical logical system;classifiers;paraconsistent feature engineering;artificial intelligence;Feature extraction;Task analysis;Artificial intelligence;Digital signal processing;Uncertainty},
 doi={10.1109/MSP.2018.2874549},
-ISSN={},
-month={Jan},}
+month={Jan}
+}
 
 
 @ARTICLE{Rod5254905,
@@ -334,10 +308,8 @@ month={Jan},}
 	volume={28},
 	number={5},
 	pages={14-29},
-	keywords={discrete wavelet transforms;encoding;medical signal processing;time-frequency analysis;time-frequency analysis;signal-coding tool;biomedical signal processing;continuous wavelet transform;discrete wavelet transform;time-frequency decomposition tool;Signal analysis;Wavelet analysis;Continuous wavelet transforms;Wavelet transforms;Discrete wavelet transforms;Frequency;Transient analysis;Biomedical signal processing;Discrete transforms;Signal resolution;Algorithms;Biomedical Technology;Diagnostic Imaging;Electrodiagnosis;Fourier Analysis;Image Processing, Computer-Assisted;Normal Distribution;Pattern Recognition, Automated;Signal Processing, Computer-Assisted},
 	doi={10.1109/MEMB.2009.934244},
-	ISSN={},
-	month={Sep.},
+	month={Sep.}
 }
 
 
@@ -429,24 +401,17 @@ month={Jan},}
 	publisher={Universidade Federal de Sergipe}
 }
 
-
 @Article{Ren2019,
-	author="Ren, Yanzhen
-	and Fang, Zhong
-	and Liu, Dengkai
-	and Chen, Changwen",
+	author="Ren, Yanzhen and Fang, Zhong and Liu, Dengkai and Chen, Changwen",
 	title="Replay attack detection based on distortion by loudspeaker for voice authentication",
 	journal="Multimedia Tools and Applications",
 	year="2019",
-	month="Apr",
+	month="4",
 	day="01",
 	volume="78",
 	number="7",
 	pages="8383--8396",
-	abstract="Identity authentication based on Automatic Speaker Verification (ASV) has attracted extensive attention. Voice can be used as a substitute of password in many applications. However, the security of current ASV systems has been seriously challenged by many malicious spoofing attacks. Among all those attacks, replay attack is one of the biggest threats to the ASV System, where an adversary can use a pre-recorded speech sample of the legal user to access the ASV system. In this paper, we present a replay attack detection (RAD) scheme to distinguish normal speech and replayed speech. We focus on the distortion caused by loudspeaker: low-frequency attenuation and high-frequency harmonics, and present a suite of RAD features DL-RAD, including Harmonic Energy Ratio (HER), Low Spectral Ratio (LSR), Low Spectral Variance (LSV), and Low Spectral Difference Variance (LSDV), to describe the different characteristics between the normal speech signal and replay speech signal. SVM is adopted as a classifier to evaluate the performance of these features. Experiment results show that the True Positive Rate (TPR), True Negative Rate (TNR) of the proposed method are about 98.15{\%} and 98.75{\%} respectively, which are significantly better than the existing scheme. The proposed scheme can be applied to both text-dependent and text-independent ASV systems.",
-	issn="1573-7721",
-	doi="10.1007/s11042-018-6834-3",
-	url="https://doi.org/10.1007/s11042-018-6834-3"
+	doi="10.1007/s11042-018-6834-3"
 }
 
 
@@ -458,12 +423,9 @@ month={Jan},}
 	volume={11},
 	number={4},
 	pages={632-643},
-	keywords={cepstral analysis;electromagnetic wave scattering;speaker recognition;speech synthesis;antispoofing countermeasure;scattering spectral decomposition;feature mapping;spoofing method;voice conversion;speech synthesis;speaker verification system;front-ends;hierarchical scattering decomposition technique;constant-Q spectral decomposition;stand-alone spoofing detection;scattering cepstral coefficient;SCC;spoofing and antispoofing corpus;SAS corpus;ASVspoof 2015 challenge corpus;Speech;Feature extraction;Speech synthesis;Mel frequency cepstral coefficient;Australia;Scattering;Anti-spoofing;automatic speaker verification;modulation spectrum;scattering spectrum;spoofing countermeasures;spoofing detection;wavelet decomposition},
 	doi={10.1109/JSTSP.2016.2647202},
-	ISSN={},
-	month={June},
+	month={6}
 }
-
 
 @misc{SAS2015,
 	author = {Wu, Zhizheng; et al.},
@@ -521,9 +483,7 @@ month={Jan},}
 	volume={},
 	number={},
 	pages={407-411},
-	keywords={acoustic signal processing;cepstral analysis;feature extraction;Gaussian processes;mixture models;security of data;speaker recognition;speech processing;normalized constant Q cepstral feature;voiceprint authentication system;text-independent detection;spectral features;original voice;replayed voice;constant Q cepstral coefficients;acoustic features;cepstral mean;variance normalization;detection performance;suspected voice;replay attack detection;postprocessing method;Gaussian mixture model;ASVspoof 2017 database;spoofing devices;Feature extraction;Cepstral analysis;Detection algorithms;Training;Authentication;Gaussian mixture model;replay detection;CQCC;CMVN;GMM},
 	doi={10.1109/ICCCBDA.2019.8725688},
-	ISSN={},
 	month={April},
 }
 
@@ -537,10 +497,7 @@ month={Jan},}
 	volume="77",
 	number="13",
 	pages="16099--16111",
-	abstract="Automatic speaker verification (ASV) systems are highly vulnerable against spoofing attacks. Anti-spoofing, determining whether a speech signal is natural/genuine or spoofed, is very important for improving the reliability of the ASV systems. Spoofing attacks using the speech signals generated using speech synthesis and voice conversion have recently received great interest due to the 2015 edition of Automatic Speaker Verification Spoofing and Countermeasures Challenge (ASVspoof 2015). In this paper, we propose to use linear prediction (LP) residual based features for anti-spoofing. Three different features extracted from LP residual signal were compared using the ASVspoof 2015 database. Experimental results indicate that LP residual phase cepstral coefficients (LPRPC) and LP residual Hilbert envelope cepstral coefficients (LPRHEC) obtained from the analytic signal of the LP residual yield promising results for anti-spoofing. The proposed features are found to outperform standard Mel-frequency cepstral coefficients (MFCC) and Cosine Phase (CosPhase) features. LPRPC and LPRHEC features give the smallest equal error rates (EER) for eight spoofing methods out of ten spoofing attacks in comparison to MFCC and CosPhase features.",
-	issn="1573-7721",
-	doi="10.1007/s11042-017-5181-0",
-	url="https://doi.org/10.1007/s11042-017-5181-0"
+	doi="10.1007/s11042-017-5181-0"
 }
 
 @inproceedings{ ISI:000473343500086,
@@ -557,23 +514,7 @@ month={Jan},}
 	Rahmeni, Raoudha, Univ Sfax, Natl Sch Engineers Sfax ENIS, Sfax, Tunisia.
 	Ben Aicha, Anis, Univ Carthage, Higher Sch Commun Tunis SUPCOM, COSIM Lab, Tunis, Tunisia.
 	Ben Aicha, Anis, Univ Carthage, Fac Sci Bizerte, Tunis, Tunisia.
-	Ben Ayed, Yassine, Univ Sfax, Higher Inst Comp Sci \& Multimedia ISIMS, MIRACL Lab, Sfax, Tunisia.}},
-	ISSN = {{2378-7163}},
-	ISBN = {{978-1-7281-1292-3}},
-	Keywords = {{ASV; Speech spoofing; Voice texture; Machine learning}},
-	Keywords-Plus = {{SPEAKER VERIFICATION; COUNTERMEASURES; CLASSIFICATION; FEATURES}},
-	Research-Areas = {{Automation \& Control Systems; Computer Science}},
-	Web-of-Science-Categories  = {{Automation \& Control Systems; Computer Science, Theory \& Methods}},
-	Author-Email = {{raoudha.rahmeni@gmail.com
-	anis.benaicha@supcom.tn
-	yassine.benayed@gmail.com}},
-	Number-of-Cited-References = {{17}},
-	Times-Cited = {{0}},
-	Usage-Count-Last-180-days = {{0}},
-	Usage-Count-Since-2013 = {{0}},
-	Doc-Delivery-Number = {{BN0RG}},
-	Unique-ID = {{ISI:000473343500086}},
-	DA = {{2019-11-17}},
+	Ben Ayed, Yassine, Univ Sfax, Higher Inst Comp Sci \& Multimedia ISIMS, MIRACL Lab, Sfax, Tunisia.}}
 }
 
 @article{TODISCO2017516,
@@ -583,11 +524,7 @@ month={Jan},}
 	volume = "45",
 	pages = "516 - 535",
 	year = "2017",
-	issn = "0885-2308",
-	doi = "https://doi.org/10.1016/j.csl.2017.01.001",
-	url = "http://www.sciencedirect.com/science/article/pii/S0885230816303114",
-	keywords = "Spoofing countermeasures, Presentation attack detection, Automatic speaker verification, Constant Q transform, Cepstral analysis",
-	abstract = "Recent evaluations such as ASVspoof 2015 and the similarly-named AVspoof have stimulated a great deal of progress to develop spoofing countermeasures for automatic speaker verification. This paper reports an approach which combines speech signal analysis using the constant Q transform with traditional cepstral processing. The resulting constant Q cepstral coefficients (CQCCs) were introduced recently and have proven to be an effective spoofing countermeasure. An extension of previous work, the paper reports an assessment of CQCCs generalisation across three different databases and shows that they deliver state-of-the-art performance in each case. The benefit of CQCC features stems from a variable spectro-temporal resolution which, while being fundamentally different to that used by most automatic speaker verification system front-ends, also captures reliably the tell-tale signs of manipulation artefacts which are indicative of spoofing attacks. The second contribution relates to a cross-database evaluation. Results show that CQCC configuration is sensitive to the general form of spoofing attack and use case scenario. This finding suggests that the past single-system pursuit of generalised spoofing detection may need rethinking."
+	doi = "https://doi.org/10.1016/j.csl.2017.01.001"
 }
 
 @inproceedings{Patel2015,
@@ -605,9 +542,7 @@ month={Jan},}
 	volume={},
 	number={},
 	pages={5475-5479},
-	keywords={cepstral analysis;feature extraction;probability;signal resolution;speaker recognition;wavelet transforms;STC antispoofing system;ASVspoof 2015 challenge;automatic speaker verification spoofing and countermeasures challenge 2015;speech technology center system;robust countermeasure;front-end MFCC feature;phase spectrum;multiresolution wavelet transform;TV approach;probability modelling;spoofing detection system;phase-related feature;wavelet-based feature;Feature extraction;Mel frequency cepstral coefficient;Speech;Support vector machines;Training;Wavelet transforms;spoofing;anti-spoofing;speaker recognition;phase spectrum;wavelet transform;TV;SVM;DBN},
 	doi={10.1109/ICASSP.2016.7472724},
-	ISSN={},
 	month={March},
 }
 
@@ -624,129 +559,26 @@ month={Jan},}
 	Book-Group-Author = {{IEEE}},
 	Title = {{Replay Attack Detection in Speaker Verification Using non-voiced
 	segments and Decision Level Feature Switching}},
-	Series = {{International Conference on Signal Processing and Communications SPCOM}},
 	Year = {{2018}},
-	Pages = {{332-336}},
-	Note = {{12th International Conference on Signal Processing and Communications
-	(SPCOM), Indian Inst Sci, Bangalore, INDIA, JUL 16-19, 2018}},
-	Organization = {{IEEE}},
-	Abstract = {{This paper proposes a novel approach for replay attack detection, using
-	reverberation and channel information from non-voiced (silence and
-	unvoiced) segments of utterances. The non-voiced segments are determined
-	using a voice activity detector. These non-voiced segments are likely to
-	contain reverberation and channel information. Multiple feature
-	representations are used to capture the remnant vocal tract information
-	in non-voiced segments. Gaussian mixture models are used to build three
-	different baseline systems corresponding to that of three different
-	features. Voting is performed to decide whether a given input utterance
-	is replayed or not. Equal error rate (EER) is computed using the
-	likelihood ratio of the genuine and spoofed model from the best baseline
-	system. Evaluation on the ASV-Spoof-2017 challenge dataset shows that
-	the proposed approach outperforms the best baseline system with a
-	relative improvement of 37\% in terms of EER.}},
-	ISSN = {{2474-9168}},
-	EISSN = {{2474-915X}},
-	ISBN = {{978-1-5386-3821-7}},
-	Unique-ID = {{ISI:000490497200068}},
+	Pages = {{332-336}}
 }
 
 @inproceedings{ ISI:000465363900136,
 	Author = {Kamble, Madhu R. and Patil, Hemant A.},
-	Book-Group-Author = {{Int Speech Commun Assoc}},
 	Title = {{Novel Variable Length Energy Separation Algorithm using Instantaneous
 	Amplitude Features For Replay Detection}},
-	Series = {{Interspeech}},
 	Year = {{2018}},
 	Pages = {{646-650}},
-	Note = {{19th Annual Conference of the
-	International-Speech-Communication-Association (INTERSPEECH 2018),
-	Hyderabad, INDIA, AUG 02-SEP 06, 2018}},
-	Organization = {{Int Speech Commun Assoc}},
-	Abstract = {{Voice-based speaker authentication or Automatic Speaker Verification
-	(ASV) system is now becoming practical reality after several decades of
-	research. However, still this technology is very much susceptible to
-	various spoofing attacks. Among various spoofing attacks, replay is the
-	most challenging at@online{TIMIT2018,
-	author = {Linguistic Data Consortium},
-	title = {TIMIT Acoustic-Phonetic Continuous Speech Corpus},
-	date = {2018},
-	url = {https://catalog.ldc.upenn.edu/byyear#2018},
-	}tack. In this paper, we propose a novel feature set
-	based on our recently introduced Variable length Energy Separation
-	Algorithm (VESA) during INTERSPEECH 2017. The key idea of this paper is
-	to capture the Instantaneous Amplitude (IA) obtained from the
-	instantaneous energy fluctuations. The replay speech is affected by
-	acoustic environment and distortions of intermediate device. Thus, the
-	noise added in replayed speech is important to detect. The Amplitude
-	Modulations (AM) are more susceptible to noise and multipath
-	interferences that may result due to replay mechanism. The experiments
-	are performed on various dependency index (DI) and lower EER of 6.12 \%
-	and 11.94 \% is found on dev and eval set, respectively, of ASV Spoof
-	2017 Challenge database. Furthermore, we compare our results with CQCC,
-	LFCC, MFCC, and VESA-IFCC feature sets. The score-level fusion VESA-IFCC
-	and proposed feature set further reduced the EER to 0.19 \% and 7.11 \%
-	on dev and eval set, respectively.}},
-	DOI = {{10.21437/Interspeech.2018-1687}},
-	ISSN = {{2308-457X}},
-	ISBN = {{978-1-5108-7221-9}},
-	Unique-ID = {{ISI:000465363900136}},
+	DOI = {{10.21437/Interspeech.2018-1687}}
 }
 
 @inproceedings{ ISI:000465363900139,
 	Author = {Wickramasinghe, Buddhi and Irtza, Saad and Ambikairajah, Eliathamby and
 	Epps, Julien},
-	Book-Group-Author = {{Int Speech Commun Assoc}},
 	Title = {{Frequency Domain Linear Prediction Features for Replay Spoofing Attack
 	Detection}},
-	Series = {{Interspeech}},
 	Year = {{2018}},
-	Pages = {{661-665}},
-	Note = {{19th Annual Conference of the
-	International-Speech-Communication-Association (INTERSPEECH 2018),
-	Hyderabad, INDIA, AUG 02-SEP 06, 2018}},
-	Organization = {{Int Speech Commun Assoc}},
-	Abstract = {{Automatic speaker verification (ASV) systems are vulnerable to various
-	types of spoofing attacks such as speech synthesis, voice conversion and
-	replay attacks. Recent research has highlighted the need for more
-	effective countermeasures for replay attacks, which can be very
-	challenging to detect, however replayed speech has previously shown
-	frequency band-specific differences when compared with genuine speech.
-	In this paper, we propose the use of long-term temporal envelopes of
-	subband signals using a frequency domain linear prediction (FDLP)
-	framework. This flexible framework makes use of temporal envelope
-	information, which has not previously been investigated for replay
-	spoofing detection. Evaluations of the proposed system and its fusion
-	with other subsystems were carried out on the ASVspoof 2017 database.
-	Interestingly, smoother temporal envelopes, based on very long windows
-	of up to 1 second, seem to be most successful and show good prospects
-	for performance improvements via fusion.}},
-	Publisher = {{ISCA-INT SPEECH COMMUNICATION ASSOC}},
-	Address = {{C/O EMMANUELLE FOXONET, 4 RUE DES FAUVETTES, LIEU DIT LOUS TOURILS,
-	BAIXAS, F-66390, FRANCE}},
-	Type = {{Proceedings Paper}},
-	Language = {{English}},
-	Affiliation = {{Wickramasinghe, B (Reprint Author), UNSW Australia, Sch Elect Engn \& Telecommun, Sydney, NSW, Australia.
-	Wickramasinghe, B (Reprint Author), CSIRO, Data61, Sydney, NSW, Australia.
-	Wickramasinghe, Buddhi; Irtza, Saad; Ambikairajah, Eliathamby; Epps, Julien, UNSW Australia, Sch Elect Engn \& Telecommun, Sydney, NSW, Australia.
-	Wickramasinghe, Buddhi; Ambikairajah, Eliathamby; Epps, Julien, CSIRO, Data61, Sydney, NSW, Australia.}},
-	DOI = {{10.21437/Interspeech.2018-1574}},
-	ISSN = {{2308-457X}},
-	ISBN = {{978-1-5108-7221-9}},
-	Keywords = {{ASVspoof 2017; frequency domain linear prediction; convolutional neural
-	network; replay attack}},
-	Keywords-Plus = {{ENVELOPE}},
-	Research-Areas = {{Computer Science; Engineering}},
-	Web-of-Science-Categories  = {{Computer Science, Artificial Intelligence; Computer Science, Theory \&
-	Methods; Engineering, Electrical \& Electronic}},
-	Author-Email = {{b.wickramasinghe@student.unsw.edu.au}},
-	ORCID-Numbers = {{Epps, Julien/0000-0001-6624-5551}},
-	Number-of-Cited-References = {{22}},
-	Times-Cited = {{3}},
-	Usage-Count-Last-180-days = {{0}},
-	Usage-Count-Since-2013 = {{0}},
-	Doc-Delivery-Number = {{BM5PH}},
-	Unique-ID = {{ISI:000465363900139}},
-	DA = {{2019-11-20}},
+	Pages = {{661-665}}
 }
 
 @inproceedings{Suthokumar2018,
@@ -754,8 +586,7 @@ month={Jan},}
 	title={Modulation Dynamic Features for the Detection of Replay Attacks},
 	year=2018,
 	pages={691--695},
-	doi={10.21437/Interspeech.2018-1846},
-	url={http://dx.doi.org/10.21437/Interspeech.2018-1846}
+	doi={10.21437/Interspeech.2018-1846}
 }
 
 @inproceedings{ ISI:000458728700054,
@@ -764,35 +595,7 @@ month={Jan},}
 	Title = {{Novel Energy Separation Based Frequency Modulation Features For Spoofed
 	Speech Classification}},
 	Year = {{2017}},
-	Pages = {{326-331}},
-	Note = {{9th International Conference on Advances in Pattern Recognition (ICAPR),
-	Indian Stat Inst Bangalore, Bangalore, INDIA, DEC 27-30, 2017}},
-	Abstract = {{Speech Synthesis (SS) and Voice Conversion (VC) methods provides a great
-	risk for Automatic Speaker Verification (ASV) system. In this paper, we
-	tried to find the difference between natural and spoofed speech signals
-	using Teager Energy Operator-based Energy Separation Algorithm
-	(TEO-ESA). Here, we exploit the contribution of Amplitude Envelope (AE)
-	and Instantaneous Frequency (IF) in each narrowband filtered signals
-	energy via ESA to capture possible changes in a temporal and spectral
-	envelope of the synthetic speech signal generated by the machines as
-	opposed to natural signals. Furthermore, IF was used for classification
-	of natural vs. spoof speech with Gaussian Mixture Model (GMM) as a
-	classifier. These findings may assist to distinguish these two speeches
-	and provide an aid to alleviate possible impostor attacks in voice
-	biometrics. The experiments are done on ASV Spoof 2015 Challenge
-	database. We have compared proposed Energy Separation
-	Algorithm-Instantaneous Frequency Cosine Coefficients (ESA-IFCC) with
-	Mel Frequency Cepstral Coefficients (MFCC) features. On the development
-	set, MFCC alone gave an Equal Error Rate (EER) of (6.98 \%) and ESA-IFCC
-	gave (5.43 \%) with 13-D static features. With score level fusion of
-	MFCC and ESA-IFCC EER reduced to 3.45 \% on static feature vector. The
-	EER decreases further to 2.01 \% and 1.89 \% for Delta and Delta Delta
-	features. On evaluation set, the overall average error rate for known
-	and unknown attacks was 6.79 \% for ESA-IFCC and was significantly
-	better than the MFCC (9.15 \%) and their score-level fused EER (7.16
-	\%).}},
-	ISBN = {{978-1-5386-2241-4}},
-	Unique-ID = {{ISI:000458728700054}},
+	Pages = {{326-331}}
 }
 
 @inproceedings{ ISI:000392503100008,
@@ -801,60 +604,7 @@ month={Jan},}
 	Title = {{Modified Gammatone Frequency Cepstral Coefficients to Improve Spoofing
 	Detection}},
 	Year = {{2016}},
-	Pages = {{50-55}},
-	Note = {{International Conference on Advances in Computing, Communications and
-	Informatics (ICACCI), Jaipur, INDIA, SEP 21-24, 2016}},
-	Organization = {{LNM Inst Informat Technol; IEEE Commun Soc; IEEE Syst Man \& Cybernet
-	Soc}},
-	Abstract = {{Voice spooling is one of the major challenges that needs to be addressed
-	in the development of robust speaker verification (SV) systems.
-	Therefore, it is necessary to develop systems (spoofing detectors) that
-	are able distinguish between genuine and spoofed speech utterances. In
-	this work, we propose the use of modified gammatone frequency cepstral
-	coefficients (MGFCC) on enhancing the performance of spoofing detection.
-	We also compare the effectiveness of GMM based spooling detectors
-	developed using mel frequency cepstral coefficients (MFCC), gammatone
-	frequency cepstral coefficients (GFCC), modified group delay cepstral
-	coefficients (MGDCC) and cosine normalized phase cepstral coefficients
-	(CNPCC) with that of MGFCC. The experimental results on ASV spoof 2015
-	database show that MGFCC outperforms magnitude based, MFCC and GFCC, and
-	phase based, MGDCC and CNPCC, features on the known attack conditions.
-	Further, we performed a score level fusion of the systems developed
-	using MFCC, MGFCC, MGDCC and CNPCC. It is observed that the fused system
-	significantly outperforms all the individual systems for known and
-	unknown attack conditions of ASV spoof 2015 database.}},
-	Publisher = {{IEEE}},
-	Address = {{345 E 47TH ST, NEW YORK, NY 10017 USA}},
-	Type = {{Proceedings Paper}},
-	Language = {{English}},
-	Affiliation = {{Das, KA (Reprint Author), Amrita Univ, Amrita Vishwa Vidyapeetham, Amrita Sch Engn, Dept Elect \& Commun Engn,Machine Intelligence Res, Coimbatore 641112, Tamil Nadu, India.
-	Das, K. Arun; George, Kuruvachan K.; Kumar, C. Santhosh; Veni, S., Amrita Univ, Amrita Vishwa Vidyapeetham, Amrita Sch Engn, Dept Elect \& Commun Engn,Machine Intelligence Res, Coimbatore 641112, Tamil Nadu, India.
-	Panda, Ashish, TCS Innovat Labs, Bombay, Maharashtra, India.}},
-	ISBN = {{978-1-5090-2028-7}},
-	Keywords = {{spoofed speech; spoofing detection; GMM; MGFCC; modified group delay;
-	cosine normalized phase}},
-	Research-Areas = {{Computer Science; Telecommunications}},
-	Web-of-Science-Categories  = {{Computer Science, Interdisciplinary Applications; Computer Science,
-	Theory \& Methods; Telecommunications}},
-	Author-Email = {{arundask7@gmail.com
-	kg\_kuruvachan@cb.amrita..edu
-	cs\_kumar@cb.amrita..edu
-	s\_veni@cb.amrita..edu
-	ashish.panda@tcs.com}},
-	Funding-Acknowledgement = {{Tata Consultancy Services (TCS); TCS Research Scholarship; CRIM,
-	Montreal; Nagaoka University of Technology, Japan}},
-	Funding-Text = {{Authors would like to thank Tata Consultancy Services (TCS) for
-	supporting the research of Kuruvachan K. George through the TCS Research
-	Scholarship. We also would like to thank Md Jahangir Alain, CRIM,
-	Montreal, Canada and Yuta. Kawakami, Nagaoka University of Technology,
-	Japan for their support during initial phase of Ole work.}},
-	Number-of-Cited-References = {{22}},
-	Times-Cited = {{0}},
-	Usage-Count-Last-180-days = {{0}},
-	Usage-Count-Since-2013 = {{1}},
-	Doc-Delivery-Number = {{BG8NK}},
-	Unique-ID = {{ISI:000392503100008}},
-	DA = {{2019-11-20}},
+	Pages = {{50-55}}
 }
 
 @inproceedings{8396208,
@@ -874,24 +624,17 @@ month={Jan},}
 	url = {https://catalog.ldc.upenn.edu/byyear#2018},
 }
 
-@Article{DiqunYan2019,
-	author="Diqun Yan
-	and Xiang, Li
-	and Wang, Zhifeng
-	and Wang, Rangding",
-	title="Detection of HMM Synthesized Speech by Wavelet Logarithmic Spectrum",
-	journal="Automatic Control and Computer Sciences",
-	year="2019",
-	month="Jan",
-	day="01",
-	volume="53",
-	number="1",
-	pages="72--79",
-	abstract="Automatic speaker verification systems have achieved great performance and been widely adopted in many security applications. One of the important requirements for the verification system is its resilience to spoofing attacks, such as impersonation, replay, speech synthesis and voice conversion. Among these attacks, speech synthesis has a high risk to the verification systems. In this paper, a novel detection method for computer-generated speech, especially for HMM synthetic speech, is proposed. It is found that the wavelet coefficients in specified position show the obvious difference between the synthetic and natural speech. The logarithmic spectrum features are extracted from the wavelet coefficients and support vector machine is used as the classifier to evaluate the performance of our proposed algorithm. The experimental results over SAS corpus show that the proposed algorithm can achieve high detection accuracy and low equal error rate.",
-	issn="1558-108X",
-	doi="10.3103/S014641161901005X",
-	url="https://doi.org/10.3103/S014641161901005X"
+@article{DiqunYan2019,
+	title={Detection of HMM Synthesized Speech by Wavelet Logarithmic Spectrum},
+	author={Yan, Diqun and Xiang, Li and Wang, Zhifeng and Wang, Rangding},
+	journal={Automatic Control and Computer Sciences},
+	volume={53},
+	number={1},
+	pages={72--79},
+	year={2019},
+	publisher={Springer}
 }
+
 
 @article{johansson1999hilbert,
 	title={The hilbert transform},
