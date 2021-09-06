@@ -138,7 +138,7 @@
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.85\linewidth]{images/AlgoProcedure02}
+			\includegraphics[width=.8\linewidth]{images/AlgoProcedure02}
 			\caption{Algoritmo que caracteriza o Procedimento 02}
 			\label{fig:experiment02Algo}
 		\end{figure}
@@ -147,26 +147,26 @@
 
 		\subsection{Procedimento 03 - classificações baseadas na SVM}
 		\label{chap:propApproach:sec:Experimento03}
-		\par Considerando as melhores combinações descobertas durante o Procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido, pois, estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. 
+		\par Considerando as melhores combinações descobertas durante o Procedimento 01, esta etapa visa medir a acurácia de uma SVM na separação das classes. O referido classificador foi escolhido, pois, estudos anteriores comprovam a sua eficácia para classificação binária \cite{bennett2000support}. \\
 		
 		\par Particularmente, a estrutura da SVM utilizada foi definida da seguinte forma e de acordo com a Figura \ref{fig:3layersSVM}: 
 		\begin{itemize}
-			\item Três camadas, sendo a primeira de entrada, com elementos passivos, a segunda com elementos ativos não-lineares de núcleos Gaussianos e a terceira, isto é, a de saída, com um elemento ativo linear; 
+			\item três camadas, sendo a primeira de entrada, com elementos passivos, a segunda com elementos ativos não-lineares de núcleos Gaussianos e a terceira, isto é, a de saída, com um elemento ativo linear; 
 			
-			\item Inexistem pesos entre a camada de entrada e a camada intermediária, implicando que a saída de cada elemento da camada de entrada conecta-se com todas as entradas de cada elemento da camada intermediária, mantendo incólumes os valores propagados;
+			\item inexistem pesos entre a camada de entrada e a camada intermediária, implicando que a saída de cada elemento da camada de entrada conecta-se com todas as entradas de cada elemento da camada intermediária, mantendo incólumes os valores propagados;
 
-			\item A saída de cada elemento da camada intermediária conecta-se com o único elemento da camada de saída por meio dos pesos $p_0, p_1, .... p_{X-1}$;
+			\item a saída de cada elemento da camada intermediária conecta-se com o único elemento da camada de saída por meio dos pesos $p_0, p_1, .... p_{X-1}$;
 
-			\item O valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída, isto é, os valores de saída da camada intermediária.
+			\item o valor de saída consiste na combinação linear dos pesos com os valores recebidos como entrada da camada de saída, isto é, os valores de saída da camada intermediária.
 		\end{itemize}
 
 		\input{images/3layersSVM.tex}
 
-		\par Foram utilizados, na camada de entrada, um número de elementos igual a dimensão do vetor de características sendo considerado. Na camada intermediária, o número de elementos ativos não-lineares foi igual ao número de casos de treinamento, visando facilitar o procedimento que, em tal caso, implica na solução direta de um sistema linear quadrado, isto é, possível e determinado \cite{poole2014linear}. 
+		\par Foram utilizados, na camada de entrada, um número de elementos igual a dimensão do vetor de características sendo considerado. Na camada intermediária, o número de elementos ativos não-lineares foi igual ao número de casos de treinamento, visando facilitar o procedimento que, em tal caso, implica na solução direta de um sistema linear quadrado, isto é, possível e determinado \cite{poole2014linear}.\\
 		
-		\par O treinamento da SVM consiste em, numa primeira etapa não-supervisionada, ajustar os parâmetros das funções Gaussianas da camada intermediária. Posteriormente, com base no sistema linear mencionado, os pesos foram encontrados com base em uma abordagem supervisionada, utilizando-se os rótulos -1 e 1 para os sinais falseados e genuínos, respectivamente.    
+		\par O treinamento da SVM consiste em, numa primeira etapa não-supervisionada, ajustar os parâmetros das funções Gaussianas da camada intermediária. Posteriormente, com base no sistema linear mencionado, os pesos foram encontrados com base em uma abordagem supervisionada, utilizando-se os rótulos -1 e 1 para os sinais falseados e genuínos, respectivamente.\\
 		
-		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes,   são idênticos àqueles do procedimento 02 e encontram-se listados no Algoritmo \ref{lst:experiment03Algo} e na Figura \ref{fig:experiment03Algo}. 
+		\par Todos os arranjos para a seleção dos vetores de treinamento e testes, assim como demais detalhes,   são idênticos àqueles do procedimento 02 e encontram-se listados no Algoritmo \ref{lst:experiment03Algo} e na Figura \ref{fig:experiment03Algo}.\\
 		
 		\input{codeListings/experiment03Algo.tex}
 		

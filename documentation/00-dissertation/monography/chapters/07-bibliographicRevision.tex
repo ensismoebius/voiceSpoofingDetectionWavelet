@@ -189,7 +189,7 @@
 			\par Para uma visualização mais completa, a Figura \ref{fig:haarWaveletExamples} pode ser consultada no apêndice deste documento.
 			
 			\subsection{Engenharia Paraconsistente de características}
-				\par Nos processos de classificação, frequentemente surge a questão: ``Os vetores de características criados proporcionam uma boa separação de classes?''. A Engenharia Paraconsistente de Características \cite{8588433}, recém publicada, que usa a paraconsistência \cite{da1998elementos},  \cite{COSTA2000} é, em meio a outras técnicas, uma ferramenta que pode ser usada para responder essa questão.
+				\par Nos processos de classificação, frequentemente surge a questão: ``Os vetores de características criados proporcionam uma boa separação de classes?''. A Engenharia Paraconsistente de Características, recém publicada \cite{8588433}, que usa a paraconsistência \cite{da1998elementos},  \cite{COSTA2000} é, em meio a outras técnicas, uma ferramenta que pode ser usada para responder essa questão.
 				
 				\par O processo inicia-se após a aquisição dos vetores de características para cada classe $C_n$. Se o número de classes presentes for, por exemplo, quatro então estas poderão ser representadas por $C_1, C_2, C_3, C_4$.
 				\par Em seguida é necessário o cálculo de duas grandezas:
@@ -286,13 +286,12 @@
 				D_{0,1}=\sqrt{(G_1)^2+(G_2-1)^2}\qquad.
 			\end{equation}		
 
-			\begin{figure}[h]
+			\begin{figure}[H]
 				\centering
 				\includegraphics[angle=-90, width=0.69\linewidth]{images/paraconsistentPlane.pdf}
 				\caption{O plano paraconsistente: O pequeno círculo indica os graus de falsidade(-1,0), verdade(1,0), indefinição(0,-1) e ambiguidade(0,1)}
 				\label{fig:paraconsistentplane}
 			\end{figure}
-		
 		\par Na prática, ou seja, para fins de classificação, geralmente considera-se a distância em relação ao ponto \textit{``(1,0) $\rightarrow$ Verdade''}, que é o ponto ótimo: quanto mais próximo o ponto $(G_1,G_2)$ estiver de $(1,0)$, mais as os vetores de características das diferentes classes estão naturalmente separados. Isso implica a possibilidade do uso de classificadores mais modestos. 
 		
 	\section{Estado-da-arte em \textit{Playback Speech Detection}}
