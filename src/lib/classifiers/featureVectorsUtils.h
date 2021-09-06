@@ -15,11 +15,10 @@
 namespace classifiers
 {
 	/**
-	 * Randomly chooses a certain amount of samples
-	 * from @source and puts them in @output
+	 * Randomly chooses a certain amount of samples from @source and puts them in @output
 	 * @param source - A list of features vectors
-	 * @param model - A scrambled list of the features vectors for model
-	 * @param teste - A scrambled list of the features vectors for tests
+	 * @param model - Will contain a scrambled list of the features vectors for model
+	 * @param teste - Will contain a scrambled list of the features vectors for tests
 	 * @param modelSize - The percentage of features vectors we want, model size must be between 0 and 1 (Zero not included)
 	 */
 	void raflleFeaturesVectors(std::vector<std::vector<long double>> &source, std::vector<std::vector<long double>> &model, std::vector<std::vector<long double>> &test, float modelSize);

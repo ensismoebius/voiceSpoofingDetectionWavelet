@@ -115,24 +115,24 @@
 		\par Para ajustar o tamanho do sinal de voz sob análise, foi usada a Equação \ref{eq:optimalSize}, na qual \textit{\textbf{proxInt}} é uma função que retorna o próximo número inteiro do argumento real. Por exemplo, $proxInt(1,5) = 2$.
 
 		\begin{equation}
-					tamanhoOtimo=2^{proxInt(\log_{2}tamanho)}
-					\label{eq:optimalSize}
+			tamanhoOtimo=2^{proxInt(\log_{2}tamanho)}
+			\label{eq:optimalSize}
 		\end{equation} 
 		
 		\par Após o redimensionamento do tamanho do sinal, o nível máximo de transformações é dado pela Equação \ref{eq:maxWaveletTransf}. 
 				
 		\begin{equation}
-					maxTrans=\log_{2}(tamanhoOtimo) \qquad.
-					\label{eq:maxWaveletTransf}
+			maxTrans=\log_{2}(tamanhoOtimo) \qquad.
+			\label{eq:maxWaveletTransf}
 		\end{equation}
 		
 		\subsection{Procedimento 02 - Classificações baseadas em distâncias}
 		\label{chap:propApproach:sec:Experimento02}
 		\par O objetivo deste procedimento é verificar, considerando as melhores combinações descobertas pelo procedimento anterior, a acurácia de classificadores \textit{pattern-matching} por distâncias Euclidiana e Manhattan. Nesta fase, os vetores de características gerados pelo Procedimento 01 são fornecidos aos classificadores para as mensurações devidas.
 				
-		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados para modelagem, até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores. Em cada uma dessas execuções, a ordem dos vetores nas amostras, falseados e genuínos, foi permutada aleatoriamente.
+		\par Objetivando avaliar o comportamento dos classificadores com proporções múltiplas de 10\% da base de dados reservadas para modelagem até o limite de 50\%, e o restante para testes, definiu-se que, para cada proporção, o sorteio aleatório para escolha dos vetores de características e o treinamento dos classificadores seria executado $n=t \cdot \frac{t+1}{2}$ vezes, sendo $t$ o número máximo de testes que podem ser realizados com uma certa porcentagem dos vetores, em outras palavras, \textbf{a cada ciclo de treinamento e classificação os vetores nas amostras falseadas e genuínas foram sorteados aleatoriamente de acordo com a porcentagem vigente.}
 				
-		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão e assim calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No Algoritmo \ref{lst:experiment02Algo} e na Figura \ref{fig:experiment02Algo}, os passos estão detalhados.
+		\par Para cada porcentagem foram coletadas as melhores e as piores acurácias assim como suas respectivas matrizes de confusão, e assim, calculadas suas \textit{EERs} conforme consta no Capítulo seguinte. No Algoritmo \ref{lst:experiment02Algo} e na Figura \ref{fig:experiment02Algo}, os passos estão detalhados.
 		
 		\par Essencialmente, este Procedimento 02 consiste em mensurar as distâncias entre cada vetor de características isolado para testes em relação à cada um dos vetores de características isolados para a modelagem, selecionando-se a menor delas. Em seguida, classifica-se o vetor de características que pertence aos testes e está sob análise, como pertencente a uma das classes dos vetores de modelagem selecionados.   
 
