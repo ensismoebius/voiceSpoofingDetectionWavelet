@@ -19,20 +19,6 @@ twocolumn			% Enables two column parts
 	\input{chapters/data/faceAndCover.tex}
 	\input{chapters/data/documentPreamble.tex}
 
-
-\newcommand{\uga}{
-	\usebibmacro{prenote}{
-		\ifciteindex{
-			\indexfield{indextitle}
-		}{}%
-		\printtext[bibhyperref]{
-			\printfield[citetitle]{labeltitle}
-		}
-	}{\multicitedelim}{
-		\usebibmacro{postnote}
-	}
-}
-
 % Code listing settings
 	% Translate Listing -> Algoritmo
 	\renewcommand{\lstlistingname}{Algoritmo}
@@ -90,8 +76,6 @@ twocolumn			% Enables two column parts
 	\begin{capa}%
 		\center
 		\centering \includegraphics[angle=-90]{unesp.pdf}
-		\vspace{2cm}
-		\par \ABNTEXchapterfont\Large\imprimirinstituicao
 		\vspace{3cm}
 		\par {\ABNTEXchapterfont\Large\imprimirautor}
 		\vfill
@@ -149,10 +133,10 @@ twocolumn			% Enables two column parts
 		pdfcreator={LaTeX with abnTeX2},
 		pdfkeywords={\ptBRkeyWords, \enUSkeyWords}, 
 		colorlinks=true,       		% false: boxed links; true: colored links
-		linkcolor=blue,          	% color of internal links
-		citecolor=blue,        		% color of links to bibliography
-		filecolor=magenta,      	% color of file links
-		urlcolor=blue,
+		linkcolor=black,          	% color of internal links
+		citecolor=black,        		% color of links to bibliography
+		filecolor=black,      	% color of file links
+		urlcolor=black,
 		bookmarksdepth=4
 	}
 	\makeatother

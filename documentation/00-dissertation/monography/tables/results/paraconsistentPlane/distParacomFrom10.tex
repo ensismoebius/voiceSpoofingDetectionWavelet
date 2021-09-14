@@ -5,6 +5,7 @@
 	\definecolor{tcC}{rgb}{0,0.8,1}
 	
 	\begin{longtable}[h]{|c|c|c|c|c|}
+		\caption{Combinações Wavelet \textit{x} Mel/Bark ordenadas pela distância do vértice (1,0) no plano paraconsistente.} \label{tab:distParacomFrom10BarkAndMel}\\
 
 		% Columns headers
 		\hline
@@ -18,6 +19,8 @@
 		
 		\hline \mc{2}{c}{{Continua na próxima página}} \\
 		\endfoot
+		
+		\hline \hline
 		\endlastfoot
 
 		% Color of the first line
@@ -29,11 +32,7 @@
 		late after line=\\\hline\rowcolor{tcC},%
 		separator=comma,
 		]{tables/results/paraconsistentPlane/distParacomFrom10.csv}{1=\melBark,2=\wavelet,3=\gOne,4=\gTwo,5=\distance}{\melBark&\wavelet&\StrSubstitute[0]{\gOne}{.}{,}&\StrSubstitute[0]{\gTwo}{.}{,}&\StrSubstitute[0]{\distance}{.}{,}}
-		
-		
-		
-		\rowcolor{white}
-		\caption{Combinações Wavelet \textit{x} Mel/Bark ordenadas pela distância do vértice (1,0) no plano paraconsistente.}
-		\label{tab:distParacomFrom10BarkAndMel}
+
 	\end{longtable}
+	\par \hphantom{\space} \newline Fonte: Elaborado pelo autor, 2021.
 \end{center}

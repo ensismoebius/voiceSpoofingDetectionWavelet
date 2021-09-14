@@ -21,6 +21,7 @@
 
 		\begin{figure}[ht]
 			\centering
+			\caption{Organização da base de dados}
 			\subfloat[0.33\textwidth][Base em nível 1]{
 				\includegraphics{images/directoryStructLevel01.pdf}
 				\label{fig:directorystructlevel01}
@@ -33,8 +34,8 @@
 				\includegraphics{images/directoryStructLevel03.pdf}
 				\label{fig:directorystructlevel03}
 			}
-			\caption{Organização da base de dados}
 			\label{fig:directorystructlevel010203}
+			\\Fonte: Elaborado pelo autor, 2021.
 		\end{figure}
 
 	\section{Estrutura da estratégia proposta}
@@ -84,15 +85,16 @@
 		
 		\par Em cada iteração os valores de FAR e FRR são guardados em dois vetores, um para cada, então o vetor pertencente a FAR é ordenado de forma crescente e o outro decrescente. Esses pontos desenhados no gráfico com uma linha que divide o plano do mesmo ao meio tal que $x=y$ constituem o que se convencionou chamar de gráfico de \textit{Detection Error Tradeoff (DET)} ou, em tradução livre, \textbf{gráfico para balanceamento de erros}.\\
 		
-		\par O efetivo valor de \textbf{ERR se encontra na intersecção da reta $x=y$} com a curva definida por FAR e FRR, por isso o cálculo de um valor único como demonstrado no Algoritmo \ref{lst:EERAlgo} e na Figura \ref{fig:eeralgo} pois se $x=ERR$ então também $y=ERR$.\\
+		\par O efetivo valor de \textbf{ERR se encontra na intersecção da reta $x=y$} com a curva definida por FAR e FRR, por isso o cálculo de um valor único como demonstrado no Algoritmo \ref{lst:EERAlgo} e na Figura \ref{fig:eeralgo} pois se $x=ERR$ então também $y=ERR$.\\\\
 	
 		\input{codeListings/EERAlgo.tex}
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=1\linewidth]{images/EERAlgo.pdf}
 			\caption{Algoritmo para o cálculo do EER}
+			\includegraphics[width=1\linewidth]{images/EERAlgo.pdf}
 			\label{fig:eeralgo}
+			\\Fonte: Elaborado pelo autor, 2021.
 		\end{figure}
 	
 		\subsection{Procedimento 01: Filtros \textit{wavelet}, escalas Bark e Mel}
@@ -105,9 +107,10 @@
 			
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=1\linewidth]{images/AlgoProcedure01.pdf}
 			\caption{Algoritmo que caracteriza o Procedimento 01}
+			\includegraphics[width=1\linewidth]{images/AlgoProcedure01.pdf}
 			\label{fig:experiment01Algo}
+			\\Fonte: Elaborado pelo autor, 2021.
 		\end{figure}
 		
 		\par Registre-se que, antes da aplicação da transformada \textit{wavelet-packet}, foi necessária uma normalização de valores do sinal entre os intervalos -1 e 1 seguida de um redimensionamento para que houvesse um comprimento correspondente a uma potência de 2, como indicado na equação \ref{eq:optimalSize}. Isso é necessário para que não haja perdas de trechos de voz ao final da transformação, pois a transformada \textit{wavelet} realiza um \textit{downsampling} de ordem 2, ou seja, em cada nível de decomposição o tamanho do vetor do sinal é diminuído pela metade. Caso haja um comprimento diferente do citado, em alguma parte do processo a divisão não será inteira fazendo com que algumas amostras dos sinais sejam perdidas.
@@ -138,9 +141,10 @@
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.8\linewidth]{images/AlgoProcedure02}
 			\caption{Algoritmo que caracteriza o Procedimento 02}
+			\includegraphics[width=.75\linewidth]{images/AlgoProcedure02}
 			\label{fig:experiment02Algo}
+			\\Fonte: Elaborado pelo autor, 2021.
 		\end{figure}
 		
 		\input{codeListings/experiment02Algo.tex}
@@ -172,9 +176,10 @@
 		
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.9\linewidth]{images/AlgoProcedure03}
 			\caption{Algoritmo que caracteriza o Procedimento 03}
+			\includegraphics[width=0.9\linewidth]{images/AlgoProcedure03}
 			\label{fig:experiment03Algo}
+			\\Fonte: Elaborado pelo autor, 2021.
 		\end{figure}
 
         \par Os testes e resultados dos experimentos descritos neste Capítulo encontram-se no Capítulo seguinte.

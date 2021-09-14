@@ -5,9 +5,10 @@
 			\par Os sinais de voz digitais, isto é, aqueles que estão amostrados e quantizados \cite{haykin2011sistemas}, constituem a base deste trabalho. Além do processo de digitalização, inerente ao ato de armazenar locuções em computadores, os sinais podem sofrer, a depender da necessidade ou possibilidade, sub-amostragens ou \textit{downsamplings} \cite{robi2003}. Isso implica a estratégia de redução de dimensão e, comumente, ocorre após a conversão de domínio dos sinais com base em filtros digitais do tipo \textit{wavelet}, a serem apresentados adiante. Um exemplo consta na Figura \ref{fig:downsampling}, na qual as partes pretas contêm dados e as brancas representam os elementos removidos. Tendo em vista que este trabalho está baseado em sinais digitais de voz filtrados com base em \textit{wavelets}, o processo de sub-amostragem é essencial. 
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=0.7\linewidth]{images/downsampling}
 				\caption{Sub-amostragem}
+				\includegraphics[width=0.7\linewidth]{images/downsampling}
 				\label{fig:downsampling}
+				\\Fonte: Elaborado pelo autor, 2021.
 			\end{figure}
 			
 		\subsection{Caracterização dos processos de produção da voz humana}
@@ -48,9 +49,10 @@
 		\par BARK foi definida tendo em mente vários tipos de sinais acústicos. Essa escala corresponde ao conjunto de 25 bandas críticas da audição humana. Suas frequências-base de audiometria são, em Hz: \textbf{20, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500}. Nessa escala,os sinais digitais no domínio temporal atravessam filtros passa-faixas \cite{bosi2002introduction} para os quais o início e o final da banda de passagem correspondem à frequências-base consecutivas resultando em um vetor de características com 24 coeficientes e, em seguida, as energias dos sinais filtrados são utilizadas como características descritivas de propriedades do sinal sob análise, como mostrado na Figura \ref{fig:barkfeaturevect}.
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.6\linewidth]{images/barkFeatureVect}
 			\caption{Cálculo de vetores de características com BARK}
+			\includegraphics[width=0.6\linewidth]{images/barkFeatureVect}
 			\label{fig:barkfeaturevect}
+			\\Fonte: Elaborado pelo autor, 2021.
 		\end{figure}
 	\subsubsection{A escala MEL}
 		\par Escala Mel, advinda do termo \textit{melody}, é uma adaptação da escala Bark para sinais de voz. Dentre as várias implementações de bandas críticas a escolhida foi a implementação que contém os valores em Hz: \textbf{20, 160, 394, 670, 1000, 1420, 1900, 2450, 3120, 4000, 5100, 6600, 9000, 14000}.
@@ -58,9 +60,10 @@
 		\par Novamente, desconsiderando qualquer etapa intermediária que possa ser adicionada, as energias calculadas nos intervalos definidos na escala MEL podem, por si mesmas, constituir um vetor de características, como mostrado na Figura \ref{fig:barkfeaturevect}.
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.8\linewidth]{images/melFeatureVect}
 			\caption{Cálculo de vetores de características com MEL}
+			\includegraphics[width=0.8\linewidth]{images/melFeatureVect}
 			\label{fig:melfeaturevect}
+			\\Fonte: Elaborado pelo autor, 2021.
 		\end{figure}
 	
 		\subsection{Filtros digitais \textit{wavelet}}
@@ -74,16 +77,18 @@
 
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=0.3\linewidth]{images/daubechies}
 				\caption{Platôs maximamente planos em um filtro digital: característica da família de Daubechies}
+				\includegraphics[width=0.3\linewidth]{images/daubechies}
 				\label{fig:daubechies}
+				\\Fonte: Elaborado pelo autor, 2021.
 			\end{figure}
 
 			\begin{figure}[h]
 				\centering
-				\includegraphics[width=0.3\linewidth]{images/noMaximallyFlat}
 				\caption{Platôs não maximamente planos de um filtro digital: características de outros filtros \textit{wavelet}, distintos da família de Daubechies}
+				\includegraphics[width=0.3\linewidth]{images/noMaximallyFlat}
 				\label{fig:nomaximallyflat}
+				\\Fonte: Elaborado pelo autor, 2021.
 			\end{figure}
 		
 			\par Além da resposta em frequência, na aplicação de um filtro digital \textit{wavelet} também é possível considerar a \textbf{resposta em fase}, que constitui um atraso ou adiantamento do sinal filtrado em relação ao sinal original, ambos no domínio temporal. Esse deslocamento pode ser \textbf{linear}, \textbf{quase linear} ou \textbf{não linear}: 
@@ -207,9 +212,10 @@
 				
 				\begin{figure}
 					\centering
-		       	\includegraphics[width=0.77\linewidth]{images/calculoAlpha.pdf}
 					\caption{Cálculo do coeficiente $\alpha$.}
+			       	\includegraphics[width=0.77\linewidth]{images/calculoAlpha.pdf}
 					\label{fig:calculoalpha}
+					\\Fonte: Elaborado pelo autor, 2021.
 				\end{figure}
 				
 				\par A obtenção de $\beta$, assim como ilustrado na Figura \ref{fig:betacalculation}, também se dá selecionando os maiores e os menores valores de cada uma das posições de todos os vetores de características de cada classe, gerando assim um vetor para os valores maiores e outro para os menores.
@@ -236,9 +242,10 @@
 				
 				\begin{figure}[h]
 					\centering
-		    	\includegraphics[width=0.77\linewidth]{images/betaCalculation.pdf}
 					\caption{Cálculo de $\beta$: Os itens destacados em azul e rosa são aqueles pertencentes a classe C1 e CN que se sobrepõe, em verde, a sobreposição é entre C1 e C2. Para cada sobreposição verificada soma-se 1 ao valor $R$. Essa comparação é feita para todos os vetores de características de cada uma das classes.}
+		    		\includegraphics[width=0.77\linewidth]{images/betaCalculation.pdf}
 					\label{fig:betacalculation}
+					\\Fonte: Elaborado pelo autor, 2021.
 				\end{figure}
 				\FloatBarrier
 			
@@ -288,9 +295,10 @@
 
 			\begin{figure}[H]
 				\centering
-				\includegraphics[angle=-90, width=0.69\linewidth]{images/paraconsistentPlane.pdf}
 				\caption{O plano paraconsistente: O pequeno círculo indica os graus de falsidade(-1,0), verdade(1,0), indefinição(0,-1) e ambiguidade(0,1)}
+				\includegraphics[angle=-90, width=0.69\linewidth]{images/paraconsistentPlane.pdf}
 				\label{fig:paraconsistentplane}
+				\\Fonte: Elaborado pelo autor, 2021.
 			\end{figure}
 		\par Na prática, ou seja, para fins de classificação, geralmente considera-se a distância em relação ao ponto \textit{``(1,0) $\rightarrow$ Verdade''}, que é o ponto ótimo: quanto mais próximo o ponto $(G_1,G_2)$ estiver de $(1,0)$, mais as os vetores de características das diferentes classes estão naturalmente separados. Isso implica a possibilidade do uso de classificadores mais modestos. 
 		
