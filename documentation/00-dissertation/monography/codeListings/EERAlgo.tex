@@ -1,4 +1,4 @@
-\begin{lstlisting}[language=C++, caption={Algoritmo para o cálculo do EER}, captionpos=t, label={lst:EERAlgo}]
+\begin{lstlisting}[language=C++, caption={Algoritmo para o cálculo do EER}, captionpos=t, label={lst:EERAlgo}, belowskip=-4 \baselineskip]
 double menorDistanciaDaReta = valorMaximo();
 double distanciaAtual = -valorMaximo();
 
@@ -21,14 +21,12 @@ for (i = 0; i < vetorFAR.size(); i++) {
 
 		pularIteracao();
 	}
-
 	// Armazena apenas a menor distancia dos pontos abaixo da reta x=y
 	coordenadaAbaixoDaRetaDiagonal[0] = vetorFAR[i];
 	coordenadaAbaixoDaRetaDiagonal[1] = vetorFRR[i];
 	
 	paraIteracao();
 }
-
 // Calcula o ponto de interseccao da curva com a reta x=y
 y = coordenadaAcimaDaRetaDiagonal[0] - coordenadaAbaixoDaRetaDiagonal[0] - 1;
 x = coordenadaAbaixoDaRetaDiagonal[1] - coordenadaAcimaDaRetaDiagonal[1] + 1;
@@ -36,3 +34,6 @@ c = coordenadaAcimaDaRetaDiagonal[1] * coordenadaAbaixoDaRetaDiagonal[0] - coord
 
 EER = -(c / (x + y));
 \end{lstlisting}
+\begin{center}
+	\par Fonte: Elaborado pelo autor, 2021.
+\end{center}
