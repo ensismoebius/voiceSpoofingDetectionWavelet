@@ -93,3 +93,4 @@ mestrado.workspace
 *.brf
 *.code-workspace
 documentation/06-bureaucracy/
+/bin/
