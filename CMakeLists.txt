@@ -97,3 +97,15 @@ add_executable( paraconsistentTests
 
 # Link paraconsistentTests with what we want to test and the GTest and pthread library
 target_link_libraries(paraconsistentTests ${GTEST_LIBRARIES} pthread)
+
+
+# Load support vector machine tests
+add_executable( supportVectorMachineTests
+	src/lib/vector/vectorUtils.cpp
+	src/lib/linearAlgebra/linearAlgebra.cpp
+	src/lib/classifiers/SupportVectorMachine.cpp
+	src/lib/classifiers/SupportVectorMachineTest.cpp
+)
+
+# Link supportVectorMachineTests with what we want to test and the GTest and pthread library
+target_link_libraries( supportVectorMachineTests ${GTEST_LIBRARIES} pthread)
