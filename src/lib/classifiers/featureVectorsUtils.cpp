@@ -1,9 +1,14 @@
 #include <vector>
+#include <random>
 #include <algorithm>
 #include <stdexcept>
 
 namespace classifiers
 {
+
+	// Create a random seed
+	std::random_device rd;
+	std::mt19937 seed(rd());
 
 	void raflleFeaturesVectors(std::vector<std::vector<long double>> &source, std::vector<std::vector<long double>> &model, std::vector<std::vector<long double>> &test, float modelSize)
 	{
@@ -24,7 +29,7 @@ namespace classifiers
 		}
 
 		// Shuffle the indexes
-		std::random_shuffle(indexes.begin(), indexes.end());
+		std::shuffle(indexes.begin(), indexes.end(), seed);
 
 		// Based on the modelSize informed percentage
 		// calculates the amount of points model needs

@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <stdexcept>
+#include <sstream>
 #include "waveletOperations.h"
 #include "WaveletTransformResults.h"
 #include "../linearAlgebra/linearAlgebra.h"
@@ -50,7 +51,9 @@ namespace wavelets
 		 */
 		if (level > std::log2(maxItens))
 		{
-			throw std::runtime_error(std::string("This signal only supports a maximum of ") + std::to_string((int) std::log2(maxItens)) + " levels.");
+			std::stringstream s;
+			s << "This signal only supports a maximum of " << (int) std::log2(maxItens) <<  " levels.";
+			throw std::runtime_error(s.str());
 		}
 
 		// Get the highpass filter based on lowpass filter
