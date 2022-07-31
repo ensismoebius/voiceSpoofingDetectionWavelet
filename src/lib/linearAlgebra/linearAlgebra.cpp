@@ -311,7 +311,7 @@ namespace linearAlgebra
 			sum = 0;
 			for (unsigned int n = 0; n < N; ++n)
 			{
-				sum += signal[n] * std::cos(((2.0 * n + 1.0) * M_PIl * k) / (2.0 * N));
+				sum += signal[n] * std::cos(((2.0 * n + 1.0) * M_PI * k) / (2.0 * N));
 			}
 
 			res[k] = getAlphaK(k, N) * sum;
@@ -331,7 +331,7 @@ namespace linearAlgebra
 			sum = 0;
 			for (unsigned int n = 0; n < N; ++n)
 			{
-				sum += signal[n] * std::cos(((2.0 * n + 1.0) * M_PIl * k) / (2.0 * N));
+				sum += signal[n] * std::cos(((2.0 * n + 1.0) * M_PI * k) / (2.0 * N));
 			}
 
 			res[k] = getAlphaK(k, N) * sum;

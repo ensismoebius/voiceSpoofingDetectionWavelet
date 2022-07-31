@@ -1,10 +1,35 @@
-cmake_minimum_required(VERSION 3.5)
-project(voiceSpoofingDetection
-        VERSION 1.0
-        DESCRIPTION "Voice spoofing detection experiments"
-        LANGUAGES CXX)  
+cmake_minimum_required(VERSION 3.8)
 
-set(CMAKE_VERBOSE_MAKEFILE OFF)
+
+if (APPLE)
+	set (CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING
+    "Minimum OS X deployment version" FORCE)
+	
+	# Fix behavior of CMAKE_CXX_STANDARD when targeting macOS.
+	if (POLICY CMP0025)
+		cmake_policy(SET CMP0025 NEW)
+	endif ()
+endif()
+
+
+project(voiceSpoofingDetection
+        VERSION 1.3
+        DESCRIPTION "Voice spoofing detection experiments"
+        LANGUAGES CXX)
+
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+# C++ version
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+#set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+
+message(STATUS "***********************COMPILING FOR:***********************")
+message(STATUS ${CMAKE_SYSTEM})
+message(STATUS ${CMAKE_TOOLCHAIN_FILE})
+message(STATUS "************************************************************")
 
 ###############################################
 ###############################################
@@ -70,9 +95,21 @@ target_include_directories(voiceSpoofingDetection
 )
 
 # System libraries (python)
-find_package(PythonLibs REQUIRED)
-include_directories(${PYTHON_INCLUDE_DIRS})
-target_link_libraries(voiceSpoofingDetection ${PYTHON_LIBRARIES})
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+target_link_libraries(voiceSpoofingDetection PUBLIC
+  Python3::Python
+  Python3::Module
+)
+
+find_package(Python3 COMPONENTS NumPy)
+if(Python3_NumPy_FOUND)
+  target_link_libraries(voiceSpoofingDetection PUBLIC
+    Python3::NumPy
+  )
+endif()
+
+include_directories(${Python3_INCLUDE_DIRS})
+include_directories(${Python3_NumPy_INCLUDE_DIRS})
 
 # C++ version
 target_compile_features(voiceSpoofingDetection PRIVATE cxx_std_20)
@@ -83,29 +120,31 @@ target_compile_features(voiceSpoofingDetection PRIVATE cxx_std_20)
 ########################################
 ########################################
 
-# Locate GTest
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
-
-# Load paraconsistent tests
-add_executable( paraconsistentTests
-	src/lib/paraconsistent/paraconsistentTest.cpp
-	src/lib/utility/comparison.cpp
-	src/lib/linearAlgebra/linearAlgebra.cpp
-	src/lib/paraconsistent/paraconsistent.cpp
-)
-
-# Link paraconsistentTests with what we want to test and the GTest and pthread library
-target_link_libraries(paraconsistentTests ${GTEST_LIBRARIES} pthread)
-
-
-# Load support vector machine tests
-add_executable( supportVectorMachineTests
-	src/lib/vector/vectorUtils.cpp
-	src/lib/linearAlgebra/linearAlgebra.cpp
-	src/lib/classifiers/SupportVectorMachine.cpp
-	src/lib/classifiers/SupportVectorMachineTest.cpp
-)
-
-# Link supportVectorMachineTests with what we want to test and the GTest and pthread library
-target_link_libraries( supportVectorMachineTests ${GTEST_LIBRARIES} pthread)
+if (NOT APPLE)
+	# Locate GTest
+	find_package(GTest REQUIRED)
+	include_directories(${GTEST_INCLUDE_DIRS})
+	
+	# Load paraconsistent tests
+	add_executable( paraconsistentTests
+		src/lib/paraconsistent/paraconsistentTest.cpp
+		src/lib/utility/comparison.cpp
+		src/lib/linearAlgebra/linearAlgebra.cpp
+		src/lib/paraconsistent/paraconsistent.cpp
+	)
+	
+	# Link paraconsistentTests with what we want to test and the GTest and pthread library
+	target_link_libraries(paraconsistentTests PUBLIC ${GTEST_LIBRARIES} pthread)
+	
+	
+	# Load support vector machine tests
+	add_executable( supportVectorMachineTests
+		src/lib/vector/vectorUtils.cpp
+		src/lib/linearAlgebra/linearAlgebra.cpp
+		src/lib/classifiers/SupportVectorMachine.cpp
+		src/lib/classifiers/SupportVectorMachineTest.cpp
+	)
+	
+	# Link supportVectorMachineTests with what we want to test and the GTest and pthread library
+	target_link_libraries( supportVectorMachineTests ${GTEST_LIBRARIES} pthread)
+endif()

@@ -94,3 +94,4 @@ mestrado.workspace
 *.code-workspace
 documentation/06-bureaucracy/
 /bin/
+.DS_Store
