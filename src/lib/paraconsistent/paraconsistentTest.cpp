@@ -1,11 +1,10 @@
-#include <map>
-#include <cmath>
-#include <vector>
-#include <cassert>
-#include <iostream>
-#include <gtest/gtest.h>
 #include "paraconsistent.h"
-#include "../linearAlgebra/linearAlgebra.h"
+#include <cassert>
+#include <cmath>
+#include <gtest/gtest.h>
+#include <iostream>
+#include <map>
+#include <vector>
 
 unsigned int amountOfClasses;
 unsigned int featureVectorSize;

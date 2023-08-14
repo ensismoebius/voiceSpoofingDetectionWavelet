@@ -8,8 +8,9 @@
 #ifndef LIB_PARACONSISTENT_H_
 #define LIB_PARACONSISTENT_H_
 
-#include <map>
 #include <limits>
+#include <map>
+#include <string>
 #include <vector>
 
 /**

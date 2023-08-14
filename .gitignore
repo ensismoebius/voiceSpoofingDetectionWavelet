@@ -95,3 +95,4 @@ mestrado.workspace
 documentation/06-bureaucracy/
 /bin/
 .DS_Store
+CMakeLists.txt.user

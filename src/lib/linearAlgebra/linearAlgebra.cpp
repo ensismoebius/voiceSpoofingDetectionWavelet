@@ -259,14 +259,21 @@ namespace linearAlgebra
 	{
 		int i, j, k;
 
-		long double *convolutedSignal = new long double[dataLength];
+        long double *convolutedSignal = new long double[dataLength];
 
-		// check validity of params
-		if (!data || !convolutedSignal || !kernel) return false;
-		if (dataLength <= 0 || kernelSize <= 0) return false;
+        // check validity of params
+        if (!data || !convolutedSignal || !kernel) {
+            delete[] convolutedSignal;
+            return false;
+        }
 
-		// start convolution from out[kernelSize-1] to out[dataSize-1] (last)
-		for (i = kernelSize - 1; i < dataLength; ++i)
+        if (dataLength <= 0 || kernelSize <= 0) {
+            delete[] convolutedSignal;
+            return false;
+        }
+
+        // start convolution from out[kernelSize-1] to out[dataSize-1] (last)
+        for (i = kernelSize - 1; i < dataLength; ++i)
 		{
 			convolutedSignal[i] = 0;                             // init to 0 before accumulate
 
