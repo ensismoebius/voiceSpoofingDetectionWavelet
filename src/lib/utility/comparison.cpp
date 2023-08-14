@@ -18,7 +18,7 @@
  * @param upperLimit
  * @return
  */
-bool inRange(double val, double lowerLimit, double upperLimit)
+bool inRange(const double &val, const double &lowerLimit, const double &upperLimit)
 {
 	if (lowerLimit > upperLimit) throw std::invalid_argument("lower lowerLimit be lower than upperLimit");
 	return val >= lowerLimit && val <= upperLimit;

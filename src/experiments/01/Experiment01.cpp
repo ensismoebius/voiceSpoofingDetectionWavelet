@@ -28,8 +28,6 @@
 
 #include "../../lib/wave/Wav.h"
 #include "../../lib/wavelet/Types.h"
-#include "../../lib/vector/vectorUtils.h"
-#include "../../lib/gnuplot/gnuplotCalls.h"
 #include "../../lib/wavelet/waveletOperations.h"
 #include "../../lib/linearAlgebra/linearAlgebra.h"
 #include "../../lib/matplotlib-cpp/matplotlibcpp.h"
@@ -227,18 +225,19 @@ namespace waveletExperiments
 				plt::title("Wavelets on MEL(M) and BARK(B) on paraconsistent measures");
 
 				// Iterates over all wavelets
-				for (std::pair<std::string, std::map<BARK_MEL, std::vector<std::vector<double>>>> wavelet : results)
-				{
-					// Iterates over BARK and MEL (yes, just two values)
+                for (const std::pair<std::string,
+                                     std::map<BARK_MEL, std::vector<std::vector<double>>>> &wavelet :
+                     results) {
+                    // Iterates over BARK and MEL (yes, just two values)
 					for (std::pair<BARK_MEL, std::vector<std::vector<double>>> data : wavelet.second)
 					{
 						posVect.push_back(pos++);
 						annotations.push_back((data.first == BARK ? "B-" : "M-") + wavelet.first);
 						distancesFrom1_0.push_back(std::log10(data.second[2][0]));
 					}
-				}
+                }
 
-				plt::xlabel("Distance from point (1,0)");
+                plt::xlabel("Distance from point (1,0)");
 				plt::barh(posVect, distancesFrom1_0);
 				plt::yticks(posVect, annotations);
 				plt::tight_layout();

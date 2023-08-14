@@ -37,33 +37,28 @@ namespace classifiers
 		long double distance;
 
 		std::string nearestLabel;
-		long double nearestDistance = std::numeric_limits<double>().max(); // @suppress("Ambiguous problem")
+        long double nearestDistance = std::numeric_limits<double>()
+                                          .max(); // @suppress("Ambiguous problem")
 
-		if (this->distanceType == EUCLICIDIAN)
-		{
-			for (auto model : this->referenceModels)
-			{
-				for (auto modelFeatureVector : model.second)
-				{
+        if (this->distanceType == EUCLICIDIAN) {
+            for (const auto &model : this->referenceModels) {
+                for (auto modelFeatureVector : model.second) {
+                    distance = euclidianDistance(modelFeatureVector, featureVector);
 
-					distance = euclidianDistance(modelFeatureVector, featureVector);
-
-					if (distance < nearestDistance)
+                    if (distance < nearestDistance)
 					{
 						nearestDistance = distance;
 						nearestLabel = model.first;
-					}
-				}
-			}
+                    }
+                }
+            }
 
-			return nearestLabel;
-		}
+            return nearestLabel;
+        }
 
-		if (this->distanceType == MANHATTAN)
-		{
-			for (auto model : this->referenceModels)
-			{
-				for (auto modelFeatureVector : model.second)
+        if (this->distanceType == MANHATTAN) {
+            for (const auto &model : this->referenceModels) {
+                for (auto modelFeatureVector : model.second)
 				{
 
 					distance = manhattanDistance(modelFeatureVector, featureVector);
@@ -74,11 +69,11 @@ namespace classifiers
 						nearestLabel = model.first;
 					}
 				}
-			}
+            }
 
-			return nearestLabel;
-		}
+            return nearestLabel;
+        }
 
-		return "";
+        return "";
 	}
 }
