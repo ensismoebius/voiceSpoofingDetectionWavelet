@@ -1,14 +1,14 @@
 #include <string>
 
+#include "experiments/voiceSpoofing/01/Experiment01.cpp"
+#include "experiments/voiceSpoofing/02/Experiment02.cpp"
+#include "experiments/voiceSpoofing/03/Experiment03.cpp"
+#include "experiments/voiceSpoofing/04/Experiment04.cpp"
+#include "experiments/voiceSpoofing/05/Experiment05.cpp"
+#include "experiments/voiceSpoofing/06/Experiment06.cpp"
+#include "experiments/voiceSpoofing/07/Experiment07.cpp"
+#include "experiments/voiceSpoofing/08/Experiment08.cpp"
 #include "lib/file/fileUtils.h"
-#include "experiments/01/Experiment01.cpp"
-#include "experiments/02/Experiment02.cpp"
-#include "experiments/03/Experiment03.cpp"
-#include "experiments/04/Experiment04.cpp"
-#include "experiments/05/Experiment05.cpp"
-#include "experiments/06/Experiment06.cpp"
-#include "experiments/07/Experiment07.cpp"
-#include "experiments/08/Experiment08.cpp"
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
 

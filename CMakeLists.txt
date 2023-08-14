@@ -69,14 +69,14 @@ src/lib/wavelet/Types.cpp
 src/lib/wavelet/waveletOperations.cpp
 src/lib/wavelet/WaveletTransformResults.cpp
 
-src/experiments/01/Experiment01.cpp
-src/experiments/02/Experiment02.cpp
-src/experiments/03/Experiment03.cpp
-src/experiments/04/Experiment04.cpp
-src/experiments/05/Experiment05.cpp
-src/experiments/06/Experiment06.cpp
-src/experiments/07/Experiment07.cpp
-src/experiments/08/Experiment08.cpp
+src/experiments/voiceSpoofing/01/Experiment01.cpp
+src/experiments/voiceSpoofing/02/Experiment02.cpp
+src/experiments/voiceSpoofing/03/Experiment03.cpp
+src/experiments/voiceSpoofing/04/Experiment04.cpp
+src/experiments/voiceSpoofing/05/Experiment05.cpp
+src/experiments/voiceSpoofing/06/Experiment06.cpp
+src/experiments/voiceSpoofing/07/Experiment07.cpp
+src/experiments/voiceSpoofing/08/Experiment08.cpp
 )
 
 # User libraries
