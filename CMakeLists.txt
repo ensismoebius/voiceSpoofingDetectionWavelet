@@ -14,7 +14,7 @@ endif()
 
 project(voiceSpoofingDetection
         VERSION 1.3
-        DESCRIPTION "Voice spoofing detection experiments"
+	DESCRIPTION "Voice spoofing detection and imagined speech experiments"
         LANGUAGES CXX)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
@@ -77,6 +77,8 @@ src/experiments/voiceSpoofing/05/Experiment05.cpp
 src/experiments/voiceSpoofing/06/Experiment06.cpp
 src/experiments/voiceSpoofing/07/Experiment07.cpp
 src/experiments/voiceSpoofing/08/Experiment08.cpp
+
+src/experiments/imagedSpeech/01/Experiment01.cpp
 )
 
 # User libraries

@@ -1,5 +1,6 @@
 #include <string>
 
+#include "experiments/imagedSpeech/01/Experiment01.cpp"
 #include "experiments/voiceSpoofing/01/Experiment01.cpp"
 #include "experiments/voiceSpoofing/02/Experiment02.cpp"
 #include "experiments/voiceSpoofing/03/Experiment03.cpp"
@@ -8,6 +9,7 @@
 #include "experiments/voiceSpoofing/06/Experiment06.cpp"
 #include "experiments/voiceSpoofing/07/Experiment07.cpp"
 #include "experiments/voiceSpoofing/08/Experiment08.cpp"
+
 #include "lib/file/fileUtils.h"
 
 int parseArguments(int argc, char *args[], std::string &liveFileList, std::string &spoofingFileList, std::string &resultsDestiny, unsigned int &numberOfTests, double &minModel, double &maxModel, int experiment);
@@ -47,21 +49,27 @@ int main(int argc, char** args)
 			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
 			return 0;
 		case 6:
-			// TODO Neural network experiment
-			return 0;
-		case 7:
-			waveletExperiments::Experiment07::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-		case 8:
-			waveletExperiments::Experiment08::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-		case 0:
-			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			waveletExperiments::Experiment04::perform();
-			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-			// TODO Neural network experiment
+            // TODO Neural network experiment
+            return 0;
+        case 7:
+            waveletExperiments::Experiment07::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+            return 0;
+        case 8:
+            waveletExperiments::Experiment08::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+            return 0;
+        /////////////////////////////////
+        // Imagined speech experiments //
+        /////////////////////////////////
+        case 9:
+            imaginedSpeechExperiments::Experiment01::perform();
+            return 0;
+        case 0:
+            waveletExperiments::Experiment01::perform({liveFileList, spoofingFileList}, resultsDestiny);
+            waveletExperiments::Experiment02::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+            waveletExperiments::Experiment03::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+            waveletExperiments::Experiment04::perform();
+            waveletExperiments::Experiment05::perform({liveFileList, spoofingFileList}, resultsDestiny);
+            // TODO Neural network experiment
 			waveletExperiments::Experiment07::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			waveletExperiments::Experiment08::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
 			return 0;
