@@ -31,52 +31,45 @@ int main(int argc, char** args)
 
 	int res = parseArguments(argc, args, liveFileList, spoofingFileList, resultsDestiny, numberOfTests, minModel, maxModel, experiment);
 
-	switch (res)
-	{
-		case 1:
-			waveletExperiments::Experiment01::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-			return 0;
-		case 2:
-			waveletExperiments::Experiment02::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-		case 3:
-			waveletExperiments::Experiment03::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-		case 4:
-			waveletExperiments::Experiment04::perform();
-			return 0;
-		case 5:
-			waveletExperiments::Experiment05::perform( { liveFileList, spoofingFileList }, resultsDestiny);
-			return 0;
-		case 6:
-            // TODO Neural network experiment
-            return 0;
-        case 7:
-            waveletExperiments::Experiment07::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
-            return 0;
-        case 8:
-            waveletExperiments::Experiment08::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
-            return 0;
-        /////////////////////////////////
-        // Imagined speech experiments //
-        /////////////////////////////////
-        case 9:
-            imaginedSpeechExperiments::Experiment01::perform();
-            return 0;
-        case 0:
-            waveletExperiments::Experiment01::perform({liveFileList, spoofingFileList}, resultsDestiny);
-            waveletExperiments::Experiment02::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
-            waveletExperiments::Experiment03::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
-            waveletExperiments::Experiment04::perform();
-            waveletExperiments::Experiment05::perform({liveFileList, spoofingFileList}, resultsDestiny);
-            // TODO Neural network experiment
-			waveletExperiments::Experiment07::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			waveletExperiments::Experiment08::perform( { liveFileList, spoofingFileList }, resultsDestiny, numberOfTests, minModel, maxModel);
-			return 0;
-	}
+    switch (res) {
+    ////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////// Wavelet experiments //////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    case 1:
+        waveletExperiments::Experiment01::perform({liveFileList, spoofingFileList}, resultsDestiny);
+        return 0;
+    case 2:
+        waveletExperiments::Experiment02::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+        return 0;
+    case 3:
+        waveletExperiments::Experiment03::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+        return 0;
+    case 4:
+        waveletExperiments::Experiment04::perform();
+        return 0;
+    case 5:
+        waveletExperiments::Experiment05::perform({liveFileList, spoofingFileList}, resultsDestiny);
+        return 0;
+    case 6:
+        // TODO Neural network experiment
+        return 0;
+    case 7:
+        waveletExperiments::Experiment07::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+        return 0;
+    case 8:
+        waveletExperiments::Experiment08::perform({liveFileList, spoofingFileList}, resultsDestiny, numberOfTests, minModel, maxModel);
+        return 0;
 
-	// Bad arguments nothing done!
-	return -1;
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////// Imagined speech experiments //////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+    case 9:
+        imaginedSpeechExperiments::Experiment01::perform();
+        return 0;
+    }
+
+    // Bad arguments nothing done!
+    return -1;
 }
 
 /**
